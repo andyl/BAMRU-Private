@@ -1,0 +1,18 @@
+= HISTORY
+
+== 0.0.0 - 2010-02-02
+- initial creation
+
+= TODO
+
+== Models
+- create models
+- add Factories and Functions for Seed Data
+- write model specs
+
+== Data Export
+- Be able to export & import data
+
+== NEXT FEATURES
+- TBD
+

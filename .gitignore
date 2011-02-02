@@ -1,0 +1,14 @@
+.idea
+.idea/*
+.idea/*/*
+.rvmrc
+log
+log/*
+db/test.*
+doc
+doc/*
+coverage
+coverage/*
+vendor
+vendor/*
+vendor/**/*

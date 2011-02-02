@@ -1,0 +1,43 @@
+/* CSS Document */
+
+   .body 					{color: black; font-size: 12px; line-height: 16px}
+   .detailmembertype 		{color: #888888; font-size: 12px; line-height: 14px; font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular}
+   table 					{font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular}
+   table.calendar 			{font-size: 11px; background-color: #cccccc}
+   table caption.calendar-month {text-align: left; font-size: 11px; font-weight: bold; color: #333333}
+
+   tr.b_border 				td {border-bottom: solid 1px #cccccc;}
+   tr.t_border 				td {border-top: solid 1px #cccccc;}
+
+   td 						{color: #333333; line-height: 12px}
+   td.bottombanner 			{color: #0034e6; font-size: 11px; text-decoration: none; line-height: 15px; font-family: sans-serif}
+   td.bottombanner:hover 	{background-color: #eeeeee; cursor:pointer}
+   td.header 				{color: #cccccc; text-align: center ; background-color: #cccccc}
+   td.header:hover 			{cursor:pointer; color: white ; background-color: #75a9d7}
+   td.date_header 			{background-color: #cccccc; text-align: center; font-weight: bold; line-height: 8px}
+   td.date_header_small 	{background-color: #cccccc; text-align: center; font-size: 8px; line-height: 6px}
+   td.name 					{background-color: #eeeeee; width: 170px}
+   td.status 				{background-color: #eeeeee; width: 25px}
+   td.available 			{background-color: #eeeeee; width: 15px; text-align: center}
+   td.arrow		 			{color: #999999; background-color: #eeeeee; width: 15px; text-align: left}
+   td.unavailable 			{background-color: #f3a8a1; width: 15px; text-align: center}
+   td.r_border			 	{border-right: solid 1px #999999}
+   td.general	 			{background-color: #eeeeee; text-align: center}
+   td.gen_unavail 			{background-color: #f3a8a1; text-align: center}
+
+   .bold					{font-weight: bold}
+   table caption.left		{text-align: left;}
+   td.name_s 				{background-color: #eeeeee; width: 140px}
+   td.expired	  			{color: #a1a1a1; background-color: #f7d6d1; text-align: center}
+   td.expired a				{color: #7397cb; text-decoration: none;} 
+   td.expiring	  			{background-color: #f4e7b2; text-align: center}
+   td.expiring a			{color: #006ed8; text-decoration: none;} 
+   td.unexpired	 			{background-color: #dbedcb; text-align: center}
+   td.unexpired a			{color: #005fc7; text-decoration: none;} 
+   td.red_text 				{color: #92232f;}
+
+   td.sortable_header		{background-color: #cccccc; text-align: center; line-height: 12px}
+   td.underline				{border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #d68a86}
+   td.sortable_header:hover	{cursor:pointer; background-color: #eeeeee}
+
+   td.smaller				{font-size: 10px}

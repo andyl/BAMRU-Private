@@ -1,0 +1,23 @@
+<div class='center'><b>Upload CSV Data</b></div><p/>
+
+This page allows you to upload calendar data in CSV format.
+(download csv data at <%= link_url("#{current_server}/calendar.csv")%>)<p/>
+CSV import/export is primarily for use by system administrators, to backup and 
+restore data in case of a system crash.<p/>
+
+<p/>
+Things to note:
+<ul>
+  <li>the csv header fields MUST be: "kind,title,location,leaders,start,end,description"
+  <li>duplicate records are detected and rejected - you can re-load the same data file without creating duplicates
+  <li>invalid data records are rejected (missing title, missing date, etc.)
+  <li>visit <%= link_url("#{current_server}/calendar.csv")%> for an example of valid CSV formatting
+</ul>
+
+<p/>
+<b>Please don't upload CSV data unless you know what you are doing!!</b>
+
+<form action="/admin_load_csv" method='post' enctype='multipart/form-data'>
+  <input type="file" name="file"/><br/>
+  <input type="submit" value="Upload CSV File"/><br/>
+</form>

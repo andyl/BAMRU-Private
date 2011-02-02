@@ -1,0 +1,80 @@
+<script type="text/javascript">
+        $(function() {
+            $("#start, #finish").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "yy-mm-dd"
+            });
+        });
+        
+//    $(function() {
+//        var dates = $( "#start, #end" ).datepicker({
+//            changeMonth: true,
+//            changeYear: true,
+//            dateFormat: "yy-mm-dd",
+//            onSelect: function( selectedDate ) {
+//                var option   = this.id == "start" ? "minDate" : "maxDate",
+//                    instance = $( this ).data( "datepicker" );
+//                date = $.datepicker.parseDate(
+//                        instance.settings.dateFormat ||
+//                                $.datepicker._defaults.dateFormat,
+//                        selectedDate, instance.settings );
+//                dates.not( this ).datepicker( "option", option, date );
+//            }
+//        });
+//    });
+
+</script>
+
+<form method="post" action="<%=@post_action%>">
+  <table cellpadding=1 cellspacing=1>
+    <tr>
+      <td class="ar">Kind:</td>
+      <td><select name="kind">
+        <%= select_helper(@action) %>
+      </select></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="ar">Title:</td>
+      <td><input type="Text" size=35 maxlength=128 name="title" value="<%=@action.title%>"></td>
+      <td>e.g. "Snow Search and Rescue"</td>
+    </tr>
+    <tr>
+      <td class="ar">Location:</td>
+      <td><input type="Text" size=35 maxlength=128 name="location" value="<%=@action.location%>"></td>
+      <td>use "TBA" if unknown</td>
+    </tr>
+    <tr>
+      <td class="ar">Leaders:</td>
+      <td><input type="Text" size=35 maxlength=128 name="leaders" value="<%=@action.leaders%>"></td>
+      <td>e.g. "Joe Climber, Stacy Skier", or "TBA" if unknown</td>
+    </tr>
+    <tr>
+      <td class="ar">Start:</td>
+      <td>
+        <input id="start" type="Text" size=10 maxlength=10 name="start" value="<%=@action.start%>">
+        <span style="margin-left: 30px;">End:</span> <input id="finish" type="Text" size=10 maxlength=10 name="finish" value="<%=@action.finish%>">
+        </td>
+      <td>End is optional - only use it for multi-day events.</td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td colspan=2><textarea cols=72 rows=8 name="description"><%=@action.description%></textarea></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan=2>Description may contain any html. Use html equivalents when
+      entering special characters.<br/>
+      <b>USE FULL SENTENCES, correct punctuation, grammar and spelling. Proofread!</b><br/>
+      This posts to a public page and what you write here reflects on the unit.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <br/>
+        <input type="submit" name="submit" value="<%=@button_text%>">
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,120 @@
+<table cellpadding="8" bgcolor="#CC0000" width="423" height="45">
+  <tr>
+    <td valign="bottom"> <font class="title1"><font style="color: #FFFFFF">Training &amp; Events<br>
+    </font></font> </td>
+  </tr>
+</table>
+<table cellpadding="6" bgcolor="#FFFFFF" width="423" height=400>
+<tr>
+<td valign="top"> <font class="caps"><font style="color: #3366CC">BAMRU Calendar</font></font><br>Our general meetings are open to the public.&nbsp; Some trainings
+are open to guests who have attended the general meeting preceding
+the training (see <a href="#GUEST" class="summary">Guest Policy</a> to
+the right); others are open only to BAMRU trainees and members.&nbsp;
+See the descriptions of individual events for further information.<br>
+<br>
+<form action="/calendar.test">
+  Showing events
+  from <%=event_range_select(@start,@finish,"start")%>
+  to <%=event_range_select(@start,@finish,"finish")%>
+  <input type="submit" value="Change">
+</form>
+
+<table cellpadding="1" cellspacing=0 bgcolor="#FFFFFF" width="406"><tr bgcolor="#FFFFFF">
+  <td width=296 valign="top"><font class=summary><br>
+    &nbsp; <b>Meetings</b>&nbsp; <span class="news10"><font color="#888888">7:30-9:30 PM</font></span>
+    <br><br></font></td>
+  <td width=75 valign="top"></td>
+  <td width=35 valign="top"></td>
+</tr>
+  <%=calendar_table(Action.meetings.between(@start, @finish), "GENERAL")%>
+
+  <tr bgcolor="#FFFFFF">
+    <td width=296 valign="top"><font class=summary><br>
+      &nbsp; <b>Trainings</b>      <br><br></font></td>
+    <td width=75 valign="top"></td>
+    <td width=35 valign="top"></td>
+  </tr>
+  <%= calendar_table(Action.trainings.between(@start, @finish)) %>
+
+
+  <tr bgcolor="#FFFFFF">
+    <td width=296 valign="top"><font class=summary><br>
+      &nbsp; <b>Events</b>      <br><br></font></td>
+    <td width=75 valign="top"></td>
+    <td width=35 valign="top"></td>
+  </tr>
+
+  <%=calendar_table(Action.events.between(@start,@finish))%>
+
+  <tr bgcolor="#FFFFFF">
+    <td width=296 valign="top"><font class=summary><br>
+      &nbsp; <b>Non-County Meetings</b>      <br><br></font></td>
+    <td width=75 valign="top"></td>
+    <td width=35 valign="top"></td>
+  </tr>
+
+  <%=calendar_table(Action.non_county.between(@start,@finish)) %>
+
+</table>
+
+ <br><p><span class="capsblue"><a name="MEETINGS"></a>MEETINGS</span></p>
+<p><span class="caps"><a id="GENERAL"></a><span class="nav3">
+      General Meetings</span></span><br>
+      <span class="news10"> <font color="#888888">7:30-9:30 PM, see calendar for location<br>
+        <br></font></span>
+  Our monthly general meetings are open to the public,
+  generally on the third Monday of the month (except where that falls on
+  a holiday).&nbsp; Note there are two locations at which we alternate having meetings,
+  <a href="meeting_locations.html" class="navover">Redwood City</a>
+  and <a href="meeting_locations.html#EastBayMeeting" class="navover">Castro Valley</a>.&nbsp;
+  Check the calendar for specific months.&nbsp; During our recruitment season, we'll be having informal Open
+  House presentations at 7:00 PM before meetings.&nbsp;<br>
+<p><font class="caps"><a id="BOD"></a><span class="nav3">
+      Board of Directors Meetings</span></font><br>
+      <span class="news10"> <font color="#888888">7:30-9:00 PM, Redwood City<br>
+        <br></font></span>
+  Board meetings are open to BAMRU trainees and members only.<br>
+<p><font class="caps"><a id="ESB"></a><span class="nav3">
+      Sheriff's Emergency Services Bureau Orientation</span></font><br>
+      <span class="news10"> <font color="#888888">7:00-9:00 PM, Jury Assembly Room, Redwood City<br>
+        <br></font></span>
+  This all-units ESB orientation is being put on by Sgt.&nbsp; John Diggins for
+  members and trainees of ESB units including BAMRU.&nbsp; <i>Dress is
+  full uniform.</i><br>
+<p><font class="caps"><a id="BASARC"></a><span class="nav3">
+      BASARC Meetings</span></font><br>
+      <span class="news10"> <font color="#888888">Times and locations vary<br>
+        <br></font></span>
+  BAMRU is a member of the <a href="http://www.basarc.org/" target="_blank" class="navover">
+  Bay Area Search and Rescue Council</a>.<br>
+<p><font class="caps"><a id="CRMRA"></a><span class="nav3">
+      Regional Meetings of the Mountain Rescue Association</span></font><br>
+      <span class="news10"> <font color="#888888">Times and locations vary<br>
+        <br></font></span>
+  The quarterly meeting of the <a href="http://www.crmra.org/" target="_blank" class="navover">
+  California Region</a> of the <a href="http://www.mra.org/" target="_blank" class="navover">
+  Mountain Rescue Association</a>.&nbsp; These meetings are open to members and
+  trainees of CRMRA teams.<br>
+<p>&nbsp;</p>
+<p><span class="capsblue"><a name="TRAININGS"></a>TRAININGS</span></p>
+
+<%= detail_table(Action.trainings.between(@start,@finish)) %>
+
+
+<p>&nbsp;</p>
+<p><span class="capsblue"><a name="EVENTS"></a>EVENTS</span></p>
+
+
+<%= detail_table(Action.events.between(@start,@finish)) %>
+
+<p>&nbsp;</p>
+<p><span class="capsblue"><a name="NON-COUNTY MEETINGS"></a>EVENTS</span></p>
+
+
+<%= detail_table(Action.non_county.between(@start,@finish)) %>
+
+<p>&nbsp;</p>
+<p><span class='capsblue'>EMERGENCY SERVICES BUREAU CALENDAR</span></p>BAMRU is one of several specialized units comprising the San Mateo Sheriff's Office<a href='http://www.co.sanmateo.ca.us/portal/site/sheriffs/menuitem.b7e419e678ddeb0274452b31d17332a0/?vgnextoid=9609dd7c41211210VgnVCM1000001d37230aRCRD&amp;cpsextcurrchannel=1' class='navover'>Emergency Services Bureau</a> (ESB).&nbsp; The full<a href='http://www.google.com/calendar/embed?src=9tgs9ebm67lij6b4b07vi3fbak@group.calendar.google.com&amp;ctz=America/Los_Angeles' class='navover'>ESB Calendar</a> shows BAMRU events along with those of other units.<br>
+</tr>
+
+</table>

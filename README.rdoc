@@ -1,0 +1,4 @@
+= BAMRU Private Website Prototype
+
+This is the first checking for the BAMRU Private Website.
+
