@@ -9,6 +9,7 @@ gem "sqlite3-ruby", "1.2.5", :require => "sqlite3"
 gem "factory_girl"
 gem "rack-flash"
 gem "fastercsv"
+gem "faker"
 
 gem "rspec"
 gem "capybara"

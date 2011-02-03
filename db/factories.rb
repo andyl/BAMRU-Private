@@ -1,17 +1,29 @@
-def rand2() srand.to_s[0..1]; end
-def rand3() srand.to_s[0..2]; end
-def rand4() srand.to_s[0..3]; end
-def randM() 1 + rand(12); end
-def randD() 1 + rand(28); end
-def randE() "2011-#{randM}-#{randD}"; end
+def rand3() ("100".."999").to_a.sample; end
+def rand4() ("1000".."9999").to_a.sample; end
 
-Factory.define :action do |u|
-  u.kind        "event" 
-  u.title       { "T#{rand4}" }
-  u.location    { "L#{rand4}" } 
-  u.leaders     { "Leader#{rand4}" }
-  u.start       { randE }
-  u.finish
-  u.description { "Big Hello #{rand4}" }
+require 'faker'
+
+Factory.define :user do |u|
+  u.first_name  { Faker::Name.first_name }
+  u.last_name   { Faker::Name.last_name  }
+end
+
+Factory.define :address do |a|
+  a.association :user
+  a.addr1 { Faker::Address.street_address    }
+  a.addr2 { Faker::Address.secondary_address if (1..3).to_a.sample == 1 }
+  a.city  { Faker::Address.city              }
+  a.state { Faker::Address.state_abbr        }
+  a.zip   { Faker::Address.zip               }
+end
+
+Factory.define :phone do |a|
+  a.association :user
+  a.number { "#{rand3}-#{rand3}-#{rand4}" }
+end
+
+Factory.define :email do |a|
+  a.association :user
+  a.address { Faker::Internet.email }
 end
 
