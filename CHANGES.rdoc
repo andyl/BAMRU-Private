@@ -6,7 +6,7 @@
 = TODO
 
 == Models
-- create models
+- create models and migrations
 - add Factories and Functions for Seed Data
 - write model specs
 
