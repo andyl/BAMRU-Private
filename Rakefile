@@ -42,11 +42,12 @@ namespace :db do
     require 'config/environment'
   end
 
-  desc "Run database migration"
+  desc "Remove all databases"
   task :drop do
     Dir["*/*.sqlite3"].each {|f| puts "Dropping #{f}"; File.delete(f)}
   end
 
+  desc "Run database migration"
   task :migrate => :environment do
     ActiveRecord::Migration.verbose = true
     ActiveRecord::Migrator.migrate("db/migrate")
