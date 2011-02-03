@@ -1,4 +1,7 @@
 = BAMRU Private Website Prototype
 
-This is the first checking for the BAMRU Private Website.
+Early work for the BAMRU Private Website.
+
+At this point there are only models and tests - no HTML pages yet.
+
 
