@@ -40,14 +40,16 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :filename
       t.timestamps
     end
-    create_table :mpas do |t|
+    create_table :oots do |t|
       t.integer   :user_id
       t.date      :start
       t.date      :end
       t.timestamps
     end
-    create_table :doas do |t|
+    create_table :do_avails do |t|
+      t.integer      :userid
       t.integer      :week
+      t.string       :status
       t.timestamps
     end
     create_table :do_assignments do |t|
