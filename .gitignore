@@ -12,3 +12,5 @@ coverage/*
 vendor
 vendor/*
 vendor/**/*
+.path*
+.tag*
