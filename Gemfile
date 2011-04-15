@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem 'activerecord'
+gem 'activesupport'
 gem 'sinatra'
 gem "bundler"
 gem "ruby-debug", "0.10.0"

@@ -104,6 +104,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activesupport
   awesome_print
   bundler
   capistrano
