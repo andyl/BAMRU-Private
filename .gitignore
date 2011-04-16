@@ -14,3 +14,7 @@ vendor/*
 vendor/**/*
 .path*
 .tag*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/

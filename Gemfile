@@ -1,26 +1,26 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem 'activerecord'
-gem 'activesupport'
-gem 'sinatra'
-gem "bundler"
-gem "ruby-debug", "0.10.0"
+gem 'rails', '3.0.6'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "capistrano"
-gem "sqlite3-ruby", "1.2.5", :require => "sqlite3"
 gem "factory_girl"
-gem "rack-flash"
 gem "fastercsv"
-gem "faker"
-gem "valid_attribute"
-
-gem "rspec"
-gem "capybara"
-gem "shotgun"
-gem "rcov"
+gem "nokogiri"
 gem "thin"
 
-gem "drx"
-gem "hirb"
-gem "wirble"
-gem "interactive_editor"
-gem "awesome_print", :require => "ap"
+group :development, :test do
+  gem "faker"
+  gem "valid_attribute"
+  gem "rcov"
+  gem "ruby-debug"
+  gem "rspec-rails"
+  gem "capybara"
+  gem "launchy"
+
+  gem "drx"
+  gem "hirb"
+  gem "wirble"
+  gem "interactive_editor"
+  gem "awesome_print", :require => "ap"
+end
+
