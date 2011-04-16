@@ -11,6 +11,7 @@ gem "factory_girl"
 gem "rack-flash"
 gem "fastercsv"
 gem "faker"
+gem "valid_attribute"
 
 gem "rspec"
 gem "capybara"

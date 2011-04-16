@@ -2,27 +2,29 @@ require 'spec_helper'
 
 describe User do
 
-#  before(:each) do
-#    Factory(:action, :kind => "meeting")
-#    Factory(:action, :kind => "event")
-#    Factory(:action, :kind => "training")
-#    Factory(:action, :kind => "non-county")
-#  end
-#
-#  describe ".delete_all_with_validation" do
-#    before(:each) { Action.delete_all_with_validation }
-#    it "deletes all records" do
-#      Action.count.should == 0
-#    end
-#  end
+ describe "Object Attributes" do
+   before(:each) { @obj = User.new }
+   specify { @obj.should respond_to(:first_name) }  
+   specify { @obj.should respond_to(:last_name)  }  
+ end
 
-#  describe "#reset_first_in_year" do
-#    context "when there are multiple records in the database" do
-#
-#    end
-#    context "when there are no records in the database" do
-#
-#    end
-#  end
+ describe "Associations" do
+   before(:each) { @obj = User.new }
+   specify { @obj.should respond_to(:addresses)     } 
+   specify { @obj.should respond_to(:phones)        } 
+   specify { @obj.should respond_to(:emails)        } 
+   specify { @obj.should respond_to(:roles)         } 
+   specify { @obj.should respond_to(:photos)        } 
+   specify { @obj.should respond_to(:do_avails)     } 
+   specify { @obj.should respond_to(:messages)      } 
+   specify { @obj.should respond_to(:distributions) } 
+ end
+
+ describe "Validations" do
+   it { should     have_valid(:first_name).when("Joe") } 
+   it { should_not have_valid(:first_name).when("")    } 
+   it { should     have_valid(:last_name).when("Sue")  } 
+   it { should_not have_valid(:last_name).when("")     } 
+ end
 
 end

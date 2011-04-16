@@ -1,15 +1,11 @@
 require 'rubygems'
-require 'active_record'
-require 'factory_girl'
 require 'time'
-require 'active_support/all'
+require 'factory_girl'
+require 'active_record'
+require 'active_support/core_ext'
 
 BASE_DIR  = File.dirname(File.expand_path(__FILE__)) + "/../"
 DATA_DIR  = BASE_DIR + "/data"
-
-MARSHALL_FILENAME  = "/tmp/marshall.csv"
-MALFORMED_FILENAME = "/tmp/malformed.csv"
-INVALID_FILENAME   = "/tmp/invalid.csv"
 
 database_file = case ENV['RACK_ENV']
   when "production" : "production.sqlite3"

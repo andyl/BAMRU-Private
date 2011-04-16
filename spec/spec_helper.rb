@@ -2,6 +2,7 @@ ENV["RACK_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec'
 require 'time'
+require 'valid_attribute'
 
 RSpec.configure do |config|
   config.mock_with :rspec
