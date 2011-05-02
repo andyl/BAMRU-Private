@@ -7,13 +7,16 @@ gem "factory_girl"
 gem "fastercsv"
 gem "nokogiri"
 gem "thin"
+gem "devise"
+gem "simple_form"
+#gem "cancan"
 
 group :development, :test do
   gem "faker"
   gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
-  gem "rspec-rails"
+  gem "rspec-rails", "2.6.0.rc4"
   gem "capybara"
   gem "launchy"
 
@@ -23,4 +26,3 @@ group :development, :test do
   gem "interactive_editor"
   gem "awesome_print", :require => "ap"
 end
-

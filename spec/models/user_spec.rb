@@ -6,6 +6,7 @@ describe User do
    before(:each) { @obj = User.new }
    specify { @obj.should respond_to(:first_name) }  
    specify { @obj.should respond_to(:last_name)  }  
+   specify { @obj.should respond_to(:email)  }
  end
 
  describe "Associations" do
