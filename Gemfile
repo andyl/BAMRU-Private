@@ -16,8 +16,8 @@ group :development, :test do
   gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
-  gem "rspec-rails", "2.6.0.rc4"
-  gem "capybara"
+  gem "rspec-rails", "~> 2.6.0.rc4"
+  gem "capybara", "~> 1.0.0.beta1"
   gem "launchy"
 
   gem "drx"
