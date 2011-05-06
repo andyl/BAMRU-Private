@@ -1,0 +1,437 @@
+/* Misc Styles */
+
+#mybody {
+  background-color: #ff6666;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: blue;
+}
+
+a.target {
+    color: black;
+}
+
+table.basic {
+  background-color: lightblue;
+  width: 100%;
+}
+
+table.basic td {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+table.basic th {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+td.al {
+  text-align: left;
+}
+
+td.ar {
+  text-align: right;
+}
+
+td.ac {
+  text-align: center;
+}
+
+td.btn {
+  border: blue;
+  /*background-color: green;*/
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.debug {
+  text-align: center;
+  font-size: 11px;
+}
+
+pre {
+  font-size: 11px;
+}
+
+.green_button {
+  font-size: 20px;
+  background-color: lightgreen;
+  border: 2px solid green;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+.centered_section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+
+}
+
+/* Main Container */
+
+#container {
+  width: 960px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+/* Help Page */
+
+.side_nav {
+  background-color: #e0ffff;
+  position: relative;
+  width: 20%;
+  float: left;
+}
+
+.help_body {
+  width: 78%;
+  float: right;
+}
+
+/* Header */
+
+#header {
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #cccccc;
+  /*margin-bottom: 10px;*/
+}
+
+#logo_box {
+  position: relative;
+  width: 30%;
+  float:left;
+
+}
+
+#logo_text {
+  font-size: 22px;
+  margin-top: 9px;
+  /*position: relative;*/
+  /*bottom: -2px;*/
+}
+
+#logo_text a{
+  text-decoration: none;
+  color: black;
+}
+
+#logo_text a:hover{
+  text-decoration: underline;
+  color: blue;
+}
+
+#head_nav_box {
+  /*background-color: bisque;*/
+  width: 70%;
+  height: 30px;
+  text-align: right;
+  float: right;
+}
+
+#head_nav_text {
+  position: relative;
+  bottom: -10px;
+}
+
+#admin_nav_box {
+  text-align: right;
+}
+
+/* Sub-Nav */
+
+#sub_nav {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /*background-color: #cccccc;*/
+  background-color: rgb(221, 221, 221);
+  margin-bottom: 2px;
+}
+#sub_nav_breadcrumbs {
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+#sub_nav_label {
+    text-align: right;
+}
+
+/* Tree */
+#treenav {
+    /*float: left;*/
+    /*width: 100px;*/
+    /*border: solid;*/
+    /*border-color: #a9a9a9;*/
+    /*border-width: 1px;*/
+    /*padding: 2px;*/
+    /*overflow: hidden;*/
+    /*overflow: hidden;*/
+}
+
+#conttt {
+    /*float: right;*/
+    /*width: 100%*/
+    /*width: 854px;*/
+}
+
+#yield {
+    padding: 8px;
+    overflow: auto;
+    height: 395px;
+}
+
+#super {
+    height: 450px;
+}
+
+
+/* Settings Nav */
+
+#sub_settings {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #cccccc;
+  margin-bottom: 10px;
+}
+#sub_settings_label {
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+#sub_settings_menu {
+    text-align: right;
+}
+
+/* Footer */
+
+.spacer {
+    height: 1px;
+}
+
+#footer {
+  clear: both;
+  background-color: #cccccc;
+  /*margin-top: 10px;*/
+  text-align: center;
+  padding: 5px;
+}
+
+/* Flash */
+
+#flash_notice, #flash_error, #flash_alert, #flash_help {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_help {
+  background-color: #FFC;
+  border: solid 1px #cccc00;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_tag {
+  display: none;
+}
+
+#flash_error, #flash_alert, .formError {
+  background-color: #f0f0f0;
+  border: solid 2px #CF0000;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 8px;
+}
+
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}
+
+.add_link {
+    text-align: right;
+    font-size: 8pt;
+}
+
+/* tab stuff */
+
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px; /*--Set height of tabs--*/
+    border-bottom: 1px solid    #999;
+    border-left: 1px solid #999;
+    width: 100%;
+}
+
+ul.tabs li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    height: 31px; /*--Subtract 1px from texthe height of the unordered list--*/
+    line-height: 31px; /*--Vertically   aligns the text within the tab--*/
+    border: 1px solid #999;
+    border-left: none;
+    margin-bottom: -1px; /*--Pull the list item down 1px--*/
+    overflow: hidden;
+    position: relative;
+    background: #e0e0e0;
+}
+
+ul.tabs li    a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    /*font-size:        1.2em;*/
+    padding: 0 20px;
+    border: 1px solid #fff; /*--Gives the bevel listook with a 1px white border inside the list item--*/
+    outline: none;
+}
+
+ul.tabs li a:hover {
+    background: #ccc;
+}
+
+html ul.tabs li.active, html  ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+    background: #fff;
+    border-bottom: 1px solid #fff;  /*--Makes the active tab look like it's connected with its content--*/
+}
+
+.tab_container {
+    border: 1px solid #999;
+    border-top: none;
+    overflow: hidden;
+    clear: both;
+    float: left; width: 100%;
+    background: #fff;
+}
+
+.tab_content {
+    padding: 20px;
+    /*font-size: 1.2em;*/
+}
+
+/* ----- SimpleForm Styles ----- */
+
+.simple_form div.input {
+  margin-bottom: 10px;
+}
+
+.simple_form label {
+float: left;
+width: 100px;
+text-align: right;
+margin: 2px 10px;
+}
+
+div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+div.boolean label, label.collection_radio {
+  float: none;
+  margin: 0;
+}
+
+label.collection_radio {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left:   2px;
+}
+
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+.simple_form .error {
+  clear:   left;
+  color:   black;
+  display: block;
+  margin-left: 120px;
+  font-size:    12px;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  font-size:    12px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+input.check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+}
+
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left:   2px;
+}
+
