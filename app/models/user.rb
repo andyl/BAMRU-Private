@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
 
   # ----- Validations -----
-  validates_presence_of :first_name, :last_name
+#  validates_presence_of :first_name, :last_name
 
 
 

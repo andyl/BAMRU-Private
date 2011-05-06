@@ -1,2 +1,35 @@
 module ApplicationHelper
+  def sign_out_link
+    "<a href='/users/sign_out'>sign out</a>"
+  end
+
+  def sign_up_or_in_link
+    sign_in_link = "<a href='/users/sign_in'>sign in</a>"
+    sign_up_link = "<a href='/users/sign_up'>sign up</a>"
+    sign_in_link + ' | ' + sign_up_link
+  end
+
+  def user_nav
+    if user_signed_in?
+      "welcome <b>#{current_user.email}</b> | account | #{sign_out_link}"
+    else
+      sign_up_or_in_link
+    end
+  end
+
+  # ----- Debug Helpers -----
+
+  def params_debug_text
+    "<br/><b>#{params["controller"]}##{params["action"]}<br/>params:</b> #{params.inspect}"
+  end
+
+  def request_env_debug_text
+    "<b>Request.env:</b><br/>#{request.env["HTTP_COOKIE"].inspect}"
+  end
+
+  def debug_footer_text
+    params_debug_text
+  end
+
+
 end

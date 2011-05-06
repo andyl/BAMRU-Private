@@ -1,7 +1,7 @@
 /* Misc Styles */
 
 #mybody {
-  background-color: #ff6666;
+  background-color: #ff0000;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -235,7 +235,7 @@ pre {
 #footer {
   clear: both;
   background-color: #cccccc;
-  /*margin-top: 10px;*/
+  margin-top: 15px;
   text-align: center;
   padding: 5px;
 }

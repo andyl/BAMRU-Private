@@ -10,15 +10,17 @@
 
 <div id="container">
   <div id="header">
-    <div id="logo_box">
-      <div id="logo_text">
+    <table width=100%><tr height=30>
+      <td style="font-size:23px;" width=400>
         <%= link_to_unless_current("BAMRU Private Webpage", '/') %>
-      </div>
-    </div>
-    <div id ="head_nav_box">
-      <div id="head_nav_text"><%= "Internal team use only" %></div>
-    </div>
-    <div class="clear"></div>
+      </td>
+      <td align=center valign=bottom>
+        Internal Use Only
+      </td>
+      <td width=400 align=right valign=bottom>
+        <%= raw user_nav %>
+      </td>
+    </tr></table>
   </div>
 
   <p class="notice"><%= notice %></p>
@@ -29,7 +31,9 @@
   <div id="footer">
     <%= "FOOTER NAV GOES HERE" %>
   </div>
+  <div class ="debug"><%= raw debug_footer_text %></div>
 </div>
+
 
 </body>
 </html>
