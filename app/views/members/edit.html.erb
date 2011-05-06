@@ -1,0 +1,11 @@
+<h1>Editing member</h1>
+
+<%# render 'form' %>
+
+<%= simple_form_for @member, :url => member_path do |f| %>
+  <%= f.input :email %>
+  <%= f.button :submit, :url => member_path %>
+<% end %>
+
+<%= link_to 'Show', "/members/#{@member.id}" %> |
+<%= link_to 'Back', members_path %>
