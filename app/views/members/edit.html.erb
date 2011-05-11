@@ -2,10 +2,10 @@
 
 <%# render 'form' %>
 
-<%= simple_form_for @member, :url => member_path do |f| %>
+<%= simple_form_for @member, :url => user_path(@member) do |f| %>
   <%= f.input :email %>
-  <%= f.button :submit, :url => member_path %>
+  <%= f.button :submit %>
 <% end %>
 
 <%= link_to 'Show', "/members/#{@member.id}" %> |
-<%= link_to 'Back', members_path %>
+<%= link_to 'Back', users_path %>

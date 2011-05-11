@@ -7,6 +7,9 @@ class HomeController < ApplicationController
   def contact
   end
 
+  def test
+  end
+
   def tbd
   end
 

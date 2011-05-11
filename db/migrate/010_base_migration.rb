@@ -5,9 +5,11 @@ class BaseMigration < ActiveRecord::Migration
   # page_log
   def self.up
     create_table :users do |t|
-      t.string :first_name
-      t.string :last_name
-      t.string :email
+      t.string  :first_name
+      t.string  :last_name
+      t.string  :email
+      t.string  :member_type
+      t.boolean :admin, :default => false
       t.database_authenticatable :null => false
       t.recoverable
       t.rememberable

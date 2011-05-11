@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe "home/index.html.erb" do #, :type => :acceptance do
 
+  include Devise::TestHelpers
+
+  before(:each) do
+    @user = User.create!(:email => "qwer@asdf.com", :password => "qwerasdf")
+    sign_in @user
+  end
+
   it "does basic rendering" do
     render
     rendered.should_not be_nil

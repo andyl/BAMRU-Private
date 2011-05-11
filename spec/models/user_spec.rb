@@ -23,9 +23,7 @@ describe User do
 
  describe "Validations" do
    it { should     have_valid(:first_name).when("Joe") } 
-   it { should_not have_valid(:first_name).when("")    } 
-   it { should     have_valid(:last_name).when("Sue")  } 
-   it { should_not have_valid(:last_name).when("")     } 
+   it { should     have_valid(:last_name).when("Sue")  }
  end
 
 end

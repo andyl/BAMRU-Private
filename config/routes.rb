@@ -1,11 +1,12 @@
 Bnet::Application.routes.draw do
   get "home/index"
   get "home/contact"
+  get "home/test"
   get "home/tbd"
 
   devise_for :users
 
-  resources :members
+  resources :members, :as => :users
 
   root :to => "home#index"
 
