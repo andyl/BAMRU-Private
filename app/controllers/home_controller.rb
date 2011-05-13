@@ -1,16 +1,8 @@
 class HomeController < ApplicationController
-  before_filter :authenticate_user!
-  
+
+  before_filter :authenticate_member!
+
   def index
-  end
-
-  def contact
-  end
-
-  def test
-  end
-
-  def tbd
   end
 
 end

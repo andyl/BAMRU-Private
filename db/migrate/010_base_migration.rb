@@ -1,16 +1,14 @@
 class BaseMigration < ActiveRecord::Migration
-  # tables...
-  # user, address, phone, role, photo, email, 
-  # mpa (member personal availabliity) , doa (duty officer availability)
-  # page_log
-  def self.up
-    create_table :users do |t|
+  def change
+    create_table :members do |t|
       t.string  :first_name
       t.string  :last_name
-      t.string  :email
+      t.string  :login
+      # t.string  :email
       t.string  :member_type
       t.boolean :admin, :default => false
-      t.database_authenticatable :null => false
+      t.string  :encrypted_password
+      
       t.recoverable
       t.rememberable
       t.trackable
@@ -19,10 +17,13 @@ class BaseMigration < ActiveRecord::Migration
       # t.token_authenticatable
       t.timestamps
     end
-    add_index :users, :email,                :unique => true
-    add_index :users, :reset_password_token, :unique => true
-    # add_index :users, :confirmation_token,   :unique => true
-    # add_index :users, :unlock_token,         :unique => true
+
+    # add_index :members, :email,                :unique => true
+    add_index :members, :reset_password_token, :unique => true
+    # add_index :members, :confirmation_token,   :unique => true
+    # add_index :members, :unlock_token,         :unique => true
+    # add_index :members, :authentication_token, :unique => true
+
     create_table :addresses do |t|
       t.integer :user_id
       t.string  :atype
@@ -79,5 +80,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer      :user_id
       t.integer      :message_id
     end
+
   end
+
 end

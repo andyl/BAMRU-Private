@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Bnet::Application.config.secret_token = '4e9a85f6ccceab44214461155b2015a313ec46e4d95ef5b15df68b954e04f96e9008fbc33bdb8c027d0c807bab35cac2ae742658c0ea7d85403c1b3e54bf96fc'
+Zn::Application.config.secret_token = 'b4b05c7b51404c2805ab5d619207d1daac9bb5458b9024794e3183f94cc05477f04b8a7918bc960bd44eca9e34758658c1b642c1e00c9148a3269c2f6ff22736'
