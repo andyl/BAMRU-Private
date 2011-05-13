@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bnet</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="mybody">
+
+<div id="container">
+  <div id="header">
+    <table width=100%><tr height=30>
+      <td style="font-size:23px;" width=400>
+        <%= link_to_unless_current("Private Webpage", '/') %>
+      </td>
+      <td align=center valign=bottom>
+        Internal Use Only
+      </td>
+      <td width=400 align=right valign=bottom>
+        <%= raw user_nav %>
+      </td>
+    </tr></table>
+  </div>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+
+  <div id="footer">
+    <%= "FOOTER NAV GOES HERE" %>
+  </div>
+  <div class ="debug"><%= raw debug_footer_text %></div>
+</div>
+
+
+</body>
+</html>

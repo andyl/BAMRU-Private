@@ -1,0 +1,23 @@
+= HISTORY
+
+== 0.0.0 - 2010-02-02
+- initial creation
+
+= TODO
+
+== Roster Database
+- build a layout for the private page
+- get nested forms working
+- table sorting/filtering
+
+== Misc
+- get email sending working
+- find out how to send messages to the paging system
+
+== URLs: private.bamru.org
+- /                  - main page
+- /roster            - list all users
+- /roster_new        - create user form
+- /roster_edit/:id   - edit user
+- /pager             - pager database
+- /photos            - photo gallery
