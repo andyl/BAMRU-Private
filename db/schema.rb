@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(:version => 10) do
 
   create_table "addresses", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "atype"
-    t.string   "addr1"
-    t.string   "addr2"
+    t.integer  "member_id"
+    t.string   "typ"
+    t.string   "address1"
+    t.string   "address2"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
@@ -24,13 +24,19 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "alt_roles", :force => true do |t|
+    t.string   "typ"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "distributions", :force => true do |t|
-    t.integer "user_id"
+    t.integer "member_id"
     t.integer "message_id"
   end
 
   create_table "do_assignments", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,8 +50,9 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "emails", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "etype"
+    t.integer  "member_id"
+    t.string   "typ"
+    t.string   "pagable"
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,8 +61,10 @@ ActiveRecord::Schema.define(:version => 10) do
   create_table "members", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "login"
-    t.string   "member_type"
+    t.string   "user_name"
+    t.string   "typ"
+    t.string   "ham"
+    t.string   "v9"
     t.boolean  "admin",                  :default => false
     t.string   "encrypted_password"
     t.string   "reset_password_token"
@@ -73,14 +82,14 @@ ActiveRecord::Schema.define(:version => 10) do
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "member_id"
     t.string   "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "oots", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "member_id"
     t.date     "start"
     t.date     "end"
     t.datetime "created_at"
@@ -88,8 +97,8 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "phones", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "ptype"
+    t.integer  "member_id"
+    t.string   "typ"
     t.string   "number"
     t.string   "pagable"
     t.datetime "created_at"
@@ -97,13 +106,8 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "member_id"
     t.string   "filename"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

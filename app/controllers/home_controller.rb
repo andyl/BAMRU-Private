@@ -5,4 +5,13 @@ class HomeController < ApplicationController
   def index
   end
 
+  def test
+  end
+
+  def tbd
+  end
+
+  def contact
+  end
+
 end

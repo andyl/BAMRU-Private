@@ -3,9 +3,10 @@ class BaseMigration < ActiveRecord::Migration
     create_table :members do |t|
       t.string  :first_name
       t.string  :last_name
-      t.string  :login
-      # t.string  :email
-      t.string  :member_type
+      t.string  :user_name
+      t.string  :typ
+      t.string  :ham
+      t.string  :v9
       t.boolean :admin, :default => false
       t.string  :encrypted_password
       
@@ -25,38 +26,40 @@ class BaseMigration < ActiveRecord::Migration
     # add_index :members, :authentication_token, :unique => true
 
     create_table :addresses do |t|
-      t.integer :user_id
-      t.string  :atype
-      t.string  :addr1
-      t.string  :addr2
+      t.integer :member_id
+      t.string  :typ
+      t.string  :address1
+      t.string  :address2
       t.string  :city
       t.string  :state
       t.string  :zip
       t.timestamps
     end
     create_table :phones do |t|
-      t.integer :user_id
-      t.string  :ptype
+      t.integer :member_id
+      t.string  :typ
       t.string  :number
       t.string  :pagable
       t.timestamps
     end
     create_table :emails do |t|
-      t.integer :user_id
-      t.string  :etype
+      t.integer :member_id
+      t.string  :typ
+      t.string  :pagable
       t.string  :address
       t.timestamps
     end
     create_table :roles do |t|
+      t.string :typ
       t.timestamps
     end
     create_table :photos do |t|
-      t.integer    :user_id
+      t.integer    :member_id
       t.string     :filename
       t.timestamps
     end
     create_table :oots do |t|
-      t.integer   :user_id
+      t.integer   :member_id
       t.date      :start
       t.date      :end
       t.timestamps
@@ -68,16 +71,16 @@ class BaseMigration < ActiveRecord::Migration
       t.timestamps
     end
     create_table :do_assignments do |t|
-      t.integer       :user_id
+      t.integer       :member_id
       t.timestamps
     end
     create_table :messages do |t|
-      t.integer       :user_id         # author
+      t.integer       :member_id  
       t.string        :contents
       t.timestamps
     end
     create_table :distributions do |t|
-      t.integer      :user_id
+      t.integer      :member_id
       t.integer      :message_id
     end
 

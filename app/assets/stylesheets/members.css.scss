@@ -1,5 +1,69 @@
 /* 
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-  You can use Sass (SCSS) here: http://sass-lang.com/
+  Styles for Members Controller
 */
+
+$body_width:     644px;
+$border_width:   1px;
+$col_padding:    8px;
+$col_base_width: $body_width/2 - $col_padding*2 - $border_width;
+
+@mixin x_border {
+  border: solid gray $border_width;
+}
+
+@mixin col_style {
+  @include x_border;
+  border-top-style: none;
+  border-bottom-style: none;
+  padding: $col_padding;
+}
+
+@mixin x_header_footer {
+  @include x_border;
+  text-align: center;
+  background-color: #cccccc;
+  padding: 8px;
+}
+
+#x_container {
+  align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#x_body {
+  width: $body_width;
+  margin:auto;
+}
+
+#x_header{
+  @include x_header_footer;
+}
+
+$col_height: 225px;
+
+#x_left_col {
+  @include col_style;
+  float: left;
+  width: $col_base_width - $border_width;
+  /*height: $col_height;*/
+}
+
+#x_right_col {
+  @include col_style;
+  float: right;
+  border-left-style: none;
+  width: $col_base_width;
+  /*height: $col_height;*/
+}
+
+#x_footer{
+  @include x_header_footer;
+  clear: both;
+  padding: 4px;
+}
+
+.graybg {
+  padding: 3px;
+  background-color: #cccccc;
+}

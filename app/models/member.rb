@@ -8,9 +8,10 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :remember_me
-  attr_accessible :login, :first_name, :last_name
-
-  attr_accessor :login
+  attr_accessible :user_name, :first_name, :last_name
+  attr_accessible :typ, :v9, :ham, :base_role
+  attr_accessible :phones_attributes, :addresses_attributes
+  attr_accessible :alt_roles_attributes, :emails_attributes
 
   # ----- Associations -----
   has_many :addresses
@@ -23,40 +24,50 @@ class Member < ActiveRecord::Base
   has_many :messages
   has_many :distributions
 
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :phones,    :allow_destroy => true
+  accepts_nested_attributes_for :emails,    :allow_destroy => true
+  accepts_nested_attributes_for :roles,     :allow_destroy => true
+
   # ----- Validations -----
-  validates_presence_of   :first_name, :last_name, :login
-  validates_format_of     :first_name, :with => /^[A-Za-z \.]+$/
-  validates_format_of     :last_name,  :with => /^[A-Za-z \.]+$/
-  validates_format_of     :login,      :with => /^[a-z\.]+$/
-  validates_uniqueness_of :login
+  validates_presence_of   :first_name, :last_name, :user_name
+  validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
+  validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
+  validates_format_of     :user_name,      :with => /^[a-z_\.\-]+$/
+#  validates_uniqueness_of :user_name
 
   # ----- Callbacks -----
-  before_validation :set_login_and_name_fields
+  before_validation :set_username_and_name_fields
+  before_validation :set_pwd
 
   # ----- Scopes -----
 
   # ----- Local Methods-----
-  def new_login_from_names
-    return "" if first_name.blank? || last_name.blank?
-    fname = self.first_name.downcase.gsub(/ \./,'_')
-    lname = self.last_name.downcase.gsub(/ \./,'_')
+  def new_username_from_names
+    return "" if first_name.nil? || last_name.nil?
+    fname = self.first_name.downcase.gsub(/[ \.]/,'_')
+    lname = self.last_name.downcase.gsub(/[ \.]/,'_')
     "#{fname}.#{lname}"
   end
 
-  def new_names_from_login
-    return ["",""] if login.blank?
-    login.split('.').map {|n| n.capitalize}
+  def set_pwd
+    self.password = "pppp" if self.password.blank?
   end
 
-  def cleanup_login
-    @login = @login.downcase unless @login.blank?
+  def new_names_from_username
+    return ["",""] if user_name.blank?
+    user_name.split('.').map {|n| n.capitalize}
   end
 
-  def set_login_and_name_fields
-    cleanup_login
-    self.login = new_login_from_names if login.blank?
-    if first_name.blank? && last_name.blank?
-      self.first_name, self.last_name = new_names_from_login
+  def cleanup_user_name
+    self.user_name = self.user_name.downcase unless self.user_name.blank?
+  end
+
+  def set_username_and_name_fields
+    cleanup_user_name
+    self.user_name = new_username_from_names if self.user_name.blank?
+    if self.first_name.blank? && self.last_name.blank?
+      self.first_name, self.last_name = new_names_from_username
     end
   end
 

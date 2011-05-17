@@ -1,1 +1,87 @@
-HI THIS IS INDEX.
+<%= javascript_include_tag "checkbox2.js" %>
+<%= javascript_include_tag "equal_height.js" %>
+
+<div style="text-align:center;">
+Dynamic Page (<a href="/members/test">go to static</a>)
+</div>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      Team Roster / Paging
+    </div>
+    <div id=x_left_col>
+      <table>
+        <tr>
+          <td></td>
+          <td><img src="/images/page.gif" border=0></td>
+          <td><img src="/images/mail.gif" border=0></td>
+          <td></td>
+        </tr>
+        <% @members.each do |m| %>
+        <tr>
+          <td class=role><%= m.typ %></td>
+          <td class=checkbox><input class="<%= m.typ %>" type="checkbox"></td>
+          <td class=checkbox><input class="<%= m.typ %>" type="checkbox"></td>
+          <td class=link><a href="/members/john.chang"><%= m.user_name %></a></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id=x_right_col>
+      Select by member type:<br/>
+      <input type="checkbox" class="slx" id=cb_TM> Technical Member (TM)<br/>
+      <input type="checkbox" class="slx" id=cb_FM> Field Member (FM)<br/>
+      <input type="checkbox" class="slx" id=cb_T > Trainee (T)<br/>
+      <input type="checkbox" class="slx" id=cb_R > Reserve (R)<br/>
+      <input type="checkbox" class="slx" id=cb_S > Support (S)<br/>
+      <input type="checkbox" class="slx" id=cb_A > Associate (A)<br/>
+      <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
+      <input type="checkbox" class="slx" id=cb_BD> Board of Directors (Bd)<br/>
+
+      <div style="margin-top:25px; margin-bottom:25px;">
+        From:
+        <select name="from_email">
+          <option value="andy@r210.com">andy@r210.com</option>
+        </select>
+        <textarea id="messagearea" name="message" rows="10" cols="40" onKeyDown="lengthLimit(document.getElementById('messagearea'),document.getElementById('charsremaining'),132);" onKeyUp="lengthLimit(this.form.message,this.form.charsRemaining,132);"></textarea>
+        <br> You have <div id="charsremaining" style="display:inline;">132</div> characters left.<br><br>
+        <input type="submit" name="message_submit" value="Send message">
+      </div>
+
+      <div class="note graybg">
+
+        <I>PLEASE NOTE: Message content, IP addresses, and message recipients are logged for each message sent on this system.</I><br>
+
+
+        <br>
+        Last message sent on Tuesday, May 10 2011 at 08:20:09<br><a href="log.php">View log</a>
+        <br><br>
+
+        <B>BAMRU Status Line</B><br>650-858-4618<br>800-888-6423 x8584618<br><br>
+        <B>San Mateo County</B><br>Status Line: 650-599-2162<br>Switchboard: 650-363-4000<br>24 Hour Comm: 650-363-4911<br><br>
+
+        <B>Lt. Ed Barberini</B> OES 1<br>W:650-599-1295&nbsp;&nbsp;P:650-377-9423<br><br>
+        <B>Sgt. Joe Sheridan</B> OES 2<br>W:650-363-4458&nbsp;&nbsp;P:650-746-0608&nbsp;&nbsp;M:650-740-9100<br><br>
+        <B>Bill O'Callahan</B> OES 3<br>W:650-599-1294&nbsp;&nbsp;P:650-377-6502<br><br>
+
+        <B>Dep. Jim Farrell</B> OES 11<br>W:650-740-2881&nbsp;&nbsp;P:650-363-4655&nbsp;&nbsp;M:650-524-8012<br><br>
+        <B>Sgt. Ted Berndtson</B> OES 13<br>W:650-599-7400&nbsp;&nbsp;P:650-377-8162<br><br>
+        <B>Dep. Sam Azar</B> OES 14<br>W:650-599-1774&nbsp;&nbsp;P:415-204-4688<br><br>
+
+        <B>Dep. Owen Yoch</B> OES 15<br>W:650-363-4537&nbsp;&nbsp;P:650-524-8089<br><br>
+        <B>Dep. Steve Pettit</B> OES 18<br>W:650-599-7400&nbsp;&nbsp;P:650-997-6656<br><br>
+        <B>Dan Bennett</B> OES 99<br>W:650-363-4012&nbsp;&nbsp;P:650-524-8098&nbsp;&nbsp;M:650-245-2686<br>
+
+        <a href="mailto:dgbennett@co.sanmateo.ca.us">dgbennett@co.sanmateo.ca.us</a><br><br>
+
+      </div>
+
+
+    </div>
+    <div id=x_footer>
+      footer content here
+    </div>
+  </div>
+</div>
+

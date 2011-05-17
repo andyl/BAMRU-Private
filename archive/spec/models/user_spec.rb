@@ -61,14 +61,14 @@ describe User do
   describe "#new_login_from_names" do
     before(:each) {@obj = User.new(:first_name=>"Joe", :last_name=>"Smith")}
     it "should return the correct login" do
-      @obj.new_login_from_names.should == "joe.smith"
+      @obj.new_username_from_names.should == "joe.smith"
     end
   end
 
   describe "#new_names_from_login" do
     before(:each) {@obj = User.new(:login => "joe.smith")}
     it "should return the correct names" do
-      @obj.new_names_from_login.should == ["Joe","Smith"]
+      @obj.new_names_from_username.should == ["Joe","Smith"]
     end
   end
 

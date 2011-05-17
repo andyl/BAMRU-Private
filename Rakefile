@@ -8,7 +8,7 @@ Zn::Application.load_tasks
 
 desc "Run the development server"
 task :run_server do
-  system "xterm_title '<rails> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}:9393'"
+  system "xterm_title '<rails> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}:3000'"
   system "touch tmp/restart.txt"
   system "rails server"
 end
