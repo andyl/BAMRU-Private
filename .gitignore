@@ -2,6 +2,9 @@
 .idea/*
 .idea/*/*
 .rvmrc
+.sass-cache
+.sass-cache/*
+.sass-cache/**/*
 log
 log/*
 db/test.*
