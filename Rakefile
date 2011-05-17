@@ -6,6 +6,8 @@ require File.expand_path('../config/application', __FILE__)
 
 Zn::Application.load_tasks
 
+require 'lib/shared/tasks/rake_tasks'
+
 desc "Run the development server"
 task :run_server do
   system "xterm_title '<rails> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}:3000'"
