@@ -11,7 +11,7 @@ module VtUtil
 
       server {
         listen 80;
-        server_name bamru-public.#{`hostname`.chomp} bamru.info bamru.net;
+        server_name bamru-private.#{`hostname`.chomp} bamru.net;
         charset utf-8;
         root #{ENV['PWD'].chomp}/public;
         passenger_enabled on;
@@ -22,7 +22,7 @@ module VtUtil
 
 
         conf_dir = "/home/aleak/a/_conf"
-        conf_file = "#{conf_dir}/BAMRU-Public.conf"
+        conf_file = "#{conf_dir}/BAMRU-Private.conf"
         system "mkdir -p #{conf_dir}"
         puts @nginx_conf
         puts "wrote nginx_conf to #{conf_file}\n\n"
