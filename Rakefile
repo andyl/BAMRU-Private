@@ -15,3 +15,14 @@ task :run_server do
   system "rails server"
 end
 task :run => :run_server
+
+desc "Import JSON data"
+task :import do
+system "xterm_title 'DATA IMPORT'"
+  system "rm db/*sqlite3"
+  system "rake db:migrate"
+  system "rake db:migrate RAILS_ENV=test"
+  require 'config/environment'
+  require 'lib/roster_load'
+  RosterLoad.import(RosterLoad.parse)
+end

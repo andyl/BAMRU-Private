@@ -24,12 +24,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "alt_roles", :force => true do |t|
-    t.string   "typ"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "distributions", :force => true do |t|
     t.integer "member_id"
     t.integer "message_id"
@@ -108,6 +102,12 @@ ActiveRecord::Schema.define(:version => 10) do
   create_table "photos", :force => true do |t|
     t.integer  "member_id"
     t.string   "filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "typ"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -33,8 +33,13 @@ task :first_deploy do
 end
 
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
-after :deploy, :setup_shared_cache, :update_gems
+after :deploy, :setup_shared_cache, :update_gems, :reload_database
 after :nginx_conf, :restart_nginx
+
+desc "Reload database."
+task :reload_database do
+  run "cd #{current_path} && rake import"
+end
 
 desc "Setup shared cache."
 task :setup_shared_cache do
