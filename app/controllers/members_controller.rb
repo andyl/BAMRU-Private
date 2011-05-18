@@ -13,7 +13,6 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.where(:id => params[:id]).first
-    debugger
     if @member.update_attributes(params["member"])
       redirect_to member_path(@member)
     else
