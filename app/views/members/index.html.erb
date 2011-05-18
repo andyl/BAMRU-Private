@@ -1,10 +1,6 @@
 <%= javascript_include_tag "checkbox2.js" %>
 <%= javascript_include_tag "equal_height.js" %>
 
-<div style="text-align:center;">
-Dynamic Page (<a href="/members/test">go to static</a>)
-</div>
-
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
@@ -30,14 +26,14 @@ Dynamic Page (<a href="/members/test">go to static</a>)
     </div>
     <div id=x_right_col>
       Select by member type:<br/>
+      <input type="checkbox" class="slx" id=cb_BD> Board of Directors (BD)<br/>
+      <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
       <input type="checkbox" class="slx" id=cb_TM> Technical Member (TM)<br/>
       <input type="checkbox" class="slx" id=cb_FM> Field Member (FM)<br/>
       <input type="checkbox" class="slx" id=cb_T > Trainee (T)<br/>
       <input type="checkbox" class="slx" id=cb_R > Reserve (R)<br/>
       <input type="checkbox" class="slx" id=cb_S > Support (S)<br/>
       <input type="checkbox" class="slx" id=cb_A > Associate (A)<br/>
-      <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
-      <input type="checkbox" class="slx" id=cb_BD> Board of Directors (Bd)<br/>
 
       <div style="margin-top:25px; margin-bottom:25px;">
         From:

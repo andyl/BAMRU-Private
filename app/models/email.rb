@@ -18,6 +18,8 @@ class Email < ActiveRecord::Base
 
 
   # ----- Local Methods-----
-
+  def output
+    "#{address} (#{typ})"
+  end
 
 end

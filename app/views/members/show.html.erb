@@ -1,5 +1,28 @@
-This is members#show<p/>
+<%= javascript_include_tag "equal_height.js" %>
 
-Member name is <%= @member.first_name %><p/>
-
-<%= link_to("Edit", edit_member_path(@member)) %>
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <div id=x_header_left>
+        Member Detail
+      </div>
+      <div id=x_header_right>
+        Pull Down Goes Here
+      </div>
+      <div id=x_header_bottom>
+        <%= link_to("Edit", edit_member_path(@member)) %> | Delete
+       </div>
+    </div>
+    <div id=x_left_col>
+      <b><%= @member.first_name %> <%= @member.last_name %><br/></b>
+      <%= @member.typ %><p/>
+      <%= raw @member.all_assoc %>
+    </div>
+    <div id=x_right_col>
+      More great stuff
+    </div>
+    <div id=x_footer>
+      footer content here
+    </div>
+  </div>
+</div>

@@ -18,6 +18,8 @@ class Phone < ActiveRecord::Base
 
 
   # ----- Local Methods-----
-
+  def output
+    "#{number} (#{typ})"
+  end
 
 end

@@ -67,3 +67,15 @@ $col_height: 225px;
   padding: 3px;
   background-color: #cccccc;
 }
+
+#x_header_left {
+  float: left;
+}
+
+#x_header_right {
+  float: right;
+}
+
+#x_header_bottom {
+  clear: both;
+}

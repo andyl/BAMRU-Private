@@ -76,4 +76,15 @@ class Member < ActiveRecord::Base
     false
   end
 
+  def all_related(item, message, separator = "<br/>")
+    result = item.map {|a| a.output}.join(separator)
+    result.blank? ? "" : "<b>#{message}:</b><br/>#{result}"
+  end
+
+  def all_assoc
+    p = all_related(phones, "Phone")
+    a = all_related(addresses, "Address")
+    e = all_related(emails, "Email")
+    [p,a,e].find_all {|x| ! x.blank?}.join("</p>")
+  end
 end

@@ -1,19 +1,5 @@
 Zn::Application.routes.draw do
 
-  resources :do_avails
-
-  resources :do_schedules
-
-  resources :OotRostersController
-
-  resources :unit_certs
-
-  resources :certs
-
-  resources :unit_photos
-
-  resources :photos
-
   get "home/index"
   get "home/test"
   get "home/tbd"
