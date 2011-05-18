@@ -13,12 +13,32 @@
         <%= link_to("Save", members_path) %> | <%= link_to("Cancel", member_path(@member)) %>
        </div>
     </div>
-    <div id=x_left_col>
-      <%= @member.first_name %> <%= @member.last_name %><br/>
-      <%= @member.typ %>
-    </div>
-    <div id=x_right_col>
-      More great stuff
+    <div>
+      <%= simple_form_for @member do |f| %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation, :label => "Confirmation" %>
+        <%= f.input :ham %>
+        <%= f.input :v9 %>
+        <p/>Phones<br/>
+        <%= f.simple_fields_for :phones do |phone| %>
+          <%= phone.input :number %>
+          <%= phone.input :typ %>
+        <% end %>
+        <p/>Addresses<br/>
+        <%= f.simple_fields_for :addresses do |address| %>
+          <%= address.input :address1 %>
+          <%= address.input :address2 %>
+          <%= address.input :typ %>
+        <% end %>
+        <p/>eMails<br/>
+        <%= f.simple_fields_for :emails do |email| %>
+          <%= email.input :address %>
+          <%= email.input :typ %>
+        <% end %>
+        <%= f.button :submit %>
+      <% end %>
     </div>
     <div id=x_footer>
       footer content here
