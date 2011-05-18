@@ -1,5 +1,19 @@
 Zn::Application.routes.draw do
 
+  resources :do_avails
+
+  resources :do_schedules
+
+  resources :OotRostersController
+
+  resources :unit_certs
+
+  resources :certs
+
+  resources :unit_photos
+
+  resources :photos
+
   get "home/index"
   get "home/test"
   get "home/tbd"
@@ -7,7 +21,19 @@ Zn::Application.routes.draw do
 
   devise_for :members
   get "members/test"
+
   resources  :members
+  resources  :unit_photos
+  resources  :unit_certs
+  resource   :oot_roster
+  resource   :do_schedule
+
+  resources  :members do
+    resources  :photos
+    resources  :certs
+    resources  :oots
+    resources  :do_avails
+  end
 
   root :to => 'home#index'
 

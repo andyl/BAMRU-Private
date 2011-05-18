@@ -58,6 +58,12 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :filename
       t.timestamps
     end
+    create_table :certs do |t|
+      t.integer    :member_id
+      t.string     :filename
+      t.string     :description
+      t.timestamps
+    end
     create_table :oots do |t|
       t.integer   :member_id
       t.date      :start

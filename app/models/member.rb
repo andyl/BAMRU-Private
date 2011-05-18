@@ -18,6 +18,7 @@ class Member < ActiveRecord::Base
   has_many :phones
   has_many :emails
   has_many :roles
+  has_many :certs
   has_many :photos
   has_many :do_avails
   has_many :do_assignments

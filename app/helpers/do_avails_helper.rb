@@ -1,0 +1,2 @@
+module DoAvailsHelper
+end

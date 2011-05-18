@@ -4,8 +4,10 @@ class MembersController < ApplicationController
   end
 
   def show
+    @member = Member.where(:id => params[:id]).first
   end
 
-  def test
+  def edit
+    @member = Member.where(:id => params[:id]).first
   end
 end
