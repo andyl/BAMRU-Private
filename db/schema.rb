@@ -26,8 +26,16 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "certs", :force => true do |t|
     t.integer  "member_id"
+    t.string   "typ"
+    t.date     "expiration"
     t.string   "filename"
     t.string   "description"
+    t.string   "comment"
+    t.string   "link"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.string   "document_file_size"
+    t.string   "document_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

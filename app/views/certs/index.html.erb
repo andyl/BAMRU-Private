@@ -1,1 +1,11 @@
-Hello My Certs
+Certs for <%= @member.first_name %><p/>
+
+<%= link_to "Add new cert", new_member_cert_path(@member) %><p/>
+
+<%= @member.first_name %> has <%= @member.certs.count %> certifications.
+
+<% @member.certs.each do |cert| %>
+
+  <%= cert.typ %> / <%= cert.description %><br/>
+
+<% end %>

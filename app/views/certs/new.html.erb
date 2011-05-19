@@ -1,0 +1,5 @@
+<%= simple_form_for @cert, :url => member_certs_path(@member) do |cert| %>
+  <%= cert.input :typ %>
+  <%= cert.input :description %>
+  <%= cert.button :submit %>
+<% end %>

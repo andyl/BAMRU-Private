@@ -1,1 +1,32 @@
-Hello Unit Certs
+<table border=1>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Medical</th>
+    <th>CPR</th>
+    <th>HAM</th>
+    <th>Tracking</th>
+    <th>Avalanche</th>
+    <th>Rigging</th>
+    <th>ICS</th>
+    <th>Search M.</th>
+    <th>SO Driver</th>
+    <th>SO Bkgrnd</th>
+  </tr>
+  <% @members.each do |mem| %>
+    <tr>
+      <td><%=mem.typ%></td>
+      <td><%=mem.first_name%> <%=mem.last_name%></td>
+      <td>Medical</td>
+      <td>CPR</td>
+      <td>HAM</td>
+      <td>Tracking</td>
+      <td>Avalanche</td>
+      <td>Rigging</td>
+      <td>ICS</td>
+      <td>Search M.</td>
+      <td>SO Driver</td>
+      <td>SO Bkgrnd</td>
+    </tr>
+  <% end %>
+</table>
