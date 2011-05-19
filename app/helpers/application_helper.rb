@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def user_nav
     if member_signed_in?
-      "welcome <b>#{current_member.first_name}</b> | account | #{sign_out_link}"
+      "welcome <b>#{current_member.first_name}</b> | #{sign_out_link}"
     else
       sign_up_or_in_link
     end
