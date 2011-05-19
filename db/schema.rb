@@ -109,7 +109,10 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "photos", :force => true do |t|
     t.integer  "member_id"
-    t.string   "filename"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,4 @@
+<%= simple_form_for @photo, :url => member_photos_path(@member) do |pic| %>
+  <%= pic.input :image %>
+  <%= pic.button :submit %>
+<% end %>

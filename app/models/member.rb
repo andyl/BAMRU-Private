@@ -52,7 +52,7 @@ class Member < ActiveRecord::Base
   end
 
   def set_pwd
-    self.password = "pppp" if self.password.blank?
+    self.password = "welcome" if self.password.blank?
   end
 
   def new_names_from_username

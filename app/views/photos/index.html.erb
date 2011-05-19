@@ -1,1 +1,8 @@
-Hello World.
+Editing photos for <%= @member.first_name %><p/>
+
+<%= link_to "Add new photo", new_member_photo_path %><p/>
+
+<%= @member.first_name %> has <%= @member.photos.count %> photos:<br/>
+<%= @member.photos.each do |pic| %>
+  <%= image_tag pic.image.url(:thumb) %><br/>
+<% end %>

@@ -13,6 +13,7 @@ gem "simple_form"
 gem 'sqlite3'
 gem 'devise'
 gem 'jquery-rails'
+gem 'paperclip'
 
 # Asset template engines
 gem 'json'

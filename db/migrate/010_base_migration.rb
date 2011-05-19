@@ -55,7 +55,10 @@ class BaseMigration < ActiveRecord::Migration
     end
     create_table :photos do |t|
       t.integer    :member_id
-      t.string     :filename
+      t.string     :image_file_name
+      t.string     :image_content_type
+      t.integer    :image_file_size
+      t.integer    :image_updated_at
       t.timestamps
     end
     create_table :certs do |t|
