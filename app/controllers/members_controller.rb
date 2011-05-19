@@ -16,7 +16,8 @@ class MembersController < ApplicationController
     if @member.update_attributes(params["member"])
       redirect_to member_path(@member)
     else
-      redirect_to edit_member_path(@member)
+      render "edit"
+#      redirect_to edit_member_path(@member)
     end
     
   end
