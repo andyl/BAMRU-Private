@@ -45,20 +45,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer "message_id"
   end
 
-  create_table "do_assignments", :force => true do |t|
-    t.integer  "member_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "do_avails", :force => true do |t|
-    t.integer  "userid"
-    t.integer  "week"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "emails", :force => true do |t|
     t.integer  "member_id"
     t.string   "typ"
@@ -93,7 +79,7 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "messages", :force => true do |t|
     t.integer  "member_id"
-    t.string   "contents"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +89,23 @@ ActiveRecord::Schema.define(:version => 10) do
     t.date     "start"
     t.date     "end"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pdo_quarters", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "year"
+    t.integer  "period"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pdo_weeks", :force => true do |t|
+    t.integer  "pdo_quarter_id"
+    t.integer  "period"
+    t.integer  "state"
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,6 +131,21 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "roles", :force => true do |t|
     t.string   "typ"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "udo_quarters", :force => true do |t|
+    t.integer  "year"
+    t.integer  "period"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "udo_weeks", :force => true do |t|
+    t.integer  "udo_quarter_id"
+    t.integer  "period"
+    t.integer  "officer_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

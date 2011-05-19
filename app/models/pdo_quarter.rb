@@ -1,8 +1,8 @@
-class DoAvail < ActiveRecord::Base
+class PdoQuarter < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :user
+  belongs_to :member
 
 
   # ----- Callbacks -----
@@ -15,6 +15,8 @@ class DoAvail < ActiveRecord::Base
 
   # ----- Scopes -----
 
+
+  # ----- Class Methods -----
 
 
   # ----- Local Methods-----

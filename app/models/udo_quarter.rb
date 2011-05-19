@@ -1,4 +1,4 @@
-class DoAssignment < ActiveRecord::Base
+class UdoQuarter < ActiveRecord::Base
 
   # ----- Associations -----
 

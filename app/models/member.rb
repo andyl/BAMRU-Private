@@ -21,8 +21,7 @@ class Member < ActiveRecord::Base
   has_many :certs
   has_many :photos
   has_many :oots
-  has_many :do_avails
-  has_many :do_assignments
+  has_many :pdo_quarters
   has_many :messages
   has_many :distributions
 

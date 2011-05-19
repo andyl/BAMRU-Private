@@ -12,13 +12,13 @@ Zn::Application.routes.draw do
   resources  :unit_photos
   resources  :unit_certs
   resources  :unit_oots
-  resource   :do_schedule
+  resources  :udo_quarters
 
   resources  :members do
     resources  :photos
     resources  :certs
     resources  :oots
-    resources  :do_avails
+    resources  :pdo_quarters
   end
 
   root :to => 'home#index'
