@@ -20,6 +20,7 @@ desc "Import JSON data"
 task :import do
 system "xterm_title 'DATA IMPORT'"
   system "rm db/*sqlite3"
+  system "rm -rf public/system"
   system "rake db:migrate"
   system "rake db:migrate RAILS_ENV=test"
   require 'config/environment'
