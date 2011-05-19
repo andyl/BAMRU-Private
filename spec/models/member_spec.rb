@@ -22,23 +22,19 @@ describe Member do
  end
 
  describe "Validations" do
-#   subject { Member.new }
-#   it { should     have_valid(:first_name).when("Joe")  }
-#   it { should_not have_valid(:first_name).when("")     }
-#   it { should     have_valid(:first_name).when("J x")  }
-#   it { should     have_valid(:first_name).when("J.x")  }
-#   it { should_not have_valid(:first_name).when("J_x")  }
-#   it { should_not have_valid(:first_name).when("")     }
-#   it { should     have_valid(:last_name).when("Smith") }
-#   it { should_not have_valid(:last_name).when("")      }
-#   it { should     have_valid(:login).when("joe.smith") }
-#   it { should_not have_valid(:login).when("")          }
-
-   it { should validate_presence_of(:user_name)      }
-   it { should validate_presence_of(:first_name) }
-   it { should validate_presence_of(:last_name)  }
-   it { should validate_format_of(:user_name).with("xxx.yyy") }
-   it { should validate_presence_of(:user_name) }
+   context "self-contained" do
+     it { should validate_presence_of(:user_name)          }
+     it { should validate_presence_of(:first_name)         }
+     it { should validate_presence_of(:last_name)          }
+     it { should validate_format_of(:user_name).with("xxx.yyy") }
+     it { should validate_presence_of(:user_name)          }
+   end
+   context "inter-object" do
+     before(:each) do
+       Member.create!(:user_name => "joe.louis", :password => "qwerasdf")
+     end
+     it { should validate_uniqueness_of(:user_name)        }
+   end
  end
 
  describe "Object Creation" do
@@ -69,6 +65,24 @@ describe Member do
     before(:each) {@obj = Member.new(:user_name => "joe.smith")}
     it "should return the correct names" do
       @obj.new_names_from_username.should == ["Joe","Smith"]
+    end
+  end
+
+  describe "#full_name" do
+    it "returns the correct string" do
+      @obj = Member.create!(:user_name => "joe.smith", :password => "asdfasdf")
+      @obj.full_name.should == "Joe Smith"
+    end
+  end
+
+  describe "#full_roles" do
+    it "returns the correct string" do
+      hash1 = {:user_name => "joe.smith", :password => "asdfasdf", :typ => "FM"}
+      @obj = Member.create!(hash1)
+      hash2 = {:typ => "BD"}
+      @obj.roles << Role.create!(hash2)
+      @obj.full_roles.should be_a(String)
+      @obj.full_roles.should == "FM BD"
     end
   end
 

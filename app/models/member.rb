@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
   attr_accessible :user_name, :first_name, :last_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
-  attr_accessible :alt_roles_attributes, :emails_attributes
+  attr_accessible :roles_attributes, :emails_attributes
 
   # ----- Associations -----
   has_many :addresses
@@ -35,7 +35,7 @@ class Member < ActiveRecord::Base
   validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :user_name,      :with => /^[a-z_\.\-]+$/
-#  validates_uniqueness_of :user_name
+  validates_uniqueness_of :user_name
 
   # ----- Callbacks -----
   before_validation :set_username_and_name_fields
@@ -86,5 +86,13 @@ class Member < ActiveRecord::Base
     a = all_related(addresses, "Address")
     e = all_related(emails, "Email")
     [p,a,e].find_all {|x| ! x.blank?}.join("</p>")
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def full_roles
+    ([typ] + roles.map {|r| r.typ}).join(' ')
   end
 end

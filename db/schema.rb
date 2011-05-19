@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "roles", :force => true do |t|
+    t.string   "member_id"
     t.string   "typ"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -16,17 +16,17 @@
         </tr>
         <% @members.each do |m| %>
         <tr>
-          <td class=role><%= m.typ %></td>
-          <td class=checkbox><input class="<%= m.typ %>" type="checkbox"></td>
-          <td class=checkbox><input class="<%= m.typ %>" type="checkbox"></td>
-          <td class=link><a href="/members/<%= m.id %>"><%= m.user_name %></a></td>
+          <td><%= m.full_roles %></td>
+          <td class=checkbox><input class="<%= m.full_roles %>" type="checkbox"></td>
+          <td class=checkbox><input class="<%= m.full_roles %>" type="checkbox"></td>
+          <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
         </tr>
         <% end %>
       </table>
     </div>
     <div id=x_right_col>
       Select by member type:<br/>
-      <input type="checkbox" class="slx" id=cb_BD> Board of Directors (BD)<br/>
+      <input type="checkbox" class="slx" id=cb_BD> Board of Directors (Bd)<br/>
       <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
       <input type="checkbox" class="slx" id=cb_TM> Technical Member (TM)<br/>
       <input type="checkbox" class="slx" id=cb_FM> Field Member (FM)<br/>

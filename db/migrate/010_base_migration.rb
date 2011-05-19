@@ -50,6 +50,7 @@ class BaseMigration < ActiveRecord::Migration
       t.timestamps
     end
     create_table :roles do |t|
+      t.string :member_id
       t.string :typ
       t.timestamps
     end
