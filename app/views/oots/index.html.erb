@@ -1,3 +1,11 @@
-Hello oots<p/>
+Oots for <%= @member.first_name %><p/>
 
-Under construction
+<%= link_to "Add new oot", new_member_oot_path(@member) %><p/>
+
+<%= @member.first_name %> has <%= @member.oots.count %> ootifications.<p/>
+
+<% @member.oots.each do |oot| %>
+
+  <%= oot.start %> / <%= oot.end %> / <%= oot.description %><br/>
+
+<% end %>

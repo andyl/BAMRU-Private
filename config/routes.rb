@@ -11,7 +11,7 @@ Zn::Application.routes.draw do
   resources  :members
   resources  :unit_photos
   resources  :unit_certs
-  resource   :oot_roster
+  resources  :unit_oots
   resource   :do_schedule
 
   resources  :members do

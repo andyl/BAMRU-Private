@@ -20,6 +20,7 @@ class Member < ActiveRecord::Base
   has_many :roles
   has_many :certs
   has_many :photos
+  has_many :oots
   has_many :do_avails
   has_many :do_assignments
   has_many :messages

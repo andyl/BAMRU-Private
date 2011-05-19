@@ -79,6 +79,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer   :member_id
       t.date      :start
       t.date      :end
+      t.string    :description
       t.timestamps
     end
     create_table :do_avails do |t|

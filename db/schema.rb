@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "member_id"
     t.date     "start"
     t.date     "end"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
