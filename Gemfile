@@ -23,15 +23,19 @@ gem 'uglifier'
 gem 'therubyracer', :require => 'v8'
 
 group :development, :test do
+  gem 'guard'
+  gem 'guard-coffeescript'
+  gem 'guard-livereload'
+  gem "jasmine"
   gem "faker"
   gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
-  gem "rspec-rails", "2.6.0"
+  gem "rspec-core", "2.6.3.beta1"
+  gem "rspec-rails", "2.6.1.beta1"
   gem "shoulda-matchers"
   gem "capybara", "~> 1.0.0.beta1"
   gem "launchy"
-  gem "jasmine"
 
   gem "drx"
   gem "hirb"

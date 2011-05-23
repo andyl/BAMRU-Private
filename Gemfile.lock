@@ -31,6 +31,7 @@ GEM
       activesupport (= 3.1.0.rc1)
     activesupport (3.1.0.rc1)
       multi_json (~> 1.0)
+    addressable (2.2.6)
     arel (2.1.1)
     awesome_print (0.4.0)
     bcrypt-ruby (2.1.4)
@@ -63,6 +64,9 @@ GEM
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
     drx (0.4.5)
+    em-websocket (0.2.1)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.0.0)
@@ -72,6 +76,15 @@ GEM
       i18n (~> 0.4)
     fastercsv (1.5.4)
     ffi (1.0.9)
+    guard (0.3.4)
+      thor (~> 0.14.6)
+    guard-coffeescript (0.2.3)
+      coffee-script (~> 2.2.0)
+      guard (~> 0.3.0)
+    guard-livereload (0.1.11)
+      em-websocket (~> 0.2.0)
+      guard (>= 0.2.2)
+      json (~> 1.5.1)
     highline (1.6.2)
     hike (1.0.0)
     hirb (0.4.5)
@@ -140,11 +153,11 @@ GEM
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
       rspec-mocks (~> 2.6.0)
-    rspec-core (2.6.2)
+    rspec-core (2.6.3.beta1)
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
-    rspec-rails (2.6.0)
+    rspec-rails (2.6.1.beta1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -204,6 +217,9 @@ DEPENDENCIES
   factory_girl
   faker
   fastercsv
+  guard
+  guard-coffeescript
+  guard-livereload
   hirb
   interactive_editor
   jasmine
@@ -214,7 +230,8 @@ DEPENDENCIES
   paperclip
   rails (= 3.1.0.rc1)
   rcov
-  rspec-rails (= 2.6.0)
+  rspec-core (= 2.6.3.beta1)
+  rspec-rails (= 2.6.1.beta1)
   ruby-debug
   sass
   shoulda-matchers
