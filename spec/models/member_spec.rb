@@ -79,10 +79,16 @@ describe Member do
     it "returns the correct string" do
       hash1 = {:user_name => "joe.smith", :password => "asdfasdf", :typ => "FM"}
       @obj = Member.create!(hash1)
-      hash2 = {:typ => "BD"}
+      hash2 = {:typ => "Bd"}
       @obj.roles << Role.create!(hash2)
       @obj.full_roles.should be_a(String)
-      @obj.full_roles.should == "FM BD"
+      @obj.full_roles.should == "Bd FM"
+    end
+  end
+
+  describe "#role_val" do
+    it "returns the correct value" do
+
     end
   end
 

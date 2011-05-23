@@ -1,5 +1,12 @@
 <%= javascript_include_tag "checkbox2.js" %>
 <%= javascript_include_tag "equal_height.js" %>
+<%= javascript_include_tag "jquery.tablesorter.min.js"%>
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $("#myTable").tablesorter({headers: {1: {sorter:false},2:{sorter:false}}});
+  });
+</script>
 
 <div id=x_container>
   <div id=x_body>
@@ -7,13 +14,16 @@
       Team Roster / Paging
     </div>
     <div id=x_left_col>
-      <table>
+      <table id="myTable" class="tablesorter">
+        <thead>
         <tr>
-          <td></td>
-          <td><img src="/images/page.gif" border=0></td>
-          <td><img src="/images/mail.gif" border=0></td>
-          <td></td>
+          <th>Role</th>
+          <th><img src="/images/page.gif" border=0></th>
+          <th><img src="/images/mail.gif" border=0></th>
+          <th>Name</th>
         </tr>
+        </thead>
+        <tbody>
         <% @members.each do |m| %>
         <tr>
           <td><%= m.full_roles %></td>
@@ -22,6 +32,7 @@
           <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
         </tr>
         <% end %>
+        </tbody>
       </table>
     </div>
     <div id=x_right_col>

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.beta1'
+gem 'rails', '3.1.0.rc1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "capistrano"
 gem "factory_girl"
@@ -27,10 +27,11 @@ group :development, :test do
   gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
-  gem "rspec-rails", "~> 2.6.0"
+  gem "rspec-rails", "2.6.0"
   gem "shoulda-matchers"
   gem "capybara", "~> 1.0.0.beta1"
   gem "launchy"
+  gem "jasmine"
 
   gem "drx"
   gem "hirb"

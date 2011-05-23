@@ -92,7 +92,22 @@ class Member < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def role_val(role)
+    case role
+      when "Bd" : -500
+      when "OL" : -250
+      when "TM" : -100
+      when "FM" : -50
+      when "T"  : -25
+      when "R"  : -10
+      when "A"  : -5
+      when "S"  : -1
+      else 0
+    end
+  end
+
   def full_roles
-    ([typ] + roles.map {|r| r.typ}).join(' ')
+    arr = ([typ] + roles.map {|r| r.typ})
+    arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 end
