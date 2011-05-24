@@ -21,6 +21,11 @@ describe Member do
    specify { @obj.should respond_to(:distributions) } 
  end
 
+ describe "Instance Methods" do
+   before(:each) { @obj = Member.new }
+   specify { @obj.should respond_to(:pagable_phones) }
+ end
+
  describe "Validations" do
    context "self-contained" do
      it { should validate_presence_of(:user_name)          }
@@ -86,10 +91,8 @@ describe Member do
     end
   end
 
-  describe "#role_val" do
-    it "returns the correct value" do
-
-    end
+  describe "#pagable_phones" do
+    it "returns a list of pagable phones"
   end
 
 end
