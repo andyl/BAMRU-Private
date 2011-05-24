@@ -4,7 +4,7 @@
 
 # CoffeeScript Functions
 guard 'coffeescript', :output => 'public/javascripts/compiled' do
-  watch(/^app\/assets\/javascripts\/(.*)\.coffee/)
+  watch(/^app\/assets\/javascripts\/(.*)\.js\.coffee/)
 end
 
 # CoffeeScript Specs

@@ -2,5 +2,45 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+window.RoleScore = class RoleScore 
+  constructor: (@input = "") ->
+  to_lower:    -> @input.toLowerCase()
+  input_array: -> @to_lower().split(' ')
+  get_t:       -> "t"
+  score_one: (role = @to_lower()) ->
+    switch role
+      when "s"  then -5
+      when "a"  then -10
+      when "r"  then -25
+      when "t"  then -50
+      when "fm" then -100
+      when "tm" then -250
+      when "ol" then -500
+      when "bd" then -1000
+      else 0
+  score_array: ->
+    @score_one(role) for role in @input_array()
+  score: ->
+    sum = 0
+    (sum += val) for val in @score_array()
+    sum
 
+# expects an input like 'George Smith'
+window.MemberName = class MemberName
+  constructor: (@full_name = "") ->
+  last_name: ->
+    array = @full_name.replace(/\./,'').split(' ')
+    array[array.length - 1]
+
+# expects an input like '<a href="/a/b/c">George Smith</a>'
+window.LinkName = class LinkName
+  constructor: (@link = "") ->
+  full_name: ->
+#    regex = /^.+\>([ A-Za-z\.]+)\<\/a\>$/
+    regex = /^.+\>([ A-z\.].+)\<\/a\>$/
+    x = @link.replace(/\./g,"~")
+    x.match(regex)[1].replace(/\~/g,".") 
+  last_name: ->
+    array = @full_name().split(' ')
+    array[array.length - 1]
 

@@ -24,7 +24,6 @@ gem 'therubyracer', :require => 'v8'
 
 group :development, :test do
   gem 'rb-inotify'
-  gem 'libnotify'
   gem 'guard'
   gem 'guard-coffeescript'
   gem 'livereload'

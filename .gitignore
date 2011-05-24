@@ -24,3 +24,9 @@ tmp/
 public/system
 public/system/*
 public/system/**/*
+public/javascripts/compiled
+public/javascripts/compiled/*
+public/javascripts/compiled/**/*
+spec/javascripts/compiled
+spec/javascripts/compiled/*
+spec/javascripts/compiled/**/*

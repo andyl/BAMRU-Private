@@ -105,8 +105,6 @@ GEM
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    libnotify (0.5.2)
-      ffi (~> 1.0)
     linecache (0.43)
     livereload (1.6)
       em-dir-watcher (>= 0.1)
@@ -236,7 +234,6 @@ DEPENDENCIES
   jquery-rails
   json
   launchy
-  libnotify
   livereload
   nokogiri
   paperclip

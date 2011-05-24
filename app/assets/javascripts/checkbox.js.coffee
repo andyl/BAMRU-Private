@@ -5,7 +5,7 @@ boxType = (box) -> box.id.split('_')[1]
 enCheck = (box) -> $(".#{boxType(box)}").prop("checked", true)
 deCheck = (box) -> $(".#{boxType(box)}").prop("checked", false)
 
-processClick = (box) ->
+toggleClick = (box) ->
   if $(box).is(':checked') then enCheck(box) else deCheck(box)
 
-$(document).ready -> $(".slx").click -> processClick(this)
+$(document).ready -> $(".slx").click -> toggleClick(this)
