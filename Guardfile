@@ -2,15 +2,17 @@
 # More info at https://github.com/guard/guard#readme
 #
 
+# CoffeeScript Functions
 guard 'coffeescript', :output => 'public/javascripts/compiled' do
-  watch('^app/coffeescripts/(.*)\.coffee')
+  watch(/^app\/assets\/javascripts\/(.*)\.coffee/)
 end
 
-guard 'coffeescript', :output => 'spec/javascripts' do
-  watch('^spec/coffeescripts/(.*)\.coffee')
+# CoffeeScript Specs
+guard 'coffeescript', :output => 'spec/javascripts/compiled' do
+  watch(/^spec\/javascripts\/(.*)\.coffee/)
 end
 
-guard 'livereload' do
-  watch('^spec/javascripts/.+\.js$')
-  watch('^public/javascripts/compiled/.+\.js$')
+guard 'livereload', :apply_js_live => false do
+  watch(/^spec\/javascripts\/(.+)\.js$/)
+  watch(/^spec\/javascripts\/compiled\/(.+)\.js$/)
 end

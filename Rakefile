@@ -18,7 +18,7 @@ task :run => :run_server
 
 desc "Import JSON data"
 task :import do
-system "xterm_title 'DATA IMPORT'"
+  system "xterm_title 'DATA IMPORT'"
   system "rm db/*sqlite3"
   system "rm -rf public/system"
   system "rake db:migrate"
@@ -26,4 +26,16 @@ system "xterm_title 'DATA IMPORT'"
   require 'config/environment'
   require 'lib/roster_load'
   RosterLoad.import(RosterLoad.parse)
+end
+
+desc "Run the Jasmine Server"
+task :jas do
+  system "xterm_title '<jasmine> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}:8888'"
+  Rake::Task['jasmine'].invoke
+end
+
+desc "Run the Guard Server"
+task :guard do
+  system "xterm_title '<guard> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}'"
+  system "bundle exec guard"
 end
