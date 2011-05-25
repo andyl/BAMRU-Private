@@ -14,7 +14,7 @@ class Email < ActiveRecord::Base
 
 
   # ----- Scopes -----
-
+  scope :pagable, where(:pagable => 1)
 
 
   # ----- Local Methods-----

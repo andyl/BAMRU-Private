@@ -1,30 +1,9 @@
-<%= javascript_include_tag "checkbox.js" %>
-<%= javascript_include_tag "equal_height.js" %>
 <%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "equal_height.js" %>
 <%= javascript_include_tag "members.js" %>
-<script type="text/javascript">
-  $(document).ready(function()
-  {
-    $.tablesorter.addParser({
-      id: 'last_name',
-      is: function(s) { return false; },    // turn off format auto-detect
-      format: function(s) { return ((new MemberName(s)).last_name()); },
-      type: 'text'    // either numeric or text
-    });
-    $.tablesorter.addParser({
-      id: 'role_score',
-      is: function(s) { return false; },    // turn off format auto-detect
-      format: function(s) { return ((new RoleScore(s)).score()); },
-      type: 'text'    // either numeric or text
-    });
-    $("#myTable").tablesorter({headers: {
-                                           0: {sorter: 'role_score'},
-                                           1: {sorter:false},
-                                           2: {sorter:false},
-                                           3: {sorter:'last_name'}
-                                }});
-  });
-</script>
+<%= javascript_include_tag "members_table.js" %>
+<%= javascript_include_tag "members_textbox.js" %>
+<%= javascript_include_tag "members_checkbox.js" %>
 
 <div id=x_container>
   <div id=x_body>
@@ -32,7 +11,7 @@
       Team Roster / Paging
     </div>
     <div id=x_left_col>
-      <table id="myTable" class="tablesorter">
+      <table id="myTable" class="tablesorter" style="margin-top: 0px;">
         <thead>
         <tr>
           <th>Role</th>
@@ -45,8 +24,8 @@
         <% @members.each do |m| %>
         <tr>
           <td><%= m.full_roles %></td>
-          <td class=checkbox><input class="<%= m.full_roles %>" type="checkbox"></td>
-          <td class=checkbox><input class="<%= m.full_roles %>" type="checkbox"></td>
+          <%= raw phone_checkbox(m) %>
+          <%= raw email_checkbox(m) %>
           <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
         </tr>
         <% end %>
@@ -54,7 +33,10 @@
       </table>
     </div>
     <div id=x_right_col>
-      Select by member type:<br/>
+      <b>Select by member type:</b>
+      <span style="margin-left: 70px;">
+        <input type=submit value="Clear All" id="clear_all">
+      </span><br/>
       <input type="checkbox" class="slx" id=cb_Bd> Board of Directors (Bd)<br/>
       <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
       <input type="checkbox" class="slx" id=cb_TM> Technical Member (TM)<br/>
@@ -64,13 +46,16 @@
       <input type="checkbox" class="slx" id=cb_S > Support (S)<br/>
       <input type="checkbox" class="slx" id=cb_A > Associate (A)<br/>
 
-      <div style="margin-top:25px; margin-bottom:25px;">
-        From:
-        <select name="from_email">
-          <option value="andy@r210.com">andy@r210.com</option>
-        </select>
-        <textarea id="messagearea" name="message" rows="10" cols="40" onKeyDown="lengthLimit(document.getElementById('messagearea'),document.getElementById('charsremaining'),132);" onKeyUp="lengthLimit(this.form.message,this.form.charsRemaining,132);"></textarea>
-        <br> You have <div id="charsremaining" style="display:inline;">132</div> characters left.<br><br>
+      <div style="padding: 2px; margin-top:15px; margin-bottom:15px; background-color:lightblue;">
+        <table>
+          <tr><td align=right><b>To:</b></td><td><span id="addr_count">0 addresses</span></td></tr>
+          <tr><td align=right><b>From:</b></td><td><%= current_member.full_name %></td></tr>
+        </table>
+        <textarea id="message_area" name="message" rows="10" style="width: 290px;">
+        </textarea>
+        <br/><span style="font-size: 10px; margin-right: 50px;">
+          You have <span id="chars_remaining">132</span> characters left.
+        </span>
         <input type="submit" name="message_submit" value="Send message">
       </div>
 

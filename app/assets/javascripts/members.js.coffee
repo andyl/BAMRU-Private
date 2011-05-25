@@ -36,11 +36,9 @@ window.MemberName = class MemberName
 window.LinkName = class LinkName
   constructor: (@link = "") ->
   full_name: ->
-#    regex = /^.+\>([ A-Za-z\.]+)\<\/a\>$/
     regex = /^.+\>([ A-z\.].+)\<\/a\>$/
     x = @link.replace(/\./g,"~")
     x.match(regex)[1].replace(/\~/g,".") 
   last_name: ->
     array = @full_name().split(' ')
     array[array.length - 1]
-

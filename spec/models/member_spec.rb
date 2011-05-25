@@ -23,7 +23,6 @@ describe Member do
 
  describe "Instance Methods" do
    before(:each) { @obj = Member.new }
-   specify { @obj.should respond_to(:pagable_phones) }
  end
 
  describe "Validations" do
@@ -89,10 +88,6 @@ describe Member do
       @obj.full_roles.should be_a(String)
       @obj.full_roles.should == "Bd FM"
     end
-  end
-
-  describe "#pagable_phones" do
-    it "returns a list of pagable phones"
   end
 
 end
