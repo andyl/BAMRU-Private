@@ -7,7 +7,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    debugger
     Message.create(params[:message])
     redirect_to messages_path
   end
