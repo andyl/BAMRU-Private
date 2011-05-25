@@ -109,6 +109,7 @@ class BaseMigration < ActiveRecord::Migration
     end
     create_table :messages do |t|
       t.integer       :member_id
+      t.string        :ip_address
       t.string        :message
       t.timestamps
     end

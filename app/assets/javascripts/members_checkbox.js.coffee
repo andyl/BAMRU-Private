@@ -1,5 +1,5 @@
 ###
-This file has two jQuery functions:
+This file has three jQuery functions:
 1) update address count
 2) select by member type
 3) clear all
@@ -21,12 +21,11 @@ $(document).ready ->
 # checkbox id's are encoded as 'cb_TM' or 'cb_FM'
 # the boxType is the part after the underscore...
 boxType = (box) -> box.id.split('_')[1]
-
-enCheck = (box) -> $(".#{boxType(box)}").prop("checked", true)
-deCheck = (box) -> $(".#{boxType(box)}").prop("checked", false)
-
+enCheck = (box) -> $(".#{box}").prop("checked", true)
+deCheck = (box) -> $(".#{box}").prop("checked", false)
 toggleClick = (box) ->
-  if $(box).is(':checked') then enCheck(box) else deCheck(box)
+  box_type = boxType(box)
+  if $(box).is(':checked') then enCheck(box_type) else deCheck(box_type)
   updateAddressCount()
 
 $(document).ready ->
@@ -35,8 +34,8 @@ $(document).ready ->
 # ----- 3) clear all -----
 
 clearAll = ->
-  $(".rck").prop("checked", false)
-  $(".slx").prop("checked", false)
+  deCheck("rck")
+  deCheck("slx")
   updateAddressCount()
 
 $(document).ready ->

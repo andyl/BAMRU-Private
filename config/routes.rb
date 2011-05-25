@@ -1,5 +1,7 @@
 Zn::Application.routes.draw do
 
+  resources :messages
+
   get "home/index"
   get "home/test"
   get "home/tbd"

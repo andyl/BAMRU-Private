@@ -92,6 +92,11 @@ class Member < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def short_name
+    first_initial = first_name[0..0]
+    "#{first_initial}. #{last_name}"
+  end
+
   def role_val(role)
     case role
       when "Bd" : -500
