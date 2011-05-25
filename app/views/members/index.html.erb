@@ -10,8 +10,10 @@
     <div id=x_header>
       Team Roster / Paging
     </div>
+    <form action='/messages' method='post'>
+      <input type="hidden" name="message[member_id]" value="<%=current_member.id%>"/>
+      <input type="hidden" name="message[ip_address]" value="<%=@client_ip%>"/>
     <div id=x_left_col>
-
       <table id="myTable" class="tablesorter" style="margin-top: 0px;">
         <thead>
         <tr>
@@ -52,20 +54,17 @@
           <td><b>To:</b> <span id="addr_count">0 addresses</span></td>
           <td align=right><b>From:</b> <%= current_member.short_name %></td>
         </tr></table>
-        <textarea id="message_area" name="message" rows="10" style="width: 290px;">
+        <textarea id="message_area" name="message[text]" rows="10" style="width: 290px;">
         </textarea>
-        <table width=100%><tr>
-          <td>
-            <span style='font-size: 10px;'>You have <span id="chars_remaining">132</span> characters left.</span>
-          </td>
-          <td align=right><input type="submit" name="message_submit" value="Send message"></td>
-        </tr></table>
-        
+        <div style="font-size:10px; margin-bottom: 2px;">You have <span id="chars_remaining">132</span> characters left.
+        <input style='margin-left: 90px; width: 60px;' type="submit" value="Send"/></div>
       </div>
 
       <%= render :partial => 'smso' %>
 
     </div>
+        </form>
+    <%# end %>
     <div id=x_footer>
       footer content here
     </div>

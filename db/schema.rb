@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "distributions", :force => true do |t|
-    t.integer "member_id"
-    t.integer "message_id"
+    t.integer  "member_id"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "emails", :force => true do |t|
@@ -79,7 +81,8 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "messages", :force => true do |t|
     t.integer  "member_id"
-    t.string   "message"
+    t.string   "ip_address"
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,6 +128,13 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.integer  "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
