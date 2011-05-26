@@ -254,7 +254,8 @@ pre {
   border: solid 1px #cccc00;
 }
 
-#flash_notice {
+#flash_notice, .notice {
+  text-align: center;
   background-color: #CFC;
   border: solid 1px #6C6;
 }
@@ -263,7 +264,8 @@ pre {
   display: none;
 }
 
-#flash_error, #flash_alert, .formError {
+#flash_error, #flash_alert, .alert, .formError {
+  text-align: center;
   background-color: #f0f0f0;
   border: solid 2px #CF0000;
 }

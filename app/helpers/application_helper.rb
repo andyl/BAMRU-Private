@@ -1,4 +1,14 @@
 module ApplicationHelper
+  
+  def app_notice
+    notice_value = notice
+    notice_value.blank? ? "<p/>" : "<p class='notice'>#{notice_value}</p>"
+  end
+
+  def app_alert
+    alert_value = alert
+    alert_value.blank? ? "<p/>" : "<p class='alert'>#{alert_value}</p>"
+  end
 
   def sign_out_link
     "<a href='/members/sign_out'>sign out</a>"

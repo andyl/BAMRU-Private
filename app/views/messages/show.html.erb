@@ -1,5 +1,5 @@
 <h2>Message </h2>
-(back to <%= link_to("Team Roster", members_path) %> | <%= link_to("Message Log", message_path) %>)<p/>
+(back to <%= link_to("Team Roster", members_path) %> | <%= link_to("Message Log", messages_path) %>)<p/>
 
 <b/>Message Date:</b> <%= @message.created_at %><br/>
 <b/>Message Auth:</b> <%= link_to(@message.author.full_name, member_path(@message.author)) %><br/>

@@ -9,11 +9,18 @@ class MessagesController < ApplicationController
 
   def create
     np = params[:message]
+    if params[:distributions].blank?
+      redirect_to members_path, :alert => "No addresses selected - Please try again."
+      return
+    end
+    if params[:message][:text].blank?
+      redirect_to members_path, :alert => "Empty message text - Please try again"
+      return
+    end
     np[:distributions_attributes] =
             Message.distributions_params(params[:distributions])
-    debugger
     Message.create(np)
-    redirect_to messages_path
+    redirect_to messages_path, :notice => "Message sent."
   end
   
 end
