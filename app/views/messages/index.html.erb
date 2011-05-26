@@ -1,14 +1,15 @@
 <h2>Message Log</h2>
+(back to <%= link_to("Team Roster", members_path) %>)<p/>
 
 <table border=1>
   <thead>
-  <tr><th>Content</th><th>Sender</th><th>Send Time</th><th>IP Address</th></tr>
+  <tr><th>Content</th><th>Author</th><th>Send Time</th><th>IP Address</th></tr>
   </thead>
   <tbody>
   <% @messages.each do |m| %>
     <tr>
-      <td><%= m.text %></td>
-      <td><%= m.member.full_name %></td>
+      <td><%= link_to(m.text, message_path(m)) %></td>
+      <td><%= m.author.full_name %></td>
       <td><%= m.created_at %></td>
       <td><%= m.ip_address %></td>
     </tr>

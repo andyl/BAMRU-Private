@@ -24,6 +24,7 @@ class Member < ActiveRecord::Base
   has_many :pdo_quarters
   has_many :messages
   has_many :distributions
+  has_many :notices, :through => :distributions, :source => :message
 
   accepts_nested_attributes_for :addresses, :allow_destroy => true
   accepts_nested_attributes_for :phones,    :allow_destroy => true
@@ -34,7 +35,7 @@ class Member < ActiveRecord::Base
   validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
-  validates_format_of     :user_name,      :with => /^[a-z_\.\-]+$/
+  validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/
   validates_uniqueness_of :user_name
 
   # ----- Callbacks -----

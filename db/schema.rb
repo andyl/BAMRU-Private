@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "distributions", :force => true do |t|
-    t.integer  "member_id"
     t.integer  "message_id"
+    t.integer  "member_id"
+    t.boolean  "email",      :default => false
+    t.boolean  "phone",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(:version => 10) do
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "messages", :force => true do |t|
-    t.integer  "member_id"
+    t.integer  "author_id"
     t.string   "ip_address"
     t.string   "text"
     t.datetime "created_at"
@@ -128,13 +130,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.integer  "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "recipients", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

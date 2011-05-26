@@ -108,22 +108,18 @@ class BaseMigration < ActiveRecord::Migration
       t.timestamps
     end
     create_table :messages do |t|
-      t.integer       :member_id
+      t.integer       :author_id
       t.string        :ip_address
       t.string        :text
       t.timestamps
     end
-    create_table :recipients do |t|
+    create_table :distributions do |t|
       t.integer       :message_id
       t.integer       :member_id
+      t.boolean       :email,    :default => false
+      t.boolean       :phone,    :default => false
       t.timestamps
     end
-    create_table :distributions do |t|
-      t.integer      :member_id
-      t.integer      :message_id
-      t.timestamps
-    end
-
   end
 
 end

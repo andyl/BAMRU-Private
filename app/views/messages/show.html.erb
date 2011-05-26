@@ -1,0 +1,18 @@
+<h2>Message </h2>
+(back to <%= link_to("Team Roster", members_path) %> | <%= link_to("Message Log", message_path) %>)<p/>
+
+<b/>Message Date:</b> <%= @message.created_at %><br/>
+<b/>Message Auth:</b> <%= link_to(@message.author.full_name, member_path(@message.author)) %><br/>
+<b/>Message Text:</b> <%= @message.text %><br/>
+<b/># of Recipients:</b> <%= @message.recipients.length %><p/>
+
+<table border=1>
+  <thead><th>Name</th><th>sent via eMail?</th><th>sent via Phone?</th></thead>
+  <% @message.distributions.each do |d| %>
+    <tr>
+      <td><%= link_to(d.member.full_name, member_path(d.member)) %></td>
+      <td><%= d.email %></td>
+      <td><%= d.phone %></td>
+    </tr>
+  <% end %>
+</table>

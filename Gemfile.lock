@@ -160,11 +160,11 @@ GEM
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
       rspec-mocks (~> 2.6.0)
-    rspec-core (2.6.3.beta1)
+    rspec-core (2.6.3)
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
-    rspec-rails (2.6.1.beta1)
+    rspec-rails (2.6.1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -240,8 +240,8 @@ DEPENDENCIES
   rails (= 3.1.0.rc1)
   rb-inotify
   rcov
-  rspec-core (= 2.6.3.beta1)
-  rspec-rails (= 2.6.1.beta1)
+  rspec-core (= 2.6.3)
+  rspec-rails (= 2.6.1)
   ruby-debug
   sass
   shoulda-matchers
