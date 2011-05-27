@@ -16,10 +16,10 @@ class MembersController < ApplicationController
   def update
     @member = Member.where(:id => params[:id]).first
     if @member.update_attributes(params["member"])
-      redirect_to member_path(@member)
+      redirect_to member_path(@member), :notice => "Successful Update"
     else
+      alert "Something is Wrong"
       render "edit"
-#      redirect_to edit_member_path(@member)
     end
     
   end
