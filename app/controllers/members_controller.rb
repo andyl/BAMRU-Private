@@ -6,10 +6,12 @@ class MembersController < ApplicationController
   end
 
   def show
+    @autoselect_member_names = Member.autoselect_member_names
     @member = Member.where(:id => params[:id]).first
   end
 
   def edit
+    @autoselect_member_names = Member.autoselect_member_names('/edit')
     @member = Member.where(:id => params[:id]).first
   end
 

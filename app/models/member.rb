@@ -116,4 +116,10 @@ class Member < ActiveRecord::Base
     arr = ([typ] + roles.map {|r| r.typ})
     arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
+
+  def self.autoselect_member_names(suffix = "")
+    order('last_name ASC').all.map do |m|
+      "{label: '#{m.full_name}', url: '/members/#{m.id}#{suffix}'}"
+    end.join(',')
+  end
 end
