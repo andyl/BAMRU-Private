@@ -18,34 +18,37 @@
     <div id=x_left_col>
       <p/>
       <%= simple_form_for @member do |f| %>
-        <%= f.input :first_name, :input_html => {:size => 22} %>
-        <%= f.input :last_name, :input_html => {:size => 22} %>
-        <%= f.input :password, :input_html => {:size => 22} %>
-        <%= f.input :password_confirmation, :label => "Confirmation", :input_html => {:size => 22} %>
-        <%= f.input :ham, :input_html => {:size => 22} %>
-        <%= f.input :v9, :input_html => {:size => 22} %>
+        <%= f.input :first_name, :input_html => {:size => 20} %>
+        <%= f.input :last_name, :input_html => {:size => 20} %>
+        <%= f.input :password, :input_html => {:size => 20} %>
+        <%= f.input :password_confirmation, :label => "Confirmation", :input_html => {:size => 20} %>
+        <%= f.input :ham, :input_html => {:size => 20} %>
+        <%= f.input :v9, :input_html => {:size => 20} %>
         <p/>Phones<br/>
         <%= f.simple_fields_for :phones do |phone| %>
-          <%= phone.input :number, :input_html => {:size => 22} %>
-          <%= phone.input :typ, :input_html => {:size => 22} %>
+          <%= phone.input :number, :input_html => {:size => 20} %>
+          <%= phone.input :typ, :input_html => {:size => 20} %>
         <% end %>
         <p/>Addresses<br/>
         <%= f.simple_fields_for :addresses do |address| %>
-          <%= address.input :address1, :input_html => {:size => 22} %>
-          <%= address.input :address2, :input_html => {:size => 22} %>
-          <%= address.input :typ, :input_html => {:size => 22} %>
+          <%= address.input :address1, :input_html => {:size => 20} %>
+          <%= address.input :address2, :input_html => {:size => 20} %>
+          <%= address.input :typ, :input_html => {:size => 20} %>
         <% end %>
         <p/>eMails<br/>
         <%= f.simple_fields_for :emails do |email| %>
-          <%= email.input :address, :input_html => {:size => 22} %>
-          <%= email.input :typ, :input_html => {:size => 22} %>
+          <%= email.input :address, :input_html => {:size => 20} %>
+          <%= email.input :typ, :input_html => {:size => 20} %>
         <% end %>
         <%= f.button :submit %>
         <p/>
       <% end %>
     </div>
-    <div id=x_right_col>
-      Photos go here...
+    <div id=x_right_col style="text-align: center;">
+      (Photo Editing TBD...)<p/>
+      <% @member.photos.each do |pic| %>
+        <%= image_tag pic.image.url(:thumb) %><br/>
+      <% end %>
     </div>
     <div id=x_footer>
 

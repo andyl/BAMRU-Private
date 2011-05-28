@@ -22,8 +22,10 @@
       <b>V9:</b> <%= @member.v9 %><p/>
       <%= raw @member.all_assoc %>
     </div>
-    <div id=x_right_col>
-      Photos go here...
+    <div id=x_right_col style="text-align: center;">
+      <% @member.photos.each do |pic| %>
+        <%= image_tag pic.image.url(:thumb) %><br/>
+      <% end %>
     </div>
     <div id=x_footer>
       
