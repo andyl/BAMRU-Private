@@ -39,3 +39,19 @@ task :guard do
   system "xterm_title '<guard> #{File.basename(`pwd`).chomp}@#{ENV['SYSNAME']}'"
   system "bundle exec guard"
 end
+
+desc "Reload Photos"
+task :photos do
+  require 'config/environment'
+  puts "Reloading Photos (this might take awhile..."
+  Photo.destroy_all
+  Dir.glob('./db/jpg/*jpg').each do |i|
+    username = File.basename(i)[0..-7].gsub('_','.')
+    member = Member.where(:user_name => username).first
+    if member
+      p = Photo.create(:image => File.open(i, "rb"))
+      member.photos << p
+      member.save
+    end
+  end
+end

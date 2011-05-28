@@ -2,6 +2,6 @@
 
 There are <%= @photos.count %> images.<p/>
 
-<%= @photos.each do |pic| %>
+<% @photos.each do |pic| %>
   <%= image_tag pic.image.url(:thumb) %><br/>
 <% end %>
