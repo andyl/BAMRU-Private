@@ -79,7 +79,11 @@
     <div id=x_right_col style="text-align: center;">
       <div id=sortable>
         <% @member.photos.each do |pic| %>
-          <li id=photos_<%= pic.id %>><span class=handle>[drag]</span> <%= image_tag pic.image.url(:thumb) %></li>
+          <li id=photos_<%= pic.id %>>
+            <span class=handle>[drag]</span>
+            <%= image_tag pic.image.url(:thumb) %>
+            <%= link_to 'remove', member_photo_path(@member, pic), :confirm => 'Are you sure?',:method => :delete %>
+          </li>
         <% end %>
       </div>
     </div>

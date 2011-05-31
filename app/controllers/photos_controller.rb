@@ -18,9 +18,10 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.where(:id => params[:id])
+    @member = Member.where(:id => params['member_id']).first
+    @photo = Photo.where(:id => params['id']).first
     @photo.destroy
-    render :nothing => true
+    redirect_to edit_member_path @member
   end
 
   def sort
