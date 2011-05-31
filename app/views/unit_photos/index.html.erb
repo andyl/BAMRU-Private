@@ -1,7 +1,13 @@
-<h2>Unit Photos!</h2>
+<h2>Unit Photos</h2>
 
-There are <%= @photos.count %> images.<p/>
-
-<% @photos.each do |pic| %>
-  <%= image_tag pic.image.url(:thumb) %><br/>
-<% end %>
+<table border=1>
+  <% @members.in_groups_of(9) do |row| %>
+    <tr>
+      <% row.each do |mem| %>
+        <td align=center>
+          <%= raw unit_member_photo(mem) %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -43,6 +43,9 @@ class Member < ActiveRecord::Base
   before_validation :set_pwd
 
   # ----- Scopes -----
+  scope :order_by_last_name, order("last_name ASC")
+  scope :with_photos,        where("id     IN (SELECT member_id from photos)")
+  scope :without_photos,     where("id NOT IN (SELECT member_id from photos)")
 
   # ----- Local Methods-----
   def new_username_from_names

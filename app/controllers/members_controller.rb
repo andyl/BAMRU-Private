@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   def index
     @client_ip = request.remote_ip
     @message = Message.new
-    @members = Member.order("last_name ASC").all
+    @members = Member.order_by_last_name.all
   end
 
   def show

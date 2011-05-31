@@ -11,10 +11,10 @@ $(document).ready ->
     handle:      '.handle'
     cursor:      'crosshair'
     update: ->
+      url = "/members/#{MEMBER_ID}/photos/sort"
       $.ajax
         type: 'post'
-        url:  "/members/#{MEMBER_ID}/photos/sort"
+        url:  url
         data: $("#sortable").sortable('serialize')
         dataType: 'script'
-        complete -> $('#sortable').effect('highlight')
   $("#sortable").disableSelection()
