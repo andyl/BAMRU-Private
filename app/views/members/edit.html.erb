@@ -12,30 +12,6 @@
   #sortable li {margin: 0 3px 3px 3px; padding: 4px; }
 </style>
 
-<script>
-  $(function(){
-    $("#sortable").sortable({
-      placeholder: "ui-state-highlight",
-      axis:   'y',
-      opacity: 0.4,
-      handle: '.handle',
-      cursor: 'crosshair',
-      update: function() {
-        $.ajax({
-          type: 'post',
-          data: $("#sortable").sortable('serialize'),
-          dataType: 'script',
-          complete: function(request) {
-            $('#sortable').effect('highlight');
-          },
-          url: '/members/' + MEMBER_ID + '/photos/sort'
-        });
-      }
-    });
-    $("#sortable").disableSelection();
-  });
-</script>
-
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
@@ -77,6 +53,7 @@
       <% end %>
     </div>
     <div id=x_right_col style="text-align: center;">
+      <p/><%= link_to "add new photo", new_member_photo_path(@member) %><p/>
       <div id=sortable>
         <% @member.photos.each do |pic| %>
           <li id=photos_<%= pic.id %>>

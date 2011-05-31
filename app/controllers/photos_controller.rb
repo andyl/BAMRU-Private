@@ -11,10 +11,9 @@ class PhotosController < ApplicationController
 
   def create
     @member = Member.where(:id => params['member_id']).first
-    @photo = Photo.create(params[:photo])
-    @member.photos << @photo
+    @member.photos.create(params[:photo])
     @member.save
-    redirect_to member_photos_path(@member)
+    redirect_to edit_member_path(@member)
   end
 
   def destroy
