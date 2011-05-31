@@ -19,7 +19,7 @@ class Member < ActiveRecord::Base
   has_many :emails
   has_many :roles
   has_many :certs
-  has_many :photos
+  has_many :photos, :order => 'position'
   has_many :oots
   has_many :pdo_quarters
   has_many :messages

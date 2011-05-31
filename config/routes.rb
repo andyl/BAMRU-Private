@@ -22,6 +22,8 @@ Zn::Application.routes.draw do
     resources  :pdo_quarters
   end
 
+  match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

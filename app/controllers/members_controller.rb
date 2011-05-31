@@ -23,6 +23,11 @@ class MembersController < ApplicationController
       alert "Something is Wrong"
       render "edit"
     end
-    
+  end
+  
+  def sort
+    puts params
+    debugger
+    redirect_to edit_member_path(params['member_id'])
   end
 end

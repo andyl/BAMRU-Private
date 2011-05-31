@@ -1,8 +1,40 @@
 <script>var autoselectMemberNames = [ <%= @autoselect_member_names %> ];</script>
 
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};"  %>
 <%= javascript_include_tag "equal_height.js" %>
 <%= javascript_include_tag "jquery-ui.min.js" %>
 <%= javascript_include_tag "members_autoselect.js" %>
+<%= javascript_include_tag "members_sort_photos.js" %>
+
+<style>
+  #sortable {list-style-type: none; margin: 0; padding: 0;}
+  #sortable li {margin: 0 3px 3px 3px; padding: 4px; }
+</style>
+
+<script>
+  $(function(){
+    $("#sortable").sortable({
+      placeholder: "ui-state-highlight",
+      axis:   'y',
+      opacity: 0.4,
+      handle: '.handle',
+      cursor: 'crosshair',
+      update: function() {
+        $.ajax({
+          type: 'post',
+          data: $("#sortable").sortable('serialize'),
+          dataType: 'script',
+          complete: function(request) {
+            $('#sortable').effect('highlight');
+          },
+          url: '/members/' + MEMBER_ID + '/photos/sort'
+        });
+      }
+    });
+    $("#sortable").disableSelection();
+  });
+</script>
 
 <div id=x_container>
   <div id=x_body>
@@ -45,11 +77,13 @@
       <% end %>
     </div>
     <div id=x_right_col style="text-align: center;">
-      (Photo Editing TBD...)<p/>
-      <% @member.photos.each do |pic| %>
-        <%= image_tag pic.image.url(:thumb) %><br/>
-      <% end %>
+      <div id=sortable>
+        <% @member.photos.each do |pic| %>
+          <li id=photos_<%= pic.id %>><span class=handle>[drag]</span> <%= image_tag pic.image.url(:thumb) %></li>
+        <% end %>
+      </div>
     </div>
+
     <div id=x_footer>
 
     </div>

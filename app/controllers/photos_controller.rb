@@ -17,4 +17,17 @@ class PhotosController < ApplicationController
     redirect_to member_photos_path(@member)
   end
 
+  def destroy
+    @photo = Photo.where(:id => params[:id])
+    @photo.destroy
+    render :nothing => true
+  end
+
+  def sort
+    params[:photos].each_with_index do |id, index|
+      Photo.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
 end

@@ -26,6 +26,7 @@ task :import do
   require 'config/environment'
   require 'lib/roster_load'
   RosterLoad.import(RosterLoad.parse)
+  Rake::Task['photos'].invoke
 end
 
 desc "Run the Jasmine Server"
@@ -43,14 +44,13 @@ end
 desc "Reload Photos"
 task :photos do
   require 'config/environment'
-  puts "Reloading Photos (this might take awhile..."
+  puts "Reloading Photos (this might take awhile...)"
   Photo.destroy_all
-  Dir.glob('./db/jpg/*jpg').each do |i|
+  Dir.glob('./db/jpg/*jpg').sort.each do |i|
     username = File.basename(i)[0..-7].gsub('_','.')
     member = Member.where(:user_name => username).first
     if member
-      p = Photo.create(:image => File.open(i, "rb"))
-      member.photos << p
+      member.photos.create(:image => File.open(i))
       member.save
     end
   end

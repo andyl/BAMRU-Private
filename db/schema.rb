@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "typ"
     t.string   "pagable"
     t.string   "address"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "typ"
     t.string   "number"
     t.string   "pagable"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,6 +133,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.integer  "image_updated_at"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

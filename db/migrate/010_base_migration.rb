@@ -33,6 +33,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string  :city
       t.string  :state
       t.string  :zip
+      t.integer :position
       t.timestamps
     end
     create_table :phones do |t|
@@ -40,6 +41,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string  :typ
       t.string  :number
       t.string  :pagable
+      t.integer :position
       t.timestamps
     end
     create_table :emails do |t|
@@ -47,6 +49,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string  :typ
       t.string  :pagable
       t.string  :address
+      t.integer :position
       t.timestamps
     end
     create_table :roles do |t|
@@ -60,6 +63,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :image_content_type
       t.integer    :image_file_size
       t.integer    :image_updated_at
+      t.integer    :position
       t.timestamps
     end
     create_table :certs do |t|
