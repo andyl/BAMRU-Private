@@ -2,7 +2,7 @@ class Email < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :user
+  belongs_to :member
 
 
   # ----- Callbacks -----

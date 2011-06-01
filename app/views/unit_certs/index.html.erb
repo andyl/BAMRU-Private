@@ -25,16 +25,16 @@
     <tr>
       <td><%=mem.full_roles%></td>
       <td class=link><a href="/members/<%= mem.id %>"><%= mem.full_name %></a></td>
-      <td>Medical</td>
-      <td>CPR</td>
-      <td>HAM</td>
-      <td>Tracking</td>
-      <td>Avalanche</td>
-      <td>Rigging</td>
-      <td>ICS</td>
-      <td>Search M.</td>
-      <td>SO Driver</td>
-      <td>SO Bkgrnd</td>
+      <td><%= mem.display_cert("medical")    %></td>
+      <td><%= mem.display_cert("cpr")        %></td>
+      <td><%= mem.display_cert("ham")        %></td>
+      <td><%= mem.display_cert("tracking")   %></td>
+      <td><%= mem.display_cert("avalanche")  %></td>
+      <td><%= mem.display_cert("rigging")    %></td>
+      <td><%= mem.display_cert("ics")        %></td>
+      <td><%= mem.display_cert("overhead")   %></td>
+      <td><%= mem.display_cert("driver")     %></td>
+      <td><%= mem.display_cert("background") %></td>
     </tr>
   <% end %>
   </tbody>

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "member_id"
     t.string   "typ"
     t.date     "expiration"
-    t.string   "filename"
+    t.string   "doc_url"
     t.string   "description"
     t.string   "comment"
     t.string   "link"

@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
   attr_accessible :user_name, :first_name, :last_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
-  attr_accessible :roles_attributes, :emails_attributes
+  attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
 
   # ----- Associations -----
   has_many :addresses
@@ -27,6 +27,7 @@ class Member < ActiveRecord::Base
   has_many :notices, :through => :distributions, :source => :message
 
   accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :certs,     :allow_destroy => true
   accepts_nested_attributes_for :phones,    :allow_destroy => true
   accepts_nested_attributes_for :emails,    :allow_destroy => true
   accepts_nested_attributes_for :roles,     :allow_destroy => true
@@ -47,7 +48,7 @@ class Member < ActiveRecord::Base
   scope :with_photos,        where("id     IN (SELECT member_id from photos)")
   scope :without_photos,     where("id NOT IN (SELECT member_id from photos)")
 
-  # ----- Local Methods-----
+  # ----- Instance Methods-----
   def new_username_from_names
     return "" if first_name.nil? || last_name.nil?
     fname = self.first_name.downcase.gsub(/[ \.]/,'_')
@@ -125,4 +126,10 @@ class Member < ActiveRecord::Base
       "{label: '#{m.full_name}', url: '/members/#{m.id}#{suffix}'}"
     end.join(',')
   end
+
+  def display_cert(type)
+    cert = certs.where(:typ => type).first
+    cert.display
+  end
+
 end

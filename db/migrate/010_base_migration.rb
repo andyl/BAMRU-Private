@@ -70,7 +70,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer    :member_id
       t.string     :typ
       t.date       :expiration
-      t.string     :filename
+      t.string     :doc_url
       t.string     :description
       t.string     :comment
       t.string     :link
