@@ -1,22 +1,30 @@
-<table border=1>
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "members.js" %>
+<%= javascript_include_tag "unit_certs.js" %>
+<%= javascript_include_tag "unit_certs_table.js" %>
+
+<table id="myTable" class="tablesorter">
+  <thead>
   <tr>
-    <th></th>
-    <th></th>
+    <th>Role</th>
+    <th>Name</th>
     <th>Medical</th>
-    <th>CPR</th>
-    <th>HAM</th>
+    <th>CPR&nbsp;&nbsp;</th>
+    <th>HAM&nbsp;&nbsp;</th>
     <th>Tracking</th>
     <th>Avalanche</th>
     <th>Rigging</th>
-    <th>ICS</th>
+    <th>ICS&nbsp;&nbsp;</th>
     <th>Search M.</th>
     <th>SO Driver</th>
     <th>SO Bkgrnd</th>
   </tr>
+  </thead>
+  <tbody>
   <% @members.each do |mem| %>
     <tr>
-      <td><%=mem.typ%></td>
-      <td><%=mem.first_name%> <%=mem.last_name%></td>
+      <td><%=mem.full_roles%></td>
+      <td class=link><a href="/members/<%= mem.id %>"><%= mem.full_name %></a></td>
       <td>Medical</td>
       <td>CPR</td>
       <td>HAM</td>
@@ -29,4 +37,5 @@
       <td>SO Bkgrnd</td>
     </tr>
   <% end %>
+  </tbody>
 </table>

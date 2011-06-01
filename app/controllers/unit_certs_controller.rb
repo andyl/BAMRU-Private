@@ -1,5 +1,5 @@
 class UnitCertsController < ApplicationController
   def index
-    @members = Member.all
+    @members = Member.order_by_last_name.all
   end
 end
