@@ -1,3 +1,22 @@
 Unit Duty Officers<p/>
 Current quarter is: <%= Time.now.current_quarter %><br/>
-Current year is: <%= Time.now.year %>
+Current year is: <%= Time.now.year %><p/>
+
+<table border=1>
+  <thead>
+  <tr>
+    <th>Year</th><th>Quarter</th><th>Week</th><th>Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @do_assignments.each do |a| %>
+    <tr>
+      <td><%= a.year%></td>
+      <td><%= a.quarter%></td>
+      <td><%= a.week%></td>
+      <td><%= a.name%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

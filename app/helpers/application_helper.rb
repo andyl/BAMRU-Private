@@ -20,6 +20,23 @@ module ApplicationHelper
     sign_in_link + ' | ' + sign_up_link
   end
 
+  def signed_in_header_nav
+    roster = link_to_unless_current("Roster", members_path)
+    photos = link_to_unless_current("Photos", unit_photos_path)
+    certs  = link_to_unless_current("Certs", unit_certs_path)
+    avail  = link_to_unless_current("Availability", unit_avail_ops_path)
+    duty   = link_to_unless_current("DO", do_assignments_path)
+    [roster, photos, certs, avail, duty].join(' | ')
+  end
+
+  def header_nav
+    if member_signed_in?
+      signed_in_header_nav
+    else
+      ""
+    end
+  end
+
   def user_nav
     if member_signed_in?
       "welcome <b>#{current_member.first_name}</b> | #{sign_out_link}"

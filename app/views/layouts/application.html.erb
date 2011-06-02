@@ -11,13 +11,14 @@
 <div id="container">
   <div id="header">
     <table width=100%><tr height=30>
-      <td style="font-size:23px;" width=400>
+      <td style="padding-bottom: 5px; font-size:23px;" width=325 valign=bottom>
         <%= link_to_unless_current("Private Webpage", '/') %>
       </td>
       <td align=center valign=bottom>
         Internal Use Only
+        <div id=subnav><%= raw header_nav%></div>
       </td>
-      <td width=400 align=right valign=bottom>
+      <td width=325 align=right valign=bottom>
         <%= raw user_nav %>
       </td>
     </tr></table>

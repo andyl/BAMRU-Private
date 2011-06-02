@@ -14,15 +14,19 @@ class RosterLoad
 
   def self.load_csv
     csv_data = open(DO_ASSIG).read
-    File.open('/tmp/x.csv', 'w') {|f| f.print csv_data}
-    CsvMapper::import(csv_data, :type => :io) do
+    File.open("/tmp/x.csv", 'w') {|f| f.print csv_data}
+    result = CsvMapper::import("/tmp/x.csv") do
+      read_attributes_from_file
+    end
+    result.each do |r|
       hash = {
-              :year    => year,
-              :quarter => quarter,
-              :week    => week,
-              :name    => name
+              :year    => r.year,
+              :quarter => r.quarter,
+              :week    => r.week,
+              :name    => r.name
       }
-      DoAssignment.create(hash)
+      puts hash.inspect
+      DoAssignment.create(hash) unless r.name.nil? || r.name.blank?
     end
   end
 

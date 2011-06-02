@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "year"
     t.integer  "quarter"
     t.integer  "week"
-    t.integer  "name"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

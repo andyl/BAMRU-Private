@@ -100,7 +100,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer      :year
       t.integer      :quarter
       t.integer      :week
-      t.integer      :name
+      t.string       :name
       t.timestamps
     end
     create_table :messages do |t|
