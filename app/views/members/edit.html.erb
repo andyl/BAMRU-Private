@@ -17,7 +17,7 @@
     <div id=x_header>
       <table width=100%><tr>
         <td align=left width=33%>Member Edit</td>
-        <td align=center width=33%><%= link_to("Roster", members_path) %> | <%= link_to("Cancel", member_path(@member)) %></td>
+        <td align=center width=33%><%= link_to("Cancel", member_path(@member)) %></td>
         <td align=right width=33%>
             <input size=14 id="autoselect" value="Find Member">
         </td>
@@ -26,8 +26,7 @@
     <div id=x_left_col>
       <p/>
       <%= simple_form_for @member do |f| %>
-        <%= f.input :first_name, :input_html => {:size => 20} %>
-        <%= f.input :last_name, :input_html => {:size => 20} %>
+        <%= f.input :full_name, :input_html => {:size => 20} %>
         <%= f.input :password, :input_html => {:size => 20} %>
         <%= f.input :password_confirmation, :label => "Confirmation", :input_html => {:size => 20} %>
         <%= f.input :ham, :input_html => {:size => 20} %>

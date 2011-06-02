@@ -25,9 +25,8 @@ class MembersController < ApplicationController
     end
   end
   
-  def sort
-    puts params
-    debugger
-    redirect_to edit_member_path(params['member_id'])
-  end
+#  def sort
+#    puts params
+#    redirect_to edit_member_path(params['member_id'])
+#  end
 end

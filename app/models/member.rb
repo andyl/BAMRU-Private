@@ -8,7 +8,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :remember_me
-  attr_accessible :user_name, :first_name, :last_name
+  attr_accessible :user_name, :first_name, :last_name, :full_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
@@ -51,7 +51,7 @@ class Member < ActiveRecord::Base
   scope :with_photos,        where("id     IN (SELECT member_id from photos)")
   scope :without_photos,     where("id NOT IN (SELECT member_id from photos)")
 
-  # ----- Instance Methods-----
+  # ----- Instance Methods-
   def new_username_from_names
     return "" if first_name.nil? || last_name.nil?
     fname = self.first_name.downcase.gsub(/[ \.]/,'_')
@@ -98,6 +98,12 @@ class Member < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def full_name=(input)
+    str = input.split(' ', 2)
+    self.first_name = str.first.capitalize
+    self.last_name  = str.last.capitalize
   end
 
   def short_name
