@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "pdo_quarters", :force => true do |t|
+  create_table "avail_dos", :force => true do |t|
     t.integer  "userid"
     t.integer  "week"
     t.string   "status"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "oots", :force => true do |t|
+  create_table "avail_ops", :force => true do |t|
     t.integer  "user_id"
     t.date     "start"
     t.date     "end"

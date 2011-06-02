@@ -80,35 +80,27 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :document_updated_at
       t.timestamps
     end
-    create_table :oots do |t|
+    create_table :avail_ops do |t|
       t.integer   :member_id
       t.date      :start
       t.date      :end
-      t.string    :description
+      t.string    :comment
       t.timestamps
     end
-    create_table :pdo_quarters do |t|
+    create_table :avail_dos do |t|
       t.integer      :member_id
       t.integer      :year
-      t.integer      :period
-      t.timestamps
-    end
-    create_table :pdo_weeks do |t|
-      t.integer      :pdo_quarter_id
-      t.integer      :period
-      t.integer      :state
+      t.integer      :quarter
+      t.integer      :week
+      t.integer      :typ
       t.string       :comment
       t.timestamps
     end
-    create_table :udo_quarters do |t|
+    create_table :do_assignments do |t|
       t.integer      :year
-      t.integer      :period
-      t.timestamps
-    end
-    create_table :udo_weeks do |t|
-      t.integer      :udo_quarter_id
-      t.integer      :period
-      t.integer      :officer_name
+      t.integer      :quarter
+      t.integer      :week
+      t.integer      :name
       t.timestamps
     end
     create_table :messages do |t|

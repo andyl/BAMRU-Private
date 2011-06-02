@@ -6,20 +6,21 @@ Zn::Application.routes.draw do
   get "home/contact"
 
   devise_for :members
+  
   get "members/test"
 
   resources  :members
   resources  :messages
   resources  :unit_photos
   resources  :unit_certs
-  resources  :unit_oots
-  resources  :udo_quarters
+  resources  :unit_avail_ops
+  resources  :do_assignments
 
   resources  :members do
     resources  :photos
     resources  :certs
-    resources  :oots
-    resources  :pdo_quarters
+    resources  :avail_ops
+    resources  :avail_dos
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos

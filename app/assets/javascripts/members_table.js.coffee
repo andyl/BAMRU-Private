@@ -20,7 +20,9 @@ role_score_options =
 headers =
   headers:
     0: {sorter: 'role_score'}    # sort col 0 using role_score options
-    1: {sorter: 'last_name'}     # sort col 3 using last_name options
+    1: {sorter: false } 
+    2: {sorter: false }
+    3: {sorter: 'last_name'}     # sort col 3 using last_name options
 
 $(document).ready ->
   $.tablesorter.addParser last_name_options

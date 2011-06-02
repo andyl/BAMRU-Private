@@ -12,6 +12,7 @@ class Member < ActiveRecord::Base
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
+  attr_accessible :avail_ops_attributes, :avail_dos_attributes
 
   # ----- Associations -----
   has_many :addresses
@@ -20,17 +21,19 @@ class Member < ActiveRecord::Base
   has_many :roles
   has_many :certs
   has_many :photos, :order => 'position'
-  has_many :oots
-  has_many :pdo_quarters
+  has_many :avail_ops
+  has_many :avail_dos
   has_many :messages
   has_many :distributions
   has_many :notices, :through => :distributions, :source => :message
 
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
-  accepts_nested_attributes_for :certs,     :allow_destroy => true
-  accepts_nested_attributes_for :phones,    :allow_destroy => true
-  accepts_nested_attributes_for :emails,    :allow_destroy => true
-  accepts_nested_attributes_for :roles,     :allow_destroy => true
+  accepts_nested_attributes_for :addresses,     :allow_destroy => true
+  accepts_nested_attributes_for :phones,        :allow_destroy => true
+  accepts_nested_attributes_for :emails,        :allow_destroy => true
+  accepts_nested_attributes_for :roles,         :allow_destroy => true
+  accepts_nested_attributes_for :certs,         :allow_destroy => true
+  accepts_nested_attributes_for :avail_ops,     :allow_destroy => true
+  accepts_nested_attributes_for :avail_dos,     :allow_destroy => true
 
   # ----- Validations -----
   validates_presence_of   :first_name, :last_name, :user_name

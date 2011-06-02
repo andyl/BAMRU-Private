@@ -1,8 +1,8 @@
-class UdoQuarter < ActiveRecord::Base
+class AvailDo < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :user
+  belongs_to :member
 
 
   # ----- Callbacks -----
@@ -15,6 +15,8 @@ class UdoQuarter < ActiveRecord::Base
 
   # ----- Scopes -----
 
+
+  # ----- Class Methods -----
 
 
   # ----- Local Methods-----

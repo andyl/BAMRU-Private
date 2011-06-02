@@ -55,7 +55,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :filename
       t.timestamps
     end
-    create_table :oots do |t|
+    create_table :avails do |t|
       t.integer   :user_id
       t.date      :start
       t.date      :end

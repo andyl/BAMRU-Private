@@ -1,0 +1,11 @@
+Operational Availibility for <%= @member.first_name %><p/>
+
+<%= link_to "Add new", new_member_avail_op_path(@member) %><p/>
+
+<%= @member.first_name %> has <%= @member.avail_ops.count %> ootifications.<p/>
+
+<% @member.avail_ops.each do |oot| %>
+
+  <%= oot.start %> / <%= oot.end %> / <%= oot.description %><br/>
+
+<% end %>

@@ -25,6 +25,26 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "avail_dos", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "year"
+    t.integer  "quarter"
+    t.integer  "week"
+    t.integer  "typ"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "avail_ops", :force => true do |t|
+    t.integer  "member_id"
+    t.date     "start"
+    t.date     "end"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "certs", :force => true do |t|
     t.integer  "member_id"
     t.string   "typ"
@@ -46,6 +66,15 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "member_id"
     t.boolean  "email",      :default => false
     t.boolean  "phone",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "do_assignments", :force => true do |t|
+    t.integer  "year"
+    t.integer  "quarter"
+    t.integer  "week"
+    t.integer  "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,32 +120,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "oots", :force => true do |t|
-    t.integer  "member_id"
-    t.date     "start"
-    t.date     "end"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pdo_quarters", :force => true do |t|
-    t.integer  "member_id"
-    t.integer  "year"
-    t.integer  "period"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pdo_weeks", :force => true do |t|
-    t.integer  "pdo_quarter_id"
-    t.integer  "period"
-    t.integer  "state"
-    t.string   "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "phones", :force => true do |t|
     t.integer  "member_id"
     t.string   "typ"
@@ -141,21 +144,6 @@ ActiveRecord::Schema.define(:version => 10) do
   create_table "roles", :force => true do |t|
     t.string   "member_id"
     t.string   "typ"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "udo_quarters", :force => true do |t|
-    t.integer  "year"
-    t.integer  "period"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "udo_weeks", :force => true do |t|
-    t.integer  "udo_quarter_id"
-    t.integer  "period"
-    t.integer  "officer_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

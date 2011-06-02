@@ -1,4 +1,4 @@
-class PdoQuarter < ActiveRecord::Base
+class DoAssignment < ActiveRecord::Base
 
   # ----- Associations -----
 
@@ -15,8 +15,6 @@ class PdoQuarter < ActiveRecord::Base
 
   # ----- Scopes -----
 
-
-  # ----- Class Methods -----
 
 
   # ----- Local Methods-----

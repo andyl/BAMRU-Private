@@ -1,0 +1,22 @@
+<table border=1>
+  <thead>
+  <tr>
+    <th>Role</th>
+    <th>Name</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @avail_ops.each do |avail| %>
+    <tr>
+      <td><%=avail.member.full_roles%></td>
+      <td><%=avail.member.full_name%></td>
+      <td><%=avail.start%></td>
+      <td><%=avail.end%></td>
+      <td><%=avail.comment%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

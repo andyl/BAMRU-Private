@@ -30,6 +30,7 @@ gem 'uglifier'
 gem 'therubyracer', :require => 'v8'
 
 group :development, :test do
+  gem 'csv-mapper'
   gem 'rb-inotify'
   gem 'guard'
   gem 'guard-coffeescript'

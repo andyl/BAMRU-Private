@@ -1,8 +1,8 @@
-class Oot < ActiveRecord::Base
+class AvailOp < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :user
+  belongs_to :member
 
 
   # ----- Callbacks -----
