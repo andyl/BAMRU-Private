@@ -24,15 +24,19 @@
     </tr></table>
   </div>
 
-  <%= raw app_notice %>
-  <%= raw app_alert %>
+  <div id="xbody">
 
-  <%= yield %>
+    <%= raw app_notice %>
+    <%= raw app_alert %>
+
+    <%= yield %>
+
+  </div>
 
   <div id="footer">
     <table align="center"><tr><td>Internal Use Only</td></tr></table>
   </div>
-  <div class ="debug"><%= raw debug_footer_text %></div>
+  <div class="debug"><%= raw debug_footer_text %></div>
 </div>
 
 

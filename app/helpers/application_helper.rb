@@ -48,7 +48,7 @@ module ApplicationHelper
   # ----- Debug Helpers -----
 
   def params_debug_text
-    "<br/><b>#{params["controller"]}##{params["action"]}</b> (params: #{params.inspect})"
+    "<b>#{params["controller"]}##{params["action"]}</b> (params: #{params.inspect})"
   end
 
   def request_env_debug_text
