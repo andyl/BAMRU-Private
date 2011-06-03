@@ -99,9 +99,9 @@ pre {
   width: 960px;
   margin: 0 auto;
   background-color: #ffffff;
-  padding: 20px;
   border: solid 1px black;
-  margin-top: 20px;
+  /*padding: 20px;*/
+  /*margin-top: 0px;*/
 }
 
 /* Help Page */
@@ -121,7 +121,7 @@ pre {
 /* Header */
 
 #header {
-  padding: 5px;
+  padding: 2px;
   padding-left: 15px;
   padding-right: 15px;
   background-color: #cccccc;
