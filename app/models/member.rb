@@ -6,6 +6,8 @@ class Member < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable #, :validatable
 
+  # ----- Attributes -----
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :remember_me
   attr_accessible :user_name, :first_name, :last_name, :full_name
@@ -13,6 +15,7 @@ class Member < ActiveRecord::Base
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
+  attr_accessible :bd, :ol
 
   # ----- Associations -----
   has_many :addresses
@@ -60,19 +63,35 @@ class Member < ActiveRecord::Base
   end
 
   def bd
-    true
+    roles.all.find {|r| r.typ.downcase == "bd"} ? true : false
   end
 
   def bd=(val)
-    val
+    if val == "1" || val == true
+      unless bd
+        roles.create(:typ => "Bd")
+      end
+    end
+    if val == "0" || val == false
+      role = roles.bd.first
+      role.destroy unless role.blank?
+    end
   end
 
   def ol
-    true
+    roles.all.find {|r| r.typ.downcase == "ol"} ? true : false
   end
 
   def ol=(val)
-    val
+    if val == "1" || val == true
+      unless ol
+        roles.create(:typ => "OL")
+      end
+    end
+    if val == "0" || val == false
+      role = roles.ol.first
+      role.destroy unless role.blank?
+    end
   end
 
   def set_pwd

@@ -422,6 +422,20 @@ label.collection_check_boxes {
   margin-left:   2px;
 }
 
+.plabel {
+  width: 75px;
+  float: left;
+  text-align: right;
+  margin-right: 3px;
+}
+
+.hlabel {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-right: 0px;
+}
+
 /*.body { color: black; font-size: 12px; line-height: 16px; font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular }*/
 .detailname { color: black; font-size: 15px; font-weight: bold; line-height: 19px; font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular }
 .detailmembertype { color: #888888; font-size: 12px; line-height: 14px; font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular }

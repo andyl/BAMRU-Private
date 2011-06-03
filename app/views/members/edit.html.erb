@@ -27,28 +27,31 @@
       <p/>
       <%= form_for @member do |f| %>
         <%= f.text_field :full_name, :size => 28 %><br/>
-        <%= f.text_field :typ, :size=> 10 %>
+        <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
-        OL: <%= f.check_box('ol') %><br/>
-        <%= f.password_field :password, :size => 12 %>
-        <%= f.password_field :password_confirmation, :size => 12 %><br/>
-        Ham: <%= f.text_field :ham, :size => 10 %>
-        V9: <%= f.text_field :v9, :size => 10 %><p/>
-        <p/><b>Phones</b> <span class=add><%= link_to_function("add", "add_phone(this);")%></span><br/>
+        OL: <%= f.check_box('ol') %><p/>
+        <span class=plabel>Password: </span>
+        <%= f.password_field :password, :size => 13 %>
+        <span class=hlabel>Ham: </span>
+        <%= f.text_field :ham, :size => 5 %><br/>
+        <span class=plabel>Confirmation: </span>
+        <%= f.password_field :password_confirmation, :size => 13 %>
+        <span class=hlabel> V9: </span>
+        <%= f.text_field :v9, :size => 5 %><p/>
+        <b>Phones</b> <span class=add><%= link_to_function("add", "add_phone(this);")%></span><br/>
         <%= f.fields_for :phones do |phone| %>
           <%= phone.text_field :number, :size => 10 %>
-          <%= phone.text_field :typ, :size => 10 %><br/>
+          <%= phone.select :typ, %w(Other Mobile Home Work) %> remove<br/>
         <% end %>
         <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
-          <%= email.text_field :address, :size => 15 %>
-          <%= email.text_field :typ, :size => 10 %><br/>
+          <%= email.text_field :address, :size => 20 %>
+          <%= email.select :typ, %w(Other Personal Work) %> remove<br/>
         <% end %>
         <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
         <%= f.fields_for :addresses do |address| %>
-          <%= address.text_field :address1 %>
-          <%= address.text_field :address2 %>
-          <%= address.text_field :typ %>
+          <%= address.text_area :full_address, :size => "20x2" %>
+          <%= address.select :typ, %w(Other Home Work) %> remove
         <% end %>
         </p><%= f.submit %>
         <p/>

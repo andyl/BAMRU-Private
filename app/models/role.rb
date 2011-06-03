@@ -13,6 +13,8 @@ class Role < ActiveRecord::Base
 
 
   # ----- Scopes -----
+  scope :bd, where(:typ => "Bd")
+  scope :ol, where(:typ => "OL")
 
 
 
