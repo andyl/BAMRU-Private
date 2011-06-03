@@ -25,29 +25,32 @@
     </div>
     <div id=x_left_col>
       <p/>
-      <%= simple_form_for @member do |f| %>
-        <%= f.input :full_name, :input_html => {:size => 20} %>
-        <%= f.input :password, :input_html => {:size => 20} %>
-        <%= f.input :password_confirmation, :label => "Confirmation", :input_html => {:size => 20} %>
-        <%= f.input :ham, :input_html => {:size => 20} %>
-        <%= f.input :v9, :input_html => {:size => 20} %>
-        <p/>Phones<br/>
-        <%= f.simple_fields_for :phones do |phone| %>
-          <%= phone.input :number, :input_html => {:size => 20} %>
-          <%= phone.input :typ, :input_html => {:size => 20} %>
+      <%= form_for @member do |f| %>
+        <%= f.text_field :full_name, :size => 28 %><br/>
+        <%= f.text_field :typ, :size=> 10 %>
+        Bd: <%= f.check_box('bd') %>
+        OL: <%= f.check_box('ol') %><br/>
+        <%= f.password_field :password, :size => 12 %>
+        <%= f.password_field :password_confirmation, :size => 12 %><br/>
+        Ham: <%= f.text_field :ham, :size => 10 %>
+        V9: <%= f.text_field :v9, :size => 10 %><p/>
+        <p/><b>Phones</b> <span class=add><%= link_to_function("add", "add_phone(this);")%></span><br/>
+        <%= f.fields_for :phones do |phone| %>
+          <%= phone.text_field :number, :size => 10 %>
+          <%= phone.text_field :typ, :size => 10 %><br/>
         <% end %>
-        <p/>Addresses<br/>
-        <%= f.simple_fields_for :addresses do |address| %>
-          <%= address.input :address1, :input_html => {:size => 20} %>
-          <%= address.input :address2, :input_html => {:size => 20} %>
-          <%= address.input :typ, :input_html => {:size => 20} %>
-        <% end %>
-        <p/>eMails<br/>
+        <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
-          <%= email.input :address, :input_html => {:size => 20} %>
-          <%= email.input :typ, :input_html => {:size => 20} %>
+          <%= email.text_field :address, :size => 15 %>
+          <%= email.text_field :typ, :size => 10 %><br/>
         <% end %>
-        <%= f.button :submit %>
+        <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
+        <%= f.fields_for :addresses do |address| %>
+          <%= address.text_field :address1 %>
+          <%= address.text_field :address2 %>
+          <%= address.text_field :typ %>
+        <% end %>
+        </p><%= f.submit %>
         <p/>
       <% end %>
     </div>

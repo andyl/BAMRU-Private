@@ -59,6 +59,22 @@ class Member < ActiveRecord::Base
     "#{fname}.#{lname}"
   end
 
+  def bd
+    true
+  end
+
+  def bd=(val)
+    val
+  end
+
+  def ol
+    true
+  end
+
+  def ol=(val)
+    val
+  end
+
   def set_pwd
     self.password = "welcome" if self.password.blank?
   end
