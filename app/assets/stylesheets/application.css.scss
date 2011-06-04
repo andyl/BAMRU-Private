@@ -431,9 +431,15 @@ label.collection_check_boxes {
 
 .hlabel {
   display: inline-block;
-  width: 40px;
+  width: 30px;
   text-align: right;
   margin-right: 0px;
+}
+
+.upp {
+  /*padding-bottom: 15px;*/
+  position: relative;
+  top: -6px;
 }
 
 /*.body { color: black; font-size: 12px; line-height: 16px; font-family: Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular }*/

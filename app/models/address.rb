@@ -34,12 +34,20 @@ class Address < ActiveRecord::Base
 
   # ----- Local Methods-----
 
+  def parse_address(string)
+    base = File.dirname(File.expand_path(__FILE__))
+    require base + '/../../lib/address_parser'
+    tmp = AddressParser.new.parse(string)
+    tmp.keys.each {|key| tmp[key] = tmp[key].to_s}
+    tmp
+  end
+
   def full_address
     "#{address1.bl}#{address2.bl}#{city} #{state} #{zip}"
   end
 
   def full_address=(input)
-    "TBD"
+    update_attributes(parse_address(input))
   end
 
   def output

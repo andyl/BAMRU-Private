@@ -14,12 +14,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'jquery-rails'
 gem 'paperclip'
-# gem 'acts_as_list', :git => "git://github.com/swanandp/acts_as_list.git"
-# gem 'acts_as_list'
-# gem 'acts_as_list_with_sti_support'
-# gem 'aalf', :git => "git://github.com/andyl/aalf.git", :require => 'acts_as_list'
-# gem 'aalf', :path => "/home/aleak/lr/aalf", :require => 'acts_as_list'
-# gem 'aalf', :path => "/home/aleak/lr/aalf" # , :require => 'acts_as_list'
+gem 'parslet'
 gem 'aalf', :git => "git://github.com/andyl/aalf.git"
 
 # Asset template engines
