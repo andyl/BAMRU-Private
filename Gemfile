@@ -15,7 +15,8 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'paperclip'
 gem 'parslet'
-gem 'aalf', :git => "git://github.com/andyl/aalf.git"
+gem 'aalf',         :git => "http://github.com/andyl/aalf.git"
+gem 'dynamic_form'
 
 # Asset template engines
 gem 'json'

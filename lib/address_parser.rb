@@ -93,6 +93,7 @@ if $0 == __FILE__
   test_runner("address1", "1523 Broker Rd., Apt. #22")
   test_runner( "address", "1523 Broker Way")
   test_runner( "address", "1523 Broker Way\nApartment 22")
+  test_runner( "address", "1523 El Camino Real\r\nApartment 22")
   test_runner(     "zip", "94022")
   test_runner(     "zip", "94022 ")
   test_runner(   "state", "CA")

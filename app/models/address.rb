@@ -26,6 +26,8 @@ class Address < ActiveRecord::Base
 
   # ----- Validations -----
 
+  validates_presence_of :zip
+
 
 
   # ----- Scopes -----

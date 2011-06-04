@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/andyl/aalf.git
+  remote: http://github.com/andyl/aalf.git
   revision: c6a52afb82da0f0eb160166d38b43e568bc127a0
   specs:
     aalf (0.0.1)
@@ -76,6 +76,7 @@ GEM
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
     drx (0.4.5)
+    dynamic_form (1.1.4)
     em-dir-watcher (0.9.4)
     em-websocket (0.2.1)
       addressable (>= 2.1.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   csv-mapper
   devise
   drx
+  dynamic_form
   factory_girl
   faker
   fastercsv

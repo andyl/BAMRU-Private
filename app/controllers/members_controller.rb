@@ -20,13 +20,8 @@ class MembersController < ApplicationController
     if @member.update_attributes(params["member"])
       redirect_to member_path(@member), :notice => "Successful Update"
     else
-      alert "Something is Wrong"
       render "edit"
     end
   end
   
-#  def sort
-#    puts params
-#    redirect_to edit_member_path(params['member_id'])
-#  end
 end

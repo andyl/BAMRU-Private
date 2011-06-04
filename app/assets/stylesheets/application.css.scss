@@ -258,18 +258,18 @@ pre {
 }
 
 #errorExplanation {
-  width: 400px;
+  /*width: 100px;*/
   border: 2px solid #CF0000;
   padding: 0px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: #f0f0f0;
 }
 
 #errorExplanation h2 {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
-  padding: 5px 5px 5px 15px;
+  padding: 3px 3px 3px 3px;
   font-size: 12px;
   margin: 0;
   background-color: #c00;
@@ -283,7 +283,7 @@ pre {
 }
 
 #errorExplanation ul {
-  margin: 2px 24px;
+  margin: 2px 12px;
 }
 
 #errorExplanation ul li {

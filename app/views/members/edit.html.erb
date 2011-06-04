@@ -26,6 +26,7 @@
     <div id=x_left_col>
       <p/>
       <%= form_for @member do |f| %>
+        <%= f.error_messages %>
         <%= f.text_field :full_name, :size => 28 %><br/>
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
