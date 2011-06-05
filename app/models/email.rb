@@ -8,9 +8,7 @@ class Email < ActiveRecord::Base
   # ----- Callbacks -----
 
 
-
   # ----- Validations -----
-
   validates_format_of :address, :with => /^[A-z0-9\-\.\@]+$/
 
 

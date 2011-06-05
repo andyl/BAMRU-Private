@@ -16,33 +16,51 @@ class Address < ActiveRecord::Base
   attr_accessible :typ
 
   # ----- Associations -----
-
   belongs_to :member
 
 
   # ----- Callbacks -----
 
 
-
   # ----- Validations -----
-
   validates_presence_of :zip, :state
   validates_format_of   :zip, :with => /^[0-9]+$/
-
 
 
   # ----- Scopes -----
 
 
-
   # ----- Local Methods-----
+
+  def blank_hash
+    hsh = {}
+    hsh[:address1] = ""
+    hsh[:address2] = ""
+    hsh[:city]     = ""
+    hsh[:state]    = ""
+    hsh[:zip]      = ""
+    hsh
+  end
+
+  def capitalize_each(string)
+    string.split(' ').map {|w| w.capitalize}.join(' ')
+  end
+
+  def adjust_case(hash)
+    hash[:state]    = hash[:state].upcase
+    hash[:city]     = capitalize_each(hash[:city])
+    hash[:address1] = capitalize_each(hash[:address1])
+    hash[:address2] = capitalize_each(hash[:address2])
+    hash
+  end
 
   def parse_address(string)
     base = File.dirname(File.expand_path(__FILE__))
     require base + '/../../lib/address_parser'
     tmp = AddressParser.new.parse(string)
     tmp.keys.each {|key| tmp[key] = tmp[key].to_s}
-    tmp
+    result = blank_hash.merge(tmp)
+    adjust_case(result)
   end
 
   def full_address

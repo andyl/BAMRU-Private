@@ -14,10 +14,8 @@ class AddressParser < Parslet::Parser
 
   # case insensitive string match - copied from the 'Parslet Tips' page...
   def stri(str)
-    key_chars = str.split(//)
-    key_chars.
-      collect! { |char| match["#{char.upcase}#{char.downcase}"] }.
-      reduce(:>>)
+    chars = str.split(//)
+    chars.map {|c| match["#{c.upcase}#{c.downcase}"] }.reduce(:>>)
   end
 
   # matches two-letter abbreviations for US states
@@ -27,7 +25,7 @@ class AddressParser < Parslet::Parser
                 tn ky in oh pn wv md va nc sc
                 ga de nj ct ri ma vt nh ma il
                 ca co az nv fl mi ny or wa mo)
-    eval states.map {|x| "stri('#{x}')"}.join(' | ')
+    states.map {|s| stri("#{s}")}.reduce(:|)
   end
   
   # Single character rules
@@ -51,11 +49,11 @@ class AddressParser < Parslet::Parser
   rule(:address1)   { (adr_char.repeat).as(:address1) }
   rule(:address2)   { newline >> (adr_char.repeat).as(:address2) }
   rule(:address)    { address1 >> address2 }
-  rule(:state)      { state_match.as(:state) >> state_term }
-  rule(:zip)        { digit.repeat(2,5).as(:zip) >> space? >> eof }
   rule(:city1)      { word.as(:city) >> spacecom }
   rule(:city2)      { (word >> space >> word).as(:city) >> spacecom }
   rule(:city3)      { (word >> space >> word >> space >> word).as(:city) >> spacecom }
+  rule(:state)      { state_match.as(:state) >> state_term }
+  rule(:zip)        { digit.repeat(2,5).as(:zip) >> space? >> eof }
   rule(:sz)         { state >> zip.maybe }
   rule(:csz)        { (city1 >> sz) | (city2 >> sz) | (city3 >> sz) }
 
@@ -67,7 +65,6 @@ end
 if $0 == __FILE__
 
   def test_runner(rule, string)
-
     begin 
       parser = AddressParser.new
       eval "p parser.#{rule}.parse('#{string}')"
@@ -83,8 +80,6 @@ if $0 == __FILE__
   test_runner(  "state_match_test", "NY")
   test_runner(  "state_match_test", "fl")
   test_runner(  "state_match_test", "wa")
-  test_runner(   "comma", ",")
-  test_runner(   "digit", "5")
   test_runner(   "comma", ",")
   test_runner(   "digit", "5")
   test_runner("address1", "1523 Broker Way")
