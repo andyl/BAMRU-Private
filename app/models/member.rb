@@ -39,11 +39,21 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :avail_dos,     :allow_destroy => true
 
   # ----- Validations -----
-  validates_presence_of   :first_name, :last_name, :user_name
+  validates_associated    :addresses, :phones, :emails
+
+  validates_presence_of   :first_name, :last_name, :user_name, :v9
   validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/
   validates_uniqueness_of :user_name
+
+  validate :check_full_name_errors
+
+  def check_full_name_errors
+    if errors.include?(:first_name) || errors.include?(:last_name)
+      errors.add(:full_name, "has errors")
+    end
+  end
 
   # ----- Callbacks -----
   before_validation :set_username_and_name_fields
@@ -54,12 +64,16 @@ class Member < ActiveRecord::Base
   scope :with_photos,        where("id     IN (SELECT member_id from photos)")
   scope :without_photos,     where("id NOT IN (SELECT member_id from photos)")
 
-  # ----- Instance Methods-
-  def new_username_from_names
-    return "" if first_name.nil? || last_name.nil?
-    fname = self.first_name.downcase.gsub(/[ \.]/,'_')
-    lname = self.last_name.downcase.gsub(/[ \.]/,'_')
-    "#{fname}.#{lname}"
+  # ----- Virtual Attributes (Accessors) -----
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def full_name=(input)
+    str = input.split(' ', 2)
+    self.first_name = str.first.capitalize
+    self.last_name  = str.last.capitalize
   end
 
   def bd
@@ -92,6 +106,31 @@ class Member < ActiveRecord::Base
       role = roles.ol.first
       role.destroy unless role.blank?
     end
+  end
+
+  # ----- Virtual Attributes (Readers) -----
+
+  def short_name
+    first_initial = first_name[0..0]
+    "#{first_initial}. #{last_name}"
+  end
+
+  def full_roles
+    arr = ([typ] + roles.map {|r| r.typ})
+    arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
+  end
+
+  def display_cert(type)
+    cert = certs.where(:typ => type).first
+    cert.display
+  end
+
+  # ----- Instance Methods -----
+  def new_username_from_names
+    return "" if first_name.nil? || last_name.nil?
+    fname = self.first_name.downcase.gsub(/[ \.]/,'_')
+    lname = self.last_name.downcase.gsub(/[ \.]/,'_')
+    "#{fname}.#{lname}"
   end
 
   def set_pwd
@@ -131,21 +170,6 @@ class Member < ActiveRecord::Base
     [p,a,e].find_all {|x| ! x.blank?}.join("</p>")
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
-  def full_name=(input)
-    str = input.split(' ', 2)
-    self.first_name = str.first.capitalize
-    self.last_name  = str.last.capitalize
-  end
-
-  def short_name
-    first_initial = first_name[0..0]
-    "#{first_initial}. #{last_name}"
-  end
-
   def role_val(role)
     case role
       when "Bd" : -500
@@ -160,20 +184,39 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def full_roles
-    arr = ([typ] + roles.map {|r| r.typ})
-    arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
-  end
-
   def self.autoselect_member_names(suffix = "")
     order('last_name ASC').all.map do |m|
       "{label: '#{m.full_name}', url: '/members/#{m.id}#{suffix}'}"
     end.join(',')
   end
 
-  def display_cert(type)
-    cert = certs.where(:typ => type).first
-    cert.display
+  # ----- For Error Reporting -----
+
+  def scrubbed_errors
+    scrubbed_err = errors.messages.clone
+    scrubbed_err.delete(:full_name)
+    scrubbed_err.delete(:full_address)
+    scrubbed_err
   end
 
+  def full_messages(hash = scrubbed_errors)
+    hash.map { |attribute, message|
+      if attribute == :base
+        message
+      else
+        attr_name = attribute.to_s.gsub('.', '_').humanize
+        attr_name = self.class.human_attribute_name(attribute, :default => attr_name)
+
+        I18n.t(:"errors.format", {
+                :default   => "%{attribute} %{message}",
+                :attribute => attr_name,
+                :message   => message
+        })
+      end
+    }
+  end
+
+
 end
+
+

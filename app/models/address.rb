@@ -26,7 +26,8 @@ class Address < ActiveRecord::Base
 
   # ----- Validations -----
 
-  validates_presence_of :zip
+  validates_presence_of :zip, :state
+  validates_format_of   :zip, :with => /^[0-9]+$/
 
 
 

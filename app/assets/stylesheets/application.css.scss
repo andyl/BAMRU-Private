@@ -385,8 +385,21 @@ label.collection_radio {
 }
 
 .field_with_errors {
+  display: inline;
   background-color: #ff3333;
 }
+
+/*.fieldWithErrors {*/
+  /*margin: 0;*/
+  /*display: inline;*/
+  /*label {*/
+    /*color: #8a1f11;*/
+  /*}*/
+  /*input, textarea, select {*/
+    /*background-color: #fbe3e4 !important;*/
+    /*color: #8a1f11;*/
+  /*}*/
+/*}*/
 
 .simple_form .error {
   clear:   left;

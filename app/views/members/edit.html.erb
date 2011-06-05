@@ -26,7 +26,7 @@
     <div id=x_left_col>
       <p/>
       <%= form_for @member do |f| %>
-        <%= f.error_messages %>
+        <%= render "shared/error_messages", :target => @member %>
         <%= f.text_field :full_name, :size => 28 %><br/>
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
@@ -47,7 +47,7 @@
         <% end %>
         <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
-          <%= email.text_field :address, :size => 20 %>
+          <span style=":red;"><%= email.text_field :address, :size => 20 %></span>
           <%= email.select :typ, %w(Other Personal Work) %> remove<br/>
         <% end %>
         <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
