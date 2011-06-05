@@ -11,6 +11,7 @@ class Email < ActiveRecord::Base
 
   # ----- Validations -----
 
+  validates_format_of :address, :with => /^[A-z0-9\-\.\@]+$/
 
 
   # ----- Scopes -----
