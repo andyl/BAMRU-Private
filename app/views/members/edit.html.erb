@@ -17,13 +17,15 @@
     <div id=x_header>
       <table width=100%><tr>
         <td align=left width=33%>Member Edit</td>
-        <td align=center width=33%><%= link_to("Cancel", member_path(@member)) %></td>
+        <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
         <td align=right width=33%>
             <input size=14 id="autoselect" value="Find Member">
         </td>
       </tr></table>
     </div>
     <div id=x_left_col>
+      <p/>
+      <div style="text-align: center;"><%= link_to "Save", '/'%> | <%= link_to "Reset", edit_member_path(@member)%></div>
       <p/>
       <%= form_for @member do |f| %>
         <%= render "shared/error_messages", :target => @member %>
@@ -60,7 +62,7 @@
       <% end %>
     </div>
     <div id=x_right_col style="text-align: center;">
-      <p/><%= link_to "add new photo", new_member_photo_path(@member) %><p/>
+      <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
       <div id=sortable>
         <% @member.photos.each do |pic| %>
           <li id=photos_<%= pic.id %>>

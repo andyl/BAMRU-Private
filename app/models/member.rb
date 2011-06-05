@@ -58,7 +58,6 @@ class Member < ActiveRecord::Base
   def check_full_address_errors
     puts '-' * 60
     puts errors.keys
-    debugger
     puts errors["phones.number"].inspect if errors.include?("phones.number")
     puts '-' * 60
     if errors.include?(:addresses)
