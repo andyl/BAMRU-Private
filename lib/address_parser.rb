@@ -30,7 +30,7 @@ class AddressParser < Parslet::Parser
   
   # Single character rules
   rule(:comma)      { str(',') >> space? }
-  rule(:space)      { match('\s').repeat }
+  rule(:space)      { str(' ').repeat }
   rule(:space?)     { space.maybe }
   rule(:spacecom)   { comma.maybe >> space }
   rule(:state_term) { (comma | eof | str(' ')) >> space}
@@ -43,11 +43,11 @@ class AddressParser < Parslet::Parser
   rule(:state_match_test)  { state_match }
 
   # Things
-  rule(:word)       { match('[A-z]').repeat }
+  rule(:word)       { match('[A-Za-z]').repeat }
 
   # Address Parts
   rule(:address1)   { (adr_char.repeat).as(:address1) }
-  rule(:address2)   { newline >> (adr_char.repeat).as(:address2) }
+  rule(:address2)   { newline >> (adr_char.repeat).as(:address2) >> newline }
   rule(:address)    { address1 >> address2 }
   rule(:city1)      { word.as(:city) >> spacecom }
   rule(:city2)      { (word >> space >> word).as(:city) >> spacecom }
@@ -111,5 +111,8 @@ if $0 == __FILE__
   test_runner(     "all", "1523 Broker Way\nMountain View CA 94022")
   test_runner(     "all", "1523 Broker Way\nApartment 22\nMV CA 94022")
   test_runner(     "all", "1523 broker way\nmountain view ca 94022")
+  test_runner(     "all", "480 55th St.\nUnit Z\nOakland CA 94609")
+  test_runner(     "all", "480 55th St.\nUnit z\nOakland CA 94609")
+  test_runner(     "all", "480 55th St.\nUnit z\nZakland CA 94609")
 
 end
