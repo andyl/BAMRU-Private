@@ -38,19 +38,21 @@
         <%= f.fields_for :phones do |phone| %>
           <%= phone.text_field :number, :size => 10 %>
           <%= phone.select :typ, %w(Other Mobile Home Work) %>
-          <%= phone.check_box :_destroy %> remove<br/>
+          P<%= phone.check_box :pagable %>
+          R<%= phone.check_box :_destroy %><br/>
         <% end %>
         <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
           <span style=":red;"><%= email.text_field :address, :size => 20 %></span>
           <%= email.select :typ, %w(Other Personal Work) %>
-          <%= email.check_box :_destroy %> remove<br/>
+          P<%= email.check_box :pagable %>
+          R<%= email.check_box :_destroy %><br/>
         <% end %>
         <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
         <%= f.fields_for :addresses do |address| %>
           <%= address.text_area :full_address, :size => "20x2" %>
           <%= address.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
-          <span class=upp> <%= address.check_box :_destroy %> remove</span><br/>
+          <span class=upp>R<%= address.check_box :_destroy %></span><br/>
         <% end %>
         <b>Password</b><br/>
         <span class=plabel>Password: </span>
