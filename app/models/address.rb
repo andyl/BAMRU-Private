@@ -29,9 +29,6 @@ class Address < ActiveRecord::Base
   validate :check_full_address_errors
 
   def check_full_address_errors
-    puts '-' * 60
-    puts errors.keys
-    puts '-' * 60
     if errors.include?(:zip) || errors.include?(:state)
       errors.add(:full_address, "has errors")
     end

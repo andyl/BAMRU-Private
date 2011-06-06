@@ -25,7 +25,6 @@ class RosterLoad
               :week    => r.week,
               :name    => r.name
       }
-      puts hash.inspect
       DoAssignment.create(hash) unless r.name.nil? || r.name.blank?
     end
   end
