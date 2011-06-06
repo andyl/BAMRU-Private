@@ -2,7 +2,6 @@
 require File.expand_path('../application', __FILE__)
 
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
-  debugger
   error_style = "background-color: #ffff80"
   if html_tag =~ /<(input|textarea|select)[^>]+style=/
     style_attribute = html_tag =~ /style=['"]/

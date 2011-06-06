@@ -26,6 +26,16 @@ class Address < ActiveRecord::Base
   validates_presence_of :zip, :state
   validates_format_of   :zip, :with => /^[0-9]+$/
 
+  validate :check_full_address_errors
+
+  def check_full_address_errors
+    puts '-' * 60
+    puts errors.keys
+    puts '-' * 60
+    if errors.include?(:zip) || errors.include?(:state)
+      errors.add(:full_address, "has errors")
+    end
+  end
 
   # ----- Scopes -----
 
@@ -46,21 +56,12 @@ class Address < ActiveRecord::Base
     string.split(' ').map {|w| w.capitalize}.join(' ')
   end
 
-  def adjust_case(hash)
-    hash[:state]    = hash[:state].upcase
-    hash[:city]     = capitalize_each(hash[:city])
-    hash[:address1] = capitalize_each(hash[:address1])
-    hash[:address2] = capitalize_each(hash[:address2])
-    hash
-  end
-
   def parse_address(string)
     base = File.dirname(File.expand_path(__FILE__))
     require base + '/../../lib/address_parser'
     tmp = AddressParser.new.parse(string)
     tmp.keys.each {|key| tmp[key] = tmp[key].to_s}
-    result = blank_hash.merge(tmp)
-    adjust_case(result)
+    blank_hash.merge(tmp)
   end
 
   def full_address
@@ -68,7 +69,12 @@ class Address < ActiveRecord::Base
   end
 
   def full_address=(input)
-    update_attributes(parse_address(input))
+    hash = parse_address(input)
+    self.zip      = hash[:zip]
+    self.address1 = capitalize_each(hash[:address1])
+    self.address2 = capitalize_each(hash[:address2])
+    self.city     = capitalize_each(hash[:city])
+    self.state    = hash[:state].upcase
   end
 
   def output

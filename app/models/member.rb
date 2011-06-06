@@ -47,21 +47,11 @@ class Member < ActiveRecord::Base
   validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/
   validates_uniqueness_of :user_name
 
-  validate :check_full_name_errors, :check_full_address_errors
+  validate :check_full_name_errors
 
   def check_full_name_errors
     if errors.include?(:first_name) || errors.include?(:last_name)
       errors.add(:full_name, "has errors")
-    end
-  end
-
-  def check_full_address_errors
-    puts '-' * 60
-    puts errors.keys
-    puts errors["phones.number"].inspect if errors.include?("phones.number")
-    puts '-' * 60
-    if errors.include?(:addresses)
-      errors.add(:full_address, "has errors")
     end
   end
 
