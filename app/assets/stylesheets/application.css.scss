@@ -436,15 +436,15 @@ label.collection_check_boxes {
 }
 
 .plabel {
-  width: 75px;
-  float: left;
+  width: 85px;
+  display: inline-block;
   text-align: right;
   margin-right: 3px;
 }
 
 .hlabel {
   display: inline-block;
-  width: 30px;
+  width: 40px;
   text-align: right;
   margin-right: 0px;
 }

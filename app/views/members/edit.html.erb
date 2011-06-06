@@ -34,15 +34,6 @@
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
         OL: <%= f.check_box('ol') %><p/>
-        <b>Password, Ham & V9</b><br/>
-        <span class=plabel>Password: </span>
-        <%= f.password_field :password, :size => 13 %>
-        <span class=hlabel>Ham: </span>
-        <%= f.text_field :ham, :size => 5 %><br/>
-        <span class=plabel>Confirmation: </span>
-        <%= f.password_field :password_confirmation, :size => 13 %>
-        <span class=hlabel> V9: </span>
-        <%= f.text_field :v9, :size => 5 %><p/>
         <b>Phones</b> <span class=add><%= link_to_function("add", "add_phone(this);")%></span><br/>
         <%= f.fields_for :phones do |phone| %>
           <%= phone.text_field :number, :size => 10 %>
@@ -59,6 +50,16 @@
           <%= address.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
           <span class=upp> remove</span><br/>
         <% end %>
+        <b>Password</b><br/>
+        <span class=plabel>Password: </span>
+        <%= f.password_field :password, :size => 13 %><br/>
+        <span class=plabel>Confirmation: </span>
+        <%= f.password_field :password_confirmation, :size => 13 %><p/>
+        <b>Ham & V9</b><br/>
+        <span class=hlabel>Ham: </span>
+        <%= f.text_field :ham, :size => 5 %><br/>
+        <span class=hlabel> V9: </span>
+        <%= f.text_field :v9, :size => 5 %><p/>
         <p/>
       <% end %>
     </div>
