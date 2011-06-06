@@ -41,7 +41,7 @@ class Member < ActiveRecord::Base
   # ----- Validations -----
   validates_associated    :addresses, :phones, :emails
 
-  validates_presence_of   :first_name, :last_name, :user_name, :v9
+  validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
   validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/

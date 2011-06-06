@@ -6,6 +6,7 @@
 <%= javascript_include_tag "jquery-ui.min.js" %>
 <%= javascript_include_tag "members_autoselect.js" %>
 <%= javascript_include_tag "members_sort_photos.js" %>
+<%= javascript_include_tag "members_edit_form.js" %>
 
 <style>
   #sortable {list-style-type: none; margin: 0; padding: 0;}
@@ -25,9 +26,9 @@
     </div>
     <div id=x_left_col>
       <p/>
-      <div style="text-align: center;"><%= link_to "Save", '/'%> | <%= link_to "Reset", edit_member_path(@member)%></div>
+      <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@member)%></div>
       <p/>
-      <%= form_for @member do |f| %>
+      <%= form_for(@member, :html => {:id => 'memberz_form'}) do |f| %>
         <%= render "shared/error_messages", :target => @member %>
         <%= f.text_field :full_name, :size => 28 %><br/>
         <%= f.select :typ, %w(TM FM T R S A) %>
@@ -54,12 +55,10 @@
         <% end %>
         <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
         <%= f.fields_for :addresses do |address| %>
-          <%# address.text_field :zip, :size => 10 %>
           <%= address.text_area :full_address, :size => "20x2" %>
           <%= address.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
           <span class=upp> remove</span><br/>
         <% end %>
-        </p><%= f.submit %>
         <p/>
       <% end %>
     </div>
