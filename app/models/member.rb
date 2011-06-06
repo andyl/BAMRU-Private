@@ -30,13 +30,13 @@ class Member < ActiveRecord::Base
   has_many :distributions
   has_many :notices, :through => :distributions, :source => :message
 
-  accepts_nested_attributes_for :addresses,     :allow_destroy => true
-  accepts_nested_attributes_for :phones,        :allow_destroy => true
-  accepts_nested_attributes_for :emails,        :allow_destroy => true
-  accepts_nested_attributes_for :roles,         :allow_destroy => true
-  accepts_nested_attributes_for :certs,         :allow_destroy => true
-  accepts_nested_attributes_for :avail_ops,     :allow_destroy => true
-  accepts_nested_attributes_for :avail_dos,     :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|a| a[:number].blank? }
+  accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|a| a[:address].blank? }
+  accepts_nested_attributes_for :roles,     :allow_destroy => true
+  accepts_nested_attributes_for :certs,     :allow_destroy => true
+  accepts_nested_attributes_for :avail_ops, :allow_destroy => true
+  accepts_nested_attributes_for :avail_dos, :allow_destroy => true
 
   # ----- Validations -----
   validates_associated    :addresses, :phones, :emails

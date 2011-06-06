@@ -5,6 +5,7 @@
 $body_width:     644px;
 $border_width:   1px;
 $col_padding:    8px;
+$col_offset:     50;
 $col_base_width: $body_width/2 - $col_padding*2 - $border_width;
 
 @mixin x_border {
@@ -45,16 +46,14 @@ $col_height: 225px;
 #x_left_col {
   @include col_style;
   float: left;
-  width: $col_base_width - $border_width;
-  /*height: $col_height;*/
+  width: $col_base_width - $border_width + $col_offset;
 }
 
 #x_right_col {
   @include col_style;
   float: right;
   border-left-style: none;
-  width: $col_base_width;
-  /*height: $col_height;*/
+  width: $col_base_width - $col_offset;
 }
 
 #x_footer{

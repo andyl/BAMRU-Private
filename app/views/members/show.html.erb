@@ -18,9 +18,13 @@
     <div id=x_left_col>
       <b><%= @member.first_name %> <%= @member.last_name %><br/></b>
       <%= @member.full_roles %><p/>
-      <b>Ham:</b> <%= @member.ham %><br/>
-      <b>V9:</b> <%= @member.v9 %><p/>
-      <%= raw @member.all_assoc %>
+      <%= raw @member.all_assoc %><p/>
+      <% unless @member.ham.blank? %>
+        <b>Ham:</b> <%= @member.ham %><br/>
+      <% end %>
+      <% unless @member.v9.blank? %>
+        <b>V9:</b> <%= @member.v9 %><p/>
+      <% end %>
     </div>
     <div id=x_right_col style="text-align: center;">
       <% @member.photos.each do |pic| %>
