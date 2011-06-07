@@ -34,25 +34,17 @@
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
         OL: <%= f.check_box('ol') %><p/>
-        <b>Phones</b> <span class=add><%= link_to_function("add", "add_phone(this);")%></span><br/>
+        <b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span><br/>
         <%= f.fields_for :phones do |phone| %>
-          <%= phone.text_field :number, :size => 10 %>
-          <%= phone.select :typ, %w(Other Mobile Home Work) %>
-          P<%= phone.check_box :pagable %>
-          R<%= phone.check_box :_destroy %><br/>
+          <%= render "phone_fields", :f => phone %>
         <% end %>
         <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
-          <span style=":red;"><%= email.text_field :address, :size => 20 %></span>
-          <%= email.select :typ, %w(Other Personal Work) %>
-          P<%= email.check_box :pagable %>
-          R<%= email.check_box :_destroy %><br/>
+          <%= render "email_fields", :f => email %>
         <% end %>
         <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
         <%= f.fields_for :addresses do |address| %>
-          <%= address.text_area :full_address, :size => "20x2" %>
-          <%= address.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
-          <span class=upp>R<%= address.check_box :_destroy %></span><br/>
+          <%= render "address_fields", :f => address %>
         <% end %>
         <b>Password</b><br/>
         <span class=plabel>Password: </span>
