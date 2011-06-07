@@ -50,10 +50,14 @@
             <% end %>
           <% end %>
         </div>
-        <p/><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span><br/>
-        <%= f.fields_for :addresses do |address| %>
-          <%= render "address_fields", :f => address %>
-        <% end %>
+        <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span>
+        <div id=sortable_addresses>
+          <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
+            <%= f.fields_for :addresses, xaddress do |address| %>
+              <%= render "address_fields", :f => address %>
+            <% end %>
+          <% end %>
+        </div>
         <p/><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span><br/>
         <%= f.fields_for :emergency_contacts do |contact| %>
           <%= render "emergency_contact_fields", :f => contact %>

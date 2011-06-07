@@ -13,10 +13,11 @@ class Address < ActiveRecord::Base
   # ----- Attributes -----
   attr_accessible :full_address
   attr_accessible :address1, :address2, :city, :state, :zip
-  attr_accessible :typ
+  attr_accessible :typ, :position
 
   # ----- Associations -----
   belongs_to :member
+  acts_as_list :scope => :member_id
 
 
   # ----- Callbacks -----

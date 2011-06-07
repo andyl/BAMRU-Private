@@ -34,6 +34,7 @@ class RosterLoad
       x = Member.create(w)
       x.phones.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.emails.each_with_index {|v,i| v.update_attributes(:position => i+1)}
+      x.addresses.each_with_index {|v,i| v.update_attributes(:position => i+1)}
     end
     load_csv
   end

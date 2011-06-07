@@ -46,4 +46,12 @@ $(document).ready ->
     handle:      '.sort_handle'
     cursor:      'crosshair'
     update: ->
-      resetIndex("#sortable_emails")
+      resetIndex("#sortable_addresses")
+  $("#sortable_addresses").sortable
+    placeholder: "ui-state-highlight"
+    axis:        'y'
+    opacity:     0.4
+    handle:      '.sort_handle'
+    cursor:      'crosshair'
+    update: ->
+      resetIndex("#sortable_addresses")
