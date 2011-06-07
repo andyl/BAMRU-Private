@@ -20,7 +20,6 @@ class MembersController < ApplicationController
     if @member.update_attributes(params["member"])
       redirect_to member_path(@member), :notice => "Successful Update"
     else
-      debugger
       render "edit"
     end
   end
