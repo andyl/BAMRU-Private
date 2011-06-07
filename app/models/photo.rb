@@ -1,7 +1,6 @@
 class Photo < ActiveRecord::Base
 
   # ----- Associations -----
-
   belongs_to :member
   acts_as_list :scope => :member_id
 

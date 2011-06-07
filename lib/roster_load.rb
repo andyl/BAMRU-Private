@@ -31,7 +31,8 @@ class RosterLoad
 
   def self.import(member_array)
     member_array.each do |w|
-      Member.create(w)
+      x = Member.create(w)
+      x.phones.each_with_index {|v,i| v.update_attributes(:position => i+1)}
     end
     load_csv
   end

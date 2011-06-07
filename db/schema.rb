@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer "member_id"
     t.string  "name"
     t.string  "number"
+    t.string  "typ"
     t.integer "position"
   end
 

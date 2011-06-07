@@ -33,11 +33,14 @@
         <%= f.text_field :full_name, :size => 28 %><br/>
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
-        OL: <%= f.check_box('ol') %><p/>
-        <b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span><br/>
-        <%= f.fields_for :phones do |phone| %>
-          <%= render "phone_fields", :f => phone %>
-        <% end %>
+        OL: <%= f.check_box('ol') %>
+        <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span>
+        <div id=sortable_phones>
+          <!--<%# f.fields_for @member.phones.order('position ASC').all do |phone| %>-->
+          <%= f.fields_for :phones do |phone| %>
+            <%= render "phone_fields", :f => phone %>
+          <% end %>
+        </div>
         <p/><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
           <%= render "email_fields", :f => email %>
@@ -46,7 +49,7 @@
         <%= f.fields_for :addresses do |address| %>
           <%= render "address_fields", :f => address %>
         <% end %>
-        <p/><b>Emergency Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span><br/>
+        <p/><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span><br/>
         <%= f.fields_for :emergency_contacts do |contact| %>
           <%= render "emergency_contact_fields", :f => contact %>
         <% end %>
@@ -69,10 +72,10 @@
     </div>
     <div id=x_right_col style="text-align: center;">
       <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
-      <div id=sortable>
+      <div id=sortable_photos>
         <% @member.photos.each do |pic| %>
-          <li id=photos_<%= pic.id %>>
-            <span class=handle>[drag]</span>
+          <li style="list-style-type: none;" id=photos_<%= pic.id %>>
+            <span class=sort_handle>(+)</span>
             <%= image_tag pic.image.url(:thumb) %>
             <%= link_to 'remove', member_photo_path(@member, pic), :confirm => 'Are you sure?',:method => :delete %>
           </li>
