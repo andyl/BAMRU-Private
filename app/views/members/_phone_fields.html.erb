@@ -1,6 +1,6 @@
 <li style="list-style-type: none;" id=phone_<%=f.id%>>
   <span class=sort_handle>(+)</span>
-  <%= f.text_field :position, :size => 2 %>
+  <%= f.hidden_field :position, :size => 2 %>
   <%= f.text_field :number, :size => 10 %>
   <%= f.select :typ, %w(Other Mobile Home Work) %>
   P<%= f.check_box :pagable %>

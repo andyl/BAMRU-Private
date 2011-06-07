@@ -42,10 +42,14 @@
             <% end %>
           <% end %>
         </div>
-        <p/><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span><br/>
-        <%= f.fields_for :emails do |email| %>
-          <%= render "email_fields", :f => email %>
-        <% end %>
+        <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span>
+        <div id=sortable_emails>
+          <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
+            <%= f.fields_for :emails, xemail do |email| %>
+              <%= render "email_fields", :f => email %>
+            <% end %>
+          <% end %>
+        </div>
         <p/><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span><br/>
         <%= f.fields_for :addresses do |address| %>
           <%= render "address_fields", :f => address %>

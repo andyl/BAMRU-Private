@@ -21,8 +21,8 @@ class Member < ActiveRecord::Base
 
   # ----- Associations -----
   has_many :addresses
-  has_many :phones, :order => 'position ASC'
-  has_many :emails
+  has_many :phones, :order => 'position'
+  has_many :emails, :order => 'position'
   has_many :roles
   has_many :certs
   has_many :photos, :order => 'position'

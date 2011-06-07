@@ -39,3 +39,11 @@ $(document).ready ->
     cursor:      'crosshair'
     update: ->
       resetIndex("#sortable_phones")
+  $("#sortable_emails").sortable
+    placeholder: "ui-state-highlight"
+    axis:        'y'
+    opacity:     0.4
+    handle:      '.sort_handle'
+    cursor:      'crosshair'
+    update: ->
+      resetIndex("#sortable_emails")
