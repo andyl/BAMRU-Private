@@ -84,9 +84,10 @@ class BaseMigration < ActiveRecord::Migration
       t.integer   :member_id
       t.string    :name
       t.string    :number
+      t.string    :typ
       t.integer   :position
     end
-    create_table :other_info do |t|
+    create_table :other_infos do |t|
       t.integer   :member_id
       t.string    :label
       t.string    :value

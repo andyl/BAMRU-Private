@@ -50,6 +50,10 @@
         <%= f.fields_for :emergency_contacts do |contact| %>
           <%= render "emergency_contact_fields", :f => contact %>
         <% end %>
+        <p/><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span><br/>
+        <%= f.fields_for :other_infos do |record| %>
+          <%= render "other_info_fields", :f => record %>
+        <% end %>
         <p/><b>Password</b><br/>
         <span class=plabel>Password: </span>
         <%= f.password_field :password, :size => 13 %><br/>

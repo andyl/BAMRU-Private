@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "other_info", :force => true do |t|
+  create_table "other_infos", :force => true do |t|
     t.integer "member_id"
     t.string  "label"
     t.string  "value"
