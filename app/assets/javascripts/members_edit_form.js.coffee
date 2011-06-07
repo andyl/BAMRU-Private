@@ -15,7 +15,6 @@ window.add_fields = (link, association, content) ->
   if divLen == 0
     tgtDiv.html(cleanStr)
   else
-    alert divLen + " B"
     tgtDiv.children().last().after(cleanStr)
   length = tgtDiv.children("li").length
   lastLi = tgtDiv.children("li").last()

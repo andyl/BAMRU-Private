@@ -34,7 +34,7 @@
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
         OL: <%= f.check_box('ol') %>
-        <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span>
+        <p></p><b><%= link_to_function("Phones", "$('#sortable_phones').toggle();")%></b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span>
         <div id=sortable_phones>
           <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
             <%= f.fields_for :phones, xphone do |phone| %>
@@ -42,7 +42,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span>
+        <p></p><b><%= link_to_function("eMails", "$('#sortable_emails').toggle();")%></b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span>
         <div id=sortable_emails>
           <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
             <%= f.fields_for :emails, xemail do |email| %>
@@ -50,7 +50,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span>
+        <p></p><b><%= link_to_function("Addresses", "$('#sortable_addresses').toggle();")%></b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span>
         <div id=sortable_addresses>
           <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
             <%= f.fields_for :addresses, xaddress do |address| %>
@@ -58,7 +58,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span>
+        <p></p><b><%= link_to_function("Emergency Phone Contacts", "$('#sortable_emergency_contacts').toggle();")%></b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span>
         <div id=sortable_emergency_contacts>
           <% @member.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
             <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
@@ -66,7 +66,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span>
+        <p></p><b><%= link_to_function("Other Info", "$('#sortable_other_infos').toggle();")%></b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span>
         <div id=sortable_other_infos>
           <% @member.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
             <%= f.fields_for :other_infos, xinfo do |record| %>
@@ -74,18 +74,22 @@
             <% end %>
           <% end %>
         </div>
-        <p/><b>Password</b><br/>
-        <span class=plabel>Password: </span>
-        <%= f.password_field :password, :size => 13 %><br/>
-        <span class=plabel>Confirmation: </span>
-        <%= f.password_field :password_confirmation, :size => 13 %>
-        <p/><b>Ham & V9</b><br/>
-        <span class=hlabel>Ham: </span>
-        <%= f.text_field :ham, :size => 5 %><br/>
-        <span class=hlabel> V9: </span>
-        <%= f.text_field :v9, :size => 5 %><p/>
+        <p/><b><%= link_to_function("Password", "$('#password').toggle();")%></b>
+        <div id=password>
+          <span class=plabel>Password: </span>
+          <%= f.password_field :password, :size => 13 %><br/>
+          <span class=plabel>Confirmation: </span>
+          <%= f.password_field :password_confirmation, :size => 13 %>
+        </div>
+        <p></p><b><%= link_to_function("Ham & V9", "$('#ham_v9').toggle();")%></b>
+        <div id=ham_v9>
+          <span class=hlabel>Ham: </span>
+          <%= f.text_field :ham, :size => 5 %><br/>
+          <span class=hlabel> V9: </span>
+          <%= f.text_field :v9, :size => 5 %><p/>
+        </div>
         <p/>
-      <% end %>
+    <% end %>
     </div>
     <div id=x_right_col style="text-align: center;">
       <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
