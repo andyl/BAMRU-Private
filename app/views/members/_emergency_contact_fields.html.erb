@@ -1,4 +1,8 @@
-(+) <%= f.text_field :name,   :size => 15 %>
-<%= f.text_field :number, :size => 10 %>
-<%= f.select :typ, %w(Mobile Home Work Other) %>
-R<%= f.check_box :_destroy %><br/>
+<li style="list-style-type: none;" id=contact_<%=f.id%>>
+  <span class=sort_handle>(+)</span>
+  <%= f.hidden_field :position, :size => 2 %>
+  <%= f.text_field :name,   :size => 15 %>
+  <%= f.text_field :number, :size => 10 %>
+  <%= f.select :typ, %w(Mobile Home Work Other) %>
+  R<%= f.check_box :_destroy %><br/>
+</li>

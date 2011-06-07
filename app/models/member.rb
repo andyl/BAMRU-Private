@@ -26,7 +26,7 @@ class Member < ActiveRecord::Base
   has_many :photos,    :order => 'position'
   has_many :roles
   has_many :certs
-  has_many :emergency_contacts
+  has_many :emergency_contacts, :order => 'position'
   has_many :other_infos
   has_many :avail_ops
   has_many :avail_dos

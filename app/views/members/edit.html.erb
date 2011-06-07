@@ -58,10 +58,14 @@
             <% end %>
           <% end %>
         </div>
-        <p/><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span><br/>
-        <%= f.fields_for :emergency_contacts do |contact| %>
-          <%= render "emergency_contact_fields", :f => contact %>
-        <% end %>
+        <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span>
+        <div id=sortable_emergency_contacts>
+          <% @member.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
+            <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
+              <%= render "emergency_contact_fields", :f => contact %>
+            <% end %>
+          <% end %>
+        </div>
         <p/><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span><br/>
         <%= f.fields_for :other_infos do |record| %>
           <%= render "other_info_fields", :f => record %>

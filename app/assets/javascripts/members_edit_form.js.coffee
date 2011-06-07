@@ -6,6 +6,7 @@ window.cleanup = (string) ->
   string.replace(/\&amp;/g,'&').replace(/\&lt;/g,'<').replace(/\&quot;/g,'"').replace(/\&gt;/g,'>')
 
 window.add_fields = (link, association, content) ->
+  alert(cleanup(content))
   new_id = new Date().getTime();
   regexp = new RegExp("new_" + association, "g")
   str = content.replace(regexp, new_id)
