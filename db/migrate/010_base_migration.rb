@@ -28,11 +28,11 @@ class BaseMigration < ActiveRecord::Migration
     create_table :addresses do |t|
       t.integer :member_id
       t.string  :typ
-      t.string  :address1
-      t.string  :address2
-      t.string  :city
-      t.string  :state
-      t.string  :zip
+      t.string  :address1,   :default => ""
+      t.string  :address2,   :default => ""
+      t.string  :city,       :default => ""
+      t.string  :state,      :default => ""
+      t.string  :zip,        :default => ""
       t.integer :position
       t.timestamps
     end

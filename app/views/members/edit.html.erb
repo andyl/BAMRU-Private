@@ -38,11 +38,11 @@
         <%= f.fields_for :phones do |phone| %>
           <%= render "phone_fields", :f => phone %>
         <% end %>
-        <p/><b>eMails</b> <span class=add><%= link_to_function("add", "add_email(this);") %></span><br/>
+        <p/><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span><br/>
         <%= f.simple_fields_for :emails do |email| %>
           <%= render "email_fields", :f => email %>
         <% end %>
-        <p/><b>Addresses</b> <span class=add><%= link_to_function("add", "add_address(this);")%></span><br/>
+        <p/><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span><br/>
         <%= f.fields_for :addresses do |address| %>
           <%= render "address_fields", :f => address %>
         <% end %>
