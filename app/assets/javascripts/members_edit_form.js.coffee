@@ -6,12 +6,17 @@ window.cleanup = (string) ->
   string.replace(/\&amp;/g,'&').replace(/\&lt;/g,'<').replace(/\&quot;/g,'"').replace(/\&gt;/g,'>')
 
 window.add_fields = (link, association, content) ->
-  alert(cleanup(content))
   new_id = new Date().getTime();
   regexp = new RegExp("new_" + association, "g")
-  str = content.replace(regexp, new_id)
+  str    = content.replace(regexp, new_id)
+  cleanStr = cleanup(str)
   tgtDiv = $(link).parent().next()
-  tgtDiv.children().last().after(cleanup(content.replace(regexp, new_id)))
+  divLen = tgtDiv.children("li").length
+  if divLen == 0
+    tgtDiv.html(cleanStr)
+  else
+    alert divLen + " B"
+    tgtDiv.children().last().after(cleanStr)
   length = tgtDiv.children("li").length
   lastLi = tgtDiv.children("li").last()
   tgtInput = lastLi.children("input").first()

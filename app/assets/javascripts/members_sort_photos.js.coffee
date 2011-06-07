@@ -63,3 +63,11 @@ $(document).ready ->
     cursor:      'crosshair'
     update: ->
       resetIndex("#sortable_emergency_contacts")
+  $("#sortable_other_infos").sortable
+    placeholder: "ui-state-highlight"
+    axis:        'y'
+    opacity:     0.4
+    handle:      '.sort_handle'
+    cursor:      'crosshair'
+    update: ->
+      resetIndex("#sortable_other_infos")

@@ -66,10 +66,14 @@
             <% end %>
           <% end %>
         </div>
-        <p/><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span><br/>
-        <%= f.fields_for :other_infos do |record| %>
-          <%= render "other_info_fields", :f => record %>
-        <% end %>
+        <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos)%></span>
+        <div id=sortable_other_infos>
+          <% @member.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
+            <%= f.fields_for :other_infos, xinfo do |record| %>
+              <%= render "other_info_fields", :f => record %>
+            <% end %>
+          <% end %>
+        </div>
         <p/><b>Password</b><br/>
         <span class=plabel>Password: </span>
         <%= f.password_field :password, :size => 13 %><br/>

@@ -20,14 +20,14 @@ class Member < ActiveRecord::Base
   attr_accessible :bd, :ol
 
   # ----- Associations -----
-  has_many :addresses, :order => 'position'
-  has_many :phones,    :order => 'position'
-  has_many :emails,    :order => 'position'
-  has_many :photos,    :order => 'position'
+  has_many :addresses,   :order => 'position'
+  has_many :phones,      :order => 'position'
+  has_many :emails,      :order => 'position'
+  has_many :photos,      :order => 'position'
+  has_many :other_infos, :order => 'position'
+  has_many :emergency_contacts, :order => 'position'
   has_many :roles
   has_many :certs
-  has_many :emergency_contacts, :order => 'position'
-  has_many :other_infos
   has_many :avail_ops
   has_many :avail_dos
   has_many :messages
