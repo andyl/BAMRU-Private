@@ -80,6 +80,18 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :document_updated_at
       t.timestamps
     end
+    create_table :emergency_contacts do |t|
+      t.integer   :member_id
+      t.string    :name
+      t.string    :number
+      t.integer   :position
+    end
+    create_table :other_info do |t|
+      t.integer   :member_id
+      t.string    :label
+      t.string    :value
+      t.integer   :position
+    end
     create_table :avail_ops do |t|
       t.integer   :member_id
       t.date      :start

@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "emergency_contacts", :force => true do |t|
+    t.integer "member_id"
+    t.string  "name"
+    t.string  "number"
+    t.integer "position"
+  end
+
   create_table "members", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -118,6 +125,13 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "other_info", :force => true do |t|
+    t.integer "member_id"
+    t.string  "label"
+    t.string  "value"
+    t.integer "position"
   end
 
   create_table "phones", :force => true do |t|

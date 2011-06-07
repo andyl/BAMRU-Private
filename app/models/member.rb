@@ -15,6 +15,7 @@ class Member < ActiveRecord::Base
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
+  attr_accessible :emergency_contacts_attributes
   attr_accessible :bd, :ol
 
   # ----- Associations -----
@@ -24,6 +25,7 @@ class Member < ActiveRecord::Base
   has_many :roles
   has_many :certs
   has_many :photos, :order => 'position'
+  has_many :emergency_contacts
   has_many :avail_ops
   has_many :avail_dos
   has_many :messages
@@ -37,6 +39,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :certs,     :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true
   accepts_nested_attributes_for :avail_dos, :allow_destroy => true
+  accepts_nested_attributes_for :emergency_contacts,    :allow_destroy => true
 
   # ----- Validations -----
   validates_associated    :addresses, :phones, :emails

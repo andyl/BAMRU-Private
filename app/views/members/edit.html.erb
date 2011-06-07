@@ -46,12 +46,16 @@
         <%= f.fields_for :addresses do |address| %>
           <%= render "address_fields", :f => address %>
         <% end %>
-        <b>Password</b><br/>
+        <p/><b>Emergency Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts)%></span><br/>
+        <%= f.fields_for :emergency_contacts do |contact| %>
+          <%= render "emergency_contact_fields", :f => contact %>
+        <% end %>
+        <p/><b>Password</b><br/>
         <span class=plabel>Password: </span>
         <%= f.password_field :password, :size => 13 %><br/>
         <span class=plabel>Confirmation: </span>
-        <%= f.password_field :password_confirmation, :size => 13 %><p/>
-        <b>Ham & V9</b><br/>
+        <%= f.password_field :password_confirmation, :size => 13 %>
+        <p/><b>Ham & V9</b><br/>
         <span class=hlabel>Ham: </span>
         <%= f.text_field :ham, :size => 5 %><br/>
         <span class=hlabel> V9: </span>
