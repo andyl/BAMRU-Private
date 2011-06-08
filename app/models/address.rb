@@ -79,4 +79,13 @@ class Address < ActiveRecord::Base
     "#{address1.br}#{address2.br}#{city} #{state} #{zip} (#{typ})"
   end
 
+  def typ_opts
+    base_opts = %w(Home Work Other)
+    if typ.nil? || base_opts.include?(typ)
+      base_opts
+    else
+      [typ] + base_opts
+    end
+  end
+
 end

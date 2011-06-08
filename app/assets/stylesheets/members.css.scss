@@ -43,17 +43,30 @@ $col_base_width: $body_width/2 - $col_padding*2 - $border_width;
 
 $col_height: 225px;
 
-#x_left_col {
+#mem_left_col {
   @include col_style;
   float: left;
   width: $col_base_width - $border_width + $col_offset;
+}
+
+#mem_right_col {
+  @include col_style;
+  float: right;
+  border-left-style: none;
+  width: $col_base_width - $col_offset;
+  }
+
+#x_left_col {
+  @include col_style;
+  float: left;
+  width: $col_base_width - $border_width;
 }
 
 #x_right_col {
   @include col_style;
   float: right;
   border-left-style: none;
-  width: $col_base_width - $col_offset;
+  width: $col_base_width;
 }
 
 #x_footer{

@@ -22,4 +22,13 @@ class Email < ActiveRecord::Base
     "#{address} (#{typ})"
   end
 
+  def typ_opts
+    base_opts = %w(Personal Work Other)
+    if typ.nil? || base_opts.include?(typ)
+      base_opts
+    else
+      [typ] + base_opts
+    end
+  end
+
 end

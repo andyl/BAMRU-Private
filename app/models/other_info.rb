@@ -19,4 +19,8 @@ class OtherInfo < ActiveRecord::Base
 
   # ----- Local Methods-----
 
+  def output
+    "#{label} / #{value}"
+  end
+
 end

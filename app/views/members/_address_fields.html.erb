@@ -2,7 +2,7 @@
   <span class=sort_handle>(+)</span>
   <%= f.hidden_field :position, :size => 2 %>
   <%= f.text_area :full_address, :size => "20x2" %>
-  <%= f.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
+  <%= f.select :typ, f.object.typ_opts, {}, {:class => "upp"} %>
   <%= link_to_remove_field("remove", f) %>
   <%= f.hidden_field :_destroy %>
 </li>

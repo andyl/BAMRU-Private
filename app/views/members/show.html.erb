@@ -15,7 +15,7 @@
         </td>
       </tr></table>
     </div>
-    <div id=x_left_col>
+    <div id=mem_left_col>
       <b><%= @member.first_name %> <%= @member.last_name %><br/></b>
       <%= @member.full_roles %><p/>
       <%= raw @member.all_assoc %><p/>
@@ -26,7 +26,7 @@
         <b>V9:</b> <%= @member.v9 %><p/>
       <% end %>
     </div>
-    <div id=x_right_col style="text-align: center;">
+    <div id=mem_right_col style="text-align: center;">
       <% @member.photos.each do |pic| %>
         <%= image_tag pic.image.url(:thumb) %><br/>
       <% end %>

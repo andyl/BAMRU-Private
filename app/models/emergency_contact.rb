@@ -1,6 +1,6 @@
 class EmergencyContact < ActiveRecord::Base
 
-  attr_accessible :position, :name, :number
+  attr_accessible :position, :name, :number, :typ
 
   # ----- Associations -----
 
@@ -18,5 +18,9 @@ class EmergencyContact < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+
+  def output
+    "#{name} / #{number} (#{typ})"
+  end
 
 end

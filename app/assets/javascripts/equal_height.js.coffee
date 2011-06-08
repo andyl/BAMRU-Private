@@ -8,4 +8,5 @@ equalHeight = (c1, c2) ->
     $(c1).height(c2Height)
 
 $(document).ready ->
-  equalHeight("#x_right_col", "#x_left_col")
+  equalHeight("#x_right_col",   "#x_left_col")
+  equalHeight("#mem_right_col", "#mem_left_col")

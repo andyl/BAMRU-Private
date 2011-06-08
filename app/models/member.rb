@@ -170,10 +170,12 @@ class Member < ActiveRecord::Base
   end
 
   def all_assoc
-    p = all_related(phones, "Phone")
-    a = all_related(addresses, "Address")
-    e = all_related(emails, "Email")
-    [p,a,e].find_all {|x| ! x.blank?}.join("</p>")
+    p = all_related(phones, "Phones")
+    a = all_related(addresses, "Addresses")
+    e = all_related(emails, "Emails")
+    c = all_related(emergency_contacts, "Emergency Phone Contacts")
+    o = all_related(other_infos, "Other Information")
+    [p,e,a,c,o].find_all {|x| ! x.blank?}.join("</p>")
   end
 
   def role_val(role)

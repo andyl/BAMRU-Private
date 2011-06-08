@@ -24,7 +24,7 @@
         </td>
       </tr></table>
     </div>
-    <div id=x_left_col>
+    <div id=mem_left_col>
       <p/>
       <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@member)%></div>
       <p/>
@@ -46,7 +46,7 @@
         <div id=sortable_emails>
           <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
             <%= f.fields_for :emails, xemail do |email| %>
-              <%= render "email_fields", :f => email %>
+              <%= render "email_fields", :f => email, :object => %w(a b c)%>
             <% end %>
           <% end %>
         </div>
@@ -91,7 +91,7 @@
         <p/>
     <% end %>
     </div>
-    <div id=x_right_col style="text-align: center;">
+    <div id=mem_right_col style="text-align: center;">
       <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
       <div id=sortable_photos>
         <% @member.photos.each do |pic| %>

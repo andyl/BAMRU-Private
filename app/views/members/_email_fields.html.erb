@@ -2,7 +2,7 @@
   <span class=sort_handle>(+)</span>
   <%= f.hidden_field :position, :size => 1 %>
   <%= f.text_field :address, :size => 20 %>
-  <%= f.select :typ, %w(Other Personal Work) %>
+  <%= f.select :typ, f.object.typ_opts %>
   Pgr<%= f.check_box :pagable %>
   <%= link_to_remove_field("remove", f) %>
   <%= f.hidden_field :_destroy %>

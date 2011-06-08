@@ -21,4 +21,13 @@ class Phone < ActiveRecord::Base
     "#{number} (#{typ})"
   end
 
+  def typ_opts
+    base_opts = %w(Mobile Home Work Other)
+    if typ.nil? || base_opts.include?(typ)
+      base_opts
+    else
+      [typ] + base_opts
+    end
+  end
+
 end
