@@ -1,13 +1,40 @@
 <h2>Unit Photos</h2>
 
-<table border=1>
-  <% @members.in_groups_of(8) do |row| %>
+<table>
+  <% @members.in_groups_of(5) do |row| %>
     <tr>
       <% row.each do |mem| %>
-        <td align=center>
-          <%= raw unit_member_photo(mem) %>
-        </td>
+        <% unless mem.nil? %>
+          <td align=center valign=top>
+
+            <%# raw unit_member_photo(mem) %>
+
+            <table style='float: left; border:0px solid white' cellpadding='0' cellspacing='3' width=156>
+              <tr align=center>
+                <td bgcolor=#eeeeee colspan=5 height=112 style='border: 1px solid #999999'>
+                  <!--<a href='show_photo.php?photo_id=142' target='_blank'>-->
+
+                    <%= image_tag(mem.photos.first.image.url(:roster), :align => "absmiddle", :class => "roster_display_photo") %>
+
+                  <!--</a>-->
+                </td>
+              </tr>
+              <tr align=center>
+                <td colspan=5 class=body>
+                  <%= link_to(mem.full_name, member_path(mem), :style => "text-decoration:none;") %>
+                </td>
+              </tr>
+              <%= raw display_extra_photos(mem) %>
+            </table>
+
+
+          </td>
+        <% end %>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+
+
+
