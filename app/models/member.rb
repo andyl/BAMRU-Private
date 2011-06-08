@@ -201,7 +201,10 @@ class Member < ActiveRecord::Base
   def scrubbed_errors
     scrubbed_err = errors.messages.clone
     scrubbed_err.delete(:full_name)
-#    scrubbed_err.delete(:full_address)
+    scrubbed_err.delete(:addresses)
+    scrubbed_err.delete(:phones)
+    scrubbed_err.delete(:"address.full_address")
+    scrubbed_err.delete(:"addresses.full_address")
     scrubbed_err
   end
 
@@ -213,11 +216,14 @@ class Member < ActiveRecord::Base
         attr_name = attribute.to_s.gsub('.', '_').humanize
         attr_name = self.class.human_attribute_name(attribute, :default => attr_name)
 
+        message = message.join(', ') if message.class == Array
+
         I18n.t(:"errors.format", {
-                :default   => "%{attribute} %{message}",
+                :default   => "%{attribute}: %{message}",
                 :attribute => attr_name,
                 :message   => message
         })
+        "#{attr_name}: #{message}"
       end
     }
   end

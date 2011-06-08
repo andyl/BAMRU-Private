@@ -1,6 +1,6 @@
 <% if target.scrubbed_errors.any? %>
   <div id="errorExplanation">
-    <h2><%= pluralize(target.scrubbed_errors.count, "error") %> prohibited this record from being saved:</h2>
+    <h2><%= pluralize(target.scrubbed_errors.count, "error") %> prevented this record from being saved:</h2>
     <ul>
       <% target.full_messages.each do |msg| %>
         <li><%= msg %></li>
