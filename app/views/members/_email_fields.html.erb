@@ -1,8 +1,9 @@
-<li style="list-style-type: none;" id=email_<%=f.id%>>
+<li class=fields style="list-style-type: none;" id=email_<%=f.id%>>
   <span class=sort_handle>(+)</span>
-  <%= f.hidden_field :position, :size => 2 %>
+  <%= f.hidden_field :position, :size => 1 %>
   <%= f.text_field :address, :size => 20 %>
   <%= f.select :typ, %w(Other Personal Work) %>
-  P<%= f.check_box :pagable %>
-  R<%= f.check_box :_destroy %><br/>
+  Pgr<%= f.check_box :pagable %>
+  <%= link_to_remove_field("remove", f) %>
+  <%= f.hidden_field :_destroy %>
 </li>

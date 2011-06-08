@@ -21,6 +21,10 @@ window.add_fields = (link, association, content) ->
   tgtInput = lastLi.children("input").first()
   tgtInput.attr("value", length)
 
+window.remove_fields = (link) ->
+  $(link).next("input[type=hidden]").val("1")
+  $(link).closest(".fields").hide()
+
 $(document).ready ->
   $("#save_link").click ->
     $("#memberz_form").submit()

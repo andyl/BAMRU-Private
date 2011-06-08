@@ -36,7 +36,7 @@ class RosterLoad
       x.emails.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.addresses.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.emergency_contacts.each_with_index {|v,i| v.update_attributes(:position => i+1)}
-      x.other_info.each_with_index {|v,i| v.update_attributes(:position => i+1)}
+      x.other_infos.each_with_index {|v,i| v.update_attributes(:position => i+1)}
     end
     load_csv
   end

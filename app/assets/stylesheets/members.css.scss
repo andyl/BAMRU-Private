@@ -5,7 +5,7 @@
 $body_width:     644px;
 $border_width:   1px;
 $col_padding:    8px;
-$col_offset:     50;
+$col_offset:     100;
 $col_base_width: $body_width/2 - $col_padding*2 - $border_width;
 
 @mixin x_border {
