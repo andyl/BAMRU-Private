@@ -1,7 +1,8 @@
-<li style="list-style-type: none;" id=address_<%=f.id%>>
+<li class=fields style="list-style-type: none;" id=address_<%=f.id%>>
   <span class=sort_handle>(+)</span>
   <%= f.hidden_field :position, :size => 2 %>
   <%= f.text_area :full_address, :size => "20x2" %>
   <%= f.select :typ, %w(Other Home Work), {}, {:class => "upp"} %>
-  <span class=upp>remove<%= f.check_box :_destroy %></span><br/>
+  <%= link_to_remove_field("remove", f) %>
+  <%= f.hidden_field :_destroy %>
 </li>
