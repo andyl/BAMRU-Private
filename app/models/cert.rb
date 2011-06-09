@@ -8,9 +8,14 @@ class Cert < ActiveRecord::Base
   # ----- Attributes -----
   attr_accessible :link, :doc_file, :typ, :comment
   attr_accessible :description, :expiration
+  attr_accessible :document
+  attr_accessible :document_file_name, :document_content_type
+  attr_accessible :document_file_size, :document_updated_at
 
   # ----- Associations -----
   belongs_to :member
+
+  has_attached_file :document
 
   # ----- Validations -----
 
@@ -70,9 +75,15 @@ class Cert < ActiveRecord::Base
     "#33ff00"
   end
 
+  def description_with_link
+    return "<a href='#{link}'>#{description}</a>"     unless link.blank?
+    return "<a href='#{document}'>#{description}</a>" unless doc_file.blank?
+    description
+  end
+
   def display
     return "<td></td>" if description.blank?
-    "<td align=center style='background-color: #{expire_color};'>#{description}</td>"
+    "<td align=center style='background-color: #{expire_color};'>#{description_with_link}</td>"
   end
 
   # ----- Class Methods -----

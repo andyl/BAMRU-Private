@@ -80,3 +80,14 @@ task :cert_convert do
     system "convert -density 300 #{c.doc_path} #{c.final_doc_path}"
   end
 end
+
+desc "Load Cert Images"
+task :cert_image_load do
+  require 'config/environment'
+  puts "Loading CERT Images"
+  Cert.with_docs.each do |c|
+    puts "Updating #{c.final_doc_path}"
+    c.update_attributes(:document => File.open(c.final_doc_path))
+  end
+end
+
