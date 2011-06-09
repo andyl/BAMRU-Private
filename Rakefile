@@ -68,3 +68,15 @@ task :cert_download do
     system "wget #{c.doc_url}"
   end
 end
+
+desc "Convert PDF Certs to JPG"
+task :cert_convert do
+  base_dir = File.dirname(File.expand_path(__FILE__))
+  doc_dir  = base_dir + '/db/docs'
+  require 'config/environment'
+  puts "Converting PDF Cert files to JPG"
+  Cert.with_pdfs.each do |c|
+    puts "> Converting #{c.doc_path}"
+    system "convert -density 300 #{c.doc_path} #{c.final_doc_path}"
+  end
+end
