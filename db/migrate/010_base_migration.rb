@@ -1,14 +1,14 @@
 class BaseMigration < ActiveRecord::Migration
   def change
     create_table :members do |t|
-      t.string  :first_name
-      t.string  :last_name
-      t.string  :user_name
-      t.string  :typ
-      t.string  :ham
-      t.string  :v9
-      t.boolean :admin, :default => false
-      t.string  :encrypted_password
+      t.string   :first_name
+      t.string   :last_name
+      t.string   :user_name
+      t.string   :typ
+      t.string   :ham
+      t.string   :v9
+      t.boolean  :admin, :default => false
+      t.string   :encrypted_password
       
       t.recoverable
       t.rememberable
@@ -70,7 +70,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer    :member_id
       t.string     :typ
       t.date       :expiration
-      t.string     :doc_url
+      t.string     :doc_file
       t.string     :description
       t.string     :comment
       t.string     :link

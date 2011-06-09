@@ -55,3 +55,16 @@ task :photos do
     end
   end
 end
+
+desc "Download Certs"
+task :cert_download do
+  base_dir = File.dirname(File.expand_path(__FILE__))
+  doc_dir  = base_dir + '/db/docs'
+  require 'config/environment'
+  puts "Downloading all Cert files"
+  Dir.chdir(doc_dir)
+  system "rm -f *jpg *pdf"
+  Cert.with_docs.each do |c|
+    system "wget #{c.doc_url}"
+  end
+end

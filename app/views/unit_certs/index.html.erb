@@ -8,33 +8,33 @@
   <tr>
     <th>Role</th>
     <th>Name</th>
-    <th>Medical</th>
+    <th>Med.&nbsp;&nbsp;</th>
     <th>CPR&nbsp;&nbsp;</th>
-    <th>HAM&nbsp;&nbsp;</th>
-    <th>Tracking</th>
-    <th>Avalanche</th>
-    <th>Rigging</th>
+    <th>HAM</th>
+    <th>Tracking&nbsp;&nbsp;</th>
+    <th>Avy&nbsp;&nbsp;</th>
+    <th>Rigging&nbsp;&nbsp;</th>
     <th>ICS&nbsp;&nbsp;</th>
-    <th>Search M.</th>
-    <th>SO Driver</th>
-    <th>SO Bkgrnd</th>
+    <th>Search<br/>Mgmt.&nbsp;&nbsp;</th>
+    <th>SO<br/>Driver&nbsp;&nbsp;</th>
+    <th>SO<br/>Bkgrnd&nbsp;&nbsp;</th>
   </tr>
   </thead>
   <tbody>
   <% @members.each do |mem| %>
     <tr>
       <td><%=mem.full_roles%></td>
-      <td class=link><a href="/members/<%= mem.id %>"><%= mem.full_name %></a></td>
-      <td><%= mem.display_cert("medical")    %></td>
-      <td><%= mem.display_cert("cpr")        %></td>
-      <td><%= mem.display_cert("ham")        %></td>
-      <td><%= mem.display_cert("tracking")   %></td>
-      <td><%= mem.display_cert("avalanche")  %></td>
-      <td><%= mem.display_cert("rigging")    %></td>
-      <td><%= mem.display_cert("ics")        %></td>
-      <td><%= mem.display_cert("overhead")   %></td>
-      <td><%= mem.display_cert("driver")     %></td>
-      <td><%= mem.display_cert("background") %></td>
+      <td class=link><%= link_to(raw(mem.cert_color_name), member_path(mem), :class => "namecolor", :style => "text-decoration:none;") %>
+      <%= raw mem.display_cert("medical")    %>
+      <%= raw mem.display_cert("cpr")        %>
+      <%= raw mem.display_cert("ham")        %>
+      <%= raw mem.display_cert("tracking")   %>
+      <%= raw mem.display_cert("avalanche")  %>
+      <%= raw mem.display_cert("rigging")    %>
+      <%= raw mem.display_cert("ics")        %>
+      <%= raw mem.display_cert("overhead")   %>
+      <%= raw mem.display_cert("driver")     %>
+      <%= raw mem.display_cert("background") %>
     </tr>
   <% end %>
   </tbody>

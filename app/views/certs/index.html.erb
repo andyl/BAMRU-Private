@@ -6,6 +6,6 @@ Certs for <%= @member.first_name %><p/>
 
 <% @member.certs.each do |cert| %>
 
-  <%= cert.typ %> / <%= cert.description %><br/>
+  <%= cert.typ %> / <%= cert.description %> / <%= cert.doc_file %> / <%= cert.link %><br/>
 
 <% end %>

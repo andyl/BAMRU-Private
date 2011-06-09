@@ -128,10 +128,31 @@ class Member < ActiveRecord::Base
 
   def display_cert(type)
     cert = certs.where(:typ => type).first
+    return "<td></td>" if cert.blank?
     cert.display
   end
 
+  def cert_color_name
+    "<span style='color: #{get_cert_color};'>#{full_name}</span>"
+  end
+
   # ----- Instance Methods -----
+  def get_cert_color
+    current_medical_and_cpr? ? "black" : "red"
+  end
+
+  def current_medical?
+    ! certs.medical.blank? && certs.medical.first.current?
+  end
+
+  def current_cpr?
+    ! certs.cpr.blank? && certs.cpr.first.current?
+  end
+
+  def current_medical_and_cpr?
+    current_medical? && current_cpr?
+  end
+
   def new_username_from_names
     return "" if first_name.nil? || last_name.nil?
     fname = self.first_name.downcase.gsub(/[ \.]/,'_')
