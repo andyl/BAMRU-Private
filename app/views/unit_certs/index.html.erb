@@ -24,17 +24,17 @@
   <% @members.each do |mem| %>
     <tr>
       <td><%=mem.full_roles%></td>
-      <td class=link><%= link_to(raw(mem.cert_color_name), member_path(mem), :class => "namecolor", :style => "text-decoration:none;") %>
-      <%= raw mem.display_cert("medical")    %>
-      <%= raw mem.display_cert("cpr")        %>
-      <%= raw mem.display_cert("ham")        %>
-      <%= raw mem.display_cert("tracking")   %>
-      <%= raw mem.display_cert("avalanche")  %>
-      <%= raw mem.display_cert("rigging")    %>
-      <%= raw mem.display_cert("ics")        %>
-      <%= raw mem.display_cert("overhead")   %>
-      <%= raw mem.display_cert("driver")     %>
-      <%= raw mem.display_cert("background") %>
+      <td class=link><%= color_name(mem) %>
+      <%= raw display_table_cert(mem, "medical")    %>
+      <%= raw display_table_cert(mem, "cpr")        %>
+      <%= raw display_table_cert(mem, "ham")        %>
+      <%= raw display_table_cert(mem, "tracking")   %>
+      <%= raw display_table_cert(mem, "avalanche")  %>
+      <%= raw display_table_cert(mem, "rigging")    %>
+      <%= raw display_table_cert(mem, "ics")        %>
+      <%= raw display_table_cert(mem, "overhead")   %>
+      <%= raw display_table_cert(mem, "driver")     %>
+      <%= raw display_table_cert(mem, "background") %>
     </tr>
   <% end %>
   </tbody>

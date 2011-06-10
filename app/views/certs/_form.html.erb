@@ -1,0 +1,7 @@
+<%= simple_form_for [@member, @cert] do |f| %>
+  <%= f.hidden_field :typ         %>
+  <%= f.input        :description %>
+  <%= f.input        :comment     %>
+  <%= f.input        :link        %>
+  <%= f.button       :submit      %>
+<% end %>

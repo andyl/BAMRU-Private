@@ -27,6 +27,7 @@ task :import do
   require 'lib/roster_load'
   RosterLoad.import(RosterLoad.parse)
   Rake::Task['photos'].invoke
+  Rake::Task['cert_image_load'].invoke
 end
 
 desc "Run the Jasmine Server"

@@ -1,11 +1,24 @@
-Certs for <%= @member.first_name %><p/>
+Certs for <%= link_to(@member.full_name, member_path(@member)) %>  (<%= link_to "Back", unit_certs_path %>)<p/>
 
 <%= link_to "Add new cert", new_member_cert_path(@member) %><p/>
 
-<%= @member.first_name %> has <%= @member.certs.count %> certifications.
-
-<% @member.certs.each do |cert| %>
-
-  <%= cert.typ %> / <%= cert.description %> / <%= cert.doc_file %> / <%= cert.link %><br/>
-
-<% end %>
+<table border=1>
+  <tr>
+    <th>Category</th>
+    <th>Expiration Date</th>
+    <th>Description</th>
+    <th>Comment</th>
+    <th>Documentation</th>
+    <th>Action</th>
+  </tr>
+  <tr><td>Medical      </td><%= raw cert_value(@member, :medical)       %></tr>
+  <tr><td>CPR          </td><%= raw cert_value(@member, :cpr)           %></tr>
+  <tr><td>Ham          </td><%= raw cert_value(@member, :ham)           %></tr>
+  <tr><td>Tracking     </td><%= raw cert_value(@member, :tracking)      %></tr>
+  <tr><td>Avalanche    </td><%= raw cert_value(@member, :avalanche)     %></tr>
+  <tr><td>Rigging      </td><%= raw cert_value(@member, :rigging)       %></tr>
+  <tr><td>ICS          </td><%= raw cert_value(@member, :ics)           %></tr>
+  <tr><td>Search Mgmt. </td><%= raw cert_value(@member, :search_mgmt)   %></tr>
+  <tr><td>SO Driver    </td><%= raw cert_value(@member, :so_driver)     %></tr>
+  <tr><td>SO Background</td><%= raw cert_value(@member, :so_background) %></tr>
+</table>

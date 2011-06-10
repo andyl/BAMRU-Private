@@ -126,12 +126,6 @@ class Member < ActiveRecord::Base
     arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 
-  def display_cert(type)
-    cert = certs.where(:typ => type).first
-    return "<td></td>" if cert.blank?
-    cert.display
-  end
-
   def cert_color_name
     "<span style='color: #{get_cert_color};'>#{full_name}</span>"
   end

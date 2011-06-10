@@ -2,8 +2,6 @@ require 'date'
 require 'time'
 
 class Cert < ActiveRecord::Base
-#  has_attached_file :document,
-#                    :styles => {:medium => "300x300>", :thumb => "100x100>" }
 
   # ----- Attributes -----
   attr_accessible :link, :doc_file, :typ, :comment
@@ -14,8 +12,7 @@ class Cert < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to :member
-
-  has_attached_file :document
+  has_attached_file :document, :styles => {:thumb => "150x150", :icon => "25x25"}
 
   # ----- Validations -----
 
@@ -81,7 +78,7 @@ class Cert < ActiveRecord::Base
     description
   end
 
-  def display
+  def display_table
     return "<td></td>" if description.blank?
     "<td align=center style='background-color: #{expire_color};'>#{description_with_link}</td>"
   end

@@ -5,7 +5,8 @@ class CertsController < ApplicationController
   
   def new
     @member = Member.where(:id => params['member_id']).first
-    @cert   = Cert.new
+    hash = params["typ"].nil? ? {} : {:typ => params["typ"]}
+    @cert   = Cert.new(hash)
   end
 
   def create
@@ -15,4 +16,15 @@ class CertsController < ApplicationController
     @member.save
     redirect_to member_certs_path(@member)
   end
+
+  def show
+    @member = Member.where(:id => params['member_id']).first
+    @cert = Cert.where(:id => params['id']).first
+  end
+
+  def edit
+    @member = Member.where(:id => params['member_id']).first
+    @cert = Cert.where(:id => params['id']).first
+  end
+
 end
