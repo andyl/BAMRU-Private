@@ -130,6 +130,16 @@ class Member < ActiveRecord::Base
     "<span style='color: #{get_cert_color};'>#{full_name}</span>"
   end
 
+  def current_status
+    oot = avail_ops.current.all
+    oot.blank? ? "" : "unavailable"
+  end
+
+  def current_status_comment
+    oot = avail_ops.current.all
+    oot.blank? ? "" : oot.first.comment
+  end
+
   # ----- Instance Methods -----
   def get_cert_color
     current_medical_and_cpr? ? "black" : "red"

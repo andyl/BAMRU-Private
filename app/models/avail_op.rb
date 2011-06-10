@@ -14,7 +14,7 @@ class AvailOp < ActiveRecord::Base
 
 
   # ----- Scopes -----
-
+  scope :current, where("start < ?", Time.now).where("end > ?", Time.now)
 
 
   # ----- Local Methods-----

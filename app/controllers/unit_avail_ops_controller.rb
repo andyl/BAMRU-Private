@@ -1,5 +1,5 @@
 class UnitAvailOpsController < ApplicationController
   def index
-    @avail_ops = AvailOp.all
+    @members   = Member.all
   end
 end

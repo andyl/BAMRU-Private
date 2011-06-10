@@ -3,19 +3,17 @@
   <tr>
     <th>Role</th>
     <th>Name</th>
-    <th>Start</th>
-    <th>End</th>
+    <th>Status</th>
     <th>Comment</th>
   </tr>
   </thead>
   <tbody>
-  <% @avail_ops.each do |avail| %>
+  <% @members.each do |mem| %>
     <tr>
-      <td><%=avail.member.full_roles%></td>
-      <td><%=avail.member.full_name%></td>
-      <td><%=avail.start%></td>
-      <td><%=avail.end%></td>
-      <td><%=avail.comment%></td>
+      <td><%=mem.full_roles%></td>
+      <td><%=mem.full_name%></td>
+      <td><%=mem.current_status%></td>
+      <td><%=mem.current_status_comment%></td>
     </tr>
   <% end %>
   </tbody>
