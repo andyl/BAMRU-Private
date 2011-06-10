@@ -1,11 +1,20 @@
-Operational Availibility for <%= @member.first_name %><p/>
+Operational Availibility for <%= @member.full_name %><p/>
 
-<%= link_to "Add new", new_member_avail_op_path(@member) %><p/>
+<%= @member.first_name %> has
+<%= pluralize(@member.avail_ops.count, "busy period") %>
 
-<%= @member.first_name %> has <%= @member.avail_ops.count %> ootifications.<p/>
+(<%= link_to "add new", new_member_avail_op_path(@member) %>)<p/>
 
-<% @member.avail_ops.each do |oot| %>
-
-  <%= oot.start %> / <%= oot.end %> / <%= oot.description %><br/>
-
+<% if @member.avail_ops.count != 0 %>
+  <%= form_for @member do |mem| %>
+    <table>
+      <tr><th>Start</th><th>End</th><th>Comment</th></tr>
+      <%= render "shared/error_messages", :target => @member %>
+      <%= mem.fields_for :avail_ops do |op| %>
+        <%= render :partial => 'avail_ops_fields' %>
+      <% end %>
+    </table>
+    <p/>
+    <%= mem.submit "UPDATE" %>
+  <% end %>
 <% end %>
