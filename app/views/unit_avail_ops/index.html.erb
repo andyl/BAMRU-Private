@@ -11,7 +11,7 @@
   <% @members.each do |mem| %>
     <tr>
       <td><%=mem.full_roles%></td>
-      <td><%=mem.full_name%></td>
+      <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
       <td><%=mem.current_status%></td>
       <td><%=mem.current_status_comment%></td>
     </tr>

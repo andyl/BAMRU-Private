@@ -105,7 +105,7 @@ class BaseMigration < ActiveRecord::Migration
       t.integer      :year
       t.integer      :quarter
       t.integer      :week
-      t.integer      :typ
+      t.string       :typ
       t.string       :comment
       t.timestamps
     end

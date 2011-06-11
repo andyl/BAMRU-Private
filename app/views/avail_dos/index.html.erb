@@ -1,3 +1,21 @@
 Duty Officer Availability for <%= @member.first_name %> <p/>
 Current quarter is: <%= Time.now.current_quarter %><br/>
 Current year is: <%= Time.now.year %>
+
+<%= form_for @member do |mem| %>
+  <table>
+    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
+    <% @member.avail_dos_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
+      <%= mem.fields_for :avail_ops, ado do |ido| %>
+        <tr>
+          <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
+          <td><%= ado.week%></td>
+          <td><%= ido.select :typ, %w(available unavailable), :include_blank => true %></td>
+          <td><%= ido.text_field :comment %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <p/>
+  <%= mem.submit "Update" %>
+<% end %>

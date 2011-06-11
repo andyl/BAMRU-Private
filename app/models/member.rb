@@ -140,6 +140,14 @@ class Member < ActiveRecord::Base
     oot.blank? ? "" : oot.first.comment
   end
 
+  def avail_dos_for(year, quarter)
+    hash = { :member_id => id, :year => year, :quarter => quarter }
+    (1..13).map do |week|
+      hash[:week] = week
+      AvailDo.find_or_new(hash)
+    end
+  end
+
   # ----- Instance Methods -----
   def get_cert_color
     current_medical_and_cpr? ? "black" : "red"

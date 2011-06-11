@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "year"
     t.integer  "quarter"
     t.integer  "week"
-    t.integer  "typ"
+    t.string   "typ"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"

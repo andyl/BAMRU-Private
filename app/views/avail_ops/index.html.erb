@@ -11,7 +11,7 @@ Operational Availibility for <%= @member.full_name %><p/>
       <tr><th>Start</th><th>End</th><th>Comment</th></tr>
       <%= render "shared/error_messages", :target => @member %>
       <%= mem.fields_for :avail_ops do |op| %>
-        <%= render :partial => 'avail_ops_fields' %>
+        <%= render 'avail_ops_fields', :opval => op %>
       <% end %>
     </table>
     <p/>
