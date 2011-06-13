@@ -24,4 +24,13 @@ class DoAssignmentsController < ApplicationController
       @org.do_assignments.find_or_new(@hash)
     end
   end
+
+  def create
+    @org = Org.where(:name => "BAMRU").first
+    if @org.update_attributes(params["org"])
+      redirect_to edit_do_assignment_path(@org), :notice => "Records Saved"
+    else
+      render "edit"
+    end
+  end
 end

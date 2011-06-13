@@ -1,6 +1,6 @@
-<%= form_for @org, :method => :post, :url => do_assignments_path(@org) do |org| %>
+<%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
   <table>
-    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
+    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>DO Name</th></tr>
     <% @org.do_assignments_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
       <%= org.fields_for :do_assignments, ado do |ido| %>
         <%= ido.hidden_field :year, :value => ado.year %>
