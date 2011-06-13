@@ -26,6 +26,7 @@ task :import do
   require 'config/environment'
   require 'lib/roster_load'
   RosterLoad.import(RosterLoad.parse)
+  Org.create(:name => "BAMRU")
   Rake::Task['photos'].invoke
   Rake::Task['cert_image_load'].invoke
 end

@@ -1,0 +1,19 @@
+<%= form_for @org, :method => :post, :url => do_assignments_path(@org) do |org| %>
+  <table>
+    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
+    <% @org.do_assignments_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
+      <%= org.fields_for :do_assignments, ado do |ido| %>
+        <%= ido.hidden_field :year, :value => ado.year %>
+        <%= ido.hidden_field :quarter, :value => ado.quarter %>
+        <%= ido.hidden_field :week, :value => ado.week %>
+        <tr>
+          <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
+          <td><%= ado.week%></td>
+          <td><%= ido.select :name, ado.avail_members, :include_blank => true %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <p/>
+  <%= org.submit "Update" %>
+<% end %>

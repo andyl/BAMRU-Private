@@ -40,7 +40,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :roles,     :allow_destroy => true
   accepts_nested_attributes_for :certs,     :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true
-  accepts_nested_attributes_for :avail_dos, :allow_destroy => true
+  accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|a| a[:typ].blank? }
   accepts_nested_attributes_for :emergency_contacts,    :allow_destroy => true
   accepts_nested_attributes_for :other_infos,           :allow_destroy => true
 

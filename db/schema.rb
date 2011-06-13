@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "do_assignments", :force => true do |t|
+    t.integer  "org_id"
     t.integer  "year"
     t.integer  "quarter"
     t.integer  "week"
@@ -126,6 +127,10 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "orgs", :force => true do |t|
+    t.string "name"
   end
 
   create_table "other_infos", :force => true do |t|
