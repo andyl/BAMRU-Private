@@ -231,6 +231,19 @@ class Member < ActiveRecord::Base
     end.join(',')
   end
 
+  def next_member_id
+    list = Member.order('last_name ASC').map {|m| [m.id, m.last_name]}
+    indx = list.index([id, last_name]) + 1
+    indx = 0 if indx == list.length
+    list[indx].first
+  end
+
+  def prev_member_id
+    list = Member.order('last_name ASC').map {|m| [m.id, m.last_name]}
+    indx = list.index([id, last_name])-1
+    list[indx].first
+  end
+
   # ----- For Error Reporting -----
 
   def scrubbed_errors

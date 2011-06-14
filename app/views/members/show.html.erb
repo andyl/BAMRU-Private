@@ -11,7 +11,9 @@
         <td align=left width=33%>Member Detail</td>
         <td align=center width=33%><%= link_to("Edit", edit_member_path(@member)) %> | Delete</td>
         <td align=right width=33%>
+            <%= link_to('<', member_path(@member.prev_member_id)) %>
             <input size=14 id="autoselect" value="Find Member">
+            <%= link_to('>', member_path(@member.next_member_id)) %>
         </td>
       </tr></table>
     </div>
