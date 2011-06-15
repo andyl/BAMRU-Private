@@ -43,6 +43,7 @@ GEM
     addressable (2.2.6)
     arel (2.1.1)
     awesome_print (0.4.0)
+    babosa (0.3.5)
     bcrypt-ruby (2.1.4)
     blankslate (2.1.2.4)
     builder (3.0.0)
@@ -90,6 +91,8 @@ GEM
       i18n (~> 0.4)
     fastercsv (1.5.4)
     ffi (1.0.9)
+    friendly_id (3.2.1.1)
+      babosa (~> 0.3.0)
     guard (0.3.4)
       thor (~> 0.14.6)
     guard-coffeescript (0.2.3)
@@ -243,6 +246,7 @@ DEPENDENCIES
   factory_girl
   faker
   fastercsv
+  friendly_id
   guard
   guard-coffeescript
   guard-livereload

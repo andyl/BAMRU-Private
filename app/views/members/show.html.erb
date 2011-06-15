@@ -5,6 +5,7 @@
 <%= javascript_include_tag "equal_height.js" %>
 <%= javascript_include_tag "jquery-ui.min.js" %>
 <%= javascript_include_tag "members_autoselect.js" %>
+<%= csrf_meta_tag %>
 
 <div id=x_container>
   <div id=x_body>
@@ -12,7 +13,9 @@
       <table width=100%><tr>
         <td align=left width=33%>Member Detail: <b><%= @member.full_name %></b></td>
         <td align=center width=33%>
-          <%= link_to("Edit", edit_member_path(@member)) %> | Delete
+          <%= link_to("Edit", edit_member_path(@member)) %>
+          <% if current_member != @member %>
+            | <%= link_to("Delete", member_path(@member), :confirm => "Are you sure?", :method => :delete) %> <% end %>
         </td>
         <td align=right width=33%>
             <%= link_to('<', member_path(@member.prev_member_id)) %>

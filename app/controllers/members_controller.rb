@@ -23,5 +23,14 @@ class MembersController < ApplicationController
       render "edit"
     end
   end
+
+  def destroy
+    @member = Member.where(:id => params[:id]).first
+    if @member.destroy
+      redirect_to '/members', :notice => "Member was Deleted"
+    else
+      render "show"
+    end
+  end
   
 end

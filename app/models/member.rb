@@ -169,7 +169,7 @@ class Member < ActiveRecord::Base
     return "" if first_name.nil? || last_name.nil?
     fname = self.first_name.downcase.gsub(/[ \.]/,'_')
     lname = self.last_name.downcase.gsub(/[ \.]/,'_')
-    "#{fname}.#{lname}"
+    "#{fname}_#{lname}"
   end
 
   def set_pwd
@@ -178,7 +178,7 @@ class Member < ActiveRecord::Base
 
   def new_names_from_username
     return ["",""] if user_name.blank?
-    user_name.split('.').map {|n| n.capitalize}
+    user_name.split('_').map {|n| n.capitalize}
   end
 
   def cleanup_user_name
