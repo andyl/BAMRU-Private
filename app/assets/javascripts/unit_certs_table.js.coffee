@@ -9,7 +9,8 @@ last_name_options =
   id:     'last_name'                             # the parser name
   is:     (s) -> false                            # disable standard parser
   type:   'text'                                  # either text or numeric
-  format: (s) -> (new MemberName(s)).last_name()  # the sort key (last name)
+#  format: (s) -> (new LinkName(s)).last_name()    # the sort key (last name)
+  format: (s) -> (new MemberName(s)).last_name()      # the sort key (last name)
 
 role_score_options =
   id:     'role_score'                            # the parser name

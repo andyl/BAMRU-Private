@@ -29,12 +29,16 @@ window.RoleScore = class RoleScore
 window.MemberName = class MemberName
   constructor: (@full_name = "") ->
   last_name: ->
-    array = @full_name.replace(/\./,'').split(' ')
+    array = @full_name.replace(/\./,'').replace("\n", "").replace(/[ ]+/," ").replace(/[ ]+$/,"").split(' ')
     array[array.length - 1]
 
-# expects an input like '<a href="/a/b/c">George Smith</a>'
+# expects an input like
+# '<a href="/a/b/c">George Smith</a>'
+# '<span>George Smith</span>'
+# '<a href="/a/b/c"><span>George Smith</span></a>'
 window.LinkName = class LinkName
   constructor: (@link = "") ->
+    alert @link
   full_name: ->
     regex = /^.+\>([ A-z\.].+)\<\/a\>$/
     x = @link.replace(/\./g,"~")
