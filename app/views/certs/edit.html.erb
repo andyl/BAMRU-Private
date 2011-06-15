@@ -1,3 +1,35 @@
-Edit a CERT
+<script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/avail_ops') %> ];</script>
 
-<%= render :partial => 'form' %>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_include_tag "jquery-ui.min.js"       %>
+<%= javascript_include_tag "members_autoselect.js"  %>
+
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=250 align=left>
+            Edit Cert: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+          </td>
+          <td align=center>
+            <%= link_to("Back", member_certs_path(@member)) %>
+          </td>
+          <td width=250 align=right>
+            Cert Type: <%= @cert.typ.upcase %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col>
+
+      <%= render :partial => 'form' %>
+
+    </div>
+    <div id=x_footer> </div>
+
+  </div>
+</div>

@@ -2,11 +2,14 @@
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%# javascript_include_tag "members.js" %>
+<%= javascript_include_tag "certs_table.js" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
 
 <div id=x_container>
-  <div id=x_wide_body>
+  <div id=x_body>
     <div id=x_header>
       <table width=100%>
         <tr>
@@ -27,8 +30,8 @@
 
     <div id=x_single_col>
 
-
-      <table border=1 align=center>
+      <table id="MyTable" class="tablesorter">
+        <thead>
         <tr>
           <th>Category</th>
           <th>Expiration Date</th>
@@ -37,16 +40,20 @@
           <th>Documentation</th>
           <th>Action</th>
         </tr>
-        <tr><td>Medical      </td><%= raw cert_value(@member, :medical)       %></tr>
-        <tr><td>CPR          </td><%= raw cert_value(@member, :cpr)           %></tr>
-        <tr><td>Ham          </td><%= raw cert_value(@member, :ham)           %></tr>
-        <tr><td>Tracking     </td><%= raw cert_value(@member, :tracking)      %></tr>
-        <tr><td>Avalanche    </td><%= raw cert_value(@member, :avalanche)     %></tr>
-        <tr><td>Rigging      </td><%= raw cert_value(@member, :rigging)       %></tr>
-        <tr><td>ICS          </td><%= raw cert_value(@member, :ics)           %></tr>
-        <tr><td>Search Mgmt. </td><%= raw cert_value(@member, :search_mgmt)   %></tr>
-        <tr><td>SO Driver    </td><%= raw cert_value(@member, :so_driver)     %></tr>
+        </thead>
+
+        <tbody>
+        <tr><td>Medical</td>      <%= raw cert_value(@member, :medical)       %></tr>
+        <tr><td>CPR</td>          <%= raw cert_value(@member, :cpr)           %></tr>
+        <tr><td>Ham</td>          <%= raw cert_value(@member, :ham)           %></tr>
+        <tr><td>Tracking</td>     <%= raw cert_value(@member, :tracking)      %></tr>
+        <tr><td>Avalanche</td>    <%= raw cert_value(@member, :avalanche)     %></tr>
+        <tr><td>Rigging</td>      <%= raw cert_value(@member, :rigging)       %></tr>
+        <tr><td>ICS</td>          <%= raw cert_value(@member, :ics)           %></tr>
+        <tr><td>Search Mgmt.</td> <%= raw cert_value(@member, :search_mgmt)   %></tr>
+        <tr><td>SO Driver</td>    <%= raw cert_value(@member, :so_driver)     %></tr>
         <tr><td>SO Background</td><%= raw cert_value(@member, :so_background) %></tr>
+        </tbody>
       </table>
 
     </div>
