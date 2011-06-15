@@ -4,6 +4,7 @@
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
+<%= csrf_meta_tag %>
 
 
 <div id=x_container>
@@ -36,10 +37,12 @@
       <% if @member.avail_ops.count != 0 %>
         <%= form_for @member do |mem| %>
           <table>
-            <tr><th>Start</th><th>End</th><th>Comment</th></tr>
+            <tr><th>Start</th><th>End</th><th>Comment</th><th>Action</th></tr>
             <%= render "shared/error_messages", :target => @member %>
-            <%= mem.fields_for :avail_ops do |op| %>
-              <%= render 'avail_ops_fields', :opval => op %>
+            <% @member.avail_ops.each do |op| %>
+              <%= mem.fields_for :avail_ops, op do |opfld| %>
+                <%= render 'avail_ops_fields', {:opfld => opfld, :op => op} %>
+              <% end %>
             <% end %>
           </table>
           <p/>

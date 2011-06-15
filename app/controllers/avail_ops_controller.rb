@@ -6,7 +6,8 @@ class AvailOpsController < ApplicationController
   
   def new
     @member = Member.where(:id => params['member_id']).first
-    @avail   = AvailOp.new
+    @avail   = @member.avail_ops.create
+    redirect_to member_avail_ops_path(@member), :notice => "Created Busy Period"
   end
 
   def create
@@ -15,6 +16,13 @@ class AvailOpsController < ApplicationController
     @member.member_avails << @avail
     @member.save
     redirect_to member_avails_path(@member)
+  end
+
+  def destroy
+    @member = Member.where(:id => params['member_id']).first
+    @avail  = AvailOp.where(:id => params['id']).first
+    @avail.destroy
+    redirect_to member_avail_ops_path(@member), :notice => "Deleted Busy Period"
   end
 
 end

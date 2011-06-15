@@ -1,5 +1,6 @@
 <tr>
-  <td><%= opval.text_field :start  , :size => 10 %></td>
-  <td><%= opval.text_field :end    , :size => 10 %></td>
-  <td><%= opval.text_field :comment, :size => 30 %></td>
+  <td><%= opfld.text_field :start  , :size => 10 %></td>
+  <td><%= opfld.text_field :end    , :size => 10 %></td>
+  <td><%= opfld.text_field :comment, :size => 30 %></td>
+  <td><%= link_to("DELETE", member_avail_op_path(@member, op), :method => :delete, :confirm => "Are you sure?") %></td>
 </tr>

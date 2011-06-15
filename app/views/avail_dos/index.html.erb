@@ -4,6 +4,7 @@
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
+<%= csrf_meta_tag %>
 
 <div id=x_container>
   <div id=x_body>
