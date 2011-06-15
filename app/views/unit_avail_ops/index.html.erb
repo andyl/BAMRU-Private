@@ -1,20 +1,44 @@
-<table border=1>
-  <thead>
-  <tr>
-    <th>Role</th>
-    <th>Name</th>
-    <th>Status</th>
-    <th>Comment</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @members.each do |mem| %>
-    <tr>
-      <td><%=mem.full_roles%></td>
-      <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
-      <td><%=mem.current_status%></td>
-      <td><%=mem.current_status_comment%></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "members.js" %>
+<%= javascript_include_tag "unit_certs.js" %>
+<%= javascript_include_tag "unit_certs_table.js" %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=left><b>Team Availability</b></td>
+          <td align=right>
+            <%= link_to("Edit My Availability", member_avail_ops_path(current_member)) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+      <table id="myTable" class="tablesorter">
+        <thead>
+        <tr>
+          <th>Role</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @members.each do |mem| %>
+          <tr>
+            <td><%=mem.full_roles%></td>
+            <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
+            <td><%=mem.current_status%></td>
+            <td><%=mem.current_status_comment%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div id=x_footer> </div>
+  </div>
+</div>

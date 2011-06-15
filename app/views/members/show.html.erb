@@ -1,4 +1,6 @@
-<script>var autoselectMemberNames = [ <%= @autoselect_member_names %> ];</script>
+<script>
+  var autoselectMemberNames = [ <%= @autoselect_member_names %> ];
+</script>
 
 <%= javascript_include_tag "equal_height.js" %>
 <%= javascript_include_tag "jquery-ui.min.js" %>
@@ -8,8 +10,10 @@
   <div id=x_body>
     <div id=x_header>
       <table width=100%><tr>
-        <td align=left width=33%>Member Detail</td>
-        <td align=center width=33%><%= link_to("Edit", edit_member_path(@member)) %> | Delete</td>
+        <td align=left width=33%>Member Detail: <b><%= @member.full_name %></b></td>
+        <td align=center width=33%>
+          <%= link_to("Edit", edit_member_path(@member)) %> | Delete
+        </td>
         <td align=right width=33%>
             <%= link_to('<', member_path(@member.prev_member_id)) %>
             <input size=14 id="autoselect" value="Find Member">
@@ -30,7 +34,9 @@
     </div>
     <div id=mem_right_col style="text-align: center;">
       <% @member.photos.each do |pic| %>
-        <%= image_tag pic.image.url(:thumb) %><br/>
+        <a href='<%= pic.image.url %>' target='_blank'>
+          <%= image_tag pic.image.url(:thumb) %>
+        </a><br/>
       <% end %>
     </div>
     <div id=x_footer>

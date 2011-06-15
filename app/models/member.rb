@@ -225,9 +225,9 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def self.autoselect_member_names(suffix = "")
+  def self.autoselect_member_names(suffix = "", path = "/members/")
     order('last_name ASC').all.map do |m|
-      "{label: '#{m.full_name}', url: '/members/#{m.id}#{suffix}'}"
+      "{label: '#{m.full_name}', url: '#{path}#{m.id}#{suffix}'}"
     end.join(',')
   end
 

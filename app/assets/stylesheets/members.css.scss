@@ -23,13 +23,13 @@ $col_base_width: $body_width/2 - $col_padding*2 - $border_width;
   @include x_border;
   text-align: center;
   background-color: #cccccc;
-  padding: 8px;
+  padding: 2px;
 }
 
 #x_container {
   align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 #x_body {
@@ -55,6 +55,12 @@ $col_height: 225px;
   border-left-style: none;
   width: $col_base_width - $col_offset;
   }
+
+#x_single_col {
+  @include col_style;
+  /*width: 100%;*/
+  padding: 4px;
+}
 
 #x_left_col {
   @include col_style;

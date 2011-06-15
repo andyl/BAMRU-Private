@@ -1,20 +1,55 @@
-Operational Availibility for <%= @member.full_name %><p/>
+<script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/avail_ops') %> ];</script>
 
-<%= @member.first_name %> has
-<%= pluralize(@member.avail_ops.count, "busy period") %>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_include_tag "jquery-ui.min.js"       %>
+<%= javascript_include_tag "members_autoselect.js"  %>
 
-(<%= link_to "add new", new_member_avail_op_path(@member) %>)<p/>
 
-<% if @member.avail_ops.count != 0 %>
-  <%= form_for @member do |mem| %>
-    <table>
-      <tr><th>Start</th><th>End</th><th>Comment</th></tr>
-      <%= render "shared/error_messages", :target => @member %>
-      <%= mem.fields_for :avail_ops do |op| %>
-        <%= render 'avail_ops_fields', :opval => op %>
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=250 align=left>
+            Member Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+          </td>
+          <td align=center>
+            <%= link_to("Back", unit_avail_ops_path) %>
+          </td>
+          <td width=250 align=right>
+            <%= link_to('<', member_avail_ops_path(@member.prev_member_id)) %>
+            <input size=14 id="autoselect" value="Find Member">
+            <%= link_to('>', member_avail_ops_path(@member.next_member_id)) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col>
+
+      <%= @member.first_name %> has
+      <%= pluralize(@member.avail_ops.count, " busy period") %>
+
+      (<%= link_to "add new", new_member_avail_op_path(@member) %>)<p/>
+
+      <% if @member.avail_ops.count != 0 %>
+        <%= form_for @member do |mem| %>
+          <table>
+            <tr><th>Start</th><th>End</th><th>Comment</th></tr>
+            <%= render "shared/error_messages", :target => @member %>
+            <%= mem.fields_for :avail_ops do |op| %>
+              <%= render 'avail_ops_fields', :opval => op %>
+            <% end %>
+          </table>
+          <p/>
+          <%= mem.submit "UPDATE" %>
+        <% end %>
       <% end %>
-    </table>
-    <p/>
-    <%= mem.submit "UPDATE" %>
-  <% end %>
-<% end %>
+
+
+    </div>
+    <div id=x_footer> </div>
+
+  </div>
+</div>

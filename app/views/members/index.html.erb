@@ -8,7 +8,14 @@
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
-      Team Roster / Paging
+      <table width=100%>
+        <tr>
+          <td align=left><b>Team Roster / Paging</b></td>
+          <td align=right>
+            <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
+          </td>
+        </tr>
+      </table>
     </div>
     <%= form_for @message do |f| %>
       <input type="hidden" name="message[author_id]" value="<%=current_member.id%>"/>

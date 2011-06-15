@@ -1,24 +1,59 @@
-Duty Officer Availability for <%= @member.first_name %> <p/>
-Current quarter is: <%= Time.now.current_quarter %><br/>
-Current year is: <%= Time.now.year %>
+<script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/avail_dos') %> ];</script>
 
-<%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
-  <table>
-    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
-    <% @member.avail_dos_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
-      <%= mem.fields_for :avail_dos, ado do |ido| %>
-        <%= ido.hidden_field :year, :value => ado.year %>
-        <%= ido.hidden_field :quarter, :value => ado.quarter %>
-        <%= ido.hidden_field :week, :value => ado.week %>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_include_tag "jquery-ui.min.js"       %>
+<%= javascript_include_tag "members_autoselect.js"  %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
         <tr>
-          <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
-          <td><%= ado.week%></td>
-          <td><%= ido.select :typ, %w(available unavailable), :include_blank => true %></td>
-          <td><%= ido.text_field :comment %></td>
+          <td width=250 align=left>
+            Member DO Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+          </td>
+          <td align=center>
+            <%= link_to("Back", do_assignments_path) %>
+          </td>
+          <td width=250 align=right>
+            <%= link_to('<', member_avail_dos_path(@member.prev_member_id)) %>
+            <input size=14 id="autoselect" value="Find Member">
+            <%= link_to('>', member_avail_dos_path(@member.next_member_id)) %>
+          </td>
         </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col class=centered>
+
+      Current quarter is: <%= Time.now.current_quarter %> /
+      Current year is: <%= Time.now.year %><p/>
+
+      <%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
+        <table align=center border=1>
+          <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
+          <% @member.avail_dos_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
+            <%= mem.fields_for :avail_dos, ado do |ido| %>
+              <%= ido.hidden_field :year, :value => ado.year %>
+              <%= ido.hidden_field :quarter, :value => ado.quarter %>
+              <%= ido.hidden_field :week, :value => ado.week %>
+              <tr>
+                <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
+                <td><%= ado.week%></td>
+                <td><%= ido.select :typ, %w(available unavailable), :include_blank => true %></td>
+                <td><%= ido.text_field :comment %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <p/>
+        <%= mem.submit "Update" %>
       <% end %>
-    <% end %>
-  </table>
-  <p/>
-  <%= mem.submit "Update" %>
-<% end %>
+
+
+    </div>
+    <div id=x_footer> </div>
+
+  </div>
+</div>

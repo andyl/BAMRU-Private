@@ -5,14 +5,4 @@
   <%= f.text_field :value,   :size => 15 %>
   <%= link_to_remove_field("remove", f) %>
   <%= f.hidden_field :_destroy %>
-
-
-  def typ_opts
-    base_opts = %w(Mobile Home Work Other)
-    if typ.nil? || base_opts.include?(typ)
-      base_opts
-    else
-      [typ] + base_opts
-    end
-  end
 </li>
