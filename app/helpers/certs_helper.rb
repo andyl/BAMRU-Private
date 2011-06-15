@@ -31,7 +31,7 @@ module CertsHelper
   def cert_actions(mem, cert, type)
     return link_to("CREATE", new_member_cert_path(mem, :typ => type.to_s)) if cert.nil?
     edit = link_to("EDIT", edit_member_cert_path(mem, cert))
-    del  = link_to("DELETE", member_certs_path(mem, cert), :action => :destroy)
+    del  = link_to("DELETE", member_cert_path(mem, cert), :confirm => "Are you sure?", :method => :delete)
     "#{edit} | #{del}"
   end
 

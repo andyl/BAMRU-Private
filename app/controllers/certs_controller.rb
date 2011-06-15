@@ -27,4 +27,11 @@ class CertsController < ApplicationController
     @cert = Cert.where(:id => params['id']).first
   end
 
+  def destroy
+    @member = Member.where(:id => params['member_id']).first
+    @cert = Cert.where(:id => params['id']).first
+    @cert.destroy
+    redirect_to member_certs_path(@member), :notice => "Cert was Deleted"
+  end
+
 end
