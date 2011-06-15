@@ -12,7 +12,14 @@ class Cert < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to :member
-  has_attached_file :document, :styles => {:thumb => "150x150", :icon => "25x25"}
+  has_attached_file :document, :styles => {
+          :full => {
+                  :geometry => '2400x2400',
+                  :quality => 600,
+                  :format  => "jpg"
+          },
+          :thumb => "150x150",
+          :icon => "25x25"}
 
   # ----- Validations -----
 
@@ -74,7 +81,7 @@ class Cert < ActiveRecord::Base
 
   def description_with_link
     return "<a href='#{link}'>#{description}</a>"     unless link.blank?
-    return "<a href='#{document}'>#{description}</a>" unless doc_file.blank?
+    return "<a href='#{document.url(:full)}'>#{description}</a>" unless document_file_name.blank?
     description
   end
 

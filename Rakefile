@@ -79,7 +79,7 @@ task :cert_convert do
   puts "Converting PDF Cert files to JPG"
   Cert.with_pdfs.each do |c|
     puts "> Converting #{c.doc_path}"
-    system "convert -density 300 #{c.doc_path} #{c.final_doc_path}"
+    # system "convert -density 300 #{c.doc_path} #{c.final_doc_path}"
   end
 end
 
@@ -88,8 +88,8 @@ task :cert_image_load do
   require 'config/environment'
   puts "Loading CERT Images"
   Cert.with_docs.each do |c|
-    puts "Updating #{c.final_doc_path}"
-    c.update_attributes(:document => File.open(c.final_doc_path))
+    puts "Updating #{c.doc_path}"
+    c.update_attributes(:document => File.open(c.doc_path))
   end
 end
 
