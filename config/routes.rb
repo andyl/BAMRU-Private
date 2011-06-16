@@ -26,6 +26,9 @@ Zn::Application.routes.draw do
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
 
+  match '/reports'        => "reports#index"
+  match '/reports/:title' => "reports#show"
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

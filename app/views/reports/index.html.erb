@@ -1,0 +1,36 @@
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "members.js" %>
+<%= javascript_include_tag "unit_certs_table.js" %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=center><b>BAMRU Database Reports</b></td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+      <table id="myTable" class="tablesorter">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Format</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to "Map List", '/reports/BAMRU-roster.html' %></td>
+            <td>HTML</td>
+            <td>HTML Roster with gMap links</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div id=x_footer> </div>
+  </div>
+</div>

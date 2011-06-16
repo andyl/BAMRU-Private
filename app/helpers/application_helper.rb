@@ -26,7 +26,8 @@ module ApplicationHelper
     certs  = link_to_unless_current("Certs", unit_certs_path)
     avail  = link_to_unless_current("Availability", unit_avail_ops_path)
     duty   = link_to_unless_current("DO", do_assignments_path)
-    [roster, photos, certs, avail, duty].join(' | ')
+    report = link_to_unless_current("Reports", '/reports')
+    [roster, photos, certs, avail, duty, report].join(' | ')
   end
 
   def header_nav
