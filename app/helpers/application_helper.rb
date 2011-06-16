@@ -82,6 +82,18 @@ module ApplicationHelper
     link_to "Current Quarter", do_assignments_path
   end
 
+  def edit_link_prev(hash)
+    link_to "<", edit_do_assignment_path(prev_quarter(hash))
+  end
+
+  def edit_link_next(hash)
+    link_to ">", edit_do_assignment_path(next_quarter(hash))
+  end
+
+  def edit_link_current_quarter
+    link_to "Current Quarter", edit_do_assignment_path
+  end
+
 
 
   # ----- Debug Helpers -----

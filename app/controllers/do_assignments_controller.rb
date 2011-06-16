@@ -5,12 +5,12 @@ class DoAssignmentsController < ApplicationController
   def index
     @org = Org.where(:name => "BAMRU").first
     @quarter = {
-            :org_id => @org.id,
             :year      => params["year"].try(:to_i)    || Time.now.year,
             :quarter   => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
     @do_assignments = (1..13).map do |num|
-      quarter = @quarter
+      quarter = @quarter.clone
+      quarter[:org_id] = 1
       quarter[:week] = num
       @org.do_assignments.find_or_new(quarter)
     end
@@ -19,12 +19,12 @@ class DoAssignmentsController < ApplicationController
   def edit
     @org = Org.where(:name => "BAMRU").first
     @quarter = {
-            :org_id => @org.id,
             :year      => params["year"].try(:to_i)    || Time.now.year,
             :quarter   => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
     @do_assignments = (1..13).map do |num|
-      quarter = @quarter
+      quarter = @quarter.clone
+      quarter[:org_id] = 1
       quarter[:week] = num
       @org.do_assignments.find_or_new(quarter)
     end
