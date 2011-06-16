@@ -17,7 +17,7 @@ gem 'paperclip'
 gem 'parslet'
 gem 'aalf',         :git => "http://github.com/andyl/aalf.git"
 gem 'dynamic_form'
-gem 'friendly_id'
+gem 'cancan'
 
 # Asset template engines
 gem 'json'

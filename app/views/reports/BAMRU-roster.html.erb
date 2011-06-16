@@ -1,0 +1,20 @@
+<table align=center class=T>
+  <tr><td align=center><h1>BAMRU Maplist</h1></td></tr>
+</table>
+
+<table align=center class=T border=1>
+  <tr><th>#</th><th>Role</th><th>Name</th><th>Home</th><th>Work</th><th>Mobile</th><th>Home</th><th>Work</th></tr>
+  <% @count = 0 %>
+  <% @members.each do |mem| %>
+    <tr>
+      <td><%= @count += 1 %></td>
+      <td><%= mem.full_roles %></td>
+      <td><%= mem.full_name %></td>
+      <td><%# mem.gmap_link_home("home").empty? ? "NA" : mem.gmap_link_home(mem.home_city) %></td>
+      <td><%# mem.mobile_phone.empty? ? "NA" : mem.mobile_phone %></td>
+      <td><%# mem.home_phone.empty?   ? "NA" : mem.home_phone %></td>
+      <td><%# mem.work_phone.empty?   ? "NA" : mem.work_phone %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>

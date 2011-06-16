@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
 
   def show
     @members = Member.order_by_last_name.all
-    render params[:title] + '.' + params[:format]
+    render params[:title] + '.' + params[:format], :layout => nil
   end
 
 end

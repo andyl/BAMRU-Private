@@ -26,6 +26,10 @@ task :import do
   require 'config/environment'
   require 'lib/roster_load'
   RosterLoad.import(RosterLoad.parse)
+  x = Member.where(:user_name => "andy_leak").first
+  x.update_attributes(:admin => true)
+  x = Member.where(:user_name => "john_chang").first
+  x.update_attributes(:admin => true)
   Org.create(:name => "BAMRU")
   Rake::Task['photos'].invoke
   Rake::Task['cert_image_load'].invoke
