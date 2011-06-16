@@ -11,7 +11,9 @@
       </table>
     </div>
     <div id=x_single_col class=centered>
-      <%= @hash[:year] %> / Q<%= @hash[:quarter] %> <p/>
+      <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %> <p/>
+
+      <%= link_prev(@quarter) %> <%= link_current_quarter %> <%= link_next(@quarter) %><p/>
 
       <table border=1 align=center>
         <thead>

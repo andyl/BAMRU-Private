@@ -4,28 +4,29 @@ class DoAssignmentsController < ApplicationController
 
   def index
     @org = Org.where(:name => "BAMRU").first
-    @hash = {
+    @quarter = {
             :org_id => @org.id,
             :year      => params["year"].try(:to_i)    || Time.now.year,
             :quarter   => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
-    debugger
     @do_assignments = (1..13).map do |num|
-      @hash[:week] = num
-      @org.do_assignments.find_or_new(@hash)
+      quarter = @quarter
+      quarter[:week] = num
+      @org.do_assignments.find_or_new(quarter)
     end
   end
 
   def edit
     @org = Org.where(:name => "BAMRU").first
-    @hash = {
-            :org_id    => @org.id,
-            :year      => params["year"]    || Time.now.year,
-            :quarter   => params["quarter"] || Time.now.current_quarter
+    @quarter = {
+            :org_id => @org.id,
+            :year      => params["year"].try(:to_i)    || Time.now.year,
+            :quarter   => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
     @do_assignments = (1..13).map do |num|
-      @hash[:week] = num
-      @org.do_assignments.find_or_new(@hash)
+      quarter = @quarter
+      quarter[:week] = num
+      @org.do_assignments.find_or_new(quarter)
     end
   end
 

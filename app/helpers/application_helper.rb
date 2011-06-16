@@ -45,6 +45,45 @@ module ApplicationHelper
     end
   end
 
+  # ----- Misc Helpers -----
+  def next_quarter(hash)
+    lh = hash.clone
+    if lh[:quarter] == 4
+      lh[:year] += 1
+      lh[:quarter] = 1
+    else
+      lh[:quarter] += 1
+    end
+    lh.delete(:week); lh.delete(:org_id)
+    lh
+  end
+
+  def prev_quarter(hash)
+    lh = hash.clone
+    if lh[:quarter] == 1
+      lh[:year] -= 1
+      lh[:quarter] = 4
+    else
+      lh[:quarter] -= 1
+    end
+    lh.delete(:week); lh.delete(:org_id)
+    lh
+  end
+
+  def link_prev(hash)
+    link_to "<", do_assignments_path(prev_quarter(hash))
+  end
+
+  def link_next(hash)
+    link_to ">", do_assignments_path(next_quarter(hash))
+  end
+
+  def link_current_quarter
+    link_to "Current Quarter", do_assignments_path
+  end
+
+
+
   # ----- Debug Helpers -----
 
   def params_debug_text

@@ -5,6 +5,7 @@ Zn::Application.routes.draw do
   get "home/tbd"
   get "home/contact"
 
+  match "/members" => "members#index",  :method => :get
   match "/members" => "members#create", :method => :post
 
   devise_for :members
