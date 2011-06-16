@@ -5,10 +5,6 @@ Zn::Application.routes.draw do
   get "home/tbd"
   get "home/contact"
 
-  devise_for :members
-  
-  get "members/test"
-
   resources  :members
   resources  :messages
   resources  :unit_photos
@@ -24,6 +20,8 @@ Zn::Application.routes.draw do
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
+
+  devise_for :members
 
   root :to => 'home#index'
 

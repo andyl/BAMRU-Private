@@ -10,9 +10,23 @@ class MembersController < ApplicationController
     @member = Member.where(:id => params[:id]).first
   end
 
+  def new
+    @autoselect_member_names = Member.autoselect_member_names
+    @member = Member.new(:first_name => "New", :last_name => "Name", :typ => "T")
+  end
+
   def edit
     @autoselect_member_names = Member.autoselect_member_names('/edit')
     @member = Member.where(:id => params[:id]).first
+  end
+
+  def create
+    debugger
+    if @member = Member.create(params["member"])
+      redirect_to edit_member_path(@member), :notice => "Successful Create"
+    else
+      render "new"
+    end
   end
 
   def update

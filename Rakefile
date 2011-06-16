@@ -49,7 +49,7 @@ task :photos do
   puts "Reloading Photos (this might take awhile...)"
   Photo.destroy_all
   Dir.glob('./db/jpg/*jpg').sort.each do |i|
-    username = File.basename(i)[0..-7].gsub('_','.')
+    username = File.basename(i)[0..-7] #.gsub('_','_')
     member = Member.where(:user_name => username).first
     if member
       member.photos.create(:image => File.open(i))

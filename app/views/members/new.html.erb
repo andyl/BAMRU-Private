@@ -1,0 +1,57 @@
+<script>var autoselectMemberNames = [ <%= @autoselect_member_names %> ];</script>
+
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_include_tag "equal_height.js"        %>
+<%= javascript_include_tag "jquery-ui.min.js"       %>
+<%= javascript_include_tag "members_autoselect.js"  %>
+<%= javascript_include_tag "members_edit_form.js"   %>
+<%= csrf_meta_tag %>
+
+<style>
+  #sortable {list-style-type: none; margin: 0; padding: 0;}
+  #sortable li {margin: 0 3px 3px 3px; padding: 4px; }
+</style>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+        <td align=left width=33%><b>Create New Member</b></td>
+        <td align=center width=33%><%= link_to("Back", members_path) %></td>
+        <td align=right width=33%>
+          <input size=14 id="autoselect" value="Find Member">
+        </td>
+      </tr></table>
+    </div>
+    <div id=x_single_col>
+      <p/>
+      <div style="text-align: center;"><a href="#" id="save_link">Create</a> | <%= link_to "Reset", new_member_path %></div>
+      <p/>
+      <div style="text-align: center;">
+
+
+      <%= form_for(@member, :html => {:id => 'memberz_form'}) do |f| %>
+        <%= render "shared/error_messages", :target => @member %>
+        <%= f.text_field :full_name, :size => 28 %><br/>
+        <%= f.select :typ, %w(TM FM T R S A) %>
+        Bd: <%= f.check_box('bd') %>
+        OL: <%= f.check_box('ol') %>
+        <p></p><b>Password</b>
+        <div id=password>
+          <span class=plabel>Password: </span>
+          <%= f.password_field :password, :size => 13 %><br/>
+          <span class=plabel>Confirmation: </span>
+          <%= f.password_field :password_confirmation, :size => 13 %>
+        </div>
+        <p/>
+      <% end %>
+        </div>
+    </div>
+
+    <div id=x_footer>
+
+    </div>
+  </div>
+</div>

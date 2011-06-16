@@ -1,5 +1,24 @@
+
+
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=left><b>Team Duty Officers</b></td>
+          <td align=right>
+            <%= link_to("Back", do_assignments_path) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col class=centered>
+
+
+
 <%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
-  <table>
+  <table align=center>
     <tr><th>Year</th><th>Quarter</th><th>Week</th><th>DO Name</th></tr>
     <% @org.do_assignments_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
       <%= org.fields_for :do_assignments, ado do |ido| %>
@@ -17,3 +36,12 @@
   <p/>
   <%= org.submit "Update" %>
 <% end %>
+
+
+
+
+
+    </div>
+    <div id=x_footer> </div>
+  </div>
+</div>

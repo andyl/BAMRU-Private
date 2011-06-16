@@ -73,10 +73,10 @@ class Cert < ActiveRecord::Base
   def expire_color
     xdate = date_to_time(expiration)
     return "white"  if xdate.nil?
-    return "red"    if xdate < Time.now.to_time
+    return "pink"   if xdate < Time.now.to_time
     return "orange" if xdate < 1.month.from_now.to_time
     return "yellow" if xdate < 3.months.from_now.to_time
-    "#33ff00"
+    "lightgreen"
   end
 
   def description_with_link

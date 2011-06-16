@@ -30,7 +30,11 @@
           <tr>
             <td><%=mem.full_roles%></td>
             <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
-            <td><%=mem.current_status%></td>
+            <% if mem.current_status == "unavailable" %>
+              <td align=center style='background-color: pink;'>unavailable</td>
+              <% else %>
+              <td></td>
+              <% end %>
             <td><%=mem.current_status_comment%></td>
           </tr>
         <% end %>

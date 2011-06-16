@@ -42,7 +42,13 @@
               <tr>
                 <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
                 <td><%= ado.week%></td>
-                <td><%= ido.select :typ, %w(available unavailable), :include_blank => true %></td>
+                <td>
+                  <% if ado.typ.blank? %>
+                    <%= ido.select :typ, %w(available unavailable), :include_blank => true %>
+                  <% else %>
+                    <%= ido.select :typ, %w(available unavailable) %>
+                  <% end %>
+                </td>
                 <td><%= ido.text_field :comment %></td>
               </tr>
             <% end %>
