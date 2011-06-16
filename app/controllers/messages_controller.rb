@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+
+  before_filter :authenticate_member!
+
   def index
     @messages = Message.order('created_at DESC').all
   end

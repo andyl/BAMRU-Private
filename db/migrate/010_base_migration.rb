@@ -113,7 +113,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string       :name
     end
     create_table :do_assignments do |t|
-      t.integer      :org_id
+      t.integer      :org_id,     :default => 1
       t.integer      :year
       t.integer      :quarter
       t.integer      :week

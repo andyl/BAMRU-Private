@@ -1,4 +1,7 @@
 class MembersController < ApplicationController
+
+  before_filter :authenticate_member!
+
   def index
     @client_ip = request.remote_ip
     @message = Message.new
@@ -21,9 +24,8 @@ class MembersController < ApplicationController
   end
 
   def create
-    debugger
     if @member = Member.create(params["member"])
-      redirect_to edit_member_path(@member), :notice => "Successful Create"
+      redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
       render "new"
     end

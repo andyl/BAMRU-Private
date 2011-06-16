@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "do_assignments", :force => true do |t|
-    t.integer  "org_id"
+    t.integer  "org_id",     :default => 1
     t.integer  "year"
     t.integer  "quarter"
     t.integer  "week"
