@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def sign_out_link
-    "<a href='/members/sign_out'>sign out</a>"
+    "<a href='/logout'>log out</a>"
   end
 
   def sign_up_or_in_link

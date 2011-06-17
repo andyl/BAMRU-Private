@@ -7,7 +7,7 @@ gem "factory_girl"
 gem "fastercsv"
 gem "nokogiri"
 gem "thin"
-gem "devise"
+#gem "devise"
 gem "simple_form"
 
 gem 'sqlite3'

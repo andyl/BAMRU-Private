@@ -5,10 +5,16 @@ Zn::Application.routes.draw do
   get "home/tbd"
   get "home/contact"
 
-  match "/members" => "members#index",  :method => :get
-  match "/members" => "members#create", :method => :post
+  get "login"  => "sessions#new",     :as => "login"
+  get "logout" => "sessions#destroy", :as => "logout"
 
-  devise_for :members
+  resources :passwords
+  resources :sessions
+
+#  match "/members" => "members#index",  :method => :get
+#  match "/members" => "members#create", :method => :post
+
+#  devise_for :members
 
   resources  :members
   resources  :messages

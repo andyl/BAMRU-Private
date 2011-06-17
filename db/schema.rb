@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "v9"
     t.boolean  "admin",                  :default => false
     t.string   "encrypted_password"
+    t.string   "password_digest"
     t.integer  "sign_in_count",          :default => 0
     t.string   "last_sign_in_ip"
     t.time     "last_sign_in_at"

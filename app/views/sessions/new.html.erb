@@ -1,0 +1,22 @@
+<h2>Log In</h2>
+
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :user_name %><br>
+    <%= text_field_tag :user_name, params['user_name'] %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= label_tag :password %><br/>
+    <%= password_field_tag :password %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= check_box_tag :remember_me %>
+    <%= label_tag "Remember me?" %>
+  </div>
+  <p></p>
+  <div class="actions"><%= submit_tag "Log in" %></div>
+<% end %>
+<p></p>
+<%= link_to "Forgot your password?", new_password_path %>
