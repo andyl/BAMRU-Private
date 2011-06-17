@@ -39,7 +39,9 @@
           <th>Description</th>
           <th>Comment</th>
           <th>Documentation</th>
-          <th>Action</th>
+          <% if can_update?(@member) %>
+            <th>Action</th>
+          <% end %>
         </tr>
         </thead>
 

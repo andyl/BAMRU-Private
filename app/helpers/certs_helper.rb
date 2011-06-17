@@ -35,13 +35,18 @@ module CertsHelper
     "#{edit} | #{del}"
   end
 
+  def can_update?(mem)
+    mem == current_member || current_member.admin?
+  end
+
   def cert_value(mem, type)
+    action = ()
     cert = mem.certs.where(:typ => type).first
     exp = td(expiration(cert))
     des = td(description(cert))
     com = td(comment(cert))
     doc = td(documentation(cert))
-    act = td(cert_actions(mem, cert, type))
+    act = can_update?(mem) ? td(cert_actions(mem, cert, type)) : ""
     exp + des + com + doc + act
   end
 

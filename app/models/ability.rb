@@ -6,7 +6,9 @@ class Ability
        if member.admin?
          can :manage, :all
        else
-         can :read, :all
+         can :manage, Member, :id        => member.id
+         can :manage, Cert,   :member_id => member.id
+         can :read,   :all
        end
 
 #    The first argument to `can` is the action you are giving the member permission to do.

@@ -11,17 +11,23 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td width=250 align=left>
+          <td width=40% align=left>
             Member DO Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
           </td>
-          <td align=center>
-            <%= link_to("Back", do_assignments_path) %>
-          </td>
-          <td width=250 align=right>
-            <%= link_to('<', member_avail_dos_path(@member.prev_member_id)) %>
-            <input size=14 id="autoselect" value="Find Member">
-            <%= link_to('>', member_avail_dos_path(@member.next_member_id)) %>
-          </td>
+          <% if current_member.admin? %>
+            <td width=20% align=center>
+              <%= link_to("Back", do_assignments_path) %>
+            </td>
+            <td width=40% align=right>
+              <%= link_to('<', member_avail_dos_path(@member.prev_member_id)) %>
+              <input size=14 id="autoselect" value="Find Member">
+              <%= link_to('>', member_avail_dos_path(@member.next_member_id)) %>
+            </td>
+          <% else %>
+            <td width=60% align=right>
+              <%= link_to("Back", do_assignments_path) %>
+            </td>
+          <% end %>
         </tr>
       </table>
     </div>

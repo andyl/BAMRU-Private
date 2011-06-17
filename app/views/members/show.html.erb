@@ -12,7 +12,7 @@
     <div id=x_header>
       <table width=100%><tr>
         <td align=left width=33%>Member Detail: <b><%= @member.full_name %></b></td>
-        <% if can? :update, @member %>
+        <% if can? :manage, @member %>
         <td align=center width=33%>
           <%= link_to("Edit", edit_member_path(@member)) %>
           <% if current_member != @member %>
@@ -28,8 +28,8 @@
     </div>
     <div id=mem_left_col>
       <b><%= @member.first_name %> <%= @member.last_name %><br/></b>
-      <%= @member.full_roles %><p/>
-      <%= raw @member.all_assoc %><p/>
+      <%= @member.full_roles %><p></p>
+      <%= raw @member.all_assoc %><p></p>
       <% unless @member.ham.blank? %>
         <b>Ham:</b> <%= @member.ham %><br/>
       <% end %>
@@ -38,6 +38,7 @@
       <% end %>
     </div>
     <div id=mem_right_col style="text-align: center;">
+      <% unless @member.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>
       <% @member.photos.each do |pic| %>
         <a href='<%= pic.image.url %>' target='_blank'>
           <%= image_tag pic.image.url(:thumb) %>

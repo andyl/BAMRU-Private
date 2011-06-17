@@ -81,7 +81,9 @@
       </form>
     <% end %>
     <div id=x_footer>
-      <%= link_to "Add New Member", new_member_path %>
+      <% if can? :manage, @member %>
+        <%= link_to "Add New Member", new_member_path %>
+      <% end %>
     </div>
   </div>
 </div>

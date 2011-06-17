@@ -20,6 +20,10 @@ module ApplicationHelper
     sign_in_link + ' | ' + sign_up_link
   end
 
+  def sign_up_link
+    link_to_unless_current("sign in", '/members/sign_in')
+  end
+
   def signed_in_header_nav
     roster = link_to_unless_current("Roster", members_path)
     photos = link_to_unless_current("Photos", unit_photos_path)
@@ -42,7 +46,7 @@ module ApplicationHelper
     if member_signed_in?
       "welcome <b>#{current_member.first_name}</b> | #{sign_out_link}"
     else
-      sign_up_or_in_link
+      sign_up_link
     end
   end
 

@@ -18,12 +18,16 @@
     <div id=x_header>
       <table width=100%><tr>
         <td align=left width=33%>Member Edit: <b><%= @member.full_name %></b></td>
-        <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
-        <td align=right width=33%>
+        <% if current_member.admin? %>
+          <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
+          <td align=right width=33%>
             <%= link_to('<', edit_member_path(@member.prev_member_id)) %>
             <input size=14 id="autoselect" value="Find Member">
             <%= link_to('>', edit_member_path(@member.next_member_id)) %>
-        </td>
+          </td>
+        <% else %>
+          <td align=right width=66%><%= link_to("Back", member_path(@member)) %></td>
+        <% end %>
       </tr></table>
     </div>
     <div id=mem_left_col>
@@ -36,6 +40,9 @@
         <%= f.select :typ, %w(TM FM T R S A) %>
         Bd: <%= f.check_box('bd') %>
         OL: <%= f.check_box('ol') %>
+        <% if @member != current_member %>
+        <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>
+        <% end %>
         <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span>
         <div id=sortable_phones>
           <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>

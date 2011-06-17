@@ -17,7 +17,7 @@ class Member < ActiveRecord::Base
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
   attr_accessible :emergency_contacts_attributes
   attr_accessible :other_infos_attributes
-  attr_accessible :bd, :ol
+  attr_accessible :bd, :ol, :admin
 
   # ----- Associations -----
   has_many :addresses,   :order => 'position'
@@ -116,6 +116,10 @@ class Member < ActiveRecord::Base
 
   # ----- Virtual Attributes (Readers) -----
 
+  def email
+    emails.first.try(:address)
+  end
+
   def short_name
     first_initial = first_name[0..0]
     "#{first_initial}. #{last_name}"
@@ -208,7 +212,7 @@ class Member < ActiveRecord::Base
     e = all_related(emails, "Emails")
     c = all_related(emergency_contacts, "Emergency Phone Contacts")
     o = all_related(other_infos, "Other Information")
-    [p,e,a,c,o].find_all {|x| ! x.blank?}.join("</p>")
+    [p,e,a,c,o].find_all {|x| ! x.blank?}.join("<p></p>")
   end
 
   def role_val(role)
@@ -231,17 +235,25 @@ class Member < ActiveRecord::Base
     end.join(',')
   end
 
-  def next_member_id
-    list = Member.order('last_name ASC').map {|m| [m.id, m.last_name]}
-    indx = list.index([id, last_name]) + 1
+  def next_member
+    list = Member.order('last_name ASC').all
+    indx = list.index(self) + 1
     indx = 0 if indx == list.length
-    list[indx].first
+    list[indx]
+  end
+
+  def next_member_id
+    next_member.id
+  end
+
+  def prev_member
+    list = Member.order('last_name ASC').all
+    indx = list.index(self)-1
+    list[indx]
   end
 
   def prev_member_id
-    list = Member.order('last_name ASC').map {|m| [m.id, m.last_name]}
-    indx = list.index([id, last_name])-1
-    list[indx].first
+    prev_member.id
   end
 
   # ----- For Error Reporting -----

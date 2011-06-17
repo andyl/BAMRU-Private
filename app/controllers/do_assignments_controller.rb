@@ -17,6 +17,7 @@ class DoAssignmentsController < ApplicationController
   end
 
   def edit
+    authorize! :manage, DoAssignment
     @org = Org.where(:name => "BAMRU").first
     @quarter = {
             :year      => params["year"].try(:to_i)    || Time.now.year,
