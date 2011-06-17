@@ -11,11 +11,6 @@ Zn::Application.routes.draw do
   resources :passwords
   resources :sessions
 
-#  match "/members" => "members#index",  :method => :get
-#  match "/members" => "members#create", :method => :post
-
-#  devise_for :members
-
   resources  :members
   resources  :messages
   resources  :unit_photos

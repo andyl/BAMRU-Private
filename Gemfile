@@ -1,23 +1,22 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc1'
+gem 'rails',         '3.1.0.rc4'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "capistrano"
 gem "factory_girl"
 gem "fastercsv"
 gem "nokogiri"
 gem "thin"
-#gem "devise"
 gem "simple_form"
 
 gem 'sqlite3'
-gem 'devise'
 gem 'jquery-rails'
 gem 'paperclip'
 gem 'parslet'
 gem 'aalf',         :git => "http://github.com/andyl/aalf.git"
 gem 'dynamic_form'
 gem 'cancan'
+gem 'linecache', "0.43"
 
 # Asset template engines
 gem 'json'
@@ -35,7 +34,7 @@ group :development, :test do
   gem 'guard-livereload'
   gem "jasmine"
   gem "faker"
-  gem "valid_attribute"
+  # gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
   gem "rspec-core",  "2.6.3"

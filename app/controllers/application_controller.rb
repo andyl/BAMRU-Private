@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_member!
     unless member_signed_in?
+      session[:ref] = request.url
       redirect_to login_url, :alert => "You must first log in to access this page"
     end
   end
