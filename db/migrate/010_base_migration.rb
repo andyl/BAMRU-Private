@@ -10,20 +10,23 @@ class BaseMigration < ActiveRecord::Migration
       t.boolean  :admin, :default => false
       t.string   :encrypted_password
       
-      t.recoverable
-      t.rememberable
-      t.trackable
-      # t.confirmable
-      # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
-      # t.token_authenticatable
+      t.integer  :sign_in_count, :default => 0
+
+      t.string   :last_sign_in_ip
+      t.time     :last_sign_in_at
+
+      t.string   :current_sign_in_ip
+      t.time     :current_sign_in_at
+
+      t.string   :reset_password_token
+      t.time     :reset_password_sent_at
+
+      t.time     :remember_created_at
+
       t.timestamps
     end
 
-    # add_index :members, :email,                :unique => true
     add_index :members, :reset_password_token, :unique => true
-    # add_index :members, :confirmation_token,   :unique => true
-    # add_index :members, :unlock_token,         :unique => true
-    # add_index :members, :authentication_token, :unique => true
 
     create_table :addresses do |t|
       t.integer :member_id

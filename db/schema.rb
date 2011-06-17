@@ -107,14 +107,14 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "v9"
     t.boolean  "admin",                  :default => false
     t.string   "encrypted_password"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.time     "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.time     "current_sign_in_at"
+    t.string   "reset_password_token"
+    t.time     "reset_password_sent_at"
+    t.time     "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
