@@ -8,7 +8,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string   :ham
       t.string   :v9
       t.boolean  :admin, :default => false
-      t.string   :encrypted_password
+#      t.string   :encrypted_password
 
       t.string   :password_digest
       
