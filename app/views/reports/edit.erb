@@ -1,0 +1,22 @@
+<script type="text/javascript" src="/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+	mode : "textareas",
+	theme : "simple",
+	editor_selector : "<%= @fext %>"
+});
+</script>
+
+<center>
+
+<h1>Editing <%= @file %><p /></h1>
+<b>Do not edit this data unless you know what you are doing!</b><p />
+<a href="/home">home</a><p />
+<form method="post" action="/save">
+  <input type="hidden" name="datafile" value="<%= @file %>">
+	<textarea name="content" rows=25 class="htm" style="width:80%"><%= @text %></textarea>
+	<p />
+	<input type="submit" value="Save">
+</form>
+
+</center>

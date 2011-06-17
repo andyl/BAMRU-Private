@@ -1,20 +1,60 @@
-<table align=center class=T>
+<HTML>
+<head>
+<title>BAMRU Maplist</title>
+<%= javascript_include_tag :application %>
+<script type="text/javascript">
+  $(function() {
+    $("table tr:nth-child(even)").addClass("striped");
+  });
+</script>
+<style>
+  body,td {
+    font-size: 8pt;
+  }
+  table {
+    background-color: black;
+    border: 1px black solid;
+    border-collapse: collapse;
+  }
+  th {
+    border: 1px outset silver;
+    background-color: lightblue;
+    color: black;
+  }
+  tr {
+    background-color: white;
+    margin: 1px;
+  }
+  tr.striped {
+    background-color: lightgreen;
+  }
+  td {
+    padding: 1px 8px;
+  }
+</style>
+
+</head>
+<body>
+<table width = 740 align=center class=T>
   <tr><td align=center><h1>BAMRU Maplist</h1></td></tr>
 </table>
 
-<table align=center class=T border=1>
-  <tr><th>#</th><th>Role</th><th>Name</th><th>Home</th><th>Work</th><th>Mobile</th><th>Home</th><th>Work</th></tr>
-  <% @count = 0 %>
-  <% @members.each do |mem| %>
-    <tr>
-      <td><%= @count += 1 %></td>
-      <td><%= mem.full_roles %></td>
-      <td><%= mem.full_name %></td>
-      <td><%# mem.gmap_link_home("home").empty? ? "NA" : mem.gmap_link_home(mem.home_city) %></td>
-      <td><%# mem.mobile_phone.empty? ? "NA" : mem.mobile_phone %></td>
-      <td><%# mem.home_phone.empty?   ? "NA" : mem.home_phone %></td>
-      <td><%# mem.work_phone.empty?   ? "NA" : mem.work_phone %></td>
-      <td></td>
-    </tr>
-  <% end %>
+<table width=740 align=center class=T border=1>
+<tr><th>#</th><th>Role</th><th>Name</th><th>Home</th><th>Work</th><th>Mobile</th><th>Home</th><th>Work</th></tr>
+<% @count = 0 %>
+<% @members.each do |mem| %>
+ <tr>
+  <td><%= @count += 1 %></td>
+  <td><%= mem.full_roles %></td>
+  <td><%= mem.full_name %></td>
+  <td><%# mem.gmap_link_home("home").empty? ? "NA" : mem.gmap_link_home(mem.home_city) %></td>
+  <td><%# mem.gmap_link_work("work").empty? ? "NA" : mem.gmap_link_work(mem.work_city) %></td>
+  <td><%# mem.mobile_phone.empty? ? "NA" : mem.mobile_phone %></td>
+  <td><%# mem.home_phone.empty?   ? "NA" : mem.home_phone %></td>
+  <td><%# mem.work_phone.empty?   ? "NA" : mem.work_phone %></td>
+</tr>
+<% end %>
 </table>
+<hr>
+</body>
+</HTML>

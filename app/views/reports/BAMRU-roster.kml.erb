@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+<% m_array.each do |mem| %>
+<% mem.addresses.each do |adr| %>  
+  <Placemark>
+    <name><%= mem.last_name %> (<%= adr.typ %>)</name>
+    <description>
+      <%= adr.address1 %>, <%= adr.city %>, <%= adr.state %> <%= adr.zip %></description>
+    <Point>
+      <coordinates><%= adr.lon %>,<%= adr.lat %>,0</coordinates>
+    </Point>
+  </Placemark>
+<% end %>
+<% end %>
+</kml>

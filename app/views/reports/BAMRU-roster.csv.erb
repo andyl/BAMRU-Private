@@ -1,0 +1,6 @@
+<% x=1 %>
+<% fields = %w(organization roles full_name mobile_phone home_phone work_phone home_address work_address home_email personal_email work_email ham v9) %>
+<%= fields.join(',') %> 
+<% @members.each do |mem| %>
+<%# mem.csv_row(fields) %>
+<% end %>

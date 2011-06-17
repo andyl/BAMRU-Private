@@ -1,0 +1,89 @@
+<HTML>
+<head>
+<meta name="robots" content="noindex,nofollow" />
+<link type="text/css" href="/css/no-theme/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
+<style type="text/css">
+	.H {background:lightgreen;}
+	.M {background:palegoldenrod;}
+	.L {background:lightpink;}
+	.T {font-size: 14px;}
+</style>
+<script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript">
+  function usecaution() {
+    alert("These CSV and HTM data elements are embedded in various documents.  Edit with care!!  You could break the system if you screw them up!!")
+  };
+  function showHandler() {
+    $(".dElements").show();
+    $("#dTog").removeClass("dShow");
+    $("#dTog").addClass("dHide");
+    $("#dTog").text("hide");
+    $(".dHide").one('click', function(event){hideHandler(); return false;} );
+  };
+  function hideHandler() {
+    $(".dElements").hide();
+    $("#dTog").removeClass("dHide");
+    $("#dTog").addClass("dShow");
+    $("#dTog").text("show");
+    $(".dShow").one('click', function(event){showHandler(); return false;} );
+  };
+  $(function() {
+    $("#caution").click(function () {usecaution(); return false;});
+    $(".dShow").one('click', function(event){showHandler(); return false;} );
+    $(".dHide").one('click', function(event){hideHandler(); return false;} );
+    hideHandler();
+  });
+</script>
+
+<title>BAMRU Roster Sync</title>
+</head>
+<body>
+<table width = 740 align=center class=T><tr><td align=left valign=center>
+<h1>BAMRU Roster Sync</h1>These auto-generated documents contain current contact information that can be used in cellphones, email address books, printed rosters, etc.<p />
+<b>NOTE</b> - this information is confidential for BAMRU members only.  Distribution outside of BAMRU is prohibited.
+</td><td width=20></td><td><img src="beta.jpg"></td><td width=20></td></tr></table>
+
+<hr>
+
+<table width=740 height=375 align=center class=T>
+<tr>
+<td valign=top>
+<h2>Document Formats</h2>
+<div id="sync_status">
+Last synchronized: <span id="sdate"><%= @update_date %></span>
+</div><p />
+
+<% @temp_a.each do |th| %>
+<li id="<%=th["id"]%>" class="<%=th["stat"]%> V"><a href="<%=th["link"]%>"><%=th["atxt"]%></a> - <%=th["mesg"]%><br />
+<% end %>
+  
+</td>
+
+<td width=25></td>
+
+<td valign=top width=250>
+<h2>About This App</h2>
+Version 0.0.8<br>[ <a href="/Readme.txt">readme</a> | <a href="/History.txt">history</a> ]<p />
+Legend:
+<li class=H>WORKING<br>
+<li class=M>IN PROGRESS<br>
+<li class=L>NOT WORKING<br></li><p />
+Send feedback to andy@r210.com<p />
+<b>Data Elements:</b> [ <a href="#" id="dTog" class="dHide">hide</a> ]<p /> 
+<div class="dElements">
+<center> > > <a id="caution" class="dElements" href="#"><b>use caution!</b></a> < <</center>
+<p />
+<li class=M><a href="/edit/member_ham_v9.csv">Edit Ham & V9</a><br />
+  <li class=M><a href="/edit/bamru_phones.csv">Edit Status & Sat Phone</a><br />
+  <li class=M><a href="/edit/AHC-guide.htm">Edit Callout Guide</a><br />
+  <li class=M><a href="/edit/sheriff1.csv">Edit Sheriff Contacts</a><br />
+  <li class=M><a href="/edit/sheriff2.csv">Edit Sheriff Hotlines</a><br />
+  <li class=M><a href="/launch">Sync Data & Re-generate Docs</a><br/>
+</div>
+</td>
+</tr>
+</table>
+<hr>
+</body>
+</HTML>

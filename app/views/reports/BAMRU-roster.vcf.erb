@@ -1,0 +1,26 @@
+<% @m_array.each do |mem| %>
+BEGIN:VCARD
+VERSION:3.0
+N:<%= mem.last_name %>;<%= mem.first_name %>
+ORG:BAMRU
+TITLE:<%= mem.roles %>
+<% mem.addresses.each do |adr| %>
+ADR;TYPE=<%= adr.typ %>:;;<%= adr.address1 %>;<%= adr.address2 %>;<%= adr.city %>;<%= adr.state %>;<%= adr.zip %>;United States of America
+<% end %>
+<% mem.hwm_phones.each do |pho| %>
+TEL;TYPE=<%= pho.typ %>,VOICE:<%= pho.number %>
+<% end %>
+<% mem.emails.each do |ema| %>
+EMAIL;TYPE=<%= ema.typ %>:<%= ema.email %>
+<% end %>
+<% mem.alt_phones.each do |pho| %>
+NOTE:<%= pho.typ %> (<%= pho.number %>)
+<% end %>
+<% unless mem.ham.nil? || mem.ham.empty? %>
+NOTE:Ham License - <%= mem.ham %>
+<% end %>
+<% unless mem.v9.nil? || mem.v9.empty? %>
+NOTE:V9 - <%= mem.v9 %>
+<% end %>
+END:VCARD
+<% end %>
