@@ -1,4 +1,9 @@
 class Time
+
+  def current_week
+    (self.strftime("%U").to_i % 13) + 1
+  end
+
   def current_quarter
     case beginning_of_quarter.month
       when 1  : 1

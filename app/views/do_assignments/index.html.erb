@@ -23,11 +23,15 @@
         </thead>
         <tbody>
         <% @do_assignments.each do |a| %>
-          <tr>
-            <td><%= a.year%></td>
-            <td><%= a.quarter%></td>
-            <td><%= a.week%></td>
-            <td><%= a.name%></td>
+          <% if @current_week == a.week && @current_quarter == a.quarter && Time.now.year == a.year %>
+            <tr style="background-color: lightgreen;">
+          <% else %>
+            <tr>
+          <% end %>
+          <td><%= a.year%></td>
+          <td><%= a.quarter%></td>
+          <td><%= a.week%></td>
+          <td><%= a.name%></td>
           </tr>
         <% end %>
         </tbody>

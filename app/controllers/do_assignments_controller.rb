@@ -8,6 +8,8 @@ class DoAssignmentsController < ApplicationController
             :year      => params["year"].try(:to_i)    || Time.now.year,
             :quarter   => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
+    @current_week    = Time.now.current_week
+    @current_quarter = Time.now.current_quarter
     @do_assignments = (1..13).map do |num|
       quarter = @quarter.clone
       quarter[:org_id] = 1

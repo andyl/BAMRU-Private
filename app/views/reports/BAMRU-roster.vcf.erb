@@ -1,9 +1,9 @@
-<% @m_array.each do |mem| %>
+<% @embers.each do |mem| %>
 BEGIN:VCARD
 VERSION:3.0
 N:<%= mem.last_name %>;<%= mem.first_name %>
 ORG:BAMRU
-TITLE:<%= mem.roles %>
+TITLE:<%= mem.full_roles %>
 <% mem.addresses.each do |adr| %>
 ADR;TYPE=<%= adr.typ %>:;;<%= adr.address1 %>;<%= adr.address2 %>;<%= adr.city %>;<%= adr.state %>;<%= adr.zip %>;United States of America
 <% end %>
