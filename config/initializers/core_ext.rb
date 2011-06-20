@@ -1,3 +1,5 @@
+require 'active_support/core_ext'
+
 class Time
 
   def current_week
@@ -12,4 +14,12 @@ class Time
       when 10 : 4
     end
   end
+
+end
+
+class Numeric
+  def quarters
+    ActiveSupport::Duration.new(self * 91.days, [[:days, self * 91]])
+  end
+  alias :quarter :quarters
 end

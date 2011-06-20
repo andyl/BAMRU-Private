@@ -18,7 +18,7 @@
       <table border=1 align=center>
         <thead>
         <tr>
-          <th>Year</th><th>Quarter</th><th>Week</th><th>Name</th>
+          <th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Name</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +31,8 @@
           <td><%= a.year%></td>
           <td><%= a.quarter%></td>
           <td><%= a.week%></td>
+          <td><%= a.start_time.strftime("%a %b %d %H:%M") %></td>
+          <td><%= a.end_time.strftime("%a %b %d %H:%M") %></td>
           <td><%= a.name%></td>
           </tr>
         <% end %>
