@@ -23,3 +23,9 @@ class Numeric
   end
   alias :quarter :quarters
 end
+
+class Time
+  def show
+    self.strftime("%a %b %d %H:%M")
+  end
+end

@@ -31,8 +31,8 @@
           <td><%= a.year%></td>
           <td><%= a.quarter%></td>
           <td><%= a.week%></td>
-          <td><%= a.start_time.strftime("%a %b %d %H:%M") %></td>
-          <td><%= a.end_time.strftime("%a %b %d %H:%M") %></td>
+          <td><%= a.start_time.show %></td>
+          <td><%= a.end_time.show %></td>
           <td><%= a.name%></td>
           </tr>
         <% end %>

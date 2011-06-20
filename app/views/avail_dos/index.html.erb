@@ -7,7 +7,7 @@
 <%= csrf_meta_tag %>
 
 <div id=x_container>
-  <div id=x_body>
+  <div id=x_wide_body>
     <div id=x_header>
       <table width=100%>
         <tr>
@@ -40,7 +40,7 @@
 
       <%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
         <table align=center border=1>
-          <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Status</th><th>Comment</th></tr>
+          <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Status</th><th>Comment</th></tr>
           <% @member.avail_dos_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
             <%= mem.fields_for :avail_dos, ado do |ido| %>
               <%= ido.hidden_field :year, :value => ado.year %>
@@ -49,6 +49,8 @@
               <tr>
                 <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
                 <td><%= ado.week%></td>
+                <td><%= ado.start_time.show %></td>
+                <td><%= ado.end_time.show %></td>
                 <td>
                   <% if ado.typ.blank? %>
                     <%= ido.select :typ, %w(available unavailable), :include_blank => true %>
