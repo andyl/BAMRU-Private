@@ -1,11 +1,13 @@
 class MobileController < ApplicationController
 
-  before_filter :authenticate_member!
+  before_filter :authenticate_mobile_member!
+
+  layout 'mobile'
 
   def index
   end
 
-  def test
+  def about
   end
 
   def tbd

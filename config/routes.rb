@@ -27,9 +27,14 @@ Zn::Application.routes.draw do
   end
 
   get "mobile" => "mobile#index", :as => "mobile"
+  get "mobile/about"
+
+  get "mobile/login"  => "mobile/sessions#new",     :as => "mobile_login"
+  get "mobile/logout" => "mobile/sessions#destroy", :as => "mobile_logout"
   
   namespace "mobile" do
     resources :members
+    resources :sessions
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
