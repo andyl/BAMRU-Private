@@ -31,7 +31,8 @@ module ApplicationHelper
     avail  = link_to_unless_current("Availability", unit_avail_ops_path)
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
-    [roster, photos, certs, avail, duty, report].join(' | ')
+    mobile = link_to_unless_current("Mobile", '/home/mobile')
+    [roster, photos, certs, avail, duty, report, mobile].join(' | ')
   end
 
   def header_nav

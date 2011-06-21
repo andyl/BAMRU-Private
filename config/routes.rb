@@ -4,6 +4,7 @@ Zn::Application.routes.draw do
   get "home/test"
   get "home/tbd"
   get "home/contact"
+  get "home/mobile"
 
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
@@ -23,6 +24,12 @@ Zn::Application.routes.draw do
     resources  :certs
     resources  :avail_ops
     resources  :avail_dos
+  end
+
+  get "mobile" => "mobile#index", :as => "mobile"
+  
+  namespace "mobile" do
+    resources :members
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos

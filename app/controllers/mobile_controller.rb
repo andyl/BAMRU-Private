@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class MobileController < ApplicationController
 
   before_filter :authenticate_member!
 
@@ -12,9 +12,6 @@ class HomeController < ApplicationController
   end
 
   def contact
-  end
-
-  def mobile
   end
 
 end
