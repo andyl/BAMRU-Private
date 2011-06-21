@@ -17,6 +17,7 @@ gem 'aalf',         :git => "http://github.com/andyl/aalf.git"
 gem 'dynamic_form'
 gem 'cancan'
 gem 'linecache', "0.43"
+gem 'mail'
 
 # Asset template engines
 gem 'json'

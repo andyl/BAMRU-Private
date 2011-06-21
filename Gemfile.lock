@@ -251,6 +251,7 @@ DEPENDENCIES
   launchy
   linecache (= 0.43)
   livereload
+  mail
   nokogiri
   paperclip
   parslet
