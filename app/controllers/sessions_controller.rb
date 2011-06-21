@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def create
+    params[:user_name] = params[:user_name].gsub('.','_').downcase if params[:user_name]
     member = Member.find_by_user_name(params[:user_name])
     if member && member.authenticate(params[:password])
       session[:member_id] = member.id

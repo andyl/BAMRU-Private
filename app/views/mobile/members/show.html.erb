@@ -1,0 +1,13 @@
+<b><%= @member.full_name %></b><br/>
+<%= @member.full_roles %><p></p>
+<%= raw @member.all_assoc %><p></p>
+<% unless @member.ham.blank? %>
+  <b>Ham:</b> <%= @member.ham %><br/>
+<% end %>
+<% unless @member.v9.blank? %>
+  <b>V9:</b> <%= @member.v9 %><p/>
+<% end %>
+<% unless @member.photos.length > 0 %><b>Photos:</b><br/>TBD<% end %>
+<% @member.photos.each do |pic| %>
+  <%= image_tag pic.image.url(:thumb) %> 
+<% end %>
