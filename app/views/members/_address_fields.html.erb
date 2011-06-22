@@ -1,4 +1,4 @@
-<li class=fields style="list-style-type: none;" id=address_<%=f.id%>>
+<li class=fields style="list-style-type: none; <%= check_style(@xadr) %>" id=address_<%=f.id%>>
   <span class=sort_handle><img src="/images/handle.png" class=handle></span>
   <%= f.hidden_field :position, :size => 2 %>
   <%= f.text_area :full_address, :size => "20x2" %>

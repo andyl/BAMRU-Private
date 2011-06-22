@@ -15,9 +15,16 @@ class Email < ActiveRecord::Base
 
   # ----- Scopes -----
   scope :pagable, where(:pagable => 1)
-
+  scope :non_standard, where('typ <> "Work"').
+                       where('typ <> "Home"').
+                       where('typ <> "Personal"').
+                       where('typ <> "Other"')
 
   # ----- Local Methods-----
+  def non_standard_typ?
+    ! %w(Work Home Personal Other).include?(typ)
+  end
+
   def output
     "#{address} (#{typ})"
   end

@@ -14,9 +14,17 @@ class Phone < ActiveRecord::Base
 
   # ----- Scopes -----
   scope :pagable, where(:pagable => 1)
+  scope :non_standard, where('typ <> "Work"').
+                       where('typ <> "Home"').
+                       where('typ <> "Mobile"').
+                       where('typ <> "Other"')
 
   
   # ----- Local Methods-----
+  def non_standard_typ?
+    ! %w(Work Home Mobile Other).include?(typ)
+  end
+
   def output
     "#{number} (#{typ})"
   end

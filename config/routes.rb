@@ -5,6 +5,7 @@ Zn::Application.routes.draw do
   get "home/tbd"
   get "home/contact"
   get "home/mobile"
+  get "home/edit_info"
 
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"

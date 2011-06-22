@@ -148,6 +148,12 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def non_standard_records?
+    phones.non_standard.count != 0 ||
+    emails.non_standard.count != 0 ||
+    addresses.non_standard.count != 0
+  end
+
   # ----- Instance Methods -----
   def phone(typ)
     phones.where(:typ => typ).first

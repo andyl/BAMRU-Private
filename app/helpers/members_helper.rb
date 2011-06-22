@@ -18,7 +18,6 @@ module MembersHelper
   end
 
   def link_to_remove_field(name, f)
-#    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this);")
     link_to_function(name, "remove_fields(this);")
   end
 
@@ -28,6 +27,26 @@ module MembersHelper
       render(association.to_s.singularize + "_fields", :f => builder)
     end
     link_to_function(name, h("add_fields(this, '#{association}', '#{escape_javascript(fields)}')"))
+  end
+
+  # ----- For Help Message -----
+
+  def check_style(f)
+    return nil if f.nil?
+    return unless f.respond_to?(:non_standard_typ?)
+    "background-color: lightyellow;" if f.non_standard_typ?
+  end
+
+  def has_non_standard_records(mem)
+    mem.phones.where
+  end
+
+  def edit_info_message
+    <<-ERB
+      <div style='background-color: lightyellow; font-size: 10px; text-align: center;'>
+        Please move highlighted records to "Emergency Contacts" or  "Other Info". (#{link_to("more", '/home/edit_info', :target => "_blank")})
+      </div>
+    ERB
   end
 
 end

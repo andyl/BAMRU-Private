@@ -31,6 +31,7 @@
       </tr></table>
     </div>
     <div id=mem_left_col>
+      <%= raw edit_info_message if @member.non_standard_records? %>
       <p/>
       <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@member)%></div>
       <p/>
@@ -47,7 +48,7 @@
         <div id=sortable_phones>
           <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
             <%= f.fields_for :phones, xphone do |phone| %>
-              <%= render "phone_fields", :f => phone %>
+              <%= @xphone = xphone; render "phone_fields", :f => phone %>
             <% end %>
           <% end %>
         </div>
@@ -55,7 +56,7 @@
         <div id=sortable_emails>
           <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
             <%= f.fields_for :emails, xemail do |email| %>
-              <%= render "email_fields", :f => email, :object => %w(a b c)%>
+              <%= @xemail = xemail; render "email_fields", :f => email, :object => %w(a b c)%>
             <% end %>
           <% end %>
         </div>
@@ -63,7 +64,7 @@
         <div id=sortable_addresses>
           <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
             <%= f.fields_for :addresses, xaddress do |address| %>
-              <%= render "address_fields", :f => address %>
+              <%= @xadr = xaddress; render "address_fields", :f => address %>
             <% end %>
           <% end %>
         </div>

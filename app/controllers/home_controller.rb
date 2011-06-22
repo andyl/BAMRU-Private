@@ -17,4 +17,7 @@ class HomeController < ApplicationController
   def mobile
   end
 
+  def edit_info
+  end
+
 end
