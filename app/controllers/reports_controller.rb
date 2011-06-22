@@ -3,6 +3,12 @@ class ReportsController < ApplicationController
   before_filter :authenticate_member_for_reports
 
   def index
+    @report_list = [
+    ["Map List",   'BAMRU-roster.html', "HTML Roster with Gmap links"],
+    ["CSV Report", 'BAMRU-roster.csv',  "for importing into Excel"],
+    ["Hello World",'HelloWorld.pdf',    "prototype/proof of concept"],
+    ["BAMRU Names",'BAMRU-names.pdf',   "list of names for ProDeal reporting"]
+    ]
   end
 
   def show

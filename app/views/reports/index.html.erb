@@ -1,6 +1,6 @@
 <%= javascript_include_tag "jquery.tablesorter.min.js" %>
 <%= javascript_include_tag "members.js" %>
-<%= javascript_include_tag "unit_certs_table.js" %>
+<%= javascript_include_tag "reports_table.js" %>
 
 <div id=x_container>
   <div id=x_body>
@@ -22,26 +22,13 @@
         </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= link_to "Map List", '/reports/BAMRU-roster.html', :target => "_blank" %></td>
-            <td>HTML</td>
-            <td>HTML Roster with gMap links</td>
-          </tr>
-          <tr>
-            <td><%= link_to "CSV Report", '/reports/BAMRU-roster.csv', :target => "_blank" %></td>
-            <td>CSV</td>
-            <td>for importing into Excel</td>
-          </tr>
-          <tr>
-            <td><%= link_to "PDF Hello World", '/reports/HelloWorld.pdf', :target => "_blank" %></td>
-            <td>PDF</td>
-            <td>prototype/proof of concept</td>
-          </tr>
-          <tr>
-            <td><%= link_to "BAMRU Names", '/reports/BAMRU-names.pdf', :target => "_blank" %></td>
-            <td>PDF</td>
-            <td>simple list of BAMRU names - for ProDeal reporting</td>
-          </tr>
+          <% @report_list.each do |report| %>
+            <tr>
+              <td><%= report_link(report) %></td>
+              <td><%= report_format(report) %></td>
+              <td><%= report_description(report) %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
 

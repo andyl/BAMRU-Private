@@ -47,11 +47,11 @@
   <td><%= @count += 1 %></td>
   <td><%= mem.full_roles %></td>
   <td><%= mem.full_name %></td>
-  <td><%# mem.gmap_link_home("home").empty? ? "NA" : mem.gmap_link_home(mem.home_city) %></td>
-  <td><%# mem.gmap_link_work("work").empty? ? "NA" : mem.gmap_link_work(mem.work_city) %></td>
-  <td><%# mem.mobile_phone.empty? ? "NA" : mem.mobile_phone %></td>
-  <td><%# mem.home_phone.empty?   ? "NA" : mem.home_phone %></td>
-  <td><%# mem.work_phone.empty?   ? "NA" : mem.work_phone %></td>
+  <td><%= raw gmap_link(mem, "Home") %></td>
+  <td><%= raw gmap_link(mem, "Work") %></td>
+  <td><%= mem.phone("Mobile").try(:number) %></td>
+  <td><%= mem.phone("Home").try(:number) %></td>
+  <td><%= mem.phone("Work").try(:number) %></td>
 </tr>
 <% end %>
 </table>

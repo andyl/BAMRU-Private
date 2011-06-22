@@ -149,6 +149,18 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Instance Methods -----
+  def phone(typ)
+    phones.where(:typ => typ).first
+  end
+
+  def address(typ)
+    addresses.where(:typ => typ).first
+  end
+
+  def email(typ)
+    emails.where(:typ => typ).first
+  end
+
   def get_cert_color
     current_medical_and_cpr? ? "black" : "red"
   end
