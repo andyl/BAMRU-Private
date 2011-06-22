@@ -19,7 +19,7 @@ class Mobile::SessionsController < ApplicationController
       else
         cookies[:digest] = nil
       end
-      redirect_to (session[:ref] || root_path), :notice => "Logged in!"
+      redirect_to (session[:ref] || mobile_path), :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"
@@ -29,7 +29,7 @@ class Mobile::SessionsController < ApplicationController
   def destroy
     session[:member_id] = nil
     cookies[:digest] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to mobile_path, :notice => "Logged out!"
   end
 
 end

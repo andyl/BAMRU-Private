@@ -18,6 +18,7 @@ gem 'dynamic_form'
 gem 'cancan'
 gem 'linecache', "0.43"
 gem 'mail'
+gem 'prawn_rails'
 
 # Asset template engines
 gem 'json'
@@ -27,6 +28,7 @@ gem 'uglifier'
 gem 'therubyracer', :require => 'v8'
 
 group :development, :test do
+  # gem "valid_attribute"
   gem 'csv-mapper'
   gem 'rb-inotify'
   gem 'guard'
@@ -35,7 +37,6 @@ group :development, :test do
   gem 'guard-livereload'
   gem "jasmine"
   gem "faker"
-  # gem "valid_attribute"
   gem "rcov"
   gem "ruby-debug"
   gem "rspec-core",  "2.6.3"
