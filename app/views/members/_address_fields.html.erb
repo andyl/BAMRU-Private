@@ -1,5 +1,5 @@
 <li class=fields style="list-style-type: none;" id=address_<%=f.id%>>
-  <span class=sort_handle>(+)</span>
+  <span class=sort_handle><img src="/images/handle.png" class=handle></span>
   <%= f.hidden_field :position, :size => 2 %>
   <%= f.text_area :full_address, :size => "20x2" %>
   <%= f.select :typ, f.object.typ_opts, {}, {:class => "upp"} %>
