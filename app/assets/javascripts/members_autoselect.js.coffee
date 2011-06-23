@@ -11,7 +11,9 @@ autoselect_opts =
   source: autoselectMemberNames
   select: (event, ui) -> window.location.href = ui.item.url
 
+
 $(document).ready ->
-  $("#autoselect").focus ->
-    $("#autoselect").prop("value", "")
+  $("input").focus ->    # erase the input value if it contains three dots...
+    ele = $(this)
+    ele.prop("value", "") if ele.prop("value").search(/\.\.\./) != -1
   $("#autoselect").autocomplete(autoselect_opts)

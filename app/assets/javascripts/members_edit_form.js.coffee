@@ -6,7 +6,7 @@ window.cleanup = (string) ->
   string.replace(/\&amp;/g,'&').replace(/\&lt;/g,'<').replace(/\&quot;/g,'"').replace(/\&gt;/g,'>')
 
 window.add_fields = (link, association, content) ->
-  new_id = new Date().getTime();
+  new_id = new Date().getTime()
   regexp = new RegExp("new_" + association, "g")
   str    = content.replace(regexp, new_id)
   cleanStr = cleanup(str)
@@ -20,6 +20,9 @@ window.add_fields = (link, association, content) ->
   lastLi = tgtDiv.children("li").last()
   tgtInput = lastLi.children("input").first()
   tgtInput.attr("value", length)
+  $("input").focus ->    # erase the input value if it contains three dots...
+    ele = $(this)
+    ele.prop("value", "") if ele.prop("value").search(/\.\.\./) != -1
 
 window.remove_fields = (link) ->
   $(link).next("input[type=hidden]").val("1")
