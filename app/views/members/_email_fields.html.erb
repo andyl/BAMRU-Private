@@ -1,7 +1,7 @@
-<li class=fields style="list-style-type: none; <%= check_style(@xemail) %>" id=email_<%=f.id%>>
+<li class=fields style="list-style-type: none; <%= check_style(@xemail) %>" id=email_<%=f.object_id%>>
   <span class=sort_handle><img src="/images/handle.png" class=handle></span>
   <%= f.hidden_field :position, :size => 1 %>
-  <%= f.text_field :address, :size => 22 %>
+  <%= f.text_field :address, :size => 24 %>
   <%= f.select :typ, f.object.typ_opts %>
   Pgr<%= f.check_box :pagable %>
   <%= link_to_remove_field("remove", f) %>

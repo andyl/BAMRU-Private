@@ -18,7 +18,7 @@ gem 'dynamic_form'
 gem 'cancan'
 gem 'linecache', "0.43"
 gem 'mail'
-gem 'prawn_rails'
+gem 'prawn'
 
 # Asset template engines
 gem 'json'
@@ -28,7 +28,6 @@ gem 'uglifier'
 gem 'therubyracer', :require => 'v8'
 
 group :development, :test do
-  # gem "valid_attribute"
   gem 'csv-mapper'
   gem 'rb-inotify'
   gem 'guard'

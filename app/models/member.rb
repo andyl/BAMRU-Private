@@ -16,11 +16,11 @@ class Member < ActiveRecord::Base
   attr_accessible :bd, :ol, :admin
 
   # ----- Associations -----
-  has_many :addresses,   :order => 'position'
-  has_many :phones,      :order => 'position'
-  has_many :emails,      :order => 'position'
-  has_many :photos,      :order => 'position'
-  has_many :other_infos, :order => 'position'
+  has_many :addresses,          :order => 'position'
+  has_many :phones,             :order => 'position'
+  has_many :emails,             :order => 'position'
+  has_many :photos,             :order => 'position'
+  has_many :other_infos,        :order => 'position'
   has_many :emergency_contacts, :order => 'position'
   has_many :roles
   has_many :certs
@@ -37,8 +37,8 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :certs,     :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true
   accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|a| a[:typ].blank? }
-  accepts_nested_attributes_for :emergency_contacts,    :allow_destroy => true
-  accepts_nested_attributes_for :other_infos,           :allow_destroy => true
+  accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true #reject if name/number are blank, or have ...
+  accepts_nested_attributes_for :other_infos,        :allow_destroy => true #reject if name/number are blank, or have ...
 
   # ----- Validations -----
   validates_associated    :addresses, :phones, :emails

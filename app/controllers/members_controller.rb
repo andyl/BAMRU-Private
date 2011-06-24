@@ -37,7 +37,11 @@ class MembersController < ApplicationController
   def update
     @member = Member.where(:id => params[:id]).first
     authorize! :manage, @member
-    if @member.update_attributes(params["member"])
+    mpar = params["member"]
+    if mpar["password"].blank? && mpar["password_confirmation"].blank?
+      mpar.delete("password"); mpar.delete("password_confirmation")
+    end
+    if @member.update_attributes(mpar)
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"

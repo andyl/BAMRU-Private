@@ -18,7 +18,6 @@ describe Message do
       @res.length.should == 3
     end
     it "returns an array of hashes" do
-      puts @res.inspect
       @res.class.should == Array
       @res.first.class.should == Hash
     end

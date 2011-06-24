@@ -11,7 +11,6 @@ autoselect_opts =
   source: autoselectMemberNames
   select: (event, ui) -> window.location.href = ui.item.url
 
-
 $(document).ready ->
   $("input").focus ->    # erase the input value if it contains three dots...
     ele = $(this)
