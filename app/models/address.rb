@@ -30,10 +30,16 @@ class Address < ActiveRecord::Base
   validate :check_full_address_errors
 
   def check_full_address_errors
+    if defined?(@parse_error) && @parse_error == true
+      errors.add(:full_address, "parse error")
+      errors.add(:zip, "parse error")
+      errors.add(:address, "parse error")
+    end
     if errors.include?(:zip) || errors.include?(:state)
       errors.add(:full_address, "has errors")
     end
   end
+
 
   # ----- Scopes -----
   scope :non_standard, where('typ <> "Work"').
@@ -72,7 +78,13 @@ class Address < ActiveRecord::Base
   end
 
   def full_address=(input)
-    hash = parse_address(input)
+    begin
+      hash = parse_address(input)
+    rescue
+      @parse_error = true
+      return
+    end
+    @parse_error = false
     self.zip      = hash[:zip]
     self.address1 = capitalize_each(hash[:address1])
     self.address2 = capitalize_each(hash[:address2])

@@ -35,7 +35,7 @@ class AddressParser < Parslet::Parser
   rule(:spacecom)   { comma.maybe >> space }
   rule(:state_term) { (comma | eof | str(' ')) >> space}
   rule(:newline)    { (str("\r") | str("\n")).repeat }
-  rule(:digit)      { match('[0-9]') }
+  rule(:digit)      { match('[0-9\-]') }
   rule(:adr_char)   { match('[A-z0-9 \#\.\-\,]') }
   rule(:eof)        { any.absent? }
 
@@ -53,7 +53,7 @@ class AddressParser < Parslet::Parser
   rule(:city2)      { (word >> space >> word).as(:city) >> spacecom }
   rule(:city3)      { (word >> space >> word >> space >> word).as(:city) >> spacecom }
   rule(:state)      { state_match.as(:state) >> state_term }
-  rule(:zip)        { digit.repeat(2,5).as(:zip) >> space? >> eof }
+  rule(:zip)        { digit.repeat(2,10).as(:zip) >> space? >> eof }
   rule(:sz)         { state >> zip.maybe }
   rule(:csz)        { (city1 >> sz) | (city2 >> sz) | (city3 >> sz) }
 
@@ -91,6 +91,8 @@ if $0 == __FILE__
   test_runner( "address", "1523 El Camino Real\r\nApartment 22")
   test_runner(     "zip", "94022")
   test_runner(     "zip", "94022 ")
+  test_runner(     "zip", "94022-1828")
+  test_runner(     "zip", "94022-1828 ")
   test_runner(   "state", "CA")
   test_runner(   "state", "Ca")
   test_runner(   "state", "ca")
@@ -100,6 +102,7 @@ if $0 == __FILE__
   test_runner(   "city2", "Mountain View")
   test_runner(     "csz", "Mountain CA 94022")
   test_runner(     "csz", "Mountain View CA 94022")
+  test_runner(     "csz", "Mountain View CA 94022-1828")
   test_runner(     "csz", "SF CA 94022")
   test_runner(     "csz", "mountain view ca 94022")
   test_runner(     "csz", "mountain view, ca 94022")
@@ -114,5 +117,6 @@ if $0 == __FILE__
   test_runner(     "all", "480 55th St.\nUnit Z\nOakland CA 94609")
   test_runner(     "all", "480 55th St.\nUnit z\nOakland CA 94609")
   test_runner(     "all", "480 55th St.\nUnit z\nZakland CA 94609")
+  test_runner(     "all", "480 55th St.\nUnit z\nZakland CA 94609-8765")
 
 end
