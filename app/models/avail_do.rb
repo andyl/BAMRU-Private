@@ -18,6 +18,7 @@ class AvailDo < ActiveRecord::Base
 
   # ----- Class Methods -----
   def self.find_or_new(hash)
+    puts hash.inspect
     where(hash).first || new(hash)
   end
 

@@ -36,18 +36,18 @@
 
       <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %><p/>
       
-      <%= link_prev(@quarter) %> <%= link_current_quarter %> <%= link_next(@quarter) %><p/>
+      <%= avail_dos_link_prev(@quarter) %> <%= avail_dos_link_current_quarter(@quarter) %> <%= avail_dos_link_next(@quarter) %><p/>
 
       <%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
         <table align=center border=1>
           <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Status</th><th>Comment</th></tr>
-          <% @member.avail_dos_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
+          <% @avail_set.each do |ado| %>
             <%= mem.fields_for :avail_dos, ado do |ido| %>
               <%= ido.hidden_field :year, :value => ado.year %>
               <%= ido.hidden_field :quarter, :value => ado.quarter %>
               <%= ido.hidden_field :week, :value => ado.week %>
               <tr>
-                <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
+                <td><%= ado.year %></td><td><%= ado.quarter %></td>
                 <td><%= ado.week%></td>
                 <td><%= ado.start_time.show %></td>
                 <td><%= ado.end_time.show %></td>

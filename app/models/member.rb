@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
   has_many :emergency_contacts, :order => 'position'
   has_many :roles
   has_many :certs
-  has_many :avail_ops
+  has_many :avail_ops,          :order => 'start'
   has_many :avail_dos
   has_many :messages
   has_many :distributions

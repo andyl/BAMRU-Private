@@ -88,6 +88,18 @@ module ApplicationHelper
     link_to "Current Quarter", do_assignments_path
   end
 
+  def avail_dos_link_prev(hash)
+    link_to "<", member_avail_dos_path(prev_quarter(hash))
+  end
+
+  def avail_dos_link_next(hash)
+    link_to ">", member_avail_dos_path(next_quarter(hash))
+  end
+
+  def avail_dos_link_current_quarter(hash)
+    link_to "Current Quarter", member_avail_dos_path(hash[:member_id])
+  end
+
   def edit_link_prev(hash)
     link_to "<", edit_do_assignment_path(prev_quarter(hash))
   end

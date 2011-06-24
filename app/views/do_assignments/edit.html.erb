@@ -20,13 +20,13 @@
 <%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
   <table border=1 align=center>
     <tr><th>Year</th><th>Quarter</th><th>Week</th><th>DO Name</th></tr>
-    <% @org.do_assignments_for(Time.now.year, Time.now.current_quarter).each do |ado| %>
+    <% @org.do_assignments_for(@quarter[:year], @quarter[:quarter]).each do |ado| %>
       <%= org.fields_for :do_assignments, ado do |ido| %>
         <%= ido.hidden_field :year, :value => ado.year %>
         <%= ido.hidden_field :quarter, :value => ado.quarter %>
         <%= ido.hidden_field :week, :value => ado.week %>
         <tr>
-          <td><%= Time.now.year %></td><td><%= Time.now.current_quarter %></td>
+          <td><%= @quarter[:year] %></td><td><%= @quarter[:quarter] %></td>
           <td><%= ado.week%></td>
           <td><%= ido.select :name, ado.avail_members, :include_blank => true %></td>
         </tr>

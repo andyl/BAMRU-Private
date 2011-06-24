@@ -5,10 +5,10 @@ class AvailDosController < ApplicationController
   def index
     @member = Member.where(:id => params['member_id']).first
     @quarter = {
-            :year      => Time.now.year,
-            :quarter   => Time.now.current_quarter
+      :year    => params["year"].try(:to_i)    || Time.now.year,
+      :quarter => params["quarter"].try(:to_i) || Time.now.current_quarter
     }
-    @avail_set = [1..13].map do |num|
+    @avail_set = (1..13).map do |num|
       quarter = @quarter.clone
       quarter[:week] = num
       quarter[:member_id] = @member.id

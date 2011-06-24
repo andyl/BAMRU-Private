@@ -10,6 +10,8 @@ class RosterLoad
   def self.parse
     json_data = open(JSON_URL).read
     parsed_data = JSON.parse(json_data, :symbolize_names => true)
+#    debugger
+    parsed_data
   end
 
   def self.load_csv
@@ -25,13 +27,15 @@ class RosterLoad
               :week    => r.week,
               :name    => r.name
       }
-      DoAssignment.create(hash) unless r.name.nil? || r.name.blank?
+      DoAssignment.create(hash) unless r.nil? || r.name.nil? || r.name.blank?
     end
   end
 
   def self.import(member_array)
     member_array.each do |w|
-      x = Member.create(w)
+      x = Member.new(w)
+      x.set_username_and_name_fields
+      x.save(:validate => false)
       x.phones.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.emails.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.addresses.each_with_index {|v,i| v.update_attributes(:position => i+1)}

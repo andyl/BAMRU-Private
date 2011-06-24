@@ -43,6 +43,7 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "capybara", "~> 1.0.0.beta1"
   gem "launchy"
+  gem 'spork', '~> 0.9.0.rc'
 
   gem "drx"
   gem "hirb"
