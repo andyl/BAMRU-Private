@@ -1,13 +1,3 @@
-class String
-  def br
-    self.blank? ? "" : self + "<br/>"
-  end
-  def bl
-    self.blank? ? "" : self + "\n"
-  end
-end
-
-
 class Address < ActiveRecord::Base
   
   # ----- Attributes -----
@@ -74,7 +64,7 @@ class Address < ActiveRecord::Base
   end
 
   def full_address
-    "#{address1.bl}#{address2.bl}#{city} #{state} #{zip}"
+    @full_addresses || "#{address1.bl}#{address2.bl}#{city} #{state} #{zip}"
   end
 
   def full_address=(input)
@@ -82,6 +72,7 @@ class Address < ActiveRecord::Base
       hash = parse_address(input)
     rescue
       @parse_error = true
+      @full_addresses = input
       return
     end
     @parse_error = false

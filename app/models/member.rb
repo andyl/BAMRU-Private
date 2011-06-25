@@ -74,8 +74,8 @@ class Member < ActiveRecord::Base
 
   def full_name=(input)
     str = input.split(' ', 2)
-    self.first_name = str.first.capitalize
-    self.last_name  = str.last.capitalize
+    self.first_name = str[0].try(:capitalize)
+    self.last_name  = str[1] ? str[1].capitalize_all : ""
   end
 
   def bd
@@ -184,9 +184,9 @@ class Member < ActiveRecord::Base
   end
 
   def new_username_from_names
-    return "" if first_name.nil? || last_name.nil?
-    fname = self.first_name.downcase.gsub(/[ \.]/,'_')
-    lname = self.last_name.downcase.gsub(/[ \.]/,'_')
+    return "" if first_name.blank? || last_name.blank?
+    fname = self.first_name.downcase.gsub(' ','_').gsub('.','')
+    lname = self.last_name.downcase.gsub(' ','_').gsub('.','')
     "#{fname}_#{lname}"
   end
 
@@ -196,19 +196,28 @@ class Member < ActiveRecord::Base
 
   def new_names_from_username
     return ["",""] if user_name.blank?
-    user_name.split('_').map {|n| n.capitalize}
+    user_name.split('_').map {|n| n.capitalize_all }
   end
 
-  def cleanup_user_name
+  def cleanup_user_names
     self.user_name = self.user_name.downcase unless self.user_name.blank?
+    self.first_name = self.first_name.capitalize unless self.first_name.blank?
+    self.last_name = self.last_name.capitalize_all unless self.last_name.blank?
+  end
+
+  def names_changed?
+    self.first_name_changed? || self.last_name_changed?
+  end
+
+  def names_blank?
+    self.first_name.blank? && self.last_name.blank?
   end
 
   def set_username_and_name_fields
-    cleanup_user_name
+    self.user_name = new_username_from_names if names_changed?
     self.user_name = new_username_from_names if self.user_name.blank?
-    if self.first_name.blank? && self.last_name.blank?
-      self.first_name, self.last_name = new_names_from_username
-    end
+    self.first_name, self.last_name = new_names_from_username if names_blank?
+    cleanup_user_names
   end
 
   def email_required?
@@ -274,11 +283,11 @@ class Member < ActiveRecord::Base
 
   def scrubbed_errors
     scrubbed_err = errors.messages.clone
-    scrubbed_err.delete(:full_name)
-    scrubbed_err.delete(:addresses)
-    scrubbed_err.delete(:phones)
-    scrubbed_err.delete(:"address.full_address")
-    scrubbed_err.delete(:"addresses.full_address")
+    #scrubbed_err.delete(:full_name)
+    #scrubbed_err.delete(:addresses)
+    #scrubbed_err.delete(:phones)
+    #scrubbed_err.delete(:"address.full_address")
+    #scrubbed_err.delete(:"addresses.full_address")
     scrubbed_err
   end
 

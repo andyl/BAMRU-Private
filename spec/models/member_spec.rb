@@ -72,9 +72,52 @@ describe Member do
   end
 
   describe "#full_name" do
-    it "returns the correct string" do
-      @obj = Member.create!(:user_name => "joe_smith", :password => "asdfasdf")
-      @obj.full_name.should == "Joe Smith"
+    describe "reader" do
+      it "returns the correct string" do
+        @obj = Member.create!(:user_name => "joe_smith", :password => "asdfasdf")
+        @obj.full_name.should == "Joe Smith"
+      end
+    end
+    describe "writer" do
+      before(:each) { @obj = Member.create(:user_name => "abc_def") }
+      it "handle valid input" do
+        @obj.update_attributes :full_name => "Joe Smith"
+        @obj.should be_valid
+        @obj.first_name.should == "Joe"
+        @obj.last_name.should  == "Smith"
+        @obj.full_name.should  == "Joe Smith"
+        @obj.user_name.should  == "joe_smith"
+      end
+      it "handle valid lower case it" do
+        @obj.update_attributes :full_name => "joe smith"
+        @obj.should be_valid
+        @obj.first_name.should == "Joe"
+        @obj.last_name.should  == "Smith"
+        @obj.full_name.should  == "Joe Smith"
+        @obj.user_name.should  == "joe_smith"
+      end
+      it "returns an invalid object with empty imput" do
+        @obj.update_attributes :full_name => ""
+        @obj.should_not be_valid
+      end
+      it "returns an invalid object with incomplete imput" do
+        @obj.update_attributes :full_name => "joe"
+        @obj.should_not be_valid
+      end
+      it "works with multi word input" do
+        @obj.update_attributes :full_name => "dep. joe smith"
+        @obj.should be_valid
+        @obj.first_name.should == "Dep."
+        @obj.last_name.should == "Joe Smith"
+        @obj.user_name.should == "dep_joe_smith"
+      end
+      it "works with dashes" do
+        @obj.update_attributes :full_name => "Kito Smith-Jones"
+        @obj.should be_valid
+        @obj.first_name.should == "Kito"
+        @obj.last_name.should == "Smith-Jones"
+        @obj.user_name.should == "kito_smith-jones"
+      end
     end
   end
 

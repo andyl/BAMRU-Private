@@ -1,6 +1,9 @@
 require 'active_support/core_ext'
 
 class Time
+  def show
+    self.strftime("%a %b %d %H:%M")
+  end
 
   def current_week
     (self.strftime("%U").to_i % 13) + 1
@@ -14,7 +17,6 @@ class Time
       when 10 : 4
     end
   end
-
 end
 
 class Numeric
@@ -24,8 +26,16 @@ class Numeric
   alias :quarter :quarters
 end
 
-class Time
-  def show
-    self.strftime("%a %b %d %H:%M")
+class String
+  def br
+    self.blank? ? "" : self + "<br/>"
+  end
+
+  def bl
+    self.blank? ? "" : self + "\n"
+  end
+
+  def capitalize_all
+    gsub(/\w+/) {|x| x.capitalize }
   end
 end
