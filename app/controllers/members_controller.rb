@@ -22,6 +22,8 @@ class MembersController < ApplicationController
   def edit
     @autoselect_member_names = Member.autoselect_member_names('/edit')
     @member = Member.where(:id => params[:id]).first
+    @member.password = ""
+    @member_name = @member.full_name
     authorize! :manage, @member
   end
 
@@ -36,12 +38,13 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.where(:id => params[:id]).first
+    @member_name = @member.full_name
     authorize! :manage, @member
-    mpar = params["member"]
-    if mpar["password"].blank? && mpar["password_confirmation"].blank?
-      mpar.delete("password"); mpar.delete("password_confirmation")
+    m_params = params["member"]
+    if m_params["password"].blank? && m_params["password_confirmation"].blank?
+      m_params.delete("password"); m_params.delete("password_confirmation")
     end
-    if @member.update_attributes(mpar)
+    if @member.update_attributes(m_params)
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"

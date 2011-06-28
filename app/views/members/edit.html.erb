@@ -17,7 +17,7 @@
   <div id=x_body>
     <div id=x_header>
       <table width=100%><tr>
-        <td align=left width=33%>Member Edit: <b><%= @member.full_name %></b></td>
+        <td align=left width=33%>Member Edit: <b><%= @member_name %></b></td>
         <% if current_member.admin? %>
           <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
           <td align=right width=33%>

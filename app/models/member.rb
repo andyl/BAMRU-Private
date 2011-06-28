@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :remember_me
-  attr_accessible :user_name, :first_name, :last_name, :full_name
+  attr_accessible :title, :first_name, :last_name, :user_name, :full_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
@@ -44,20 +44,23 @@ class Member < ActiveRecord::Base
   validates_associated    :addresses, :phones, :emails
 
   validates_presence_of   :first_name, :last_name, :user_name
-  validates_format_of     :first_name, :with => /^[A-Za-z\- \.]+$/
-  validates_format_of     :last_name,  :with => /^[A-Za-z\- \.]+$/
+  validates_format_of     :title,      :with => /^[A-Za-z\.]+$/, :allow_blank => true
+  validates_format_of     :first_name, :with => /^[A-Za-z]+$/
+  validates_format_of     :last_name,  :with => /^[A-Za-z\- ]+$/
   validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/
+  validates_format_of     :password,   :with => /^[A-z0-9]+$/
   validates_uniqueness_of :user_name
 
   validate :check_full_name_errors
 
   def check_full_name_errors
-    if errors.include?(:first_name) || errors.include?(:last_name)
+    if errors.include?(:first_name) || errors.include?(:last_name) || errors.include?(:title)
       errors.add(:full_name, "has errors")
     end
   end
 
   # ----- Callbacks -----
+  before_validation :check_first_name_for_title
   before_validation :set_username_and_name_fields
   before_validation :set_pwd
 
@@ -69,13 +72,24 @@ class Member < ActiveRecord::Base
   # ----- Virtual Attributes (Accessors) -----
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{title.blank? ? "" : title + ' '}#{first_name} #{last_name}"
   end
 
   def full_name=(input)
-    str = input.split(' ', 2)
-    self.first_name = str[0].try(:capitalize)
-    self.last_name  = str[1] ? str[1].capitalize_all : ""
+    if input.blank?
+      self.title = self.first_name = self.last_name = ""
+      return
+    end
+    str = input.split(' ')
+    if str[0].include?('.')
+      self.title = str[0].try(:capitalize_all)
+      self.first_name = str[1].try(:capitalize_all)
+      self.last_name = str.length > 1 ? str[2..-1].join(' ').try(:capitalize_all) : ""
+    else
+      self.title = ""
+      self.first_name = str[0].try(:capitalize)
+      self.last_name  = str[1] ? str[1..-1].join(' ').try(:capitalize_all) : ""
+    end
   end
 
   def bd
@@ -155,6 +169,12 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Instance Methods -----
+  def check_first_name_for_title
+    return if self.first_name.blank?
+    return unless self.first_name.include?('.') && self.first_name.include?(" ")
+    self.title, self.first_name = self.first_name.split(' ',2)
+  end
+
   def phone(typ)
     phones.where(:typ => typ).first
   end
@@ -281,14 +301,35 @@ class Member < ActiveRecord::Base
 
   # ----- For Error Reporting -----
 
+  def other_errors(error_hash, strip_keys)
+    local_errors = error_hash.clone
+    strip_keys.flatten.each {|x| local_errors.delete(x) }
+    local_errors
+  end
+
+  def top_priority_error(error_hash, priority_list)
+    return {} if error_hash.empty?
+    priority_list.each do |item|
+      if item.is_a?(Array)
+        result = item.reduce({}) { |a,v| a[v] = error_hash[v] if error_hash[v]; a }
+        return result if result.length > 0
+      else
+        return {item => error_hash[:item]} if error_hash[:item]
+      end
+    end
+    {}
+  end
+
   def scrubbed_errors
-    scrubbed_err = errors.messages.clone
+    full_name_errors = [[:first_name, :last_name], :user_name, :full_name]
+    errs = errors.messages
+    full_name_err = top_priority_error(errs, full_name_errors)
     #scrubbed_err.delete(:full_name)
     #scrubbed_err.delete(:addresses)
     #scrubbed_err.delete(:phones)
     #scrubbed_err.delete(:"address.full_address")
     #scrubbed_err.delete(:"addresses.full_address")
-    scrubbed_err
+    other_errors(errs, full_name_errors).merge(full_name_err)
   end
 
   def full_messages(hash = scrubbed_errors)
@@ -302,13 +343,13 @@ class Member < ActiveRecord::Base
         message = message.join(', ') if message.class == Array
 
         I18n.t(:"errors.format", {
-                :default   => "%{attribute}: %{message}",
+                :default   => "%{attribute} %{message}",
                 :attribute => attr_name,
                 :message   => message
         })
-        "#{attr_name}: #{message}"
+        "#{attr_name} #{message.gsub(/\,.*/,'')}"
       end
-    }
+    }.reverse
   end
 
 

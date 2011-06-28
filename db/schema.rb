@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "members", :force => true do |t|
+    t.string   "title"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "user_name"

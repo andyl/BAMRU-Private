@@ -10,7 +10,6 @@ class RosterLoad
   def self.parse
     json_data = open(JSON_URL).read
     parsed_data = JSON.parse(json_data, :symbolize_names => true)
-#    debugger
     parsed_data
   end
 
@@ -34,7 +33,9 @@ class RosterLoad
   def self.import(member_array)
     member_array.each do |w|
       x = Member.new(w)
+      x.check_first_name_for_title
       x.set_username_and_name_fields
+      x.set_pwd
       x.save(:validate => false)
       x.phones.each_with_index {|v,i| v.update_attributes(:position => i+1)}
       x.emails.each_with_index {|v,i| v.update_attributes(:position => i+1)}

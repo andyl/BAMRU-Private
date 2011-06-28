@@ -36,6 +36,7 @@ class String
   end
 
   def capitalize_all
-    gsub(/\w+/) {|x| x.capitalize }
+    #gsub(/\w+/) {|x| x.capitalize }
+    gsub(/[^ \-]+/) {|x| x.capitalize }
   end
 end

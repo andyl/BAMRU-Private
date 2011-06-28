@@ -27,7 +27,7 @@
       </tr></table>
     </div>
     <div id=mem_left_col>
-      <b><%= @member.first_name %> <%= @member.last_name %><br/></b>
+      <b><%= @member.full_name %><br/></b>
       <%= @member.full_roles %><p></p>
       <%= raw @member.all_assoc %><p></p>
       <% unless @member.ham.blank? %>

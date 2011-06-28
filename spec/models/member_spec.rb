@@ -96,20 +96,21 @@ describe Member do
         @obj.full_name.should  == "Joe Smith"
         @obj.user_name.should  == "joe_smith"
       end
-      it "returns an invalid object with empty imput" do
+      it "returns an invalid object with empty input" do
         @obj.update_attributes :full_name => ""
         @obj.should_not be_valid
       end
-      it "returns an invalid object with incomplete imput" do
+      it "returns an invalid object with incomplete input" do
         @obj.update_attributes :full_name => "joe"
         @obj.should_not be_valid
       end
       it "works with multi word input" do
         @obj.update_attributes :full_name => "dep. joe smith"
         @obj.should be_valid
-        @obj.first_name.should == "Dep."
-        @obj.last_name.should == "Joe Smith"
-        @obj.user_name.should == "dep_joe_smith"
+        @obj.title.should == "Dep."
+        @obj.first_name.should == "Joe"
+        @obj.last_name.should == "Smith"
+        @obj.user_name.should == "joe_smith"
       end
       it "works with dashes" do
         @obj.update_attributes :full_name => "Kito Smith-Jones"
@@ -117,6 +118,20 @@ describe Member do
         @obj.first_name.should == "Kito"
         @obj.last_name.should == "Smith-Jones"
         @obj.user_name.should == "kito_smith-jones"
+      end
+      it "works with other punctuation" do
+        @obj.update_attributes :full_name => "Kito Smith#jones"
+        @obj.should_not be_valid
+        @obj.first_name.should == "Kito"
+        @obj.last_name.should == "Smith#jones"
+        @obj.user_name.should == "kito_smith#jones"
+      end
+      it "works with numbers" do
+        @obj.update_attributes :full_name => "Kito Smith6jones"
+        @obj.should_not be_valid
+        @obj.first_name.should == "Kito"
+        @obj.last_name.should == "Smith6jones"
+        @obj.user_name.should == "kito_smith6jones"
       end
     end
   end
@@ -129,6 +144,47 @@ describe Member do
       @obj.roles << Role.create!(hash2)
       @obj.full_roles.should be_a(String)
       @obj.full_roles.should == "Bd FM"
+    end
+  end
+
+  describe "#scrubbed_errors / user_name" do
+    it "detects invalid user_names" do
+      @obj = Member.new(:user_name => "as#x_qwer")
+      @obj.should_not be_valid
+    end
+    it "invalid :first_name returns an error hash" do
+      @obj = Member.new(:user_name => "as#x_qwer")
+      @obj.valid?
+      @obj.scrubbed_errors.should be_a(Hash)
+      @obj.scrubbed_errors.length.should == 1
+      @obj.scrubbed_errors.keys.first.should == :first_name
+    end
+    it "invalid :last_name returns an error hash" do
+      @obj = Member.new(:user_name => "asx_qw#er")
+      @obj.valid?
+      @obj.scrubbed_errors.should be_a(Hash)
+      @obj.scrubbed_errors.length.should == 1
+      @obj.scrubbed_errors.keys.first.should == :last_name
+    end
+    it "invalid :password returns an error hash" do
+      @obj = Member.new(:user_name => "asx_qw#er", :password => '12#32')
+      @obj.valid?
+      @obj.scrubbed_errors.should be_a(Hash)
+      @obj.scrubbed_errors.length.should == 2
+      @obj.scrubbed_errors.keys.should include(:password)
+      @obj.scrubbed_errors.keys.should include(:last_name)
+    end
+    it "valid :username, invalid :password" do
+      @obj = Member.new(:user_name => "asx_qwer", :password => '12#32')
+      @obj.should_not be_valid
+      @obj.scrubbed_errors.should be_a(Hash)
+      @obj.scrubbed_errors.length.should == 1
+      @obj.scrubbed_errors.keys.should include(:password)
+    end
+    it "return no errors with valid input" do
+      @obj = Member.new(:user_name => "jim_valid")
+      @obj.should be_valid
+      @obj.scrubbed_errors.length.should == 0
     end
   end
 
