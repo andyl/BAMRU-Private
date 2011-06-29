@@ -9,7 +9,7 @@
 <body id="mybody">
 
 <div id="container">
-  <div id="header">
+  <div id="header" style="padding-top: 8px; padding-bottom: 5px;">
     <table width=100%><tr height=25>
       <td style="padding-bottom: 5px; font-size:23px;" width=300 valign=bottom>
         <%= link_to_unless_current("BAMRU.net", '/') %>
@@ -35,7 +35,7 @@
   <div id="footer">
     <table align="center"><tr><td>Internal Use Only</td></tr></table>
   </div>
-  <% unless ENV['RAILS_ENV'] == 'production' %>
+  <% if request.host == "ekel" %>
     <div class="debug"><%= raw debug_footer_text %></div>
   <% end %>
 </div>
