@@ -64,7 +64,7 @@ class Address < ActiveRecord::Base
   end
 
   def full_address
-    @full_addresses || "#{address1.bl}#{address2.bl}#{city} #{state} #{zip}"
+    @full_addresses || "#{address1.end_nl}#{address2.end_nl}#{city.end_sp}#{state.end_sp}#{zip}"
   end
 
   def full_address=(input)
@@ -84,7 +84,7 @@ class Address < ActiveRecord::Base
   end
 
   def output
-    "#{address1.br}#{address2.br}#{city} #{state} #{zip} (#{typ})"
+    "#{address1.end_br}#{address2.end_br}#{city.end_sp}#{state.end_sp}#{zip.end_sp}(#{typ})"
   end
 
   def typ_opts

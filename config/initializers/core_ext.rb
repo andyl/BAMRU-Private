@@ -27,12 +27,16 @@ class Numeric
 end
 
 class String
-  def br
+  def end_br
     self.blank? ? "" : self + "<br/>"
   end
 
-  def bl
+  def end_nl
     self.blank? ? "" : self + "\n"
+  end
+
+  def end_sp
+    self.blank? ? "" : self + " "
   end
 
   def capitalize_all
