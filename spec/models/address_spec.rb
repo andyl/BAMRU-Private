@@ -2,97 +2,122 @@ require 'spec_helper'
 
 describe Address do
 
- describe "Object Attributes" do
-   before(:each) { @obj = Address.new }
-   specify { @obj.should respond_to(:address1)     }
-   specify { @obj.should respond_to(:address2)     }
-   specify { @obj.should respond_to(:city)         }
-   specify { @obj.should respond_to(:state)        }
-   specify { @obj.should respond_to(:zip)          }
-   specify { @obj.should respond_to(:typ)          }
-   specify { @obj.should respond_to(:position)     }
-   specify { @obj.should respond_to(:full_address) }
- end
+  describe "Object Attributes" do
+    before(:each) { @obj = Address.new }
+    specify { @obj.should respond_to(:address1)     }
+    specify { @obj.should respond_to(:address2)     }
+    specify { @obj.should respond_to(:city)         }
+    specify { @obj.should respond_to(:state)        }
+    specify { @obj.should respond_to(:zip)          }
+    specify { @obj.should respond_to(:typ)          }
+    specify { @obj.should respond_to(:position)     }
+    specify { @obj.should respond_to(:full_address) }
+  end
 
-describe "Associations" do
-   before(:each) { @obj = Address.new }
-   specify { @obj.should respond_to(:member)       }
+  describe "Associations" do
+    before(:each) { @obj = Address.new }
+    specify { @obj.should respond_to(:member)       }
+  end
+
+  describe "Instance Methods" do
+    before(:each) { @obj = Address.new }
+    specify { @obj.should respond_to(:non_standard_typ?) }
+  end
+
+  describe "Validations" do
+    context "basic" do
+      it { should validate_presence_of(:address1)      }
+      it { should validate_presence_of(:city)          }
+      it { should validate_presence_of(:state)         }
+      it { should validate_presence_of(:zip)           }
+    end
+  end
+
+  describe "Object Creation" do
+    before(:each) do
+      @valid_attributes = {
+              :address1 => "xxx",
+              :city     => "yyy",
+              :state    => "zzz",
+              :zip      => "44444"
+      }
+    end
+    it "works with valid attribute" do
+      @obj = Address.create!(@valid_attributes)
+      @obj.should be_valid
+    end
+  end
+
+  describe "Object Creation using #full_address=" do
+    context "with valid input" do
+      before(:each) { @address = "222 Bell Lane\nArcata CA 94234" }
+      it "generates a valid object" do
+        @obj = Address.new(:full_address => @address)
+        @obj.should be_valid
+        @obj.address1.should == "222 Bell Lane"
+        @obj.city.should == "Arcata"
+        @obj.state.should == "CA"
+        @obj.zip.should == "94234"
+      end
+    end
+    context "with missing zip" do
+      before(:each) { @address = "222 Bell Lane\nArcata CA" }
+      it "generates an invalid object" do
+        @obj = Address.new(:full_address => @address)
+        @obj.should_not be_valid
+        @obj.errors.messages.length.should == 2
+      end
+    end
+  end
+  context "with missing state" do
+    before(:each) { @address = "222 Bell Lane\nArcata 94323" }
+    it "generates an invalid object" do
+      @obj = Address.new(:full_address => @address)
+      @obj.should_not be_valid
+      @obj.errors.messages.length.should == 6
+    end
+  end
+  context "with missing state and zip" do
+    before(:each) { @address = "222 Bell Lane\nArcata" }
+    it "generates an invalid object" do
+      @obj = Address.new(:full_address => @address)
+      @obj.should_not be_valid
+      @obj.errors.messages.length.should == 6
+    end
+  end
+
+  describe "Object updating using #full_address=" do
+    context "with valid input" do
+      before(:each) do
+        @address = "222 Bell Lane\nArcata CA 94234"
+        @obj = Address.create(:full_address => @address)
+      end
+      it "generates a valid object" do
+        @obj.should be_valid
+      end
+      it "updates with valid input" do
+        @address2 = "333 Bell Lane\nArcata CA 44444"
+        @obj.update_attributes(:full_address => @address2)
+        @obj.should be_valid
+        @obj.zip.should == "44444"
+      end
+    end
+    context "with invalid input" do
+      before(:each) do
+        @address = "222 Bell Lane\nArcata CA"
+        @obj = Address.create(:full_address => @address)
+      end
+      it "generates an error with missing zip" do
+        @address2 = "333 Bell Lane\nArcata CA"
+        @obj.update_attributes(:full_address => @address2)
+        @obj.should_not be_valid
+      end
+      it "generates an error with missing state" do
+        @address2 = "333 Bell Lane\nArcata 44444"
+        @obj.update_attributes(:full_address => @address2)
+        @obj.should_not be_valid
+      end
+    end
+  end
 end
 
-describe "Instance Methods" do
-   before(:each) { @obj = Address.new }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-   specify { @obj.should respond_to(:non_standard_typ?) }
-end
-
-# describe "Validations" do
-#   context "self-contained" do
-#     it { should validate_presence_of(:user_name)          }
-#     it { should validate_presence_of(:first_name)         }
-#     it { should validate_presence_of(:last_name)          }
-#     it { should validate_format_of(:user_name).with("xxx_yyy") }
-#     it { should validate_presence_of(:user_name)          }
-#   end
-#   context "inter-object" do
-#     before(:each) do
-#       Member.create!(:user_name => "joe_louis", :password => "qwerasdf")
-#     end
-#     it { should validate_uniqueness_of(:user_name)        }
-#   end
-# end
-#
-# describe "Object Creation" do
-#   it "works with a user_name attribute" do
-#     @obj = Member.create!(:user_name => "xxx_yyy")
-#     @obj.should be_valid
-#     @obj.first_name.should == "Xxx"
-#     @obj.last_name.should == "Yyy"
-#     @obj.user_name.should == "xxx_yyy"
-#   end
-#   it "works with user name attributes" do
-#     @obj = Member.create!(:first_name => "Xxx", :last_name => "Yyy")
-#     @obj.should be_valid
-#     @obj.first_name.should == "Xxx"
-#     @obj.last_name.should == "Yyy"
-#     @obj.user_name.should == "xxx_yyy"
-#   end
-# end
-#
-#  describe "#new_user_name_from_names" do
-#    before(:each) {@obj = Member.new(:first_name=>"Joe", :last_name=>"Smith")}
-#    it "should return the correct user_name" do
-#      @obj.new_username_from_names.should == "joe_smith"
-#    end
-#  end
-#
-#  describe "#new_names_from_user_name" do
-#    before(:each) {@obj = Member.new(:user_name => "joe_smith")}
-#    it "should return the correct names" do
-#      @obj.new_names_from_username.should == ["Joe","Smith"]
-#    end
-#  end
-#
-#  describe "#full_name" do
-#    it "returns the correct string" do
-#      @obj = Member.create!(:user_name => "joe_smith", :password => "asdfasdf")
-#      @obj.full_name.should == "Joe Smith"
-#    end
-#  end
-#
-#  describe "#full_roles" do
-#    it "returns the correct string" do
-#      hash1 = {:user_name => "joe_smith", :password => "asdfasdf", :typ => "FM"}
-#      @obj = Member.create!(hash1)
-#      hash2 = {:typ => "Bd"}
-#      @obj.roles << Role.create!(hash2)
-#      @obj.full_roles.should be_a(String)
-#      @obj.full_roles.should == "Bd FM"
-#    end
-#  end
-
-end

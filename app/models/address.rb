@@ -14,19 +14,19 @@ class Address < ActiveRecord::Base
 
 
   # ----- Validations -----
-  validates_presence_of :zip, :state
-  validates_format_of   :zip, :with => /^[0-9\-]+$/
+  validates_presence_of :address1, :city, :state, :zip
+  validates_format_of   :zip, :with => /^\d\d\d\d\d(\-\d\d\d\d)?$/
+
 
   validate :check_full_address_errors
 
   def check_full_address_errors
     if defined?(@parse_error) && @parse_error == true
-      errors.add(:full_address, "parse error")
-      errors.add(:zip, "parse error")
-      errors.add(:address, "parse error")
+      errors.add(:full_address, "is invalid")
+      errors.add(:address, "is invalid")
     end
     if errors.include?(:zip) || errors.include?(:state)
-      errors.add(:full_address, "has errors")
+      errors.add(:full_address, "is invalid")
     end
   end
 
@@ -79,7 +79,7 @@ class Address < ActiveRecord::Base
     self.zip      = hash[:zip]
     self.address1 = capitalize_each(hash[:address1])
     self.address2 = capitalize_each(hash[:address2])
-    self.city     = capitalize_each(hash[:city])
+    self.city     = hash[:city].length == 2 ? hash[:city].upcase : capitalize_each(hash[:city])
     self.state    = hash[:state].upcase
   end
 

@@ -44,10 +44,10 @@ class MembersController < ApplicationController
     if m_params["password"].blank? && m_params["password_confirmation"].blank?
       m_params.delete("password"); m_params.delete("password_confirmation")
     end
-    if @member.update_attributes(m_params)
+    x = @member.update_attributes(m_params)
+    if x
       redirect_to member_path(@member), :notice => "Successful Update"
     else
-#      debugger
       render "edit"
     end
   end

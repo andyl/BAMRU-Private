@@ -30,7 +30,7 @@ class Member < ActiveRecord::Base
   has_many :distributions
   has_many :notices, :through => :distributions, :source => :message
 
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :full_address) }
   accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
   accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
@@ -41,7 +41,8 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
 
   # ----- Validations -----
-  validates_associated    :addresses, :phones, :emails,      :on => [:create,  :update]
+  validates_associated    :addresses
+  validates_associated    :phones, :emails,                  :on => [:create,  :update]
   validates_associated    :emergency_contacts, :other_infos, :on => [:create,  :update]
 
   validates_presence_of   :first_name, :last_name, :user_name
@@ -333,7 +334,7 @@ class Member < ActiveRecord::Base
   def scrubbed_errors
     full_name_errors = [[:first_name, :last_name], :user_name, :full_name]
     phone_errors     = [:phones_number, :phones]
-    address_errors   = [:"addresses.zip", :"addresses.full_address"]
+    address_errors   = [:"addresses.address", [:"addresses.zip", :"addresses.state"], :"addresses.full_address"]
     errs = errors.messages.clone
     full_name_err = top_priority_error(errs, full_name_errors)
     phone_err     = top_priority_error(errs, phone_errors)
