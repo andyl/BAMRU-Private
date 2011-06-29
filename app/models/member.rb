@@ -31,14 +31,14 @@ class Member < ActiveRecord::Base
   has_many :notices, :through => :distributions, :source => :message
 
   accepts_nested_attributes_for :addresses, :allow_destroy => true
-  accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|a| a[:number].blank? }
-  accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|a| a[:address].blank? }
+  accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
+  accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
   accepts_nested_attributes_for :certs,     :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true
-  accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|a| a[:typ].blank? }
-  accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true #reject if name/number are blank, or have ...
-  accepts_nested_attributes_for :other_infos,        :allow_destroy => true #reject if name/number are blank, or have ...
+  accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
+  accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
+  accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
 
   # ----- Validations -----
   validates_associated    :addresses, :phones, :emails,      :on => [:create,  :update]
@@ -173,6 +173,12 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Instance Methods -----
+
+  def self.invalid_params?(params, field)
+    fields = field.is_a?(Array) ? field : [field]
+    fields.any? {|x| params[x].blank? || params[x].include?('...')}
+  end
+
   def check_first_name_for_title
     return if self.first_name.blank?
     return unless self.first_name.include?('.') && self.first_name.include?(" ")
