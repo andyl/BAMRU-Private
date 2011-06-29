@@ -9,7 +9,7 @@ class Phone < ActiveRecord::Base
 
 
   # ----- Validations -----
-  validates_format_of :number, :with => /^[0-9\-]+$/
+  validates_format_of :number, :with => /^\d\d\d-\d\d\d-\d\d\d\d$/
 
 
   # ----- Scopes -----

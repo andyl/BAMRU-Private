@@ -41,7 +41,8 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true #reject if name/number are blank, or have ...
 
   # ----- Validations -----
-  validates_associated    :addresses, :phones, :emails
+  validates_associated    :addresses, :phones, :emails,      :on => [:create,  :update]
+  validates_associated    :emergency_contacts, :other_infos, :on => [:create,  :update]
 
   validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :title,      :with => /^[A-Za-z\.]+$/, :allow_blank => true
@@ -54,7 +55,10 @@ class Member < ActiveRecord::Base
   validate :check_full_name_errors
 
   def check_full_name_errors
-    if errors.include?(:first_name) || errors.include?(:last_name) || errors.include?(:title)
+    if errors.include?(:first_name) ||
+            errors.include?(:last_name)  ||
+            errors.include?(:user_name)  ||
+            errors.include?(:title)
       errors.add(:full_name, "has errors")
     end
   end
@@ -314,7 +318,7 @@ class Member < ActiveRecord::Base
         result = item.reduce({}) { |a,v| a[v] = error_hash[v] if error_hash[v]; a }
         return result if result.length > 0
       else
-        return {item => error_hash[:item]} if error_hash[:item]
+        return {item => error_hash[item]} if error_hash[item]
       end
     end
     {}
@@ -322,17 +326,27 @@ class Member < ActiveRecord::Base
 
   def scrubbed_errors
     full_name_errors = [[:first_name, :last_name], :user_name, :full_name]
-    errs = errors.messages
+    phone_errors     = [:phones_number, :phones]
+    errs = errors.messages.clone
     full_name_err = top_priority_error(errs, full_name_errors)
-    #scrubbed_err.delete(:full_name)
-    #scrubbed_err.delete(:addresses)
-    #scrubbed_err.delete(:phones)
-    #scrubbed_err.delete(:"address.full_address")
-    #scrubbed_err.delete(:"addresses.full_address")
-    other_errors(errs, full_name_errors).merge(full_name_err)
+    phone_err     = top_priority_error(errs, phone_errors)
+    priority_errors = full_name_errors +
+                      phone_errors
+    other_errors(errs, priority_errors).merge(full_name_err).
+                                        merge(phone_err)
+  end
+
+  def cleanup_message(message)
+    return "" if message.blank?
+    message.gsub(/\,.*/,'')
+  end
+
+  def cleanup_attr(name)
+    name.gsub("Phones", "Phone")
   end
 
   def full_messages(hash = scrubbed_errors)
+#  def full_messages(hash = errors.messages)
     hash.map { |attribute, message|
       if attribute == :base
         message
@@ -342,12 +356,7 @@ class Member < ActiveRecord::Base
 
         message = message.join(', ') if message.class == Array
 
-        I18n.t(:"errors.format", {
-                :default   => "%{attribute} %{message}",
-                :attribute => attr_name,
-                :message   => message
-        })
-        "#{attr_name} #{message.gsub(/\,.*/,'')}"
+        "#{cleanup_attr(attr_name)} #{cleanup_message(message)}"
       end
     }.reverse
   end
