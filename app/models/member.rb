@@ -333,13 +333,18 @@ class Member < ActiveRecord::Base
   def scrubbed_errors
     full_name_errors = [[:first_name, :last_name], :user_name, :full_name]
     phone_errors     = [:phones_number, :phones]
+    address_errors   = [:"addresses.zip", :"addresses.full_address"]
     errs = errors.messages.clone
     full_name_err = top_priority_error(errs, full_name_errors)
     phone_err     = top_priority_error(errs, phone_errors)
+    address_err   = top_priority_error(errs, address_errors)
     priority_errors = full_name_errors +
-                      phone_errors
+                      phone_errors +
+                      address_errors
+#    debugger
     other_errors(errs, priority_errors).merge(full_name_err).
-                                        merge(phone_err)
+                                        merge(phone_err).
+                                        merge(address_err)
   end
 
   def cleanup_message(message)
@@ -349,11 +354,12 @@ class Member < ActiveRecord::Base
 
   def cleanup_attr(name)
     name.gsub("Phones", "Phone").
-         gsub("Emails", "Email")
+         gsub("Emails", "Email").
+         gsub("Addresses", "Address").
+         gsub("contacts number", "contact number")
   end
 
   def full_messages(hash = scrubbed_errors)
-#  def full_messages(hash = errors.messages)
     hash.map { |attribute, message|
       if attribute == :base
         message
