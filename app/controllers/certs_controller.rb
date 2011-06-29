@@ -20,6 +20,16 @@ class CertsController < ApplicationController
     redirect_to member_certs_path(@member)
   end
 
+  def update
+    @member = Member.where(:id => params['member_id']).first
+    @cert   = Cert.where(:id => params['id']).first
+    if @cert.update_attributes(params[:cert])
+      redirect_to member_certs_path(@member), :notice => "Successful Update"
+    else
+      render "edit"
+    end
+  end
+
   def show
     @member = Member.where(:id => params['member_id']).first
     @cert = Cert.where(:id => params['id']).first

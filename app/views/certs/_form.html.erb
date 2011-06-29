@@ -2,7 +2,6 @@
   <%= f.hidden_field :typ         %>
   <%= f.input        :expiration  %>
   <%= f.input        :description %>
-  <%= f.input        :comment     %>
   <%= f.input        :link        if @cert.typ == "ham"%>
   <%= f.input        :document    unless @cert.typ == "ham"%>
   <%= f.button       :submit      %>

@@ -33,6 +33,8 @@ task :import do
   Org.create(:name => "BAMRU")
   Rake::Task['photos'].invoke
   Rake::Task['cert_image_load'].invoke
+  Phone.where(:position => nil).all.each {|x| x.destroy}
+  Email.where(:position => nil).all.each {|x| x.destroy}
 end
 
 desc "Run the Jasmine Server"

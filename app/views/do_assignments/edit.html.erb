@@ -1,3 +1,5 @@
+<%= javascript_include_tag "do_assignments.js"   %>
+
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
@@ -15,31 +17,32 @@
 
       <%= edit_link_prev(@quarter) %> <%= edit_link_current_quarter %> <%= edit_link_next(@quarter) %><p/>
 
-
-
-<%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
-  <table border=1 align=center>
-    <tr><th>Year</th><th>Quarter</th><th>Week</th><th>DO Name</th></tr>
-    <% @org.do_assignments_for(@quarter[:year], @quarter[:quarter]).each do |ado| %>
-      <%= org.fields_for :do_assignments, ado do |ido| %>
-        <%= ido.hidden_field :year, :value => ado.year %>
-        <%= ido.hidden_field :quarter, :value => ado.quarter %>
-        <%= ido.hidden_field :week, :value => ado.week %>
-        <tr>
-          <td><%= @quarter[:year] %></td><td><%= @quarter[:quarter] %></td>
-          <td><%= ado.week%></td>
-          <td><%= ido.select :name, ado.avail_members, :include_blank => true %></td>
-        </tr>
+      <%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
+        <table align=center>
+          <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start - End</th><th>DO Name</th><th></th></tr>
+          <% @org.do_assignments_for(@quarter[:year], @quarter[:quarter]).each do |ado| %>
+            <%= org.fields_for :do_assignments, ado do |ido| %>
+              <%= ido.hidden_field :year, :value => ado.year %>
+              <%= ido.hidden_field :quarter, :value => ado.quarter %>
+              <%= ido.hidden_field :week, :value => ado.week %>
+              <tr>
+                <td><%= @quarter[:year] %></td><td><%= @quarter[:quarter] %></td>
+                <td><%= ado.week%></td>
+                <td><%= ado.start_day %> - <%= ado.end_day %></td>
+                <td><%= ido.select(:name, [ado.name] + ado.avail_members + ["<other name>"], {:include_blank => true}, {:class => 'namepick', :data_handle => "h_#{ado.id}"}) %></td>
+                <td>
+                  <span class="alt_name" id="<%= "h_#{ado.id}" %>">
+                    <input type="text" size=12>
+                    <button type="button" data_button=h_<%= ado.id %> class=xupdate>add</button>
+                   </span>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <p/>
+        <%= org.submit "Update" %>
       <% end %>
-    <% end %>
-  </table>
-  <p/>
-  <%= org.submit "Update" %>
-<% end %>
-
-
-
-
 
     </div>
     <div id=x_footer> </div>

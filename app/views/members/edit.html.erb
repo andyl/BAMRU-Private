@@ -14,110 +14,110 @@
 </style>
 
 <div id=x_container>
-  <div id=x_body>
-    <div id=x_header>
-      <table width=100%><tr>
-        <td align=left width=33%>Member Edit: <b><%= @member_name %></b></td>
-        <% if current_member.admin? %>
-          <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
-          <td align=right width=33%>
-            <%= link_to('<', edit_member_path(@member.prev_member_id)) %>
-            <input size=14 id="autoselect" value="find member...">
-            <%= link_to('>', edit_member_path(@member.next_member_id)) %>
-          </td>
-        <% else %>
-          <td align=right width=66%><%= link_to("Back", member_path(@member)) %></td>
-        <% end %>
-      </tr></table>
-    </div>
-    <div id=mem_left_col>
-      <%= raw edit_info_message if @member.non_standard_records? %>
-      <p/>
-      <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@member)%></div>
-      <p/>
-      <%= form_for(@member, :html => {:id => 'memberz_form'}) do |f| %>
-        <%= render "shared/error_messages", :target => @member %>
-        <%= f.text_field :full_name, :size => 28 %><br/>
-        <%= f.select :typ, %w(TM FM T R S A) %>
-        Bd: <%= f.check_box('bd') %>
-        OL: <%= f.check_box('ol') %>
-        <% if @member != current_member %>
+  <div id=<%= @member.non_standard_records? ? "x_wide_body" : "x_body" %>>
+  <div id=x_header>
+    <table width=100%><tr>
+      <td align=left width=33%>Member Edit: <b><%= @member_name %></b></td>
+      <% if current_member.admin? %>
+        <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
+        <td align=right width=33%>
+          <%= link_to('<', edit_member_path(@member.prev_member_id)) %>
+          <input size=14 id="autoselect" value="find member...">
+          <%= link_to('>', edit_member_path(@member.next_member_id)) %>
+        </td>
+      <% else %>
+        <td align=right width=66%><%= link_to("Back", member_path(@member)) %></td>
+      <% end %>
+    </tr></table>
+  </div>
+  <div id=mem_left_col>
+    <%= raw edit_info_message if @member.non_standard_records? %>
+    <p/>
+    <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@member)%></div>
+    <p/>
+    <%= form_for(@member, :html => {:id => 'memberz_form'}) do |f| %>
+      <%= render "shared/error_messages", :target => @member %>
+      <%= f.text_field :full_name, :size => 28 %><br/>
+      <%= f.select :typ, %w(TM FM T R S A) %>
+      Bd: <%= f.check_box('bd') %>
+      OL: <%= f.check_box('ol') %>
+      <% if @member != current_member %>
         <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>
-        <% end %>
-        <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
-        <div id=sortable_phones>
-          <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
-            <%= f.fields_for :phones, xphone do |phone| %>
-              <%= @xphone = xphone; render "phone_fields", :f => phone %>
-            <% end %>
+      <% end %>
+      <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
+      <div id=sortable_phones>
+        <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
+          <%= f.fields_for :phones, xphone do |phone| %>
+            <%= @xphone = xphone; render "phone_fields", :f => phone %>
           <% end %>
-        </div>
-        <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails, {:address => "new email address..."}) %></span>
-        <div id=sortable_emails>
-          <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
-            <%= f.fields_for :emails, xemail do |email| %>
-              <%= @xemail = xemail; render "email_fields", :f => email, :object => %w(a b c)%>
-            <% end %>
-          <% end %>
-        </div>
-        <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses, {:full_address => "new address..."})%></span>
-        <div id=sortable_addresses>
-          <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
-            <%= f.fields_for :addresses, xaddress do |address| %>
-              <%= @xadr = xaddress; render "address_fields", :f => address %>
-            <% end %>
-          <% end %>
-        </div>
-        <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts, {:name => "new contact name...", :number => "new phone #... "})%></span>
-        <div id=sortable_emergency_contacts>
-          <% @member.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
-            <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
-              <%= render "emergency_contact_fields", :f => contact %>
-            <% end %>
-          <% end %>
-        </div>
-        <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos, {:label => "new label...", :value => "new value..."})%></span>
-        <div id=sortable_other_infos>
-          <% @member.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
-            <%= f.fields_for :other_infos, xinfo do |record| %>
-              <%= render "other_info_fields", :f => record %>
-            <% end %>
-          <% end %>
-        </div>
-        <p></p><b>Password</b>
-        <div id=password>
-          <span class=plabel>Password: </span>
-          <%= f.password_field :password, :size => 13 %><br/>
-          <span class=plabel>Confirmation: </span>
-          <%= f.password_field :password_confirmation, :size => 13 %>
-        </div>
-        <p></p><b>Ham & V9</b>
-        <div id=ham_v9>
-          <span class=hlabel>Ham: </span>
-          <%= f.text_field :ham, :size => 6 %><br/>
-          <span class=hlabel> V9: </span>
-          <%= f.text_field :v9, :size => 6 %><p/>
-        </div>
-        <p/>
-    <% end %>
-    </div>
-    <div id=mem_right_col style="text-align: center;">
-      <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
-      <div id=sortable_photos>
-        <% @member.photos.each do |pic| %>
-          <li style="list-style-type: none;" id=photos_<%= pic.id %>>
-            <span class=sort_handle><img src="/images/handle.png" class=handle></span>
-            <div style="padding:5px;display:inline-block; width:100px;">
-              <%= image_tag pic.image.url(:thumb) %>
-            </div>
-            <%= link_to 'remove', member_photo_path(@member, pic), :confirm => 'Are you sure?',:method => :delete %>
-          </li>
         <% end %>
       </div>
-    </div>
-
-    <div id=x_footer>
-
+      <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails, {:address => "new email address..."}) %></span>
+      <div id=sortable_emails>
+        <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
+          <%= f.fields_for :emails, xemail do |email| %>
+            <%= @xemail = xemail; render "email_fields", :f => email, :object => %w(a b c)%>
+          <% end %>
+        <% end %>
+      </div>
+      <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses, {:full_address => "new address..."})%></span>
+      <div id=sortable_addresses>
+        <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
+          <%= f.fields_for :addresses, xaddress do |address| %>
+            <%= @xadr = xaddress; render "address_fields", :f => address %>
+          <% end %>
+        <% end %>
+      </div>
+      <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts, {:name => "new contact name...", :number => "new phone #... "})%></span>
+      <div id=sortable_emergency_contacts>
+        <% @member.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
+          <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
+            <%= render "emergency_contact_fields", :f => contact %>
+          <% end %>
+        <% end %>
+      </div>
+      <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos, {:label => "new label...", :value => "new value..."})%></span>
+      <div id=sortable_other_infos>
+        <% @member.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
+          <%= f.fields_for :other_infos, xinfo do |record| %>
+            <%= render "other_info_fields", :f => record %>
+          <% end %>
+        <% end %>
+      </div>
+      <p></p><b>Password</b>
+      <div id=password>
+        <span class=plabel>Password: </span>
+        <%= f.password_field :password, :size => 13 %><br/>
+        <span class=plabel>Confirmation: </span>
+        <%= f.password_field :password_confirmation, :size => 13 %>
+      </div>
+      <p></p><b>Ham & V9</b>
+      <div id=ham_v9>
+        <span class=hlabel>Ham: </span>
+        <%= f.text_field :ham, :size => 6 %><br/>
+        <span class=hlabel> V9: </span>
+        <%= f.text_field :v9, :size => 6 %><p/>
+      </div>
+      <p/>
+    <% end %>
+  </div>
+  <div id=mem_right_col style="text-align: center;">
+    <p/><%= link_to "Add New Photo", new_member_photo_path(@member) %><p/>
+    <div id=sortable_photos>
+      <% @member.photos.each do |pic| %>
+        <li style="list-style-type: none;" id=photos_<%= pic.id %>>
+          <span class=sort_handle><img src="/images/handle.png" class=handle></span>
+          <div style="padding:5px;display:inline-block; width:100px;">
+            <%= image_tag pic.image.url(:thumb) %>
+          </div>
+          <%= link_to 'remove', member_photo_path(@member, pic), :confirm => 'Are you sure?',:method => :delete %>
+        </li>
+      <% end %>
     </div>
   </div>
-</div>
+
+  <div id=x_footer>
+
+  </div>
+  </div>
+  </div>

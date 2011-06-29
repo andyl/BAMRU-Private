@@ -36,7 +36,7 @@ class DoAssignmentsController < ApplicationController
   def create
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
-      redirect_to edit_do_assignment_path(@org), :notice => "Records Saved"
+      redirect_to do_assignments_path(@org), :notice => "Records Saved"
     else
       render "edit"
     end

@@ -47,7 +47,7 @@ module CertsHelper
     com = td(comment(cert))
     doc = td(documentation(cert))
     act = can_update?(mem) ? td(cert_actions(mem, cert, type)) : ""
-    exp + des + com + doc + act
+    exp + des + doc + act
   end
 
   def color_name(mem)

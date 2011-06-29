@@ -34,6 +34,14 @@ class DoAssignment < ActiveRecord::Base
             uniq
   end
 
+  def start_day
+    start_time.strftime("%b #{start_time.day.ordinalize}")
+  end
+
+  def end_day
+    end_time.strftime("%b #{end_time.day.ordinalize}")
+  end
+
   def start_time
     Time.parse("Jan #{year}") + (quarter-1).quarters + (week-1).weeks + 3.days + 8.hours
   end

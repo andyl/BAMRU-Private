@@ -2,11 +2,14 @@
   Styles for Members Controller
 */
 
-$body_width:     644px;
-$border_width:   1px;
-$col_padding:    8px;
-$col_offset:     100;
-$col_base_width: $body_width/2 - $col_padding*2 - $border_width;
+$wide_body_width: 905px;
+$body_width:      644px;
+$border_width:    1px;
+$col_padding:     8px;
+$col_offset:      100;
+$right_width:     220px;
+$left_width:      $wide_body_width - $right_width - $col_padding*2 - $border_width;
+$col_base_width:  $body_width/2 - $col_padding*2 - $border_width;
 
 @mixin x_border {
   border: solid gray $border_width;
@@ -37,6 +40,11 @@ $col_base_width: $body_width/2 - $col_padding*2 - $border_width;
   margin:auto;
 }
 
+#x_wide_body {
+  width: $wide_body_width;
+  margin:auto;
+}
+
 #x_header{
   @include x_header_footer;
 }
@@ -46,14 +54,16 @@ $col_height: 225px;
 #mem_left_col {
   @include col_style;
   float: left;
-  width: $col_base_width - $border_width + $col_offset;
+  /*width: $left_width - 20;*/
+  width: 64%;
 }
 
 #mem_right_col {
   @include col_style;
   float: right;
   border-left-style: none;
-  width: $col_base_width - $col_offset;
+  /*width: $right_width;*/
+  width: 30%;
   }
 
 #x_single_col {
