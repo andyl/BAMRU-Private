@@ -342,7 +342,8 @@ class Member < ActiveRecord::Base
   end
 
   def cleanup_attr(name)
-    name.gsub("Phones", "Phone")
+    name.gsub("Phones", "Phone").
+         gsub("Emails", "Email")
   end
 
   def full_messages(hash = scrubbed_errors)
