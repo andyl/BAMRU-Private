@@ -44,7 +44,7 @@
         <% if @member != current_member %>
         <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>
         <% end %>
-        <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones)%></span>
+        <p></p><b>Phones</b> <span class=add><%= link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
         <div id=sortable_phones>
           <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
             <%= f.fields_for :phones, xphone do |phone| %>
@@ -52,7 +52,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails) %></span>
+        <p></p><b>eMails</b> <span class=add><%= link_to_add_fields("add", f, :emails, {:address => "new email address..."}) %></span>
         <div id=sortable_emails>
           <% @member.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
             <%= f.fields_for :emails, xemail do |email| %>
@@ -60,7 +60,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses)%></span>
+        <p></p><b>Addresses</b> <span class=add><%= link_to_add_fields("add", f, :addresses, {:full_address => "new address..."})%></span>
         <div id=sortable_addresses>
           <% @member.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
             <%= f.fields_for :addresses, xaddress do |address| %>
@@ -68,7 +68,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts, {:name => "contact name...", :number => "phone #... "})%></span>
+        <p></p><b>Emergency Phone Contacts</b> <span class=add><%= link_to_add_fields("add", f, :emergency_contacts, {:name => "new contact name...", :number => "new phone #... "})%></span>
         <div id=sortable_emergency_contacts>
           <% @member.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
             <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
@@ -76,7 +76,7 @@
             <% end %>
           <% end %>
         </div>
-        <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos, {:label => "your label...", :value => "your value..."})%></span>
+        <p></p><b>Other Info</b> <span class=add><%= link_to_add_fields("add", f, :other_infos, {:label => "new label...", :value => "new value..."})%></span>
         <div id=sortable_other_infos>
           <% @member.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
             <%= f.fields_for :other_infos, xinfo do |record| %>
