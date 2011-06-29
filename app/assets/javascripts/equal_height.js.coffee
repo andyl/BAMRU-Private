@@ -1,5 +1,5 @@
 # sets the columns to equal height
-equalHeight = (c1, c2) ->
+window.equalHeight = (c1, c2) ->
   c1Height = $(c1).height()
   c2Height = $(c2).height()
   if(c1Height > c2Height)

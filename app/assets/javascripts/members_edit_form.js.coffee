@@ -31,11 +31,19 @@ window.add_fields = (link, association, content) ->
   $("input, textarea").focus ->    # erase the input value if it contains three dots...
     ele = $(this)
     ele.prop("value", "") if ele.prop("value").search(/\.\.\./) != -1
+  equalHeight("#x_right_col",   "#x_left_col")
+  equalHeight("#mem_right_col", "#mem_left_col")
 
 # called when 'remove' is clicked on the members/edit form
 window.remove_fields = (link) ->
-  $(link).next("input[type=hidden]").val("1")
-  $(link).closest(".fields").hide()
+  answer = confirm("Are you sure?")
+  if answer
+    $(link).next("input[type=hidden]").val("1")
+    $(link).closest(".fields").hide()
+    $("#x_right_col").height("100%")
+    $("#mem_right_col").height("100%")
+    equalHeight("#x_right_col",   "#x_left_col")
+    equalHeight("#mem_right_col", "#mem_left_col")
 
 $(document).ready ->
   $("#save_link").click ->
