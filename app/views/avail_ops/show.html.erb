@@ -4,6 +4,7 @@
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
+<%# javascript_include_tag "avail_ops.js"           %>
 <%= csrf_meta_tag %>
 
 
@@ -38,10 +39,10 @@
       <%= @member.first_name %> has
       <%= pluralize(@member.avail_ops.count, " busy period") %>
 
-      (<%= link_to "add new", new_member_avail_op_path(@member) %>)<p/>
+      (<%= link_to "add new", new_member_avail_ops_path(@member) %>)<p/>
 
       <% if @member.avail_ops.count != 0 %>
-        <%= form_for @member do |mem| %>
+        <%= form_for @member, :url => member_avail_ops_path(@member) do |mem| %>
           <table>
             <tr><th>Start</th><th>End</th><th>Comment</th><th>Action</th></tr>
             <%= render "shared/error_messages", :target => @member %>

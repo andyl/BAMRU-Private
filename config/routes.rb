@@ -23,8 +23,8 @@ Zn::Application.routes.draw do
   resources  :members do
     resources  :photos
     resources  :certs
-    resources  :avail_ops
     resources  :avail_dos
+    resource   :avail_ops
   end
 
   get "mobile" => "mobile#index", :as => "mobile"

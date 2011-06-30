@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "members/index.html.erb" do
+describe "members/show.html.erb" do
   before(:each) do
     @member = stub_model(Member)
     @member.stub(:short_name) { 'joe' }

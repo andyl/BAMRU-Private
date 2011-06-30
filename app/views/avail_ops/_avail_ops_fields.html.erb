@@ -1,6 +1,6 @@
 <tr>
-  <td><%= opfld.text_field :start  , :size => 10 %></td>
-  <td><%= opfld.text_field :end    , :size => 10 %></td>
-  <td><%= opfld.text_field :comment, :size => 30 %></td>
-  <td><%= link_to("DELETE", member_avail_op_path(@member, op), :method => :delete, :confirm => "Are you sure?") %></td>
+  <td><%= opfld.text_field :start  , {:size => 10, :class => "zdate" } %></td>
+  <td><%= opfld.text_field :end    , {:size => 10, :class => "zdate" } %></td>
+  <td><%= opfld.text_field :comment, {:size => 30} %></td>
+  <td><%= link_to("DELETE", member_avail_ops_path(@member, :id => op.id), :method => :delete, :confirm => "Are you sure?") %></td>
 </tr>

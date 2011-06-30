@@ -6,10 +6,13 @@ class AvailOp < ActiveRecord::Base
 
 
   # ----- Callbacks -----
+  before_validation :check_dates
 
 
 
   # ----- Validations -----
+  validates_presence_of :start
+  validates_presence_of :end
 
 
 
@@ -18,6 +21,9 @@ class AvailOp < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+  def check_dates
+    self.end, self.start = self.start, self.end if self.end < self.start
+  end
 
 
 end
