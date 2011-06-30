@@ -188,4 +188,55 @@ describe Member do
     end
   end
 
+  describe "nested attributes" do
+    before(:each) do
+      @mem1 = <<-EOF
+  {
+    "emails_attributes":[
+      {
+        "address":"shane@shaneiseminger.com",
+        "typ":"Work",
+        "pagable":"1"
+      }
+    ],
+    "avail_ops_attributes":[],
+    "avail_dos_attributes":[],
+    "ham":null,
+    "certs_attributes":[],
+    "typ":"A",
+    "first_name":"Shane",
+    "v9":"928",
+    "addresses_attributes":[
+      {
+        "zip":"89513",
+        "address2":"",
+        "address1":"PO Box 6256",
+        "city":"Reno",
+        "typ":"Work",
+        "state":"NV"
+      }
+    ],
+    "roles_attributes":[],
+    "phones_attributes":[
+      {
+        "typ":"Mobile",
+        "number":"775-722-4997",
+        "pagable":"0"
+      }
+    ],
+    "last_name":"Iseminger"
+  }
+      EOF
+      @att1 = JSON.parse(@mem1, :symbolize_names => true)
+    end
+    it "creates a suite of related objects using nested attributes" do
+      @obj = Member.create!(@att1)
+      @obj.should be_valid
+      Member.count.should  == 1
+      Phone.count.should   == 1
+      Email.count.should   == 1
+      Address.count.should == 1
+    end
+  end
+
 end

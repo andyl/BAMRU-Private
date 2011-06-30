@@ -30,7 +30,7 @@ class Member < ActiveRecord::Base
   has_many :distributions
   has_many :notices, :through => :distributions, :source => :message
 
-  accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :full_address) }
+  accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
   accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
   accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
@@ -41,7 +41,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
 
   # ----- Validations -----
-  validates_associated    :addresses
+  validates_associated    :addresses #,                        :on => [:create,  :update]
   validates_associated    :phones, :emails,                  :on => [:create,  :update]
   validates_associated    :emergency_contacts, :other_infos, :on => [:create,  :update]
 
@@ -174,6 +174,11 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Instance Methods -----
+
+  def self.invalid_address?(params)
+    tmp = params[:full_address]
+    tmp && (tmp.empty? || tmp.include?('...'))
+  end
 
   def self.invalid_params?(params, field)
     fields = field.is_a?(Array) ? field : [field]

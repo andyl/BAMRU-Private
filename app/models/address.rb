@@ -17,7 +17,6 @@ class Address < ActiveRecord::Base
   validates_presence_of :address1, :city, :state, :zip
   validates_format_of   :zip, :with => /^\d\d\d\d\d(\-\d\d\d\d)?$/
 
-
   validate :check_full_address_errors
 
   def check_full_address_errors
