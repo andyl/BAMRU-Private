@@ -194,7 +194,7 @@ describe Member do
   {
     "emails_attributes":[
       {
-        "address":"shane@shaneiseminger.com",
+        "address":"joe@minger.com",
         "typ":"Work",
         "pagable":"1"
       }
@@ -204,27 +204,27 @@ describe Member do
     "ham":null,
     "certs_attributes":[],
     "typ":"A",
-    "first_name":"Shane",
+    "first_name":"Joe",
     "v9":"928",
     "addresses_attributes":[
       {
-        "zip":"89513",
+        "zip":"29313",
         "address2":"",
         "address1":"PO Box 6256",
-        "city":"Reno",
+        "city":"Yolo",
         "typ":"Work",
-        "state":"NV"
+        "state":"MS"
       }
     ],
     "roles_attributes":[],
     "phones_attributes":[
       {
         "typ":"Mobile",
-        "number":"775-722-4997",
+        "number":"725-782-4437",
         "pagable":"0"
       }
     ],
-    "last_name":"Iseminger"
+    "last_name":"Minger"
   }
       EOF
       @att1 = JSON.parse(@mem1, :symbolize_names => true)

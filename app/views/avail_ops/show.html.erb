@@ -4,7 +4,6 @@
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
-<%# javascript_include_tag "avail_ops.js"           %>
 <%= csrf_meta_tag %>
 
 
@@ -13,38 +12,38 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <% if current_member.admin? %>
-            <td width=40% align=left>
-              Member Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
-            </td>
-            <td width=20% align=center>
-              <%= link_to("Back", unit_avail_ops_path) %>
-            </td>
-            <td width=40% align=right>
-              <%= link_to('<', member_avail_ops_path(@member.prev_member_id)) %>
-              <input size=14 id="autoselect" value="find member...">
-              <%= link_to('>', member_avail_ops_path(@member.next_member_id)) %>
-            </td>
-          <% else %>
-            <td width=60%>
-              <%= link_to("Back", unit_avail_ops_path) %>
-            </td>
-          <% end %>
+          <td width=40% align=left>
+            Member Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+          </td>
+          <td width=20% align=center>
+            <%= link_to("Back", unit_avail_ops_path) %>
+          </td>
+          <td width=40% align=right>
+            <%= link_to('<', member_avail_ops_path(@member.prev_member_id)) %>
+            <input size=14 id="autoselect" value="find member...">
+            <%= link_to('>', member_avail_ops_path(@member.next_member_id)) %>
+          </td>
         </tr>
       </table>
     </div>
 
-    <div id=x_single_col>
+    <div id=mem_left_col>
 
       <%= @member.first_name %> has
       <%= pluralize(@member.avail_ops.count, " busy period") %>
-
-      (<%= link_to "add new", new_member_avail_ops_path(@member) %>)<p/>
+      <% if can_update?(@member) %>
+        (<%= link_to "add new", new_member_avail_ops_path(@member) %>)
+      <% end %>
+      <p></p>
 
       <% if @member.avail_ops.count != 0 %>
         <%= form_for @member, :url => member_avail_ops_path(@member) do |mem| %>
           <table>
-            <tr><th>Start</th><th>End</th><th>Comment</th><th>Action</th></tr>
+            <tr><th>Start</th><th>End</th><th>Comment</th>
+              <% if can_update?(@member) %>
+                <th>Action</th>
+              <% end %>
+            </tr>
             <%= render "shared/error_messages", :target => @member %>
             <% @member.avail_ops.each do |op| %>
               <%= mem.fields_for :avail_ops, op do |opfld| %>
@@ -53,12 +52,21 @@
             <% end %>
           </table>
           <p/>
-          <%= mem.submit "UPDATE" %>
+          <% if can_update?(@member) %>
+            <%= mem.submit "UPDATE" %>
+          <% end %>
         <% end %>
       <% end %>
 
-
     </div>
+    <div id=mem_right_col style='margin:  auto;'>
+      <%= render 'calendar', :tgt => Time.now           %>
+      <%= render 'calendar', :tgt => 1.month.from_now   %>
+      <%= render 'calendar', :tgt => 2.months.from_now  %>
+    </div>
+
+
+
     <div id=x_footer> </div>
 
   </div>

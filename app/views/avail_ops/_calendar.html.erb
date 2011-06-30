@@ -1,0 +1,30 @@
+<% @year  = defined?(tgt)  ? tgt.year  : Time.now.year %>
+<% @month = defined?(tgt)  ? tgt.month : Time.now.month %>
+<% @beginning_of_month = Date.civil(@year, @month, 1) %>
+<% @end_of_month = Date.civil(@year, @month, -1) %>
+
+<table class='calendar'>
+ <tr align=center><th colspan=7 align=center><%= @beginning_of_month.strftime("%b %Y") %></th></tr>
+ <tr>
+   <th>Su</th><th>Mo</th>
+   <th>Tu</th><th>We</th>
+   <th>Th</th><th>Fr</th>
+   <th>Sa</th>
+  </tr>
+  <tr>
+
+
+  <% (@beginning_of_month..@end_of_month).each do |d| %>
+    <% if d == @beginning_of_month %>
+      <% d.wday.times do %> <td class='offset'></td> <% end %>
+    <% end %>
+
+    <% if d.wday == 0 %> </tr><tr> <% end %>
+    <% if @member.avail_ops.busy_on?(d) %>
+      <td align=right style="background-color: pink"> <%= d.day %> </td>
+    <% else %>
+      <td align=right> <%= d.day %> </td>
+    <% end %>
+  <% end %>
+  </tr>
+</table>

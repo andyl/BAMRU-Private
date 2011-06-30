@@ -1,45 +1,24 @@
-<%= javascript_include_tag "jquery-ui.min.js" %>
+<table class='calendar'>
+ <tr>
+   <th>Su</th><th>Mo</th>
+   <th>Tu</th><th>We</th>
+   <th>Th</th><th>Fr</th>
+   <th>Sa</th>
+  </tr>
+  <tr>
+  <% @beginning_of_month = Date.civil(2009, 12, 1) %>
+  <% @end_of_month = Date.civil(2009, 12, -1) %>
 
-<script>
-  $(function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  });
-  </script>
+  <% (@beginning_of_month..@end_of_month).each do |d| %>
+    <% if d == @beginning_of_month %>
+      <% d.wday.times do %> <td class='offset'></td> <% end %>
+    <% end %>
 
-<div class="demo">
-
-<div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
-</div>
-
-</div>
+    <% if d.wday == 0 %> </tr><tr> <% end %>
+    <td align=right> <%= d.day %> </td>
+  <% end %>
+  </tr>
+</table>
 
 
 
