@@ -38,6 +38,8 @@ task :import do
   (x.admin = true; x.save) unless x.nil?
   x = Member.where(:user_name => "shane_iseminger").first
   (x.admin = true; x.save) unless x.nil?
+  x = Member.create!(:user_name => "mark_lowpensky", :typ => "A")
+  (x.admin = true; x.save) unless x.nil?
   Org.create(:name => "BAMRU")
   Rake::Task['photos'].invoke
   Rake::Task['cert_image_load'].invoke
