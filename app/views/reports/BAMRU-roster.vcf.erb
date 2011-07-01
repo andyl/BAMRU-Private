@@ -1,4 +1,4 @@
-<% @embers.each do |mem| %>
+<% @members.each do |mem| %>
 BEGIN:VCARD
 VERSION:3.0
 N:<%= mem.last_name %>;<%= mem.first_name %>
@@ -7,16 +7,13 @@ TITLE:<%= mem.full_roles %>
 <% mem.addresses.each do |adr| %>
 ADR;TYPE=<%= adr.typ %>:;;<%= adr.address1 %>;<%= adr.address2 %>;<%= adr.city %>;<%= adr.state %>;<%= adr.zip %>;United States of America
 <% end %>
-<% mem.hwm_phones.each do |pho| %>
+<% mem.phones.each do |pho| %>
 TEL;TYPE=<%= pho.typ %>,VOICE:<%= pho.number %>
 <% end %>
 <% mem.emails.each do |ema| %>
-EMAIL;TYPE=<%= ema.typ %>:<%= ema.email %>
+EMAIL;TYPE=<%= ema.typ %>:<%= ema.address %>
 <% end %>
-<% mem.alt_phones.each do |pho| %>
-NOTE:<%= pho.typ %> (<%= pho.number %>)
-<% end %>
-<% unless mem.ham.nil? || mem.ham.empty? %>
+<% unless mem.ham.blank? %>
 NOTE:Ham License - <%= mem.ham %>
 <% end %>
 <% unless mem.v9.nil? || mem.v9.empty? %>

@@ -6,14 +6,18 @@ class ReportsController < ApplicationController
     @report_list = [
     ["Map List",   'BAMRU-roster.html', "HTML Roster with Gmap links"],
     ["CSV Report", 'BAMRU-roster.csv',  "for importing into Excel"],
-    ["Hello World",'HelloWorld.pdf',    "prototype/proof of concept"],
+    ["VCF Report", 'BAMRU-roster.vcf',  "VCARD for importing into Gmail & Outlook"],
     ["BAMRU Names",'BAMRU-names.pdf',   "list of names for ProDeal reporting"]
     ]
   end
 
   def show
     @members = Member.order_by_last_name.all
-    render params[:title] + '.' + params[:format], :layout => nil
+    args = {:layout => nil}
+#    args = args.merge({:content_type => 'text/plain'}) if params[:format] == "vcf"
+#    args = args.merge({:mime_type => "text/plain" }) if params[:format] == "vcf"
+#    self.content_type = "text/plain" if params[:format] == "vcf"
+    render params[:title] + '.' + params[:format], args
   end
 
   protected

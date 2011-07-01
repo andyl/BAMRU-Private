@@ -53,7 +53,7 @@ module ReportsHelper
 
   def gmap_link(member, typ)
     adr = member.address(typ)
-    return "" if adr.nil?
+    return "NA" if adr.nil?
     "<a href='#{gmap_url(adr)}' target='_blank'>#{adr.city}</a>"
   end
 end

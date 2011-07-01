@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 587,
   :domain               => "gmail.com",
   :user_name            => "akleak",
-  :password             => "TBDTBD",
+  :password             => File.read("/home/aleak/.ak_gmail.txt").chomp,
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
