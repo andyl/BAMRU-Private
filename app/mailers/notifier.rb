@@ -9,9 +9,13 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def password_reset_email(address)
+  def password_reset_email(address, url)
+    Time.zone = "Pacific Time (US & Canada)"
     @address = address
+    @url     = url
     @member  = Email.find_by_address(address).member
+    @member.reset_forgot_password_token
+    @expire  = @member.forgot_password_expires_at.strftime("%H:%M")
     mail(
             :to => address,
             :subject => "BAMRU.net Password Reset"

@@ -1,12 +1,18 @@
-<br/><h2>Please update your password</h2>
+<br/><h2>Please reset your password</h2>
 <br/>
-<form method=post action='/password/update'>
-  Password:<br/>
-  <input type=password name=password>
-  <p></p>
-  Confirm:<br/>
-  <input type=password name=password_confirmation>
-  <p></p>
-  <input type=submit value="enter">
-</form>
+
+
+<%= form_for(@member, :url => '/password/update') do |f| %>
+  <%= render "shared/error_messages", :target => @member %>
+  <div id=password>
+    Password:<br/>
+    <%= f.hidden_field :id %>
+    <%= f.password_field :password, :size => 13 %>
+    <p></p>
+    Confirmation:<br/>
+    <%= f.password_field :password_confirmation, :size => 13 %>
+    <p></p>
+    <%= f.submit "Reset Password" %>
+  </div>
+<% end %>
 <p></p> <br/>

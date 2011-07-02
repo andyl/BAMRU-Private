@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "password_digest"
     t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"
+    t.string   "ip_address"
     t.string   "forgot_password_token"
     t.time     "forgot_password_expires_at"
     t.time     "remember_created_at"

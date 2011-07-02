@@ -15,8 +15,7 @@ Zn::Application.routes.draw do
   get  "password/sending"      # user notice after the email has been sent
 
   get  "password/reset"        # link embedded in the email goes to this page
-  post "password/update"       # updates the password after token is accepted
-  get  "password/try_again"    # failure message if the reset token is invalid
+  put  "password/update"       # updates the password after token is accepted
 
   resources :sessions
 

@@ -1,8 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :set_time_zone
+
+  def set_time_zone
+    Time.zone = 'Pacific Time (US & Canada)'
+  end
+
   def current_ability
     @current_ability ||= Ability.new(current_member)
+  end
+
+  def member_login(member)
+    session[:member_id] = member.id
+    member.sign_in_count   += 1
+    member.last_sign_in_at = Time.now
+    member.ip_address      = request.remote_ip
+    member.save
   end
 
   rescue_from CanCan::AccessDenied do |exception|

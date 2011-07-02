@@ -9,7 +9,7 @@ class PasswordController < ApplicationController
     @member = Email.find_by_address(params[:email]).try(:member)
     if @member.try(:valid?)
       @member.reset_forgot_password_token
-      call_rake(:send_password_reset_mail, :address => params[:email])
+      call_rake(:send_password_reset_mail, {:address => params[:email], :url => password_reset_url})
       redirect_to "/password/sending?address=#{params[:email]}"
     else
       flash.now.alert = "Unrecognized email address (#{params[:email]}).  Please try again."
@@ -25,25 +25,32 @@ class PasswordController < ApplicationController
   # get /password/reset?token=qwerqwerasdfd - this link is embedded in the email
   # if the token is valid, the user must create a new password
   def reset
-    @member = Member.where(:forgot_password_token => params['token'])
+    Time.zone = "Pacific Time (US & Canada)"
     # TODO: fix the timezone problem
     # TODO: check forgot_password_token_expires_at
-    unless @member
-      flash.now.alert = "Unrecognized password (#{params[:email]}).  Please try again."
+    @member = current_member || Member.find_by_forgot_password_token(params['token'])
+    if @member
+      @member.clear_forgot_password_token
+      member_login(@member) unless member_signed_in?
+      @member.password = ""
+      authorize! :manage, @member
+    else
+      flash.now.alert = "Your password reset token has been used or expired.  Please try again."
       render "forgot"
     end
   end
 
   # post /password/update - processes the password form
   def update
-    # process the password
-    # if successful, show a flash notice, and redirect to the home page
-    # otherwise, show and error message and go back to the reset page
+    @member = Member.find_by_id(params[:member][:id])
+    authorize! :manage, @member
+    m_params = params["member"]
+    x = @member.update_attributes(m_params)
+    if x
+      redirect_to root_path, :notice => "Successful Password Reset"
+    else
+      render "reset"
+    end
   end
-
-  # get /password/try_again - info message for the user if the reset token is invalid
-  def try_again
-  end
-
 
 end
