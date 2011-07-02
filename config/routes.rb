@@ -10,7 +10,14 @@ Zn::Application.routes.draw do
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
 
-  resources :passwords
+  get  "password/forgot" 
+  post "password/send_email"   # collects an email address and sends email
+  get  "password/sending"      # user notice after the email has been sent
+
+  get  "password/reset"        # link embedded in the email goes to this page
+  post "password/update"       # updates the password after token is accepted
+  get  "password/try_again"    # failure message if the reset token is invalid
+
   resources :sessions
 
   resources  :members

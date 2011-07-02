@@ -12,6 +12,7 @@ class Email < ActiveRecord::Base
   # ----- Validations -----
   validates_format_of :address, :with => /^[A-z0-9\-\_\.]+@([A-z0-9\-\_]+\.)+[A-z]+$/
 
+  validates_uniqueness_of :address
 
   # ----- Scopes -----
   scope :pagable, where(:pagable => 1)

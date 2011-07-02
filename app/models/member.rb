@@ -175,6 +175,16 @@ class Member < ActiveRecord::Base
 
   # ----- Instance Methods -----
 
+  def reset_forgot_password_token
+    self.forgot_password_token      = rand(36 ** 8).to_s(36)
+    self.forgot_password_expires_at = Time.zone.now + 30.minutes
+    self.save
+  end
+
+  def clear_forgot_password_token
+    
+  end
+
   def self.invalid_address?(params)
     tmp = params[:full_address]
     tmp && (tmp.empty? || tmp.include?('...'))

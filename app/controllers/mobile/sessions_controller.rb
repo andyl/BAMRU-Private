@@ -19,6 +19,9 @@ class Mobile::SessionsController < ApplicationController
       else
         cookies[:digest] = nil
       end
+      member.sign_in_count   += 1
+      member.last_sign_in_at = Time.now
+      member.save
       redirect_to (session[:ref] || mobile_path), :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"

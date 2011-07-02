@@ -106,21 +106,18 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "typ"
     t.string   "ham"
     t.string   "v9"
-    t.boolean  "admin",                  :default => false
+    t.boolean  "admin",                      :default => false
     t.string   "password_digest"
-    t.integer  "sign_in_count",          :default => 0
-    t.string   "last_sign_in_ip"
+    t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.time     "current_sign_in_at"
-    t.string   "reset_password_token"
-    t.time     "reset_password_sent_at"
+    t.string   "forgot_password_token"
+    t.time     "forgot_password_expires_at"
     t.time     "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
+  add_index "members", ["forgot_password_token"], :name => "index_members_on_forgot_password_token", :unique => true
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id"

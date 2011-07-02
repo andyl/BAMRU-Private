@@ -13,22 +13,17 @@ class BaseMigration < ActiveRecord::Migration
       t.string   :password_digest
       
       t.integer  :sign_in_count, :default => 0
-
-      t.string   :last_sign_in_ip
       t.time     :last_sign_in_at
 
-      t.string   :current_sign_in_ip
-      t.time     :current_sign_in_at
-
-      t.string   :reset_password_token
-      t.time     :reset_password_sent_at
+      t.string  :forgot_password_token
+      t.time    :forgot_password_expires_at
 
       t.time     :remember_created_at
 
       t.timestamps
     end
 
-    add_index :members, :reset_password_token, :unique => true
+    add_index :members, :forgot_password_token, :unique => true
 
     create_table :addresses do |t|
       t.integer :member_id
