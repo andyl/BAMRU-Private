@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "chats", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "client"
+    t.string   "lat"
+    t.string   "lon"
+    t.string   "ip_address"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "distributions", :force => true do |t|
     t.integer  "message_id"
     t.integer  "member_id"
@@ -107,6 +118,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "ham"
     t.string   "v9"
     t.boolean  "admin",                      :default => false
+    t.boolean  "developer",                  :default => false
     t.string   "password_digest"
     t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"

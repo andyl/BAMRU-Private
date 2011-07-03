@@ -1,0 +1,14 @@
+<%= javascript_include_tag "faye.js" %>
+<%= javascript_include_tag "chats.js" %>
+<%= javascript_include_tag "chats_create.js" %>
+
+<h2>CHAT</h2>
+
+<ul id="chat">
+  <%= render @messages %>
+</ul>
+
+<%= form_for Chat.new, :remote => true do |f| %>
+  <%= f.text_field :text %>
+  <%= f.submit "Send" %>
+<% end %>

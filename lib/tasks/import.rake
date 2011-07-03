@@ -9,6 +9,7 @@ task :import => :environment do
   RosterLoad.import(RosterLoad.parse)
   x = Member.where(:user_name => "andy_leak").first
   (x.admin = true; x.save) unless x.nil?
+  (x.developer = true; x.save) unless x.nil?
   x = Member.where(:user_name => "cal_hoagland").first
   (x.admin = true; x.save) unless x.nil?
   x = Member.where(:user_name => "victor_tubbesing").first

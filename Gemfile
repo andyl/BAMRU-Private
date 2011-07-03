@@ -19,6 +19,7 @@ gem 'cancan'
 gem 'linecache', "0.43"
 gem 'mail'
 gem 'prawn'
+gem 'faye'
 
 # Asset template engines
 gem 'json'

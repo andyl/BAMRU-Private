@@ -8,7 +8,8 @@ class BaseMigration < ActiveRecord::Migration
       t.string   :typ
       t.string   :ham
       t.string   :v9
-      t.boolean  :admin, :default => false
+      t.boolean  :admin,     :default => false
+      t.boolean  :developer, :default => false
 
       t.string   :password_digest
       
@@ -123,6 +124,15 @@ class BaseMigration < ActiveRecord::Migration
     end
     create_table :messages do |t|
       t.integer       :author_id
+      t.string        :ip_address
+      t.string        :text
+      t.timestamps
+    end
+    create_table :chats do |t|
+      t.integer       :member_id
+      t.string        :client # browser | mobile
+      t.string        :lat
+      t.string        :lon
       t.string        :ip_address
       t.string        :text
       t.timestamps

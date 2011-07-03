@@ -4,3 +4,5 @@ They are designed to work on Android, iPhone, iPad, and Blackberry devices.
 <p></p>
 Your are currently logged in as <%= current_member.full_name %>.
 <%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline" %>
+<p></p>
+<%= link_to("GeoLocation Test", '/mobile/geo') if current_member.developer? %>

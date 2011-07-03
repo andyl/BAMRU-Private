@@ -21,6 +21,7 @@ class Mobile::SessionsController < ApplicationController
       member_login(member)
       redirect_to (session[:ref] || mobile_path), :notice => "Logged in!"
     else
+      debugger
       flash.now.alert = "Invalid email or password"
       render "new"
     end

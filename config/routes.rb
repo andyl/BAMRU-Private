@@ -25,6 +25,7 @@ Zn::Application.routes.draw do
   resources  :unit_certs
   resources  :unit_avail_ops
   resources  :do_assignments
+  resources  :chats
 
   resources  :members do
     resources  :photos
@@ -35,6 +36,7 @@ Zn::Application.routes.draw do
 
   get "mobile" => "mobile#index", :as => "mobile"
   get "mobile/about"
+  get "mobile/geo"
 
   get "mobile/login"  => "mobile/sessions#new",     :as => "mobile_login"
   get "mobile/logout" => "mobile/sessions#destroy", :as => "mobile_logout"

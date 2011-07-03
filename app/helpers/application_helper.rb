@@ -1,4 +1,10 @@
 module ApplicationHelper
+
+  def broadcast(channel, &block)
+    message = {:channel => channel, :data => capture(&block), :ext => {:auth_token => FAYE_TOKEN}}
+    uri = URI.parse("http://localhost:9292/faye")
+    Net::HTTP.post_form(uri, :message => message.to_json)
+  end
   
   def app_notice
     notice_value = notice
@@ -32,7 +38,10 @@ module ApplicationHelper
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
     mobile = link_to_unless_current("Mobile", '/home/mobile')
-    [roster, photos, certs, avail, duty, report, mobile].join(' | ')
+    chat   = link_to_unless_current("Chat", chats_path)
+    opts   = [roster, photos, certs, avail, duty, report, mobile]
+    opts << chat if current_member.developer?
+    opts.join(' | ')
   end
 
   def header_nav
