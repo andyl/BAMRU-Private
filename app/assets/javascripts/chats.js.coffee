@@ -4,4 +4,4 @@
 
 $(document).ready ->
   faye = new Faye.Client('http://ekel:9292/faye')
-  faye.subscribe("/messages/new", (data) -> eval(data))
+  faye.subscribe("/chats/new", (data) -> eval(data))

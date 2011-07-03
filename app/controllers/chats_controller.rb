@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
 
   def index
-    @chats = Chat.all
+    @chats = Chat.all.reverse
   end
 
   def create
