@@ -16,7 +16,6 @@
   <div data-role="header">
     <%= link_to("Home", mobile_path, "data-icon" => "home") unless current_page?(mobile_path) %>
     <h2>BAMRU Mobile</h2>
-    <%# link_to_unless_current "BAMRU Mobile", mobile_path %>
   </div>
   
   <div data-role="content">
@@ -26,7 +25,7 @@
   </div>
 
 
-<% if request.env['REQUEST_PATH'].include?('/mobile/about') %>
+<% if request.path.include?('/mobile/about') %>
 <div data-role="footer" data-position="fixed">
 <%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline"%>
 </div>
