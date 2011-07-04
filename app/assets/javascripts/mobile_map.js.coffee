@@ -28,20 +28,22 @@ getLocationAndDrawMap = ->
 mapOpts = (latlon) ->
   center:            latlon
   zoom:              12
-  mapTypeControl:    true
   navigationControl: false
-  streetViewControl: true
-  zoomControl:       true
+  streetViewControl: true #
+  mapTypeControl:    true #
+  zoomControl:       true #
   mapTypeId:         google.maps.MapTypeId.ROADMAP
   navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
 
 showMap = (position) ->
   offset = {top: 80, left: 15}
-  margin = 30
+  margin = 20
   lat = position.coords.latitude
   lon = position.coords.longitude
   latlon = new google.maps.LatLng(lat, lon)
-  $('#coords').text("#{lat} / #{lon}")
+  latstr = "#{lat}".substring(0,7)
+  lonstr = "#{lon}".substring(0,9)
+  $('#coords').text("#{latstr} / #{lonstr}")
   $('#canvas').height($(document).height() - offset.top  - margin)
   $('#canvas').width($(document).width()   - offset.left - margin)
   $('#canvas').gmap(mapOpts(latlon))
