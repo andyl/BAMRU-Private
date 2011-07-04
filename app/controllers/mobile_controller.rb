@@ -19,10 +19,4 @@ class MobileController < ApplicationController
   def map
   end
 
-  def geo
-  end
-
-  def geo2
-  end
-
 end

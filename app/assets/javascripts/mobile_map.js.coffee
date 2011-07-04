@@ -2,6 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+deviceName = ->
+  ua = navigator.userAgent
+  return "Android"    if ua.match(/Android/)
+  return "iPod"       if ua.match(/iPod/)
+  return "iPad"       if ua.match(/iPad/)
+  return "iPhone"     if ua.match(/iPhone/)
+  return "BlackBerry" if ua.match(/BlackBerry/)
+  return "Firefox"    if ua.match(/Firefox/)
+  return "Chrome"     if ua.match(/Chrome/)
+  return "Safari"     if ua.match(/Safari/)
+  return "Opera"      if ua.match(/Opera/)
+  "Unknown"
+
 navError = (msg = "failed") ->
   errTxt = typeof msg == 'string' ? msg : "failed"
   $("#loc").text(errTxt)
