@@ -58,14 +58,17 @@
             </td>
           </tr>
           <tr>
-            <td valign="top" class="body" bgcolor="#eeeeee"><I><b><font color="#333333" size="2">Member Services</font></b></I><br></td>
+            <td valign="top" class="body" bgcolor="#eeeeee"><I><b><font color="#333333" size="2">BAMRU Services</font></b></I><br></td>
           </tr>
           <tr>
             <td valign="top" bgcolor="white">
               <table width=100%><tr>
-                <td><font size="2" class="body"><b><a href="/home/tbd">BAMRU Wiki</a></b><br/></font></td>
+                <td><font size="2" class="body"><b><a href="/home/tbd">Wiki</a></b><br/></font></td>
                 <% if current_member.developer? %>
-                  <td align=right><b><%= link_to "BAMRU Chat", '/chats' %></b></td>
+                  <td align=center><b><%= link_to "Mobile", '/home/mobile' %></b></td>
+                  <td align=right><b><%= link_to "Chat", '/chats' %></b></td>
+                <% else %>
+                  <td align=right><b><%= link_to "Mobile", '/home/mobile' %></b></td>
                 <% end %>
               </tr></table>
             </td>

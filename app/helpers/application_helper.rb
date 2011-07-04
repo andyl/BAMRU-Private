@@ -37,8 +37,7 @@ module ApplicationHelper
     avail  = link_to_unless_current("Availability", unit_avail_ops_path)
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
-    mobile = link_to_unless_current("Mobile", '/home/mobile')
-    opts   = [roster, photos, certs, avail, duty, report, mobile]
+    opts   = [roster, photos, certs, avail, duty, report]
     opts.join(' | ')
   end
 
