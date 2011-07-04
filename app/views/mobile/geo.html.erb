@@ -14,8 +14,11 @@
       return;
     }
 
-    s.innerHTML = "found you!";
+    s.innerHTML = "found you!<br/>(" + position.coords.latitude + "/" + position.coords.longitude + ")" ;
     s.className = 'success';
+
+    alert("NOW THERE");
+    return;
 
     var mapcanvas = document.createElement('div');
     mapcanvas.id = 'mapcanvas';
@@ -57,6 +60,8 @@
 
 </script>
 
+<% if false %>
+
 <script src="/js/prettify.packed.js"></script>
 
 <script>
@@ -69,3 +74,5 @@
     pageTracker._trackPageview();
   } catch(err) {}
 </script>
+
+<% end %>

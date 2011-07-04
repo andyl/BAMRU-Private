@@ -24,6 +24,14 @@
     <%= yield %>
 
   </div>
+
+
+<% if request.env['REQUEST_PATH'] == '/mobile/about' %>
+<div data-role="footer" data-position="fixed">
+<%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline"%>
+</div>
+<% end %>
+  
 </div>
 
 </body>

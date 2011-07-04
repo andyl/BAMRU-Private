@@ -38,9 +38,7 @@ module ApplicationHelper
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
     mobile = link_to_unless_current("Mobile", '/home/mobile')
-    chat   = link_to_unless_current("Chat", chats_path)
     opts   = [roster, photos, certs, avail, duty, report, mobile]
-    opts << chat if current_member.developer?
     opts.join(' | ')
   end
 

@@ -1,8 +1,23 @@
-These pages are for smart phones and touch-screen devices.
+<%= javascript_include_tag "mobile_about.js" %>
+
+Use BAMRU Mobile on Android, iPhone, iPad, or BlackBerry/Opera.
 <p></p>
-They are designed to work on Android, iPhone, iPad, and Blackberry devices.
-<p></p>
-Your are currently logged in as <%= current_member.full_name %>.
-<%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline" %>
-<p></p>
-<%= link_to("GeoLocation Test", '/mobile/geo') if current_member.developer? %>
+<table>
+  <tr>
+    <td align=center colspan=2>
+      <%= link_to(current_member.full_name, mobile_member_path(current_member), "data-role" => "button" ) %>
+    </td>
+  </tr>
+  <tr>
+    <td align=right>Platform:</td>
+    <td id="device">TBD</td>
+  </tr>
+  <tr>
+    <td align=right>Screen:</td>
+    <td><span id="size">TBD</span></td>
+  </tr>
+  <tr id="loc_row">
+    <td align=right>Location:</td>
+    <td><span id="loc">TBD</span></td>
+  </tr>
+</table>
