@@ -16,7 +16,13 @@ class MobileController < ApplicationController
   def contact
   end
 
+  def map
+  end
+
   def geo
+  end
+
+  def geo2
   end
 
 end

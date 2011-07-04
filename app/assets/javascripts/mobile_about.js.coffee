@@ -13,6 +13,7 @@ navSuccess = (position) ->
   $("#loc_row").html("<td align=right>Lat:</td><td>#{lat}</td>")
   $("#loc_row").after("<tr><td align=right>Lon:</td><td>#{lon}</td></tr>")
   $("#loc_row").addClass("success")
+  $("#map_button").show()
 
 deviceName = ->
   ua = navigator.userAgent
@@ -34,6 +35,7 @@ $(document).ready ->
   $("#device").text(deviceName())
 
 $(document).ready ->
+  $("#map_button").hide()
   $("#size").text(getSize())
   $(window).resize ->
     $("#size").text(getSize())
