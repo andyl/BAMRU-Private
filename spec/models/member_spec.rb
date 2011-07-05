@@ -153,7 +153,7 @@ describe Member do
         @obj = Member.create :user_name => "test_user"
         @obj.remember_me_token.should_not be_nil
         @obj.remember_me_token.should be_a(String)
-        @obj.remember_me_token.length.should == 6
+        @obj.remember_me_token.length.should == 16
       end
     end
     context "when updating a password" do

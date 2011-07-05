@@ -207,8 +207,7 @@ class Member < ActiveRecord::Base
   end
 
   def set_remember_me_token
-    #debugger
-    self.remember_me_token = rand(36 ** 6).to_s(36)
+    self.remember_me_token = rand(36 ** 16).to_s(36)
   end
 
   def check_first_name_for_title
@@ -254,6 +253,7 @@ class Member < ActiveRecord::Base
 
   def set_pwd
     self.password = "welcome" if self.password.blank?
+    set_remember_me_token
   end
 
   def new_names_from_username
