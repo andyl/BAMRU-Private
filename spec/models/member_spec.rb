@@ -147,6 +147,47 @@ describe Member do
     end
   end
 
+  describe "#remember_me_token" do
+    context "when creating an object" do
+      it "creates a remember_me token" do
+        @obj = Member.create :user_name => "test_user"
+        @obj.remember_me_token.should_not be_nil
+        @obj.remember_me_token.should be_a(String)
+        @obj.remember_me_token.length.should == 6
+      end
+    end
+    context "when updating a password" do
+      it "resets the remember_me token" do
+        @obj = Member.create :user_name => "test_user"
+        original_token = @obj.remember_me_token
+        @obj.update_attributes(:password => "welcome2")
+        @obj.remember_me_token.should_not be_nil
+        @obj.remember_me_token.should_not == original_token
+      end
+    end
+    context "when updating a password" do
+      it "resets the remember_me token" do
+        @obj = Member.create :user_name => "test_user"
+        original_token = @obj.remember_me_token
+        original_digest = @obj.password_digest
+        @obj.update_attributes(:password => "welcome2")
+        @obj.remember_me_token.should_not be_nil
+        @obj.remember_me_token.should_not == original_token
+        @obj.password_digest.should_not == original_token
+      end
+    end
+    context "when updating another parameter" do
+      it "does not reset the remember_me token" do
+        @obj = Member.create :user_name => "test_user"
+        original_token = @obj.remember_me_token
+        @obj.sign_in_count = 10
+        @obj.save
+        @obj.remember_me_token.should_not be_nil
+        @obj.remember_me_token.should == original_token
+      end
+    end
+  end
+
   describe "#scrubbed_errors / user_name" do
     it "detects invalid user_names" do
       @obj = Member.new(:user_name => "as#x_qwer")

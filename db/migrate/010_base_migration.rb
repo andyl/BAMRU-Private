@@ -17,6 +17,8 @@ class BaseMigration < ActiveRecord::Migration
       t.time     :last_sign_in_at
       t.string   :ip_address
 
+      t.string  :remember_me_token
+      
       t.string  :forgot_password_token
       t.time    :forgot_password_expires_at
 

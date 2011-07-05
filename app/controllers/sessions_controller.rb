@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
 
   def new
-    if member = Member.find_by_password_digest(cookies[:digest])
+    member = Member.find_by_remember_me_token(cookies[:remember_me_token])
+    unless member.nil?
       session[:member_id] = member.id
       redirect_to (session[:ref] || root_path), :notice => "Welcome back #{member.first_name}"
     end
@@ -12,9 +13,9 @@ class SessionsController < ApplicationController
     member = Member.find_by_user_name(params[:user_name])
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"
-        cookies[:digest] = {:value => member.password_digest, :expires => Time.now + 360000}
+        cookies[:remember_me_token] = {:value => member.remember_me_token, :expires => Time.now + 360000}
       else
-        cookies[:digest] = nil
+        cookies[:remember_me_token] = nil
       end
       member_login(member)
       redirect_to (session[:ref] || root_path), :notice => "Logged in!"
@@ -26,7 +27,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:member_id] = nil
-    cookies[:digest] = nil
+    cookies[:remember_me_token] = nil
     redirect_to root_path, :notice => "Logged out!"
   end
 

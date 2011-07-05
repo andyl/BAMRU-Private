@@ -13,6 +13,8 @@ class Member < ActiveRecord::Base
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
   attr_accessible :emergency_contacts_attributes
   attr_accessible :other_infos_attributes
+  attr_accessible :remember_me_token
+  attr_accessible :forgot_password_token, :forgot_password_expires_at
   attr_accessible :bd, :ol, :admin
 
   # ----- Associations -----
@@ -67,7 +69,8 @@ class Member < ActiveRecord::Base
   # ----- Callbacks -----
   before_validation :check_first_name_for_title
   before_validation :set_username_and_name_fields
-  before_validation :set_pwd
+  before_validation :set_pwd,                  :on => :create
+  before_validation :set_remember_me_token,    :if => :password_digest_changed?
 
   # ----- Scopes -----
   scope :order_by_last_name, order("last_name ASC")
@@ -175,6 +178,11 @@ class Member < ActiveRecord::Base
 
   # ----- Instance Methods -----
 
+  def clear_password
+    self.password = ""
+    self.password_confirmation = ""
+  end
+
   def reset_forgot_password_token
     Time.zone = "Pacific Time (US & Canada)"
     self.forgot_password_token      = rand(36 ** 8).to_s(36)
@@ -196,6 +204,11 @@ class Member < ActiveRecord::Base
   def self.invalid_params?(params, field)
     fields = field.is_a?(Array) ? field : [field]
     fields.any? {|x| params[x].blank? || params[x].include?('...')}
+  end
+
+  def set_remember_me_token
+    #debugger
+    self.remember_me_token = rand(36 ** 6).to_s(36)
   end
 
   def check_first_name_for_title

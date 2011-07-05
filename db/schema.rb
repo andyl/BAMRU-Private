@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"
     t.string   "ip_address"
+    t.string   "remember_me_token"
     t.string   "forgot_password_token"
     t.time     "forgot_password_expires_at"
     t.time     "remember_created_at"

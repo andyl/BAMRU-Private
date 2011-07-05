@@ -13,10 +13,13 @@ class ApplicationController < ActionController::Base
 
   def member_login(member)
     session[:member_id] = member.id
-    member.sign_in_count   += 1
-    member.last_sign_in_at = Time.now
-    member.ip_address      = request.remote_ip
-    member.save
+    new_member = Member.where(:id => member.id).first
+    new_member.sign_in_count   += 1
+    new_member.last_sign_in_at = Time.now
+    new_member.ip_address      = request.remote_ip
+    new_member.password = ""
+    new_member.password_confirmation = ""
+    new_member.save
   end
 
   rescue_from CanCan::AccessDenied do |exception|
