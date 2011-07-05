@@ -52,7 +52,7 @@ class Member < ActiveRecord::Base
   validates_format_of     :first_name, :with => /^[A-Za-z]+$/
   validates_format_of     :last_name,  :with => /^[A-Za-z\- ]+$/
   validates_format_of     :user_name,  :with => /^[a-z_\.\-]+$/
-  validates_format_of     :password,   :with => /^[A-z0-9]+$/
+  validates_format_of     :password,   :with => /^[A-z0-9]*$/
   validates_uniqueness_of :user_name
 
   validate :check_full_name_errors
@@ -252,7 +252,10 @@ class Member < ActiveRecord::Base
   end
 
   def set_pwd
-    self.password = "welcome" if self.password.blank?
+    if self.password.blank?
+      self.password = "welcome"
+      self.password_confirmation = "welcome"
+    end
     set_remember_me_token
   end
 

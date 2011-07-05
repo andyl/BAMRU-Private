@@ -57,6 +57,27 @@ describe Member do
    end
  end
 
+ describe "Object Updating" do
+   it "updates properly using #save" do
+     @obj = Member.create!(:user_name => "test_user")
+     @obj.ham = "asdf"
+     @obj.save
+     @obj.should be_valid
+   end
+   it "updates properly using #update_attributes" do
+     @obj = Member.create!(:user_name => "test_user")
+     @obj.update_attributes(:ham => "asdf")
+     @obj.should be_valid
+   end
+ end
+
+  describe "Object Retrieval" do
+    it "retrieves a valid object" do
+      Member.create!(:user_name => "test_user")
+      Member.first.should be_valid
+    end
+  end
+
   describe "#new_user_name_from_names" do
     before(:each) {@obj = Member.new(:first_name=>"Joe", :last_name=>"Smith")}
     it "should return the correct user_name" do
