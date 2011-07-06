@@ -1,4 +1,4 @@
 <li>
-  <span class="created_at"><%= chat.created_at.strftime("%H:%M") %></span>
+  <span class="created_at"><%= chat.member.try(:short_name) %> | <%= chat.created_at.strftime("%H:%M") %></span>
   <%= chat.text %>
 </li>

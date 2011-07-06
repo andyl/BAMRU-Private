@@ -1,16 +1,30 @@
-HELLO WORLD
-__END__
-
+<%= stylesheet_link_tag "chat.css" %>
 <%= javascript_include_tag "faye.js" %>
 <%= javascript_include_tag "chats.js" %>
 
-<h2>CHAT</h2>
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=center><b>BAMRU Chat</b></td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
 
-<ul id="chat">
-  <%= render @chats %>
-</ul>
+      <ul id="chat">
+        <%= render @chats %>
+      </ul>
 
-<%= form_for Chat.new, :remote => true do |f| %>
-  <%= f.text_field :text %>
-  <%= f.submit "Send" %>
-<% end %>
+      <div id="chat_form">
+        <%= form_for Chat.new, :remote => true do |f| %>
+          <%= f.text_field :text, :size => 65 %>
+          <%= f.submit "Send" %>
+        <% end %>
+      </div>
+
+    </div>
+    <div id=x_footer> </div>
+  </div>
+</div>

@@ -2,6 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+window.updateChatList = (element)->
+  tgt_ele = $('#chat, #mobile_chat').first()
+#  $(target).append(element)
+  tgt_ele.append(element)
+  list   = tgt_ele.children()
+#  list   = $(target).children()
+  length = list.length
+  if length > 20
+    list.first().remove()
+
 $(document).ready ->
   faye = new Faye.Client("<%= FAYE_SERVER %>")
   faye.subscribe("/chats/new", (data) -> eval(data))
