@@ -46,6 +46,7 @@ Zn::Application.routes.draw do
   namespace "mobile" do
     resources :members
     resources :sessions
+    resources :chats
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos

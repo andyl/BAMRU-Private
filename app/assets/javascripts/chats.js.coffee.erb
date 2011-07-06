@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  faye = new Faye.Client("<%= FAYE_SERVER %>/faye")
+  faye = new Faye.Client("<%= FAYE_SERVER %>")
   faye.subscribe("/chats/new", (data) -> eval(data))

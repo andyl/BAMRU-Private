@@ -26,6 +26,8 @@ Use BAMRU Mobile on Android, iPhone, iPad, or BlackBerry/Opera.
     </td>
   </tr>
 </table>
+<% if current_member.developer? %>
 <a href='tel:650-234-2344' data-role='button' data-ajax="false">Dial</a>
 <a href='sms:650-234-2344' data-role='button' data-ajax="false">SMS</a>
 <a href='mailto:joe@rr.com' data-role='button' data-ajax="false">Email</a>
+<% end %>
