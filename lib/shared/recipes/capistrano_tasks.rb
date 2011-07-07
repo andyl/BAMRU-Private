@@ -5,7 +5,7 @@ set :deploy_to, "/home/aleak/a/#{APPDIR}"
 set :repository,  "https://github.com/andyl/#{APPDIR}.git"
 
 default_run_options[:pty] = true
-#set :use_sudo, false
+set :use_sudo, true
 
 role :web, SERVER
 role :app, SERVER
