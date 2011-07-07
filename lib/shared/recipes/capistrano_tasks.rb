@@ -33,12 +33,20 @@ task :first_deploy do
 end
 
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
-after :deploy, :setup_shared_cache, :update_gems, :reload_database
+after :deploy, :setup_shared_cache, :update_gems, :reload_database, :restart_faye
 after :nginx_conf, :restart_nginx
 
 desc "Reload database."
 task :reload_database do
   run "cd #{current_path} && bundle exec rake import"
+end
+
+desc "Restart Faye"
+task :restart_faye do
+  cmd = "sudo bundle exec foreman export upstart /etc/init -u aleak -a bnet"
+  run "cd #{current_path} && #{cmd}"
+  run "cd #{current_path} && sudo stop bnet"
+  run "cd #{current_path} && sudo start bnet"
 end
 
 desc "Setup shared cache."

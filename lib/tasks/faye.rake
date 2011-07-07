@@ -15,6 +15,11 @@ namespace :faye do
     system cmd
   end
 
+  desc "Generate Upstart config files"
+  task :upstart do
+    system "sudo bundle exec foreman export upstart /etc/init -u aleak -a bnet"
+  end
+
   desc "CL Chat Client"
   task :chat do
     require File.dirname(File.expand_path(__FILE__)) + '/../faye_chat'
