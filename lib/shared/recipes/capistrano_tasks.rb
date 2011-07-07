@@ -38,7 +38,7 @@ after :nginx_conf, :restart_nginx
 
 desc "Reload database."
 task :reload_database do
-  run "cd #{current_path} && rake import"
+  run "cd #{current_path} && bundle exec rake import"
 end
 
 desc "Setup shared cache."
@@ -63,7 +63,7 @@ end
 
 desc "Create an nginx config file."
 task :nginx_conf do
-  run "cd #{current_path} && rake nginx_conf"
+  run "cd #{current_path} && bundle exec rake nginx_conf"
 end
 
 desc "Link the database."
@@ -80,8 +80,8 @@ task :setup_db do
   db_path = "#{shared_path}/db"
   db_file = "#{current_path}/db/development.sqlite3"
   run "rm -f #{db_file}"
-  run "cd #{current_path} ; rake db:migrate --trace"
-  run "cd #{current_path} ; rake db:seed --trace"
+  run "cd #{current_path} ; bundle exec rake db:migrate --trace"
+  run "cd #{current_path} ; bundle exec rake db:seed --trace"
   run "mkdir -p #{db_path}"
   run "mv #{db_file} #{db_path}"
 end
