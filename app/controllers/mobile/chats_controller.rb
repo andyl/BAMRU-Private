@@ -5,7 +5,7 @@ class Mobile::ChatsController < ApplicationController
   layout 'mobile'
 
   def index
-    @chats = Chat.order('created_at DESC').limit(20).reverse
+    @chats = Chat.order('created_at DESC').limit(35).reverse
   end
 
   def create

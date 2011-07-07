@@ -2,8 +2,10 @@ ul#chat {
   list-style: none;
   padding: 0;
   width: 600px;
+  height: 100%;
   border: solid 1px #777;
   margin: auto;
+  overflow: auto;
 }
 
 ul#chat li {
@@ -32,8 +34,10 @@ ul#mobile_chat {
   list-style: none;
   padding: 0;
   width: 100%;
+  min-height: 100%;
   border: solid 1px #777;
   margin: auto;
+  margin-bottom: 5px;
 }
 
 ul#mobile_chat li {
@@ -47,4 +51,8 @@ ul#mobile_chat li .created_at {
   font-size: 11px;
   padding-left: 4px;
   padding-top: 2px;
+}
+
+#chat_text {
+  width: 98%;
 }
