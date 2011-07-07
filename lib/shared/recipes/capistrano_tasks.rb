@@ -43,10 +43,10 @@ end
 
 desc "Restart Faye"
 task :restart_faye do
-  cmd = "sudo bundle exec foreman export upstart /etc/init -u aleak -a bnet"
-  run "cd #{current_path} && #{cmd}"
-  run "cd #{current_path} && sudo stop bnet"
-  run "cd #{current_path} && sudo start bnet"
+  cmd = "bundle exec foreman export upstart /etc/init -u aleak -a bnet"
+  sudo "cd #{current_path} && #{cmd}"
+  sudo "cd #{current_path} && stop bnet"
+  sudo "cd #{current_path} && start bnet"
 end
 
 desc "Setup shared cache."
