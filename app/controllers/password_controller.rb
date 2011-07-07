@@ -25,7 +25,7 @@ class PasswordController < ApplicationController
   # get /password/reset?token=qwerqwerasdfd - this link is embedded in the email
   # if the token is valid, the user must create a new password
   def reset
-    Time.zone = "Pacific Time (US & Canada)"
+    # Time.zone = "Pacific Time (US & Canada)"
     # TODO: fix the timezone problem
     # TODO: check forgot_password_token_expires_at
     @member = current_member || Member.find_by_forgot_password_token(params['token'])
