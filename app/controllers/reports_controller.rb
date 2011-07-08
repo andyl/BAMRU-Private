@@ -8,7 +8,8 @@ class ReportsController < ApplicationController
     ["CSV Report", 'BAMRU-roster.csv',  "for importing into Excel"],
     ["VCF Report", 'BAMRU-roster.vcf',  "VCARD for importing into Gmail & Outlook"],
     ["BAMRU Names",'BAMRU-names.pdf',   "list of names for ProDeal reporting"],
-    ["BAMRU Full", 'BAMRU-full.pdf',    "BAMRU roster with full contact info"]
+    ["BAMRU Full", 'BAMRU-full.pdf',    "BAMRU roster with full contact info"],
+    ["BAMRU XLS",  'BAMRU-test.xls',    "Test Roster with XLS generation"]
     ]
   end
 
