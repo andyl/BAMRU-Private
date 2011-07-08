@@ -1,26 +1,26 @@
 class BaseMigration < ActiveRecord::Migration
   def change
-    create_table :members do |t|
-      t.string   :title
-      t.string   :first_name
-      t.string   :last_name
-      t.string   :user_name
-      t.string   :typ
-      t.string   :ham
-      t.string   :v9
-      t.boolean  :admin,     :default => false
-      t.boolean  :developer, :default => false
+    create_table  :members do |t|
+      t.string    :title
+      t.string    :first_name
+      t.string    :last_name
+      t.string    :user_name
+      t.string    :typ
+      t.string    :ham
+      t.string    :v9
+      t.boolean   :admin,     :default => false
+      t.boolean   :developer, :default => false
 
-      t.string   :password_digest
+      t.string    :password_digest
       
-      t.integer  :sign_in_count, :default => 0
-      t.time     :last_sign_in_at
-      t.string   :ip_address
+      t.integer   :sign_in_count, :default => 0
+      t.time      :last_sign_in_at
+      t.string    :ip_address
 
-      t.string  :remember_me_token
+      t.string    :remember_me_token
       
-      t.string  :forgot_password_token
-      t.time    :forgot_password_expires_at
+      t.string    :forgot_password_token
+      t.datetime  :forgot_password_expires_at
 
       t.time     :remember_created_at
 

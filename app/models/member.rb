@@ -184,7 +184,7 @@ class Member < ActiveRecord::Base
   end
 
   def reset_forgot_password_token
-    # Time.zone = "Pacific Time (US & Canada)"
+    Time.zone = "Pacific Time (US & Canada)"
     self.forgot_password_token      = rand(36 ** 8).to_s(36)
     self.forgot_password_expires_at = Time.now + 30.minutes
     self.save

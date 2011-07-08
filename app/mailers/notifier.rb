@@ -10,7 +10,7 @@ class Notifier < ActionMailer::Base
   end
 
   def password_reset_email(address, url)
-    # Time.zone = "Pacific Time (US & Canada)"
+    Time.zone = "Pacific Time (US & Canada)"
     @address = address
     @url     = url
     @member  = Email.find_by_address(address).member

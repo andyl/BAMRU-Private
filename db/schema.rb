@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "ip_address"
     t.string   "remember_me_token"
     t.string   "forgot_password_token"
-    t.time     "forgot_password_expires_at"
+    t.datetime "forgot_password_expires_at"
     t.time     "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"

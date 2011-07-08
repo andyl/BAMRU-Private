@@ -8,7 +8,6 @@ class PasswordController < ApplicationController
   def send_email
     @member = Email.find_by_address(params[:email]).try(:member)
     if @member.try(:valid?)
-      @member.reset_forgot_password_token
       call_rake(:send_password_reset_mail, {:address => params[:email], :url => password_reset_url})
       redirect_to "/password/sending?address=#{params[:email]}"
     else
@@ -25,11 +24,9 @@ class PasswordController < ApplicationController
   # get /password/reset?token=qwerqwerasdfd - this link is embedded in the email
   # if the token is valid, the user must create a new password
   def reset
-    # Time.zone = "Pacific Time (US & Canada)"
-    # TODO: fix the timezone problem
-    # TODO: check forgot_password_token_expires_at
+    Time.zone = "Pacific Time (US & Canada)"
     @member = current_member || Member.find_by_forgot_password_token(params['token'])
-    if @member
+    if @member && (@member.forgot_password_expires_at > Time.now)
       @member.clear_forgot_password_token
       member_login(@member) unless member_signed_in?
       @member.password = ""
