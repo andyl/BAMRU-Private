@@ -28,8 +28,9 @@
               <td><%= report[0] %></td>
               <td><%= report_format(report) %></td>
               <td><%= report_description(report) %></td>
-              <td><%= download_link(report)%> |
-                  <%= gdocs_link(report) %>
+              <td><%= download_link(report)%>
+                  <% if report_format(report) != "PDF"  %> |
+                  <%= gdocs_link(report) %> <% end %>
               </td>
             </tr>
           <% end %>

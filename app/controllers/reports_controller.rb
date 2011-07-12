@@ -31,15 +31,16 @@ class ReportsController < ApplicationController
       args = {:layout => nil}
       doc_name = title + '.' + format
       doc_time = Time.now.strftime("%Y-%m-%d_%H%M")
+      doc_slug = "#{title} #{doc_time}"
+      session[:doc_slug] = doc_slug
       ctype    = cx_type(format)
       @members = Member.order_by_last_name.all
       doc_body = render_to_string(doc_name, args)
-      response = @access_token.post(tlist, doc_body, {'Slug' => "#{doc_name} #{doc_time}", 'Content-Type' => ctype})
+      response = @access_token.post(tlist, doc_body, {'Slug' => "#{doc_slug}", 'Content-Type' => ctype})
       if response.is_a?(Net::HTTPSuccess)
-        redirect_to "http://docs.google.com"
+        redirect_to '/reports/gdocs/uploading'
       else
-        @report_list = report_list
-        render "index", :alert => "unsuccessful request: #{response.inspect}"
+        redirect_to "/reports", :alert => "unsuccessful request: #{response.inspect}"
       end
     else
       redirect_to '/reports/gdocs/request'
@@ -61,13 +62,20 @@ class ReportsController < ApplicationController
     redirect_to "/reports/gdocs/show"
   end
 
+  def gdocs_uploading
+    @doc_slug = session[:doc_slug]
+    session[:doc_slug] = nil
+    session[:title]    = nil
+    session[:format]   = nil
+  end
+
   protected
 
   def cx_type(format)
     case format.upcase
       when "XLS"  : 'application/vnd.ms-excel'
       when "PDF"  : 'application/pdf'
-      when "CSV"  : 'text/plain'
+      when "CSV"  : 'text/csv'
       when "VCF"  : 'text/plain'
       when "HTML" : "text/html"
       else "text/plain"

@@ -51,11 +51,13 @@ Zn::Application.routes.draw do
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
 
-  match '/reports'               => "reports#index"
-  match '/reports/gdocs/auth'    => "reports#gdocs_auth"
-  match '/reports/gdocs/request' => "reports#gdocs_request"
-  match '/reports/gdocs/:title'  => "reports#gdocs_show"
-  match '/reports/:title'        => "reports#show"
+  match '/reports'                 => "reports#index"
+  match '/reports/gdocs/uploading' => "reports#gdocs_uploading"
+  match '/reports/gdocs/auth'      => "reports#gdocs_auth"
+  match '/reports/gdocs/request'   => "reports#gdocs_request"
+  match '/reports/gdocs/show'      => "reports#gdocs_show"
+  match '/reports/gdocs/:title'    => "reports#gdocs_show"
+  match '/reports/:title'          => "reports#show"
 
   root :to => 'home#index'
 
