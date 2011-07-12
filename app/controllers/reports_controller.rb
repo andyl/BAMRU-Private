@@ -19,6 +19,10 @@ class ReportsController < ApplicationController
     render params[:title] + '.' + params[:format], args
   end
 
+  def gdocs_show
+    
+  end
+
   protected
 
   # can be called with curl using http_basic authentication

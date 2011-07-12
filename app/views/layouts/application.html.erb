@@ -37,7 +37,7 @@
   <div id="footer">
     <table align="center"><tr><td>Internal Use Only</td></tr></table>
   </div>
-  <% if request.host == "ekel" %>
+  <% if request.host.include?("ekel") %>
     <div class="debug"><%= raw debug_footer_text %></div>
   <% end %>
 </div>

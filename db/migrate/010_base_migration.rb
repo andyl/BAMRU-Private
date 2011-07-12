@@ -22,6 +22,8 @@ class BaseMigration < ActiveRecord::Migration
       t.string    :forgot_password_token
       t.datetime  :forgot_password_expires_at
 
+      t.string    :google_oauth_token
+
       t.time     :remember_created_at
 
       t.timestamps

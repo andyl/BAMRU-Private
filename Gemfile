@@ -23,6 +23,7 @@ gem 'spreadsheet'
 gem 'em-http-request'
 gem 'faye'
 gem 'foreman'
+gem 'oauth'
 
 # Asset template engines
 gem 'json'
