@@ -29,8 +29,12 @@ module ReportsHelper
   end
 
   # ----- for BAMRU-names.pdf -----
-  def report_link(array)
-    link_to(array[0], "/reports/#{array[1]}", :target => "_blank")
+  def download_link(array)
+    link_to("Download", "/reports/#{array[1]}", :target => "_blank")
+  end
+
+  def gdocs_link(array)
+    link_to("Gdocs", "/reports/gdocs/#{array[1]}", :target => "_blank")
   end
 
   def report_format(array)

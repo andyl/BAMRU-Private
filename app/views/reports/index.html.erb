@@ -19,14 +19,18 @@
           <th>Name</th>
           <th>Format</th>
           <th>Description</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
           <% @report_list.each do |report| %>
             <tr>
-              <td><%= report_link(report) %></td>
+              <td><%= report[0] %></td>
               <td><%= report_format(report) %></td>
               <td><%= report_description(report) %></td>
+              <td><%= download_link(report)%> |
+                  <%= gdocs_link(report) %>
+              </td>
             </tr>
           <% end %>
         </tbody>

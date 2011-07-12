@@ -13,7 +13,7 @@ describe MembersController do
   describe "GET index" do
     it "assigns all members as @members" do
       member = Member.create! valid_attributes
-      get :index
+      get :index2
       assigns(:members).should eq([member])
     end
   end
