@@ -63,7 +63,7 @@ spreadsheet_document(:template => template) do |xls|
   end
 
   ## ----- SHEET 3 - Contacts -----
-  xls.set("Contacts!H1", "Current as of #{current_time}")
+  xls.set("Contacts!F1", "Current as of #{current_time}")
 
   Member.standard_order.all.each_with_index do |mem, idx|
     memrow = 4 + idx
