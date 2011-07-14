@@ -1,0 +1,83 @@
+file = '/BAMRU-callout_journal.xls'
+template = File.dirname(File.expand_path(__FILE__)) + file
+
+def output_row(book, row, mem)
+  book.set("Roster!A#{row}", "Y") if mem.ol
+  book.set("Roster!B#{row}", mem.full_roles)
+  book.set("Roster!C#{row}", mem.full_name)
+end
+
+def clear_row(book, row)
+  ('A'..'I').each {|x| book.set_style("Roster!#{x}#{row}", :blank)}
+  book.set_formula("Roster!I#{row}", nil)
+end
+
+def header_row(book, row, msg)
+  ('A'..'I').each { |x| book.set_style("Roster!#{x}#{row}", :header) }
+  book.set("Roster!C#{row}", msg)
+  book.set_formula("Roster!I#{row}", nil)
+end
+
+spreadsheet_document(:template => template) do |xls|
+
+  current_time = Time.now.strftime("%a %b %e, %Y @ %H:%M")
+  member_name  = current_member.full_name
+
+  ## ----- SHEET 1 - Journal -----
+  xls.set 'Journal!E2', " #{current_time} by #{member_name}"
+
+  # ----- SHEET 2 - Roster -----
+  tgt_row = 4
+  Member.active.all.each do |mem|
+    unless mem.current_status == "unavailable"
+      tgt_row += 1
+      output_row(xls, tgt_row, mem)
+    end
+  end
+
+  tgt_row += 1
+  clear_row(xls, tgt_row)
+  tgt_row += 1
+  header_row(xls, tgt_row, "OOT Members")
+
+  Member.active.all.each do |mem|
+    if mem.current_status == "unavailable"
+      tgt_row += 1
+      output_row(xls, tgt_row, mem)
+    end
+  end
+
+  tgt_row += 1
+  clear_row(xls, tgt_row)
+  tgt_row += 1
+  header_row(xls, tgt_row, "Reserve Members")
+
+  Member.inactive.all.each do |mem|
+    tgt_row += 1
+    output_row(xls, tgt_row, mem)
+  end
+
+  until tgt_row > 100
+    tgt_row += 1
+    clear_row(xls, tgt_row)
+  end
+
+  ## ----- SHEET 3 - Contacts -----
+  xls.set("Contacts!H1", "Current as of #{current_time}")
+
+  Member.standard_order.all.each_with_index do |mem, idx|
+    memrow = 4 + idx
+    xls.set "Contacts!A#{memrow}", mem.full_roles
+    xls.set "Contacts!B#{memrow}", mem.full_name
+    xls.set "Contacts!C#{memrow}", mem.phone("Mobile").try(:number)
+    xls.set "Contacts!D#{memrow}", mem.phone("Home").try(:number)
+    xls.set "Contacts!E#{memrow}", mem.phone("Work").try(:number)
+    xls.set "Contacts!F#{memrow}", mem.email("Personal").try(:address)
+    xls.set "Contacts!G#{memrow}", mem.email("Home").try(:address)
+    xls.set "Contacts!H#{memrow}", mem.email("Work").try(:address)
+    xls.set "Contacts!I#{memrow}", mem.ham
+    xls.set "Contacts!J#{memrow}", mem.v9
+  end
+
+
+end

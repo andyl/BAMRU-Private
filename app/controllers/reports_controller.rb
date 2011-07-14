@@ -5,12 +5,12 @@ class ReportsController < ApplicationController
 
   def report_list
     [
-      ["Map List",   'BAMRU-roster.html', "HTML Roster with Gmap links"],
-      ["CSV Report", 'BAMRU-roster.csv',  "for importing into Excel"],
-      ["VCF Report", 'BAMRU-roster.vcf',  "VCARD for importing into Gmail & Outlook"],
-      ["BAMRU Names",'BAMRU-names.pdf',   "list of names for ProDeal reporting"],
-      ["BAMRU Full", 'BAMRU-full.pdf',    "BAMRU roster with full contact info"],
-      ["BAMRU XLS",  'BAMRU-test.xls',    "Test Roster with XLS generation"]
+      ["Map List",        'BAMRU-roster.html',         "HTML Roster with Gmap links"],
+      ["CSV Report",      'BAMRU-roster.csv',          "For importing into Excel"],
+      ["VCF Report",      'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
+      ["BAMRU Names",     'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
+      ["BAMRU Full",      'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
+      ["Callout Journal", 'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"]
     ]
   end
   

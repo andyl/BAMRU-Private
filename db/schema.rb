@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "v9"
     t.boolean  "admin",                      :default => false
     t.boolean  "developer",                  :default => false
+    t.integer  "role_score"
     t.string   "password_digest"
     t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "remember_me_token"
     t.string   "forgot_password_token"
     t.datetime "forgot_password_expires_at"
+    t.string   "google_oauth_token"
     t.time     "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"

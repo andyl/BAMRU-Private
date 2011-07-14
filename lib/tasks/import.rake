@@ -46,7 +46,7 @@ end
 desc "Download Certs"
 task :cert_download => :environment do
   base_dir = File.dirname(File.expand_path(__FILE__))
-  doc_dir  = base_dir + '/db/docs'
+  doc_dir  = base_dir + '/../../db/docs'
   puts "Downloading all Cert files"
   Dir.chdir(doc_dir)
   system "rm -f *jpg *pdf"
@@ -58,7 +58,7 @@ end
 desc "Convert PDF Certs to JPG"
 task :cert_convert => :environment do
   base_dir = File.dirname(File.expand_path(__FILE__))
-  doc_dir  = base_dir + '/db/docs'
+  doc_dir  = base_dir + '/../..db/docs'
   puts "Converting PDF Cert files to JPG"
   Cert.with_pdfs.each do |c|
     puts "> Converting #{c.doc_path}"

@@ -37,7 +37,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
   accepts_nested_attributes_for :certs,     :allow_destroy => true
-  accepts_nested_attributes_for :avail_ops, :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].blank? && p[:end_txt].blank?}
+  accepts_nested_attributes_for :avail_ops, :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
   accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
   accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
@@ -67,15 +67,20 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Callbacks -----
+  before_save       :set_role_score
   before_validation :check_first_name_for_title
   before_validation :set_username_and_name_fields
   before_validation :set_pwd,                  :on => :create
   before_validation :set_remember_me_token,    :if => :password_digest_changed?
 
   # ----- Scopes -----
-  scope :order_by_last_name, order("last_name ASC")
-  scope :with_photos,        where("id     IN (SELECT member_id from photos)")
-  scope :without_photos,     where("id NOT IN (SELECT member_id from photos)")
+  scope :order_by_last_name,  order("last_name ASC")
+  scope :order_by_role_score, order("role_score ASC")
+  scope :standard_order,      order_by_role_score.order_by_last_name
+  scope :with_photos,         where("id     IN (SELECT member_id from photos)")
+  scope :without_photos,      where("id NOT IN (SELECT member_id from photos)")
+  scope :active,              where(:typ => ["T", "FM", "TM"]).standard_order
+  scope :inactive,            where(:typ => ["R", "S", "A"]).standard_order
 
   # ----- Virtual Attributes (Accessors) -----
 
@@ -146,6 +151,10 @@ class Member < ActiveRecord::Base
   def full_roles
     arr = ([typ] + roles.map {|r| r.typ})
     arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
+  end
+
+  def set_role_score
+    self.role_score = full_roles.split(' ').reduce(0) {|a,v| a + role_val(v.strip.chomp)}
   end
 
   def cert_color_name

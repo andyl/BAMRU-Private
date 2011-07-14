@@ -11,6 +11,8 @@ class BaseMigration < ActiveRecord::Migration
       t.boolean   :admin,     :default => false
       t.boolean   :developer, :default => false
 
+      t.integer   :role_score
+
       t.string    :password_digest
       
       t.integer   :sign_in_count, :default => 0

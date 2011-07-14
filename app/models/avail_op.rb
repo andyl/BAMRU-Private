@@ -42,8 +42,6 @@ class AvailOp < ActiveRecord::Base
   def cleanup_dates
     return if self.end.blank? || self.start.blank?
     self.end, self.start = self.start, self.end if self.end < self.start
-#    self.start = self.start.beginning_of_day
-#    self.end   = self.end.end_of_day
   end
 
   # ----- Class Methods -----
