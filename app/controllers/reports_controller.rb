@@ -8,9 +8,10 @@ class ReportsController < ApplicationController
       ["Map List",        'BAMRU-roster.html',         "HTML Roster with Gmap links"],
       ["CSV Report",      'BAMRU-roster.csv',          "For importing into Excel"],
       ["VCF Report",      'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
+      ["Callout Journal", 'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
       ["BAMRU Names",     'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
       ["BAMRU Full",      'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
-      ["Callout Journal", 'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"]
+      ["Member Export",   'BAMRU-roster.json',         "Database export for member records"]
     ]
   end
   

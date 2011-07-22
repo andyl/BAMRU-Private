@@ -29,7 +29,7 @@
               <td><%= report_format(report) %></td>
               <td><%= report_description(report) %></td>
               <td><%= download_link(report)%>
-                  <% if report_format(report) != "PDF"  %> |
+                  <% unless %w(PDF JSON).include?(report_format(report)) %> |
                   <%= gdocs_link(report) %> <% end %>
               </td>
             </tr>
