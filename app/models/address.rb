@@ -29,13 +29,18 @@ class Address < ActiveRecord::Base
     end
   end
 
-
   # ----- Scopes -----
   scope :non_standard, where('typ <> "Work"').
                        where('typ <> "Home"').
                        where('typ <> "Other"')
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
+  
   def non_standard_typ?
     ! %w(Work Home Other).include?(typ)
   end

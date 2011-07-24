@@ -19,6 +19,11 @@ class EmergencyContact < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
 
   def output
     "#{name} / #{number} (#{typ})"

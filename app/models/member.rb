@@ -139,8 +139,16 @@ class Member < ActiveRecord::Base
 
   # ----- Virtual Attributes (Readers) -----
 
-  def email
-    emails.first.try(:address)
+  def email(typ)
+    emails.where(:typ => typ).first
+  end
+
+  def phone(typ)
+    phones.where(:typ => typ).first
+  end
+
+  def address(typ)
+    addresses.where(:typ => typ).first
   end
 
   def short_name
@@ -185,6 +193,21 @@ class Member < ActiveRecord::Base
     addresses.non_standard.count != 0
   end
 
+  def export
+    attributes.merge({
+      :phones_attributes    => phones.map {|p| p.export},
+      :addresses_attributes => addresses.map {|p| p.export},
+      :emergency_contacts_attributes => emergency_contacts.map {|p| p.export},
+      :other_infos_attributes => other_infos.map {|p| p.export}
+    }).to_json
+  end
+
+  def photo_export
+  end
+
+  def cert_export
+  end
+
   # ----- Instance Methods -----
 
   def clear_password
@@ -223,18 +246,6 @@ class Member < ActiveRecord::Base
     return if self.first_name.blank?
     return unless self.first_name.include?('.') && self.first_name.include?(" ")
     self.title, self.first_name = self.first_name.split(' ',2)
-  end
-
-  def phone(typ)
-    phones.where(:typ => typ).first
-  end
-
-  def address(typ)
-    addresses.where(:typ => typ).first
-  end
-
-  def email(typ)
-    emails.where(:typ => typ).first
   end
 
   def get_cert_color

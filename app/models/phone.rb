@@ -19,8 +19,13 @@ class Phone < ActiveRecord::Base
                        where('typ <> "Mobile"').
                        where('typ <> "Other"')
 
-  
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
+
   def non_standard_typ?
     ! %w(Work Home Mobile Other).include?(typ)
   end

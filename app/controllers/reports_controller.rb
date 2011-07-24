@@ -11,7 +11,8 @@ class ReportsController < ApplicationController
       ["Callout Journal", 'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
       ["BAMRU Names",     'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
       ["BAMRU Full",      'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
-      ["Member Export",   'BAMRU-roster.json',         "Database export for member records"]
+      ["Member Export",   'BAMRU-roster.json',         "Database export for member records"],
+      ["Full Export",     'BAMRU-roster.zip',          "Database export including photos and certs"]
     ]
   end
   

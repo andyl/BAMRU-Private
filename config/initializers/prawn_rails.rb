@@ -30,9 +30,8 @@ module Prawn
       
     end
     
-    class TemplateHandler #< ActionView::Template::Handler
-#      self.default_format = :pdf
-      
+    class TemplateHandler
+
       def self.call(template)
         "#{template.source.strip}.render"        
       end
