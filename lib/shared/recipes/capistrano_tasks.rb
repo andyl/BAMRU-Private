@@ -38,7 +38,7 @@ after :nginx_conf, :restart_nginx
 
 desc "Reload database."
 task :reload_database do
-  run "cd #{current_path} && bundle exec rake import"
+  run "cd #{current_path} && bundle exec rake data:import"
 end
 
 desc "Restart Faye"

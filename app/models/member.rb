@@ -197,6 +197,7 @@ class Member < ActiveRecord::Base
     attributes.merge({
       :phones_attributes    => phones.map {|p| p.export},
       :addresses_attributes => addresses.map {|p| p.export},
+      :emails_attributes    => emails.map {|p| p.export},
       :emergency_contacts_attributes => emergency_contacts.map {|p| p.export},
       :other_infos_attributes => other_infos.map {|p| p.export}
     }).to_json

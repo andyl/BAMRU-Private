@@ -1,9 +1,0 @@
-spreadsheet_document() do |xls|
-
-  sheet1 = xls.create_worksheet
-  sheet1.name = "First Worksheet"
-  sheet1.row(0).concat %w{Hello world}
-  sheet1.row(1).concat %w{Test spreadsheet}
-  sheet1.row(2).concat ["Generated", Time.now.to_s]
-
-end

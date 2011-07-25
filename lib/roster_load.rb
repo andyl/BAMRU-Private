@@ -4,11 +4,26 @@ require 'csv-mapper'
 
 class RosterLoad
 
-  JSON_URL = "http://roster.alt55.com/BAMRU-roster.json"
-  DO_ASSIG = "http://roster.alt55.com/do_assignments.csv"
+  JSON_URL   = "http://roster.alt55.com/BAMRU-roster.json"
+  DO_ASSIG   = "http://roster.alt55.com/do_assignments.csv"
+  JSON_FILE  = "/home/aleak/dl/BAMRU-roster.json"
+  ZIP_FILE   = "/home/aleak/dl/BAMRU-roster.zip"
 
-  def self.parse
-    json_data = open(JSON_URL).read
+  def self.load_from_zip(zip = ZIP_FILE)
+    system "unzip #{zip}"
+    json_data = open(zip).read.gsub('&quot;', '"')
+    parsed_data = JSON.parse(json_data, :symbolize_names => true)
+    parsed_data
+  end
+
+  def self.parse_from_file(file = JSON_FILE)
+    json_data = open(file).read.gsub('&quot;', '"')
+    parsed_data = JSON.parse(json_data, :symbolize_names => true)
+    parsed_data
+  end
+
+  def self.parse_from_url(url = JSON_URL)
+    json_data = open(url).read
     parsed_data = JSON.parse(json_data, :symbolize_names => true)
     parsed_data
   end

@@ -1,0 +1,10 @@
+base_dir = File.basename(__FILE__).split('.').first
+
+archive_document(:base_dir => base_dir) do |zip_dir|
+
+  json_array = Member.all.map { |m| m.export }
+  json_text  = "[#{json_array.join(',')}]"
+
+  system "cd #{zip_dir}; echo #{json_text} > data.json"
+
+end

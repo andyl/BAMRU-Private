@@ -22,6 +22,12 @@ class Email < ActiveRecord::Base
                        where('typ <> "Other"')
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
+  
   def non_standard_typ?
     ! %w(Work Home Personal Other).include?(typ)
   end
