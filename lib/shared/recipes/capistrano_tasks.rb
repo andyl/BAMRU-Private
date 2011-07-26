@@ -3,6 +3,10 @@ set :git_shallow_clone, 1
 set :deploy_to, "/home/aleak/a/#{APPDIR}"
 set :repository,  "https://github.com/andyl/#{APPDIR}.git"
 
+def get_host
+  capture("echo $CAPISTRANO:HOSTS$").strip
+end
+
 default_run_options[:pty] = true
 set :use_sudo, true
 
@@ -17,7 +21,7 @@ end
 desc "Update gem installation."
 task :update_gems do
   system "bundle pack"
-  system "cd vendor ; rsync -a --delete cache #{SERVER}:a/#{APPDIR}/shared"
+  system "cd vendor ; rsync -a --delete cache #{get_host}:a/#{APPDIR}/shared"
   run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
 end
 
@@ -26,8 +30,8 @@ task :first_deploy do
   check_for_passenger
   run "gem install rspec"
   deploy.setup
-  system "/home/aleak/util/bin/vhost add #{SERVER}"
-  puts "READY TO RUN on #{SERVER}"
+  system "/home/aleak/util/bin/vhost add #{get_host}"
+  puts "READY TO RUN on #{get_host}"
 end
 
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
