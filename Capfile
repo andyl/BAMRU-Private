@@ -1,5 +1,5 @@
-PRIMARY      = "primary"
-BACKUP       = "backup"
+#PRIMARY      = "primary"
+BACKUP       = "backup.bamru.net"
 APPDIR       = "BAMRU-Private"
 
 set :application, "BAMRU-Private"

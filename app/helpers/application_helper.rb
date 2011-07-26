@@ -41,6 +41,10 @@ module ApplicationHelper
     opts.join(' | ')
   end
 
+  def favicon_file
+    ENV['RAILS_ENV'] == "development" ? "favicon_dev.ico" : "favicon.ico"
+  end
+
   def header_nav
     if member_signed_in?
       signed_in_header_nav
