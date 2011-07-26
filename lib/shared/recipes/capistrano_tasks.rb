@@ -109,7 +109,7 @@ task :check_for_passenger do
   error_msg = <<-EOF
 
     ABORT: PLEASE INSTALL PASSENGER, THEN TRY AGAIN !!!
-    sys sw install:passenger host=#{SERVER}
+    sys sw install:passenger host=#{get_host}
 
   EOF
   abort error_msg unless remote_file_exists?("/etc/init.d/nginx")
