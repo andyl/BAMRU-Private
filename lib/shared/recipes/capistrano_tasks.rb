@@ -61,7 +61,6 @@ end
 
 desc "Send SSH keys to alt55.com."
 task :keysend do
-#  run "keysend alt55.com"
    puts "No key setup needed - deploying from GitHub"
 end
 
