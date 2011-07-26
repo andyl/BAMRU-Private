@@ -43,6 +43,12 @@ class Cert < ActiveRecord::Base
   scope :with_docs, where("doc_file <> ''")
 
   # ----- Instance Methods -----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
+
   def doc_url
     "http://bamru.org/private/page/certification/user_images/#{doc_file}"
   end

@@ -1,15 +1,13 @@
 set :scm, :git
 set :git_shallow_clone, 1
 set :deploy_to, "/home/aleak/a/#{APPDIR}"
-#set :repository, "alt55.com:rr/#{APPDIR}.git"
 set :repository,  "https://github.com/andyl/#{APPDIR}.git"
 
 default_run_options[:pty] = true
 set :use_sudo, true
 
-role :web, SERVER
-role :app, SERVER
-role :db,  SERVER, :primary => true
+role :primary, PRIMARY if defined?(PRIMARY)
+role :backup,  BACKUP  if defined?(BACKUP)
 
 desc "Deploy #{application}"
 deploy.task :restart do

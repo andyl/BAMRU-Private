@@ -1,5 +1,5 @@
-# SERVER       = "gg2"
-SERVER       = "r210x.com"
+PRIMARY      = "primary"
+BACKUP       = "backup"
 APPDIR       = "BAMRU-Private"
 
 set :application, "BAMRU-Private"

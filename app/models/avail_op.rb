@@ -39,6 +39,12 @@ class AvailOp < ActiveRecord::Base
   end
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
+  
   def cleanup_dates
     return if self.end.blank? || self.start.blank?
     self.end, self.start = self.start, self.end if self.end < self.start

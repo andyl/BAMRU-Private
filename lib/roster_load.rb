@@ -9,9 +9,17 @@ class RosterLoad
   JSON_FILE  = "/home/aleak/dl/BAMRU-roster.json"
   ZIP_FILE   = "/home/aleak/dl/BAMRU-roster.zip"
 
+  def self.zip_dir
+    ZIP_FILE.split('.').first
+  end
+
   def self.load_from_zip(zip = ZIP_FILE)
-    system "unzip #{zip}"
-    json_data = open(zip).read.gsub('&quot;', '"')
+    basenam = File.basename(zip).split('.').first
+    basedir = File.dirname(zip)
+    cmd = "cd #{basedir}; rm -r -f #{basenam}; unzip #{zip}"
+    puts cmd
+    system cmd
+    json_data = open("#{basedir}/#{basenam}/data.json").read.gsub('&quot;', '"')
     parsed_data = JSON.parse(json_data, :symbolize_names => true)
     parsed_data
   end

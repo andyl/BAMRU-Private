@@ -19,6 +19,11 @@ class Role < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
 
 
 end

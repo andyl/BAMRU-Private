@@ -2,9 +2,31 @@ base_dir = File.basename(__FILE__).split('.').first
 
 archive_document(:base_dir => base_dir) do |zip_dir|
 
-  json_array = Member.all.map { |m| m.export }
+  system "mkdir -p #{zip_dir}/certs"
+  system "mkdir -p #{zip_dir}/photos"
+
+  Cert.all.each do |cert|
+    base_path = File.join(Rails.root, "public")
+    img_path  = base_path + cert.document.url.split('?').first
+    if File.exist?(img_path)
+      image     = File.read(img_path)
+      File.open("#{zip_dir}/certs/#{cert.document_file_name}", 'w') {|f| f.puts image}
+    end
+  end
+
+  Photo.all.each do |photo|
+    base_path = File.join(Rails.root, "public")
+    img_path  = base_path + photo.image.url.split('?').first
+    if File.exist?(img_path)
+      image     = File.read(img_path)
+      File.open("#{zip_dir}/photos/#{photo.image_file_name}", 'w') {|f| f.puts image}
+    end
+  end
+
+  json_array = Member.all.map { |m| m.full_export }
   json_text  = "[#{json_array.join(',')}]"
 
-  system "cd #{zip_dir}; echo #{json_text} > data.json"
+  File.open("#{zip_dir}/data.json", 'w') {|f| f.puts json_text}
+  File.open("#{zip_dir}/date.txt",  'w') {|f| f.puts Time.now}
 
 end

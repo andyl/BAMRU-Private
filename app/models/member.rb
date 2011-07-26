@@ -9,7 +9,8 @@ class Member < ActiveRecord::Base
   attr_accessible :title, :first_name, :last_name, :user_name, :full_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
-  attr_accessible :roles_attributes, :emails_attributes, :certs_attributes
+  attr_accessible :roles_attributes, :emails_attributes
+  attr_accessible :photos_attributes, :certs_attributes
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
   attr_accessible :emergency_contacts_attributes
   attr_accessible :other_infos_attributes
@@ -37,6 +38,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
   accepts_nested_attributes_for :certs,     :allow_destroy => true
+  accepts_nested_attributes_for :photos,    :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
   accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
   accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
@@ -195,11 +197,29 @@ class Member < ActiveRecord::Base
 
   def export
     attributes.merge({
-      :phones_attributes    => phones.map {|p| p.export},
-      :addresses_attributes => addresses.map {|p| p.export},
-      :emails_attributes    => emails.map {|p| p.export},
+      :phones_attributes             => phones.map             {|p| p.export},
+      :addresses_attributes          => addresses.map          {|p| p.export},
+      :emails_attributes             => emails.map             {|p| p.export},
       :emergency_contacts_attributes => emergency_contacts.map {|p| p.export},
-      :other_infos_attributes => other_infos.map {|p| p.export}
+      :other_infos_attributes        => other_infos.map        {|p| p.export},
+      :roles_attributes              => roles.map              {|p| p.export},
+      :avail_ops_attributes          => avail_ops.map          {|p| p.export},
+      :avail_dos_attributes          => avail_dos.map          {|p| p.export}
+    }).to_json
+  end
+
+  def full_export
+    attributes.merge({
+      :phones_attributes             => phones.map             {|p| p.export},
+      :addresses_attributes          => addresses.map          {|p| p.export},
+      :emails_attributes             => emails.map             {|p| p.export},
+      :emergency_contacts_attributes => emergency_contacts.map {|p| p.export},
+      :other_infos_attributes        => other_infos.map        {|p| p.export},
+      :photos_attributes             => photos.map             {|p| p.export},
+      :certs_attributes              => certs.map              {|p| p.export},
+      :roles_attributes              => roles.map              {|p| p.export},
+      :avail_ops_attributes          => avail_ops.map          {|p| p.export},
+      :avail_dos_attributes          => avail_dos.map          {|p| p.export}
     }).to_json
   end
 

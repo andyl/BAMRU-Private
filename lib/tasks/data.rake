@@ -58,6 +58,21 @@ namespace :data do
     system "xterm_title 'DATA FULL RESTORE'"
     reset_database
     load_data(RosterLoad.load_from_zip)
+    Cert.all.each do |cert|
+      zip_dir = RosterLoad.zip_dir
+      unless cert.document_file_name.nil?
+        cert_file = zip_dir + "/certs/" + cert.document_file_name
+        puts "Processing #{cert_file}"
+        cert.update_attributes(:document => File.open(cert_file))
+      end
+    end
+    Photo.all.each do |photo|
+      zip_dir = RosterLoad.zip_dir
+      unless photo.image_file_name.nil?
+        photo_file = zip_dir + "/photos/" + photo.image_file_name
+        photo.update_attributes(:image => File.open(photo_file))
+      end
+    end
     Rake::Task['data:count'].invoke
   end
 

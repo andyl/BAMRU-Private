@@ -23,6 +23,11 @@ class AvailDo < ActiveRecord::Base
   end
 
   # ----- Local Methods-----
+  def export
+    atts = attributes
+    %w(id member_id).each {|a| atts.delete(a)}
+    atts
+  end
 
   def start_time
     Time.parse("Jan #{year}") + (quarter-1).quarters + (week-1).weeks + 3.days + 8.hours
@@ -31,6 +36,5 @@ class AvailDo < ActiveRecord::Base
   def end_time
     start_time + 1.week - 1.minute
   end
-
 
 end
