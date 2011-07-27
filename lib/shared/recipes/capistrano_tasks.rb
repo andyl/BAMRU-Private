@@ -4,7 +4,7 @@ set :deploy_to, "/home/aleak/a/#{APPDIR}"
 set :repository,  "https://github.com/andyl/#{APPDIR}.git"
 
 def get_host
-  capture("echo $CAPISTRANO:HOSTS$").strip
+  capture("echo $CAPISTRANO:HOST$").strip
 end
 
 default_run_options[:pty] = true
