@@ -102,8 +102,7 @@ namespace :data do
         puts "loading photo for #{username}"
         member.photos.create(:image => File.open(i))
         member.save
-        debugger
-        x = 1
+        puts Photo.count
       end
     end
   end
