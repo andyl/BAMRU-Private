@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
 
   before_filter :authenticate_member!
-  caches_action :index
+  caches_action :index, :layout => false
 
   def index
     @client_ip = request.remote_ip

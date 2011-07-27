@@ -1,7 +1,7 @@
 class UnitCertsController < ApplicationController
 
   before_filter :authenticate_member!
-  caches_action :index
+  caches_action :index, :layout => false
 
   def index
     @members = Member.order_by_last_name.all
