@@ -50,9 +50,11 @@ desc "Link shared assets."
 task :link_shared do
   db_file = "production.sqlite3"
   unless remote_file_exists?("#{shared_path}/db/#{db_file}")
+    rem_host = get_host
     puts " creating DB file ".center(80, '-')
+    system "scp db/development.sqlite3 #{rem_host}:"
     run "mkdir -p #{shared_path}/db"
-    run "cp #{release_path}/db/database.sqlite3 #{shared_path}/db/#{db_file}"
+    run "cp ~/database.sqlite3 #{shared_path}/db/#{db_file}"
   end
   run "rm -f #{release_path}/db/#{db_file}"
   run "ln -s #{shared_path}/db/#{db_file} #{release_path}/db/#{db_file}"
