@@ -37,7 +37,7 @@ task :first_deploy do
 end
 
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
-after :deploy, :setup_shared_cache, :update_gems, :reload_database, :restart_faye
+after :deploy, :setup_shared_cache, :update_gems, :restart_faye
 after :nginx_conf, :restart_nginx
 after "deploy:symlink", :link_shared
 

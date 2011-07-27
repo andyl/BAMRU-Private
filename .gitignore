@@ -8,7 +8,8 @@
 log
 log/*
 db/test.*
-db/*.sqlite3
+db/production.sqlite3
+db/test.sqlite3
 doc
 doc/*
 coverage
