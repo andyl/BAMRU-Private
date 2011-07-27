@@ -99,10 +99,10 @@ namespace :data do
       username = File.basename(i)[0..-7] #.gsub('_','_')
       member = Member.where(:user_name => username).first
       if member
-        puts "loading photo for #{username}"
+        puts "loading photo for #{username} (#{member.class})"
         member.photos.create(:image => File.open(i))
         member.save
-        puts Photo.count
+        puts "member: #{member.valid?} / Photo #{Photo.count}"
       end
     end
   end
