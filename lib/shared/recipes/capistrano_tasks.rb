@@ -21,7 +21,6 @@ end
 desc "Update gem installation."
 task :update_gems do
   rem_host = get_host
-  puts rem_host.center(50,'+')
   system "bundle pack"
   system "cd vendor ; rsync -a --delete cache #{rem_host}:a/#{APPDIR}/shared"
   run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
@@ -30,7 +29,6 @@ end
 desc "RUN THIS FIRST!"
 task :first_deploy do
   rem_host = get_host
-  puts rem_host.center(50,'+')
   check_for_passenger
   run "gem install rspec"
   deploy.setup
@@ -53,7 +51,6 @@ task :link_shared do
   db_file = "production.sqlite3"
   unless remote_file_exists?("#{shared_path}/db/#{db_file}")
     rem_host = get_host
-    puts rem_host.center(50,'+')
     puts " creating DB file ".center(80, '-')
     cmd = "scp db/development.sqlite3 #{rem_host}:"
     puts cmd

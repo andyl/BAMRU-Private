@@ -12,7 +12,7 @@ platforms :ruby do
   gem 'em-http-request'
   gem "thin"
 
-  gem 'rails',         '3.1.0.rc4'
+  gem 'rails',         '3.1.0.rc5'
   gem "capistrano"
   gem "factory_girl"
   gem "fastercsv"
