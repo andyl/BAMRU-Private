@@ -39,6 +39,7 @@ end
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
 after :deploy, :setup_shared_cache, :update_gems, :reload_database, :restart_faye
 after :nginx_conf, :restart_nginx
+after "deploy:symlink", :link_shared
 
 desc "Reload database."
 task :reload_database do
