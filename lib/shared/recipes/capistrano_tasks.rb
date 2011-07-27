@@ -52,7 +52,9 @@ task :link_shared do
   unless remote_file_exists?("#{shared_path}/db/#{db_file}")
     rem_host = get_host
     puts " creating DB file ".center(80, '-')
-    system "scp db/development.sqlite3 #{rem_host}:"
+    cmd = "scp db/development.sqlite3 #{rem_host}:"
+    puts cmd
+    system cmd
     run "mkdir -p #{shared_path}/db"
     run "cp ~/development.sqlite3 #{shared_path}/db/#{db_file}"
   end
