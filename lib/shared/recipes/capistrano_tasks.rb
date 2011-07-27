@@ -54,7 +54,7 @@ task :link_shared do
     puts " creating DB file ".center(80, '-')
     system "scp db/development.sqlite3 #{rem_host}:"
     run "mkdir -p #{shared_path}/db"
-    run "cp ~/database.sqlite3 #{shared_path}/db/#{db_file}"
+    run "cp ~/development.sqlite3 #{shared_path}/db/#{db_file}"
   end
   run "rm -f #{release_path}/db/#{db_file}"
   run "ln -s #{shared_path}/db/#{db_file} #{release_path}/db/#{db_file}"
