@@ -20,18 +20,20 @@ end
 
 desc "Update gem installation."
 task :update_gems do
+  rem_host = get_host
   system "bundle pack"
-  system "cd vendor ; rsync -a --delete cache #{get_host}:a/#{APPDIR}/shared"
+  system "cd vendor ; rsync -a --delete cache #{rem_host}:a/#{APPDIR}/shared"
   run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
 end
 
 desc "RUN THIS FIRST!"
 task :first_deploy do
+  rem_host = get_host
   check_for_passenger
   run "gem install rspec"
   deploy.setup
-  system "/home/aleak/util/bin/vhost add #{get_host}"
-  puts "READY TO RUN on #{get_host}"
+  system "/home/aleak/util/bin/vhost add #{rem_host}"
+  puts "READY TO RUN on #{rem_host}"
 end
 
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
