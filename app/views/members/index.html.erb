@@ -21,26 +21,28 @@
       <input type="hidden" name="message[author_id]" value="<%=current_member.id%>"/>
       <input type="hidden" name="message[ip_address]" value="<%=@client_ip%>"/>
       <div id=x_left_col>
-        <table id="myTable" class="tablesorter" style="margin-top: 0px;">
-          <thead>
-          <tr>
-            <th>Role</th>
-            <th><img src="/images/page.gif" border=0></th>
-            <th><img src="/images/mail.gif" border=0></th>
-            <th>Name</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @members.each do |m| %>
+        <% cache(:fragment => 'member_index_table') do %>
+          <table id="myTable" class="tablesorter" style="margin-top: 0px;">
+            <thead>
             <tr>
-              <td><%= m.full_roles %></td>
-              <%= raw phone_checkbox(m) %>
-              <%= raw email_checkbox(m) %>
-              <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
+              <th>Role</th>
+              <th><img src="/images/page.gif" border=0></th>
+              <th><img src="/images/mail.gif" border=0></th>
+              <th>Name</th>
             </tr>
-          <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            <% @members.each do |m| %>
+              <tr>
+                <td><%= m.full_roles %></td>
+                <%= raw phone_checkbox(m) %>
+                <%= raw email_checkbox(m) %>
+                <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% end %>
       </div>
       <div id=x_right_col>
         <table width=100%><tr>

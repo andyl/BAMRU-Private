@@ -1,6 +1,8 @@
 class CertsController < ApplicationController
 
   before_filter :authenticate_member!
+  cache_sweeper :cert_cache_sweeper, :only => [:create, :update, :destroy]
+
 
   def index
     @member = Member.where(:id => params['member_id']).first

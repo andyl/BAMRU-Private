@@ -1,11 +1,14 @@
 class MembersController < ApplicationController
 
   before_filter :authenticate_member!
+  cache_sweeper :member_cache_sweeper, :only => [:create, :update, :destroy]
 
   def index
     @client_ip = request.remote_ip
     @message = Message.new
-    @members = Member.order_by_last_name.all
+    unless fragment_exist?(:fragment => 'member_index_table')
+      @members = Member.order_by_last_name.all
+    end
   end
 
   def show
