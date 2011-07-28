@@ -1,7 +1,6 @@
 class MembersController < ApplicationController
 
   before_filter :authenticate_member!
-  caches_action :index, :layout => false
 
   def index
     @client_ip = request.remote_ip
@@ -30,9 +29,6 @@ class MembersController < ApplicationController
 
   def create
     authorize! :manage, Member
-    expire_action(:action => :index)
-    expire_action(:controller => 'unit_photos', :action => 'index')
-    expire_action(:controller => 'unit_certs', :action => 'index')
     if @member = Member.create(params["member"])
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
@@ -44,9 +40,6 @@ class MembersController < ApplicationController
     @member = Member.where(:id => params[:id]).first
     @member_name = @member.full_name
     authorize! :manage, @member
-    expire_action(:action => :index)
-    expire_action(:controller => 'unit_photos', :action => 'index')
-    expire_action(:controller => 'unit_certs', :action => 'index')
     m_params = params["member"]
     if m_params["password"].blank? && m_params["password_confirmation"].blank?
       m_params.delete("password"); m_params.delete("password_confirmation")
@@ -62,9 +55,6 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.where(:id => params[:id]).first
     authorize! :manage, @member
-    expire_action(:action => :index)
-    expire_action(:controller => 'unit_photos', :action => 'index')
-    expire_action(:controller => 'unit_certs', :action => 'index')
     if @member.destroy
       redirect_to '/members', :notice => "Member was Deleted"
     else
