@@ -11,7 +11,14 @@ default_run_options[:pty] = true
 set :use_sudo, true
 
 role :primary, PRIMARY if defined?(PRIMARY)
-role :backup,  BACKUP  if defined?(BACKUP)
+role :app,     PRIMARY if defined?(PRIMARY)
+role :web,     PRIMARY if defined?(PRIMARY)
+role :db,      PRIMARY if defined?(PRIMARY)
+
+role :backup,  BACKUP if defined?(BACKUP)
+role :app,     BACKUP if defined?(BACKUP)
+role :web,     BACKUP if defined?(BACKUP)
+role :db,      BACKUP if defined?(BACKUP)
 
 desc "Deploy #{application}"
 deploy.task :restart do
@@ -113,6 +120,23 @@ task :setup_db do
   run "cd #{current_path} ; bundle exec rake db:seed --trace"
   run "mkdir -p #{db_path}"
   run "mv #{db_file} #{db_path}"
+end
+
+namespace :deploy do
+  namespace :web do
+    task :disable, :roles => :web do
+      # invoke with
+      # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
+
+      on_rollback { rm "#{shared_path}/system/maintenance.html" }
+
+      require 'erb'
+      deadline, reason = ENV['UNTIL'], ENV['REASON']
+      maintenance = ERB.new(File.read("./app/views/layouts/maintenance.html.erb")).result(binding)
+
+      put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
+    end
+  end
 end
 
 desc "Restart NGINX."

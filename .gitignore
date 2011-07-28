@@ -21,6 +21,9 @@ vendor/**/*
 .bundle
 log/*.log
 tmp/
+public/assets
+public/assets/*
+public/assets/**/*
 public/system
 public/system/*
 public/system/**/*
