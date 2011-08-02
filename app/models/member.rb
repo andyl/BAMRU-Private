@@ -107,6 +107,10 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def wiki_name
+    full_name.gsub(' ','.')
+  end
+
   def bd
     roles.all.find {|r| r.typ.downcase == "bd"} ? true : false
   end
