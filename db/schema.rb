@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "member_id"
     t.string   "typ"
     t.date     "expiration"
-    t.string   "doc_file"
     t.string   "description"
     t.string   "comment"
     t.string   "link"
-    t.string   "document_file_name"
-    t.string   "document_content_type"
-    t.string   "document_file_size"
-    t.string   "document_updated_at"
+    t.string   "cert_file"
+    t.string   "cert_file_name"
+    t.string   "cert_content_type"
+    t.string   "cert_file_size"
+    t.string   "cert_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +87,21 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "quarter"
     t.integer  "week"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "docs", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "typ"
+    t.date     "expiration"
+    t.string   "description"
+    t.integer  "downloads",        :default => 0
+    t.string   "doc_file"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.string   "doc_file_size"
+    t.string   "doc_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

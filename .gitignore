@@ -21,6 +21,9 @@ vendor/**/*
 .bundle
 log/*.log
 tmp/
+db/seed
+db/seed/*
+db/seed/**/*
 public/assets
 public/assets/*
 public/assets/**/*

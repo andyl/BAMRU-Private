@@ -114,7 +114,7 @@ namespace :data do
     Dir.chdir(doc_dir)
     system "rm -f *jpg *pdf"
     Cert.with_docs.each do |c|
-      system "wget #{c.doc_url}"
+      system "wget #{c.cert_url}"
     end
   end
 
@@ -133,8 +133,8 @@ namespace :data do
   task :cert_image_load => :data_environment do
     puts "Loading CERT Images"
     Cert.with_docs.each do |c|
-      puts "Updating #{c.doc_path}"
-      c.update_attributes(:document => File.open(c.doc_path))
+      puts "Updating #{c.cert_path}"
+      c.update_attributes(:cert => File.open(c.cert_path))
     end
   end
 

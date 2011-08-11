@@ -1,0 +1,47 @@
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
+<%= javascript_include_tag "jquery.tablesorter.min.js" %>
+<%= javascript_include_tag "jquery-ui.min.js"       %>
+<%= javascript_include_tag "members_autoselect.js"  %>
+<%= csrf_meta_tag %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=center>
+            <%= link_to("Upload a new Doc", unit_certs_path) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col>
+
+      <table id="MyTable" class="tablesorter">
+        <thead>
+        <tr>
+          <th>Doc</th>
+          <th>Type</th>
+          <th>Creator</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+          <td>e</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div id=x_footer> </div>
+
+  </div>
+</div>

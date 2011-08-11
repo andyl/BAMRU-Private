@@ -1,7 +1,7 @@
 require 'date'
 require 'time'
 
-class Cert < ActiveRecord::Base
+class Doc < ActiveRecord::Base
 
   # ----- Attributes -----
   attr_accessible :link, :cert_file, :typ, :comment
