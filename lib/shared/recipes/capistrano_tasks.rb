@@ -75,7 +75,7 @@ desc "Restart Faye"
 task :restart_faye do
   cmd = "bundle exec foreman export upstart /etc/init -u aleak -a bnet"
   run  "cd #{current_path} && #{sudo} #{cmd}"
-  #sudo "stop bnet"
+  sudo "stop bnet"
   sudo "start bnet"
 end
 
