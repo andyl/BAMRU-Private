@@ -67,6 +67,7 @@ task :link_shared do
   end
   run "rm -f #{release_path}/db/#{db_file}"
   run "ln -s #{shared_path}/db/#{db_file} #{release_path}/db/#{db_file}"
+  run "ln -s #{shared_path}/seed #{release_path}/db/seed"
   run "touch #{release_path}/tmp/restart.txt"
 end
 
@@ -76,6 +77,12 @@ task :restart_faye do
   run  "cd #{current_path} && #{sudo} #{cmd}"
   sudo "stop bnet"
   sudo "start bnet"
+end
+
+desc "Sync seed files."
+task :sync_seed_files do
+  rem_host = get_host
+  system "rsync -vr --delete db/seed #{rem_host}:#{shared_path}"
 end
 
 desc "Setup shared cache."

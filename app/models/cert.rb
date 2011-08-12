@@ -55,7 +55,7 @@ class Cert < ActiveRecord::Base
 
   def cert_path
     base = File.dirname(File.expand_path(__FILE__))
-    base + "/../../db/docs/#{cert_file}"
+    base + "/../../db/seed/certs/#{cert_file}"
   end
 
   def final_cert_file
@@ -64,7 +64,7 @@ class Cert < ActiveRecord::Base
 
   def final_cert_path
     base = File.dirname(File.expand_path(__FILE__))
-    base + "/../../db/docs/#{final_cert_file}"
+    base + "/../../db/seed/certs/#{final_cert_file}"
   end
 
   def current?

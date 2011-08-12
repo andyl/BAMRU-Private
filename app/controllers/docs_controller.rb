@@ -9,44 +9,36 @@ class DocsController < ApplicationController
   end
   
   def new
-    @member = Member.where(:id => params['member_id']).first
-    hash = params["typ"].nil? ? {} : {:typ => params["typ"]}
-    @cert   = Doc.new(hash)
+    @doc   = Doc.new()
   end
 
   def create
-    @member = Member.where(:id => params['member_id']).first
-    @cert   = Doc.create(params[:cert])
-    @member.certs << @cert
-    @member.save
-    redirect_to member_certs_path(@member)
-  end
-
-  def update
-    @member = Member.where(:id => params['member_id']).first
-    @cert   = Doc.where(:id => params['id']).first
-    if @cert.update_attributes(params[:cert])
-      redirect_to member_certs_path(@member), :notice => "Successful Update"
+    @member = current_member
+    @doc    = Doc.create(params[:doc])
+    @member.docs << @doc
+    if @member.save
+      redirect_to docs_path, :notice => "Doc saved (#{@doc.doc_file_name})"
     else
-      render "edit"
+      render "new"
     end
   end
 
   def show
-    @member = Member.where(:id => params['member_id']).first
-    @cert = Doc.where(:id => params['id']).first
-  end
-
-  def edit
-    @member = Member.where(:id => params['member_id']).first
-    @cert = Doc.where(:id => params['id']).first
+    filename = "#{params['id']}.#{params['format']}"
+    @doc = Doc.where(:doc_file_name => filename).first
+    unless @doc.nil?
+      @doc.download_count += 1
+      @doc.save
+      redirect_to @doc.doc.url
+    else
+      redirect_to docs_path, :alert => "Doc was not found (#{filename})"
+    end
   end
 
   def destroy
-    @member = Member.where(:id => params['member_id']).first
-    @cert = Doc.where(:id => params['id']).first
-    @cert.destroy
-    redirect_to member_certs_path(@member), :notice => "Doc was Deleted"
+    @doc = Doc.where(:id => params['id']).first
+    @doc.destroy
+    redirect_to docs_path, :notice => "Doc was Deleted"
   end
 
 end

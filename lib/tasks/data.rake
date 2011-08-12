@@ -19,6 +19,7 @@ namespace :data do
     puts "Other Infos: #{OtherInfo.count}"
     puts "     Photos: #{Photo.count}"
     puts "      Certs: #{Cert.count}"
+    puts "       Docs: #{Doc.count}"
   end
 
   def load_data(json)
@@ -84,18 +85,19 @@ namespace :data do
     x = Member.create!(:user_name => "mark_lowpensky", :typ => "A")
     (x.admin = true; x.save) unless x.nil?
     Org.create(:name => "BAMRU")
-    Rake::Task['data:photos'].invoke
-    Rake::Task['data:cert_image_load'].invoke
+    Rake::Task['data:photo_load'].invoke
+    Rake::Task['data:cert_load'].invoke
+    Rake::Task['data:doc_load'].invoke
     Phone.where(:position => nil).all.each {|x| x.destroy}
     Email.where(:position => nil).all.each {|x| x.destroy}
     Rake::Task['data:count'].invoke
   end
 
   desc "Reload Photos"
-  task :photos => :data_environment do
+  task :photo_load => :data_environment do
     puts "Reloading Photos (this might take awhile...)"
     Photo.destroy_all
-    Dir.glob('./db/jpg/*jpg').sort.each do |i|
+    Dir.glob('./db/seed/photos/*jpg').sort.each do |i|
       username = File.basename(i)[0..-7] #.gsub('_','_')
       member = Member.where(:user_name => username).first
       if member
@@ -109,7 +111,7 @@ namespace :data do
   desc "Download Certs"
   task :cert_download => :data_environment do
     base_dir = File.dirname(File.expand_path(__FILE__))
-    doc_dir  = base_dir + '/../../db/docs'
+    doc_dir  = base_dir + '/../../db/seed/certs'
     puts "Downloading all Cert files"
     Dir.chdir(doc_dir)
     system "rm -f *jpg *pdf"
@@ -121,21 +123,37 @@ namespace :data do
   desc "Convert PDF Certs to JPG"
   task :cert_convert => :data_environment do
     base_dir = File.dirname(File.expand_path(__FILE__))
-    doc_dir  = base_dir + '/../..db/docs'
+    doc_dir  = base_dir + '/../../db/seed/certs'
     puts "Converting PDF Cert files to JPG"
     Cert.with_pdfs.each do |c|
-      puts "> Converting #{c.doc_path}"
+      puts "> Converting #{c.cert_path}"
       # system "convert -density 300 #{c.doc_path} #{c.final_doc_path}"
     end
   end
 
   desc "Load Cert Images"
-  task :cert_image_load => :data_environment do
+  task :cert_load => :data_environment do
     puts "Loading CERT Images"
     Cert.with_docs.each do |c|
       puts "Updating #{c.cert_path}"
       c.update_attributes(:cert => File.open(c.cert_path))
     end
+  end
+
+  desc "Load Docs"
+  task :doc_load => :data_environment do
+    puts "Reloading Seed Docs (this might take awhile...)"
+    Doc.destroy_all
+    Dir.glob('./db/seed/docs/*').sort.each do |i|
+      username = 'andy_leak'
+      member = Member.where(:user_name => username).first
+      if member
+        puts "loading doc #{Doc.count} - #{i.split('/').last} "
+        member.docs.create(:doc => File.open(i))
+        member.save
+      end
+    end
+
   end
 
 end

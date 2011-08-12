@@ -9,8 +9,8 @@ class Member < ActiveRecord::Base
   attr_accessible :title, :first_name, :last_name, :user_name, :full_name
   attr_accessible :typ, :v9, :ham, :base_role
   attr_accessible :phones_attributes, :addresses_attributes
-  attr_accessible :roles_attributes, :emails_attributes
-  attr_accessible :photos_attributes, :certs_attributes
+  attr_accessible :roles_attributes,  :emails_attributes
+  attr_accessible :photos_attributes, :certs_attributes, :docs_attributes
   attr_accessible :avail_ops_attributes, :avail_dos_attributes
   attr_accessible :emergency_contacts_attributes
   attr_accessible :other_infos_attributes
@@ -27,6 +27,7 @@ class Member < ActiveRecord::Base
   has_many :emergency_contacts, :order => 'position'
   has_many :roles
   has_many :certs
+  has_many :docs
   has_many :avail_ops,          :order => 'start'
   has_many :avail_dos
   has_many :messages
@@ -38,6 +39,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,     :allow_destroy => true
   accepts_nested_attributes_for :certs,     :allow_destroy => true
+  accepts_nested_attributes_for :docs,      :allow_destroy => true
   accepts_nested_attributes_for :photos,    :allow_destroy => true
   accepts_nested_attributes_for :avail_ops, :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
   accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
@@ -221,6 +223,7 @@ class Member < ActiveRecord::Base
       :other_infos_attributes        => other_infos.map        {|p| p.export},
       :photos_attributes             => photos.map             {|p| p.export},
       :certs_attributes              => certs.map              {|p| p.export},
+      :docs_attributes               => docs.map               {|p| p.export},
       :roles_attributes              => roles.map              {|p| p.export},
       :avail_ops_attributes          => avail_ops.map          {|p| p.export},
       :avail_dos_attributes          => avail_dos.map          {|p| p.export}
@@ -231,6 +234,9 @@ class Member < ActiveRecord::Base
   end
 
   def cert_export
+  end
+
+  def doc_export
   end
 
   # ----- Instance Methods -----

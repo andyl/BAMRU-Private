@@ -90,11 +90,8 @@ class BaseMigration < ActiveRecord::Migration
     end
     create_table :docs do |t|
       t.integer    :member_id
-      t.string     :typ
-      t.date       :expiration
-      t.string     :description
-      t.integer    :downloads,      :default => 0
-      t.string     :doc_file
+      t.integer    :download_count,   :default => 0
+      t.string     :doc_file_extension
       t.string     :doc_file_name
       t.string     :doc_content_type
       t.string     :doc_file_size

@@ -1,16 +1,19 @@
-<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
+<%= javascript_include_tag "jquery-ui.min.js"          %>
+<%= javascript_include_tag "members_autoselect.js"     %>
+<%= javascript_include_tag "docs_table.js"             %>
 <%= csrf_meta_tag %>
 
 <div id=x_container>
-  <div id=x_body>
+  <div id=x_wide_body>
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=center>
-            <%= link_to("Upload a new Doc", unit_certs_path) %>
+          <td align=left>
+            <b>BAMRU Docs</b>
+          </td>
+          <td align=right>
+            <%= link_to("Upload a new Doc", new_doc_path) %>
           </td>
         </tr>
       </table>
@@ -23,20 +26,24 @@
         <tr>
           <th>Doc</th>
           <th>Type</th>
-          <th>Creator</th>
-          <th>Description</th>
+          <th>Uploaded By</th>
+          <th>Uploaded On</th>
+          <th>Views</th>
           <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr>
-          <td>a</td>
-          <td>b</td>
-          <td>c</td>
-          <td>d</td>
-          <td>e</td>
-        </tr>
+        <% @docs.each do |d| %>
+          <tr>
+            <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name)) %></td>
+            <td width=45><%= d.doc_file_extension.upcase %></td>
+            <td><%= d.member.full_name %></td>
+            <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td width=55><%= d.download_count %></td>
+            <td><%= raw(link_to("Delete", doc_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
 
