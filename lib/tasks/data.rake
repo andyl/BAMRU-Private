@@ -40,7 +40,8 @@ namespace :data do
   end
 
   def reset_database
-    system "rm db/*sqlite3"
+    system "rake db:drop"
+    system "rake db:drop RAILS_ENV=test"
     system "rm -rf public/system"
     system "rake db:migrate"
     system "rake db:migrate RAILS_ENV=test"
