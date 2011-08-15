@@ -36,7 +36,7 @@
         <tbody>
         <% @docs.each do |d| %>
           <tr>
-            <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name)) %></td>
+            <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name, :target => "_blank")) %></td>
             <td width=45><%= d.doc_file_extension.upcase %></td>
             <td><%= d.member.full_name %></td>
             <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
