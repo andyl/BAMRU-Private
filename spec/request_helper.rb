@@ -1,3 +1,5 @@
+require 'launchy'
+
 def login(member)
   visit login_path
   fill_in "user_name", :with => member.user_name

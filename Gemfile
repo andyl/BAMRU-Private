@@ -51,9 +51,11 @@ platforms :ruby do
     gem "rspec-core",  "2.6.3"
     gem "rspec-rails", "2.6.1"
     gem "shoulda-matchers"
-    gem "capybara", "~> 1.0.0.beta1"
+    gem "selenium-webdriver", "~> 2.0"
+    gem "capybara", "~> 1.0.1"
+    gem "capybara-webkit"
     gem "launchy"
-    gem 'spork', '~> 0.9.0.rc'
+    gem 'spork', '~> 0.9.0.rc9'
     gem 'database_cleaner'
 
     gem "hirb"
