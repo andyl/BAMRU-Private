@@ -20,4 +20,7 @@ class HomeController < ApplicationController
   def edit_info
   end
 
+  def wiki
+  end
+
 end
