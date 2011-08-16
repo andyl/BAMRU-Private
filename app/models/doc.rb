@@ -20,7 +20,8 @@ class Doc < ActiveRecord::Base
   validates_format_of     :doc_file_name,      :with => /^[^ ]+$/
   validates_format_of     :doc_file_extension, :with => TYPES
 
-  validates_attachment_size :doc, :less_than => 25.megabytes
+  validates_numericality_of :doc_file_size, :greater_than => 0, :less_than => 25.megabytes
+  #validates_attachment_size :doc, :less_than => 25.megabytes
 
   # ----- Callbacks -----
 
