@@ -13,7 +13,7 @@
 
     <div id=x_single_col>
 
-      <% cache(:fragment => 'unit_photos_table') do %>
+      <% cache('unit_photos_table') do %>
         <table width=890>
           <% @members.in_groups_of(5) do |row| %>
             <tr>
