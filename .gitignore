@@ -9,6 +9,7 @@ log
 log/*
 db/test.*
 db/development.*
+db/development.sqlite3
 db/*.sqlite3
 doc
 doc/*
