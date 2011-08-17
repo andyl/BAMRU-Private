@@ -21,31 +21,35 @@
 
     <div id=x_single_col>
 
-      <table id="MyTable" class="tablesorter">
-        <thead>
-        <tr>
-          <th>Doc</th>
-          <th>Type</th>
-          <th>Uploaded By</th>
-          <th>Uploaded On</th>
-          <th>Views</th>
-          <th>Action</th>
-        </tr>
-        </thead>
+      <% cache(:fragment => 'docs_table') do %>
 
-        <tbody>
-        <% @docs.each do |d| %>
+        <table id="MyTable" class="tablesorter">
+          <thead>
           <tr>
-            <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name, :target => "_blank")) %></td>
-            <td width=45><%= d.doc_file_extension.upcase %></td>
-            <td><%= d.member.full_name %></td>
-            <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-            <td width=55><%= d.download_count %></td>
-            <td><%= raw(link_to("Delete", doc_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
+            <th>Doc</th>
+            <th width=45>Type</th>
+            <th width=95>Uploaded By</th>
+            <th>Uploaded On</th>
+            <th width=55>Views</th>
+            <th>Action</th>
           </tr>
-        <% end %>
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+          <% @docs.each do |d| %>
+            <tr>
+              <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name, :target => "_blank")) %></td>
+              <td><%= d.doc_file_extension.upcase %></td>
+              <td><%= d.member.full_name %></td>
+              <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= d.download_count %></td>
+              <td><%= raw(link_to("Delete", doc_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      <% end %>
 
     </div>
     <div id=x_footer> </div>
