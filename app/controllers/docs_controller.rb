@@ -1,7 +1,7 @@
 class DocsController < ApplicationController
 
   before_filter :authenticate_member!
-  cache_sweeper :doc_cache_sweeper, :only => [:create, :update, :destroy, :show]
+  cache_sweeper :doc_cache_sweeper, :only => [:create, :destroy, :show]
 
 
   def index
