@@ -29,7 +29,7 @@ class DocsController < ApplicationController
     unless @doc.nil?
       @doc.download_count += 1
       @doc.save
-      expire_fragment(:fragment => 'docs_table')
+      expire_fragment('docs_table')
       render :text => File.read(@doc.doc.path), :content_type => @doc.doc_content_type
     else
       redirect_to docs_path, :alert => "Doc was not found (#{filename})"
