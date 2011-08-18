@@ -24,7 +24,18 @@ headers =
     2: {sorter: false }
     3: {sorter: 'last_name'}     # sort col 3 using last_name options
 
+filter_params =
+  filterContainer:      "#filter-box"
+  filterColumns:        [0,3]
+  filterClearContainer: "#filter-clear-button"
+
+
+
 $(document).ready ->
   $.tablesorter.addParser last_name_options
   $.tablesorter.addParser role_score_options
   $("#myTable").tablesorter headers
+  $("#myTable").tablesorterFilter(filter_params)
+  $("#filter-box").focus()
+  $("#filter-box").keyup ->
+    setTimeout('setEqualHeight()', 600)

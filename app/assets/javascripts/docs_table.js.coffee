@@ -9,5 +9,12 @@ headers =
   headers:
     5: { sorter: false }
 
+filter_params =
+  filterContainer:      "#filter-box"
+  filterClearContainer: "#filter-clear-button"
+  filterColumns:        [0,1,2]
+
 $(document).ready ->
   $("#MyTable").tablesorter(headers)
+  $("#MyTable").tablesorterFilter(filter_params)
+  $("#filter-box").focus()

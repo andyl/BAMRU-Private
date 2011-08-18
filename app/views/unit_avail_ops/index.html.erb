@@ -1,6 +1,7 @@
-<%= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%= javascript_include_tag "members.js" %>
-<%= javascript_include_tag "unit_certs_table.js" %>
+<%= javascript_include_tag "jquery.tablesorter2.js"        %>
+<%= javascript_include_tag "jquery.tablesorter_filter.js"  %>
+<%= javascript_include_tag "members.js"                    %>
+<%= javascript_include_tag "unit_avail_ops_table.js"       %>
 
 <div id=x_container>
   <div id=x_body>
@@ -8,6 +9,10 @@
       <table width=100%>
         <tr>
           <td align=left><b>Team Availability</b></td>
+          <td align=center>
+            Search: <input name="filter" id="filter-box" value="" maxlength="15" size="15" type="text">
+            <input id="filter-clear-button" type="submit" value="Clear"/>
+          </td>
           <td align=right>
             <%= link_to("Edit My Availability", member_avail_ops_path(current_member)) %>
           </td>

@@ -7,6 +7,11 @@ window.equalHeight = (c1, c2) ->
   else
     $(c1).height(c2Height)
 
-$(document).ready ->
+window.setEqualHeight = ->
   equalHeight("#x_right_col",   "#x_left_col")
   equalHeight("#mem_right_col", "#mem_left_col")
+
+$(document).ready ->
+  setEqualHeight()
+#  equalHeight("#x_right_col",   "#x_left_col")
+#  equalHeight("#mem_right_col", "#mem_left_col")

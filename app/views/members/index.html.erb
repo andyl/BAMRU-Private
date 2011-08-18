@@ -1,9 +1,10 @@
-<%= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%= javascript_include_tag "equal_height.js" %>
-<%= javascript_include_tag "members.js" %>
-<%= javascript_include_tag "members_table.js" %>
-<%= javascript_include_tag "members_textbox.js" %>
-<%= javascript_include_tag "members_checkbox.js" %>
+<%= javascript_include_tag "jquery.tablesorter2.js"       %>
+<%= javascript_include_tag "jquery.tablesorter_filter.js" %>
+<%= javascript_include_tag "equal_height.js"              %>
+<%= javascript_include_tag "members.js"                   %>
+<%= javascript_include_tag "members_table.js"             %>
+<%= javascript_include_tag "members_textbox.js"           %>
+<%= javascript_include_tag "members_checkbox.js"          %>
 
 <div id=x_container>
   <div id=x_body>
@@ -21,6 +22,12 @@
       <input type="hidden" name="message[author_id]" value="<%=current_member.id%>"/>
       <input type="hidden" name="message[ip_address]" value="<%=@client_ip%>"/>
       <div id=x_left_col>
+        <table align=center><tr align=center>
+          <td>
+            Search: <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
+            <input id="filter-clear-button" type="button" value="Clear"/>
+          </td>
+        </tr></table>
         <% cache('member_index_table') do %> 
           <table id="myTable" class="tablesorter" style="margin-top: 0px;">
             <thead>

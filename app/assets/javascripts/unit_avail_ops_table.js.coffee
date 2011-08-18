@@ -25,7 +25,7 @@ headers =
 filter_params =
   filterContainer:      "#filter-box"
   filterClearContainer: "#filter-clear-button"
-  filterColumns:        [0,1,2,3,4,5,6,7,8,9,10,11]
+  filterColumns:        [0,1,2]
 
 $(document).ready ->
   $.tablesorter.addParser last_name_options
@@ -33,3 +33,5 @@ $(document).ready ->
   $("#myTable").tablesorter headers
   $("#myTable").tablesorterFilter(filter_params)
   $("#filter-box").focus()
+  $("#filter-box").keyup ->
+    setTimeout('', 750)

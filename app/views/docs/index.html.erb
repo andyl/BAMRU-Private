@@ -1,7 +1,8 @@
-<%= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%= javascript_include_tag "jquery-ui.min.js"          %>
-<%= javascript_include_tag "members_autoselect.js"     %>
-<%= javascript_include_tag "docs_table.js"             %>
+<%= javascript_include_tag "jquery.tablesorter2.js"        %>
+<%= javascript_include_tag "jquery.tablesorter_filter.js"  %>
+<%= javascript_include_tag "jquery-ui.min.js"              %>
+<%= javascript_include_tag "members_autoselect.js"         %>
+<%= javascript_include_tag "docs_table.js"                 %>
 <%= csrf_meta_tag %>
 
 <div id=x_container>
@@ -11,6 +12,10 @@
         <tr>
           <td align=left>
             <b>BAMRU Docs</b>
+          </td>
+          <td align=center>
+            Search: <input name="filter" id="filter-box" value="" maxlength="20" size="20" type="text">
+            <input id="filter-clear-button" type="submit" value="Clear"/>
           </td>
           <td align=right>
             <%= link_to("Upload a new Doc", new_doc_path) %>
