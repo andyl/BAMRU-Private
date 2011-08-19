@@ -30,13 +30,14 @@ filter_params =
   filterColumns:        [0,3]
   columns:              ["role", "name"]
 
-
-
 $(document).ready ->
   $.tablesorter.addParser last_name_options
   $.tablesorter.addParser role_score_options
   $("#myTable").tablesorter headers
   $("#myTable").tablesorterFilter(filter_params)
   $("#filter-box").focus()
+  $("#filter-clear-button").click ->
+    setTimeout('updateAddressCount()', 50)
   $("#filter-box").keyup ->
     setTimeout('setEqualHeight()', 600)
+    setTimeout('updateAddressCount()', 600)

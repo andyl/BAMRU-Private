@@ -7,7 +7,7 @@ This file has three jQuery functions:
 
 # ----- 1) update address count -----
 
-updateAddressCount = ->
+window.updateAddressCount = ->
   addr_count = $(".rck:checked").length
   label = if addr_count == 1 then "address" else "addresses"
   $("#addr_count").text("#{addr_count} #{label}")
