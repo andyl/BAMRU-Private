@@ -5,16 +5,16 @@ class ReportsController < ApplicationController
 
   def report_list
     [
-      ["Map List",        'BAMRU-roster.html',         "HTML Roster with Gmap links"],
-      ["CSV Report",      'BAMRU-roster.csv',          "For importing into Excel"],
-      ["VCF Report",      'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
-      ["Callout Journal", 'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
-      ["BAMRU Names",     'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
-      ["BAMRU Full",      'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
-      ["Member Export",   'BAMRU-roster.json',         "Database export for member records"],
-      ["Full Export",     'BAMRU-roster.zip',          "Database export including photos and certs"],
-      ["Cert Dump",       'BAMRU-CertAll.pdf',         "All member certifications"],
-      ["Cert Expiration", 'BAMRU-CertExpiration.pdf',  "Expired certifications"]
+      ["Map List",         'BAMRU-roster.html',         "HTML Roster with Gmap links"],
+      ["CSV Report",       'BAMRU-roster.csv',          "For importing into Excel"],
+      ["VCF Report",       'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
+      ["Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
+      ["BAMRU Names",      'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
+      ["BAMRU Full",       'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
+      ["Member Export",    'BAMRU-roster.json',         "Database export for member records"],
+      ["Full Export",      'BAMRU-roster.zip',          "Database export including all attached files [runs slow]"],
+      ["Cert Full Export", 'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
+      ["Cert Expiration",  'BAMRU-CertExpiration.pdf',  "Expired certifications"]
     ]
   end
   
