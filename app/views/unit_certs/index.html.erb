@@ -61,6 +61,10 @@
       <% end %>
 
     </div>
-    <div id=x_footer> </div>
+    <div id=x_footer style="font-size: 10px;">
+      Cert Reports: <%= link_to("Expired Certs", "#{reports_path}/BAMRU-CertExpiration.pdf", :target => "_blank") %>
+      |
+      <%= link_to("All Certs", "#{reports_path}/BAMRU-CertAll.pdf", :target => "_blank") %>
+    </div>
   </div>
 </div>

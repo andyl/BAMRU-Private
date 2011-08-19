@@ -24,7 +24,7 @@ module CertsHelper
   def documentation(cert)
     return "" if cert.nil?
     return link_to("Doc Image", cert.cert.url) unless cert.cert_file.blank?
-    return link_to("FCC", cert.link)               unless cert.link.blank?
+    return link_to("FCC", cert.link)           unless cert.link.blank?
     ""
   end
 

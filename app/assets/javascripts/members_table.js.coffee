@@ -26,8 +26,9 @@ headers =
 
 filter_params =
   filterContainer:      "#filter-box"
-  filterColumns:        [0,3]
   filterClearContainer: "#filter-clear-button"
+  filterColumns:        [0,3]
+  columns:              ["role", "name"]
 
 
 

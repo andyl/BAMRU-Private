@@ -26,6 +26,7 @@ filter_params =
   filterContainer:      "#filter-box"
   filterClearContainer: "#filter-clear-button"
   filterColumns:        [0,1,2]
+  columns:              ["role", "name", "status"]
 
 $(document).ready ->
   $.tablesorter.addParser last_name_options

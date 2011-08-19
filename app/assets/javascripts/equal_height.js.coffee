@@ -13,5 +13,3 @@ window.setEqualHeight = ->
 
 $(document).ready ->
   setEqualHeight()
-#  equalHeight("#x_right_col",   "#x_left_col")
-#  equalHeight("#mem_right_col", "#mem_left_col")

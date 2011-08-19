@@ -25,6 +25,8 @@ class Cert < ActiveRecord::Base
   validates_presence_of :description
 
   # ----- Callbacks -----
+  before_validation :cleanup_fields
+  before_save       :cleanup_fields
 
   # ----- Scopes -----
   scope :medical,    where(:typ => "medical")
@@ -42,11 +44,20 @@ class Cert < ActiveRecord::Base
   scope :with_jpgs, where("cert_file like ?", "%jpg")
   scope :with_docs, where("cert_file <> ''")
 
+  scope :expired,               where("expiration <= ?", Date.today)
+  scope :pending_and_expired,   where("expiration <= ?", Date.today + 90)
+  scope :pending,               pending_and_expired - expired
+
   # ----- Instance Methods -----
   def export
     atts = attributes
     %w(id member_id).each {|a| atts.delete(a)}
     atts
+  end
+
+  def cleanup_fields
+    self.typ = self.typ.downcase
+    self.description = "Certified" if self.typ == "driver"
   end
 
   def cert_url
@@ -68,7 +79,13 @@ class Cert < ActiveRecord::Base
   end
 
   def current?
-    date_to_time(expiration) > Time.now.to_time
+    expiration > Date.today
+  end
+
+  def status
+    return "Expired" if self.expiration < Date.today
+    return "Pending" if self.expiration < Date.today + 90
+    return "Active"
   end
 
   def date_to_time(date)
@@ -96,6 +113,7 @@ class Cert < ActiveRecord::Base
     return "<td></td>" if description.blank?
     "<td align=center style='background-color: #{expire_color};'>#{description_with_link}</td>"
   end
+
 
   # ----- Class Methods -----
 
