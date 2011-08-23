@@ -26,7 +26,7 @@ class PasswordController < ApplicationController
   def reset
     Time.zone = "Pacific Time (US & Canada)"
     @member = current_member || Member.find_by_forgot_password_token(params['token'])
-    if @member && (@member.forgot_password_expires_at > Time.now)
+    if @member && @member.forgot_password_expires_at && (@member.forgot_password_expires_at > Time.now)
       @member.clear_forgot_password_token
       member_login(@member) unless member_signed_in?
       @member.password = ""
