@@ -35,9 +35,8 @@ class ApplicationController < ActionController::Base
     #system "rake -T >> #{Rails.root}/log/rake.log 2>&1"
     system "date >> #{Rails.root}/log/rake.log"
     system "pwd  >> #{Rails.root}/log/rake.log"
+    system "echo #{GMAIL_USER}/#{GMAIL_PASS} >> #{Rails.root}/log/rake.log"
     cmd = "cd #{Rails.root}; /usr/bin/rake #{task} #{args.join(' ')} --trace >> #{Rails.root}/log/rake.log 2>&1 &"
-    #cmd = "cd #{Rails.root}; /usr/bin/rake -T >> #{Rails.root}/log/rake.log 2>&1 &"
-    #cmd = "echo Hello world >> #{Rails.root}/log/rake.log 2>&1 &"
     puts cmd
     system cmd
   end
