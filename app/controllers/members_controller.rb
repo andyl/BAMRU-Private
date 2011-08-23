@@ -33,6 +33,7 @@ class MembersController < ApplicationController
   def create
     authorize! :manage, Member
     if @member = Member.create(params["member"])
+      expire_fragment('unit_photos_table')
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
       render "new"
@@ -49,6 +50,7 @@ class MembersController < ApplicationController
     end
     x = @member.update_attributes(m_params)
     if x
+      expire_fragment('unit_photos_table')
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -59,6 +61,7 @@ class MembersController < ApplicationController
     @member = Member.where(:id => params[:id]).first
     authorize! :manage, @member
     if @member.destroy
+      expire_fragment('unit_photos_table')
       redirect_to '/members', :notice => "Member was Deleted"
     else
       render "show"

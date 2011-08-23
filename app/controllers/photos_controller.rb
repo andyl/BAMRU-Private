@@ -14,6 +14,7 @@ class PhotosController < ApplicationController
   def create
     @member = Member.where(:id => params['member_id']).first
     @member.photos.create(params[:photo])
+    expire_fragment('unit_photos_table')
     @member.save
     redirect_to edit_member_path(@member)
   end
@@ -21,6 +22,7 @@ class PhotosController < ApplicationController
   def destroy
     @member = Member.where(:id => params['member_id']).first
     @photo = Photo.where(:id => params['id']).first
+    expire_fragment('unit_photos_table')
     @photo.destroy
     redirect_to edit_member_path @member
   end
@@ -29,6 +31,7 @@ class PhotosController < ApplicationController
     params[:photos].each_with_index do |id, index|
       Photo.update_all(['position=?', index+1], ['id=?', id])
     end
+    expire_fragment('unit_photos_table')
     render :nothing => true
   end
 
