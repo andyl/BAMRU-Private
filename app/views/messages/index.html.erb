@@ -3,15 +3,16 @@
 
 <table border=1>
   <thead>
-  <tr><th>Content</th><th>Author</th><th>Send Time</th><th>IP Address</th></tr>
+  <tr><th>ID</th></th><th>Content</th><th>Author</th><th>Send Time</th><th>IP Address</th></tr>
   </thead>
   <tbody>
   <% @messages.each do |m| %>
     <tr>
-      <td><%= link_to(m.text, message_path(m)) %></td>
-      <td><%= m.author.full_name %></td>
-      <td><%= m.created_at %></td>
-      <td><%= m.ip_address %></td>
+      <td style='font-size: 10px;'><%= m.id %></td>
+      <td style='font-size: 10px;' width=550px><%= link_to(m.text, message_path(m)) %></td>
+      <td style='font-size: 10px;'><%= m.author.full_name %></td>
+      <td style='font-size: 10px;'><%= m.created_at %></td>
+      <td style='font-size: 10px;'><%= m.ip_address %></td>
     </tr>
   <% end %>
   </tbody>

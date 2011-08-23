@@ -20,10 +20,9 @@ class MessagesController < ApplicationController
       redirect_to members_path, :alert => "Empty message text - Please try again"
       return
     end
-    np[:distributions_attributes] =
-            Message.distributions_params(params[:distributions])
+    np[:distributions_attributes] = Message.distributions_params(params[:distributions])
     m = Message.create(np)
-
+    call_rake('email:send_distribution', {:message_id => m.id})
     redirect_to messages_path, :notice => "Message sent."
   end
   

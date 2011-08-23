@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def sign_up_link
-    link_to_unless_current("sign in", '/members/sign_in')
+    link_to_unless_current("log in", '/login')
   end
 
   def signed_in_header_nav
