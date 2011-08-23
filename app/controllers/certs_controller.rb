@@ -19,6 +19,7 @@ class CertsController < ApplicationController
     @cert   = Cert.create(params[:cert])
     @member.certs << @cert
     @member.save
+    expire_fragment('unit_certs_table')
     redirect_to member_certs_path(@member)
   end
 
@@ -26,6 +27,7 @@ class CertsController < ApplicationController
     @member = Member.where(:id => params['member_id']).first
     @cert   = Cert.where(:id => params['id']).first
     if @cert.update_attributes(params[:cert])
+      expire_fragment('unit_certs_table')
       redirect_to member_certs_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -46,6 +48,7 @@ class CertsController < ApplicationController
     @member = Member.where(:id => params['member_id']).first
     @cert = Cert.where(:id => params['id']).first
     @cert.destroy
+    expire_fragment('unit_certs_table')
     redirect_to member_certs_path(@member), :notice => "Cert was Deleted"
   end
 
