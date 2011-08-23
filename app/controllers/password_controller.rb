@@ -25,7 +25,10 @@ class PasswordController < ApplicationController
   # if the token is valid, the user must create a new password
   def reset
     Time.zone = "Pacific Time (US & Canada)"
-    redirect_to root_path, :notice => "You are already logged in!" unless current_member.nil?
+    unless current_member.nil?
+      redirect_to root_path, :notice => "You are already logged in!"
+      return
+    end
     @member = Member.find_by_forgot_password_token(params['token'])
     if @member && (@member.forgot_password_expires_at > Time.now)
       @member.clear_forgot_password_token
