@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default :from => "akleak@gmail.com"
+  default :from => "bamru.net@gmail.com"
 
   def test(member = "")
     @member = member
@@ -21,4 +21,8 @@ class Notifier < ActionMailer::Base
             :subject => "BAMRU.net Password Reset"
     )
   end
+
+  def roster_email(message)
+  end
+
 end
