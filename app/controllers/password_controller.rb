@@ -9,6 +9,10 @@ class PasswordController < ApplicationController
     @member = Email.find_by_address(params[:email]).try(:member)
     if @member.try(:valid?)
       call_rake(:send_password_reset_mail, {:address => params[:email], :url => password_reset_url})
+      auth = Member.find_or_create_by_user_name "public_user"
+      text = "Forgot Password message for #{@member.full_name} (#{params[:email]})"
+      hash = {:ip_address => request.remote_ip, :author => auth, :recipients => [@member], :text => text}
+      Message.create(hash)
       redirect_to "/password/sending?address=#{params[:email]}"
     else
       flash.now.alert = "Unrecognized email address (#{params[:email]}).  Please try again."

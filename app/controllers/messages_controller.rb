@@ -22,7 +22,8 @@ class MessagesController < ApplicationController
     end
     np[:distributions_attributes] =
             Message.distributions_params(params[:distributions])
-    Message.create(np)
+    m = Message.create(np)
+
     redirect_to messages_path, :notice => "Message sent."
   end
   
