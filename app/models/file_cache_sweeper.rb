@@ -1,9 +1,9 @@
-class DocCacheSweeper < ActionController::Caching::Sweeper
+class FileCacheSweeper < ActionController::Caching::Sweeper
 
-  observe Doc
+  observe DataFile
 
   def expire_cached_content(entry)
-    expire_fragment('docs_table')
+    expire_fragment('files_table')
   end
 
   alias_method :after_save,    :expire_cached_content

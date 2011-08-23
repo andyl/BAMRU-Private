@@ -26,7 +26,7 @@ Zn::Application.routes.draw do
   resources  :unit_certs
   resources  :unit_avail_ops
   resources  :do_assignments
-  resources  :docs
+  resources  :files
   resources  :chats
 
   resources  :members do

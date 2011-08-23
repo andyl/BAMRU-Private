@@ -27,22 +27,22 @@ class Member < ActiveRecord::Base
   has_many :emergency_contacts, :order => 'position'
   has_many :roles
   has_many :certs
-  has_many :docs
+  has_many :data_files
   has_many :avail_ops,          :order => 'start'
   has_many :avail_dos
   has_many :messages
   has_many :distributions
   has_many :notices, :through => :distributions, :source => :message
 
-  accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
-  accepts_nested_attributes_for :phones,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
-  accepts_nested_attributes_for :emails,    :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
-  accepts_nested_attributes_for :roles,     :allow_destroy => true
-  accepts_nested_attributes_for :certs,     :allow_destroy => true
-  accepts_nested_attributes_for :docs,      :allow_destroy => true
-  accepts_nested_attributes_for :photos,    :allow_destroy => true
-  accepts_nested_attributes_for :avail_ops, :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
-  accepts_nested_attributes_for :avail_dos, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
+  accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
+  accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
+  accepts_nested_attributes_for :emails,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
+  accepts_nested_attributes_for :roles,      :allow_destroy => true
+  accepts_nested_attributes_for :certs,      :allow_destroy => true
+  accepts_nested_attributes_for :photos,     :allow_destroy => true
+  accepts_nested_attributes_for :data_files, :allow_destroy => true
+  accepts_nested_attributes_for :avail_ops,  :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
+  accepts_nested_attributes_for :avail_dos,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
   accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
 

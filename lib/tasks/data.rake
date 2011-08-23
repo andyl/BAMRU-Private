@@ -19,7 +19,7 @@ namespace :data do
     puts "  Other Infos: #{OtherInfo.count}"
     puts "       Photos: #{Photo.count}"
     puts "        Certs: #{Cert.count}"
-    puts "         Docs: #{Doc.count}"
+    puts "         Docs: #{DataFile.count}"
     puts "     AvailOps: #{AvailOp.count}"
     puts "     AvailDos: #{AvailDo.count}"
     puts "DoAssignments: #{DoAssignment.count}"
@@ -91,7 +91,7 @@ namespace :data do
     Org.create(:name => "BAMRU")
     Rake::Task['data:photo_load'].invoke
     Rake::Task['data:cert_load'].invoke
-    Rake::Task['data:doc_load'].invoke
+    Rake::Task['data:file_load'].invoke
     Phone.where(:position => nil).all.each {|x| x.destroy}
     Email.where(:position => nil).all.each {|x| x.destroy}
     Rake::Task['data:count'].invoke
@@ -144,16 +144,16 @@ namespace :data do
     end
   end
 
-  desc "Load Docs"
-  task :doc_load => :data_environment do
-    puts "Reloading Seed Docs (this might take awhile...)"
-    Doc.destroy_all
-    Dir.glob('./db/seed/docs/*').sort.each do |i|
+  desc "Load Files"
+  task :file_load => :data_environment do
+    puts "Reloading Seed Files (this might take awhile...)"
+    DataFile.destroy_all
+    Dir.glob('./db/seed/data_files/*').sort.each do |i|
       username = 'andy_leak'
       member = Member.where(:user_name => username).first
       if member
-        puts "loading doc #{Doc.count} - #{i.split('/').last} "
-        member.docs.create(:doc => File.open(i))
+        puts "loading file #{DataFile.count} - #{i.split('/').last} "
+        member.data_files.create(:data => File.open(i))
         member.save
       end
     end

@@ -88,14 +88,14 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :cert_updated_at
       t.timestamps
     end
-    create_table :docs do |t|
+    create_table :data_files do |t|
       t.integer    :member_id
       t.integer    :download_count,   :default => 0
-      t.string     :doc_file_extension
-      t.string     :doc_file_name
-      t.string     :doc_content_type
-      t.string     :doc_file_size
-      t.string     :doc_updated_at
+      t.string     :data_file_extension
+      t.string     :data_file_name
+      t.string     :data_file_size
+      t.string     :data_content_type
+      t.string     :data_updated_at
       t.timestamps
     end
     create_table :emergency_contacts do |t|

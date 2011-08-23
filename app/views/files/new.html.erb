@@ -7,10 +7,10 @@
       <table width=100%>
         <tr>
           <td width=250 align=left>
-            <b>Upload Doc</b>
+            <b>Upload File</b>
           </td>
           <td align=right>
-            <%= link_to("Back", docs_path) %>
+            <%= link_to("Back", files_path) %>
           </td>
         </tr>
       </table>
@@ -18,9 +18,9 @@
 
     <div id=x_single_col>
 
-      <%= simple_form_for @doc do |f|   %>
-        <%= f.input        :doc         %>
-        <%= f.button       :submit      %>
+      <%= simple_form_for @file, :url => files_path do |f|   %>
+        <%= f.input  :data, :label => "File"   %>
+        <%= f.button :submit                   %>
       <% end %>
 
     </div>

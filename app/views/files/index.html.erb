@@ -11,14 +11,14 @@
       <table width=100%>
         <tr>
           <td align=left>
-            <b>BAMRU Docs</b>
+            <b>BAMRU Files</b>
           </td>
           <td align=center>
             Search: <input name="filter" id="filter-box" value="" maxlength="20" size="20" type="text">
             <input id="filter-clear-button" type="submit" value="Clear"/>
           </td>
           <td align=right>
-            <%= link_to("Upload a new Doc", new_doc_path) %>
+            <%= link_to("Upload a new File", new_file_path) %>
           </td>
         </tr>
       </table>
@@ -26,12 +26,12 @@
 
     <div id=x_single_col>
 
-      <% cache('docs_table') do %>
+      <% cache('files_table') do %>
 
         <table id="MyTable" class="tablesorter">
           <thead>
           <tr>
-            <th>Doc</th>
+            <th>File</th>
             <th width=45>Type</th>
             <th width=95>Uploaded By</th>
             <th>Uploaded On</th>
@@ -41,14 +41,14 @@
           </thead>
 
           <tbody>
-          <% @docs.each do |d| %>
+          <% @files.each do |d| %>
             <tr>
-              <td><%= raw(link_to(d.doc_file_name, docs_path + '/' + d.doc_file_name, :target => "_blank")) %></td>
-              <td><%= d.doc_file_extension.upcase %></td>
-              <td><%= d.member.full_name %></td>
+              <td><%= raw(link_to(d.data_file_name, files_path + '/' + d.data_file_name, :target => "_blank")) %></td>
+              <td><%= d.data_file_extension.upcase %></td>
+              <td><%= d.member.full_name if d.member %></td>
               <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= d.download_count %></td>
-              <td><%= raw(link_to("Delete", doc_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
+              <td><%= raw(link_to("Delete", file_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
             </tr>
           <% end %>
           </tbody>

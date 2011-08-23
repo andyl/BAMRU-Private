@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
+  create_table "data_files", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "download_count",      :default => 0
+    t.string   "data_file_extension"
+    t.string   "data_file_name"
+    t.string   "data_file_size"
+    t.string   "data_content_type"
+    t.string   "data_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "distributions", :force => true do |t|
     t.integer  "message_id"
     t.integer  "member_id"
@@ -87,18 +99,6 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "quarter"
     t.integer  "week"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "docs", :force => true do |t|
-    t.integer  "member_id"
-    t.integer  "download_count",     :default => 0
-    t.string   "doc_file_extension"
-    t.string   "doc_file_name"
-    t.string   "doc_content_type"
-    t.string   "doc_file_size"
-    t.string   "doc_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
