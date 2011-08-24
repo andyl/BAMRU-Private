@@ -122,7 +122,24 @@ module ApplicationHelper
     link_to "Current Quarter", edit_do_assignment_path
   end
 
+  def day_label(offset = 0)
+    (Time.now + offset.days).strftime("%b %e")
+  end
 
+  def day_helper(member, offset = 0)
+    day = Time.now + offset.days
+    if member.avail_ops.busy_on?(day)
+      "<td align=center style='background-color: pink;'>No</td>"
+    else
+      "<td></td>"
+    end
+  end
+
+  def return_date_helper(member, offset)
+    day = Time.now + offset.days
+    return_date = member.avail_ops.return_date(day)
+    return_date.nil? ? "" : return_date.strftime("%y-%m-%d")
+  end
 
   # ----- Debug Helpers -----
 

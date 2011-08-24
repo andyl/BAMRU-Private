@@ -57,5 +57,11 @@ class AvailOp < ActiveRecord::Base
     result == 0 ? false : true
   end
 
+  def self.return_date(date)
+    date = date.to_date if date.is_a?(Time)
+    result = where("start < ?", date+1).where("end >= ?", date).last
+    result.nil? ? nil : result.end
+  end
+
 
 end

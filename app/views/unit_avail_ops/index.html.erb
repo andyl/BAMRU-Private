@@ -4,7 +4,7 @@
 <%= javascript_include_tag "unit_avail_ops_table.js"       %>
 
 <div id=x_container>
-  <div id=x_body>
+  <div id=x_wide_body>
     <div id=x_header>
       <table width=100%>
         <tr>
@@ -24,9 +24,15 @@
       <table id="myTable" class="tablesorter">
         <thead>
         <tr>
-          <th>Role</th>
+          <th width=40>Role</th>
           <th>Name</th>
-          <th>Status</th>
+          <th width=65>Available<br/>today?</th>
+          <th width=65>Available<br/><%= day_label(1) %>?</th>
+          <th width=65>Available<br/><%= day_label(2) %>?</th>
+          <th width=65>Available<br/><%= day_label(3) %>?</th>
+          <th width=65>Available<br/><%= day_label(4) %>?</th>
+          <th width=65>Available<br/><%= day_label(5) %>?</th>
+          <th width=50>Return</th>
           <th>Comment</th>
         </tr>
         </thead>
@@ -35,11 +41,13 @@
           <tr>
             <td><%=mem.typ%></td>
             <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
-            <% if mem.current_status == "unavailable" %>
-              <td align=center style='background-color: pink;'>unavailable</td>
-              <% else %>
-              <td></td>
-              <% end %>
+            <%= raw day_helper(mem, 0) %>
+            <%= raw day_helper(mem, 1) %>
+            <%= raw day_helper(mem, 2) %>
+            <%= raw day_helper(mem, 3) %>
+            <%= raw day_helper(mem, 4) %>
+            <%= raw day_helper(mem, 5) %>
+            <td><%= raw return_date_helper(mem, 5) %></td>
             <td><%=mem.current_status_comment%></td>
           </tr>
         <% end %>
