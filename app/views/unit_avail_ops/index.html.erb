@@ -21,17 +21,18 @@
     </div>
     <div id=x_single_col>
 
+      <% cache('unit_avail_ops_table') do %>
+
       <table id="myTable" class="tablesorter">
         <thead>
         <tr>
           <th width=40>Role</th>
           <th>Name</th>
           <th width=65>Available<br/>today?</th>
-          <th width=65>Available<br/><%= day_label(1) %>?</th>
-          <th width=65>Available<br/><%= day_label(2) %>?</th>
-          <th width=65>Available<br/><%= day_label(3) %>?</th>
-          <th width=65>Available<br/><%= day_label(4) %>?</th>
-          <th width=65>Available<br/><%= day_label(5) %>?</th>
+          <th width=65><%= day_label(1) %>?</th>
+          <th width=65><%= day_label(2) %>?</th>
+          <th width=65><%= day_label(3) %>?</th>
+          <th width=65><%= day_label(4) %>?</th>
           <th width=50>Return</th>
           <th>Comment</th>
         </tr>
@@ -46,13 +47,14 @@
             <%= raw day_helper(mem, 2) %>
             <%= raw day_helper(mem, 3) %>
             <%= raw day_helper(mem, 4) %>
-            <%= raw day_helper(mem, 5) %>
-            <td><%= raw return_date_helper(mem, 5) %></td>
+            <td><%= raw return_date_helper(mem, 4) %></td>
             <td><%=mem.current_status_comment%></td>
           </tr>
         <% end %>
         </tbody>
       </table>
+
+      <% end %>
 
     </div>
     <div id=x_footer> </div>

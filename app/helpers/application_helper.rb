@@ -138,7 +138,7 @@ module ApplicationHelper
   def return_date_helper(member, offset)
     day = Time.now + offset.days
     return_date = member.avail_ops.return_date(day)
-    return_date.nil? ? "" : return_date.strftime("%y-%m-%d")
+    return_date.nil? ? "" : (return_date + 1.day).strftime("%y-%m-%d")
   end
 
   # ----- Debug Helpers -----

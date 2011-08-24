@@ -35,6 +35,7 @@ class MembersController < ApplicationController
     if @member = Member.create(params["member"])
       expire_fragment('unit_photos_table')
       expire_fragment('unit_certs_table')
+      expire_fragment('unit_avail_ops_table')
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
       render "new"
@@ -53,6 +54,7 @@ class MembersController < ApplicationController
     if x
       expire_fragment('unit_photos_table')
       expire_fragment('unit_certs_table')
+      expire_fragment('unit_avail_ops_table')
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -65,6 +67,7 @@ class MembersController < ApplicationController
     if @member.destroy
       expire_fragment('unit_photos_table')
       expire_fragment('unit_certs_table')
+      expire_fragment('unit_avail_ops_table')
       redirect_to '/members', :notice => "Member was Deleted"
     else
       render "show"
