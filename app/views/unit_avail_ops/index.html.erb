@@ -33,7 +33,7 @@
         <tbody>
         <% @members.each do |mem| %>
           <tr>
-            <td><%=mem.full_roles%></td>
+            <td><%=mem.typ%></td>
             <td><%=link_to mem.full_name, member_avail_ops_path(mem) %></td>
             <% if mem.current_status == "unavailable" %>
               <td align=center style='background-color: pink;'>unavailable</td>
