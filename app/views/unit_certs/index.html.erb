@@ -42,7 +42,7 @@
           <tbody>
           <% @members.each do |mem| %>
             <tr>
-              <td><%=mem.full_roles%></td>
+              <td><%=mem.typ%></td>
               <td class=link><%= color_name(mem) %>
                 <%= raw display_table_cert(mem, "medical")    %>
                 <%= raw display_table_cert(mem, "cpr")        %>
