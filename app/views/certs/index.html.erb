@@ -18,7 +18,7 @@
             Member Certs: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
           </td>
           <td align=center>
-            <%= link_to("Back", unit_certs_path) %>
+            <%= link_to("Team Certs", unit_certs_path) %>
           </td>
           <td width=250 align=right>
             <%= link_to('<', member_certs_path(@member.prev_member_id)) %>
@@ -30,17 +30,16 @@
     </div>
 
     <div id=x_single_col>
-
-      <b>Medical Certs</b>           <%= raw add_link(@member, :medical) %>   <br/> <%= raw cert_dump(@member, :medical)    %><p></p>
-      <b>CPR Certs</b>               <%= raw add_link(@member, :cpr) %>       <br/> <%= raw cert_dump(@member, :cpr)        %><p></p>
-      <b>Ham Certs</b>               <%= raw add_link(@member, :ham) %>       <br/> <%= raw cert_dump(@member, :ham)        %><p></p>
-      <b>Tracking Certs</b>          <%= raw add_link(@member, :tracking) %>  <br/> <%= raw cert_dump(@member, :tracking)   %><p></p>
-      <b>Avalanche Certs</b>         <%= raw add_link(@member, :avalanche) %> <br/> <%= raw cert_dump(@member, :avalanche)  %><p></p>
-      <b>Rigging Certs</b>           <%= raw add_link(@member, :rigging) %>   <br/> <%= raw cert_dump(@member, :rigging)    %><p></p>
-      <b>ICS Certs</b>               <%= raw add_link(@member, :ics) %>       <br/> <%= raw cert_dump(@member, :ics)        %><p></p>
-      <b>Search Management Certs</b> <%= raw add_link(@member, :overhead) %>  <br/> <%= raw cert_dump(@member, :overhead)   %><p></p>
-      <b>SO Driver Certs</b>         <%= raw add_link(@member, :driver) %>    <br/> <%= raw cert_dump(@member, :driver)     %><p></p>
-      <b>SO Background Certs</b>     <%= raw add_link(@member, :background) %><br/> <%= raw cert_dump(@member, :background) %><p></p>
+      <%= raw cert_category("Medical Certs",       @member, :medical)    %>
+      <%= raw cert_category("CPR Certs",           @member, :cpr)        %>
+      <%= raw cert_category("Ham Certs",           @member, :ham)        %>
+      <%= raw cert_category("Tracking Certs",      @member, :tracking)   %>
+      <%= raw cert_category("Avalanche Certs",     @member, :avalanche)  %>
+      <%= raw cert_category("Rigging Certs",       @member, :rigging)    %>
+      <%= raw cert_category("ICS Certs",           @member, :ics)        %>
+      <%= raw cert_category("Search Mgmt. Certs",  @member, :overhead)   %>
+      <%= raw cert_category("SO Driver Certs",     @member, :driver)     %>
+      <%= raw cert_category("SO Background Certs", @member, :background) %>
 
     </div>
     <div id=x_footer> </div>

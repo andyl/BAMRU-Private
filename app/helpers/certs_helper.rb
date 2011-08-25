@@ -2,16 +2,15 @@ module CertsHelper
   def display_table_cert(mem, type)
     cert = mem.certs.where(:typ => type).first
     return "<td></td>" if cert.blank?
-    #debugger
     cert.display_table(mem.certs.where(:typ => type).count)
   end
-
+ 
   def td(val)
     "<td>#{val}</td>"
   end
 
   def expiration(cert)
-    cert.nil? ? "" : cert.expiration
+    (cert.nil? || cert.expiration.nil?) ? "" : cert.expiration.strftime("%Y-%m-%d")
   end
 
   def description(cert)
@@ -24,16 +23,16 @@ module CertsHelper
 
   def documentation(cert)
     return "" if cert.nil?
-    return link_to("Doc Image", cert.cert.url) unless cert.cert_file.blank?
-    return link_to("FCC", cert.link)           unless cert.link.blank?
-    return cert.comment                        unless cert.comment.blank?
+    return link_to("Cert Image", cert.cert.url, :target => "_blank")   unless cert.cert_file.blank?
+    return "link: #{link_to("FCC", cert.link, :target => "_blank")}"   unless cert.link.blank?
+    return cert.comment                                                unless cert.comment.blank?
     ""
   end
 
   def cert_actions(mem, cert, type)
-    return link_to("CREATE", new_member_cert_path(mem, :typ => type.to_s)) if cert.nil?
-    edit = link_to("EDIT", edit_member_cert_path(mem, cert))
-    del  = link_to("DELETE", member_cert_path(mem, cert), :confirm => "Are you sure?", :method => :delete)
+    return link_to("create", new_member_cert_path(mem, :typ => type.to_s)) if cert.nil?
+    edit = link_to("edit", edit_member_cert_path(mem, cert))
+    del  = link_to("delete", member_cert_path(mem, cert), :confirm => "Are you sure?", :method => :delete)
     "#{edit} | #{del}"
   end
 
@@ -41,23 +40,51 @@ module CertsHelper
     mem == current_member || current_member.admin?
   end
 
-  def do_span(text, width)
-    "<span style='display: inline-block; width: #{width}px;'>#{text}</span>"
-  end
-
   def add_link(mem, type)
     link_to("add", new_member_cert_path(mem, :typ => type.to_s))
+  end
+
+  def col1() 225; end
+  def col2() 225; end
+  def col3() 100; end
+
+  def do_span(text, width, size=10)
+    "<span style='display: inline-block; width: #{width}px; font-size: #{size}px;'>#{text}</span>"
+  end
+
+  def cert_count(mem, type)
+    mem.certs.where(:typ => type).count
+  end
+
+  def cert_labels(label, mem, type)
+    count = cert_count(mem, type)
+    s1 = label
+    s2 = count == 0 ? "" : "| Documentation"
+    s3 = count == 0 ? "" : "| Expiration"
+    s4 = "<span style='float: right;'>#{add_link(mem, type)}</span>"
+    do_span(s1, col1, 12) + do_span(s2, col2) + do_span(s3, col3) + s4
+  end
+
+  def cert_header(label, mem, type)
+    label_count = "<b>#{label}</b> (#{cert_count(mem, type)})"
+    "<div style='background-color: #eeeeee;'>" +
+    cert_labels(label_count, mem, type) +
+    "</div>"
+  end
+
+  def cert_category(label, mem, type)
+    "#{cert_header(label, mem, type)}#{cert_dump(mem, type)}<p></p>"
   end
 
   def cert_dump(mem, type)
     certs = mem.certs.where(:typ => type)
     certs.map do |cert|
-      exp = expiration(cert)
       des = description(cert)
-      doc = documentation(cert)
+      exp = "| " + expiration(cert)
+      doc = "| " + documentation(cert)
       act = can_update?(mem) ? td(cert_actions(mem, cert, type)) : ""
-      do_span(des, 100) + do_span(doc, 100) + do_span(exp, 100) + " " + act
-    end.join("<br/>")
+      "<div style='font-size: 10px;'>" + do_span(des, col1) + do_span(doc, col2) + do_span(exp, col3) + " " + "<span style='float:right'>#{act}</span>" + "</div>"
+    end.join
   end
 
   def cert_value(mem, type)

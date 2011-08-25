@@ -2,13 +2,14 @@
 <%= javascript_include_tag "jquery.tablesorter_filter.js"  %>
 <%= javascript_include_tag "members.js"                    %>
 <%= javascript_include_tag "unit_certs_table.js"           %>
+<%= javascript_include_tag "unit_certs_popup.js"           %>
 
 <div id=x_container>
   <div id=x_wide_body>
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=left><b>Team Certs</b></td>
+          <td align=left><b>Unit Certifications</b></td>
           <td align=center>
             Search: <input name="filter" id="filter-box" value="" maxlength="15" size="15" type="text">
             <input id="filter-clear-button" type="submit" value="Clear"/>
@@ -25,7 +26,7 @@
         <table id="myTable" class="tablesorter">
           <thead>
           <tr>
-            <th>Role</th>
+            <th width=40>Role</th>
             <th>Name</th>
             <th>Med.&nbsp;&nbsp;</th>
             <th>CPR&nbsp;&nbsp;</th>
@@ -65,15 +66,22 @@
       <table width=100%>
         <tr>
           <td align=left style="font-size: 10px;">
-            BACKGROUND COLOR: Green = certification is current; Yellow = expires within 1 month; Orange = expires within 3 months; Pink = expired<br/>
-            TEXT COLOR: Blue = link to documentation; Purple = link to comment; Red member name = missing current Medical and/or CPR.
+            CELL COLOR - Green: current cert; Yellow: expires within 1 month; Orange: expires within 3 months; Pink: expired<br/>
+            TEXT COLOR - Blue: link to documentation; Purple: link to comment; Red member name: no current Medical or CPR
           </td>
           <td align=right style="font-size: 10px;">
-            <b>*</b> indicates multiple certs for a category<br/>
+            <b>*</b> indicates multiple certs<br/>
             <%= link_to("View all Expired Certs", "#{reports_path}/BAMRU-CertExpiration.pdf", :target => "_blank") %>
           </td>
         </tr>
       </table>
     </div>
   </div>
+</div>
+
+<div id="blanket" style="display: none;"></div>
+<div id="popup"  style="display: none;">
+  <span id="popname"></span> has entered the following comment:<p></p>
+  "<span id="popcomment"></span>"<p></p>
+  <a href="#" onclick="close_popup();">Close</a>
 </div>

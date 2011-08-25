@@ -104,8 +104,9 @@ class Cert < ActiveRecord::Base
   end
 
   def description_with_link
-    return "<a href='#{link}'>#{description}</a>"     unless link.blank?
-    return "<a href='#{cert.url(:full)}'>#{description}</a>" unless cert_file_name.blank?
+    return "<a href='#{link}'            class=blue_link target='_blank'>#{description}</a>"                                              unless link.blank?
+    return "<a href='#{cert.url(:full)}' class=blue_link target='_blank'>#{description}</a>"                                              unless cert_file_name.blank?
+    return "<a href='#'                  class=purple_link data-comment='#{comment}' data-name='#{member.first_name}'>#{description}</a>" unless comment.blank?
     description
   end
 
