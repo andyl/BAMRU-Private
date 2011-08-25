@@ -18,7 +18,7 @@
             Member Certs: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
           </td>
           <td align=center>
-            <%= link_to("Team Certs", unit_certs_path) %>
+            <%= link_to("Unit Certs", unit_certs_path) %>
           </td>
           <td width=250 align=right>
             <%= link_to('<', member_certs_path(@member.prev_member_id)) %>
