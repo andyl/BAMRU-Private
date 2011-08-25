@@ -69,7 +69,8 @@
             TEXT COLOR: Blue = link to documentation; Purple = link to comment; Red member name = missing current Medical and/or CPR.
           </td>
           <td align=right style="font-size: 10px;">
-            <%= link_to("Expired Certs", "#{reports_path}/BAMRU-CertExpiration.pdf", :target => "_blank") %>
+            <b>*</b> indicates multiple certs for a category<br/>
+            <%= link_to("View all Expired Certs", "#{reports_path}/BAMRU-CertExpiration.pdf", :target => "_blank") %>
           </td>
         </tr>
       </table>

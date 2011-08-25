@@ -2,7 +2,8 @@ module CertsHelper
   def display_table_cert(mem, type)
     cert = mem.certs.where(:typ => type).first
     return "<td></td>" if cert.blank?
-    cert.display_table
+    #debugger
+    cert.display_table(mem.certs.where(:typ => type).count)
   end
 
   def td(val)

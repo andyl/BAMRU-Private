@@ -17,6 +17,7 @@ class Phone < ActiveRecord::Base
   scope :non_standard, where('typ <> "Work"').
                        where('typ <> "Home"').
                        where('typ <> "Mobile"').
+                       where('typ <> "Pager"').
                        where('typ <> "Other"')
 
   # ----- Local Methods-----
@@ -27,7 +28,7 @@ class Phone < ActiveRecord::Base
   end
 
   def non_standard_typ?
-    ! %w(Work Home Mobile Other).include?(typ)
+    ! %w(Work Home Mobile Pager Other).include?(typ)
   end
 
   def output
@@ -35,7 +36,7 @@ class Phone < ActiveRecord::Base
   end
 
   def typ_opts
-    base_opts = %w(Mobile Home Work Other)
+    base_opts = %w(Mobile Home Work Pager Other)
     if typ.nil? || base_opts.include?(typ)
       base_opts
     else

@@ -49,6 +49,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string  :typ
       t.string  :number
       t.string  :pagable
+      t.string  :sms_email
       t.integer :position
       t.timestamps
     end
@@ -81,6 +82,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string     :description
       t.string     :comment
       t.string     :link
+      t.integer    :position
       t.string     :cert_file
       t.string     :cert_file_name
       t.string     :cert_content_type

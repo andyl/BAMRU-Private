@@ -79,7 +79,7 @@ class Cert < ActiveRecord::Base
   end
 
   def current?
-    expiration > Date.today
+    expiration.nil? ? true : (expiration > Date.today)
   end
 
   def status
@@ -109,9 +109,10 @@ class Cert < ActiveRecord::Base
     description
   end
 
-  def display_table
+  def display_table(count = 1)
+    indicator = (count == 1) ? "" : "*"
     return "<td></td>" if description.blank?
-    "<td align=center style='background-color: #{expire_color};'>#{description_with_link}</td>"
+    "<td align=center style='background-color: #{expire_color};'>#{description_with_link} #{indicator}</td>"
   end
 
 

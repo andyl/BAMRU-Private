@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "typ"
     t.string   "number"
     t.string   "pagable"
+    t.string   "sms_email"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
