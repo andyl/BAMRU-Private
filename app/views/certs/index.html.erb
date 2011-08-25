@@ -31,32 +31,16 @@
 
     <div id=x_single_col>
 
-      <table id="MyTable" class="tablesorter">
-        <thead>
-        <tr>
-          <th>Category</th>
-          <th>Expiration Date</th>
-          <th>Description</th>
-          <th>Documentation</th>
-          <% if can_update?(@member) %>
-            <th>Action</th>
-          <% end %>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr><td>Medical</td>      <%= raw cert_value(@member, :medical)       %></tr>
-        <tr><td>CPR</td>          <%= raw cert_value(@member, :cpr)           %></tr>
-        <tr><td>Ham</td>          <%= raw cert_value(@member, :ham)           %></tr>
-        <tr><td>Tracking</td>     <%= raw cert_value(@member, :tracking)      %></tr>
-        <tr><td>Avalanche</td>    <%= raw cert_value(@member, :avalanche)     %></tr>
-        <tr><td>Rigging</td>      <%= raw cert_value(@member, :rigging)       %></tr>
-        <tr><td>ICS</td>          <%= raw cert_value(@member, :ics)           %></tr>
-        <tr><td>Search Mgmt.</td> <%= raw cert_value(@member, :overhead)      %></tr>
-        <tr><td>SO Driver</td>    <%= raw cert_value(@member, :driver)        %></tr>
-        <tr><td>SO Background</td><%= raw cert_value(@member, :background)    %></tr>
-        </tbody>
-      </table>
+      <b>Medical Certs</b>           <%= raw add_link(@member, :medical) %>   <br/> <%= raw cert_dump(@member, :medical)    %><p></p>
+      <b>CPR Certs</b>               <%= raw add_link(@member, :cpr) %>       <br/> <%= raw cert_dump(@member, :cpr)        %><p></p>
+      <b>Ham Certs</b>               <%= raw add_link(@member, :ham) %>       <br/> <%= raw cert_dump(@member, :ham)        %><p></p>
+      <b>Tracking Certs</b>          <%= raw add_link(@member, :tracking) %>  <br/> <%= raw cert_dump(@member, :tracking)   %><p></p>
+      <b>Avalanche Certs</b>         <%= raw add_link(@member, :avalanche) %> <br/> <%= raw cert_dump(@member, :avalanche)  %><p></p>
+      <b>Rigging Certs</b>           <%= raw add_link(@member, :rigging) %>   <br/> <%= raw cert_dump(@member, :rigging)    %><p></p>
+      <b>ICS Certs</b>               <%= raw add_link(@member, :ics) %>       <br/> <%= raw cert_dump(@member, :ics)        %><p></p>
+      <b>Search Management Certs</b> <%= raw add_link(@member, :overhead) %>  <br/> <%= raw cert_dump(@member, :overhead)   %><p></p>
+      <b>SO Driver Certs</b>         <%= raw add_link(@member, :driver) %>    <br/> <%= raw cert_dump(@member, :driver)     %><p></p>
+      <b>SO Background Certs</b>     <%= raw add_link(@member, :background) %><br/> <%= raw cert_dump(@member, :background) %><p></p>
 
     </div>
     <div id=x_footer> </div>
