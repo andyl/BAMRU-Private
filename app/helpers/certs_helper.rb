@@ -41,7 +41,7 @@ module CertsHelper
   end
 
   def add_link(mem, type)
-    link_to("add", new_member_cert_path(mem, :typ => type.to_s))
+    can_update?(mem) ? link_to("add", new_member_cert_path(mem, :typ => type.to_s)) : ""
   end
 
   def col1() 225; end
