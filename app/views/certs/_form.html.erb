@@ -4,5 +4,6 @@
   <%= f.input        :description %>
   <%= f.input        :link        if @cert.typ == "ham"%>
   <%= f.input        :cert        unless @cert.typ == "ham"%>
+  <%= f.input        :comment     unless @cert.typ == "ham"%>
   <%= f.button       :submit      %>
 <% end %>

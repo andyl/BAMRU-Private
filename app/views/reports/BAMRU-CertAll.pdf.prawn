@@ -26,8 +26,9 @@ end
 
 def d_docco(cert)
   return "" if cert.nil?
-  return "see below" unless cert.cert_file.blank?
-  return "see #{cert.link}"  unless cert.link.blank?
+  return "see image below"           unless cert.cert_file.blank?
+  return "visit: #{cert.link}"       unless cert.link.blank?
+  return "comment: #{cert.comment}"  unless cert.comment.blank?
   ""
 end
 
@@ -36,13 +37,15 @@ def typ_list
 end
 
 def gen_row(member, typ)
-  cert = member.certs.where(:typ => typ).first
-  [typ_label(typ), d_expiration(cert), d_description(cert), d_docco(cert)]
+  certs = member.certs.where(:typ => typ)
+  certs.map do |cert|
+    [typ_label(typ), d_expiration(cert), d_description(cert), d_docco(cert)]
+  end
 end
 
 def gen_table(member)
   headers = %w(Category Expiration\ Date Description Documentation)
-  [headers] + typ_list.map {|typ| gen_row(member, typ)}
+  [headers] + typ_list.map {|typ| gen_row(member, typ)}.flatten(1)
 end
 
 prawn_document do |pdf|

@@ -59,8 +59,8 @@ module CertsHelper
   def cert_labels(label, mem, type)
     count = cert_count(mem, type)
     s1 = label
-    s2 = count == 0 ? "" : "| Documentation"
-    s3 = count == 0 ? "" : "| Expiration"
+    s2 = count == 0 ? "" : "| <b>Documentation</b>"
+    s3 = count == 0 ? "" : "| <b>Expiration</b>"
     s4 = "<span style='float: right;'>#{add_link(mem, type)}</span>"
     do_span(s1, col1, 12) + do_span(s2, col2) + do_span(s3, col3) + s4
   end
