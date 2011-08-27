@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "description"
     t.string   "comment"
     t.string   "link"
+    t.integer  "position"
     t.string   "cert_file"
     t.string   "cert_file_name"
     t.string   "cert_content_type"
