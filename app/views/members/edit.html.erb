@@ -130,9 +130,8 @@
 
 <div id="blanket" style="display: none;"></div>
 <div id="email_popup"  style="display: none;">
-  <b>Email Paging/Alert Settings</b><hr><p></p>
-  Your email address: <span id=email_adr></span><p></p>
-  Enable this address for pager alerts?
+  <b>Paging/Alert Settings for <span id=email_adr></span></b><hr><p></p>
+  Enable this address for email alerts?
   <input type="radio" class=radio_enable id='radio_yes' name="enable" value="yes"> Yes
   <input type="radio" class=radio_enable id='radio_no' name="enable" value="no"> No
   <p></p>
@@ -140,11 +139,13 @@
   <a href="#" onclick="mem_close_popup('#email_popup');">Cancel</a>
 </div>
 <div id="phone_popup"  style="display: none;">
-  <b>Phone Paging/Alert Settings</b></u><hr><p></p>
-  Your phone number: <span id=phone_num></span><p></p>
-  Enable this phone for pager alerts?
+  <b>Paging/Alert Settings for <span id=phone_num></span></b></u><hr><p></p>
+  Enable this phone for SMS alerts?
   <input type="radio" class=radio_enable id='radiop_yes' name="enable" value="yes"> Yes
   <input type="radio" class=radio_enable id='radiop_no' name="enable" value="no"> No
+  <p></p>
+  SMS-Email Address:
+  <input type="text" id=sms_adr>
   <p></p>
   <a href="#" onclick="mem_save_phone();">Change</a> |
   <a href="#" onclick="mem_close_popup('#phone_popup');">Cancel</a>

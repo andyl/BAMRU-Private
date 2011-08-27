@@ -6,5 +6,6 @@
   <%= box_link(@xphone, 'phone_box') %>
   <%= f.check_box :pagable, :hidden => true %>
   <%= link_to_remove_field("remove", f) %>
-  <%= f.hidden_field :_destroy %>
+  <%= f.hidden_field :_destroy  %>
+  <%= f.hidden_field :sms_email %>
 </li>

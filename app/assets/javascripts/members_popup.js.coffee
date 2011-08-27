@@ -12,13 +12,14 @@ window.left_position = (type) ->
 
 window.setup_phone = (link) ->
   number = $(link).siblings('input[id$=number]').get(0).getAttribute('value')
+  sms_adr = $(link).siblings('input[id$=sms_email]').get(0).getAttribute('value')
+  $('#sms_adr').attr('value', sms_adr)
   page_count = $(link).siblings('input[id$=pagable]:checked').size()
   if page_count == 1
     $('#radiop_yes').prop('checked', true)
   else
     $('#radiop_no').prop('checked', true)
-  $('#phone_num').html("<b>#{number}</b>")
-
+  $('#phone_num').html(number)
 
 window.setup_email = (link) ->
   address = $(link).siblings('input[id$=address]').get(0).getAttribute('value')
@@ -27,7 +28,11 @@ window.setup_email = (link) ->
     $('#radio_yes').prop('checked', true)
   else
     $('#radio_no').prop('checked', true)
-  $('#email_adr').html("<b>#{address}</b>")
+  $('#email_adr').html(address)
+
+window.set_sms_email = ->
+  address = $('#sms_adr').attr('value')
+  $(tgtlink).siblings("input[id$=sms_email]").attr('value', address)
 
 window.set_pager_on = ->
   $(tgtlink).siblings("input[id$=pagable]").attr("checked", "checked")
@@ -47,6 +52,7 @@ window.mem_save_email = ->
   mem_close_popup('#email_popup')
 
 window.mem_save_phone = ->
+  set_sms_email()
   if $('#radiop_yes:checked').size() == 1
     set_pager_on()
   else
