@@ -12,6 +12,7 @@ window.left_position = (type) ->
 
 window.setup_phone = (link) ->
   number = $(link).siblings('input[id$=number]').get(0).getAttribute('value')
+  short_num = number.replace(/\-/g, "")
   sms_adr = $(link).siblings('input[id$=sms_email]').get(0).getAttribute('value')
   $('#sms_adr').attr('value', sms_adr)
   page_count = $(link).siblings('input[id$=pagable]:checked').size()
@@ -19,6 +20,7 @@ window.setup_phone = (link) ->
     $('#radiop_yes').prop('checked', true)
   else
     $('#radiop_no').prop('checked', true)
+  $('.ten_dig').html(short_num)
   $('#phone_num').html(number)
 
 window.setup_email = (link) ->
