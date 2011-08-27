@@ -7,6 +7,7 @@
 <%= javascript_include_tag "members_autoselect.js"  %>
 <%= javascript_include_tag "members_sort_photos.js" %>
 <%= javascript_include_tag "members_edit_form.js"   %>
+<%= javascript_include_tag "members_popup.js"       %>
 
 <style>
   #sortable {list-style-type: none; margin: 0; padding: 0;}
@@ -119,10 +120,32 @@
   <div id=x_footer>
     <table width=100%>
       <tr>
-        <td style="font-size: 10px;">Sort items by dragging their handle "+" up and down</td>
-        <td style="font-size: 10px;">Top items are used when display space is limited</td>
+        <td style="font-size: 10px;">Sort items by dragging their handle "+" up and down<br/>Move high priority items to the top</td>
+        <td style="font-size: 10px;"><span class='green_box'></span> pager alerts enabled<br/><span class='black_box'></span> pager alerts disabled</td>
       </tr>
     </table>
   </div>
   </div>
   </div>
+
+<div id="blanket" style="display: none;"></div>
+<div id="email_popup"  style="display: none;">
+  <b>Email Paging/Alert Settings</b><hr><p></p>
+  Your email address: <span id=email_adr></span><p></p>
+  Enable this address for pager alerts?
+  <input type="radio" class=radio_enable id='radio_yes' name="enable" value="yes"> Yes
+  <input type="radio" class=radio_enable id='radio_no' name="enable" value="no"> No
+  <p></p>
+  <a href="#" onclick="mem_save_email();">Change</a> |
+  <a href="#" onclick="mem_close_popup('#email_popup');">Cancel</a>
+</div>
+<div id="phone_popup"  style="display: none;">
+  <b>Phone Paging/Alert Settings</b></u><hr><p></p>
+  Your phone number: <span id=phone_num></span><p></p>
+  Enable this phone for pager alerts?
+  <input type="radio" class=radio_enable id='radiop_yes' name="enable" value="yes"> Yes
+  <input type="radio" class=radio_enable id='radiop_no' name="enable" value="no"> No
+  <p></p>
+  <a href="#" onclick="mem_save_phone();">Change</a> |
+  <a href="#" onclick="mem_close_popup('#phone_popup');">Cancel</a>
+</div>

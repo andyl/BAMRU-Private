@@ -27,6 +27,10 @@ class Email < ActiveRecord::Base
     %w(id member_id).each {|a| atts.delete(a)}
     atts
   end
+
+  def pagable?
+    self.pagable == '1'
+  end
   
   def non_standard_typ?
     ! %w(Work Home Personal Other).include?(typ)

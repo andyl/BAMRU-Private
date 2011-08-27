@@ -1,7 +1,7 @@
 module MembersHelper
   def phone_checkbox(member)
     list = member.phones.pagable
-    if list.blank? 
+    if list.blank?
       "<td></td>"
     else
       "<td class=checkbox><input class='rck #{member.full_roles}' name='distributions[#{member.id}_phone]' type='checkbox'></td>"
@@ -37,6 +37,11 @@ module MembersHelper
     "background-color: lightyellow;" if f.non_standard_typ?
   end
 
+  def pagable?(f)
+    return nil if f.nil?
+    f.pagable?
+  end
+
   def has_non_standard_records(mem)
     mem.phones.where
   end
@@ -47,6 +52,12 @@ module MembersHelper
         Please move highlighted records to "Emergency Contacts" or  "Other Info". (#{link_to("more", '/home/edit_info', :target => "_blank")})
       </div>
     ERB
+  end
+
+  def box_link(item, klass)
+    color = item.try(:pagable?) ? "green" : "black"
+    link_to("", '#', :class => "#{klass} #{color}_box")
+
   end
 
 end

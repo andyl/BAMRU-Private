@@ -35,6 +35,10 @@ class Phone < ActiveRecord::Base
     "#{number} (#{typ})"
   end
 
+  def pagable?
+    self.pagable == '1'
+  end
+
   def typ_opts
     base_opts = %w(Mobile Home Work Pager Other)
     if typ.nil? || base_opts.include?(typ)

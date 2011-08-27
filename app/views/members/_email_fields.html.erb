@@ -3,7 +3,8 @@
   <%= f.hidden_field :position, :size => 1 %>
   <%= f.text_field :address, :size => 24 %>
   <%= f.select :typ, f.object.typ_opts %>
-  Pgr<%= f.check_box :pagable %>
+  <%= box_link(@xemail, 'email_box') %>
+  <%= f.check_box :pagable, :hidden => true %>
   <%= link_to_remove_field("remove", f) %>
   <%= f.hidden_field :_destroy %>
 </li>

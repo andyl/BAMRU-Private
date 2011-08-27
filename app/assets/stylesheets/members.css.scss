@@ -107,3 +107,56 @@ $col_height: 225px;
 #x_header_bottom {
   clear: both;
 }
+
+#blanket {
+height: 100%;
+width: 100%;
+background: #000000;
+position: absolute;
+top: 0;
+left: 0;
+-moz-opacity:0.75;
+-khtml-opacity: 0.75;
+opacity: 0.75;
+filter:alpha(opacity=75);
+}
+
+#phone_popup, #email_popup {
+width:  400px;
+/*height: 300px;*/
+margin: 20px;
+padding: 20px;
+border: 1px solid #000000;
+background: #ffffff;
+position: absolute;
+top: 100px;
+}
+
+/*.phone_box:hover, .email_box:hover {*/
+  /*background-color: white;*/
+/*}*/
+
+.black_box {
+ display: inline-block;
+ width: 10px;
+ height: 10px;
+ text-decoration: none;
+ background: url("/icon/box.png");
+ background-position: -40px 0;
+}
+
+.green_box {
+ display: inline-block;
+ width: 10px;
+ height: 10px;
+ text-decoration: none;
+ background: url("/icon/box.png");
+}
+
+.black_box:hover {
+  background-position: -30px 0;
+}
+
+.green_box:hover {
+  background-position: -30px 0;
+}
