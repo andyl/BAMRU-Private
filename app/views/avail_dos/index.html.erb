@@ -39,6 +39,8 @@
       <%= avail_dos_link_prev(@quarter) %> <%= avail_dos_link_current_quarter(@quarter) %> <%= avail_dos_link_next(@quarter) %><p/>
 
       <%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
+        <%= mem.hidden_field :current_year, :value => @quarter[:year] %>
+        <%= mem.hidden_field :current_quarter, :value => @quarter[:quarter] %>
         <table align=center border=1>
           <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Status</th><th>Comment</th></tr>
           <% @avail_set.each do |ado| %>

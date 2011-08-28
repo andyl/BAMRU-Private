@@ -19,7 +19,11 @@ class AvailDosController < ApplicationController
   def create
     @member = Member.where(:id => params['member_id']).first
     if @member.update_attributes(params["member"])
-      redirect_to member_avail_dos_path(@member), :notice => "Records Saved"
+      hash = {}
+      cy = params['member']['current_year']
+      cq = params['member']['current_quarter']
+      hash = {:year => cy, :quarter => cq} if (cy && cq)
+      redirect_to(hash, {:notice => "Records Saved"})
     else
       render "edit"
     end
