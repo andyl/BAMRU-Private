@@ -102,4 +102,9 @@ module CertsHelper
             :class => "namecolor", :style => "text-decoration:none;"
     )
   end
+
+  def cert_opts(cert)
+    vals = Cert.select(:description).group(:description).where(:typ => cert.typ)
+    vals.map {|item| [item.description, item.description]} + [['< add new >', '*']]
+  end
 end

@@ -22,7 +22,6 @@ class Cert < ActiveRecord::Base
           :icon => "25x25"}
 
   # ----- Validations -----
-  validates_presence_of :description
 
   # ----- Callbacks -----
   before_validation :cleanup_fields
