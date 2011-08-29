@@ -362,8 +362,8 @@ class Member < ActiveRecord::Base
       when "FM" : -50
       when "T"  : -25
       when "R"  : -10
-      when "A"  : -5
-      when "S"  : -1
+      when "S"  : -5
+      when "A"  : -1
       else 0
     end
   end

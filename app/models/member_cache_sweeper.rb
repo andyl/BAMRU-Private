@@ -3,7 +3,7 @@ class MemberCacheSweeper < ActionController::Caching::Sweeper
   observe Member
 
   def expire_cached_content(entry)
-    expire_fragment('member_index_table')
+    expire_fragment(/^member_index_table.*$/)
     expire_fragment('unit_photos_table')
     expire_fragment('unit_certs_table')
   end

@@ -1,8 +1,10 @@
 <%= javascript_include_tag "jquery.tablesorter2.js"        %>
 <%= javascript_include_tag "jquery.tablesorter_filter.js"  %>
+<%= javascript_include_tag "cookie.js"                     %>
 <%= javascript_include_tag "members.js"                    %>
 <%= javascript_include_tag "unit_certs_table.js"           %>
 <%= javascript_include_tag "unit_certs_popup.js"           %>
+<%= javascript_include_tag "members_filter.js"             %>
 
 <div id=x_container>
   <div id=x_wide_body>
@@ -62,14 +64,16 @@
       <% end %>
 
     </div>
-    <div id=x_footer>
-      <table width=100%>
+    <div id=x_footer style="font-size: 10pt;">
+      <input type="checkbox" id=rsa_check> Show R, S, A Members
+      <hr>
+      <table width=100% >
         <tr>
-          <td align=left style="font-size: 10px;">
+          <td align=left style="font-size: 8pt;">
             CELL COLOR - Green: current cert; Yellow: expires within 1 month; Orange: expires within 3 months; Pink: expired<br/>
             TEXT COLOR - Blue: link to documentation; Purple: link to comment; Red member name: no current Medical or CPR
           </td>
-          <td align=right style="font-size: 10px;">
+          <td align=right  style="font-size: 8pt;">
             <b>*</b> indicates multiple certs<br/>
             <%= link_to("View all Expired Certs", "#{reports_path}/BAMRU-CertExpiration.pdf", :target => "_blank") %>
           </td>

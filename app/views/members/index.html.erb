@@ -1,10 +1,12 @@
 <%= javascript_include_tag "jquery.tablesorter2.js"       %>
 <%= javascript_include_tag "jquery.tablesorter_filter.js" %>
+<%= javascript_include_tag "cookie.js"                    %>
 <%= javascript_include_tag "equal_height.js"              %>
 <%= javascript_include_tag "members.js"                   %>
 <%= javascript_include_tag "members_table.js"             %>
 <%= javascript_include_tag "members_textbox.js"           %>
 <%= javascript_include_tag "members_checkbox.js"          %>
+<%= javascript_include_tag "members_filter.js"            %>
 
 <div id=x_container>
   <div id=x_body>
@@ -28,7 +30,7 @@
             <input id="filter-clear-button" type="button" value="Clear"/>
           </td>
         </tr></table>
-        <% cache('member_index_table') do %> 
+        <% cache("member_index_table-#{current_member.id}") do %>
           <table id="myTable" class="tablesorter" style="margin-top: 0px;">
             <thead>
             <tr>
@@ -89,9 +91,10 @@
       </div>
       </form>
     <% end %>
-    <div id=x_footer>
+    <div id=x_footer style="font-size: 10pt;">
+      <input type="checkbox" id=rsa_check> Show R, A, S Members
       <% if can? :manage, @member %>
-        <%= link_to "Add New Member", new_member_path %>
+        <p></p><%= link_to "Add New Member", new_member_path %>
       <% end %>
     </div>
   </div>

@@ -1,7 +1,9 @@
 <%= javascript_include_tag "jquery.tablesorter2.js"        %>
 <%= javascript_include_tag "jquery.tablesorter_filter.js"  %>
+<%= javascript_include_tag "cookie.js"                     %>
 <%= javascript_include_tag "members.js"                    %>
 <%= javascript_include_tag "unit_avail_ops_table.js"       %>
+<%= javascript_include_tag "members_filter.js"             %>
 
 <div id=x_container>
   <div id=x_wide_body>
@@ -57,6 +59,8 @@
       <% end %>
 
     </div>
-    <div id=x_footer> </div>
+    <div id=x_footer  style="font-size: 10pt;">
+      <input type="checkbox" id=rsa_check> Show R, S, A Members
+    </div>
   </div>
 </div>
