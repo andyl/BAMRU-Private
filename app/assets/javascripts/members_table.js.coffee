@@ -52,3 +52,9 @@ $(document).ready ->
   $("#filter-box").keyup ->
     setTimeout('setEqualHeight()', 600)
     setTimeout('updateAddressCount()', 600)
+
+$(document).ready ->
+  $('#clearsort').click ->
+    eraseCookie("mem_sort")
+    refresh_url = window.location.href.split(/[?#]/, 1)
+    window.location.assign(refresh_url)

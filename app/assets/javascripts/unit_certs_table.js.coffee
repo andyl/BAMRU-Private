@@ -45,3 +45,10 @@ $(document).ready ->
     save_cert_sort_to_cookie(sorter.target.config.sortList)
   $("#myTable").tablesorterFilter(filter_params)
   $("#filter-box").focus()
+
+
+$(document).ready ->
+  $('#clearsort').click ->
+    eraseCookie("cert_sort")
+    refresh_url = window.location.href.split(/[?#]/, 1)
+    window.location.assign(refresh_url)

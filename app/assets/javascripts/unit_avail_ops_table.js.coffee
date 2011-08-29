@@ -47,3 +47,9 @@ $(document).ready ->
   $("#filter-box").focus()
   $("#filter-box").keyup ->
     setTimeout('', 750)
+
+$(document).ready ->
+  $('#clearsort').click ->
+    eraseCookie("avail_sort")
+    refresh_url = window.location.href.split(/[?#]/, 1)
+    window.location.assign(refresh_url)
