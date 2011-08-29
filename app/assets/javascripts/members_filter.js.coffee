@@ -9,6 +9,5 @@ $(document).ready ->
       createCookie("rsa_show", "true")
     else
       createCookie("rsa_show", "false")
-    window.location.href = window.location.href.split('?', 1) + "?refresh=true"
-    alert window.location.href
-    window.location.reload(true)
+    refresh_url = window.location.href.split('?', 1) + "?refresh=true"
+    window.location.assign(refresh_url)
