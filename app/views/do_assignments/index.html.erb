@@ -1,48 +1,47 @@
+<%= javascript_include_tag "avail_dos_shortcut.js"        %>
+
 <div id=x_container>
-    <div id=x_header>
-      <table width=100%>
-        <tr>
-          <td align=left><b>Duty Officer Schedule</b></td>
-          <td align=right>
-            <%= link_to("Edit My DO Availability", member_avail_dos_path(current_member)) %>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id=x_single_col class=centered>
-      <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %> <p/>
+  <div id=x_header>
+    <table width=100%>
+      <tr>
+        <td align=left><b>Duty Officer Schedule</b></td>
+        <td align=right>
+          <%= link_to("Edit My DO Availability", member_avail_dos_path(current_member)) %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id=x_single_col class=centered>
+    <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %> <p/>
 
-      <%= link_prev(@quarter) %> <%= link_current_quarter %> <%= link_next(@quarter) %><p/>
+    <%= link_prev(@quarter) %> <%= link_current_quarter %> <%= link_next(@quarter) %><p/>
 
-      <table border=1 align=center>
-        <thead>
-        <tr>
-          <th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @do_assignments.each do |a| %>
-          <% if Time.now > a.start_time && Time.now < a.end_time %>
-            <tr style="background-color: lightgreen;">
-          <% else %>
-            <tr>
-          <% end %>
-          <td><%= a.year%></td>
-          <td><%= a.quarter%></td>
-          <td><%= a.week%></td>
-          <td><%= a.start_time.show %></td>
-          <td><%= a.end_time.show %></td>
-          <td><%= a.name%></td>
-          </tr>
+    <table border=1 align=center>
+      <thead>
+      <tr>
+        <th>Shift</th><th>Start</th><th>End</th><th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @do_assignments.each do |a| %>
+        <% if Time.now > a.start_time && Time.now < a.end_time %>
+          <tr style="background-color: lightgreen;">
+        <% else %>
+          <tr>
         <% end %>
-        </tbody>
-      </table>
-      <p></p>
-      <% if current_member.admin? %>
-        ( <%= link_to "Edit", edit_do_assignment_path(1, @quarter) %> )
+        <td><%= a.year%> / Q<%= a.quarter%> / Week<%= a.week%></td>
+        <td><%= a.start_time.show %></td>
+        <td><%= a.end_time.show %></td>
+        <td><%= a.name%></td>
+        </tr>
       <% end %>
-
-    </div>
-    <div id=x_footer> </div>
+      </tbody>
+    </table>
+    <p></p>
+  </div>
+  <div id=x_footer>
+    <% if current_member.admin? %>
+      <%= link_to "Edit", edit_do_assignment_path(1, @quarter) %>
+    <% end %>
   </div>
 </div>

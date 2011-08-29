@@ -4,6 +4,7 @@
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
 <%= javascript_include_tag "jquery-ui.min.js"       %>
 <%= javascript_include_tag "members_autoselect.js"  %>
+<%= javascript_include_tag "avail_dos_shortcut.js"  %>
 <%= csrf_meta_tag %>
 
 <div id=x_container>
@@ -42,15 +43,14 @@
         <%= mem.hidden_field :current_year, :value => @quarter[:year] %>
         <%= mem.hidden_field :current_quarter, :value => @quarter[:quarter] %>
         <table align=center border=1>
-          <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start</th><th>End</th><th>Status</th><th>Comment</th></tr>
+          <tr><th>Shift</th><th>Start</th><th>End</th><th>Status</th><th>Comment</th></tr>
           <% @avail_set.each do |ado| %>
             <%= mem.fields_for :avail_dos, ado do |ido| %>
               <%= ido.hidden_field :year, :value => ado.year %>
               <%= ido.hidden_field :quarter, :value => ado.quarter %>
               <%= ido.hidden_field :week, :value => ado.week %>
               <tr>
-                <td><%= ado.year %></td><td><%= ado.quarter %></td>
-                <td><%= ado.week%></td>
+                <td><%= ado.year %> / Q<%= ado.quarter %> / Week<%= ado.week%></td>
                 <td><%= ado.start_time.show %></td>
                 <td><%= ado.end_time.show %></td>
                 <td>
@@ -66,7 +66,20 @@
           <% end %>
         </table>
         <p/>
-        <%= mem.submit "Update" %>
+        <table width=100%>
+          <tr>
+            <td width=50%>Shortcut:
+              <select id=quickset>
+              <option value="*"></option>
+              <option value="">Clear all</option>
+              <option value="available">Set all to Available</option>
+              <option value="unavailable">Set all to Unavailable</option>
+              </select>
+            </td>
+            <td width=50%><%= mem.submit "Save" %></td>
+          </tr>
+        </table>
+
       <% end %>
 
 
