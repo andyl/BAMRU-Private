@@ -5,10 +5,10 @@
 $(document).ready ->
   $('#rsa_check').prop("checked", true) if readCookie("rsa_show") == "true"
   $('#rsa_check').click ->
-    loc = window.location.href
-    window.location.href = loc.split('?', 1) + "?refresh=true"
     if $('#rsa_check').is(':checked')
       createCookie("rsa_show", "true")
     else
       createCookie("rsa_show", "false")
+    window.location.href = window.location.href.split('?', 1) + "?refresh=true"
+    alert window.location.href
     window.location.reload(true)
