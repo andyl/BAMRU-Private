@@ -92,7 +92,7 @@
       </form>
     <% end %>
     <div id=x_footer style="font-size: 10pt;">
-      <input type="checkbox" id=rsa_check> Show R, A, S Members
+      <input type="checkbox" id=rsa_check> Show R, S, A Members
       <% if can? :manage, @member %>
         <p></p><%= link_to "Add New Member", new_member_path %>
       <% end %>
