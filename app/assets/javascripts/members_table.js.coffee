@@ -16,8 +16,8 @@ role_score_options =
   is:     (s) -> false                            # disable standard parser
   type:   'numeric'                               # either text or numeric
   format: (s) -> (new RoleScore(s)).score()       # the sort key (last name)
-   
-headers =
+
+sort_opts =
   headers:
     0: {sorter: 'role_score'}    # sort col 0 using role_score options
     1: {sorter: false } 
@@ -30,10 +30,21 @@ filter_params =
   filterColumns:        [0,3]
   columns:              ["role", "name"]
 
+save_member_sort_to_cookie = (sort_spec) ->
+  spec_string = JSON.stringify(sort_spec)
+  createCookie("mem_sort", spec_string)
+
+read_member_sort_from_cookie = ->
+  string = readCookie("mem_sort")
+  if (string == null) then null else JSON.parse(string)
+
 $(document).ready ->
   $.tablesorter.addParser last_name_options
   $.tablesorter.addParser role_score_options
-  $("#myTable").tablesorter headers
+  sort_spec = read_member_sort_from_cookie()
+  sort_opts['sortList'] = sort_spec unless sort_spec == null
+  $("#myTable").tablesorter(sort_opts).bind "sortEnd", (sorter) ->
+    save_member_sort_to_cookie(sorter.target.config.sortList)
   $("#myTable").tablesorterFilter(filter_params)
   $("#filter-box").focus()
   $("#filter-clear-button").click ->
