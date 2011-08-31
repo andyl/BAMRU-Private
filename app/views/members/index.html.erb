@@ -30,7 +30,7 @@
             <input id="filter-clear-button" type="button" value="Clear"/>
           </td>
         </tr></table>
-        <% cache("member_index_table-#{current_member.id}") do %>
+        <% cache("member_index_table-#{@fragment_type}") do %>
           <table id="myTable" class="tablesorter" style="margin-top: 0px;">
             <thead>
             <tr>
