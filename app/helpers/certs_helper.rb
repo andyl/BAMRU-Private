@@ -14,7 +14,10 @@ module CertsHelper
   end
 
   def description(cert)
-    handle = "<span class=sort_handle><img class=handle src='/images/handle.png'></span> "
+    handle = ""
+    if current_member == cert.member || current_member.admin?
+      handle = "<span class=sort_handle><img class=handle src='/images/handle.png'></span> "
+    end
     cert.nil? ? handle : handle + cert.description
   end
 
