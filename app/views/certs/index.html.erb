@@ -2,12 +2,34 @@
 <script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/certs') %> ];</script>
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
-<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};"    %>
 <%= javascript_include_tag "jquery.tablesorter.min.js" %>
-<%= javascript_include_tag "certs_table.js" %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
+<%= javascript_include_tag "jquery-ui.min.js"          %>
+<%= javascript_include_tag "certs_table.js"            %>
+<%= javascript_include_tag "certs_sort.js"             %>
+<%= javascript_include_tag "jquery-ui.min.js"          %>
+<%= javascript_include_tag "members_autoselect.js"     %>
 <%= csrf_meta_tag %>
+
+<style>
+  #sortable {list-style-type: none; margin: 0; padding: 0;}
+  li {
+    list-style-type: none;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+    border-bottom: lightgray;
+    border-style: solid;
+    border-width:  1px;
+  }
+  .handle {margin-right: 5px;}
+  .cert_header {
+    background-color: #eeeeee;
+  }
+  .cert_divider {
+    height: 15px;
+  }
+</style>
 
 <div id=x_container>
   <div id=x_body>

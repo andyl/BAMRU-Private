@@ -17,8 +17,14 @@ class CertsController < ApplicationController
   def create
     @member = Member.where(:id => params['member_id']).first
     @cert   = Cert.create(params[:cert])
+    @cert.position = -1
     @member.certs << @cert
     @member.save
+    cert_list = @member.certs.where(:typ => @cert.typ).order('position ASC')
+    cert_list.each_with_index do |cert, idx|
+      cert.position = idx + 1
+      cert.save
+    end
     expire_fragment(/^unit_certs_table.*$/)
     redirect_to member_certs_path(@member)
   end
@@ -47,9 +53,23 @@ class CertsController < ApplicationController
   def destroy
     @member = Member.where(:id => params['member_id']).first
     @cert = Cert.where(:id => params['id']).first
+    typ = @cert.type
     @cert.destroy
+    cert_list = @member.certs.where(:typ => @cert.typ).order('position ASC')
+    cert_list.each_with_index do |cert, idx|
+      cert.position = idx + 1
+      cert.save
+    end
     expire_fragment(/^unit_certs_table.*$/)
     redirect_to member_certs_path(@member), :notice => "Cert was Deleted"
+  end
+
+  def sort
+    params['cert'].each_with_index do |id, index|
+      Cert.update_all(['position=?', index+1], ['id=?', id])
+    end
+    expire_fragment(/^unit_certs_table.*$/)
+    render :nothing => true
   end
 
 end

@@ -1,6 +1,6 @@
 module CertsHelper
   def display_table_cert(mem, type)
-    cert = mem.certs.where(:typ => type).first
+    cert = mem.certs.where(:typ => type).order('position ASC').first
     return "<td></td>" if cert.blank?
     cert.display_table(mem.certs.where(:typ => type).count)
   end
@@ -14,7 +14,8 @@ module CertsHelper
   end
 
   def description(cert)
-    cert.nil? ? "" : cert.description
+    handle = "<span class=sort_handle><img class=handle src='/images/handle.png'></span> "
+    cert.nil? ? handle : handle + cert.description
   end
 
   def comment(cert)
@@ -67,24 +68,25 @@ module CertsHelper
 
   def cert_header(label, mem, type)
     label_count = "<b>#{label}</b> (#{cert_count(mem, type)})"
-    "<div style='background-color: #eeeeee;'>" +
+    "<div class=cert_header>" +
     cert_labels(label_count, mem, type) +
     "</div>"
   end
 
   def cert_category(label, mem, type)
-    "#{cert_header(label, mem, type)}#{cert_dump(mem, type)}<p></p>"
+    "#{cert_header(label, mem, type)}#{cert_dump(mem, type)}<div class=cert_divider></div>"
   end
 
   def cert_dump(mem, type)
-    certs = mem.certs.where(:typ => type)
+    certs = mem.certs.where(:typ => type).order('position ASC')
+    "<div id=sortable_#{type}_certs>" +
     certs.map do |cert|
       des = description(cert)
       exp = "| " + expiration(cert)
       doc = "| " + documentation(cert)
       act = can_update?(mem) ? td(cert_actions(mem, cert, type)) : ""
-      "<div style='font-size: 10px;'>" + do_span(des, col1) + do_span(doc, col2) + do_span(exp, col3) + " " + "<span style='float:right'>#{act}</span>" + "</div>"
-    end.join
+      "<li style='font-size: 10px;' id=cert_#{cert.id}>" + do_span(des, col1) + do_span(doc, col2) + do_span(exp, col3) + " " + "<span style='float:right'>#{act}</span>" + "</li>"
+    end.join + "</div>"
   end
 
   def cert_value(mem, type)
