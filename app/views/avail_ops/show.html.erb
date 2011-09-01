@@ -18,7 +18,7 @@
             Member Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
           </td>
           <td width=20% align=center>
-            <%= link_to("Back", unit_avail_ops_path) %>
+            <%= link_to("Unit Availability", unit_avail_ops_path) %>
           </td>
           <td width=40% align=right>
             <%= link_to('<', member_avail_ops_path(@member.prev_member_id)) %>
@@ -69,7 +69,9 @@
 
 
 
-    <div id=x_footer> </div>
+    <div id=x_footer>
+      Instruction: Add busy periods to show when you will be unavailable to reply to pages.
+    </div>
 
   </div>
 </div>

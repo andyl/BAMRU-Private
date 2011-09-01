@@ -20,14 +20,14 @@
     <table width=100%><tr>
       <td align=left width=33%>Member Edit: <b><%= @member_name %></b></td>
       <% if current_member.admin? %>
-        <td align=center width=33%><%= link_to("Back", member_path(@member)) %></td>
+        <td align=center width=33%><%= link_to("Member Detail", member_path(@member)) %></td>
         <td align=right width=33%>
           <%= link_to('<', edit_member_path(@member.prev_member_id)) %>
           <input size=14 id="autoselect" value="find member...">
           <%= link_to('>', edit_member_path(@member.next_member_id)) %>
         </td>
       <% else %>
-        <td align=right width=66%><%= link_to("Back", member_path(@member)) %></td>
+        <td align=right width=66%><%= link_to("Member Detail", member_path(@member)) %></td>
       <% end %>
     </tr></table>
   </div>
@@ -120,7 +120,7 @@
   <div id=x_footer>
     <table width=100%>
       <tr>
-        <td style="font-size: 10px;">Sort items by dragging their handle "+" up and down<br/>Move high priority items to the top</td>
+        <td style="font-size: 10px;">Sort items by dragging their handle <img src="/images/handle.png"> up and down<br/>Move high priority items to the top</td>
         <td style="font-size: 10px;"><span class='green_box'></span> pager alerts enabled<br/><span class='black_box'></span> pager alerts disabled</td>
       </tr>
     </table>

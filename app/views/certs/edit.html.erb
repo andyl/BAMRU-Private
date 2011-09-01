@@ -16,7 +16,7 @@
             Edit Cert: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
           </td>
           <td align=center>
-            <%= link_to("Back", member_certs_path(@member)) %>
+            <%= link_to("#{@member.first_name}'s Certs", member_certs_path(@member)) %>
           </td>
           <td width=250 align=right>
             Cert Type: <%= @cert.typ.upcase %>

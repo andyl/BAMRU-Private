@@ -35,8 +35,8 @@
             <thead>
             <tr>
               <th>Role</th>
-              <th><img src="/images/page.gif" border=0></th>
-              <th><img src="/images/mail.gif" border=0></th>
+              <th align=center><img src="/images/page.gif" border=0></th>
+              <th align=center><img src="/images/mail.gif" border=0></th>
               <th>Name</th>
             </tr>
             </thead>
@@ -67,7 +67,8 @@
         <input type="checkbox" class="slx" id=cb_S > <span style="margin-left:10px;">Support (S)          </span><br/>
         <input type="checkbox" class="slx" id=cb_A > <span style="margin-left:10px;">Associate (A)        </span><br/>
 
-        <div style="padding: 4px; margin-top:15px; margin-bottom:15px; background-color:lightblue;">
+        <div style="padding: 4px; margin-top:10px; margin-bottom:10px; background-color:lightblue;">
+          <span style='font-size: 12px;'><b>Send SMS/eMail to selected members</b></span>
           <table width=100%><tr>
             <td><b>To:</b> <span id="addr_count">0 addresses</span></td>
             <td align=right><b>From:</b> <%= current_member.short_name %></td>
@@ -80,7 +81,7 @@
           <i>
             PLEASE NOTE: Message content, IP addresses, and message recipients are logged for each message sent on this system.
             <p/>
-            Last message sent on <%= Message.last.created_at unless Message.last.blank? %><br/>
+            Last message sent on <%= Message.last.created_at.strftime("%a, %b %e at %H:%M:%S") unless Message.last.blank? %><br/>
             <a href="/messages">View message log</a>
           </i>
         </div>
