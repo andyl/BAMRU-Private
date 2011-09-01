@@ -15,8 +15,10 @@ module CertsHelper
 
   def description(cert)
     handle = ""
+    count = cert.member.certs.where(:typ => cert.typ).count
+    prefix = count == 1 ? "gray_" : ""
     if current_member == cert.member || current_member.admin?
-      handle = "<span class=sort_handle><img class=handle src='/images/handle.png'></span> "
+      handle = "<span class=#{prefix}sort_handle><img class=#{prefix}handle src='/images/#{prefix}handle.png'></span> "
     end
     cert.nil? ? handle : handle + cert.description
   end

@@ -107,7 +107,7 @@
     <div id=sortable_photos>
       <% @member.photos.each do |pic| %>
         <li style="list-style-type: none;" id=photos_<%= pic.id %>>
-          <span class=sort_handle><img src="/images/handle.png" class=handle></span>
+          <span class='sort_handle span_handle'><img src="/images/handle.png" class=handle></span>
           <div style="padding:5px;display:inline-block; width:100px;">
             <%= image_tag pic.image.url(:thumb) %>
           </div>
