@@ -1,7 +1,7 @@
 <tr>
   <td><%= opfld.text_field :start_txt, {:size => 8, :class => "zdate" } %></td>
   <td><%= opfld.text_field :end_txt  , {:size => 8, :class => "zdate" } %></td>
-  <td><%= opfld.text_field :comment, {:size => 15} %></td>
+  <td><%= opfld.text_field :comment, {:size => 19} %></td>
   <% if can_update?(@member) %>
     <td><%= link_to("DELETE", member_avail_ops_path(@member, :id => op.id), :method => :delete, :confirm => "Are you sure?") %></td>
   <% end %>
