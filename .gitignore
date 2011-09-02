@@ -15,9 +15,8 @@ doc
 doc/*
 coverage
 coverage/*
-vendor
-vendor/*
-vendor/**/*
+vendor/cache
+vendor/cache/*
 .path*
 .tag*
 .bundle
