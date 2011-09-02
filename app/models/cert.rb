@@ -46,6 +46,14 @@ class Cert < ActiveRecord::Base
   scope :expired,               where("expiration <= ?", Date.today)
   scope :pending_and_expired,   where("expiration <= ?", Date.today + 90)
   scope :pending,               pending_and_expired - expired
+  
+  def self.oldest
+    order("expiration ASC").last
+  end
+
+  def self.newest
+    where('expiration <> ""').order("expiration ASC").first
+  end
 
   # ----- Instance Methods -----
   def export
@@ -95,7 +103,7 @@ class Cert < ActiveRecord::Base
 
   def expire_color
     xdate = date_to_time(expiration)
-    return "white"  if xdate.nil?
+    return ""       if xdate.nil?
     return "pink"   if xdate < Time.now.to_time
     return "orange" if xdate < 1.month.from_now.to_time
     return "yellow" if xdate < 3.months.from_now.to_time
@@ -111,6 +119,10 @@ class Cert < ActiveRecord::Base
 
   def display_table(count = 1)
     indicator = (count == 1) ? "" : "*"
+    if indicator == '*'
+      color = member.certs.where(:typ => self.typ).where("id <> #{self.id}").newest.try(:expire_color)
+      indicator = "<span style='background-color: #{color}; padding-left: 2px; padding-right: 2px;'>*</span>" unless color.blank?
+    end
     return "<td></td>" if description.blank?
     "<td align=center style='background-color: #{expire_color};'>#{description_with_link} #{indicator}</td>"
   end

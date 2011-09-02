@@ -27,11 +27,14 @@
 
     <div id=x_single_col>
 
+      <p></p>
+
       <%= render :partial => 'form' %>
 
     </div>
-    <div id=x_footer>
-      <span style="font-size: 10px;">* Required Field</span>
+    <div id=x_footer style="font-size: 10px;">
+      <%= raw "<center>Please upload a scanned certificate, OR add a comment.</center>" unless @cert.typ == "ham" %>
+      <%= raw "<center>Please enter the FCC URL to your ham license.</center>" if @cert.typ == "ham" %>
     </div>
 
   </div>

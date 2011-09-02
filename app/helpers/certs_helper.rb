@@ -27,7 +27,10 @@ module CertsHelper
   end
 
   def expiration(cert)
-    (cert.nil? || cert.expiration.nil?) ? "" : cert.expiration.strftime("%Y-%m-%d")
+    return "" if (cert.nil? || cert.expiration.nil?)
+    date = cert.expiration.strftime("%Y-%m-%d")
+    color = cert.expire_color
+    "<span style='background-color: #{color}; padding-left: 2px; padding-right: 2px;'>#{date}</span>"
   end
 
   def description(cert)
