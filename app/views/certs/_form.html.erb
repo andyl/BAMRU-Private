@@ -6,8 +6,12 @@
     <label></label>
     <input id=new_input type=text></select>
   </div>
-  <%= f.input        :link        if @cert.typ == "ham"%>
-  <%= f.input        :cert        unless @cert.typ == "ham"%>
-  <%= f.input        :comment     unless @cert.typ == "ham"%>
-  <%= f.button       :submit      %>
+  <%= f.input(:link)                                        if @cert.typ == "ham" %>
+  <%= raw current_cert_helper(@cert)                                              %>
+  <%= f.input(:cert, :label => cert_image_label(@cert)) unless @cert.typ == "ham" %>
+  <%= f.input(:comment)                                 unless @cert.typ == "ham" %>
+  <%# f.submit %>
+  <div class=action><a href="#" id=save_link>Save</a> | <%= link_to("Cancel", member_certs_path(@member)) %></div>
+  <div class=cert_error>Error: You must add a Cert File OR a Comment</div>
 <% end %>
+<p></p>

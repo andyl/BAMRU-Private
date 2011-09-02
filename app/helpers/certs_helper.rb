@@ -1,4 +1,21 @@
 module CertsHelper
+  def cert_image_label(cert)
+    cert.cert_file_name.blank? ? "Cert File" : "New Cert File"
+  end
+
+  def current_cert_helper(cert)
+    return "" if cert.cert_file_name.blank?
+    <<-EOF
+    <div class='input file optional'>
+      <label class='optional'> </label>
+      <span class='select optional'>
+        <a href='#{cert.cert.url}' target='_blank'>Current Cert File</a>
+        (<input type=checkbox id=check_del name=check_del> delete?)
+      </span>
+    </div>
+    EOF
+  end
+
   def display_table_cert(mem, type)
     cert = mem.certs.where(:typ => type).order('position ASC').first
     return "<td></td>" if cert.blank?
@@ -29,7 +46,7 @@ module CertsHelper
 
   def documentation(cert)
     return "" if cert.nil?
-    return link_to("Cert Image", cert.cert.url, :target => "_blank")   unless cert.cert_file.blank?
+    return link_to("Cert File", cert.cert.url, :target => "_blank")   unless cert.cert_file_name.blank?
     return "link: #{link_to("FCC", cert.link, :target => "_blank")}"   unless cert.link.blank?
     return cert.comment                                                unless cert.comment.blank?
     ""

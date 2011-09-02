@@ -30,8 +30,9 @@ class CertsController < ApplicationController
   end
 
   def update
-    @member = Member.where(:id => params['member_id']).first
-    @cert   = Cert.where(:id => params['id']).first
+    @member    = Member.where(:id => params['member_id']).first
+    @cert      = Cert.where(:id => params['id']).first
+    @cert.cert = nil if params['check_del'] == "on"
     if @cert.update_attributes(params[:cert])
       expire_fragment(/^unit_certs_table.*$/)
       redirect_to member_certs_path(@member), :notice => "Successful Update"
@@ -65,10 +66,10 @@ class CertsController < ApplicationController
   end
 
   def sort
+    expire_fragment(/^unit_certs_table.*$/)
     params['cert'].each_with_index do |id, index|
       Cert.update_all(['position=?', index+1], ['id=?', id])
     end
-    expire_fragment(/^unit_certs_table.*$/)
     render :nothing => true
   end
 
