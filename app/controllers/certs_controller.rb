@@ -25,7 +25,7 @@ class CertsController < ApplicationController
       cert.position = idx + 1
       cert.save
     end
-    expire_fragment(/^unit_certs_table.*$/)
+    expire_fragment(/unit_certs_table/)
     redirect_to member_certs_path(@member)
   end
 
@@ -34,7 +34,7 @@ class CertsController < ApplicationController
     @cert      = Cert.where(:id => params['id']).first
     @cert.cert = nil if params['check_del'] == "on"
     if @cert.update_attributes(params[:cert])
-      expire_fragment(/^unit_certs_table.*$/)
+      expire_fragment(/unit_certs_table/)
       redirect_to member_certs_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -61,12 +61,12 @@ class CertsController < ApplicationController
       cert.position = idx + 1
       cert.save
     end
-    expire_fragment(/^unit_certs_table.*$/)
+    expire_fragment(/unit_certs_table/)
     redirect_to member_certs_path(@member), :notice => "Cert was Deleted"
   end
 
   def sort
-    expire_fragment(/^unit_certs_table.*$/)
+    expire_fragment(/unit_certs_table/)
     params['cert'].each_with_index do |id, index|
       Cert.update_all(['position=?', index+1], ['id=?', id])
     end

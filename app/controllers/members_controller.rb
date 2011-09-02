@@ -7,11 +7,6 @@ class MembersController < ApplicationController
     @client_ip = request.remote_ip
     @message = Message.new
     @fragment_type = cookies['rsa_show'] == 'true' ? "all" : "active"
-    #if params['refresh'] == 'true'
-    #  expire_fragment("member_index_table-#{current_member.id}")
-    #  expire_fragment("unit_certs_table-#{current_member.id}")
-    #  expire_fragment("unit_avail_ops_table-#{current_member.id}")
-    #end
     unless fragment_exist?(:fragment => "member_index_table-#{@fragment_type}")
       if cookies['rsa_show'] == 'true'
         @members = Member.order_by_role_score.all
@@ -43,9 +38,9 @@ class MembersController < ApplicationController
   def create
     authorize! :manage, Member
     if @member = Member.create(params["member"])
-      expire_fragment(/^member_index_table.*$/)
-      expire_fragment(/^unit_certs_table.*$/)
-      expire_fragment(/^unit_avail_ops_table.*$/)
+      expire_fragment(/member_index_table/)
+      expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_avail_ops_table/)
       expire_fragment('unit_photos_table')
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
@@ -63,9 +58,9 @@ class MembersController < ApplicationController
     end
     x = @member.update_attributes(m_params)
     if x
-      expire_fragment(/^member_index_table.*$/)
-      expire_fragment(/^unit_certs_table.*$/)
-      expire_fragment(/^unit_avail_ops_table.*$/)
+      expire_fragment(/member_index_table/)
+      expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_avail_ops_table/)
       expire_fragment('unit_photos_table')
       redirect_to member_path(@member), :notice => "Successful Update"
     else
@@ -77,9 +72,9 @@ class MembersController < ApplicationController
     @member = Member.where(:id => params[:id]).first
     authorize! :manage, @member
     if @member.destroy
-      expire_fragment(/^member_index_table.*$/)
-      expire_fragment(/^unit_certs_table.*$/)
-      expire_fragment(/^unit_avail_ops_table.*$/)
+      expire_fragment(/member_index_table/)
+      expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_avail_ops_table/)
       expire_fragment('unit_photos_table')
       redirect_to '/members', :notice => "Member was Deleted"
     else
