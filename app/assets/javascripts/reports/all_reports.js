@@ -1,4 +1,4 @@
-// Sprockets manifest for Reports class.
+// Sprockets manifest for Reports controller.
 // Put working code in separate files...
 
 //= require jquery.tablesorter.min
