@@ -7,6 +7,7 @@
 //= require cookie
 //= require equal_height
 //= require tablesorter_util
+//= require rsa_filter
 
 //= require members/mem_indx_1_table
 //= require members/mem_indx_2_textbox
