@@ -1,39 +1,6 @@
-/* ---------- containers ---------- */
+/* ---------- design variables ---------- */
 
-#container {
-  width: 960px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  border: solid 1px black;
-  /*padding: 20px;*/
-  /*margin-top: 0px;*/
-}
 
-#xbody {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-#mybody {
-  background-color: #0099cc;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 13px;
-}
-
-#subnav {
-  font-size: 10px;
-}
-
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
-
-.debug {
-  text-align: center;
-  font-size: 11px;
-}
 
 /* ---------- text formatting ---------- */
 
@@ -78,7 +45,19 @@ a {
 }
 
 a.target {
-    color: black;
+  color: black;
+}
+
+a {
+  color: #000;
+}
+
+a:visited {
+  color: #666;
+}
+
+a:hover {
+  color: #fff; background-color:#000;
 }
 
 /* ---------- table formatting ---------- */
@@ -130,7 +109,6 @@ td.btn {
   margin-top: 80px;
   margin-bottom: 80px;
   text-align: center;
-
 }
 
 .centered {
@@ -151,9 +129,6 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
 
 /* Header */
 
@@ -324,145 +299,4 @@ a:hover { color: #fff; background-color:#000; }
 .add_link {
     text-align: right;
     font-size: 8pt;
-}
-
-/* tab stuff */
-
-ul.tabs {
-    margin: 0;
-    padding: 0;
-    float: left;
-    list-style: none;
-    height: 32px; /*--Set height of tabs--*/
-    border-bottom: 1px solid    #999;
-    border-left: 1px solid #999;
-    width: 100%;
-}
-
-ul.tabs li {
-    float: left;
-    margin: 0;
-    padding: 0;
-    height: 31px; /*--Subtract 1px from texthe height of the unordered list--*/
-    line-height: 31px; /*--Vertically   aligns the text within the tab--*/
-    border: 1px solid #999;
-    border-left: none;
-    margin-bottom: -1px; /*--Pull the list item down 1px--*/
-    overflow: hidden;
-    position: relative;
-    background: #e0e0e0;
-}
-
-ul.tabs li    a {
-    text-decoration: none;
-    color: #000;
-    display: block;
-    /*font-size:        1.2em;*/
-    padding: 0 20px;
-    border: 1px solid #fff; /*--Gives the bevel listook with a 1px white border inside the list item--*/
-    outline: none;
-}
-
-ul.tabs li a:hover {
-    background: #ccc;
-}
-
-html ul.tabs li.active, html  ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
-    background: #fff;
-    border-bottom: 1px solid #fff;  /*--Makes the active tab look like it's connected with its content--*/
-}
-
-.tab_container {
-    border: 1px solid #999;
-    border-top: none;
-    overflow: hidden;
-    clear: both;
-    float: left; width: 100%;
-    background: #fff;
-}
-
-.tab_content {
-    padding: 20px;
-    /*font-size: 1.2em;*/
-}
-
-/* ----- SimpleForm Styles ----- */
-
-.simple_form div.input {
-  margin-bottom: 10px;
-}
-
-.simple_form label {
-float: left;
-width: 100px;
-text-align: right;
-margin: 2px 10px;
-}
-
-div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
-}
-
-div.boolean label, label.collection_radio {
-  float: none;
-  margin: 0;
-}
-
-label.collection_radio {
-  margin-right: 10px;
-  vertical-align: -2px;
-  margin-left:   2px;
-}
-
-.field_with_errors {
-  display: inline;
-  background-color: #ff3333;
-}
-
-.simple_form .error {
-  clear:   left;
-  color:   black;
-  display: block;
-  margin-left: 120px;
-  font-size:    12px;
-}
-
-.simple_form .hint {
-  clear: left;
-  margin-left: 120px;
-  font-size:    12px;
-  color: #555;
-  display: block;
-  font-style: italic;
-}
-
-input.radio {
-  margin-right: 5px;
-  vertical-align: -3px;
-}
-
-input.check_boxes {
-  margin-left: 3px;
-  vertical-align: -3px;
-}
-
-label.collection_check_boxes {
-  float: none;
-  margin: 0;
-  vertical-align: -2px;
-  margin-left:   2px;
-}
-
-.plabel {
-  width: 85px;
-  display: inline-block;
-  text-align: right;
-  margin-right: 3px;
-}
-
-.hlabel {
-  display: inline-block;
-  width: 40px;
-  text-align: right;
-  margin-right: 0px;
 }
