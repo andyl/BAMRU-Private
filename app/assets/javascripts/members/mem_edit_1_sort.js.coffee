@@ -9,7 +9,7 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       url = "/members/#{MEMBER_ID}/photos/sort"
       $.ajax
@@ -36,7 +36,7 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       resetIndex("#sortable_phones")
   $("#sortable_emails").sortable
@@ -44,7 +44,7 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       resetIndex("#sortable_emails")
   $("#sortable_addresses").sortable
@@ -52,7 +52,7 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       resetIndex("#sortable_addresses")
   $("#sortable_emergency_contacts").sortable
@@ -60,7 +60,7 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       resetIndex("#sortable_emergency_contacts")
   $("#sortable_other_infos").sortable
@@ -68,6 +68,6 @@ $(document).ready ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       resetIndex("#sortable_other_infos")

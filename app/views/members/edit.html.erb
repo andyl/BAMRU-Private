@@ -98,7 +98,7 @@
     <% end %>
   </div>
   <div id=mem_right_col style="text-align: center;">
-    <p/><%= (@member.photos.count < 3) ? link_to("Add New Photo", new_member_photo_path(@member)) : "Member Photos" %><p/>
+    <p/><%= (@member.photos.count < 4) ? link_to("Add New Photo", new_member_photo_path(@member)) : "Photos ( Max 4 )" %><p/>
     <div id=sortable_photos>
       <% @member.photos.each do |pic| %>
         <li style="list-style-type: none;" id=photos_<%= pic.id %>>

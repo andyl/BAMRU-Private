@@ -18,7 +18,7 @@ module MembersHelper
   end
 
   def link_to_remove_field(name, f)
-    link_to_function(name, "remove_fields(this);")
+    link_to_function(name, "remove_fields(this);", :class => "add")
   end
 
   def link_to_add_fields(name, f, association, params={})

@@ -9,7 +9,7 @@ setup_sort = (target) ->
     axis:        'y'
     opacity:     0.4
     handle:      '.sort_handle'
-    cursor:      'crosshair'
+    cursor:      'move'
     update: ->
       data = $(target).sortable('serialize')
       console.log data
