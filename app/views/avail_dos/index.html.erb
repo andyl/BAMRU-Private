@@ -2,9 +2,9 @@
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
-<%= javascript_include_tag "avail_dos_shortcut.js"  %>
+
+<%= javascript_include_tag "avail_dos/all_avail_dos" %>
+
 <%= csrf_meta_tag %>
 
 <div id=x_container>

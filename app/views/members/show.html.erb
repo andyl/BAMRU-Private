@@ -1,10 +1,7 @@
-<script>
-  var autoselectMemberNames = [ <%= @autoselect_member_names %> ];
-</script>
+<%= javascript_tag "var autoselectMemberNames = [#{@autoselect_member_names}];" %>
 
-<%= javascript_include_tag "equal_height.js" %>
-<%= javascript_include_tag "jquery-ui.min.js" %>
-<%= javascript_include_tag "members_autoselect.js" %>
+<%= javascript_include_tag "members/all_mem_show" %>
+
 <%= csrf_meta_tag %>
 
 <div id=x_container>

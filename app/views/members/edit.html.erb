@@ -1,13 +1,8 @@
-<script>var autoselectMemberNames = [ <%= @autoselect_member_names %> ];</script>
+<%= javascript_tag "var autoselectMemberNames = [#{@autoselect_member_names}];" %>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"       %>
+<%= javascript_tag "var MEMBER_ID = #{@member.id};"                             %>
 
-<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
-<%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
-<%= javascript_include_tag "equal_height.js"        %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
-<%= javascript_include_tag "members_sort_photos.js" %>
-<%= javascript_include_tag "members_edit_form.js"   %>
-<%= javascript_include_tag "members_popup.js"       %>
+<%= javascript_include_tag "members/all_mem_edit" %>
 
 <style>
   #sortable {list-style-type: none; margin: 0; padding: 0;}

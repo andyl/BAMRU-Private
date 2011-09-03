@@ -1,6 +1,5 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 # this code is to implement the 'pull down description' feature...
 $(document).ready ->
@@ -17,7 +16,6 @@ $(document).ready ->
     opt.attr('value', new_value)
 
 # this code checks to see that a Cert File -OR- a Comment has been added before updating a cert
-
 $(document).ready ->
   $('.cert_error').hide()
   $('#save_link').click ->

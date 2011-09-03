@@ -1,6 +1,6 @@
 # Support Code for TableSorter
 
-window.RoleScore = class RoleScore 
+window.RoleScore = class RoleScore
   constructor: (@input = "") ->
   to_lower:    -> @input.toLowerCase()
   input_array: -> @to_lower().split(' ')

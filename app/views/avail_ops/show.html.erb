@@ -1,13 +1,10 @@
-<script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/avail_ops') %> ];</script>
-
+<%= javascript_tag "var autoselectMemberNames = [#{Member.autoselect_member_names('/avail_ops')}];" %>
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
-<%= javascript_include_tag "avail_ops.js"           %>
-<%= javascript_include_tag "equal_height.js"        %>
-<%= csrf_meta_tag %>
 
+<%= javascript_include_tag "avail_ops/all_avail_ops"        %>
+
+<%= csrf_meta_tag %>
 
 <div id=x_container>
   <div id=x_body>
@@ -66,8 +63,6 @@
       <%= render 'calendar', :tgt => 1.month.from_now   %>
       <%= render 'calendar', :tgt => 2.months.from_now  %>
     </div>
-
-
 
     <div id=x_footer style='font-size: 10pt;'>
       Instruction: Add busy periods to show when you will be unavailable to reply to pages.

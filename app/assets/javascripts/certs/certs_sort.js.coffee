@@ -1,5 +1,5 @@
 ###
-Used to sort photos.
+Used to sort photos (drag & drop)
 Relies on jQuery UI
 ###
 
