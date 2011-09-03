@@ -4,3 +4,5 @@
 //= require jquery-ui
 //= require autoselect
 //= require equal_height
+
+//= require members/mem_show_cleanup
