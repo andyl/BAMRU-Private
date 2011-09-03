@@ -108,6 +108,8 @@ $col_height: 225px;
   clear: both;
 }
 
+/* this is for the pop-up boxes for member editing */
+
 #blanket {
 height: 100%;
 width: 100%;
@@ -131,10 +133,6 @@ background: #ffffff;
 position: absolute;
 top: 100px;
 }
-
-/*.phone_box:hover, .email_box:hover {*/
-  /*background-color: white;*/
-/*}*/
 
 .black_box {
  display: inline-block;
