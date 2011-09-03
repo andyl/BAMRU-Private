@@ -46,6 +46,8 @@ window.add_fields = (link, association, content) ->
     ele.prop("value", "") if ele.prop("value").search(/\.\.\./) != -1
   equalHeight("#x_right_col",   "#x_left_col")
   equalHeight("#mem_right_col", "#mem_left_col")
+  $('.phone_box').click -> mem_show_popup(this, "#phone_popup")
+  $('.email_box').click -> mem_show_popup(this, "#email_popup")
 
 # called when 'remove' is clicked on the members/edit form
 window.remove_fields = (link) ->
