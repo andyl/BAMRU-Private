@@ -51,7 +51,7 @@
                 <A href="<%= unit_avail_ops_path %>"><b>Unit operations availability</b></A><span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
                 <A href='<%= member_avail_ops_path(current_member)%>' class='small'><i>Edit my availability for operations</i></A><br>          <p>
                 <A href="<%= do_assignments_path %>"><b>Duty Officer schedule</b></A><span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
-                <A href='<%= member_avail_dos_path(current_member) %>' class='small'><i>Edit my DO availability</i></A><br>          <p>
+                <span class=small><i><%= avail_dos_link_next_quarter("Edit my Q#{next_quarter_number} DO Availability") %></i></span><br><p>
                 <A  target='_blank' href="http://bamru.info/calendar"><b>Public webpage calendar</b></A><span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
                 <A  target='_blank' href='http://bamru.info/admin' class='small'><i>Edit the public webpage calendar</i></A>
               </font>

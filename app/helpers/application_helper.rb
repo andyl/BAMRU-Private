@@ -106,6 +106,16 @@ module ApplicationHelper
     link_to ">", member_avail_dos_path(next_quarter(hash))
   end
 
+  def next_quarter_number
+    current_quarter = Time.now.current_quarter
+    current_quarter == 4 ? 1 : current_quarter + 1
+  end
+
+  def avail_dos_link_next_quarter(message)
+    hash = {:member_id => current_member.id, :quarter => Time.now.current_quarter, :year => Time.now.year}
+    link_to message, member_avail_dos_path(next_quarter(hash))
+  end
+
   def avail_dos_link_current_quarter(hash)
     link_to "Current Quarter", member_avail_dos_path(hash[:member_id])
   end
