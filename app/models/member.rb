@@ -71,7 +71,7 @@ class Member < ActiveRecord::Base
   end
 
   # ----- Callbacks -----
-  before_save       :set_role_score
+  before_save       :set_role_scores
   before_validation :check_first_name_for_title
   before_validation :set_username_and_name_fields
   before_validation :set_pwd,                  :on => :create
@@ -80,7 +80,10 @@ class Member < ActiveRecord::Base
   # ----- Scopes -----
   scope :order_by_last_name,  order("last_name ASC")
   scope :order_by_role_score, order("role_score ASC")
+  scope :order_by_typ_score,  order("typ_score ASC")
   scope :standard_order,      order_by_role_score.order_by_last_name
+  scope :roles_order,         order_by_role_score.order_by_last_name
+  scope :typ_order,           order_by_typ_score.order_by_last_name
   scope :with_photos,         where("id     IN (SELECT member_id from photos)")
   scope :without_photos,      where("id NOT IN (SELECT member_id from photos)")
   scope :active,              where(:typ => ["T", "FM", "TM"]).standard_order
@@ -169,8 +172,17 @@ class Member < ActiveRecord::Base
     arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 
-  def set_role_score
-    self.role_score = full_roles.split(' ').reduce(0) {|a,v| a + role_val(v.strip.chomp)}
+  def calc_typ_score
+    role_val(typ)
+  end
+
+  def calc_roles_score
+    full_roles.split(' ').reduce(0) {|a,v| a + role_val(v.strip.chomp)}
+  end
+
+  def set_role_scores
+    self.role_score = calc_roles_score
+    self.typ_score  = calc_typ_score
   end
 
   def cert_color_name

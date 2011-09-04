@@ -12,6 +12,7 @@ class BaseMigration < ActiveRecord::Migration
       t.boolean   :developer, :default => false
 
       t.integer   :role_score
+      t.integer   :typ_score
 
       t.string    :password_digest
       

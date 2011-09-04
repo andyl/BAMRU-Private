@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.boolean  "admin",                      :default => false
     t.boolean  "developer",                  :default => false
     t.integer  "role_score"
+    t.integer  "typ_score"
     t.string   "password_digest"
     t.integer  "sign_in_count",              :default => 0
     t.time     "last_sign_in_at"
