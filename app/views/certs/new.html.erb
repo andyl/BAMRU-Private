@@ -2,10 +2,8 @@
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
-<%= javascript_include_tag "jquery-ui.min.js"       %>
-<%= javascript_include_tag "members_autoselect.js"  %>
-<%= javascript_include_tag "certs_form.js"          %>
 
+<%= javascript_include_tag "certs/all_certs_edit" %>
 
 <div id=x_container>
   <div id=x_body>
