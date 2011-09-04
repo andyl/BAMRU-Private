@@ -79,11 +79,11 @@ class Member < ActiveRecord::Base
 
   # ----- Scopes -----
   scope :order_by_last_name,  order("last_name ASC")
-  scope :order_by_role_score, order("role_score ASC")
-  scope :order_by_typ_score,  order("typ_score ASC")
-  scope :standard_order,      order_by_role_score.order_by_last_name
-  scope :roles_order,         order_by_role_score.order_by_last_name
-  scope :typ_order,           order_by_typ_score.order_by_last_name
+  scope :order_by_role_score, order([:role_score, :last_name])
+  scope :order_by_typ_score,  order([:typ_score, :last_name])
+  scope :standard_order,      order_by_role_score
+  scope :roles_order,         order_by_role_score
+  scope :typ_order,           order_by_typ_score
   scope :with_photos,         where("id     IN (SELECT member_id from photos)")
   scope :without_photos,      where("id NOT IN (SELECT member_id from photos)")
   scope :active,              where(:typ => ["T", "FM", "TM"]).standard_order
