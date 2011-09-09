@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     member = Member.find_by_remember_me_token(cookies[:remember_me_token])
     unless member.nil?
       session[:member_id] = member.id
-      redirect_to (session[:ref] || root_path), :notice => "Welcome back #{member.first_name}"
+      redirect_to (session[:tgt_path] || root_path), :notice => "Welcome back #{member.first_name}"
     end
   end
   
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         cookies[:remember_me_token] = nil
       end
       member_login(member)
-      redirect_to (session[:ref] || root_path), :notice => "Logged in!"
+      redirect_to (session[:tgt_path] || root_path), :notice => "Logged in!"
     else
       flash.now.alert = "Invalid user name or password"
       render "new"

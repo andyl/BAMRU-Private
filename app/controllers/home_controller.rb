@@ -21,6 +21,8 @@ class HomeController < ApplicationController
   end
 
   def wiki
+    path = params[:wiki_path] || ""
+    @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
   end
 
   def mail_sync
