@@ -11,10 +11,24 @@
               <table border="0" cellpadding="0" cellspacing="0" align="left" width="100%">
                 <tr>
                   <td class="body" align="left">
-                    <A href="/members"><b>Pager notification and telephone roster</b></A><span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
-                    <A href="/members/<%=current_member.id%>/edit" class='small'><i>Edit my contact info</i></A><br>            </td>
+                    <A href="/members"><b>Pager notification and telephone roster</b></A>
+                    <span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
+                    <A href="/members/<%=current_member.id%>/edit" class='small'><i>Edit my contact info</i></A>
+                    <br>
+                  </td>
                   <td class="body" align="right"><A href="/smso_pagers.html">SMSO pagers</A>
                   </td>
+                </tr>
+                <tr>
+                  <td height=11>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <A href="/messages"><b>Unit message log</b></A>
+                    <span class=bullet>&nbsp;&nbsp;&bull;&nbsp;</span>
+                    <A href="/members/<%=current_member.id%>/inbox" class='small'><i>My inbox <%= raw inbox_string %></i></A></td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td height=11>
@@ -64,15 +78,20 @@
             <td valign="top" bgcolor="white">
               <table width=100%>
                 <tr>
-                <td align=center><b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b></td>
-                <td align=center><b><a target='_blank' href="http://wiki.bamru.net/?username=<%=@current_member.wiki_name%>">Wiki</a></b></td>
-                <td align=center><b><%= link_to "Files", '/files' %></b></td>
-              <% if current_member.developer? %>
-                <td align=center><b><%= link_to "Mobile", '/home/mobile' %></b></td>
-                <td align=center><b><%= link_to "Chat", '/chats' %></b></td>
-              <% end %>
-              </tr>
+                  <td width=33% align=center><b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b></td>
+                  <td width=33% align=center><b><a target='_blank' href="http://wiki.bamru.net/?username=<%=@current_member.wiki_name%>">Wiki</a></b></td>
+                  <td width=33% align=center><b><%= link_to "Files", '/files' %></b></td>
+                </tr>
               </table>
+
+              <% if current_member.developer? %>
+                <table width=100%>
+                  <tr>
+                    <td width=50% align=center><b><%= link_to "Mobile", '/home/mobile' %></b></td>
+                    <td width=50% align=center><b><%= link_to "Chat", '/chats' %></b></td>
+                  </tr>
+                </table>
+              <% end %>
             </td>
           </tr>
           <tr>

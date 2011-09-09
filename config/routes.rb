@@ -7,6 +7,8 @@ Zn::Application.routes.draw do
   get "home/mobile"
   get "home/wiki"
   get "home/edit_info"
+  get "home/mail_sync"
+  get "home/silent_mail_sync"
 
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
@@ -28,12 +30,14 @@ Zn::Application.routes.draw do
   resources  :do_assignments
   resources  :files
   resources  :chats
+  resources  :history
 
   resources  :members do
     resources  :photos
     resources  :certs
     resources  :avail_dos
     resource   :avail_ops
+    resources  :inbox, :controller => :inbox
   end
 
   get "mobile" => "mobile#index", :as => "mobile"
@@ -61,6 +65,8 @@ Zn::Application.routes.draw do
   match '/reports/gdocs/show'      => "reports#gdocs_show"
   match '/reports/gdocs/:title'    => "reports#gdocs_show"
   match '/reports/:title'          => "reports#show"
+
+  #match '/history/:id'             => "history#show", :as => :history
 
   root :to => 'home#index'
 

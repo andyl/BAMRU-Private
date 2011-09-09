@@ -23,4 +23,13 @@ class HomeController < ApplicationController
   def wiki
   end
 
+  def mail_sync
+    call_rake("email:import")
+  end
+
+  def silent_mail_sync
+    call_rake("email:import")
+    render :nothing => true
+  end
+
 end

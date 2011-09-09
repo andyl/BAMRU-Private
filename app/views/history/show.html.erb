@@ -1,0 +1,62 @@
+<%= javascript_include_tag "distributions/all_distributions" %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=200 align=left>
+            <b>Mail History</b>
+          </td>
+          <td align=center>
+            <%= link_to("Message ##{@message.id} Detail", message_path(@message)) %>
+          </td>
+          <td width=200 align=right>
+            <%= link_to("My Inbox", "/members/#{current_member.id}/inbox") %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col>
+      <table>
+        <tr>
+          <td align=right width=150><b>Message ID:</b></td>
+          <td><%= @message.id %></td>
+        </tr>
+        <tr>
+          <td align=right width=150><b>Message Date:</b></td>
+          <td><%= @message.created_at.strftime("%y-%m-%d %H:%M:%S") %></td>
+        </tr>
+        <tr>
+          <td align=right><b>Message Recipient:</b></td>
+          <td><%= link_to(@recipient.full_name, member_path(@recipient)) %></td>
+        </tr>
+        <tr>
+          <td align=right><b>Message Text:</b></td>
+          <td><%= @message.text %></td>
+        </tr>
+      </table>
+
+      <% @mails.each do |mail| %>
+        <hr>
+        Mail <b><%= mail[:outbound].label %></b> sent to <b><%= address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created(mail[:outbound])%><br/>
+        <% mail[:inbound].each do |inb| %>
+          => Reply <%= raw bounce(inb) %> from <b><%= inb.from %></b> at <%= created(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
+          <div id=<%=inb.id%>_body class=mail_body><%= raw body(inb) %></div>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div id=x_footer style='font-size: 8pt;'>
+      If there are bounced messages, edit
+      <% if current_member.admin? || current_member == @member %>
+      the <%= raw link_to("email information", edit_member_path(@member)) %>
+      <% else %>
+      the member's contact information
+      <% end %>
+      to fix the problem.
+    </div>
+
+  </div>
+</div>

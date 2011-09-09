@@ -3,6 +3,7 @@ class Email < ActiveRecord::Base
   # ----- Associations -----
 
   belongs_to :member
+  has_many   :outbound_mails
   acts_as_list :scope => :member_id
 
 
@@ -37,7 +38,8 @@ class Email < ActiveRecord::Base
   end
 
   def output
-    "#{address} (#{typ})"
+    extra = pagable? ? "/Pagable" : ""
+    "#{address} (#{typ}#{extra})"
   end
 
   def typ_opts

@@ -4,7 +4,7 @@ module MembersHelper
     if list.blank?
       "<td></td>"
     else
-      "<td align=center class=checkbox><input class='rck #{member.full_roles}' name='distributions[#{member.id}_phone]' type='checkbox'></td>"
+      "<td align=center class=checkbox><input class='rck #{member.full_roles}' name='history[#{member.id}_phone]' type='checkbox'></td>"
     end
   end
 
@@ -13,7 +13,7 @@ module MembersHelper
     if list.blank?
       "<td></td>"
     else
-      "<td align=center class=checkbox><input class='rck #{member.full_roles}' name='distributions[#{member.id}_email]' type='checkbox'></td>"
+      "<td align=center class=checkbox><input class='rck #{member.full_roles}' name='history[#{member.id}_email]' type='checkbox'></td>"
     end
   end
 

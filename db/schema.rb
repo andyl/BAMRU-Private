@@ -85,11 +85,13 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at"
   end
 
-  create_table "distributions", :force => true do |t|
+  create_table "history", :force => true do |t|
     t.integer  "message_id"
     t.integer  "member_id"
     t.boolean  "email",      :default => false
     t.boolean  "phone",      :default => false
+    t.boolean  "read",       :default => false
+    t.boolean  "bounced",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,6 +122,19 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string  "number"
     t.string  "typ"
     t.integer "position"
+  end
+
+  create_table "inbound_mails", :force => true do |t|
+    t.integer  "outbound_mail_id"
+    t.string   "from"
+    t.string   "to"
+    t.string   "uid"
+    t.string   "subject"
+    t.string   "label"
+    t.string   "body"
+    t.boolean  "bounced",          :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "members", :force => true do |t|
@@ -166,6 +181,17 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string  "label"
     t.string  "value"
     t.integer "position"
+  end
+
+  create_table "outbound_mails", :force => true do |t|
+    t.integer  "distribution_id"
+    t.integer  "email_id"
+    t.integer  "phone_id"
+    t.string   "label"
+    t.boolean  "read",            :default => false
+    t.boolean  "bounced",         :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "phones", :force => true do |t|

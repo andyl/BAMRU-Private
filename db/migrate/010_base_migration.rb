@@ -141,12 +141,6 @@ class BaseMigration < ActiveRecord::Migration
       t.string       :name
       t.timestamps
     end
-    create_table :messages do |t|
-      t.integer       :author_id
-      t.string        :ip_address
-      t.string        :text
-      t.timestamps
-    end
     create_table :chats do |t|
       t.integer       :member_id
       t.string        :client # browser | mobile
@@ -156,11 +150,39 @@ class BaseMigration < ActiveRecord::Migration
       t.string        :text
       t.timestamps
     end
-    create_table :distributions do |t|
+    create_table :messages do |t|
+      t.integer       :author_id
+      t.string        :ip_address
+      t.string        :text
+      t.timestamps
+    end
+    create_table :history do |t|
       t.integer       :message_id
       t.integer       :member_id
       t.boolean       :email,    :default => false
       t.boolean       :phone,    :default => false
+      t.boolean       :read,     :default => false
+      t.boolean       :bounced,  :default => false
+      t.timestamps
+    end
+    create_table :outbound_mails do |t|
+      t.integer  :distribution_id
+      t.integer  :email_id
+      t.integer  :phone_id
+      t.string   :label
+      t.boolean  :read,    :default => false
+      t.boolean  :bounced, :default => false
+      t.timestamps
+    end
+    create_table :inbound_mails do |t|
+      t.integer  :outbound_mail_id
+      t.string   :from
+      t.string   :to
+      t.string   :uid
+      t.string   :subject
+      t.string   :label
+      t.string   :body
+      t.boolean  :bounced, :default => false
       t.timestamps
     end
   end

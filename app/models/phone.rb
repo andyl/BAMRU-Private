@@ -2,6 +2,8 @@ class Phone < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to :member
+  has_many   :outbound_mails
+  
   acts_as_list :scope => :member_id
 
 
@@ -32,7 +34,8 @@ class Phone < ActiveRecord::Base
   end
 
   def output
-    "#{number} (#{typ})"
+    extra = pagable? ? "/Pagable" : ""
+    "#{number} (#{typ}#{extra})"
   end
 
   def pagable?

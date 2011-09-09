@@ -30,6 +30,15 @@ module ApplicationHelper
     link_to_unless_current("log in", '/login')
   end
 
+  def inbox_count
+    current_member.distributions.unread.count
+  end
+
+  def inbox_string
+    count = inbox_count
+    count == 0 ? "" : " (<span id=inbox_count>#{count}</span>)"
+  end
+
   def signed_in_header_nav
     roster = link_to_unless_current("Roster", members_path)
     photos = link_to_unless_current("Photos", unit_photos_path)
@@ -37,7 +46,8 @@ module ApplicationHelper
     avail  = link_to_unless_current("Availability", unit_avail_ops_path)
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
-    opts   = [roster, photos, certs, avail, duty, report]
+    inbox  = link_to_unless_current(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
+    opts   = [roster, photos, certs, avail, duty, report, inbox]
     opts.join(' | ')
   end
 

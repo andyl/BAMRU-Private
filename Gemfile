@@ -29,6 +29,8 @@ platforms :ruby do
   gem 'prawn'
   gem 'foreman'
   gem 'oauth'
+  gem 'ruby-gmail', :require => 'gmail'
+  gem 'mime'
 
 # Asset template engines
   gem 'json'

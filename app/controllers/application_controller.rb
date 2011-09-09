@@ -30,12 +30,8 @@ class ApplicationController < ActionController::Base
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
-    #system "/usr/bin/rake #{task} #{args.join(' ')} --trace >> #{Rails.root}/log/rake.log 2>&1 &"
-    #system "echo HELLO WORLD >> #{Rails.root}/log/rake.log"
-    #system "rake -T >> #{Rails.root}/log/rake.log 2>&1"
     system "date >> #{Rails.root}/log/rake.log"
     system "pwd  >> #{Rails.root}/log/rake.log"
-    system "echo #{GMAIL_USER}/#{GMAIL_PASS} >> #{Rails.root}/log/rake.log"
     cmd = "cd #{Rails.root}; /usr/bin/rake #{task} #{args.join(' ')} --trace >> #{Rails.root}/log/rake.log 2>&1 &"
     puts cmd
     system cmd

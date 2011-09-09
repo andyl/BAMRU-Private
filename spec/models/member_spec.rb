@@ -17,7 +17,7 @@ describe Member do
    specify { @obj.should respond_to(:roles)         } 
    specify { @obj.should respond_to(:photos)        } 
    specify { @obj.should respond_to(:messages)      }
-   specify { @obj.should respond_to(:distributions) } 
+   specify { @obj.should respond_to(:history) }
  end
 
  describe "Instance Methods" do

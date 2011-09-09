@@ -14,3 +14,29 @@
   margin-left: 120px;
   margin-top:  10px;
 }
+
+#sortable {
+  list-style-type: none; margin: 0; padding: 0;
+}
+
+li {
+  list-style-type: none;
+  border-top: white;
+  border-left: white;
+  border-right: white;
+  border-bottom: lightgray;
+  border-style: solid;
+  border-width:  1px;
+}
+
+.handle {
+  margin-right: 5px;
+}
+
+.cert_header {
+  background-color: #eeeeee;
+}
+
+.cert_divider {
+  height: 15px;
+}
