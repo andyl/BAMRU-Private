@@ -51,7 +51,7 @@
     <div id=x_footer style='font-size: 8pt;'>
       If there are bounced messages, edit
       <% if current_member.admin? || current_member == @member %>
-      the <%= raw link_to("email information", edit_member_path(@member)) %>
+      the <%= raw link_to("email records", edit_member_path(@member)) %>
       <% else %>
       the member's contact information
       <% end %>

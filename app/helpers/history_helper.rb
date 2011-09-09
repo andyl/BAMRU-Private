@@ -3,7 +3,7 @@ module HistoryHelper
   def address(outbound)
     return outbound.email.address if outbound.email
     return outbound.phone.sms_email if outbound.phone
-    ""
+    "<deleted address record>"
   end
 
   def via(outbound)
