@@ -156,7 +156,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string        :text
       t.timestamps
     end
-    create_table :history do |t|
+    create_table :distributions do |t|
       t.integer       :message_id
       t.integer       :member_id
       t.boolean       :email,    :default => false
