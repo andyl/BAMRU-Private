@@ -45,6 +45,7 @@ prawn_document(:page_layout => :landscape) do |pdf|
   pdf.font_size 8
 
   table_opts = {:header        => true,
+                :column_widths => {2=>250},
                 :row_colors    => ["ffffff", "eeeeee"]}
 
   pdf.table(gen_array, table_opts) do

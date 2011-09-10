@@ -1,24 +1,11 @@
-<table class='calendar'>
- <tr>
-   <th>Su</th><th>Mo</th>
-   <th>Tu</th><th>We</th>
-   <th>Th</th><th>Fr</th>
-   <th>Sa</th>
-  </tr>
-  <tr>
-  <% @beginning_of_month = Date.civil(2009, 12, 1) %>
-  <% @end_of_month = Date.civil(2009, 12, -1) %>
+<%= javascript_include_tag 'home/all_home_test' %>
 
-  <% (@beginning_of_month..@end_of_month).each do |d| %>
-    <% if d == @beginning_of_month %>
-      <% d.wday.times do %> <td class='offset'></td> <% end %>
-    <% end %>
-
-    <% if d.wday == 0 %> </tr><tr> <% end %>
-    <td align=right> <%= d.day %> </td>
-  <% end %>
-  </tr>
-</table>
+<div id="counter">
+  <h1>Counter</h1>
+  <button id="inc-count">Increase</button>
+  <button id="dec-count">Decrease</button>
+  <div id="count"></div>
+</div>
 
 
 
