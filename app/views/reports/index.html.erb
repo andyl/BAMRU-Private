@@ -5,7 +5,11 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=center><b>BAMRU Database Reports</b></td>
+          <td align=left><b>BAMRU Database Reports</b></td>
+          <td align=right>
+            Search: <input name="filter" id="filter-box" value="" maxlength="20" size="20" type="text">
+            <input id="filter-clear-button" type="submit" value="Clear"/>
+          </td>
         </tr>
       </table>
     </div>
@@ -14,6 +18,7 @@
       <table id="myTable" class="tablesorter">
         <thead>
         <tr>
+          <th width=65>Category</th>
           <th>Name</th>
           <th width=50>Type</th>
           <th>Description</th>
@@ -24,6 +29,7 @@
           <% @report_list.each do |report| %>
             <tr>
               <td><%= report[0] %></td>
+              <td><%= report[1] %></td>
               <td><%= report_format(report) %></td>
               <td><%= report_description(report) %></td>
               <td><%= download_link(report)%>

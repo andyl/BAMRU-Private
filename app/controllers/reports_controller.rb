@@ -5,18 +5,18 @@ class ReportsController < ApplicationController
 
   def report_list
     [
-      ["Map List",         'BAMRU-roster.html',         "HTML Roster with Gmap links"],
-      ["CSV Report",       'BAMRU-roster.csv',          "For importing into Excel"],
-      ["VCF Report",       'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
-      ["Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
-      ["BAMRU Names",      'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
-      ["BAMRU Full",       'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
-      ["Member Export",    'BAMRU-roster.json',         "Database export for member records"],
-      ["Full Export",      'BAMRU-roster.zip',          "Database export including all attached files [runs slow]"],
-      ["Bounced Addresses",'Paging-Bounced.pdf',        "A list of bouncing email addresses"],
-      ["Response Times",   'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
-      ["Cert Full Export", 'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
-      ["Cert Expiration",  'BAMRU-CertExpiration.pdf',  "Expired certifications"]
+      ["Callout", "Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
+      ["Roster",  "Map List",         'BAMRU-roster.html',         "HTML Roster with Gmap links"],
+      ["Roster",  "CSV Report",       'BAMRU-roster.csv',          "For importing into Excel"],
+      ["Roster",  "VCF Report",       'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
+      ["Roster",  "BAMRU Full",       'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
+      ["Misc",    "BAMRU Names",      'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
+      ["Backup",  "Member Export",    'BAMRU-roster.json',         "Database export for member records"],
+      ["Backup",  "Full Export",      'BAMRU-roster.zip',          "Database export including all attached files [runs slow]"],
+      ["Paging",  "Bounced Addresses",'Paging-Bounced.pdf',        "A list of bouncing email addresses"],
+      ["Paging",  "Response Times",   'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
+      ["Certs",   "Cert Full Export", 'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
+      ["Certs",   "Cert Expiration",  'BAMRU-CertExpiration.pdf',  "Expired certifications"]
     ]
   end
   

@@ -30,19 +30,19 @@ module ReportsHelper
 
   # ----- for BAMRU-names.pdf -----
   def download_link(array)
-    link_to("Download", "/reports/#{array[1]}", :target => "_blank")
+    link_to("Download", "/reports/#{array[2]}", :target => "_blank")
   end
 
   def gdocs_link(array)
-    link_to("Gdocs", "/reports/gdocs/#{array[1]}", :target => "_blank")
+    link_to("Gdocs", "/reports/gdocs/#{array[2]}", :target => "_blank")
   end
 
   def report_format(array)
-    array[1].split('.').last.upcase
+    array[2].split('.').last.upcase
   end
 
   def report_description(array)
-    array[2]
+    array[3]
   end
 
   # ----- for BAMRU-roster.html -----

@@ -2,5 +2,6 @@
 // Put working code in separate files...
 
 //= require jquery.tablesorter2
-//= require tablesorter_util
+//= require jquery.tablesorter_filter
+
 //= require_tree .
