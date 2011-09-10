@@ -40,20 +40,20 @@
 
       <% @mails.each do |mail| %>
         <hr>
-        Mail <b><%= mail[:outbound].label %></b> sent to <b><%= address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created_time(mail[:outbound])%><br/>
+        Mail <b><%= mail[:outbound].label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created_time(mail[:outbound])%><br/>
         <% mail[:inbound].each do |inb| %>
-          => Reply <%= raw bounce(inb) %> from <b><%= inb.from %></b> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
+          => <%= raw reply_txt(inb) %> from <b><%= inb.from %></b> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
           <div id=<%=inb.id%>_body class=mail_body><%= raw body(inb) %></div>
         <% end %>
       <% end %>
 
     </div>
     <div id=x_footer style='font-size: 8pt;'>
-      If there are bounced messages, edit
-      <% if current_member.admin? || current_member == @member %>
-      the <%= raw link_to("email records", edit_member_path(@member)) %>
+      If there is a <span style='background-color: pink;'>Bounce Reply</span>,
+      <% if current_member == @member %>
+      edit your <%= raw link_to("email records", edit_member_path(@member)) %>
       <% else %>
-      the member's contact information
+      <%= @member.first_name %> should edit the broken email address
       <% end %>
       to fix the problem.
     </div>
