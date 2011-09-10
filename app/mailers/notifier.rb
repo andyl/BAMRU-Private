@@ -25,9 +25,12 @@ class Notifier < ActionMailer::Base
   def roster_email_message(message, address, label)
     Time.zone = "Pacific Time (US & Canada)"
     @author  = message.author.full_name
+    @mobile  = message.author.phones.mobile.first.try(:number) || "NA"
+    @email   = message.author.emails.first.try(:address) || "NA"
     @text    = message.text
     mail(
             :to          => address,
+            :from        => "BAMRU.net <bamru.net@gmail.com>",
             :subject     => "BAMRU Page [#{label}]"
     )
   end

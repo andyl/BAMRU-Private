@@ -22,6 +22,8 @@ class Phone < ActiveRecord::Base
                        where('typ <> "Pager"').
                        where('typ <> "Other"')
 
+  scope :mobile, where(:typ => "Mobile").order("position ASC")
+
   # ----- Local Methods-----
   def export
     atts = attributes
