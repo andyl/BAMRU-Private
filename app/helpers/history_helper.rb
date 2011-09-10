@@ -1,9 +1,15 @@
 module HistoryHelper
 
   def address(outbound)
-    return outbound.email.address if outbound.email
-    return outbound.phone.sms_email if outbound.phone
-    "<deleted addrecord>"
+    if outbound.email
+      return "<changed address>" if outbound.address != outbound.email.address
+      return outbound.email.address
+    end
+    if outbound.phone
+      return "<changed address>" if outbound.phone != outbound.phone.sms_email
+      return outbound.phone.sms_email
+    end
+    "<deleted address>"
   end
 
   def via(outbound)

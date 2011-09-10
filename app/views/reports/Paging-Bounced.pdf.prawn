@@ -56,6 +56,8 @@ end
 
 prawn_document() do |pdf|
 
+  display_table = gen_array
+
   pdf.text "<b>BAMRU Paging - Bounced Email Addresses</b>", :inline_format => true
   pdf.text "(current as of #{Time.now.strftime("%y-%m-%d %H:%M")})"
 
@@ -66,8 +68,14 @@ prawn_document() do |pdf|
   table_opts = {:header        => true,
                 :row_colors    => ["ffffff", "eeeeee"]}
 
-  pdf.table(gen_array, table_opts) do
+  pdf.table(display_table, table_opts) do
     row(0).style(:font_style => :bold, :background_color => 'cccccc')
+  end
+
+
+  if display_table.length == 1
+    pdf.move_down 5
+    pdf.text "< NO BOUNCED ADDRESSES>"
   end
 
   pdf.move_down 15
