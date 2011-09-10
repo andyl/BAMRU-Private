@@ -88,10 +88,12 @@ ActiveRecord::Schema.define(:version => 10) do
   create_table "distributions", :force => true do |t|
     t.integer  "message_id"
     t.integer  "member_id"
-    t.boolean  "email",      :default => false
-    t.boolean  "phone",      :default => false
-    t.boolean  "read",       :default => false
-    t.boolean  "bounced",    :default => false
+    t.boolean  "email",            :default => false
+    t.boolean  "phone",            :default => false
+    t.boolean  "read",             :default => false
+    t.boolean  "bounced",          :default => false
+    t.datetime "read_at"
+    t.integer  "response_seconds"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,11 +119,13 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "emergency_contacts", :force => true do |t|
-    t.integer "member_id"
-    t.string  "name"
-    t.string  "number"
-    t.string  "typ"
-    t.integer "position"
+    t.integer  "member_id"
+    t.string   "name"
+    t.string   "number"
+    t.string   "typ"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "inbound_mails", :force => true do |t|
@@ -132,6 +136,7 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "subject"
     t.string   "label"
     t.string   "body"
+    t.datetime "send_time"
     t.boolean  "bounced",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -177,16 +182,19 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "other_infos", :force => true do |t|
-    t.integer "member_id"
-    t.string  "label"
-    t.string  "value"
-    t.integer "position"
+    t.integer  "member_id"
+    t.string   "label"
+    t.string   "value"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "outbound_mails", :force => true do |t|
     t.integer  "distribution_id"
     t.integer  "email_id"
     t.integer  "phone_id"
+    t.string   "address"
     t.string   "label"
     t.boolean  "read",            :default => false
     t.boolean  "bounced",         :default => false

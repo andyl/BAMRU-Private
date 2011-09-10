@@ -107,12 +107,14 @@ class BaseMigration < ActiveRecord::Migration
       t.string    :number
       t.string    :typ
       t.integer   :position
+      t.timestamps
     end
     create_table :other_infos do |t|
       t.integer   :member_id
       t.string    :label
       t.string    :value
       t.integer   :position
+      t.timestamps
     end
     create_table :avail_ops do |t|
       t.integer   :member_id
@@ -163,12 +165,15 @@ class BaseMigration < ActiveRecord::Migration
       t.boolean       :phone,    :default => false
       t.boolean       :read,     :default => false
       t.boolean       :bounced,  :default => false
+      t.datetime      :read_at
+      t.integer       :response_seconds
       t.timestamps
     end
     create_table :outbound_mails do |t|
       t.integer  :distribution_id
       t.integer  :email_id
       t.integer  :phone_id
+      t.string   :address
       t.string   :label
       t.boolean  :read,    :default => false
       t.boolean  :bounced, :default => false
@@ -182,6 +187,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string   :subject
       t.string   :label
       t.string   :body
+      t.datetime :send_time
       t.boolean  :bounced, :default => false
       t.timestamps
     end

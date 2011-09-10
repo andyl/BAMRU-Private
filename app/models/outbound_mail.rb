@@ -15,6 +15,10 @@ class OutboundMail < ActiveRecord::Base
 
   # ----- Scopes -----
 
+  scope :bounced, where(:bounced => true)
+  scope :emails, where('email_id is not null')
+  scope :phones, where('phone_id is not null')
+
 
   # ----- Local Methods-----
 

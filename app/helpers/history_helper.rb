@@ -3,7 +3,7 @@ module HistoryHelper
   def address(outbound)
     return outbound.email.address if outbound.email
     return outbound.phone.sms_email if outbound.phone
-    "<deleted address record>"
+    "<deleted addrecord>"
   end
 
   def via(outbound)
@@ -12,8 +12,12 @@ module HistoryHelper
     " "
   end
 
-  def created(obj)
+  def created_time(obj)
     obj.created_at.strftime("%y-%m-%d %H:%M:%S")
+  end
+
+  def reply_time(obj)
+    obj.send_time.strftime("%y-%m-%d %H:%M:%S")
   end
 
   def bounce(inbound)

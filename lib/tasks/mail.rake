@@ -33,7 +33,7 @@ namespace :email do
       if dist.phone?
         member.phones.pagable.each do |phone|
           new_label = "#{lname}/#{gen_label}"
-          OutboundMail.create(:phone_id => phone.id, :distribution_id => dist.id, :label => new_label)
+          OutboundMail.create(:phone_id => phone.id, :address => phone.sms_email, :distribution_id => dist.id, :label => new_label)
           mailing = Notifier.roster_phone_message(message, phone.sms_email, new_label)
           mailing.deliver
           sleep 0.25
@@ -42,7 +42,7 @@ namespace :email do
       if dist.email?
         member.emails.pagable.each do |email|
           new_label = "#{lname}/#{gen_label}"
-          OutboundMail.create(:email_id => email.id, :distribution_id => dist.id, :label => new_label)
+          OutboundMail.create(:email_id => email.id, :address => email.address, :distribution_id => dist.id, :label => new_label)
           puts "aut: #{message.author.full_name} / msg: #{message.text} / adr: #{email.address} / lbl: #{new_label}"
           mailing = Notifier.roster_email_message(message, email.address, new_label)
           mailing.deliver
@@ -50,7 +50,6 @@ namespace :email do
         end
       end
     end
-
   end
 
   def last_update_less_than_two_minutes_ago(file)

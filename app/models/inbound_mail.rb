@@ -1,3 +1,6 @@
+require 'time'
+require 'date'
+
 class InboundMail < ActiveRecord::Base
 
   # ----- Associations -----
@@ -17,12 +20,17 @@ class InboundMail < ActiveRecord::Base
   # ----- Class Methods
 
   def self.create_from_mail(mail)
+
     opts = {}
-    opts[:subject] = mail.subject
-    opts[:from]    = mail.from.join(' ')
-    opts[:to]      = mail.to.join(' ')
-    opts[:uid]     = mail.uid
-    opts[:body]    = mail.body.to_s
+    opts[:subject]   = mail.subject
+    opts[:from]      = mail.from.join(' ')
+    opts[:to]        = mail.to.join(' ')
+    opts[:uid]       = mail.uid
+    opts[:body]      = mail.body.to_s
+    opts[:send_time] = mail.date.to_s
+    puts mail.class
+    puts mail.date.to_s
+    puts '-' * 60
     full_reply = opts[:subject] + " " + opts[:body]
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     if match = full_reply.match(/\[([a-z\- ]*\/[0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/)
@@ -33,6 +41,8 @@ class InboundMail < ActiveRecord::Base
         if opts[:bounced]
           outbound.distribution.bounced = true
           outbound.distribution.save
+          outbound.bounced = true
+          outbound.save
         else
           outbound.read = true ; outbound.save
           outbound.distribution.read = true ; outbound.distribution.save
