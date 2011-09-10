@@ -5,7 +5,7 @@ end
 def response_display(message, seconds)
   total = message.distributions.count
   window  = message.distributions.response_less_than(seconds).count
-  percent = ((window / total) * 100).to_i
+  percent = ((window * 100) / total).to_i
   "#{percent}% (#{window} of #{total})"
 end
 

@@ -26,7 +26,7 @@ class Notifier < ActionMailer::Base
     Time.zone = "Pacific Time (US & Canada)"
     @author  = message.author.full_name
     @mobile  = message.author.phones.mobile.first.try(:number) || "NA"
-    @email   = message.author.emails.first.try(:address) || "NA"
+    @email   = message.author.emails.order('position ASC').first.try(:address) || "NA"
     @text    = message.text
     mail(
             :to          => address,
