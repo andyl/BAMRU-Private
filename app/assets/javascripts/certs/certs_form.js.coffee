@@ -27,3 +27,13 @@ $(document).ready ->
       setTimeout("$('.cert_error').hide()", 8000)
     else
       $('form').submit()
+
+datePickerOpts =
+  changeMonth : true
+  changeYear  : true
+  dateFormat  : "yy-mm-dd"
+
+# this code configures the jQuery UI Datepicker
+$(document).ready ->
+  $('#cert_expiration').attr('size', '8')
+  $('#cert_expiration').datepicker(datePickerOpts)
