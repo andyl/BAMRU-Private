@@ -1,4 +1,11 @@
 module MembersHelper
+
+  def roster_oot_class(member)
+    return "" unless member.avail_ops.busy_on?(Time.now)
+    " style='background-color: pink;'"
+    " class='oot_member'"
+  end
+  
   def phone_checkbox(member)
     list = member.phones.pagable
     if list.blank?

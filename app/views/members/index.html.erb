@@ -34,11 +34,11 @@
             </thead>
             <tbody>
             <% @members.each do |m| %>
-              <tr>
+              <tr<%= roster_oot_class(m) %>>
                 <td><%= m.full_roles %></td>
                 <%= raw phone_checkbox(m) %>
                 <%= raw email_checkbox(m) %>
-                <td class=link><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
+                <td><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
               </tr>
             <% end %>
             </tbody>
@@ -46,18 +46,27 @@
         <% end %>
       </div>
       <div id=x_right_col>
-        <table width=100%><tr>
-          <td><span style='font-size: 14px;'><b>Select by member type:</b></span></td>
-          <td align=right><input type=button value="Clear All" id="clear_all"></td>
-        </tr></table>
-        <input type="checkbox" class="slx" id=cb_Bd> Board of Directors (Bd)<br/>
-        <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
-        <input type="checkbox" class="slx" id=cb_TM> <span style="margin-left:10px;">Technical Member (TM)</span><br/>
-        <input type="checkbox" class="slx" id=cb_FM> <span style="margin-left:10px;">Field Member (FM)    </span><br/>
-        <input type="checkbox" class="slx" id=cb_T > <span style="margin-left:10px;">Trainee (T)          </span><br/>
-        <input type="checkbox" class="slx" id=cb_R > <span style="margin-left:10px;">Reserve (R)          </span><br/>
-        <input type="checkbox" class="slx" id=cb_S > <span style="margin-left:10px;">Support (S)          </span><br/>
-        <input type="checkbox" class="slx" id=cb_A > <span style="margin-left:10px;">Associate (A)        </span><br/>
+        <table width=100%>
+          <tr>
+            <td>
+              <span style='font-size: 14px;'><b>Select by member type:</b></span><br/>
+              <input type="checkbox" class="slx" id=cb_Bd> Board of Directors (Bd)<br/>
+              <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
+              <input type="checkbox" class="slx" id=cb_TM> <span style="margin-left:10px;">Technical Member (TM)</span><br/>
+              <input type="checkbox" class="slx" id=cb_FM> <span style="margin-left:10px;">Field Member (FM)    </span><br/>
+              <input type="checkbox" class="slx" id=cb_T > <span style="margin-left:10px;">Trainee (T)          </span><br/>
+              <input type="checkbox" class="slx" id=cb_R > <span style="margin-left:10px;">Reserve (R)          </span><br/>
+              <input type="checkbox" class="slx" id=cb_S > <span style="margin-left:10px;">Support (S)          </span><br/>
+              <input type="checkbox" class="slx" id=cb_A > <span style="margin-left:10px;">Associate (A)        </span><br/>
+            </td>
+            <td align=right valign=top>
+              <br/>
+              <button type=button id="clear_all" class=clear_button>Clear All</button>
+              <p></p>
+              <button type=button id="clear_oot" class=clear_button><span class=clear_oot>Clear OOT<sup>*</sup></span></button>
+            </td>
+          </tr>
+        </table>
 
         <div style="padding: 4px; margin-top:10px; margin-bottom:10px; background-color:lightblue;">
           <span style='font-size: 12px;'><b>Send SMS / eMail to selected members</b></span>
@@ -99,6 +108,8 @@
       <% if can? :manage, @member %>
         <p></p><%= link_to "Add New Member", new_member_path %>
       <% end %>
+      <hr>
+      <span style='font-size: 8pt;'><sup>*</sup> <b>OOT</b> means 'Out Of Town'</span>
     </div>
   </div>
 </div>

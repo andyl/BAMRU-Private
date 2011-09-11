@@ -43,3 +43,17 @@ table.tablesorter thead tr .headerSortDown {
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
 }
+
+table.tablesorter tr.oot_member td {
+  background-color: #FFEEFF;
+}
+
+.clear_oot {
+  background-color: #FFEEFF;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.clear_button {
+  width: 90px;
+}

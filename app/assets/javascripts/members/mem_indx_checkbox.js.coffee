@@ -49,8 +49,13 @@ clearAll = ->
   deCheck("slx")
   updateAddressCount()
 
+clearOOT = ->
+  $(".oot_member .rck").prop("checked", false)
+  updateAddressCount()
+
 $(document).ready ->
   $("#clear_all").click -> clearAll()
+  $("#clear_oot").click -> clearOOT()
 
 
 
