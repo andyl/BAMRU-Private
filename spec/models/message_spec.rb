@@ -24,3 +24,16 @@ describe Message do
   end
   
 end
+
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer         not null, primary key
+#  author_id  :integer
+#  ip_address :string(255)
+#  text       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

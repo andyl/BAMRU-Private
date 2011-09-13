@@ -121,3 +121,21 @@ describe Address do
   end
 end
 
+
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  typ        :string(255)
+#  address1   :string(255)     default("")
+#  address2   :string(255)     default("")
+#  city       :string(255)     default("")
+#  state      :string(255)     default("")
+#  zip        :string(255)     default("")
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

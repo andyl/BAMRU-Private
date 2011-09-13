@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -227,6 +227,34 @@ ActiveRecord::Schema.define(:version => 10) do
   create_table "roles", :force => true do |t|
     t.string   "member_id"
     t.string   "typ"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rsvp_responses", :force => true do |t|
+    t.string   "outbound_mail_id"
+    t.string   "label"
+    t.string   "answer"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rsvp_templates", :force => true do |t|
+    t.string   "caption"
+    t.string   "yes_prompt"
+    t.string   "no_prompt"
+    t.string   "maybe_prompt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rsvps", :force => true do |t|
+    t.integer  "distribution_id"
+    t.string   "caption"
+    t.string   "yes_prompt"
+    t.string   "no_prompt"
+    t.string   "maybe_prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
