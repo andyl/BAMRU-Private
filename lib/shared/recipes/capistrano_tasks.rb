@@ -1,7 +1,9 @@
 set :scm, :git
 set :git_shallow_clone, 1
-set :deploy_to, "/home/aleak/a/#{APPDIR}"
+set :deploy_to,   "/home/aleak/a/#{APPDIR}"
 set :repository,  "https://github.com/andyl/#{APPDIR}.git"
+
+set :rails_env,   "production"
 
 def get_host
   capture("echo $CAPISTRANO:HOST$").strip
