@@ -65,3 +65,17 @@ class AvailOp < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: avail_ops
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  start      :date
+#  end        :date
+#  comment    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

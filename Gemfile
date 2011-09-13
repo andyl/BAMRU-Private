@@ -40,13 +40,14 @@ platforms :ruby do
   gem 'therubyracer', :require => 'v8'
 
   group :development, :test do
+    gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
     gem 'csv-mapper'
     gem 'rb-inotify'
     gem 'guard'
     gem 'guard-coffeescript'
     gem 'livereload'
     gem 'guard-livereload'
-    gem "jasmine"
+    # gem "jasmine"
     gem "faker"
     gem "rcov"
     gem "ruby-debug"

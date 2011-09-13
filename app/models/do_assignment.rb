@@ -51,3 +51,18 @@ class DoAssignment < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: do_assignments
+#
+#  id         :integer         not null, primary key
+#  org_id     :integer         default(1)
+#  year       :integer
+#  quarter    :integer
+#  week       :integer
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

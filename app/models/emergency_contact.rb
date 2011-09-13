@@ -30,3 +30,18 @@ class EmergencyContact < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: emergency_contacts
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  name       :string(255)
+#  number     :string(255)
+#  typ        :string(255)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

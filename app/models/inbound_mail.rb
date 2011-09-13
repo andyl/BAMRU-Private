@@ -55,3 +55,22 @@ class InboundMail < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: inbound_mails
+#
+#  id               :integer         not null, primary key
+#  outbound_mail_id :integer
+#  from             :string(255)
+#  to               :string(255)
+#  uid              :string(255)
+#  subject          :string(255)
+#  label            :string(255)
+#  body             :string(255)
+#  send_time        :datetime
+#  bounced          :boolean         default(FALSE)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

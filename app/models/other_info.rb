@@ -29,3 +29,17 @@ class OtherInfo < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: other_infos
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  label      :string(255)
+#  value      :string(255)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

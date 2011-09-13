@@ -476,3 +476,33 @@ class Member < ActiveRecord::Base
 end
 
 
+
+# == Schema Information
+#
+# Table name: members
+#
+#  id                         :integer         not null, primary key
+#  title                      :string(255)
+#  first_name                 :string(255)
+#  last_name                  :string(255)
+#  user_name                  :string(255)
+#  typ                        :string(255)
+#  ham                        :string(255)
+#  v9                         :string(255)
+#  admin                      :boolean         default(FALSE)
+#  developer                  :boolean         default(FALSE)
+#  role_score                 :integer
+#  typ_score                  :integer
+#  password_digest            :string(255)
+#  sign_in_count              :integer         default(0)
+#  last_sign_in_at            :time
+#  ip_address                 :string(255)
+#  remember_me_token          :string(255)
+#  forgot_password_token      :string(255)
+#  forgot_password_expires_at :datetime
+#  google_oauth_token         :string(255)
+#  remember_created_at        :time
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#
+

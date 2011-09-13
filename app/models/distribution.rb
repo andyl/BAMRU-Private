@@ -56,3 +56,21 @@ class Distribution < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: distributions
+#
+#  id               :integer         not null, primary key
+#  message_id       :integer
+#  member_id        :integer
+#  email            :boolean         default(FALSE)
+#  phone            :boolean         default(FALSE)
+#  read             :boolean         default(FALSE)
+#  bounced          :boolean         default(FALSE)
+#  read_at          :datetime
+#  response_seconds :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

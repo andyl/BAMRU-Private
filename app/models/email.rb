@@ -52,3 +52,18 @@ class Email < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: emails
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  typ        :string(255)
+#  pagable    :string(255)
+#  address    :string(255)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

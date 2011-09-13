@@ -38,3 +38,19 @@ class AvailDo < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: avail_dos
+#
+#  id         :integer         not null, primary key
+#  member_id  :integer
+#  year       :integer
+#  quarter    :integer
+#  week       :integer
+#  typ        :string(255)
+#  comment    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
