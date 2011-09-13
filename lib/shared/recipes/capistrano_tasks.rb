@@ -10,15 +10,15 @@ end
 default_run_options[:pty] = true
 set :use_sudo, true
 
-role :primary, PRIMARY if defined?(PRIMARY)
-role :app,     PRIMARY if defined?(PRIMARY)
-role :web,     PRIMARY if defined?(PRIMARY)
-role :db,      PRIMARY if defined?(PRIMARY)
+role :primary, PRIMARY                   if defined?(PRIMARY)
+role :app,     PRIMARY                   if defined?(PRIMARY)
+role :web,     PRIMARY                   if defined?(PRIMARY)
+role :db,      PRIMARY, :primary => true if defined?(PRIMARY)
 
-role :backup,  BACKUP if defined?(BACKUP)
-role :app,     BACKUP if defined?(BACKUP)
-role :web,     BACKUP if defined?(BACKUP)
-role :db,      BACKUP if defined?(BACKUP)
+role :backup,  BACKUP                   if defined?(BACKUP)
+role :app,     BACKUP                   if defined?(BACKUP)
+role :web,     BACKUP                   if defined?(BACKUP)
+role :db,      BACKUP, :primary => true if defined?(BACKUP)
 
 desc "Deploy #{application}"
 deploy.task :restart do
