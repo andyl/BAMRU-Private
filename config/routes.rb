@@ -30,6 +30,7 @@ Zn::Application.routes.draw do
   resources  :do_assignments
   resources  :files
   resources  :chats
+  resources  :rsvp_templates
   resources  :history
 
   resources  :members do

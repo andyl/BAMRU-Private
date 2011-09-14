@@ -99,15 +99,15 @@ desc "Migrate DB Up to most current version"
 task :db_up do
   db_path = "#{shared_path}/db"
   run "cd #{db_path}; cp production.sqlite3 backup.sqlite3"
-  run "cd #{release_path}; export RAILS_ENV=production; rake db:migrate"
-  run "touch #{release_path}/tmp/restart.txt"
+  run "cd #{current_path}; export RAILS_ENV=production; rake db:migrate"
+  run "touch #{current_path}/tmp/restart.txt"
 end
 
 desc "Restore DB to saved version"
 task :db_restore do
   db_path = "#{shared_path}/db"
   run "cd #{db_path}; cp backup.sqlite3 production.sqlite3"
-  run "touch #{release_path}/tmp/restart.txt"  
+  run "touch #{current_path}/tmp/restart.txt"
 end
 
 desc "Send SSH keys to alt55.com."
@@ -148,6 +148,7 @@ end
 
 namespace :deploy do
   namespace :web do
+    desc "Bring the site down for maintenance"
     task :disable, :roles => :web do
       # invoke with
       # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable

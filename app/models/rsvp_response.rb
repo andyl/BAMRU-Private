@@ -1,4 +1,4 @@
-class RsvpTemplate < ActiveRecord::Base
+class RsvpResponse < ActiveRecord::Base
 
   # ----- Associations -----
 
@@ -31,3 +31,17 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+
+# == Schema Information
+#
+# Table name: rsvp_responses
+#
+#  id               :integer         not null, primary key
+#  outbound_mail_id :string(255)
+#  label            :string(255)
+#  answer           :string(255)
+#  comment          :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

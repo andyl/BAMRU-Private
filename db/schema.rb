@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 20110901000000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(:version => 20) do
   end
 
   create_table "rsvp_templates", :force => true do |t|
+    t.string   "name"
     t.string   "caption"
     t.string   "yes_prompt"
     t.string   "no_prompt"
