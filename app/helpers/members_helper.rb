@@ -1,5 +1,13 @@
 module MembersHelper
 
+  def rsvp_select
+    first_opt = "<option id=blank_select value='NA' selected='selected'></option>\n"
+    opts = first_opt + RsvpTemplate.order('position ASC').all.map do |i|
+      "<option value='#{i.name}' data-prompt='#{i.output_json}'>#{i.name}</option>\n"
+    end.join
+    "<select id=rsvp_select>\n" + opts + "</select"
+  end
+
   def roster_oot_class(member)
     return "" unless member.avail_ops.busy_on?(Time.now)
     " style='background-color: pink;'"

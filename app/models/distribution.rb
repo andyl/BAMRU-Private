@@ -5,6 +5,7 @@ class Distribution < ActiveRecord::Base
   belongs_to :member
   belongs_to :message
   has_many   :outbound_mails
+  has_many   :journals
 
 
   # ----- Callbacks -----
@@ -28,7 +29,21 @@ class Distribution < ActiveRecord::Base
     where('response_seconds < ?', seconds)
   end
 
+  scope :rsvp_yes,  where(:rsvp_answer => "Yes")
+  scope :rsvp_no,   where(:rsvp_answer => "No")
+
   # ----- Local Methods-----
+
+  def rsvp_display_answer
+    return "NA" unless message.rsvp
+    rsvp_answer.try(:downcase) || "<none>"
+  end
+
+  def rsvp_display_link
+    val = rsvp_display_answer
+    return val if val == "NA"
+    "<a href='/rsvps/#{id}'>#{val}</a>"
+  end
 
   def set_read_time
     return unless self.read_at.blank?

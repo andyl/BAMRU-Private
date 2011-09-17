@@ -31,7 +31,7 @@
         </tr>
         <tr>
           <td align=right><b>Message Text:</b></td>
-          <td><%= @message.text %></td>
+          <td><%= @message.text_with_rsvp %></td>
         </tr>
         <tr>
           <td align=right><b>Author IP Address:</b></td>
@@ -50,6 +50,7 @@
         <th>Via Phone?</th>
         <th>Bounced?</th>
         <th>Read?</th>
+        <th>RSVP</th>
         <th align=center>Detail</th>
         </thead>
         <% @message.distributions.each do |d| %>
@@ -59,9 +60,10 @@
             <td align=center><%= raw yes_no d.phone %></td>
             <td align=center><%= raw yes_no_bounce d.bounced %></td>
             <td align=center><%= raw yes_no_read d.read %></td>
+            <td align=center><%= raw d.rsvp_display_link %></td>
             <td align=center>
-              <%= link_to("mail history", history_path(d))%> |
-              <%= link_to("member inbox", member_inbox_index_path(d.member)) %>
+              <%= link_to("history", history_path(d))%> |
+              <%= link_to("inbox", member_inbox_index_path(d.member)) %>
             </td>
           </tr>
         <% end %>
@@ -69,7 +71,7 @@
 
     </div>
     <div id=x_footer style='font-size: 8pt;'>
-      If there are bounced messages, check the <b>mail history</b> to find out what is failing.
+      If there are bounced messages, check the <b>history</b> to find out what is failing.
     </div>
 
   </div>

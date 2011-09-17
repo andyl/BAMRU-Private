@@ -1,10 +1,16 @@
 <%= @text %>
 
+<%= @rsvp_email_text -%>
 -----------------------------------------
 Sent by <%= @author %>
 Mobile: <%= @mobile %>
  eMail: <%= @email %>
 -----------------------------------------
-Please reply, to let others know you
+<% if @rsvp_email_text.blank? %>
+Please reply to let others know you
 have read this message. Learn more at
 http://wiki.bamru.net/index.php/Paging
+<% else %>
+Please RSVP!  Learn more at:
+http://wiki.bamru.net/index.php/RSVPs
+<% end %>

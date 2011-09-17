@@ -8,6 +8,7 @@ class HistoryController < ApplicationController
     @recipient         = @member
     @message           = @distribution.message
     @mails             = @distribution.all_mails
+    @journals          = @distribution.journals
   end
 
   def update
@@ -15,6 +16,7 @@ class HistoryController < ApplicationController
     @dist_id      = params['id'].to_i
     @distribution = Distribution.find(@dist_id)
     @distribution.update_attributes!(params[:dist])
+    Journal.create(:member_id => @member.id, :distribution_id => @distribution.id, :action => "Marked as read")
     render :nothing => true
   end
 

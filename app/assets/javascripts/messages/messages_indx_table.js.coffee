@@ -14,6 +14,7 @@ sort_opts =
     1: {sorter: 'last_name'}
     0: {sorter: false}
     4: {sorter: false}
+    5: {sorter: false}
 
 $(document).ready ->
   $.tablesorter.addParser last_name_options

@@ -1,0 +1,15 @@
+<% if @response.blank? %>
+Unrecognized RSVP Key: <%= @key %>
+  <% else %>
+
+  Index
+  <p></p>
+
+  Response Key: <%= @key %>
+  Current Response: <%= @response.answer %>
+  <p></p>
+  RSVP Prompt: <%= @rsvp.prompt %><br/>\
+  YES: <%= @rsvp.prompt %> <br/>
+   NO: <%= @rsvp.no_prompt %><br/>
+
+<% end %>

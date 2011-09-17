@@ -2,6 +2,8 @@ class Rsvp < ActiveRecord::Base
 
   # ----- Associations -----
 
+  belongs_to :message
+
 
 
   # ----- Callbacks -----
@@ -27,7 +29,7 @@ end
 #
 #  id              :integer         not null, primary key
 #  distribution_id :integer
-#  caption         :string(255)
+#  prompt          :string(255)
 #  yes_prompt      :string(255)
 #  no_prompt       :string(255)
 #  maybe_prompt    :string(255)

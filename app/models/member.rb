@@ -32,6 +32,7 @@ class Member < ActiveRecord::Base
   has_many :avail_dos
   has_many :messages
   has_many :distributions
+  has_many :journals
   has_many :notices, :through => :distributions, :source => :message
 
   accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }

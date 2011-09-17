@@ -2,9 +2,8 @@
 
 <%= simple_form_for @template do |f| %>
   <%= f.input :name         %>
-  <%= f.input :caption      %>
+  <%= f.input :prompt       %>
   <%= f.input :yes_prompt   %>
   <%= f.input :no_prompt    %>
-  <%= f.input :maybe_prompt %>
   <%= f.submit              %>
 <% end %>

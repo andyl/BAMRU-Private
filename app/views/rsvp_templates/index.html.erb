@@ -1,29 +1,35 @@
-<h2>RSVP Templates</h2>
+<%= javascript_include_tag "rsvp_templates/all_rsvp_templates_indx" %>
 
-<%= link_to "Create New Template", new_rsvp_template_path %>
-<p></p>
+<%= csrf_meta_tag %>
 
-<table>
-  <thead>
-  <th>Name</th>
-  <th>Caption</th>
-  <th>Yes Prompt</th>
-  <th>No Prompt</th>
-  <th>Maybe Prompt</th>
-  <th>Action</th>
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=50% align=left>
+            <b>RSVP Templates</b>
+          </td>
+          <td width=50% align=right>
+            <%= link_to('Unit Roster', members_path) %>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-  </thead>
-  <% @templates.each do |t| %>
-    <tr>
-      <td><%= t.name %></td>
-      <td><%= t.caption %></td>
-      <td><%= t.yes_prompt %></td>
-      <td><%= t.no_prompt %></td>
-      <td><%= t.maybe_prompt %></td>
-      <td>
-        <%= link_to "EDIT", edit_rsvp_template_path(t) %> |
-        <%= link_to "DELETE", rsvp_template_path(t), :method => :delete %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+    <div id=x_single_col>
+
+      <div style='text-align: center; margin-top: 5px; margin-bottom:10px;'>
+        <%= link_to "Create New Template", new_rsvp_template_path %>
+      </div>
+
+      <%= raw template_output %>
+
+      <p></p>
+    </div>
+
+    <div id=x_footer style='font-size: 8pt;'>
+    </div>
+
+  </div>
+</div>

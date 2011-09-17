@@ -17,10 +17,14 @@ class InboundMail < ActiveRecord::Base
 
   # ----- Local Methods-----
 
+  def rsvp_answer_text
+    return "" if rsvp_answer.blank?
+    "(RSVP=<b>#{rsvp_answer}</b>)"
+  end
+
   # ----- Class Methods
 
   def self.create_from_mail(mail)
-
     opts = {}
     opts[:subject]   = mail.subject
     opts[:from]      = mail.from.join(' ')
@@ -31,9 +35,11 @@ class InboundMail < ActiveRecord::Base
     puts mail.class
     puts mail.date.to_s
     puts '-' * 60
+    opts[:rsvp_answer] = "Yes" if opts[:body].match(/\.[Yy][Ee][Ss]\./)
+    opts[:rsvp_answer] = "No" if opts[:body].match(/\.[Nn][Oo]\./)
     full_reply = opts[:subject] + " " + opts[:body]
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
-    if match = full_reply.match(/\[([a-z\- ]*\/[0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/)
+    if match = full_reply.match(/\[[a-z\- ]*\_([0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/)
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
       unless outbound.nil?
@@ -45,7 +51,9 @@ class InboundMail < ActiveRecord::Base
           outbound.save
         else
           outbound.read = true ; outbound.save
-          outbound.distribution.read = true ; outbound.distribution.save
+          outbound.distribution.read = true
+          outbound.distribution.rsvp_answer = opts[:rsvp_answer] unless opts[:rsvp_answer].nil?
+          outbound.distribution.save
         end
       end
     end

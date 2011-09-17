@@ -22,6 +22,22 @@ namespace :email do
     mailing.deliver
   end
 
+  def send_mail(message, dist, hash, type)
+    new_label = gen_label
+    hash[:label] = new_label
+    hash[:distribution_id] = dist.id
+    om = OutboundMail.create(hash)
+    if om.distribution.message.rsvp
+      om.distribution.rsvp = true
+      om.distribution.save
+    end
+    mailing = nil
+    mailing = Notifier.roster_phone_message(message, hash[:address], om.full_label, dist) if type == "phone"
+    mailing = Notifier.roster_email_message(message, hash[:address], om.full_label, dist) if type == "email"
+    mailing.deliver unless mailing.nil?
+    sleep 0.25
+  end
+
   desc "Send Email Distribution MESSAGE_ID=<integer>"
   task :send_distribution => 'environment' do
     Time.zone = "Pacific Time (US & Canada)"
@@ -29,24 +45,14 @@ namespace :email do
     message = Message.find_by_id(msg_id)
     message.distributions.each do |dist|
       member = dist.member
-      lname  = member.last_name.downcase
       if dist.phone?
         member.phones.pagable.each do |phone|
-          new_label = "#{lname}/#{gen_label}"
-          OutboundMail.create(:phone_id => phone.id, :address => phone.sms_email, :distribution_id => dist.id, :label => new_label)
-          mailing = Notifier.roster_phone_message(message, phone.sms_email, new_label)
-          mailing.deliver
-          sleep 0.25
+          send_mail(message, dist, {:phone_id => phone.id, :address => phone.sms_email}, "phone")
         end
       end
       if dist.email?
         member.emails.pagable.each do |email|
-          new_label = "#{lname}/#{gen_label}"
-          OutboundMail.create(:email_id => email.id, :address => email.address, :distribution_id => dist.id, :label => new_label)
-          puts "aut: #{message.author.full_name} / msg: #{message.text} / adr: #{email.address} / lbl: #{new_label}"
-          mailing = Notifier.roster_email_message(message, email.address, new_label)
-          mailing.deliver
-          sleep 0.25
+          send_mail(message, dist, {:email_id => email.id, :address => email.address}, "email")
         end
       end
     end

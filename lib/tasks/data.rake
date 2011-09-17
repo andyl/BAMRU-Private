@@ -25,6 +25,29 @@ namespace :data do
     puts "DoAssignments: #{DoAssignment.count}"
   end
 
+  def prompt_array
+    [
+            {
+                    :name       => "Available?",
+                    :prompt     => "Are you available?",
+                    :yes_prompt => "I am available",
+                    :no_prompt  => "I am not available"
+            },
+            {
+                    :name       => "Heads Up",
+                    :prompt     => "Would you be available?",
+                    :yes_prompt => "I would be available",
+                    :no_prompt  => "I would not be available"
+            },
+            {
+                    :name       => "At Home?",
+                    :prompt     => "Are you home yet?",
+                    :yes_prompt => "I have returned home.",
+                    :no_prompt  => "I am not home yet."
+            }
+    ]
+  end
+
   def load_data(json)
     RosterLoad.import(json)
     x = Member.where(:user_name => "andy_leak").first
@@ -40,6 +63,7 @@ namespace :data do
     (x.admin = true; x.save) unless x.nil?
     x = Member.where(:user_name => "shane_iseminger").first
     (x.admin = true; x.save) unless x.nil?
+    prompt_array.each {|x| RsvpTemplate.create(x) }
   end
 
   def reset_database

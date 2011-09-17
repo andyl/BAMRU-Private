@@ -20,7 +20,12 @@ class OutboundMail < ActiveRecord::Base
   scope :phones, where('phone_id is not null')
 
 
+
+
   # ----- Local Methods-----
+  def full_label
+    distribution.member.last_name.downcase + "_" + label
+  end
 
 
   # ----- Class Methods

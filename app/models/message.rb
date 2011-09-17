@@ -4,7 +4,10 @@ class Message < ActiveRecord::Base
 
   belongs_to :author,     :class_name => 'Member'
   has_many   :distributions
-  has_many   :recipients, :through => :distributions, :source => :member
+  has_many   :recipients,     :through => :distributions, :source => :member
+  has_many   :outbound_mails, :through => :distributions
+  has_many   :rsvp_responses
+  has_one    :rsvp
 
   accepts_nested_attributes_for :distributions, :allow_destroy => true
 
@@ -18,6 +21,16 @@ class Message < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+
+  def text_with_rsvp
+    return text unless rsvp
+    "#{text} (RSVP: #{rsvp.prompt})"
+  end
+
+  def rsvp_stats
+    return "NA" unless rsvp
+    "Y:#{distributions.rsvp_yes.count} N:#{distributions.rsvp_no.count}"
+  end
 
 
   # ----- Class Methods

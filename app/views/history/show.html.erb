@@ -34,17 +34,21 @@
         </tr>
         <tr>
           <td align=right><b>Message Text:</b></td>
-          <td><%= @message.text %></td>
+          <td><%= @message.text_with_rsvp %></td>
         </tr>
       </table>
 
       <% @mails.each do |mail| %>
         <hr>
-        Mail <b><%= mail[:outbound].label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created_time(mail[:outbound])%><br/>
+        Mail <b><%= mail[:outbound].full_label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created_time(mail[:outbound])%><br/>
         <% mail[:inbound].each do |inb| %>
-          => <%= raw reply_txt(inb) %> from <b><%= inb.from %></b> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
+          => <%= raw reply_txt(inb) %> from <b><%= inb.from %></b> <%= raw inb.rsvp_answer_text %> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
           <div id=<%=inb.id%>_body class=mail_body><%= raw body(inb) %></div>
         <% end %>
+      <% end %>
+      <% @journals.each do |journal| %>
+        <hr>
+        Web Update #<%= journal.id %> by <b><%= journal.member.short_name %></b> at <%= created_time(journal) %> : <b><%= journal.action %></b><br/>
       <% end %>
 
     </div>

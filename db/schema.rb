@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20110901000000) do
     t.boolean  "bounced",          :default => false
     t.datetime "read_at"
     t.integer  "response_seconds"
+    t.boolean  "rsvp",             :default => false
+    t.string   "rsvp_answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -136,8 +138,17 @@ ActiveRecord::Schema.define(:version => 20110901000000) do
     t.string   "subject"
     t.string   "label"
     t.string   "body"
+    t.string   "rsvp_answer"
     t.datetime "send_time"
     t.boolean  "bounced",          :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "journals", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "distribution_id"
+    t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,31 +242,21 @@ ActiveRecord::Schema.define(:version => 20110901000000) do
     t.datetime "updated_at"
   end
 
-  create_table "rsvp_responses", :force => true do |t|
-    t.string   "outbound_mail_id"
-    t.string   "label"
-    t.string   "answer"
-    t.string   "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "rsvp_templates", :force => true do |t|
+    t.integer  "position"
     t.string   "name"
-    t.string   "caption"
+    t.string   "prompt"
     t.string   "yes_prompt"
     t.string   "no_prompt"
-    t.string   "maybe_prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "rsvps", :force => true do |t|
-    t.integer  "distribution_id"
-    t.string   "caption"
+    t.integer  "message_id"
+    t.string   "prompt"
     t.string   "yes_prompt"
     t.string   "no_prompt"
-    t.string   "maybe_prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

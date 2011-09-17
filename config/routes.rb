@@ -32,6 +32,7 @@ Zn::Application.routes.draw do
   resources  :chats
   resources  :rsvp_templates
   resources  :history
+  resources  :rsvps
 
   resources  :members do
     resources  :photos
@@ -58,6 +59,7 @@ Zn::Application.routes.draw do
 
   match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
   match '/members/:member_id/certs/sort'  => "certs#sort",  :as => :sort_member_certs
+  match '/rsvp_templates/sort'            => "rsvp_templates#sort",  :as => :sort_rsvp_templates
 
   match '/reports'                 => "reports#index"
   match '/reports/gdocs/uploading' => "reports#gdocs_uploading"

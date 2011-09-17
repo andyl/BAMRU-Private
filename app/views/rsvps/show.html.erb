@@ -1,0 +1,37 @@
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=250 align=left>
+            <b>RSVP:</b> <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+          </td>
+          <td align=center>
+            <%= link_to("Message ##{@dist.message.id} Detail", message_path(@dist.message)) %>
+         </td>
+          <td width=250 align=right>
+            <%= link_to "#{@member.first_name}'s Inbox", member_inbox_index_path(@member) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col>
+
+      <% if @dist.blank? %>
+        Unrecognized RSVP Key: <%= @key %>
+      <% else %>
+
+        RSVP: <%= @rsvp.prompt %><p></p>
+        Current Response: <%= @dist.rsvp_answer || "<none>" %><p></p>
+        <%= link_to "SET TO YES", "/rsvps/#{@key}?response=yes" %>: <%= @rsvp.yes_prompt %><br/>
+        <%= link_to "SET TO NO", "/rsvps/#{@key}?response=no"  %>: <%= @rsvp.no_prompt %><br/>
+
+      <% end %>
+
+    </div>
+    <div id=x_footer style='font-size: 8pt;'>
+    </div>
+
+  </div>
+</div>

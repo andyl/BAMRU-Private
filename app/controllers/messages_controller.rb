@@ -24,6 +24,11 @@ class MessagesController < ApplicationController
     end
     np[:distributions_attributes] = Message.distributions_params(params[:history])
     m = Message.create(np)
+    if params['rsvps']
+      opts = JSON.parse(params['rsvps'])
+      opts[:message_id] = m.id
+      p = Rsvp.create(opts)
+    end
     call_rake('email:send_distribution', {:message_id => m.id})
     redirect_to messages_path, :notice => "Message sent."
   end

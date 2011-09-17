@@ -69,14 +69,42 @@
         </table>
 
         <div style="padding: 4px; margin-top:10px; margin-bottom:10px; background-color:lightblue;">
-          <span style='font-size: 12px;'><b>Send SMS / eMail to selected members</b></span>
-          <table width=100%><tr>
-            <td><b>To:</b> <span id="addr_count">0 addresses</span></td>
-            <td align=right><b>From:</b> <%= current_member.short_name %></td>
-          </tr></table>
-          <textarea id="message_area" name="message[text]" rows="10" style="width: 290px;"></textarea>
-          <div style="font-size:10px; margin-bottom: 2px;">You have <span id="chars_remaining">132</span> characters left.
-            <input style='margin-left: 75px; width: 60px;' type="submit" value="Send"/></div>
+
+          <table width=100%>
+            <tr>
+              <td style='font-size: 12px;'>
+                <b>Send SMS / eMail to selected members</b>
+              </td>
+              <td align=right style='font-size: 10px;'>help</td>
+            </tr>
+          </table>
+          <table width=100%>
+            <tr>
+              <td><b>To:</b> <span id="addr_count">0 addresses</span></td>
+              <td align=right><b>From:</b> <%= current_member.short_name %></td>
+            </tr>
+          </table>
+
+          <div style="line-height: 10px; margin-bottom: 6px;">
+            <textarea id="message_area" name="message[text]" rows="5" style="width: 290px; padding-bottom: 0px; margin-bottom: 0px;"></textarea>
+            <span style='font-size: 7pt; padding-top: 0px; margin-top: 0px;'>You have <span id="chars_remaining">132</span> characters left.</span>
+          </div>
+          <div id="rsvp_display" style='font-size: 10px; padding-right: 4px; padding-left: 4px; background-color: lightcyan;'></div>
+          <div style="font-size:10px; margin-bottom: 2px;">
+            <table width=100%>
+              <tr>
+                <td>
+                  RSVP: <%= raw rsvp_select %>
+                </td>
+                <td align=center>
+                  <button type="button" id="preview_button">Preview</button>
+                </td>
+                <td valign=top align=right>
+                  <input style='width: 60px;' type="submit" value="Send"/>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
         <div style="font-size: 10px;">
           <i>
@@ -106,7 +134,16 @@
       </table>
 
       <% if can? :manage, @member %>
-        <p></p><%= link_to "Add New Member", new_member_path %>
+        <table width=100% style="font-size: 10pt;">
+          <tr>
+            <td width=50%>
+              <%= link_to "Add New Member", new_member_path %>
+            </td>
+            <td width=50%>
+              <%= link_to "Edit RSVP Templates", '/rsvp_templates' %>
+            </td>
+          </tr>
+        </table>
       <% end %>
       <hr>
       <span style='font-size: 8pt;'><sup>*</sup> <b>OOT</b> means 'Out Of Town'</span>
