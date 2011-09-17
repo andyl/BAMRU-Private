@@ -148,7 +148,7 @@ end
 
 namespace :deploy do
   namespace :web do
-    desc "Bring the site down for maintenance - use UNTIL='16:00' REASON='a database upgrade'"
+    desc "use UNTIL='16:00' REASON='a db upgrade'"
     task :disable, :roles => :web do
       # invoke with
       # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
