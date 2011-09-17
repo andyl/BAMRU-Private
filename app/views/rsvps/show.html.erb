@@ -22,10 +22,50 @@
         Unrecognized RSVP Key: <%= @key %>
       <% else %>
 
-        RSVP: <%= @rsvp.prompt %><p></p>
-        Current Response: <%= @dist.rsvp_answer || "<none>" %><p></p>
-        <%= link_to "SET TO YES", "/rsvps/#{@key}?response=yes" %>: <%= @rsvp.yes_prompt %><br/>
-        <%= link_to "SET TO NO", "/rsvps/#{@key}?response=no"  %>: <%= @rsvp.no_prompt %><br/>
+        <p></p>
+        <table>
+          <tr>
+            <td align=right width=150><b>Message #<%= @message.id %>:</b></td>
+            <td><%= @message.text %></td>
+          </tr>
+          <tr>
+            <td align=right width=150><b>Sent:</b></td>
+            <td>from <%= @message.author.short_name %> to <%= @dist.member.short_name %> at <%= @message.created_at.strftime("%y-%m-%d %H:%M:%S") %></td>
+          </tr>
+          <tr>
+            <td align=right><b>RSVP:</b></td>
+            <td><%= @rsvp.prompt %></td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td>
+              <div style='margin: 20px;'>
+                Your current response is <b><%= @dist.rsvp_display_answer(:chomp) %></b>
+                <% if @dist.rsvp_answer.downcase == "yes" %>
+                  <%= @rsvp.yes_prompt %>
+                <% end %>
+                <% if @dist.rsvp_answer.downcase == "no" %>
+                  <%= @rsvp.no_prompt %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <% if @dist.rsvp_answer != "Yes" %>
+                <%= link_to "Change your response to YES", "/rsvps/#{@key}?response=yes" %>: <%= @rsvp.yes_prompt %><br/>
+              <% end %>
+              <% if @dist.rsvp_answer != "No" %>
+                <%= link_to "Change your response to NO", "/rsvps/#{@key}?response=no"  %>: <%= @rsvp.no_prompt %><br/>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+
+        <p></p>
+        <br/>
 
       <% end %>
 

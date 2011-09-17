@@ -11,15 +11,25 @@ class RsvpsController < ApplicationController
   end
 
   def show
-    @key = params[:id] || "<none>"
+    @key  = params[:id] || "<none>"
     @dist = Distribution.where(:id => @key).first
-    @member = @dist.member
+    @member  = @dist.member
+    @message = @dist.message
     unless @dist.blank?
-      if params[:response] && valid_response?(params[:response])
-        Journal.create(:distribution_id => @dist.id, :member_id => current_member.id, :action => "Set RSVP to #{params[:response].capitalize}" )
-        @dist.rsvp_answer = params[:response].capitalize
-        @dist.read = true
-        @dist.save
+      response = params[:response].try(:capitalize)
+      if response && valid_response?(response)
+        flash[:notice] = "You set the RSVP response to '#{response}'"
+        if @dist.rsvp_answer != response
+          x_hash = {
+                  :distribution_id => @dist.id,
+                  :member_id       => current_member.id,
+                  :action          => "Set RSVP to #{response}"
+          }
+          Journal.create(x_hash)
+          @dist.rsvp_answer = response
+          @dist.read = true
+          @dist.save
+        end
       end
       @rsvp = @dist.message.rsvp
     end

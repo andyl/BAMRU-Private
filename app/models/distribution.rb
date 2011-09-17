@@ -34,9 +34,9 @@ class Distribution < ActiveRecord::Base
 
   # ----- Local Methods-----
 
-  def rsvp_display_answer
+  def rsvp_display_answer(txt_case = :downcase)
     return "NA" unless message.rsvp
-    rsvp_answer.try(:downcase) || "NONE"
+    rsvp_answer.try(txt_case) || "NONE"
   end
 
   def rsvp_display_link
