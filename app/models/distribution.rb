@@ -36,7 +36,7 @@ class Distribution < ActiveRecord::Base
 
   def rsvp_display_answer
     return "NA" unless message.rsvp
-    rsvp_answer.try(:downcase) || "<none>"
+    rsvp_answer.try(:downcase) || "NONE"
   end
 
   def rsvp_display_link
