@@ -117,10 +117,8 @@
         </div>
         <div style="font-size: 10px;">
           <i>
-            PLEASE NOTE: Message content, IP addresses, and alert recipients are logged for each message sent on this system.
-            <p/>
-            Last message sent on <%= Message.last.created_at.strftime("%a, %b %e at %H:%M:%S") unless Message.last.blank? %><br/>
-            <a href="/messages">View unit message log</a>
+            Last message sent <%= Message.last.created_at.strftime("%m-%d %H:%M") unless Message.last.blank? %>
+            <div style='float: right; text-align: right;'><a href="/messages">Unit Message Log</a></div>
           </i>
         </div>
         <p/>
