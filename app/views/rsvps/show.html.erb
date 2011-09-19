@@ -41,10 +41,10 @@
             <td>
               <div style='margin: 20px;'>
                 Your current response is <b><%= @dist.rsvp_display_answer(:chomp) %></b>
-                <% if @dist.rsvp_answer.downcase == "yes" %>
+                <% if @dist.rsvp_answer.try(:downcase) == "yes" %>
                   <%= @rsvp.yes_prompt %>
                 <% end %>
-                <% if @dist.rsvp_answer.downcase == "no" %>
+                <% if @dist.rsvp_answer.try(:downcase) == "no" %>
                   <%= @rsvp.no_prompt %>
                 <% end %>
               </div>

@@ -14,7 +14,7 @@ def msg_table
     [
             x.id,
             x.author.short_name,
-            x.text,
+            x.text_with_rsvp,
             x.created_at.strftime("%y-%m-%d %H:%M:%S"),
             x.distributions.count,
             x.distributions.bounced.count,
