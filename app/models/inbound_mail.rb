@@ -24,43 +24,47 @@ class InboundMail < ActiveRecord::Base
 
   # ----- Class Methods
 
+  def self.match_code(input)
+    input.match(/\[[a-z\- ]*\_([0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/) ||
+            input.match(/\.([0-9a-z][0-9a-z][0-9a-z][0-9a-z])/)
+  end
+
   def self.create_from_mail(mail)
     opts = {}
     opts[:subject]   = mail.subject
     opts[:from]      = mail.from.join(' ')
     opts[:to]        = mail.to.join(' ')
     opts[:uid]       = mail.uid
-    opts[:body]      = mail.body.to_s
+    opts[:body]      = mail.body.to_s.lstrip
     opts[:send_time] = mail.date.to_s
-    puts mail.class
-    puts mail.date.to_s
-    puts '-' * 60
-    opts[:rsvp_answer] = "Yes" if opts[:body].match(/\.[Yy][Ee][Ss]\./)
-    opts[:rsvp_answer] = "No" if opts[:body].match(/\.[Nn][Oo]\./)
+    opts[:rsvp_answer] = "Yes" if opts[:body].match(/^[Yy][Ee][Ss]( |$)/)
+    opts[:rsvp_answer] = "No" if opts[:body].match(/^[Nn][Oo]( |$)/)
     full_reply = opts[:subject] + " " + opts[:body]
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
-    if match = full_reply.match(/\[[a-z\- ]*\_([0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/)
+    outbound = nil
+    if match = self.match_code(full_reply)
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
-      unless outbound.nil?
-        opts[:outbound_mail_id] = outbound.id
-        if opts[:bounced]
-          outbound.distribution.bounced = true
-          outbound.distribution.save
-          outbound.bounced = true
-          outbound.save
-        else
-          outbound.read = true ; outbound.save
-          outbound.distribution.read = true
-          outbound.distribution.rsvp_answer = opts[:rsvp_answer] unless opts[:rsvp_answer].nil?
-          outbound.distribution.save
-        end
+    end
+    if outbound.nil? && opts[:from].include?("vtext")
+      outbound = OutboundMail.where(:address => opts[:from]).order('created_at ASC').last
+    end
+    unless outbound.nil?
+      opts[:outbound_mail_id] = outbound.id
+      if opts[:bounced]
+        outbound.distribution.bounced = true
+        outbound.distribution.save
+        outbound.bounced = true
+        outbound.save
+      else
+        outbound.read = true ; outbound.save
+        outbound.distribution.read = true
+        outbound.distribution.rsvp_answer = opts[:rsvp_answer] unless opts[:rsvp_answer].nil?
+        outbound.distribution.save
       end
     end
     create!(opts)
   end
-
-
 
 end
 
