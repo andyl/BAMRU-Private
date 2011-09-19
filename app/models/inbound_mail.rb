@@ -37,16 +37,16 @@ class InboundMail < ActiveRecord::Base
     opts[:uid]       = mail.uid
     opts[:body]      = mail.body.to_s.lstrip
     opts[:send_time] = mail.date.to_s
-    opts[:rsvp_answer] = "Yes" if opts[:body].match(/^[Yy][Ee][Ss]( |$)/)
-    opts[:rsvp_answer] = "No" if opts[:body].match(/^[Nn][Oo]( |$)/)
-    full_reply = opts[:subject] + " " + opts[:body]
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
+    first_words = opts[:body].split(' ')[0..30].join(' ')
+    match = first_words.match(/\b(yes|no)\b/i)
+    opts[:rsvp_answer] = match && match[0].capitalize
     outbound = nil
-    if match = self.match_code(full_reply)
+    if match = self.match_code(opts[:subject] + " " + opts[:body])
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
     end
-    if outbound.nil? && opts[:from].include?("vtext")
+    if outbound.nil?
       outbound = OutboundMail.where(:address => opts[:from]).order('created_at ASC').last
     end
     unless outbound.nil?
