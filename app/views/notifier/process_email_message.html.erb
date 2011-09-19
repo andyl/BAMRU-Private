@@ -1,0 +1,61 @@
+<style type='text/css'>
+  .myButton {
+    -moz-border-radius:border6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    display:inline-block;
+    color:#ffffff;
+    font-family:arial;
+    font-size:12px;
+    font-weight:bold;
+    padding:6px 10px;
+    text-decoration:none;
+  }
+  .redButton {
+    -moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+    box-shadow:inset 0px  1px 0px 0px #f29c93;
+    background-color:#fe1a00;
+    border:1px solid      #d83526;
+  }
+  .greenButton {
+    -moz-box-shadow:inset 0px 1px 0px 0px #99ff99;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #99ff99;
+    box-shadow:inset 0px  1px 0px 0px #99ff99;
+    background-color: #33cc00;
+    border:1px solid #009900;
+  }
+  .redButton:hover {
+    background-color:#ce0100;
+    background:-webkit-gradient( linear, left top,  left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+    backgroundground:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+    /*fe1a00ilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00');*/
+  }
+  .greenButton:hover {
+    background-color: #33AA00;
+    background:-webkit-gradient( linear, left top,  left bottom, color-stop(0.05, #33AA00), color-stop(1, #337700) );
+    backgroundground:-moz-linear-gradient( center top, #33AA00 5%, #337700 100% );
+    /*fe1a00ilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33AA00', endColorstr='#337700');*/
+  }
+  .myButton:active {
+    position:relative;
+    top:1px;
+  }
+</style>
+
+<%= @opts['text'] %>
+<p></p>
+<%= raw @opts['rsvp_html'] -%>
+<hr>
+Sent by <%= @opts['author_name']   %><br/>
+Mobile: <%= @opts['author_mobile'] %><br/>
+ eMail: <%= @opts['author_email']  %><br/>
+<hr>
+<% if @opts['prompt'].blank? %>
+Please reply to let others know you
+have read this message. Learn more at
+http://wiki.bamru.net/index.php/Paging
+<% else %>
+Please RSVP!  Learn more at the
+<a href='http://wiki.bamru.net/index.php/RSVPs'>BAMRU Wiki</a>
+<% end %>

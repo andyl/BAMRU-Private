@@ -1,10 +1,11 @@
 class Notifier < ActionMailer::Base
-  default :from => "bamru.net@gmail.com"
+  extend NotifierHelper
 
-  def test(member = "")
-    @member = member
+  def test(opts = {})
+    address = opts[:author_email] ? 'test@what.com' : opts[:author_email]
     mail(
-            :to => member.emails.first.address,
+            :to => address,
+            :from => 'bamru.net@gmail.com',
             :subject => "Test @ #{Time.now}"
     )
   end
@@ -18,47 +19,30 @@ class Notifier < ActionMailer::Base
     @expire  = @member.forgot_password_expires_at.strftime("%H:%M")
     mail(
             :to => address,
+            :from => 'bamru.net@gmail.com',
             :subject => "BAMRU.net Password Reset"
     )
   end
 
-  def rsvp_text_email(dist)
-    return "" unless dist.message.rsvp
-    <<-EOF.gsub(/^      /, "")
-      RSVP: #{dist.message.rsvp.prompt}
-       YES: #{dist.message.rsvp.yes_prompt} (#{root_url}rsvps/#{dist.id}?response=yes)
-        NO: #{dist.message.rsvp.no_prompt} (#{root_url}rsvps/#{dist.id}?response=no)
-    EOF
-  end
-
-  def roster_email_message(message, address, label, dist)
-    Time.zone  = "Pacific Time (US & Canada)"
-    @author    = message.author.full_name
-    @mobile    = message.author.phones.mobile.first.try(:number) || "NA"
-    @email     = message.author.emails.order('position ASC').first.try(:address) || "NA"
-    @text      = message.text
-    @rsvp_email_text = rsvp_text_email(dist)
+  def process_email_message(opts = {})
+    Time.zone      = "Pacific Time (US & Canada)"
+    @opts = Notifier.query_opts(opts)
     mail(
-            :to          => address,
-            :from        => "BAMRU.net <bamru.net@gmail.com>",
-            :subject     => "BAMRU Page [#{label}]"
+            :to          => @opts['recipient_email'],
+            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject     => "BAMRU Page [#{@opts['label']}]"
     )
   end
 
-  def rsvp_text_phone(dist)
-    return "" unless dist.message.rsvp
-    "| RSVP #{dist.message.rsvp.prompt}"
-  end
-
-  def roster_phone_message(message, address, label, dist)
+  def process_sms_message(opts = {})
     Time.zone = "Pacific Time (US & Canada)"
-    @author  = message.author.short_name
-    @text    = message.text
-    @rsvp_phone_text = rsvp_text_phone(dist)
+    @opts = Notifier.query_opts(opts)
     mail(
-            :to          => address,
-            :subject     => "BAMRU Page [#{label}]"
+            :to          => @opts['recipient_email'],
+            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject     => "BAMRU Page [#{@opts['label']}]"
     )
   end
+
 
 end

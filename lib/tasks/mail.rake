@@ -32,8 +32,9 @@ namespace :email do
       om.distribution.save
     end
     mailing = nil
-    mailing = Notifier.roster_phone_message(message, hash[:address], om.full_label, dist) if type == "phone"
-    mailing = Notifier.roster_email_message(message, hash[:address], om.full_label, dist) if type == "email"
+    opts = Notifier.set_optz(message, hash[:address], om.full_label, dist)
+    mailing = Notifier.process_email_message(opts) if type == "email"
+    mailing = Notifier.process_sms_message(opts) if type == "phone"
     mailing.deliver unless mailing.nil?
     sleep 0.25
   end

@@ -31,6 +31,7 @@ platforms :ruby do
   gem 'oauth'
   gem 'ruby-gmail', :require => 'gmail'
   gem 'mime'
+  gem 'mail_view', :git => "git://github.com/andyl/mail_view.git"
 
 # Asset template engines
   gem 'json'
@@ -40,6 +41,7 @@ platforms :ruby do
   gem 'therubyracer', :require => 'v8'
 
   group :development, :test do
+    # gem "jasmine"
     gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
     gem 'csv-mapper'
     gem 'rb-inotify'
@@ -47,7 +49,6 @@ platforms :ruby do
     gem 'guard-coffeescript'
     gem 'livereload'
     gem 'guard-livereload'
-    # gem "jasmine"
     gem "faker"
     gem "rcov"
     gem "ruby-debug"

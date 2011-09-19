@@ -1,4 +1,5 @@
-<%= javascript_include_tag "members/all_mem_indx" %>
+<%= javascript_include_tag "members/all_mem_indx"         %>
+<%= javascript_tag "var PREVIEW_OPTS = #{generate_preview_options};"    %>
 
 <div id=x_container>
   <div id=x_body>
@@ -49,7 +50,7 @@
         <table width=100%>
           <tr>
             <td>
-              <span style='font-size: 14px;'><b>Select by member type:</b></span><br/>
+              <span style='font-size: 14px;'><b>Select Members</b></span><br/>
               <input type="checkbox" class="slx" id=cb_Bd> Board of Directors (Bd)<br/>
               <input type="checkbox" class="slx" id=cb_OL> Operations Leader (OL)<br/>
               <input type="checkbox" class="slx" id=cb_TM> <span style="margin-left:10px;">Technical Member (TM)</span><br/>
@@ -73,9 +74,9 @@
           <table width=100%>
             <tr>
               <td style='font-size: 12px;'>
-                <b>Send SMS / eMail to selected members</b>
+                <b>Send SMS / eMail</b>
               </td>
-              <td align=right style='font-size: 10px;'><a href="http://wiki.bamru.net/index.php/Sending_Pages">help</a></td>
+              <td align=right style='font-size: 10px;'><a href="http://wiki.bamru.net/index.php/Sending_Pages" target="_blank">help</a></td>
             </tr>
           </table>
           <table width=100%>
@@ -85,24 +86,32 @@
             </tr>
           </table>
 
-          <div style="line-height: 10px; margin-bottom: 6px;">
-            <textarea id="message_area" name="message[text]" rows="5" style="width: 290px; padding-bottom: 0px; margin-bottom: 0px;"></textarea>
-            <span style='font-size: 7pt; padding-top: 0px; margin-top: 0px;'>You have <span id="chars_remaining">132</span> characters left.</span>
-          </div>
-          <div id="rsvp_display" style='font-size: 10px; padding-right: 4px; padding-left: 4px; background-color: lightcyan;'></div>
-          <div style="font-size:10px; margin-bottom: 2px;">
-            <table width=100%>
+          <div style="line-height: 10px; margin-bottom: 0px;">
+            <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0px; margin-bottom: 0px;"></textarea>
+
+            <table width=100% style='font-size: 8pt; margin-bottom: 0px; padding-bottom: 0px;'>
               <tr>
                 <td>
-                  RSVP: <%= raw rsvp_select %>
+                  RSVP <%= raw rsvp_select %>
                 </td>
-                <td align=center>
-                  <button type="button" id="preview_button">Preview</button>
+                <td align=right>
+                  <span id="chars_remaining">132</span> characters left
+                </td>
+              </tr>
+            </table>
+
+          </div>
+          <div id="rsvp_display" style='padding-top: 0px; margin-top: 0px; font-size: 10px; padding-right: 4px; padding-left: 4px; background-color: lightcyan;'></div>
+          <div style="font-size: 10px; margin-bottom: 0px;">
+            <table width=100% style='margin-top: 0px; padding-top: 0px;'>
+              <tr style='margin-top: 0px; padding-top: 0px;'>
+                <td style='font-size: 8pt;'>
+                  <a href='#' id="preview_link">preview</a>
                 </td>
                 <td valign=top align=right>
                   <input style='width: 60px;' type="submit" value="Send"/>
                 </td>
-              </tr>
+                </tr>
             </table>
           </div>
         </div>

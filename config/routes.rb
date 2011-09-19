@@ -9,6 +9,12 @@ Zn::Application.routes.draw do
   get "home/edit_info"
   get "home/mail_sync"
   get "home/silent_mail_sync"
+  get "home/preview"
+
+  get "preview/sms"
+  get "preview/mail_txt"
+  get "preview/mail_htm"
+  get "preview/init_opts"
 
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
@@ -68,8 +74,6 @@ Zn::Application.routes.draw do
   match '/reports/gdocs/show'      => "reports#gdocs_show"
   match '/reports/gdocs/:title'    => "reports#gdocs_show"
   match '/reports/:title'          => "reports#show"
-
-  #match '/history/:id'             => "history#show", :as => :history
 
   root :to => 'home#index'
 

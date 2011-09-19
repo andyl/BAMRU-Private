@@ -1,12 +1,12 @@
-<%= @text %>
+<%= @opts['text'] %>
 
-<%= @rsvp_email_text -%>
+<%= @opts['rsvp_text'] -%>
 -----------------------------------------
-Sent by <%= @author %>
-Mobile: <%= @mobile %>
- eMail: <%= @email %>
+Sent by <%= @opts['author_name']   %>
+Mobile: <%= @opts['author_mobile'] %>
+ eMail: <%= @opts['author_email']  %>
 -----------------------------------------
-<% if @rsvp_email_text.blank? %>
+<% if @opts['prompt'].blank? %>
 Please reply to let others know you
 have read this message. Learn more at
 http://wiki.bamru.net/index.php/Paging

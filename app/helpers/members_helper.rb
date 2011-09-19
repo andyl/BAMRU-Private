@@ -1,5 +1,17 @@
 module MembersHelper
 
+  def generate_preview_options
+    mem = current_member
+    opts = {
+      :author_name       => mem.full_name,
+      :author_short_name => mem.short_name,
+      :author_mobile     => mem.phones.order('position ASC').first.number,
+      :author_email      => mem.emails.order('position ASC').first.address
+    }
+    body = opts.map {|k,v | "#{k.to_s}:'#{v}'"}.join(',')
+    "{#{body}}"
+  end
+
   def rsvp_select
     first_opt = "<option id=blank_select value='NA' selected='selected'></option>\n"
     opts = first_opt + RsvpTemplate.order('position ASC').all.map do |i|

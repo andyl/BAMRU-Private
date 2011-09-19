@@ -90,15 +90,22 @@ responseForm = (name, label, json) ->
   <span class='rsvp_lbl'>YES:</span>#{label.yes_prompt}<br/>
   <span class='rsvp_lbl'>NO:</span>#{label.no_prompt}<br/>
   "
+  
+setPreviewOpts = (prompt, yes_prompt, no_prompt) ->
+  PREVIEW_OPTS.prompt = prompt
+  PREVIEW_OPTS.yes_prompt = yes_prompt
+  PREVIEW_OPTS.no_prompt  = no_prompt
 
 setDisplay = (select) ->
   optName = $(select).attr('value')
   if optName == "NA"
     $('#rsvp_display').hide()
     $('#rsvp_display').html("")
+    setPreviewOpts("", "", "")
     return
   labelJSON = $(select).children("option:selected").attr('data-prompt')
   labelObj  = JSON.parse(labelJSON)
+  setPreviewOpts(labelObj.prompt, labelObj.yes_prompt, labelObj.no_prompt)
   $('#rsvp_display').html(responseForm(optName, labelObj, labelJSON))
   $('#rsvp_display').show()
 
@@ -111,5 +118,8 @@ $(document).ready ->
 # ----- 6) preview -----
 
 $(document).ready ->
-  $('#preview_button').click ->
-    alert "Mail Preview: Under Construction"
+  $('#preview_link').click ->
+    PREVIEW_OPTS.text = $('#message_area').attr('value')
+    data = escape(JSON.stringify(PREVIEW_OPTS))
+    window.open("/preview/init_opts?opts=#{data}", '_blank')
+

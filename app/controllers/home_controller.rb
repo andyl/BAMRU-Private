@@ -34,4 +34,9 @@ class HomeController < ApplicationController
     render :nothing => true
   end
 
+  def preview
+    @response = params[:response]
+  end
+
+
 end
