@@ -74,7 +74,7 @@ namespace :email do
         exit
       end
     end
-    File.open(file, 'w') {|f| f.puts Time.now.strftime("%y-%m-%d %H:%M:%S")}
+    File.open(file, 'w') {|f| f.puts Time.now.strftime("%m-%d %H:%M:%S")}
     Time.zone = "Pacific Time (US & Canada)"
     gm = Gmail.new(GMAIL_USER, GMAIL_PASS)
     gm.inbox.emails.each do |email|
