@@ -39,6 +39,7 @@ platforms :ruby do
   gem 'coffee-script'
   gem 'uglifier'
   gem 'therubyracer', :require => 'v8'
+  gem 'whenever', :require => false
 
   group :development, :test do
     # gem "jasmine"
