@@ -11,3 +11,13 @@ window.processClick = (link) ->
 
 $(document).ready ->
   $('.markready').click -> processClick(this)
+
+
+window.markAll = ->
+  url  = "/history/markall"
+  $.ajax
+    url: url
+  setTimeout("window.location.reload()", 2000)
+
+$(document).ready ->
+  $('#mark_all').click -> markAll()

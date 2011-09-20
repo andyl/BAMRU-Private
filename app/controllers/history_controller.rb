@@ -20,4 +20,14 @@ class HistoryController < ApplicationController
     render :nothing => true
   end
 
+  def markall
+    @member = current_member
+    @member.distributions.unread.all.each do |d|
+      d.read = true
+      d.save
+      Journal.create(:member_id => @member.id, :distribution_id => d.id, :action => "Marked as read")
+    end
+    render :nothing => true
+  end
+
 end

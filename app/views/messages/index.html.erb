@@ -28,7 +28,7 @@
           <th>From</th>
           <th>Sent At</th>
           <th align=center>RSVP</th>
-          <th width=120 align=center>Sent | Bounced | Read</th>
+          <th width=70 align=center>Sent | Read</th>
         </tr>
         </thead>
         <tbody>
@@ -40,8 +40,7 @@
             <td><%= m.created_at.strftime("%m-%d %H:%M") %></td>
             <td align=center><%= m.rsvp_stats %></td>
             <td align=center>
-              <%= raw sent_display(m.distributions.count) %> |
-              <%= raw bounce_display(m.distributions.bounced.count) %> |
+              <%= raw sent_display(m.distributions.count, m.distributions.bounced.count) %> |
               <%= raw read_display(m.distributions.count, m.distributions.read.count) %>
             </td>
           </tr>

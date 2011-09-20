@@ -60,7 +60,21 @@
 
     </div>
     <div id=x_footer style='font-size: 8pt;'>
-      If there are bounced messages, check the <b>history</b> to find out what is failing.
+      <table width=100% style='font-size: 8pt;'>
+        <tr>
+          <% if current_member == @member %>
+            <td>
+              <a href="#" id=mark_all>mark all as read</a>
+            </td>
+            <td align=right>
+          <% else %>
+            <td>
+          <% end %>
+          If there are bounced messages, check the <b>history</b> to find out what is failing.
+          </td>
+        </tr>
+      </table>
+
     </div>
 
   </div>

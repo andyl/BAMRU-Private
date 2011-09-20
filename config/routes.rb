@@ -26,6 +26,8 @@ Zn::Application.routes.draw do
   get  "password/reset"        # link embedded in the email goes to this page
   put  "password/update"       # updates the password after token is accepted
 
+  get '/history/markall'
+
   resources :sessions
 
   resources  :members
@@ -63,9 +65,9 @@ Zn::Application.routes.draw do
     resources :chats
   end
 
-  match '/members/:member_id/photos/sort' => "photos#sort", :as => :sort_member_photos
-  match '/members/:member_id/certs/sort'  => "certs#sort",  :as => :sort_member_certs
-  match '/rsvp_templates/sort'            => "rsvp_templates#sort",  :as => :sort_rsvp_templates
+  match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
+  match '/members/:member_id/certs/sort'  => "certs#sort",          :as => :sort_member_certs
+  match '/rsvp_templates/sort'            => "rsvp_templates#sort", :as => :sort_rsvp_templates
 
   match '/reports'                 => "reports#index"
   match '/reports/gdocs/uploading' => "reports#gdocs_uploading"
