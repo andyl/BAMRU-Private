@@ -39,7 +39,7 @@ namespace :email do
     message    = outbound_mail.distribution.message
     address    = outbound_mail.email_address
     full_label = outbound_mail.full_label
-    dist       = outboune_mail.distribution
+    dist       = outbound_mail.distribution
     opts    = Notifier.set_optz(message, address, full_label, dist)
     mailing = Notifier.process_email_message(opts) if outbound_mail.email
     mailing = Notifier.process_sms_message(opts)   if outbound_mail.phone
