@@ -49,9 +49,9 @@ module NotifierHelper
     opts['author_email']      = message.author.emails.first.try(:address) || "NA"
     opts['recipient_email']   = address
     opts['text']              = message.text
-    opts['prompt']            = message.rsvp.prompt
-    opts['yes_prompt']        = message.rsvp.yes_prompt
-    opts['no_prompt']         = message.rsvp.no_prompt
+    opts['prompt']            = message.rsvp.try(:prompt)
+    opts['yes_prompt']        = message.rsvp.try(:yes_prompt)
+    opts['no_prompt']         = message.rsvp.try(:no_prompt)
     opts['dist_id']           = dist.id
     opts['rsvp_text']         = rsvp_text(opts)
     opts['rsvp_html']         = rsvp_html(opts)
