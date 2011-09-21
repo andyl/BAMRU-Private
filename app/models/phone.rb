@@ -53,22 +53,16 @@ class Phone < ActiveRecord::Base
     end
   end
 
+  def email_address
+    sms_email
+  end
+
+  def email_org
+    sms_email.split('@').last.try(:downcase)
+  end
+
 end
 
-# == Schema Information
-#
-# Table name: phones
-#
-#  id         :integer         not null, primary key
-#  member_id  :integer
-#  typ        :string(255)
-#  number     :string(255)
-#  pagable    :string(255)
-#  sms_email  :string(255)
-#  position   :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
 
 # == Schema Information
 #

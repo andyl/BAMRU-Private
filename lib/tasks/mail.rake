@@ -22,7 +22,7 @@ namespace :email do
     mailing.deliver
   end
 
-  def send_mail(message, dist, hash, type)
+  def create_outbound_mail(dist, hash)
     new_label = gen_label
     hash[:label] = new_label
     hash[:distribution_id] = dist.id
@@ -31,13 +31,26 @@ namespace :email do
       om.distribution.rsvp = true
       om.distribution.save
     end
-    mailing = nil
-    opts = Notifier.set_optz(message, hash[:address], om.full_label, dist)
-    mailing = Notifier.process_email_message(opts) if type == "email"
-    mailing = Notifier.process_sms_message(opts) if type == "phone"
-    mailing.deliver unless mailing.nil?
-    sleep 0.25
   end
+
+  def send_mail(outbound_mail)
+    puts "sending to #{outbound_mail.address}"
+    mailing    = nil
+    message    = outbound_mail.distribution.message
+    address    = outbound_mail.email_address
+    full_label = outbound_mail.full_label
+    dist       = outboune_mail.distribution
+    opts    = Notifier.set_optz(message, address, full_label, dist)
+    mailing = Notifier.process_email_message(opts) if outbound_mail.email
+    mailing = Notifier.process_sms_message(opts)   if outbound_mail.phone
+    unless mailing.nil?
+      mailing.deliver
+      outbound_mail.sent_at = Time.now
+      outbound_mail.save
+    end
+  end
+
+  require 'carrier'
 
   desc "Send Email Distribution MESSAGE_ID=<integer>"
   task :send_distribution => 'environment' do
@@ -48,14 +61,23 @@ namespace :email do
       member = dist.member
       if dist.phone?
         member.phones.pagable.each do |phone|
-          send_mail(message, dist, {:phone_id => phone.id, :address => phone.sms_email}, "phone")
+          create_outbound_mail(dist, {:phone_id => phone.id, :address => phone.sms_email})
         end
       end
       if dist.email?
         member.emails.pagable.each do |email|
-          send_mail(message, dist, {:email_id => email.id, :address => email.address}, "email")
+          create_outbound_mail(dist, {:email_id => email.id, :address => email.address})
         end
       end
+    end
+    send_list = CarrierQueueCollection.new
+    message.distributions.each do |dist|
+      dist.outbound_mails.each do |om|
+        send_list.add(om)
+      end
+    end
+    while send_obj = send_list.get
+      send_mail(send_obj)
     end
   end
 

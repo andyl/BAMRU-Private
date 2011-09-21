@@ -36,6 +36,10 @@ module HistoryHelper
     " "
   end
 
+  def sent_time(obj)
+    obj.sent_at.nil? ? "PENDING" : obj.sent_at.strftime("%y-%m-%d %H:%M:%S")
+  end
+
   def created_time(obj)
     obj.created_at.strftime("%y-%m-%d %H:%M:%S")
   end

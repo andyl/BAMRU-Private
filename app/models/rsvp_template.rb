@@ -26,3 +26,18 @@ class RsvpTemplate < ActiveRecord::Base
 end
 
 
+
+# == Schema Information
+#
+# Table name: rsvp_templates
+#
+#  id         :integer         not null, primary key
+#  position   :integer
+#  name       :string(255)
+#  prompt     :string(255)
+#  yes_prompt :string(255)
+#  no_prompt  :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

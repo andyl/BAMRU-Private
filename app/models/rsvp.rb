@@ -27,14 +27,13 @@ end
 #
 # Table name: rsvps
 #
-#  id              :integer         not null, primary key
-#  distribution_id :integer
-#  prompt          :string(255)
-#  yes_prompt      :string(255)
-#  no_prompt       :string(255)
-#  maybe_prompt    :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id         :integer         not null, primary key
+#  message_id :integer
+#  prompt     :string(255)
+#  yes_prompt :string(255)
+#  no_prompt  :string(255)
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 # == Schema Information

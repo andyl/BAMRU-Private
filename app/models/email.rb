@@ -51,6 +51,14 @@ class Email < ActiveRecord::Base
     end
   end
 
+  def email_address
+    address
+  end
+
+  def email_org
+    address.split('@').last.try(:downcase)
+  end
+
 end
 
 # == Schema Information

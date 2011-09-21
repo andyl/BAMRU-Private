@@ -80,6 +80,7 @@ end
 #  subject          :string(255)
 #  label            :string(255)
 #  body             :string(255)
+#  rsvp_answer      :string(255)
 #  send_time        :datetime
 #  bounced          :boolean         default(FALSE)
 #  created_at       :datetime

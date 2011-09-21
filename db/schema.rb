@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901000000) do
+ActiveRecord::Schema.define(:version => 20110921212744) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -201,17 +201,8 @@ ActiveRecord::Schema.define(:version => 20110901000000) do
     t.datetime "updated_at"
   end
 
-  create_table "outbound_mails", :force => true do |t|
-    t.integer  "distribution_id"
-    t.integer  "email_id"
-    t.integer  "phone_id"
-    t.string   "address"
-    t.string   "label"
-    t.boolean  "read",            :default => false
-    t.boolean  "bounced",         :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "outbound_mails" because of following StandardError
+#   Unknown type 'sent_at' for column 'datetime'
 
   create_table "phones", :force => true do |t|
     t.integer  "member_id"

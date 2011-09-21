@@ -85,6 +85,8 @@ end
 #  bounced          :boolean         default(FALSE)
 #  read_at          :datetime
 #  response_seconds :integer
+#  rsvp             :boolean         default(FALSE)
+#  rsvp_answer      :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
 #

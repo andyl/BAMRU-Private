@@ -40,7 +40,7 @@
 
       <% @mails.each do |mail| %>
         <hr>
-        Mail <b><%= mail[:outbound].full_label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=created_time(mail[:outbound])%><br/>
+        Mail <b><%= mail[:outbound].full_label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=sent_time(mail[:outbound])%><br/>
         <% mail[:inbound].each do |inb| %>
           => <%= raw reply_txt(inb) %> from <b><%= inb.from %></b> <%= raw inb.rsvp_answer_text %> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
           <div id=<%=inb.id%>_body class=mail_body><%= raw body(inb) %></div>
