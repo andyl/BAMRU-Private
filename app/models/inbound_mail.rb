@@ -42,7 +42,8 @@ class InboundMail < ActiveRecord::Base
     match = first_words.match(/\b(yes|no)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
     outbound = nil
-    if match = self.match_code(opts[:subject] + " " + opts[:body])
+
+    if match = self.match_code("#{opts[:subject]} #{opts[:body]}")
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
     end
