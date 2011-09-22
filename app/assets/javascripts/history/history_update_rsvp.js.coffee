@@ -9,7 +9,7 @@ window.clickRSVP = (link) ->
   console.log url
   console.log data
   $.post(url, data)
-  setTimeout("window.location.reload()", 2000)
+  setTimeout("window.location.reload()", 750)
 
 $(document).ready ->
   $('.rsvp_yn').click -> clickRSVP(this)

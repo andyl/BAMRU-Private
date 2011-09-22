@@ -28,7 +28,7 @@ class RsvpsController < ApplicationController
           if @dist.read == false
             x_hash[:action] = "Marked as read"
             Journal.create(x_hash)
-            x_hash[:action] = "Set RSVP to #{resonse}"
+            x_hash[:action] = "Set RSVP to #{response}"
           end
           Journal.create(x_hash)
           @dist.rsvp_answer = response
