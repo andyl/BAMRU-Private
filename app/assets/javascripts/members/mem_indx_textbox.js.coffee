@@ -3,8 +3,9 @@ This file has one jQuery functions:
 - update the number of characters left in the text box
 ###
 
+# berg-taylor is the longest name in the unit (worst case)
 headerCount = ->
-  "Subject: BAMRU PAGE [#{PREVIEW_OPTS.author_last_name}_xxxx] ".length
+  "Subject: BAMRU PAGE [berg-taylor_xxxx] ".length
 
 messageCount = ->
   $("#message_area").val().length
