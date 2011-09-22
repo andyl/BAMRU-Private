@@ -19,7 +19,11 @@ class HistoryController < ApplicationController
       Journal.create(:member_id => @member.id, :distribution_id => @distribution.id, :action => "Marked as read")
     end
     if params['dist']['rsvp_answer']
+      params['dist']['read'] = 'true'
       Journal.create(:member_id => @member.id, :distribution_id => @dist_id, :action => "Set RSVP to #{params['dist']['rsvp_answer']}")
+      if @distribution.read == false
+        Journal.create(:member_id => @member.id, :distribution_id => @distribution.id, :action => "Marked as read")
+      end
     end
     @distribution.update_attributes!(params[:dist])
     render :nothing => true
