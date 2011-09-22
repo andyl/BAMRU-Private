@@ -46,7 +46,6 @@ $(document).ready ->
   $("#myTable").tablesorterFilter(filter_params)
   $("#filter-box").focus()
 
-
 $(document).ready ->
   $('#clearsort').click ->
     eraseCookie("cert_sort")

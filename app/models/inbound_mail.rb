@@ -43,13 +43,12 @@ class InboundMail < ActiveRecord::Base
     opts[:rsvp_answer] = match && match[0].capitalize
     opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] = "Yea"
     outbound = nil
-
     if match = self.match_code("#{opts[:subject]} #{opts[:body]}")
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
     end
     if outbound.nil?
-      outbound = OutboundMail.where(:address => opts[:from]).order('created_at ASC').last
+      outbound = OutboundMail.where(:address => opts[:from].downcase).order('created_at ASC').last
     end
     unless outbound.nil?
       opts[:outbound_mail_id] = outbound.id
