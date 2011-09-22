@@ -12,9 +12,9 @@ module MessagesHelper
     pct15   = ((read15 * 100) / count).to_i
     pct60   = ((read60 * 100) / count).to_i
     pct120  = ((read120 * 100) / count).to_i
-    min15   =  "#{pct15}% in 15min "
-    min60   =  "#{pct60}% in 60min "
-    min120  =  "#{pct120}% in 120min "
+    min15   =  "#{pct15}% in 15min"
+    min60   =  "#{pct60}% in 60min"
+    min120  =  "#{pct120}% in 120min"
     [min15, min60, min120].join(", ")
   end
 
