@@ -39,8 +39,9 @@ class InboundMail < ActiveRecord::Base
     opts[:send_time] = mail.date.to_s
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     first_words = opts[:body].split(' ')[0..30].join(' ')
-    match = first_words.match(/\b(yes|no)\b/i)
+    match = first_words.match(/\b(yea|yes|no)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
+    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] = "Yea"
     outbound = nil
 
     if match = self.match_code("#{opts[:subject]} #{opts[:body]}")

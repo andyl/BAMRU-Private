@@ -69,5 +69,19 @@ module HistoryHelper
     text = inbound.body.gsub("\n", "<br/>")
   end
 
+  def rsvp_history_display(distribution)
+    return "NA" unless distribution.rsvp
+    ans = distribution.rsvp_answer
+    ans.blank? ? "NONE" : ans
+  end
+
+  def rsvp_link_helper(distribution)
+    return "" unless distribution.rsvp
+    yes_link = "<a href='#' id='Yes_#{distribution.id}' class=rsvp_yn>Change to YES</a>"
+    no_link = "<a href='#' id='No_#{distribution.id}' class=rsvp_yn>Change to NO</a>"
+    return "(#{no_link})" if distribution.rsvp_answer == "Yes"
+    return "(#{yes_link})" if distribution.rsvp_answer == "No"
+    "(#{yes_link} | #{no_link})"
+  end
 
 end

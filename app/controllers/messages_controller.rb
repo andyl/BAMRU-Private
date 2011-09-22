@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.where(:id => params["id"]).first
+    @msg = @message
   end
 
   def create

@@ -4,6 +4,28 @@ module MessagesHelper
     "<span style='background-color: #{color}; padding-left: #{padding}; padding-right: #{padding};'>#{value}</span>"
   end
 
+  def response_time_display(message)
+    count = message.distributions.count
+    read15  = @message.distributions.response_less_than(60*15).count
+    read60  = @message.distributions.response_less_than(60*60).count
+    read120 = @message.distributions.response_less_than(60*120).count
+    pct15   = ((read15 * 100) / count).to_i
+    pct60   = ((read60 * 100) / count).to_i
+    pct120  = ((read120 * 100) / count).to_i
+    min15   =  "#{pct15}% in 15min "
+    min60   =  "#{pct60}% in 60min "
+    min120  =  "#{pct120}% in 120min "
+    [min15, min60, min120].join(", ")
+  end
+
+  def rsvp_display(message)
+    return "NA" unless message.rsvp
+    num_yes  = message.distributions.rsvp_yes.count
+    num_no   = message.distributions.rsvp_no.count
+    num_none = message.distributions.rsvp_none.count
+    "Yes #{num_yes}, No #{num_no}, NONE #{num_none}"
+  end
+
   def sent_display(count, bounce_count)
     color = bounce_count == 0 ? "white" : "lightpink"
     span_wrap(count, color)

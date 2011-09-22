@@ -27,27 +27,36 @@
         </tr>
         <tr>
           <td align=right><b>Message Author:</b></td>
-          <td><%= link_to(@message.author.full_name, member_path(@message.author)) %></td>
+          <td>
+            <%= link_to(@message.author.full_name, member_path(@message.author)) %>
+            (IP Address: <%= @message.ip_address %>)
+          </td>
         </tr>
         <tr>
           <td align=right><b>Message Text:</b></td>
           <td><%= @message.text_with_rsvp %></td>
         </tr>
         <tr>
-          <td align=right><b>Author IP Address:</b></td>
-          <td><%= @message.ip_address %></td>
+          <td align=right><b>Transmission:</b></td>
+          <td>
+            Sent <%= @message.recipients.length %>,
+            Read <%= @message.distributions.read.length %>,
+            Bounced <%= @message.distributions.bounced.length %>
+          </td>
         </tr>
         <tr>
-          <td align=right><b># of Recipients:</b></td>
-          <td><%= @message.recipients.length %></td>
+          <td align=right><b>Response Time:</b></td>
+          <td><%= raw response_time_display(@message) %></td>
+        </tr>
+        <tr>
+          <td align=right><b>RSVP:</b></td>
+          <td><%= rsvp_display(@message) %></td>
         </tr>
       </table>
 
       <table id=myTable class="tablesorter">
         <thead>
         <th>Recipient</th>
-        <th>Via eMail?</th>
-        <th>Via Phone?</th>
         <th>Bounced?</th>
         <th>Read?</th>
         <th>RSVP</th>
@@ -56,8 +65,6 @@
         <% @message.distributions.each do |d| %>
           <tr>
             <td><%= link_to(d.member.full_name, member_path(d.member)) %></td>
-            <td align=center><%= raw yes_no d.email %></td>
-            <td align=center><%= raw yes_no d.phone %></td>
             <td align=center><%= raw yes_no_bounce d.bounced %></td>
             <td align=center><%= raw yes_no_read d.read %></td>
             <td align=center><%= raw d.rsvp_display_link %></td>

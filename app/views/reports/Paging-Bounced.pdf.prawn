@@ -13,10 +13,10 @@ def mail_hash
     else
       if v.email && v.email.address == v.address
         a[v.id] = {
-                :count => 1,
                 :type  => "eMail",
                 :addr => v.address,
-                :name => v.email.member.full_name
+                :name => v.email.member.full_name,
+                :date => v.created_at.strftime("%m-%d")
         }
       end
     end
@@ -31,10 +31,10 @@ def phone_hash
     else
       if v.phone && v.phone.sms_email == v.address
         a[v.id] = {
-                :count => 1,
                 :type  => "Phone",
                 :addr => v.address,
-                :name => v.phone.member.full_name
+                :name => v.phone.member.full_name,
+                :date => v.created_at.strftime("%m-%d")
         }
       end
     end
@@ -43,7 +43,7 @@ def phone_hash
 end
 
 def z_headers
-  %w(#\ Bounces Address Type Member)
+  %w(#\ Address Type Member Date)
 end
 
 def gen_array

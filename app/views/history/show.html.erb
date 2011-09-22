@@ -1,4 +1,4 @@
-<%= javascript_include_tag "distributions/all_distributions" %>
+<%= javascript_include_tag "history/all_history" %>
 
 <div id=x_container>
   <div id=x_body>
@@ -35,6 +35,10 @@
         <tr>
           <td align=right><b>Message Text:</b></td>
           <td><%= @message.text_with_rsvp %></td>
+        </tr>
+        <tr>
+          <td align=right><b>RSVP:</b></td>
+          <td><%= rsvp_history_display(@distribution) %> <%= raw rsvp_link_helper(@distribution) %> </td>
         </tr>
       </table>
 

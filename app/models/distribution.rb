@@ -31,6 +31,7 @@ class Distribution < ActiveRecord::Base
 
   scope :rsvp_yes,  where(:rsvp_answer => "Yes")
   scope :rsvp_no,   where(:rsvp_answer => "No")
+  scope :rsvp_none, where("rsvp_answer != 'Yes'").where("rsvp_answer != 'No'")
 
   # ----- Local Methods-----
 
