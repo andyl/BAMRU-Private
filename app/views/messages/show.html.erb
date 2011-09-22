@@ -54,6 +54,13 @@
         </tr>
       </table>
 
+      <% if @message.distributions.count > 4 %>
+        <div style='text-align: center; margin-bottom: 0px; background-color: lightgray; padding: 3px;'>
+          Search: <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
+          <input id="filter-clear-button" type="button" value="Clear"/>
+        </div>
+      <% end %>
+
       <table id=myTable class="tablesorter">
         <thead>
         <th>Recipient</th>

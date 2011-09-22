@@ -2,6 +2,7 @@
 // Put working code in separate files...
 
 //= require jquery.tablesorter2
+//= require jquery.tablesorter_filter
 //= require tablesorter_util
 
 //= require messages/messages_show_table

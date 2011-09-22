@@ -14,7 +14,15 @@ sort_opts =
     0: {sorter: 'last_name'}
     4: {sorter: false }
 
+filter_params =
+  filterContainer:      "#filter-box"
+  filterClearContainer: "#filter-clear-button"
+  filterColumns:        [0,1,2,3]
+  columns:              ["recipient", "bounced", "read", "rsvp"]
+
 $(document).ready ->
   $.tablesorter.addParser last_name_options
   $("#myTable").tablesorter(sort_opts)
+  $("#myTable").tablesorterFilter(filter_params)
+  $("#filter-box").focus()
 
