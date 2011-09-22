@@ -27,6 +27,7 @@ module NotifierHelper
     opts ||= {}
     opts['label']             ||= "member_abcd"
     opts['author_name']       ||= "TBD"
+    opts['author_last_name']  ||= "TBD"
     opts['author_short_name'] ||= "TBD"
     opts['author_mobile']     ||= "NA"
     opts['author_email']      ||= "NA"
@@ -45,6 +46,7 @@ module NotifierHelper
     opts['label']             = label
     opts['author_name']       = message.author.full_name
     opts['author_short_name'] = message.author.short_name
+    opts['author_last_name']  = message.author.last_name
     opts['author_mobile']     = message.author.phones.mobile.first.try(:number) || "NA"
     opts['author_email']      = message.author.emails.first.try(:address) || "NA"
     opts['recipient_email']   = address

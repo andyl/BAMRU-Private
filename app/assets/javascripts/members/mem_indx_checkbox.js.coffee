@@ -102,12 +102,14 @@ setDisplay = (select) ->
     $('#rsvp_display').hide()
     $('#rsvp_display').html("")
     setPreviewOpts("", "", "")
+    updateTextBoxCount()
     return
   labelJSON = $(select).children("option:selected").attr('data-prompt')
   labelObj  = JSON.parse(labelJSON)
   setPreviewOpts(labelObj.prompt, labelObj.yes_prompt, labelObj.no_prompt)
   $('#rsvp_display').html(responseForm(optName, labelObj, labelJSON))
   $('#rsvp_display').show()
+  updateTextBoxCount()
 
 $(document).ready ->
   $('#rsvp_display').hide()

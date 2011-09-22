@@ -1,1 +1,1 @@
-<%= @opts['text'] %> | Sent by <%= @opts['author_short_name'] %> <% unless @opts['prompt'].blank? %>| RSVP: <%= @opts['prompt'] %><% end %>
+<%= @opts['text'] %> (from <%= @opts['author_last_name']%>) <% unless @opts['prompt'].blank? %>RSVP <%= @opts['prompt'] %><% end %>
