@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'request_helper'
 
-describe "Home" do
+describe "Home", :capybara => true do
   before(:each) do
     user_name = "asdf_zxcv"
     member = Member.create!(:user_name => user_name)

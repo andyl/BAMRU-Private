@@ -2,3 +2,5 @@
 --colour
 --format progress
 --debug
+--tag ~capybara
+

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Members" do
+describe "Members", :capybara => true do
   describe "GET /mobile" do
     it "works!" do
       get mobile_path

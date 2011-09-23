@@ -17,7 +17,6 @@ describe Member do
    specify { @obj.should respond_to(:roles)         } 
    specify { @obj.should respond_to(:photos)        } 
    specify { @obj.should respond_to(:messages)      }
-   specify { @obj.should respond_to(:history) }
  end
 
  describe "Instance Methods" do
@@ -26,11 +25,11 @@ describe Member do
 
  describe "Validations" do
    context "self-contained" do
-     it { should validate_presence_of(:user_name)          }
-     it { should validate_presence_of(:first_name)         }
-     it { should validate_presence_of(:last_name)          }
+     it { should validate_presence_of(:user_name)               }
+     it { should validate_presence_of(:first_name)              }
+     it { should validate_presence_of(:last_name)               }
      it { should validate_format_of(:user_name).with("xxx_yyy") }
-     it { should validate_presence_of(:user_name)          }
+     it { should validate_presence_of(:user_name)               }
    end
    context "inter-object" do
      before(:each) do

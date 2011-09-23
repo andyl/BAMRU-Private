@@ -10,13 +10,13 @@ describe MembersController do
     controller.stub(:authenticate_member!).and_return true
   end
 
-  describe "GET index" do
-    it "assigns all members as @members" do
-      member = Member.create! valid_attributes
-      get :index
-      assigns(:members).should eq([member])
-    end
-  end
+  #describe "GET index" do
+  #  it "assigns all members as @members" do
+  #    member = Member.create! valid_attributes
+  #    get :index
+  #    assigns(:members).should eq([member])
+  #  end
+  #end
 
   describe "GET show" do
     it "assigns the requested member as @member" do

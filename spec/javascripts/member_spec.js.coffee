@@ -1,3 +1,5 @@
+#= require tablesorter_util
+
 describe "MemberName", ->
 
   beforeEach ->
@@ -8,7 +10,7 @@ describe "MemberName", ->
   describe "basic object generation", ->
 
     it "generates an object", ->
-      (expect @obj).toBeDefined()
+      expect(@obj).toBeDefined()
 
     it "returns the input name", ->
       (expect @obj.full_name).toEqual(@input_name)
@@ -131,16 +133,16 @@ describe "RoleScore", ->
 
       it "scores S", ->
         @obj.input = "S"
-        (expect @obj.score_one()).toEqual(-5)
+        (expect @obj.score_one()).toEqual(-10)
 
       it "scores A", ->
         @obj.input = "A"
-        (expect @obj.score_one()).toEqual(-10)
+        (expect @obj.score_one()).toEqual(-5)
 
     describe "when using a single input value as a parameter", ->
 
-      it "scores S",       -> (expect @obj.score_one("s")).toEqual(-5)
-      it "scores A",       -> (expect @obj.score_one("a")).toEqual(-10)
+      it "scores A",       -> (expect @obj.score_one("a")).toEqual(-5)
+      it "scores S",       -> (expect @obj.score_one("s")).toEqual(-10)
       it "scores R",       -> (expect @obj.score_one("r")).toEqual(-25)
       it "scores T",       -> (expect @obj.score_one("t")).toEqual(-50)
       it "scores FM",      -> (expect @obj.score_one("fm")).toEqual(-100)
@@ -156,7 +158,7 @@ describe "RoleScore", ->
       (expect @obj.score_array()).toEqual([-250, -500])
 
   describe "#score", ->
-  
+
     it "returns a valid score", ->
       @obj.input = "TM OL"
       (expect @obj.score()).toEqual(-750)

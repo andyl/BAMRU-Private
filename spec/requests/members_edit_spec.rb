@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'request_helper'
 
-describe "Members/Edit" do
+describe "Members/Edit", :capybara => true do
 
   describe "GET /members/edit" do
 

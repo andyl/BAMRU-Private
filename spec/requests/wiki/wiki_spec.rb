@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Wiki @ http://wiki.bamru.net", :js => true do
+describe "Wiki @ http://wiki.bamru.net", :js => true, :capybara => true do
   describe "login" do
     describe "Login" do
       it "works!" do

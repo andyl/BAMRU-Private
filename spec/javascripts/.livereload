@@ -1,3 +1,0 @@
-config.exts << 'scss'
-config.exts << 'coffee'
-config.apply_js_live = false

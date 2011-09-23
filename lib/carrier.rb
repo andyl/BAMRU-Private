@@ -8,7 +8,7 @@
 #
 class CarrierQueue
 
-  TIME_DELAY_PER_CARRIER = 5     # seconds
+  TIME_DELAY_PER_CARRIER = 8     # seconds
   TIME_DELAY_PER_MESSAGE = 0.25  # seconds
 
   def initialize

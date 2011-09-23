@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'request_helper'
 
-describe "Members" do
+describe "Members", :capybara => true do
   describe "GET /members" do
     it "can't access a page if not logged in'" do
       get members_path
