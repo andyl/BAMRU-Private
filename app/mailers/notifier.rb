@@ -40,7 +40,7 @@ class Notifier < ActionMailer::Base
     mail(
             :to          => @opts['recipient_email'],
             :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject     => "BAMRU Page [#{@opts['label']}]"
+            :subject     => "BAMRU [#{@opts['label']}]"
     )
   end
 

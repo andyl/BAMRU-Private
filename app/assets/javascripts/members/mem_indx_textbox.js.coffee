@@ -5,7 +5,7 @@ This file has one jQuery functions:
 
 # berg-taylor is the longest name in the unit (worst case)
 headerCount = ->
-  "Subject: BAMRU PAGE [berg-taylor_xxxx] ".length
+  "Subject: BAMRU [berg-taylor_xxxx] ".length
 
 messageCount = ->
   $("#message_area").val().length

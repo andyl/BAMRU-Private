@@ -2,5 +2,5 @@
 --colour
 --format progress
 --debug
---tag ~capybara
-
+    # tag ~capybara
+    # tag ~js

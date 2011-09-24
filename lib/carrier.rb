@@ -8,8 +8,13 @@
 #
 class CarrierQueue
 
-  TIME_DELAY_PER_CARRIER = 8     # seconds
-  TIME_DELAY_PER_MESSAGE = 0.25  # seconds
+  def self.time_delay_per_carrier
+    8 # seconds
+  end
+
+  def time_delay_per_message
+    0.25 # seconds
+  end
 
   def initialize
     @address_queue = []
@@ -25,9 +30,9 @@ class CarrierQueue
   end
 
   def get
-    sleep TIME_DELAY_PER_MESSAGE
+    sleep time_delay_per_message
     return nil unless get_able?
-    @wait_time = Time.now + TIME_DELAY_PER_CARRIER
+    @wait_time = Time.now + time_delay_per_message
     @address_queue.pop
   end
 
@@ -39,14 +44,14 @@ class CarrierQueue
 
 end
 
-# Maintains a collection of CarrierQueues.  Orders the queues for maximum 
+# Maintains a collection of CarrierQueues.  Orders the queues for maximum
 # sending efficiency, given the built-in time delay for each carrier.
-# 
+#
 #  Simple Test Example using load_all / get_all:
 #    collection = CarrierQueueCollection.new
 #    collection.load_all(Phone)
 #    collection.get_all
-#          
+#
 #  Example: sending email messages to selected members
 #    collection = CarrierQueueCollection.new
 #    collection.load_all(Phone.where(:member_id => [1,3,4,5]))
