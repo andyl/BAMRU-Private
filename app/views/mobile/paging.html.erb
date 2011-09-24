@@ -1,0 +1,28 @@
+<%= javascript_include_tag "mobile/mobile_paging" %>
+
+<fieldset class="ui-grid-a">
+  <div class="ui-block-a">
+    <a href="#" id="select_link" data-role="button">Select</a>
+  </div>
+  <div class="ui-block-b">
+    <a href="#" id="send_link"  data-role="button">Send</a>
+  </div>
+</fieldset>
+
+<div id="select">
+  <div  data-role="fieldcontain">
+    <fieldset data-role="controlgroup">
+
+      <% @members.each do |mem| %>
+        <input type="checkbox" name="checkbox-<%= mem.id %>" id="checkbox-<%= mem.id %>" class="custom" />
+        <label for="checkbox-<%= mem.id %>"><%= "#{mem.typ} - #{mem.full_name}" %></label>
+      <% end %>
+
+    </fieldset>
+  </div>
+</div>
+
+<div id="send">
+  this is send
+</div>
+

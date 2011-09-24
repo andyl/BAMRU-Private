@@ -7,6 +7,9 @@ class MobileController < ApplicationController
   def index
   end
 
+  def index_old
+  end
+
   def about
   end
 
@@ -19,4 +22,15 @@ class MobileController < ApplicationController
   def map
   end
 
+  def inbox
+    @page_name = "Inbox"
+  end
+
+  def paging
+    @members   = Member.active.all
+    @page_name = "Paging"
+  end
+
+  def status
+  end
 end

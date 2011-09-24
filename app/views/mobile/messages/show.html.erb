@@ -1,0 +1,8 @@
+<b><%= @message.text %></b><br/>
+<hr>
+<div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
+  <% @dists.each do |dist| %>
+    <li><%= dist.member.short_name %></li>
+  <% end %>
+</div>
+

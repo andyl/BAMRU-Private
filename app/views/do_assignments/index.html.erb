@@ -24,7 +24,7 @@
       </thead>
       <tbody>
       <% @do_assignments.each do |a| %>
-        <% if Time.now > a.start_time && Time.now < a.end_time %>
+        <% if a.current? %>
           <tr style="background-color: lightgreen;">
         <% else %>
           <tr>

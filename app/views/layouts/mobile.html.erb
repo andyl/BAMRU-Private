@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>BAMRU.net</title>
+  <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
   <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
   <%= javascript_include_tag "jquery_ujs.js" %>
@@ -13,23 +14,22 @@
 
 <div data-role="page">
   <div data-role="header">
-    <%= link_to("Home", mobile_path, "data-icon" => "home") unless current_page?(mobile_path) %>
-    <h2>BAMRU Mobile</h2>
+    <%= link_to("Home", mobile_path, "data-icon" => "home", "data-direction" => "reverse") unless current_page?(mobile_path) %>
+    <h2><%= page_name %></h2>
   </div>
-  
+
   <div data-role="content">
 
     <%= yield %>
 
   </div>
 
+  <% if request.path.include?('/mobile/about') %>
+    <div data-role="footer" data-position="fixed">
+      <%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline"%>
+    </div>
+  <% end %>
 
-<% if request.path.include?('/mobile/about') %>
-<div data-role="footer" data-position="fixed">
-<%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline"%>
-</div>
-<% end %>
-  
 </div>
 
 </body>

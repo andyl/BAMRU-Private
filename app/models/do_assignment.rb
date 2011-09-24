@@ -16,13 +16,16 @@ class DoAssignment < ActiveRecord::Base
 
 
   # ----- Scopes -----
-
+  def self.current
+    where(:year => Time.now.year).
+    where(:quarter => Time.now.current_quarter).
+    all.select {|x| x.current? }
+  end
 
   # ----- Class Methods -----
   def self.find_or_new(hash)
     where(hash).first || new(hash)
   end
-
 
   # ----- Local Methods-----
   def avail_members
@@ -32,6 +35,18 @@ class DoAssignment < ActiveRecord::Base
             sort {|a,b| a.last_name <=> b.last_name}.
             map {|m| m.full_name}.
             uniq
+  end
+
+  def current?
+    start_time < Time.now && end_time > Time.now
+  end
+
+  def previous
+
+  end
+
+  def next
+
   end
 
   def start_day

@@ -5,6 +5,7 @@ Zn::Application.routes.draw do
   get "home/tbd"
   get "home/contact"
   get "home/mobile"
+  get "home/xmobile"
   get "home/wiki"
   get "home/edit_info"
   get "home/mail_sync"
@@ -56,11 +57,16 @@ Zn::Application.routes.draw do
   get "mobile/geo"
   get "mobile/geo2"
 
+  get "mobile/inbox"
+  get "mobile/paging"
+  get "mobile/status"
+
   get "mobile/login"  => "mobile/sessions#new",     :as => "mobile_login"
   get "mobile/logout" => "mobile/sessions#destroy", :as => "mobile_logout"
   
   namespace "mobile" do
     resources :members
+    resources :messages
     resources :sessions
     resources :chats
   end

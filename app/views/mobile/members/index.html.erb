@@ -1,5 +1,4 @@
 <div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
-  <li data-role="list-divider">BAMRU Members</li>
   <% @members.each do |mem| %>
     <li><%= link_to mem.full_name, mobile_member_path(mem) %></li>
   <% end %>

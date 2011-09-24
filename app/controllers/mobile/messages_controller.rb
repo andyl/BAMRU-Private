@@ -1,16 +1,16 @@
-class Mobile::MembersController < ApplicationController
+class Mobile::MessagesController < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
   layout 'mobile'
 
   def index
-    @page_name = "Roster"
-    @members = Member.order_by_last_name.all
+    @messages = Message.order('id DESC').limit(15)
   end
 
   def show
-    @member = Member.where(:id => params[:id]).first
+    @message = Message.find(params[:id])
+    @dists   = @message.distributions
   end
 
   def new
