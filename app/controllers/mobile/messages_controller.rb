@@ -5,6 +5,7 @@ class Mobile::MessagesController < ApplicationController
   layout 'mobile'
 
   def index
+    @page_name = "Message Log"
     @messages = Message.order('id DESC').limit(15)
   end
 

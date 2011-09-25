@@ -1,7 +1,9 @@
 <div style='text-align: center;'>
-BAMRU Status Line
-<p></p>
-<b>650-858-4618</b>
-<p></p>
-<a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
+  BAMRU Status Line
+  <p></p>
+  <b>650-858-4618</b>
+  <p></p>
+  <% if @phone %>
+    <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
+  <% end %>
 </div>

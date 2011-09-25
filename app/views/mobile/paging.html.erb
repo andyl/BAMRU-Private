@@ -10,16 +10,31 @@
 </fieldset>
 
 <div id="select">
+
+  <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='text-align: center;'>
+    <input type="checkbox" name="cktm" id="cktm" class="custom" />
+    <label for="cktm">TM</label>
+    <input type="checkbox" name="ckfm" id="ckfm" class="custom" />
+    <label for="ckfm">FM</label>
+    <input type="checkbox" name="cktx" id="cktx" class="custom" />
+    <label for="cktx">T</label>
+  </div>
+
+  <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='text-align: center;'>
+    <a href="#" data-role="button">Clear All</a>
+    <a href="#" data-role="button">Clear OOT</a>
+  </div>
+
   <div  data-role="fieldcontain">
     <fieldset data-role="controlgroup">
-
-      <% @members.each do |mem| %>
+      <% @members.each do |mem| -%>
         <input type="checkbox" name="checkbox-<%= mem.id %>" id="checkbox-<%= mem.id %>" class="custom" />
         <label for="checkbox-<%= mem.id %>"><%= "#{mem.typ} - #{mem.full_name}" %></label>
       <% end %>
 
     </fieldset>
   </div>
+
 </div>
 
 <div id="send">

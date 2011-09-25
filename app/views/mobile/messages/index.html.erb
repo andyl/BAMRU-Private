@@ -1,5 +1,4 @@
 <div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
-  <li data-role="list-divider">Unit Message Log</li>
   <% @messages.each do |msg| %>
     <li><%= link_to msg.id, mobile_message_path(msg) %></li>
   <% end %>

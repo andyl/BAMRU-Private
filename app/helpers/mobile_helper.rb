@@ -3,4 +3,5 @@ module MobileHelper
     return "BAMRU Mobile" unless defined?(@page_name)
     "#{@page_name}"
   end
+
 end

@@ -37,6 +37,28 @@ class ApplicationController < ActionController::Base
     system cmd
   end
 
+  def device
+    agent = env["HTTP_USER_AGENT"]
+    case agent
+      when /Android/     then "Android"
+      when /iPod/        then "iPod"
+      when /iPad/        then "iPad"
+      when /iPhone/      then "iPhone"
+      when /BlackBerry/  then "BlackBerry"
+      when /MSIE/        then "IE"
+      when /Firefox/     then "Firefox"
+      when /Konqueror/   then "Konqueror"
+      when /Netscape/    then "Netscape"
+      when /Opera/       then "Opera"
+      when /Safari/      then "Safari"
+      else  "Unknown"
+    end
+  end
+
+  def phone_device?
+    %w(Android iPhone BlackBerry).include? device
+  end
+
   private
 
   def current_member
