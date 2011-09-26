@@ -78,18 +78,17 @@
             <td valign="top" bgcolor="white">
               <table width=100%>
                 <tr>
-                  <td width=33% align=center><b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b></td>
-                  <td width=33% align=center><b><a target='_blank' href="http://wiki.bamru.net/?username=<%=@current_member.wiki_name%>">Wiki</a></b></td>
-                  <td width=33% align=center><b><%= link_to "Files", '/files' %></b></td>
+                  <td width=25% align=center><b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b></td>
+                  <td width=25% align=center><b><a target='_blank' href="http://wiki.bamru.net/?username=<%=@current_member.wiki_name%>">Wiki</a></b></td>
+                  <td width=25% align=center><b><%= link_to "Files", '/files' %></b></td>
+                  <td width=25% align=center><b><%= link_to "Mobile",  '/home/mobile' %></b></td>
                 </tr>
               </table>
 
               <% if current_member.developer? %>
                 <table width=100%>
                   <tr>
-                    <td width=33% align=center><b><%= link_to "Mobile",  '/home/mobile' %></b></td>
-                    <td width=33% align=center><b><%= link_to "XMobile", '/home/xmobile' %></b></td>
-                    <td width=33% align=center><b><%= link_to "Chat",    '/chats' %></b></td>
+                    <td width=100% align=center><b><%= link_to "Chat",    '/chats' %></b></td>
                   </tr>
                 </table>
               <% end %>

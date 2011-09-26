@@ -50,13 +50,14 @@ class ApplicationController < ActionController::Base
       when /Konqueror/   then "Konqueror"
       when /Netscape/    then "Netscape"
       when /Opera/       then "Opera"
+      when /Chrome/      then "Chrome"
       when /Safari/      then "Safari"
       else  "Unknown"
     end
   end
 
   def phone_device?
-    %w(Android iPhone BlackBerry).include? device
+    %w(Android iPhone BlackBerry Chrome).include? device
   end
 
   private

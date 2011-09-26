@@ -1,8 +1,10 @@
 <div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
   <li><%= link_to "Roster", mobile_members_path %></li>
-  <li><%= link_to "Paging", mobile_paging_path %></li>
-  <li><%= link_to "Unit Message Log", mobile_messages_path %></li>
-  <li><%= link_to "My Inbox", mobile_inbox_path %></li>
-  <li><%= link_to "DO: Leak", mobile_member_path(24) %></li>
   <li><%= link_to "Status Line", mobile_status_path %></li>
+  <% if current_member.developer? %>
+    <li><%= link_to "Paging", mobile_paging_path %></li>
+    <li><%= link_to "Unit Message Log", mobile_messages_path %></li>
+    <li><%= link_to "My Inbox", mobile_inbox_path %></li>
+    <li><%= link_to "DO: Leak", mobile_member_path(24) %></li>
+  <% end %>
 </div>
