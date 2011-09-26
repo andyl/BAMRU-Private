@@ -32,7 +32,6 @@ class MobileController < ApplicationController
   end
 
   def status
-    #@phone = phone_device?
-    @phone = true
+    @phone = phone_device?
   end
 end

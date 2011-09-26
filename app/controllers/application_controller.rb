@@ -42,8 +42,8 @@ class ApplicationController < ActionController::Base
     case agent
       when /Android/     then "Android"
       when /iPod/        then "iPod"
-      when /iPad/        then "iPad"
       when /iPhone/      then "iPhone"
+      when /iPad/        then "iPad"
       when /BlackBerry/  then "BlackBerry"
       when /MSIE/        then "IE"
       when /Firefox/     then "Firefox"
@@ -57,7 +57,8 @@ class ApplicationController < ActionController::Base
   end
 
   def phone_device?
-    %w(Android iPhone BlackBerry Chrome).include? device
+    return true if device == "Chrome" && ENV['RAILS_ENV'] == "development"
+    %w(Android iPhone BlackBerry).include? device
   end
 
   private
