@@ -33,6 +33,8 @@ class Member < ActiveRecord::Base
   has_many :messages
   has_many :distributions
   has_many :journals
+  has_many :primary_do_assignments, :class_name => 'DoAssignment', :foreign_key => 'primary_id'
+  has_many :backup_do_assignments,  :class_name => 'DoAssignment', :foreign_key => 'backup_id'
   has_many :notices, :through => :distributions, :source => :message
 
   accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
@@ -79,18 +81,37 @@ class Member < ActiveRecord::Base
   before_validation :set_remember_me_token,    :if => :password_digest_changed?
 
   # ----- Scopes -----
-  scope :order_by_last_name,  order("last_name ASC")
-  scope :order_by_role_score, order([:role_score, :last_name])
-  scope :order_by_typ_score,  order([:typ_score, :last_name])
-  scope :standard_order,      order_by_role_score
-  scope :roles_order,         order_by_role_score
-  scope :typ_order,           order_by_typ_score
-  scope :with_photos,         where("id     IN (SELECT member_id from photos)")
-  scope :without_photos,      where("id NOT IN (SELECT member_id from photos)")
-  scope :active,              where(:typ => ["T", "FM", "TM"]).standard_order
-  scope :inactive,            where(:typ => ["R", "S", "A"]).standard_order
+  scope :order_by_last_name,     order("last_name ASC")
+  scope :order_by_do_role_score, order(['current_do DESC', :role_score, :last_name])
+  scope :order_by_role_score,    order([:role_score, :last_name])
+  scope :order_by_do_typ_score,  order(['current_do DESC', :typ_score, :last_name])
+  scope :order_by_typ_score,     order([:typ_score, :last_name])
+  scope :standard_order,         order_by_role_score
+  scope :roles_order,            order_by_role_score
+  scope :typ_order,              order_by_typ_score
+  scope :with_photos,            where("id     IN (SELECT member_id from photos)")
+  scope :without_photos,         where("id NOT IN (SELECT member_id from photos)")
+  scope :active,                 where(:typ => ["T", "FM", "TM"]).standard_order
+  scope :inactive,               where(:typ => ["R", "S", "A"]).standard_order
 
+  
+  # ----- Class Methods ----
+  def self.set_do
+    where(:current_do => true).all.each {|mem| mem.current_do = false ; mem.save}
+    ass = DoAssignment.current.first
+    if x = ass.backup
+      x.current_do = true ; x.save
+    else
+      x = ass.primary
+      x.current_do = true ; x.save
+    end
+  end
   # ----- Virtual Attributes (Accessors) -----
+
+  def full_name_do
+    do_text = current_do ? " (DO)" : ""
+    full_name + do_text
+  end
 
   def full_name
     "#{title.blank? ? "" : title + ' '}#{first_name} #{last_name}"
@@ -169,8 +190,9 @@ class Member < ActiveRecord::Base
   end
 
   def full_roles
+    do_txt = current_do ? "DO " : ""
     arr = ([typ] + roles.map {|r| r.typ})
-    arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
+    do_txt + arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 
   def calc_typ_score
@@ -440,7 +462,6 @@ class Member < ActiveRecord::Base
     priority_errors = full_name_errors +
                       phone_errors +
                       address_errors
-#    debugger
     other_errors(errs, priority_errors).merge(full_name_err).
                                         merge(phone_err).
                                         merge(address_err)

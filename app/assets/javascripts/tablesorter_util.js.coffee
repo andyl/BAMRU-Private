@@ -15,6 +15,7 @@ window.RoleScore = class RoleScore
       when "tm" then -250
       when "ol" then -500
       when "bd" then -1000
+      when "do" then -5000
       else 0
   score_array: ->
     @score_one(role) for role in @input_array()

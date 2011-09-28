@@ -56,4 +56,65 @@ module MobileHelper
     "<b>Photos:</b><br/>" + tags
   end
 
+  def set_buttons(wth)
+    <<-ERB
+      <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='text-align: center;'>
+        <input type="checkbox" name="#{wth}_cktm" id="#{wth}_cktm" class="custom" />
+        <label for="#{wth}_cktm">TM</label>
+        <input type="checkbox" name="#{wth}_ckfm" id="#{wth}_ckfm" class="custom" />
+        <label for="#{wth}_ckfm">FM</label>
+        <input type="checkbox" name="#{wth}_cktx" id="#{wth}_cktx" class="custom" />
+        <label for="#{wth}_cktx">T</label>
+      </div>
+    ERB
+  end
+
+  def clear_buttons
+    <<-ERB
+      <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='margin-bottom: 0px; text-align: center;'>
+        <a href="#" data-role="button" data-inline='true'><del>All</del></a>
+        <a href="#" data-role="button" data-inline='true'><del>OOT</del></a>
+      </div>
+    ERB
+  end
+
+  def wide_layout
+    <<-ERB
+      <div id=wideLayout style='margin-bottom:15px;'>
+        <fieldset class="ui-grid-a">
+          <div class="ui-block-a">#{set_buttons("w")}</div>
+          <div class="ui-block-b">#{clear_buttons}</div>
+        </fieldset>
+      </div>
+    ERB
+  end
+
+  def narrow_layout
+    "<div id=narrowLayout>#{set_buttons("n")}#{clear_buttons}</div>"
+  end
+
+  def select_layout
+    "#{wide_layout}#{narrow_layout}"
+  end
+
+  def paging_nav
+    <<-ERB
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" id="select_link" data-role="button">Select</a></li>
+        <li><a href="#" id="send_link"  data-role="button">Send</a></li>
+      </ul>
+    </div>
+    ERB
+  end
+
+
+  def rsvp_mobile_select
+    first_opt = "<option id=blank_select value='NA' selected='selected'></option>\n"
+    opts = first_opt + RsvpTemplate.order('position ASC').all.map do |i|
+      "<option value='#{i.name}' data-prompt='#{i.output_json}'>#{i.prompt}</option>\n"
+    end.join
+    "<select id=rsvp_select>\n" + opts + "</select>"
+  end
+
 end

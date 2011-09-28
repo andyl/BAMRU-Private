@@ -161,6 +161,21 @@ module ApplicationHelper
     return_date.nil? ? "" : (return_date + 1.day).strftime("%y-%m-%d")
   end
 
+  def do_assignment_display_name(assignment)
+    return "" if assignment.nil?
+    return assignment.name if assignment.primary.blank?
+    if assignment.backup.blank?
+      mem = assignment.primary
+      link_to(mem.full_name, member_path(mem))
+    else
+      prim = assignment.primary
+      back = assignment.backup
+      bstr = link_to(back.full_name, member_path(back))
+      pstr = link_to(prim.full_name, member_path(prim))
+      "#{bstr} (backup for #{pstr})"
+    end
+  end
+
   # ----- Debug Helpers -----
 
   def params_debug_text

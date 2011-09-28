@@ -5,9 +5,7 @@ class MobileController < ApplicationController
   layout 'mobile'
 
   def index
-  end
-
-  def index_old
+    @do = Member.where(:current_do => true).first
   end
 
   def about
@@ -27,7 +25,7 @@ class MobileController < ApplicationController
   end
 
   def paging
-    @members   = Member.active.all
+    @members   = Member.order_by_do_typ_score.active
     @page_name = "Paging"
   end
 

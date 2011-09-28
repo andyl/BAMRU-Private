@@ -15,7 +15,20 @@ window.togglePage = (a_page, b_page)->
 displaySend   = -> togglePage("#send", "#select")
 displaySelect = -> togglePage("#select", "#send")
 
+window.setBreak = ->
+  width = $(document).width()
+  if (width < 453)
+    $('#wideLayout').hide()
+    $('#narrowLayout').show()
+  else
+    $('#narrowLayout').hide()
+    $('#wideLayout').show()
+
 $(document).ready ->
+  displaySelect()
   $("#send_link").click   -> displaySend()
   $("#select_link").click -> displaySelect()
-  displaySelect()
+
+$(document).ready ->
+  $(window).resize -> setBreak()
+  setBreak()

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921212744) do
+ActiveRecord::Schema.define(:version => 20110928052440) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -108,6 +108,10 @@ ActiveRecord::Schema.define(:version => 20110921212744) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "primary_id"
+    t.integer  "backup_id"
+    t.datetime "start"
+    t.datetime "finish"
   end
 
   create_table "emails", :force => true do |t|
@@ -176,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20110921212744) do
     t.time     "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "current_do",                 :default => false
   end
 
   add_index "members", ["forgot_password_token"], :name => "index_members_on_forgot_password_token", :unique => true
@@ -201,8 +206,18 @@ ActiveRecord::Schema.define(:version => 20110921212744) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "outbound_mails" because of following StandardError
-#   Unknown type 'sent_at' for column 'datetime'
+  create_table "outbound_mails", :force => true do |t|
+    t.integer  "distribution_id"
+    t.integer  "email_id"
+    t.integer  "phone_id"
+    t.string   "address"
+    t.string   "label"
+    t.boolean  "read",            :default => false
+    t.boolean  "bounced",         :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "sent_at"
+  end
 
   create_table "phones", :force => true do |t|
     t.integer  "member_id"

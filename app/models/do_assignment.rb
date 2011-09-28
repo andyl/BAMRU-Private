@@ -4,11 +4,14 @@ class DoAssignment < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :member
+  belongs_to :primary, :class_name => 'Member'
+  belongs_to :backup,  :class_name => 'Member'
 
 
   # ----- Callbacks -----
 
+  before_save :set_primary_from_name
+  before_save :set_start_and_finish
 
 
   # ----- Validations -----
@@ -16,11 +19,7 @@ class DoAssignment < ActiveRecord::Base
 
 
   # ----- Scopes -----
-  def self.current
-    where(:year => Time.now.year).
-    where(:quarter => Time.now.current_quarter).
-    all.select {|x| x.current? }
-  end
+  scope :current, where('start < ?', Time.now).where('finish > ?', Time.now)
 
   # ----- Class Methods -----
   def self.find_or_new(hash)
@@ -28,6 +27,11 @@ class DoAssignment < ActiveRecord::Base
   end
 
   # ----- Local Methods-----
+  def set_start_and_finish
+    start  = start_time
+    finish = end_time
+  end
+
   def avail_members
     AvailDo.where(:year => year, :quarter => quarter, :week => week).
             all.
@@ -37,16 +41,24 @@ class DoAssignment < ActiveRecord::Base
             uniq
   end
 
+  def backup_hash
+    AvailDo.where(:year => year, :quarter => quarter, :week => week).
+            all.
+            map {|a| a.member}.
+            sort {|a,b| a.last_name <=> b.last_name}.
+            uniq.
+            map {|m| [m.full_name, m.id]}
+  end
+
   def current?
     start_time < Time.now && end_time > Time.now
   end
 
-  def previous
-
-  end
-
-  def next
-
+  def set_primary_from_name
+    tname = name.split(' ').join(' ').downcase.gsub(' ', '_')
+    if mem = Member.where(:user_name => tname).first
+      primary_id = mem.id
+    end
   end
 
   def start_day
@@ -67,6 +79,7 @@ class DoAssignment < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: do_assignments
@@ -79,5 +92,7 @@ end
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  primary_id :integer
+#  backup_id  :integer
 #
 

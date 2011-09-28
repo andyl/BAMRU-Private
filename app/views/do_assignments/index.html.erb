@@ -19,7 +19,7 @@
     <table border=1 align=center>
       <thead>
       <tr>
-        <th>Shift</th><th>Start</th><th>End</th><th>Name</th>
+        <th>Shift</th><th>Start</th><th>End</th><th>DO Name</th>
       </tr>
       </thead>
       <tbody>
@@ -32,7 +32,7 @@
         <td><%= a.year%> / Q<%= a.quarter%> / Week<%= a.week%></td>
         <td><%= a.start_time.show %></td>
         <td><%= a.end_time.show %></td>
-        <td><%= a.name%></td>
+        <td><%= raw do_assignment_display_name(a) %></td>
         </tr>
       <% end %>
       </tbody>

@@ -19,7 +19,7 @@ class DoAssignmentsController < ApplicationController
   end
 
   def edit
-    authorize! :manage, DoAssignment
+    expire_fragment('footer-table')
     @org = Org.where(:name => "BAMRU").first
     @quarter = {
             :year      => params["year"].try(:to_i)    || Time.now.year,
@@ -34,11 +34,13 @@ class DoAssignmentsController < ApplicationController
   end
 
   def create
+    expire_fragment('*')
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
       redirect_to do_assignments_path(@org), :notice => "Records Saved"
     else
       render "edit"
     end
+    Member.set_do
   end
 end
