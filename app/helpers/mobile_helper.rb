@@ -59,11 +59,11 @@ module MobileHelper
   def set_buttons(wth)
     <<-ERB
       <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='text-align: center;'>
-        <input type="checkbox" name="#{wth}_cktm" id="#{wth}_cktm" class="custom" />
+        <input type="checkbox" name="#{wth}_cktm" id="#{wth}_cktm" class="custom sbx b_TM" />
         <label for="#{wth}_cktm">TM</label>
-        <input type="checkbox" name="#{wth}_ckfm" id="#{wth}_ckfm" class="custom" />
+        <input type="checkbox" name="#{wth}_ckfm" id="#{wth}_ckfm" class="custom sbx b_FM" />
         <label for="#{wth}_ckfm">FM</label>
-        <input type="checkbox" name="#{wth}_cktx" id="#{wth}_cktx" class="custom" />
+        <input type="checkbox" name="#{wth}_cktx" id="#{wth}_cktx" class="custom sbx b_T" />
         <label for="#{wth}_cktx">T</label>
       </div>
     ERB
@@ -72,8 +72,8 @@ module MobileHelper
   def clear_buttons
     <<-ERB
       <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='margin-bottom: 0px; text-align: center;'>
-        <a href="#" data-role="button" data-inline='true'><del>All</del></a>
-        <a href="#" data-role="button" data-inline='true'><del>OOT</del></a>
+        <a href="#" id="clear_all" data-role="button" data-inline='true'><del>All</del></a>
+        <a href="#" id="clear_oot" data-role="button" data-inline='true'><del>OOT</del></a>
       </div>
     ERB
   end
@@ -101,7 +101,7 @@ module MobileHelper
     <<-ERB
     <div data-role="navbar">
       <ul>
-        <li><a href="#" id="select_link" data-role="button">Select</a></li>
+        <li><a href="#" id="select_link" data-role="button">Select<span id=select_count></span></a></li>
         <li><a href="#" id="send_link"  data-role="button">Send</a></li>
       </ul>
     </div>

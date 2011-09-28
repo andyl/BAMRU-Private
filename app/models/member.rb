@@ -86,12 +86,12 @@ class Member < ActiveRecord::Base
   scope :order_by_role_score,    order([:role_score, :last_name])
   scope :order_by_do_typ_score,  order(['current_do DESC', :typ_score, :last_name])
   scope :order_by_typ_score,     order([:typ_score, :last_name])
-  scope :standard_order,         order_by_role_score
+  scope :standard_order,         order_by_do_role_score
   scope :roles_order,            order_by_role_score
   scope :typ_order,              order_by_typ_score
   scope :with_photos,            where("id     IN (SELECT member_id from photos)")
   scope :without_photos,         where("id NOT IN (SELECT member_id from photos)")
-  scope :active,                 where(:typ => ["T", "FM", "TM"]).standard_order
+  scope :active,                 where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order
   scope :inactive,               where(:typ => ["R", "S", "A"]).standard_order
 
   
@@ -110,7 +110,8 @@ class Member < ActiveRecord::Base
 
   def full_name_do
     do_text = current_do ? " (DO)" : ""
-    full_name + do_text
+    unavail = current_status == "unavailable" ? " (OOT)" : ""
+    full_name + do_text + unavail
   end
 
   def full_name
