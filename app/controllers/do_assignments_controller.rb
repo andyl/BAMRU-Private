@@ -34,7 +34,9 @@ class DoAssignmentsController < ApplicationController
   end
 
   def create
-    expire_fragment('*')
+    expire_fragment('footer-table')
+    expire_fragment('member_index_table-all')
+    expire_fragment('member_index_table-active')
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
       redirect_to do_assignments_path(@org), :notice => "Records Saved"
