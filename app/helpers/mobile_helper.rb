@@ -13,7 +13,9 @@ module MobileHelper
     divider = "<li data-role='list-divider'>Phones</li>"
     display = member.phones.map do |phone|
       if @phone
-        "<li><a href='tel:#{phone.number}'>#{phone.number}</a></li>"
+        val1 = "<a href='tel:#{phone.number}'>#{phone.number} - #{phone.typ}</a>"
+        val2 = phone.typ == "Mobile" ? "<a href='sms:#{phone.number}'></a>" : ""
+        "<li>#{val1}#{val2}</li>"
       else
         "<li>#{phone.number}</li>"
       end
