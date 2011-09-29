@@ -1,8 +1,22 @@
-<b><%= @message.text %></b><br/>
+<b><%= raw msg_created(@message) %></b><br/>
+<%= @message.text %> <%= raw sent_read(@message, "long")%>
+<%= raw rsvp_prompt(@message) %>
 <hr>
-<div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
+<table width=100%>
+        <thead>
+  <tr>
+  <th scope="col" align=left>Member</th>
+  <th scope="col" align=left>Read?</th>
+  <th scope="col" align=left>RSVP</th>
+  </td>
+  </thead>
+  <tbody>
   <% @dists.each do |dist| %>
-    <li><%= dist.member.short_name %></li>
+    <tr>
+      <td><%= dist.member.short_name %></td>
+      <td><%= dist.read? ? "yes" : "no" %></td>
+      <td><%= dist.rsvp_display_answer %></td>
+    </tr>
   <% end %>
-</div>
-
+  </tbody>
+  </table>

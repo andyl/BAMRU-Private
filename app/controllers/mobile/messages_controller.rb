@@ -10,6 +10,7 @@ class Mobile::MessagesController < ApplicationController
   end
 
   def show
+    @page_name = "Message Detail"
     @message = Message.find(params[:id])
     @dists   = @message.distributions
   end

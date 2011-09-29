@@ -43,6 +43,8 @@ window.updateSelectCount = ->
   count = $('.rck:checked').length
   txt   = if count == 0 then "" else " (#{count})"
   $('#select_count').text(txt)
+  mem_txt = if count == 0 then "0" else "#{count}"
+  $('#pgr_submit').prev().children('.ui-btn-text').text("Send to #{mem_txt} members")
 
 window.processClick = (ele) ->
   name = $(ele).attr("for")

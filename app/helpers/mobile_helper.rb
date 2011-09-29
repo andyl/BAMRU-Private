@@ -117,4 +117,37 @@ module MobileHelper
     "<select id=rsvp_select style='margin-top: 0px; width:100%;'>\n" + opts + "</select>"
   end
 
+  def sent_read(msg, format = "short")
+    sent_count = msg.distributions.count
+    read_count = msg.distributions.read.count
+    return "(Sent #{sent_count} / Read #{read_count})" if format == "long"
+    "S#{sent_count} R#{read_count}"
+  end
+
+  def yes_no(msg, format = "short")
+    yes_count = msg.distributions.rsvp_yes.count
+    no_count  = msg.distributions.rsvp_no.count
+    return "(Yes #{yes_count} / No #{no_count})" if format == "long"
+    "Y#{yes_count} N#{no_count}"
+  end
+
+  def msg_created(msg)
+    "# #{msg.id} - #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.short_name}"
+  end
+
+  def rsvp_prompt(msg)
+    msg.rsvp ? "<br/>RSVP: #{msg.rsvp.prompt} #{yes_no(msg, 'long')}" : ""
+  end
+
+  def message_header(msg)
+    rsvp = msg.rsvp ? "<br/>#{yes_no(msg)} #{msg.rsvp.prompt}" : ""
+    <<-ERB.gsub('    ','')
+      #{msg_created(msg)}
+      <p class='ui-li-desc' style='margin-top: 3px;'>
+      #{sent_read(msg)} #{msg.text}
+      #{rsvp}
+      </p>
+    ERB
+  end
+
 end
