@@ -1,4 +1,5 @@
 <%= javascript_include_tag "mobile/mobile_paging" %>
+<%= javascript_tag "var PREVIEW_OPTS = {name: '#{current_member.last_name}'};" %>
 
 <div id="select">
 
@@ -17,9 +18,23 @@
 
 </div>
 
+<style>
+  .ui-select {
+    width: 100% !important;
+  }
+</style>
+
 <div id="send">
-  Input Text:<br/>
-  <textarea rows=4 name="textarea" id="textarea"></textarea><br/>
-  RSVP <%= raw rsvp_mobile_select %>
+  <div style='text-align: center;'>
+    <b>Message Text <span id='chars_remaining'></span></b>
+  </div>
+  <div class='ui-select' style="padding-right: 40px;">
+    <textarea rows=3 name="textarea" id="textarea" style='width:100%; padding: 0px; border: 0px;'></textarea>
+  </div>
+  <div style='text-align: center; margin-top: 10px; margin-bottom: 0px; padding-bottom: 0px;'>
+    <b>RSVP</b>
+  </div>
+  <%= raw rsvp_mobile_select %>
+  <p></p>
   <button class='ui-btn-hidden' type="submit">Send</button>
 </div>

@@ -110,11 +110,11 @@ module MobileHelper
 
 
   def rsvp_mobile_select
-    first_opt = "<option id=blank_select value='NA' selected='selected'></option>\n"
+    first_opt = "<option id=blank_select value='' selected='selected'></option>\n"
     opts = first_opt + RsvpTemplate.order('position ASC').all.map do |i|
-      "<option value='#{i.name}' data-prompt='#{i.output_json}'>#{i.prompt}</option>\n"
+      "<option value='#{i.output_json}' data-prompt='#{i.output_json}'>#{i.prompt}</option>\n"
     end.join
-    "<select id=rsvp_select>\n" + opts + "</select>"
+    "<select id=rsvp_select style='margin-top: 0px; width:100%;'>\n" + opts + "</select>"
   end
 
 end

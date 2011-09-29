@@ -42,13 +42,20 @@ $(document).ready ->
 window.updateSelectCount = ->
   count = $('.rck:checked').length
   txt   = if count == 0 then "" else " (#{count})"
-  console.log count
   $('#select_count').text(txt)
+
+window.processClick = (ele) ->
+  name = $(ele).attr("for")
+  nele = $("##{name}")
+  checked = nele.is(':checked')
+  if checked then nele.prop("checked", false) else nele.prop("checked", true)
+  updateSelectCount()
+  if checked then nele.prop("checked", true) else nele.prop("checked", false)
 
 $(document).ready ->
   updateSelectCount()
-  $(".ui-icon").click ->
-    setTimeout('updateSelectCount()', 100)
+  $(".rck").change ->
+    processClick(this)
 
 # ----- Pressing Clear Buttons -----
 
@@ -80,3 +87,32 @@ $(document).ready ->
   $('.b_TM').change -> toggleTm(this)
   $('.b_FM').change -> toggleFm(this)
   $('.b_T').change ->  toggleT(this)
+
+# ----- Update Remaining Characters -----
+
+# berg-taylor is the longest name in the unit (worst case)
+headerCount = ->
+  "Subject: BAMRU [berg-taylor_xxxx] ".length
+
+messageCount = ->
+  $("#textarea").val().length
+
+nameCount = ->
+  " (from #{PREVIEW_OPTS.name})".length
+
+rsvpCount = ->
+  attr = $('#rsvp_select').attr('value')
+  return 0 if attr == ''
+  return 0 if attr == undefined
+  JSON.parse(attr).prompt.length + 1
+
+
+updateTextBoxCount = ->
+  remain = 136 - headerCount() - messageCount() - nameCount() - rsvpCount()
+  out_txt = if remain >= 30 then "" else " (#{remain} characters left)"
+  $("#chars_remaining").text(out_txt)
+
+$(document).ready ->
+  updateTextBoxCount()
+  $("#textarea").keyup     -> updateTextBoxCount()
+  $("#rsvp_select").change -> updateTextBoxCount()
