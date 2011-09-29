@@ -1,9 +1,15 @@
 <b><%= raw msg_created(@message) %></b><br/>
 <%= @message.text %> <%= raw sent_read(@message, "long")%>
 <%= raw rsvp_prompt(@message) %>
+<% if @message.rsvp && @mydist%>
+<br/>
+you said: <%= raw response_helper(@message, @mydist) %>
+<%= raw response_buttons(@message, @mydist) %>
+<% else %>
 <hr>
+<% end %>
 <table width=100%>
-        <thead>
+  <thead>
   <tr>
   <th scope="col" align=left>Member</th>
   <th scope="col" align=left>Read?</th>
@@ -19,4 +25,4 @@
     </tr>
   <% end %>
   </tbody>
-  </table>
+</table>

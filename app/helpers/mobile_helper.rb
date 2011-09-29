@@ -4,7 +4,20 @@ module MobileHelper
     "#{@page_name}"
   end
 
-  def display_all(member)
+  def response_helper(msg, dist)
+    ans = dist.rsvp_answer || "NONE"
+    prompt = ""
+    prompt = msg.rsvp.yes_prompt if ans == "Yes"
+    prompt = msg.rsvp.no_prompt  if ans == "No"
+    "<b>#{ans} #{prompt}</b>"
+  end
+
+  def response_buttons(msg, dist)
+    ans = dist.rsvp_answer || "NONE"
+    yr = ""; nr = ""
+    yr = "<a href='/mobile/messages/#{msg.id}?response=yes' data-role='button'>change to: Yes #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
+    nr = "<a href='/mobile/messages/#{msg.id}?response=no' data-role='button'>change to: NO #{msg.rsvp.no_prompt}</a>" unless ans=="No"
+    yr + nr
   end
 
   def display_phones(member)
@@ -17,7 +30,7 @@ module MobileHelper
         val2 = phone.typ == "Mobile" ? "<a href='sms:#{phone.number}'></a>" : ""
         "<li>#{val1}#{val2}</li>"
       else
-        "<li>#{phone.number}</li>"
+        "<li>#{phone.number} - #{phone.typ}</li>"
       end
     end.join
     "#{header}#{divider}#{display}</div>"

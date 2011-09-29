@@ -7,7 +7,7 @@ class RsvpsController < ApplicationController
   end
 
   def valid_response?(response)
-    %w(y yes n no t tbd).include?(response.downcase)
+    %w(y yes n no).include?(response.downcase)
   end
 
   def show
