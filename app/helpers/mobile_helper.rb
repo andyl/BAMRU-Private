@@ -1,14 +1,14 @@
 module MobileHelper
 
-  def prefix(dist)
-    c1 = dist.read ? "+" : "-"
+  def inbox_prefix(dist)
+    c1 = dist.read ? "-" : "*"
     c2 = if dist.rsvp_answer.nil?
       "_"
     else
       dist.rsvp_answer[0..0].downcase
     end
     c2 = 'x' unless dist.message.rsvp
-    c1 + c2
+    c1
   end
 
   def inbox_rsvp(dist)
@@ -17,7 +17,7 @@ module MobileHelper
   end
 
   def inbox_helper(dist)
-    text = prefix(dist) + " ##{dist.message.id} #{dist.message.text} #{inbox_rsvp(dist)}"
+    text = inbox_prefix(dist) + " ##{dist.message.id} #{dist.message.text} #{inbox_rsvp(dist)}"
     link_to text, "/mobile/messages/#{dist.message.id}"
   end
 
@@ -58,6 +58,23 @@ module MobileHelper
     "#{header}#{divider}#{display}</div>"
   end
 
+  def display_emergency_contacts(member)
+    return "" if member.emergency_contacts.blank?
+    header  = '<div data-role="listview" data-inset="true" data-theme="c">'
+    divider = "<li data-role='list-divider'>Emergency Phone Contacts</li>"
+    display = member.emergency_contacts.map do |contact|
+      phone_str = "#{contact.name} #{contact.number} (#{contact.typ})"
+      if @phone
+        val1 = "<a href='tel:#{contact.number}'>#{phone_str}</a>"
+        val2 = contact.typ == "Mobile" ? "<a href='sms:#{contact.number}'></a>" : ""
+        "<li>#{val1}#{val2}</li>"
+      else
+        "<li>#{phone_str}</li>"
+      end
+    end.join
+    "#{header}#{divider}#{display}</div>"
+  end
+
   def display_addresses(member)
     return "" if member.addresses.blank?
   end
@@ -72,16 +89,6 @@ module MobileHelper
     "#{header}#{divider}#{display}</div>"
   end
 
-  def display_emergency_contacts(member)
-    return "" if member.emergency_contacts.blank?
-    header  = '<div data-role="listview" data-inset="true" data-theme="c">'
-    divider = "<li data-role='list-divider'>Emergency Phone Contacts</li>"
-    display = member.emergency_contacts.map do |contact|
-      "<li><a href='tel:#{contact.number}'>#{contact.number} - #{contact.typ}</a></li>"
-    end.join
-    "#{header}#{divider}#{display}</div>"    
-  end
-
   def display_other_info(member)
     return "" if member.other_infos.blank?
   end
@@ -90,12 +97,12 @@ module MobileHelper
     ham = member.ham.blank? ? "" : "<b>Ham:</b> #{member.ham}<br/>"
     v9  = member.v9.blank? ?  "" : "<b>V9:</b> #{member.v9}<br/>"
     total = ham + v9
-    total.blank? ? "" : "<br/>" + total
+    total.blank? ? "" : total
   end
 
   def display_photos(member)
     return "" if member.photos.blank?
-    member.photos.limit(3).map {|pic| image_tag(pic.image.url(:thumb))}.join
+    member.photos.limit(3).map {|pic| image_tag(pic.image.url(:thumb))}.join + "<br/>"
   end
 
   def set_buttons(wth)
@@ -114,8 +121,8 @@ module MobileHelper
   def clear_buttons
     <<-ERB
       <div data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" style='margin-bottom: 0px; text-align: center;'>
-        <a href="#" id="clear_all" data-role="button" data-inline='true'><del>All</del></a>
-        <a href="#" id="clear_oot" data-role="button" data-inline='true'><del>OOT</del></a>
+        <a href="#" class="clear_all" data-role="button" data-inline='true'><del>All</del></a>
+        <a href="#" class="clear_oot" data-role="button" data-inline='true'><del>OOT</del></a>
       </div>
     ERB
   end

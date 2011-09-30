@@ -71,8 +71,8 @@ window.clearOOT = ->
   updateSelectCount()
 
 $(document).ready ->
-  $('#clear_all').click -> clearAll()
-  $('#clear_oot').click -> clearOOT()
+  $('.clear_all').click -> clearAll()
+  $('.clear_oot').click -> clearOOT()
 
 # ----- Toggling Select Buttons -----
 

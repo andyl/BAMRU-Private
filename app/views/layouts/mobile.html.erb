@@ -16,7 +16,7 @@
   <div data-role="header">
     <%= link_to("Home", mobile_path, "data-icon" => "home", "data-direction" => "reverse") unless current_page?(mobile_path) %>
     <h2><%= page_name %></h2>
-    <%= raw paging_nav if page_name == "Paging" %>
+    <%= raw paging_nav if page_name == "Send Page" %>
   </div>
 
   <div data-role="content">
