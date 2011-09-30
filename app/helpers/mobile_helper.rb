@@ -151,7 +151,7 @@ module MobileHelper
     opts = first_opt + RsvpTemplate.order('position ASC').all.map do |i|
       "<option value='#{i.output_json}' data-prompt='#{i.output_json}'>#{i.prompt}</option>\n"
     end.join
-    "<select id=rsvp_select style='margin-top: 0px; width:100%;'>\n" + opts + "</select>"
+    "<select id='rsvp_select' name='rsvp_select' style='margin-top: 0px; width:100%;'>\n" + opts + "</select>"
   end
 
   def sent_read(msg, format = "short")
@@ -169,7 +169,7 @@ module MobileHelper
   end
 
   def msg_created(msg)
-    "# #{msg.id} - #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.short_name}"
+    "# #{msg.id} - #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.try(:short_name)}"
   end
 
   def rsvp_prompt(msg)

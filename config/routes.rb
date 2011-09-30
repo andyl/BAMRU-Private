@@ -61,9 +61,11 @@ Zn::Application.routes.draw do
   get "mobile/paging"
   get "mobile/status"
 
+  post "mobile/send_page"
+
   get "mobile/login"  => "mobile/sessions#new",     :as => "mobile_login"
   get "mobile/logout" => "mobile/sessions#destroy", :as => "mobile_logout"
-  
+
   namespace "mobile" do
     resources :members
     resources :messages

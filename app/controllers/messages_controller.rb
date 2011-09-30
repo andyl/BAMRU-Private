@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    puts params.inspect
     np = params[:message]
     if params[:history].blank?
       redirect_to members_path, :alert => "No addresses selected - Please try again."
