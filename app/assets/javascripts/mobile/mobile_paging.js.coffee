@@ -44,7 +44,8 @@ window.updateSelectCount = ->
   txt   = if count == 0 then "" else " (#{count})"
   $('#select_count').text(txt)
   mem_txt = if count == 0 then "0" else "#{count}"
-  $('#pgr_submit').prev().children('.ui-btn-text').text("Send to #{mem_txt} members")
+  word    = if count == 1 then "member" else "members"
+  $('#pgr_submit').prev().children('.ui-btn-text').text("Send to #{mem_txt} #{word}")
 
 window.processClick = (ele) ->
   name = $(ele).attr("for")
