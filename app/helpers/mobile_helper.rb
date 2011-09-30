@@ -31,14 +31,14 @@ module MobileHelper
     prompt = ""
     prompt = msg.rsvp.yes_prompt if ans == "Yes"
     prompt = msg.rsvp.no_prompt  if ans == "No"
-    "<b>#{ans} #{prompt}</b>"
+    "<b>#{ans.upcase} #{prompt}</b>"
   end
 
   def response_buttons(msg, dist)
     ans = dist.rsvp_answer || "NONE"
     yr = ""; nr = ""
-    yr = "<a href='/mobile/messages/#{msg.id}?response=yes' data-role='button'>change to: Yes #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
-    nr = "<a href='/mobile/messages/#{msg.id}?response=no' data-role='button'>change to: No #{msg.rsvp.no_prompt}</a>" unless ans=="No"
+    yr = "<a href='/mobile/messages/#{msg.id}?response=yes' data-role='button'>Change to: YES #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
+    nr = "<a href='/mobile/messages/#{msg.id}?response=no' data-role='button'>Change to: NO #{msg.rsvp.no_prompt}</a>" unless ans=="No"
     yr + nr
   end
 
@@ -154,22 +154,26 @@ module MobileHelper
     "<select id='rsvp_select' name='rsvp_select' style='margin-top: 0px; width:100%;'>\n" + opts + "</select>"
   end
 
+  def blue_wrap(text)
+    "<span style='background-color: lightblue; padding-left 3px; padding-right 3px;'>#{text}</span>"
+  end
+
   def sent_read(msg, format = "short")
     sent_count = msg.distributions.count
     read_count = msg.distributions.read.count
-    return "(Sent #{sent_count} / Read #{read_count})" if format == "long"
-    "S#{sent_count} R#{read_count}"
+    return blue_wrap("(Sent #{sent_count} / Read #{read_count})") if format == "long"
+    blue_wrap("S#{sent_count} R#{read_count}")
   end
 
   def yes_no(msg, format = "short")
     yes_count = msg.distributions.rsvp_yes.count
     no_count  = msg.distributions.rsvp_no.count
-    return "(Yes #{yes_count} / No #{no_count})" if format == "long"
-    "Y#{yes_count} N#{no_count}"
+    return blue_wrap("(Yes #{yes_count} / No #{no_count})") if format == "long"
+    blue_wrap("Y#{yes_count} N#{no_count}")
   end
 
   def msg_created(msg)
-    "# #{msg.id} - #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.try(:short_name)}"
+    "##{msg.id} #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.try(:short_name)}"
   end
 
   def rsvp_prompt(msg)

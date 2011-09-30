@@ -2,9 +2,7 @@
   <li><%= link_to "Roster", mobile_members_path %></li>
   <li><%= link_to "DO: #{@do.last_name}", mobile_member_path(@do) %></li>
   <li><%= link_to "Status Line", mobile_status_path %></li>
+  <li><%= link_to "Paging", mobile_paging_path %></li>
   <li><%= link_to "Unit Message Log", mobile_messages_path %></li>
-  <li><%= link_to "My Inbox", mobile_inbox_path %></li>
-  <% if current_member.developer? %>
-    <li><%= link_to "Paging", mobile_paging_path %></li>
-  <% end %>
+  <li><%= link_to @inbox_label, mobile_inbox_path %></li>
 </div>

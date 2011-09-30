@@ -5,6 +5,10 @@ class MobileController < ApplicationController
   layout 'mobile'
 
   def index
+    @dists = current_member.distributions.order("id DESC")
+    unread = @dists.unread.count
+    txt    = unread == 0 ? "" : " (#{unread})"
+    @inbox_label = "My Inbox#{txt}"
     @do = Member.where(:current_do => true).first
   end
 

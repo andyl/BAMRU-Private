@@ -3,7 +3,7 @@
 <%= raw rsvp_prompt(@message) %>
 <% if @message.rsvp && @mydist%>
 <br/>
-you said: <%= raw response_helper(@message, @mydist) %>
+You said: <%= raw response_helper(@message, @mydist) %>
 <%= raw response_buttons(@message, @mydist) %>
 <% else %>
 <hr>
@@ -11,7 +11,7 @@ you said: <%= raw response_helper(@message, @mydist) %>
 <table width=100%>
   <thead>
   <tr>
-  <th scope="col" align=left>Member</th>
+  <th scope="col" align=left>Recipient</th>
   <th scope="col" align=left>Read?</th>
   <th scope="col" align=left>RSVP</th>
   </td>
