@@ -3,12 +3,22 @@ class HistoryController < ApplicationController
   before_filter :authenticate_member!
 
   def show
-    @distribution      = Distribution.find(params['id'])
-    @member            = @distribution.member
-    @recipient         = @member
-    @message           = @distribution.message
-    @mails             = @distribution.all_mails
-    @journals          = @distribution.journals
+    @distribution = Distribution.find(params['id'])
+    @member       = @distribution.member
+    @recipient    = @member
+    @message      = @distribution.message
+    @mails        = @distribution.all_mails
+    if @distribution.member_id == current_member.id
+      x_hash = {
+              :distribution_id => @distribution.id,
+              :member_id       => current_member.id,
+              :action          => "Read message"
+      }
+      Journal.create(x_hash) if @distribution.read == false
+      @distribution.read = true
+      @distribution.save
+    end
+    @journals     = @distribution.journals
   end
 
   def update

@@ -5,6 +5,7 @@ class MobileController < ApplicationController
   layout 'mobile'
 
   def index
+    @no_cache = true
     @dists = current_member.distributions.order("id DESC")
     unread = @dists.unread.count
     txt    = unread == 0 ? "" : " (#{unread})"
@@ -35,6 +36,12 @@ class MobileController < ApplicationController
     @phone = phone_device?
   end
 
+  def unread
+    @unread = current_member.distributions.unread.count
+    str = (@unread == 0) ? "My Inbox" : "My Inbox (#{@unread})"
+    render :text => str, :template => false
+  end
+
   def paging
     @client_ip = request.remote_ip
     @members   = Member.order_by_do_typ_score.active
@@ -59,7 +66,7 @@ class MobileController < ApplicationController
       opts[:message_id] = m.id
       p = Rsvp.create(opts)
     end
-    call_rake('email:send_distribution', {:message_id => m.id})
+    call_rake('email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'developmenet'
     redirect_to "/mobile/messages"
   end
 

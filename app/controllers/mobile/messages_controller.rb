@@ -14,24 +14,28 @@ class Mobile::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @dists   = @message.distributions
     @mydist  = @dists.where(:member_id => current_member.id).first
-    if @mydist && params['response']
-      response = params['response'].capitalize
-      if @mydist.rsvp_answer != response
-        x_hash = {
-                :distribution_id => @mydist.id,
-                :member_id       => current_member.id,
-                :action          => "Set RSVP to #{response}"
-        }
-        if @mydist.read == false
-          x_hash[:action] = "Marked as read"
-          Journal.create(x_hash)
+
+    if @mydist
+
+      x_hash = {
+              :distribution_id => @mydist.id,
+              :member_id       => current_member.id,
+              :action          => "Read message"
+      }
+
+      Journal.create(x_hash) if @mydist.read == false
+      @mydist.read = true
+
+      if params['response']
+        response = params['response'].capitalize
+        if @mydist.rsvp_answer != response
           x_hash[:action] = "Set RSVP to #{response}"
+          Journal.create(x_hash)
+          @mydist.rsvp_answer = response
         end
-        Journal.create(x_hash)
-        @mydist.rsvp_answer = response
-        @mydist.read = true
-        @mydist.save
       end
+      
+      @mydist.save
     end
   end
 

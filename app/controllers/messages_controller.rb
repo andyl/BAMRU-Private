@@ -11,6 +11,18 @@ class MessagesController < ApplicationController
   def show
     @message = Message.where(:id => params["id"]).first
     @msg = @message
+    @dists = @msg.distributions
+    @mydist = @dists.where(:member_id => current_member.id).first
+    if @mydist
+      x_hash = {
+              :distribution_id => @mydist.id,
+              :member_id       => current_member.id,
+              :action          => "Read message"
+      }
+      Journal.create(x_hash) if @mydist.read == false
+      @mydist.read = true
+      @mydist.save
+    end
   end
 
   def create
@@ -31,7 +43,7 @@ class MessagesController < ApplicationController
       opts[:message_id] = m.id
       p = Rsvp.create(opts)
     end
-    call_rake('email:send_distribution', {:message_id => m.id})
+    call_rake('email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'development'
     redirect_to messages_path, :notice => "Message sent."
   end
   

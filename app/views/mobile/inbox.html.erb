@@ -1,5 +1,8 @@
+<%= javascript_include_tag "mobile/mobile_markall" %>
+
+
 <% if current_member.distributions.unread.count != 0 %>
-  <a href='/mobile/inbox?markall=true' data-role='button'>mark all as read</a>
+  <a href='#' id="markall" data-role='button'>mark all as read</a>
 <% end %>
 
 <div data-role="listview" data-inset="true" data-theme="c">

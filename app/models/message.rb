@@ -56,7 +56,6 @@ class Message < ActiveRecord::Base
 
   def self.mobile_distributions_params(hash)
     int1 = hash.keys.map {|k| k.split('-').last}  #array of member id's
-    debugger
     int1.map do |v|
       {:member_id => v, :email => true, :phone => true}
     end

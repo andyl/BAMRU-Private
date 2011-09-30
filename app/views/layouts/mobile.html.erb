@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page" <%= "class='no-cache'" if defined?(@no_cache) %> >
   <div data-role="header">
     <%= link_to("Home", mobile_path, "data-icon" => "home", "data-direction" => "reverse") unless current_page?(mobile_path) %>
     <h2><%= page_name %></h2>

@@ -55,7 +55,7 @@ Zn::Application.routes.draw do
   get "mobile/about"
   get "mobile/map"
   get "mobile/geo"
-  get "mobile/geo2"
+  get "mobile/unread"
 
   get "mobile/inbox"
   get "mobile/paging"
