@@ -151,7 +151,7 @@ module MobileHelper
     <div data-role="navbar">
       <ul>
         <li><a href="#" id="select_link" data-role="button">Select<span id=select_count></span></a></li>
-        <li><a href="#" id="send_link"  data-role="button">Send</a></li>
+        <li><a href="#" id="send_link"  data-role="button">Compose</a></li>
       </ul>
     </div>
     ERB
