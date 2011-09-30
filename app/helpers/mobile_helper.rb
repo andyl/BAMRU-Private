@@ -74,6 +74,12 @@ module MobileHelper
 
   def display_emergency_contacts(member)
     return "" if member.emergency_contacts.blank?
+    header  = '<div data-role="listview" data-inset="true" data-theme="c">'
+    divider = "<li data-role='list-divider'>Emergency Phone Contacts</li>"
+    display = member.emergency_contacts.map do |contact|
+      "<li><a href='tel:#{contact.number}'>#{contact.number} - #{contact.typ}</a></li>"
+    end.join
+    "#{header}#{divider}#{display}</div>"    
   end
 
   def display_other_info(member)
@@ -84,13 +90,12 @@ module MobileHelper
     ham = member.ham.blank? ? "" : "<b>Ham:</b> #{member.ham}<br/>"
     v9  = member.v9.blank? ?  "" : "<b>V9:</b> #{member.v9}<br/>"
     total = ham + v9
-    total.blank? ? "" : total + "<p></p>"
+    total.blank? ? "" : "<br/>" + total
   end
 
   def display_photos(member)
     return "" if member.photos.blank?
-    tags = member.photos.map {|pic| image_tag(pic.image.url(:thumb))}.join
-    "<b>Photos:</b><br/>" + tags
+    member.photos.limit(3).map {|pic| image_tag(pic.image.url(:thumb))}.join
   end
 
   def set_buttons(wth)
@@ -173,7 +178,7 @@ module MobileHelper
   end
 
   def msg_created(msg)
-    "##{msg.id} #{msg.created_at.strftime("%m-%d %H:%M")} by #{msg.author.try(:short_name)}"
+    "##{msg.id} #{msg.created_at.strftime("%m-%d %H:%M")} from #{msg.author.try(:short_name)}"
   end
 
   def rsvp_prompt(msg)

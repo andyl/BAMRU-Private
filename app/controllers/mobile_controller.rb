@@ -38,7 +38,7 @@ class MobileController < ApplicationController
   def paging
     @client_ip = request.remote_ip
     @members   = Member.order_by_do_typ_score.active
-    @page_name = "Paging"
+    @page_name = "Send Page"
   end
 
   def send_page
