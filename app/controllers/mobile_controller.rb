@@ -21,7 +21,10 @@ class MobileController < ApplicationController
   end
 
   def inbox
-    @page_name = "Inbox"
+    @dists = current_member.distributions.order("id DESC")
+    unread = @dists.unread.count
+    txt    = unread == 0 ? "" : " (#{unread})"
+    @page_name = "Inbox#{txt}"
   end
 
   def paging
