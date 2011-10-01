@@ -131,23 +131,23 @@
     <div id=x_footer style="font-size: 10pt;">
       <table width=100% style="font-size: 10pt;">
         <tr>
-          <td width=50%>
+          <td width=33%>
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
-          <td width=50%>
+          <td width=33%>
             <input type="checkbox" id=rsa_check> Show R, S, A Members
           </td>
+            <td width=33%>
+              <%= link_to "Edit RSVP Templates", '/rsvp_templates' %>
+            </td>
         </tr>
       </table>
 
       <% if can? :manage, @member %>
         <table width=100% style="font-size: 10pt;">
           <tr>
-            <td width=50%>
+            <td width=100%>
               <%= link_to "Add New Member", new_member_path %>
-            </td>
-            <td width=50%>
-              <%= link_to "Edit RSVP Templates", '/rsvp_templates' %>
             </td>
           </tr>
         </table>
