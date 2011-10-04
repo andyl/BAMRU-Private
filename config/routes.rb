@@ -51,6 +51,8 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
+  get "jqm"    => "jqm#index",    :as => "jqm"
+
   get "mobile" => "mobile#index", :as => "mobile"
   get "mobile/about"
   get "mobile/map"
