@@ -1,63 +1,34 @@
-
-<section id="home" data-role="page">
-  <header data-role="header"><h1>home</h1></header>
-  <div class="content">
-
-    <br/>
-    <div data-role="listview" data-inset="true" data-theme="c">
-      <li><%= link_to "Roster",               "#roster"      %></li>
-      <li><%= link_to "DO: #{@do.last_name}", "#do"          %></li>
-      <li><%= link_to "Status Line",          "#status"      %></li>
-      <li><%= link_to "Send Page",            "#send-page"   %></li>
-      <li><%= link_to "Unit Message Log",     "#message-log" %></li>
-      <li><%= link_to "My Inbox",             "#inbox"       %></li>
-    </div>
-
+<%= page_start "home" %>
+  <div data-role="listview" data-inset="true" data-theme="c">
+    <li><%= link_to "Roster",               "#roster"      %></li>
+    <li><%= link_to "DO: #{@do.last_name}", "#do"          %></li>
+    <li><%= link_to "Status Line",          "#status"      %></li>
+    <li><%= link_to "Send Page",            "#send-page"   %></li>
+    <li><%= link_to "Unit Message Log",     "#message-log" %></li>
+    <li><%= link_to "My Inbox",             "#inbox"       %></li>
   </div>
-</section>
+<%= page_end %>
 
-<section id="roster" data-role="page">
-  <header data-role="header"><h1>page2</h1></header>
-  <div class="content">
+<%= page_start "roster", "Roster" %>
+  ROSTER
+<%= page_end %>
 
-    Roster
+<%= page_start "do" %>
+  DO
+<%= page_end %>
 
-  </div>
-</section>
+<%= page_start "status", "Status Line" %>
+  STATUS LINE
+<%= page_end %>
 
-<section id="do" data-role="page">
-  <header data-role="header"><h1>page2</h1></header>
-  <div class="content">
+<%= page_start "send-page", "Send Page" %>
+  SEND PAGE
+<%= page_end %>
 
-    DO
+<%= page_start "message-log", "Message Log" %>
+  MESSAGE LOG
+<%= page_end %>
 
-  </div>
-</section>
-
-<section id="send-page" data-role="page">
-  <header data-role="header"><h1>page2</h1></header>
-  <div class="content">
-
-    Send Page
-
-  </div>
-</section>
-
-<section id="message-log" data-role="page">
-  <header data-role="header"><h1>page2</h1></header>
-  <div class="content">
-
-    Message Log
-
-  </div>
-</section>
-
-<section id="inbox" data-role="page">
-  <header data-role="header"><h1>page2</h1></header>
-  <div class="content">
-
-    My Inbox
-
-  </div>
-</section>
-
+<%= page_start "inbox", "Inbox" %>
+  MY INBOX
+<%= page_end %>

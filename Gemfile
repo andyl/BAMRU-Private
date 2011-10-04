@@ -19,6 +19,9 @@ platforms :ruby do
   gem "nokogiri"
   gem "simple_form"
 
+  gem "draper"
+  gem "active_presenter"
+
   gem 'jquery-rails'
   gem 'paperclip'
   gem 'parslet'
