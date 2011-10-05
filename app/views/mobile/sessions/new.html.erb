@@ -1,6 +1,6 @@
 <h2>Log In</h2>
 
-<%= form_tag mobile_sessions_path do %>
+<form method="POST" action="<%= mobile_sessions_path %>" data-ajax=false>
   <div class="field">
     <%= label_tag :user_name %><br>
     <%= text_field_tag :user_name, params['user_name'] %>
@@ -15,6 +15,7 @@
     <%= check_box_tag :remember_me %>
     <label for="remember_me">Remember me?</label>
   </div>
+  <input type='hidden' name=ref value=<%=session[:ref]%>>
   <p></p>
   <div class="actions"><%= submit_tag "Log in" %></div>
-<% end %>
+</form>

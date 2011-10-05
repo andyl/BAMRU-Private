@@ -6,6 +6,7 @@ class JqmController < ApplicationController
 
   def index
     @no_cache = true
+    @phone = phone_device?
     @dists = current_member.distributions.order("id DESC")
     unread = @dists.unread.count
     txt    = unread == 0 ? "" : " (#{unread})"

@@ -19,11 +19,9 @@ class Mobile::SessionsController < ApplicationController
         cookies[:remember_me_token] = nil
       end
       member_login(member)
-      redirect_to (session[:ref] || mobile_path), :notice => "Logged in!"
+      redirect_to (session[:ref] || params[:ref] || mobile_path)
     else
-      debugger
-      flash.now.alert = "Invalid email or password"
-      render "new"
+      render new
     end
   end
 
