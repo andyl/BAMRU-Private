@@ -22,6 +22,8 @@ platforms :ruby do
   gem "draper"
   gem "active_presenter"
 
+  gem "rack-offline"
+
   gem 'jquery-rails'
   gem 'paperclip'
   gem 'parslet'

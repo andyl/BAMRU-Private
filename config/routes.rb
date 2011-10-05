@@ -92,6 +92,22 @@ Zn::Application.routes.draw do
     mount Jasminerice::Engine => "/jasmine"
   end
 
+  offline = Rack::Offline.configure do
+    cache "http://code.jquery.com/jquery-1.6.2.min.js"
+    cache "http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css"
+    cache "http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js"
+    cache "http://code.jquery.com/mobile/1.0rc1/images/ajax-loader.png"
+    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-18-black.png"
+    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-18-white.png"
+    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-36-black.png"
+    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-36-white.png"
+    cache "/assets/jqm/all_jqm.js"
+
+    network "/"
+  end
+
+  match "/jqm_mobile.manifest" => offline
+
   root :to => 'home#index'
 
 end
