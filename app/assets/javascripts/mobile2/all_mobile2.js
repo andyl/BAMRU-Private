@@ -1,3 +1,3 @@
-//= require jqm/jqm_home
+//= require mobile2/mobile2_home
 
 
