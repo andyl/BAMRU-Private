@@ -1,4 +1,4 @@
-class Mobile::ChatsController < ApplicationController
+class Mobile1::ChatsController < ApplicationController
 
   before_filter :authenticate_mobile_member!
 

@@ -1,4 +1,4 @@
-class Mobile::SessionsController < ApplicationController
+class Mobile1::SessionsController < ApplicationController
 
   layout 'mobile1'
 
