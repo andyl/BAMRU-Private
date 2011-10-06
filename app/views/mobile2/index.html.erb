@@ -13,16 +13,25 @@
 <%= page_end %>
 
 <%= page_start "roster", "Roster" %>
-  ROSTER
+<div data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find member...">
+  <% @members.each do |mem| %>
+    <li>
+      <%= mem.full_name %>
+      <ul>
+        <li><%= mem.last_name %></li>
+      </ul>
+    </li>
+  <% end %>
+</div>
 <%= page_end %>
 
 <%= page_start "do" %>
-  DO
+  DO (Under Construction)
 <%= page_end %>
 
 <%= page_start "status", "Status Line" %>
   <div style='text-align: center;'>
-  BAMRU Status Line
+  BAMRU Status Line (Under Construction)
   <p></p>
   <b>650-858-4618</b>
   <p></p>
@@ -33,13 +42,13 @@
 <%= page_end %>
 
 <%= page_start "send-page", "Send Page" %>
-  SEND PAGE
+  SEND PAGE (Under Construction)
 <%= page_end %>
 
 <%= page_start "message-log", "Message Log" %>
-  MESSAGE LOG
+  MESSAGE LOG (Under Construction)
 <%= page_end %>
 
 <%= page_start "inbox", "Inbox" %>
-  MY INBOX
+  MY INBOX (Under Construction)
 <%= page_end %>

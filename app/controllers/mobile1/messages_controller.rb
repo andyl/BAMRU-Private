@@ -1,8 +1,8 @@
-class Mobile::MessagesController < ApplicationController
+class Mobile1::MessagesController < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
-  layout 'mobile'
+  layout 'mobile1'
 
   def index
     @page_name = "Message Log"

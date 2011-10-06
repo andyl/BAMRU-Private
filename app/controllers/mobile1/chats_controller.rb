@@ -2,7 +2,7 @@ class Mobile::ChatsController < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
-  layout 'mobile'
+  layout 'mobile1'
 
   def index
     @chats = Chat.order('created_at DESC').limit(35).reverse

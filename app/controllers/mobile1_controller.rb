@@ -1,8 +1,8 @@
-class MobileController < ApplicationController
+class Mobile1Controller < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
-  layout 'mobile'
+  layout 'mobile1'
 
   def index
     @no_cache = true
@@ -67,7 +67,7 @@ class MobileController < ApplicationController
       p = Rsvp.create(opts)
     end
     call_rake('email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'developmenet'
-    redirect_to "/mobile/messages"
+    redirect_to "/mobile1/messages"
   end
 
 end

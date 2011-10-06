@@ -1,7 +1,7 @@
-module JqmHelper
+module Mobile2Helper
 
   def jqm_back_button(page_id)
-    link_to("Home", "/jqm", "data-icon" => "home", "data-direction" => "reverse") unless page_id == "home"
+    link_to("Home", "/mobile2", "data-icon" => "home", "data-direction" => "reverse") unless page_id == "home"
   end
 
   def jqm_paging_nav(page_id)
@@ -16,7 +16,7 @@ module JqmHelper
     ERB
   end
 
-  def page_start(page_id, title = "BAMRU Mobile")
+  def page_start(page_id, title = "BAMRU Mobile 2")
     raw <<-HTML.gsub(' '*6,'')
       <section id="#{page_id}" data-role="page">
         <header data-role="header">

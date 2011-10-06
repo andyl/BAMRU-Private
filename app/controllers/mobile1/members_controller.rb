@@ -1,8 +1,8 @@
-class Mobile::MembersController < ApplicationController
+class Mobile1::MembersController < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
-  layout 'mobile'
+  layout 'mobile1'
 
   def index
     @page_name = "Roster"

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Members", :js => true, :capybara => true do
-  describe "GET /mobile" do
+  describe "GET /mobile1" do
     it "works!" do
       get mobile_path
       response.status.should be(302)

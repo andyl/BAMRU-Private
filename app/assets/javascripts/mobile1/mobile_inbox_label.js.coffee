@@ -6,6 +6,6 @@ $(document).ready ->
   console.log 'loading'
   $('.no-cache').live 'pageshow', ->
     console.log "working"
-    $.get '/mobile/unread', (label) ->
+    $.get '/mobile1/unread', (label) ->
       console.log "New label is: #{label}"
       $('#inbox-label').text(label)

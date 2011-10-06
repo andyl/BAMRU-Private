@@ -51,24 +51,24 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get "jqm"    => "jqm#index",    :as => "jqm"
+  get "mobile2"    => "mobile2#index",    :as => "mobile2"
 
-  get "mobile" => "mobile#index", :as => "mobile"
-  get "mobile/about"
-  get "mobile/map"
-  get "mobile/geo"
-  get "mobile/unread"
+  get "mobile1" => "mobile1#index", :as => "mobile1"
+  get "mobile1/about"
+  get "mobile1/map"
+  get "mobile1/geo"
+  get "mobile1/unread"
 
-  get "mobile/inbox"
-  get "mobile/paging"
-  get "mobile/status"
+  get "mobile1/inbox"
+  get "mobile1/paging"
+  get "mobile1/status"
 
-  post "mobile/send_page"
+  post "mobile1/send_page"
 
-  get "mobile/login"  => "mobile/sessions#new",     :as => "mobile_login"
-  get "mobile/logout" => "mobile/sessions#destroy", :as => "mobile_logout"
+  get "mobile1/login"  => "mobile1/sessions#new",     :as => "mobile_login"
+  get "mobile1/logout" => "mobile1/sessions#destroy", :as => "mobile_logout"
 
-  namespace "mobile" do
+  namespace "mobile1" do
     resources :members
     resources :messages
     resources :sessions
@@ -94,14 +94,14 @@ Zn::Application.routes.draw do
 
   offline = Rack::Offline.configure do
     cache "http://code.jquery.com/jquery-1.6.2.min.js"
-    cache "http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css"
-    cache "http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js"
-    cache "http://code.jquery.com/mobile/1.0rc1/images/ajax-loader.png"
-    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-18-black.png"
-    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-18-white.png"
-    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-36-black.png"
-    cache "http://code.jquery.com/mobile/1.0rc1/images/icons-36-white.png"
-    cache "/assets/jqm/all_jqm.js"
+    cache "http://code.jquery.com/mobile1/1.0rc1/jquery.mobile1-1.0rc1.min.css"
+    cache "http://code.jquery.com/mobile1/1.0rc1/jquery.mobile1-1.0rc1.min.js"
+    cache "http://code.jquery.com/mobile1/1.0rc1/images/ajax-loader.png"
+    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-18-black.png"
+    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-18-white.png"
+    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-36-black.png"
+    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-36-white.png"
+    cache "/assets/mobile2/all_mobile2.js"
 
     network "/"
   end

@@ -1,7 +1,7 @@
 <b><%= raw msg_created(@message) %></b><br/>
 <%= @message.text %> <%= raw sent_read(@message, "long")%>
 <%= raw rsvp_prompt(@message) %>
-<% if @message.rsvp && @mydist%>
+<% if @message.rsvp && @mydist %>
 <br/>
 You said: <%= raw response_helper(@message, @mydist) %>
 <%= raw response_buttons(@message, @mydist) %>

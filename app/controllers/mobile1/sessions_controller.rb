@@ -1,6 +1,6 @@
 class Mobile::SessionsController < ApplicationController
 
-  layout 'mobile'
+  layout 'mobile1'
 
   def new
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])

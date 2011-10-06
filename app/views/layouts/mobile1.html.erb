@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BAMRU.net</title>
+  <title>BAMRU.net 1</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css" />
   <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
@@ -14,7 +14,7 @@
 
 <div data-role="page" <%= "class='no-cache'" if defined?(@no_cache) %> >
   <div data-role="header">
-    <%= link_to("Home", mobile_path, "data-icon" => "home", "data-direction" => "reverse") unless current_page?(mobile_path) %>
+    <%= link_to("Home", mobile1_path, "data-icon" => "home", "data-direction" => "reverse") unless current_page?(mobile1_path) %>
     <h2><%= page_name %></h2>
     <%= raw paging_nav if page_name == "Send Page" %>
   </div>
@@ -25,9 +25,9 @@
 
   </div>
 
-  <% if request.path.include?('/mobile/about') %>
+  <% if request.path.include?('/mobile1/about') %>
     <div data-role="footer" data-position="fixed">
-      <%= link_to "log out", mobile_logout_path, "data-role" => "button", "data-position" => "inline"%>
+      <%= link_to "log out", mobile1_logout_path, "data-role" => "button", "data-position" => "inline"%>
     </div>
   <% end %>
 

@@ -1,4 +1,4 @@
-module MobileHelper
+module Mobile1Helper
 
   def inbox_prefix(dist)
     c1 = dist.read ? "-" : "*"
@@ -18,11 +18,11 @@ module MobileHelper
 
   def inbox_helper(dist)
     text = inbox_prefix(dist) + " ##{dist.message.id} #{dist.message.text} #{inbox_rsvp(dist)}"
-    link_to text, "/mobile/messages/#{dist.message.id}"
+    link_to text, "/mobile1/messages/#{dist.message.id}"
   end
 
   def page_name
-    return "BAMRU Mobile" unless defined?(@page_name)
+    return "BAMRU Mobile 1" unless defined?(@page_name)
     "#{@page_name}"
   end
 
@@ -37,8 +37,8 @@ module MobileHelper
   def response_buttons(msg, dist)
     ans = dist.rsvp_answer || "NONE"
     yr = ""; nr = ""
-    yr = "<a href='/mobile/messages/#{msg.id}?response=yes' data-role='button'>Change to: YES #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
-    nr = "<a href='/mobile/messages/#{msg.id}?response=no' data-role='button'>Change to: NO #{msg.rsvp.no_prompt}</a>" unless ans=="No"
+    yr = "<a href='/mobile1/messages/#{msg.id}?response=yes' data-role='button'>Change to: YES #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
+    nr = "<a href='/mobile1/messages/#{msg.id}?response=no' data-role='button'>Change to: NO #{msg.rsvp.no_prompt}</a>" unless ans=="No"
     yr + nr
   end
 

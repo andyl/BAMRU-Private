@@ -145,7 +145,7 @@ class BaseMigration < ActiveRecord::Migration
     end
     create_table :chats do |t|
       t.integer       :member_id
-      t.string        :client # browser | mobile
+      t.string        :client # browser | mobile1
       t.string        :lat
       t.string        :lon
       t.string        :ip_address
