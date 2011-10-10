@@ -6,7 +6,7 @@ class Mobile2Controller < ApplicationController
 
   def index
     @no_cache = true
-    @members  = Member.all
+    @members  = Member.active.all
     @phone = phone_device?
     @dists = current_member.distributions.order("id DESC")
     unread = @dists.unread.count

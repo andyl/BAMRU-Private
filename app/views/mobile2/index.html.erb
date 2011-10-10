@@ -16,13 +16,14 @@
 <div data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find member...">
   <% @members.each do |mem| %>
     <li>
-      <%= mem.full_name %>
-      <ul>
-        <li><%= mem.last_name %></li>
-      </ul>
+      <a href="#member?id=<%=mem.id%>"><%= mem.full_name %></a>
     </li>
   <% end %>
 </div>
+<%= page_end %>
+
+<%= page_start "member", "Member Detail" %>
+  Member Detail (Under Construction)
 <%= page_end %>
 
 <%= page_start "do" %>
@@ -31,7 +32,7 @@
 
 <%= page_start "status", "Status Line" %>
   <div style='text-align: center;'>
-  BAMRU Status Line (Under Construction)
+  BAMRU Status Line
   <p></p>
   <b>650-858-4618</b>
   <p></p>
