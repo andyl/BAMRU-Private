@@ -1,10 +1,12 @@
 member_test_data = [
-    first_name: "First 1"
-    last_name:  "Last 1"
+    first_name: "Andy"
+    last_name:  "Leak"
   ,
-    first_name: "First 2"
-    last_name:  "Last 2"
+    first_name: "John"
+    last_name:  "Chang"
   ]
+
+# ----- Model Specs -----
 
 describe "Mobile2 Member", ->
   beforeEach ->
@@ -33,6 +35,8 @@ describe "Mobile2 Member", ->
         @obj.id = 1
         expect(@obj.url()).toEqual @col_path + '/1'
 
+# ----- Collection Specs -----
+
 describe "Mobile2 Members", ->
   beforeEach ->
     @obj = new Members(member_test_data)
@@ -44,8 +48,9 @@ describe "Mobile2 Members", ->
 
 describe "Mobile2 Server Fetch", ->
   beforeEach ->
+    @url    = "/mobile2/members"
     @server = sinon.fakeServer.create()
-    @server.respondWith "GET", "/memberz", [
+    @server.respondWith "GET", @url, [
       200
       "Content-Type": "application/json"
       JSON.stringify(member_test_data)
@@ -59,4 +64,4 @@ describe "Mobile2 Server Fetch", ->
     @members.fetch()
     expect(@server.requests.length).toEqual(1)
     expect(@server.requests[0].method).toEqual("GET")
-    expect(@server.requests[0].url).toEqual("/memberz")
+    expect(@server.requests[0].url).toEqual(@url)

@@ -1,3 +1,7 @@
+<script>
+  window.members = new Members(<%= raw MemberDecorator.mobile_json %>)
+</script>
+
 <%= page_start "home" %>
   <div data-role="listview" data-inset="true" data-theme="c">
     <li><%= link_to "Roster",               "#roster"      %></li>
@@ -13,17 +17,16 @@
 <%= page_end %>
 
 <%= page_start "roster", "Roster" %>
-<div data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find member...">
-  <% @members.each do |mem| %>
-    <li>
-      <a href="#member?id=<%=mem.id%>"><%= mem.full_name %></a>
-    </li>
-  <% end %>
+<div id='roster_view' data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find member...">
+  <li>Hello World</li>
+  <li>Done World</li>
 </div>
 <%= page_end %>
 
 <%= page_start "member", "Member Detail" %>
-  Member Detail (Under Construction)
+  <div id="member_show">
+    Member Detail (Under Construction)
+  </div>
 <%= page_end %>
 
 <%= page_start "do" %>

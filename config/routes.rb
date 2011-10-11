@@ -51,7 +51,9 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get "mobile2"    => "mobile2#index",    :as => "mobile2"
+  get "mobile2"           => "mobile2#index",     :as => "mobile2"
+  get "mobile2/members"
+  get "mobile2/messages" 
 
   get "mobile1" => "mobile1#index", :as => "mobile1"
   get "mobile1/about"

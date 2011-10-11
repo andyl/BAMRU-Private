@@ -527,5 +527,6 @@ end
 #  remember_created_at        :time
 #  created_at                 :datetime
 #  updated_at                 :datetime
+#  current_do                 :boolean         default(FALSE)
 #
 

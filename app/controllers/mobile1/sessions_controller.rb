@@ -3,9 +3,10 @@ class Mobile1::SessionsController < ApplicationController
   layout 'mobile1'
 
   def new
+    @page_name = "Login"
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
-      redirect_to (session[:ref] || mobile_path), :notice => "Welcome back #{member.first_name}"
+      redirect_to (session[:ref] || mobile1_path), :notice => "Welcome back #{member.first_name}"
     end
   end
   
@@ -19,7 +20,7 @@ class Mobile1::SessionsController < ApplicationController
         cookies[:remember_me_token] = nil
       end
       member_login(member)
-      redirect_to (session[:ref] || params[:ref] || mobile_path)
+      redirect_to (session[:ref] || params[:ref] || mobile1_path)
     else
       render new
     end
@@ -28,7 +29,7 @@ class Mobile1::SessionsController < ApplicationController
   def destroy
     session[:member_id] = nil
     cookies[:remember_me_token] = nil
-    redirect_to mobile_path, :notice => "Logged out!"
+    redirect_to mobile1_path, :notice => "Logged out!"
   end
 
 end

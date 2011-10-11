@@ -20,7 +20,7 @@ platforms :ruby do
   gem "simple_form"
 
   gem "draper"
-  gem "active_presenter"
+  #gem "active_presenter"
 
   gem "rack-offline"
 

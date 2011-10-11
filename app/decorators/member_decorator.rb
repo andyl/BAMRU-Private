@@ -5,6 +5,26 @@ class MemberDecorator < ApplicationDecorator
     "#{model.last_name}, #{model.first_name}"
   end
 
+  def mobile_json
+    fields = ["first_name", "last_name", "id", "typ"]
+    subset(model.attributes, fields).to_json
+  end
+
+  def self.mobile_json
+    result = Member.order_by_last_name.all.map do |m|
+      MemberDecorator.new(m).mobile_json
+    end.join(',')
+    "[#{result}]"
+  end
+
+  private
+
+  def subset(hash, fields)
+    arr = hash.select {|k,v| fields.include?(k)}
+    arr.reduce({}) {|a,v| a[v.first] = v.last; a}
+  end
+
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

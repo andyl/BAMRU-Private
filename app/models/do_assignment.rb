@@ -94,5 +94,7 @@ end
 #  updated_at :datetime
 #  primary_id :integer
 #  backup_id  :integer
+#  start      :datetime
+#  finish     :datetime
 #
 
