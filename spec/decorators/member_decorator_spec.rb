@@ -6,9 +6,9 @@ describe MemberDecorator do
     {
       :first_name => "Hi",
       :last_name =>  "Bye",
-      #:phone_attributes => [
-      #        {:number => "432-342-3433", :typ => "Mobile"}
-      #]
+      :phones_attributes => [
+              {:id => 22, :number => "432-342-3433", :typ => "Mobile"}
+      ]
     }
   end
 
@@ -25,9 +25,7 @@ describe MemberDecorator do
   describe "Object Attributes" do
     specify { @obj.should respond_to(:first_name)       }
     specify { @obj.should respond_to(:last_name)        }
-    specify { @obj.should respond_to(:name_last_first)  }
     specify { @obj.should respond_to(:mobile_json)      }
-    specify { @obj.name_last_first.should == "Bye, Hi"  }
   end
 
   describe "#mobile_json" do

@@ -1,39 +1,50 @@
-member_test_data = [
-    first_name: "Andy"
-    last_name:  "Leak"
-  ,
-    first_name: "John"
-    last_name:  "Chang"
-  ]
+#= require ./member_fixture
 
 # ----- Model Specs -----
 
 describe "Mobile2 Member", ->
   beforeEach ->
     @col_path = "/collection"
-    @obj = new Member(member_test_data[0])
+    @mem0 = new Member(member_test_data[0])
     col  = { url: @col_path }
-    @obj.collection = col
+    @mem0.collection = col
   describe "basic object generation", ->
     it "generates an object", ->
-      expect(@obj).toBeDefined()
+      expect(@mem0).toBeDefined()
     it "generates a new object", ->
-      expect(@obj.isNew()).toBeTruthy()
+      expect(@mem0.isNew()).toBeTruthy()
     it "updates the input name", ->
       local_name     = "New Name"
-      @obj.set({"full_name": local_name})
-      (expect @obj.get('full_name')).toEqual(local_name)
+      @mem0.set({"full_name": local_name})
+      (expect @mem0.get('full_name')).toEqual(local_name)
   describe "url", ->
     it 'has a default url', ->
-      expect(@obj.url()).toBeDefined()
-      expect(@obj.url()).toEqual @col_path
+      expect(@mem0.url()).toBeDefined()
+      expect(@mem0.url()).toEqual @col_path
     describe "when no id is set", ->
       it "returns the collection URL", ->
-        expect(@obj.url()).toEqual @col_path
+        expect(@mem0.url()).toEqual @col_path
     describe "when id is set", ->
       it "returns the collection URL and ID", ->
-        @obj.id = 1
-        expect(@obj.url()).toEqual @col_path + '/1'
+        @mem0.id = 1
+        expect(@mem0.url()).toEqual @col_path + '/1'
+  describe "Member Predicates", ->
+    beforeEach ->
+      @mem1 = new Member(member_test_data[1])
+      @mem2 = new Member(member_test_data[2])
+    describe "#hasPhone", ->
+      it 'returns false when phone does not exist', ->
+        expect(@mem0.hasPhone()).toEqual false
+      it 'returns true when phone exists', ->
+        expect(@mem1.hasPhone()).toEqual true
+      it 'returns false when phone is empty', ->
+        expect(@mem2.hasPhone()).toEqual false
+    describe "#hasHam", ->
+      it 'returns false when ham does not exist', ->
+        expect(@mem0.hasHam()).toEqual false
+      it 'returns true when ham exists', ->
+        expect(@mem1.hasHam()).toEqual true
+
 
 # ----- Collection Specs -----
 
@@ -44,7 +55,7 @@ describe "Mobile2 Members", ->
     it "generates an object", ->
       expect(@obj).toBeDefined()
     it "has a length", ->
-      expect(@obj.models.length).toEqual(2)
+      expect(@obj.models.length).toEqual(3)
 
 describe "Mobile2 Server Fetch", ->
   beforeEach ->

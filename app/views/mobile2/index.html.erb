@@ -1,12 +1,13 @@
 <script>
   window.members = new Members(<%= raw MemberDecorator.mobile_json    %>)
   window.messages = new Messages(<%= raw MessageDecorator.mobile_json %>)
+  window.is_phone = "<%= @is_phone ? 'true' : 'false' %>"
 </script>
 
 <%= page_start "home" %>
   <div data-role="listview" data-inset="true" data-theme="c">
     <li><%= link_to "Roster",           "#roster"      %></li>
-    <li><%= link_to "DO: #{@do.name}",  "#member?id=#{@do.primary_id}"%></li>
+    <li><%= link_to "DO: #{@do_name}",  "#member?id=#{@do_id}"%></li>
     <li><%= link_to "Status Line",      "#status"      %></li>
     <li><%= link_to "Send Page",        "#send-page"   %></li>
     <li><%= link_to "Unit Message Log", "#message-log" %></li>
@@ -36,7 +37,7 @@ BAMRU Status Line
 <p></p>
 <b>650-858-4618</b>
 <p></p>
-<% if @phone %>
+<% if @is_phone %>
   <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
 <% end %>
 </div>

@@ -51,13 +51,6 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get "mobile2"           => "mobile2#index"
-
-  namespace "mobile2" do
-    resources :members
-    resources :messages
-  end
-
   get "mobile1" => "mobile1#index", :as => "mobile1"
   get "mobile1/about"
   get "mobile1/map"
@@ -78,6 +71,13 @@ Zn::Application.routes.draw do
     resources :messages
     resources :sessions
     resources :chats
+  end
+
+  get "mobile2"           => "mobile2#index"
+
+  namespace "mobile2" do
+    resources :members
+    resources :messages
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
