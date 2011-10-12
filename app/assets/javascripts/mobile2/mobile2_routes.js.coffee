@@ -17,10 +17,13 @@ $(window).bind "pageinit", (obj) ->
   if page == "#roster"
     miv = new MembersIndexView
     miv.render()
+  if page == "#member"
+    console.log "HI"
 
 $(window).bind "pagebeforeshow", (obj) ->
   [page, id] = pageInfo(obj)
-  if page=="#member"
+  if page == "#member"
     member = members.get(id)
     view = new MemberShowView({model: member})
     $('#member_show').html(view.render().el)
+    view.generate_page_elements()
