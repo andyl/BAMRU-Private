@@ -51,9 +51,12 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get "mobile2"           => "mobile2#index",     :as => "mobile2"
-  get "mobile2/members"
-  get "mobile2/messages" 
+  get "mobile2"           => "mobile2#index"
+
+  namespace "mobile2" do
+    resources :members
+    resources :messages
+  end
 
   get "mobile1" => "mobile1#index", :as => "mobile1"
   get "mobile1/about"
@@ -96,13 +99,14 @@ Zn::Application.routes.draw do
 
   offline = Rack::Offline.configure do
     cache "http://code.jquery.com/jquery-1.6.2.min.js"
-    cache "http://code.jquery.com/mobile1/1.0rc1/jquery.mobile1-1.0rc1.min.css"
-    cache "http://code.jquery.com/mobile1/1.0rc1/jquery.mobile1-1.0rc1.min.js"
-    cache "http://code.jquery.com/mobile1/1.0rc1/images/ajax-loader.png"
-    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-18-black.png"
-    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-18-white.png"
-    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-36-black.png"
-    cache "http://code.jquery.com/mobile1/1.0rc1/images/icons-36-white.png"
+    cache "/stylesheets/jquery.mobile-1.0rc1.css"
+    cache "/favicon_d1.ico"
+    cache "/favicon_p1.ico"
+    cache "/images/jqm/ajax-loader.png"
+    cache "/images/jqm/icons-18-black.png"
+    cache "/images/jqm/icons-18-white.png"
+    cache "/images/jqm/icons-36-black.png"
+    cache "/images/jqm/icons-36-white.png"
     cache "/assets/mobile2/all_mobile2.js"
 
     network "/"

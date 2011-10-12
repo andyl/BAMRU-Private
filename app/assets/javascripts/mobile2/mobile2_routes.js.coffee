@@ -15,8 +15,8 @@ window.pageInfo = (obj) ->
 $(window).bind "pageinit", (obj) ->
   [page, id] = pageInfo(obj)
   if page == "#roster"
-    mmv = new MembersView
-    mmv.render()
+    miv = new MembersIndexView
+    miv.render()
 
 $(window).bind "pagebeforeshow", (obj) ->
   [page, id] = pageInfo(obj)

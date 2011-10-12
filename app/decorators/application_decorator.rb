@@ -1,4 +1,13 @@
 class ApplicationDecorator < Draper::Base
+
+  private
+
+  def subset(hash, fields)
+    arr = hash.select {|k,v| fields.include?(k)}
+    output = arr.reduce({}) {|a,v| a[v.first] = v.last; a}
+    output
+  end
+
   # Lazy Helpers
   #   PRO: Call Rails helpers without the h. proxy
   #        ex: number_to_currency(model.price)

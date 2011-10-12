@@ -52,7 +52,7 @@ module ApplicationHelper
   end
 
   def favicon_file
-    ENV['RAILS_ENV'] == "development" ? "favicon_d1.ico" : "favicon_p1.ico"
+    ENV['RAILS_ENV'] == "development" ? "/favicon_d1.ico" : "/favicon_p1.ico"
   end
 
   def header_nav

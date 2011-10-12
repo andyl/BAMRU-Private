@@ -26,6 +26,7 @@ describe MemberDecorator do
     specify { @obj.should respond_to(:first_name)       }
     specify { @obj.should respond_to(:last_name)        }
     specify { @obj.should respond_to(:name_last_first)  }
+    specify { @obj.should respond_to(:mobile_json)      }
     specify { @obj.name_last_first.should == "Bye, Hi"  }
   end
 

@@ -1,15 +1,16 @@
 <script>
-  window.members = new Members(<%= raw MemberDecorator.mobile_json %>)
+  window.members = new Members(<%= raw MemberDecorator.mobile_json    %>)
+  window.messages = new Messages(<%= raw MessageDecorator.mobile_json %>)
 </script>
 
 <%= page_start "home" %>
   <div data-role="listview" data-inset="true" data-theme="c">
-    <li><%= link_to "Roster",               "#roster"      %></li>
-    <li><%= link_to "DO: #{@do.last_name}", "#do"          %></li>
-    <li><%= link_to "Status Line",          "#status"      %></li>
-    <li><%= link_to "Send Page",            "#send-page"   %></li>
-    <li><%= link_to "Unit Message Log",     "#message-log" %></li>
-    <li><%= link_to "My Inbox",             "#inbox"       %></li>
+    <li><%= link_to "Roster",           "#roster"      %></li>
+    <li><%= link_to "DO: #{@do.name}",  "#member?id=#{@do.primary_id}"%></li>
+    <li><%= link_to "Status Line",      "#status"      %></li>
+    <li><%= link_to "Send Page",        "#send-page"   %></li>
+    <li><%= link_to "Unit Message Log", "#message-log" %></li>
+    <li><%= link_to "My Inbox",         "#inbox"       %></li>
     <div style='text-align: center;'>
       <span id=state></span>
     </div>
@@ -24,25 +25,21 @@
 <%= page_end %>
 
 <%= page_start "member", "Member Detail" %>
-  <div id="member_show">
-    Member Detail (Under Construction)
-  </div>
-<%= page_end %>
-
-<%= page_start "do" %>
-  DO (Under Construction)
+<div id="member_show">
+  Member Detail (Under Construction)
+</div>
 <%= page_end %>
 
 <%= page_start "status", "Status Line" %>
-  <div style='text-align: center;'>
-  BAMRU Status Line
-  <p></p>
-  <b>650-858-4618</b>
-  <p></p>
-  <% if @phone %>
-    <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
-  <% end %>
-  </div>
+<div style='text-align: center;'>
+BAMRU Status Line
+<p></p>
+<b>650-858-4618</b>
+<p></p>
+<% if @phone %>
+  <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
+<% end %>
+</div>
 <%= page_end %>
 
 <%= page_start "send-page", "Send Page" %>
