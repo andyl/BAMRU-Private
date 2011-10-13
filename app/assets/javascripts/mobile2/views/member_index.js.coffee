@@ -1,5 +1,5 @@
 window.member_index_template = '''
-<a href="#member?id=<%=id%>&rand=<%= this.random_string() %>"><%= last_name %></a>
+<a class="memlink" data-memid="<%= id %>" href="#member"><%= last_name %></a>
 '''
 
 class @MemberIndexView extends CommonView

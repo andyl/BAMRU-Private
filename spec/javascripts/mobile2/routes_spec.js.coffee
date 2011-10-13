@@ -10,3 +10,7 @@ describe "Routes", ->
       expect(parseUrl("?id=33#asdf")).toEqual(["#asdf","33"])
     it "handles an extra query param", ->
       expect(parseUrl("#asdf?id=33&rand=342")).toEqual(["#asdf","33"])
+    it "handles a compound '_' param", ->
+      expect(parseUrl("#asdf_33")).toEqual(["#asdf","33"])
+    it "handles a compound '&' param", ->
+      expect(parseUrl("#asdf&33")).toEqual(["#asdf","33"])

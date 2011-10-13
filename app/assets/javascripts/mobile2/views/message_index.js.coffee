@@ -1,7 +1,7 @@
 #= require ./common_view
 
 message_index_template = '''
-<a href="#message?id=<%=id%>&rand=<%= this.random_string() %>">
+<a class="msglink" data-msgid="<%= id %>" href="#message">
 #<%= id %> <%= creation_date %> from <%= author_short_name %>
 <p class='ui-li-desc' style='margin-top: 3px;'>
 <%= this.text_helper() %>
