@@ -28,5 +28,3 @@ describe "MemberShowView", ->
       expect($(@view0.render().el)).toContain("b")
       expect($(@view0.render().el)).toBe("div")
       console.log @view0.render().el
-
-#  describe "rendering the phone list", ->

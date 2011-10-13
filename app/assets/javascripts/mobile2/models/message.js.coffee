@@ -1,2 +1,4 @@
+#= require ./common_model
 
-class @Message extends Backbone.Model
+class @Message extends CommonModel
+  hasRSVP:  -> @hasAttr('rsvp_prompt')

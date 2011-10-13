@@ -21,29 +21,28 @@
 <%= page_start "roster", "Roster" %>
 <div id='roster_view' data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find member...">
   <li>Hello World</li>
-  <li>Done World</li>
 </div>
 <%= page_end %>
 
 <%= page_start "member", "Member Detail" %>
 <div id="member_show">
-    <b>Some Name</b> - Role
-    <div data-role="listview" data-inset="true" data-theme="c">
+  <b>Placeholder Name</b> - Role
+  <div data-role="listview" data-inset="true" data-theme="c">
     <li data-role="list-divider">Phones</li>
     <li>phone value</li>
-    </div>
+  </div>
 </div>
 <%= page_end %>
 
 <%= page_start "status", "Status Line" %>
 <div style='text-align: center;'>
-BAMRU Status Line
-<p></p>
-<b>650-858-4618</b>
-<p></p>
-<% if @is_phone %>
-  <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
-<% end %>
+  BAMRU Status Line
+  <p></p>
+  <b>650-858-4618</b>
+  <p></p>
+  <% if @is_phone %>
+    <a href='tel:650-858-4618' data-role='button' data-ajax="false">Dial</a>
+  <% end %>
 </div>
 <%= page_end %>
 
@@ -52,6 +51,18 @@ BAMRU Status Line
 <%= page_end %>
 
 <%= page_start "message-log", "Message Log" %>
+<div id='message_index' data-role="listview" data-inset="true" data-theme="c" data-filter="true" data-filter-placeholder="Find message...">
+  <li>Hello World</li>
+</div>
+<%= page_end %>
+
+<%= page_start "message", "Message Detail" %>
+<div id='message_show'>
+  MESSAGE DATA HERE
+</div>
+<%= page_end %>
+
+<%= page_start id="" "message-show", "Message Log" %>
   MESSAGE LOG (Under Construction)
 <%= page_end %>
 

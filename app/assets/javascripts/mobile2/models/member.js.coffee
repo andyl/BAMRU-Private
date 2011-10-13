@@ -1,8 +1,6 @@
+#= require ./common_model
 
-class @Member extends  Backbone.Model
-  hasAttr: (attr) ->
-    val = @get(attr)
-    if val != undefined && val.length > 0 then true else false
+class @Member extends CommonModel
   hasPhone: -> @hasAttr('phones_attributes')
   hasEmail: -> @hasAttr('emails_attributes')
   hasPhoto: -> @hasAttr('photos_attributes')

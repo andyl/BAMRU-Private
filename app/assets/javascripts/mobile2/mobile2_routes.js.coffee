@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-
-# ----- Adds a label on the home page to show online/offline status -----
 
 window.pageInfo = (obj) ->
   hash      = obj.currentTarget.hash
@@ -17,8 +13,9 @@ $(window).bind "pageinit", (obj) ->
   if page == "#roster"
     miv = new MembersIndexView
     miv.render()
-  if page == "#member"
-    console.log "HI"
+  if page == "#message-log"
+    miv = new MessagesIndexView
+    miv.render()
 
 $(window).bind "pagebeforeshow", (obj) ->
   [page, id] = pageInfo(obj)
@@ -27,3 +24,7 @@ $(window).bind "pagebeforeshow", (obj) ->
     view = new MemberShowView({model: member})
     $('#member_show').html(view.render().el)
     view.generate_page_elements()
+  if page == "#message"
+    message = messages.get(id)
+    view = new MessageShowView({model: message})
+    $('#message_show').html(view.render().el)

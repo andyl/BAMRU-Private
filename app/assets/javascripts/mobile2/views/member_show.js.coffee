@@ -1,4 +1,3 @@
-
 main_template = '''
   <b><%= first_name %> <%= last_name %></b> - <%= full_roles %>
   <%= this.phone_helper() %>
@@ -37,6 +36,5 @@ class @MemberShowView extends Backbone.View
     $('#phone_list').listview() if @model.hasPhone
     $('#email_list').listview() if @model.hasEmail
   render: =>
-    heading = "asdf"
     $(@el).html(@main_template(@model.toJSON()))
     @
