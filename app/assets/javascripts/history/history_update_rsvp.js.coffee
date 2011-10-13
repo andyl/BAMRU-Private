@@ -6,8 +6,6 @@ window.clickRSVP = (link) ->
   [resp, dist_id] = link_id.split('_')
   data = {dist: {rsvp_answer: resp}, _method: "PUT"}
   url = "/history/#{dist_id}"
-  console.log url
-  console.log data
   $.post(url, data)
   setTimeout("window.location.reload()", 750)
 

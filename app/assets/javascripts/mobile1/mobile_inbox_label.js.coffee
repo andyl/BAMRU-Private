@@ -3,9 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  console.log 'loading'
   $('.no-cache').live 'pageshow', ->
-    console.log "working"
     $.get '/mobile1/unread', (label) ->
-      console.log "New label is: #{label}"
       $('#inbox-label').text(label)

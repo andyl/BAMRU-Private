@@ -12,7 +12,6 @@ class @MemberShowView extends Backbone.View
   divider: (label) ->
     "<li data-role='list-divider'>#{label}</li>"
   phone_helper: ->
-    console.log is_phone
     return "" unless @model.hasPhone
     display = _(@model.attributes.phones_attributes).map (phone) ->
       num  = phone.number

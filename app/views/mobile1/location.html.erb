@@ -56,8 +56,6 @@ function error(msg) {
   var s = document.querySelector('#status');
   s.innerHTML = typeof msg == 'string' ? msg : "failed";
   s.className = 'fail';
-
-  // console.log(arguments);
 }
 
 if (navigator.geolocation) {

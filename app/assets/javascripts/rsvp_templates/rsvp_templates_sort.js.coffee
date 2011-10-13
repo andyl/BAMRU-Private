@@ -12,7 +12,6 @@ setup_sort = (target) ->
     cursor:      'move'
     update: ->
       data = $(target).sortable('serialize')
-      console.log data
       $.ajax
         type: 'post'
         url:  "/rsvp_templates/sort"

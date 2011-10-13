@@ -1,12 +1,18 @@
+window.parseUrl = (string) ->
+  console.log "STARTING: #{string}"
+  @reg_p = /(\#[a-z\_\-]+)/
+  @reg_i = /id=([0-9]+)/
+  match_p = @reg_p.exec(string)
+  match_i = @reg_i.exec(string)
+  page   = if (match_p != null) then match_p[1] else ""
+  id     = if (match_i != null) then match_i[1] else ""
+  console.log "ENDING: #{string}"
+  console.log [page, id]
+  [page, id]
 
 window.pageInfo = (obj) ->
   hash      = obj.currentTarget.hash
-  array     = if hash then obj.currentTarget.hash.split("?") else []
-  page      = if array[0] then array[0] else ""
-  y         = if array.length == 2 then array[1] else ""
-  zid       = if y == "" then "" else y.split("=")
-  id        = if zid[1] then zid[1] else ""
-  [page, id]
+  parseUrl(hash)
 
 $(window).bind "pageinit", (obj) ->
   [page, id] = pageInfo(obj)
