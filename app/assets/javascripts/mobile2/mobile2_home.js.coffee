@@ -10,3 +10,21 @@ window.setState = (event, ui) ->
 $(window).bind("pageshow", setState)
 $(window).bind("online",  -> setStateOn)
 $(window).bind("offline", -> setStateOff)
+
+
+$('.memlink, .mem_home').live "click", ->
+  localStorage['memID'] = $(this).data('memid')
+$('.memlink, .mem_home').live "swipeleft", ->
+  localStorage['memID'] = $(this).data('memid')
+  $.mobile.changePage('#member')
+
+$('#roster, #status, #send-page, #message-log, #inbox').live "swiperight", ->
+  $.mobile.changePage('#home', {reverse: true})
+$('#member').live "swiperight", ->
+  $.mobile.changePage('#roster', {reverse: true})
+$('#message').live "swiperight", ->
+  $.mobile.changePage('#message-log', {reverse: true})
+
+$('.home_nav').live "swipeleft", ->
+  tag = $(this).attr('href')
+  $.mobile.changePage(tag)

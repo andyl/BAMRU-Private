@@ -6,6 +6,4 @@ class @MembersIndexView extends Backbone.View
       view = new MemberIndexView({model: member})
       $("#roster_view").append(view.render().el)
     $(@el).listview("refresh")
-    $('.memlink').click ->
-      localStorage['memID'] = $(this).data('memid')
     @

@@ -6,12 +6,12 @@
 
 <%= page_start "home" %>
   <div data-role="listview" data-inset="true" data-theme="c">
-    <li><%= link_to "Roster",           "#roster"      %></li>
-    <li><a class="memlink" data-memid="<%= @do_id %>" href="#member">DO: <%= @do_name %></a></li>
-    <li><%= link_to "Status Line",      "#status"      %></li>
-    <li><%= link_to "Send Page",        "#send-page"   %></li>
-    <li><%= link_to "Unit Message Log", "#message-log" %></li>
-    <li><%= link_to "My Inbox",         "#inbox"       %></li>
+    <li><%= link_to "Roster",           "#roster"      , {'class' => 'home_nav'} %></li>
+    <li><%= link_to "DO: #{@do_name}",  "#member"      , {'class' => 'mem_home', 'data-memid' => "#{@do_id}" } %></li>
+    <li><%= link_to "Status Line",      "#status"      , {'class' => 'home_nav'} %></li>
+    <li><%= link_to "Send Page",        "#send-page"   , {'class' => 'home_nav'} %></li>
+    <li><%= link_to "Unit Message Log", "#message-log" , {'class' => 'home_nav'} %></li>
+    <li><%= link_to "My Inbox",         "#inbox"       , {'class' => 'home_nav'} %></li>
     <div style='text-align: center;'>
       <span id=state></span>
     </div>
@@ -26,12 +26,12 @@
 
 <%= page_start "member", "Member Detail" %>
 <div id="member_show">
-  <a href="#roster">Select a member...</a>
+  <a href="#roster" data-role='button'>Select a member...</a>
 </div>
 <%= page_end %>
 
 <%= page_start "status", "Status Line" %>
-<div style='text-align: center;'>
+<div id='stat_div' style='text-align: center;'>
   BAMRU Status Line
   <p></p>
   <b>650-858-4618</b>
@@ -54,7 +54,7 @@
 
 <%= page_start "message", "Message Detail" %>
 <div id='message_show'>
-  <a href="#message-log">Select a message...</a>
+  <a href="#message-log" data-role='button'>Select a message...</a>
 </div>
 <%= page_end %>
 
