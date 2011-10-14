@@ -7,7 +7,7 @@
 <%= page_start "home" %>
   <div data-role="listview" data-inset="true" data-theme="c">
     <li><%= link_to "Roster",           "#roster"      %></li>
-    <li><%= link_to "DO: #{@do_name}",  "#member?id=#{@do_id}"%></li>
+    <li><a class="memlink" data-memid="<%= @do_id %>" href="#member">DO: <%= @do_name %></a></li>
     <li><%= link_to "Status Line",      "#status"      %></li>
     <li><%= link_to "Send Page",        "#send-page"   %></li>
     <li><%= link_to "Unit Message Log", "#message-log" %></li>

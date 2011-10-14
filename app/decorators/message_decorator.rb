@@ -4,7 +4,7 @@ class MessageDecorator < ApplicationDecorator
   def mobile_json
     fields = ["id", "author_id", "text"]
     hash = subset(model.attributes, fields)
-    hash[:creation_date] = model.created_at.strftime("%d-%m %H:%M") if model.created_at
+    hash[:creation_date] = model.created_at.strftime("%b-%e %H:%M") if model.created_at
     hash[:author_short_name] = model.author.try(:short_name)        if model.author
     hash[:rsvp_prompt]       = model.rsvp.prompt                    if model.rsvp
     hash[:rsvp_yes_prompt]   = model.rsvp.yes_prompt                if model.rsvp
