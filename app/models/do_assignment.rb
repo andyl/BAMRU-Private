@@ -42,12 +42,7 @@ class DoAssignment < ActiveRecord::Base
   end
 
   def backup_hash
-    AvailDo.where(:year => year, :quarter => quarter, :week => week).
-            all.
-            map {|a| a.member}.
-            sort {|a,b| a.last_name <=> b.last_name}.
-            uniq.
-            map {|m| [m.full_name, m.id]}
+    Member.order('last_name ASC').all.map {|m| [m.full_name, m.id]}
   end
 
   def current?

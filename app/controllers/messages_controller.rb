@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   def index
     file = "tmp/mail_sync_time.txt"
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
-    @messages = Message.order('created_at DESC').all
+    @messages = Message.order('created_at DESC').limit(30).all
   end
 
   def show

@@ -39,7 +39,7 @@
                 <td><%= m.full_roles %></td>
                 <%= raw phone_checkbox(m) %>
                 <%= raw email_checkbox(m) %>
-                <td><a href="/members/<%= m.id %>"><%= m.full_name %></a></td>
+                <td><a href="/members/<%= m.id %>"><%= m.full_name %><%= roster_oot_label(m) %></a></td>
               </tr>
             <% end %>
             </tbody>
