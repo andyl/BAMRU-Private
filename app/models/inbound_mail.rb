@@ -34,14 +34,16 @@ class InboundMail < ActiveRecord::Base
     opts[:subject]   = mail.subject
     opts[:from]      = mail.from.join(' ')
     opts[:to]        = mail.to.join(' ')
-    opts[:uid]       = mail.uid
+    opts[:uid]       = mail.try(:uid)
     opts[:body]      = mail.body.to_s.lstrip
     opts[:send_time] = mail.date.to_s
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     first_words = opts[:body].split(' ')[0..30].join(' ')
-    match = first_words.match(/\b(yea|yes|no)\b/i)
+    match = first_words.match(/\b(yea|yes|no|y|n)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
-    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] = "Yea"
+    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] == "Yea"
+    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] == "Y"
+    opts[:rsvp_answer] = "No"  if opts[:rsvp_answer] == "N"
     outbound = nil
     if match = self.match_code("#{opts[:subject]} #{opts[:body]}")
       opts[:label] = match[1]
@@ -68,6 +70,7 @@ class InboundMail < ActiveRecord::Base
   end
 
 end
+
 
 # == Schema Information
 #

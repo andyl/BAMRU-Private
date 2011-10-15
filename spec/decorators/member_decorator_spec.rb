@@ -7,7 +7,7 @@ describe MemberDecorator do
       :first_name => "Hi",
       :last_name =>  "Bye",
       :phones_attributes => [
-              {:id => 22, :number => "432-342-3433", :typ => "Mobile"}
+              {:number => "432-342-3433", :typ => "Mobile"}
       ]
     }
   end
@@ -20,7 +20,9 @@ describe MemberDecorator do
     end
   end
 
-  before(:each) { @obj = MemberDecorator.new(Member.new(valid_atts)) }
+  before(:each) do
+    @obj = MemberDecorator.new(Member.new(valid_atts))
+  end
 
   describe "Object Attributes" do
     specify { @obj.should respond_to(:first_name)       }
