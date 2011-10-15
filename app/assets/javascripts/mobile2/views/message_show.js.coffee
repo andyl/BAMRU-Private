@@ -20,14 +20,14 @@ class @MessageShowView extends CommonView
   initialize: ->
     @template = _.template(main_template)
   sent_read_helper: ->
-    sent = @model.attributes.sent_count
-    read = @model.attributes.read_count
+    sent = @model.sentCount()
+    read = @model.readCount()
     @blue_wrap("(Sent #{sent} / Read #{read})")
   text_helper: ->
     "#{@model.attributes.text} #{@sent_read_helper()}"
   yes_no_helper: ->
-    yes_count = @model.attributes.rsvp_yes_count
-    no_count  = @model.attributes.rsvp_no_count
+    yes_count = @model.rsvpYesCount()
+    no_count  = @model.rsvpNoCount()
     @blue_wrap("(Yes #{yes_count} / No #{no_count})")
   rsvp_helper: ->
     return "" unless @model.hasRSVP()

@@ -15,14 +15,14 @@ class @MessageIndexView extends CommonView
   initialize: ->
     @template = _.template(message_index_template)
   sent_read_helper: ->
-    sent = @model.attributes.sent_count
-    read = @model.attributes.read_count
+    sent = @model.sentCount()
+    read = @model.readCount()
     @blue_wrap("S#{sent} R#{read}")
   text_helper: ->
     "#{@sent_read_helper()} #{@model.attributes.text}"
   yes_no_helper: ->
-    yes_count = @model.attributes.rsvp_yes_count
-    no_count  = @model.attributes.rsvp_no_count
+    yes_count = @model.rsvpYesCount()
+    no_count  = @model.rsvpNoCount()
     @blue_wrap("Y#{yes_count} N#{no_count}")
   rsvp_helper: ->
     return "" unless @model.hasRSVP()

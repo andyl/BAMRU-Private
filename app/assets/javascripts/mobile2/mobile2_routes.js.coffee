@@ -1,4 +1,4 @@
-blank = (item) ->
+window.blank = (item) ->
   item == "" || item == undefined
 
 $(window).bind "pageinit", (obj) ->
@@ -9,18 +9,22 @@ $(window).bind "pageinit", (obj) ->
   if page == "#message-log"
     miv = new MessagesIndexView
     miv.render()
+  if page == "#inbox"
+    miv = new DistributionsIndexView
+    miv.render()
 
 $(window).bind "pagebeforeshow", (obj) ->
   page = obj.currentTarget.hash
   if page == "#member"
-    id = localStorage['memID']
+    obj.preventDefault()
+    id = localStorage['memid']
     unless blank(id)
       member = members.get(id)
       view = new MemberShowView({model: member})
       $('#member_show').html(view.render().el)
       view.generate_page_elements()
   if page == "#message"
-    id = localStorage['msgID']
+    id = localStorage['msgid']
     unless blank(id)
       message = messages.get(id)
       view = new MessageShowView({model: message})

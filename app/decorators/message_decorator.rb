@@ -9,18 +9,15 @@ class MessageDecorator < ApplicationDecorator
     hash[:rsvp_prompt]       = model.rsvp.prompt                    if model.rsvp
     hash[:rsvp_yes_prompt]   = model.rsvp.yes_prompt                if model.rsvp
     hash[:rsvp_no_prompt]    = model.rsvp.no_prompt                 if model.rsvp
-    hash[:sent_count]        = model.distributions.count            if model.distributions
-    hash[:read_count]        = model.distributions.read.count       if model.distributions
-    hash[:rsvp_yes_count]    = model.distributions.rsvp_yes.count   if model.rsvp
-    hash[:rsvp_no_count]     = model.distributions.rsvp_no.count    if model.rsvp
 
     dists = model.distributions.all.map do |dist|
       {
-              :dist_id => dist.id,
-              :mem_id  => dist.member_id,
-              :name    => dist.member.short_name,
-              :read    => dist.read ? "yes" : "no",
-              :rsvp    => model.rsvp ? (dist.rsvp_answer || "NONE") : "NA"
+              :id         => "#{dist.id}",
+              :message_id => "#{dist.message_id}",
+              :member_id  => "#{dist.member_id}",
+              :name       => dist.member.short_name,
+              :read       => dist.read ? "yes" : "no",
+              :rsvp       => model.rsvp ? (dist.rsvp_answer.try(:downcase) || "NONE") : "NA"
       }
     end
     hash[:distributions] = dists

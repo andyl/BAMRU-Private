@@ -11,19 +11,23 @@ $(window).bind("pageshow", setState)
 $(window).bind("online",  -> setStateOn)
 $(window).bind("offline", -> setStateOff)
 
+transcon = (label, pageid, el) ->
+  localStorage[label] = el.data(label)
+  $.mobile.changePage(pageid)
 
-$('.memlink, .mem_home').live "click", ->
-  localStorage['memID'] = $(this).data('memid')
+$('.memlink, .mem_home').live "tap", ->
+  transcon('memid', '#member', $(this))
 $('.memlink, .mem_home').live "swipeleft", ->
-  localStorage['memID'] = $(this).data('memid')
-  $.mobile.changePage('#member')
+  transcon('memid', '#member', $(this))
+$('.msglink, .msg_home').live "tap", ->
+  transcon('msgid', '#message', $(this))
+$('.msglink, .msg_home').live "swipeleft", ->
+  transcon('msgid', '#message', $(this))
 
-$('#roster, #status, #send-page, #message-log, #inbox').live "swiperight", ->
-  $.mobile.changePage('#home', {reverse: true})
-$('#member').live "swiperight", ->
-  $.mobile.changePage('#roster', {reverse: true})
-$('#message').live "swiperight", ->
-  $.mobile.changePage('#message-log', {reverse: true})
+$('#roster, #status, #send-page, #message-log').live "swiperight", ->
+  history.back()
+$('#inbox, #member, #message').live "swiperight", ->
+  history.back()
 
 $('.home_nav').live "swipeleft", ->
   tag = $(this).attr('href')

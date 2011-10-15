@@ -27,4 +27,3 @@ describe "MemberShowView", ->
       expect($("<div><b>Andy</b></div>")).toContain("b")
       expect($(@view0.render().el)).toContain("b")
       expect($(@view0.render().el)).toBe("div")
-      console.log @view0.render().el

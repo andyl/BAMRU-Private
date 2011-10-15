@@ -1,16 +1,8 @@
 describe "Routes", ->
-  describe "#parseUrl", ->
-    it "handles an empty string", ->
-      expect(parseUrl("")).toEqual(["",""])
-    it "handles just a hash", ->
-      expect(parseUrl("#asdf")).toEqual(["#asdf",""])
-    it "handles a hash and an id", ->
-      expect(parseUrl("#asdf?id=33")).toEqual(["#asdf","33"])
-    it "handles a hash and an id, swapped positions", ->
-      expect(parseUrl("?id=33#asdf")).toEqual(["#asdf","33"])
-    it "handles an extra query param", ->
-      expect(parseUrl("#asdf?id=33&rand=342")).toEqual(["#asdf","33"])
-    it "handles a compound '_' param", ->
-      expect(parseUrl("#asdf_33")).toEqual(["#asdf","33"])
-    it "handles a compound '&' param", ->
-      expect(parseUrl("#asdf&33")).toEqual(["#asdf","33"])
+  describe "#blank", ->
+    it "handles a valid string", ->
+      expect(blank('asdf')).toBeFalsy()
+    it "handes an empty string", ->
+      expect(blank('')).toBeTruthy()
+    it "handes an undefined string", ->
+      expect(blank(undefined)).toBeTruthy()

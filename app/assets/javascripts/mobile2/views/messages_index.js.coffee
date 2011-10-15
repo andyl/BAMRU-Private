@@ -6,6 +6,4 @@ class @MessagesIndexView extends Backbone.View
       view = new MessageIndexView({model: message})
       $("#message_index").append(view.render().el)
     $(@el).listview("refresh")
-    $('.msglink').click ->
-      localStorage['msgID'] = $(this).data('msgid')
     @
