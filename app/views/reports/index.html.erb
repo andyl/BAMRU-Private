@@ -30,12 +30,9 @@
             <tr>
               <td><%= report[0] %></td>
               <td><%= report[1] %></td>
-              <td><%= report_format(report) %></td>
+              <td><%= report_format(report) %>     </td>
               <td><%= report_description(report) %></td>
-              <td><%= download_link(report)%>
-                  <% unless %w(PDF JSON ZIP).include?(report_format(report)) %> |
-                  <%= gdocs_link(report) %> <% end %>
-              </td>
+              <td><%= download_link(report)%>      </td>
             </tr>
           <% end %>
         </tbody>

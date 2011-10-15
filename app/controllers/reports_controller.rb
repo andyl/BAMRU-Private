@@ -5,15 +5,12 @@ class ReportsController < ApplicationController
 
   def report_list
     [
-      ["Callout", "Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC"],
+      ["Callout", "Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC [runs slow]"],
       ["Roster",  "Map List",         'BAMRU-roster.html',         "HTML Roster with Gmap links"],
       ["Roster",  "CSV Report",       'BAMRU-roster.csv',          "For importing into Excel"],
       ["Roster",  "VCF Report",       'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
       ["Roster",  "BAMRU Full",       'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
       ["Misc",    "BAMRU Names",      'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
-      ["Backup",  "Member Export",    'BAMRU-roster.json',         "Database export for member records"],
-      ["Backup",  "Full Export",      'BAMRU-roster.zip',          "Database export including all attached files [runs slow]"],
-      ["Paging",  "Bounced Addresses",'Paging-Bounced.pdf',        "A list of bouncing email addresses"],
       ["Paging",  "Response Times",   'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
       ["Certs",   "Cert Full Export", 'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
       ["Certs",   "Cert Expiration",  'BAMRU-CertExpiration.pdf',  "Expired certifications"]
@@ -25,7 +22,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @members = Member.order_by_last_name.all
+    @members = Member.registered.order_by_last_name.all
     args = {:layout => nil}
     render params[:title] + '.' + params[:format], args
   end
@@ -40,7 +37,7 @@ class ReportsController < ApplicationController
       doc_slug = "#{title} #{doc_time}"
       session[:doc_slug] = doc_slug
       ctype    = cx_type(format)
-      @members = Member.order_by_last_name.all
+      @members = Member.registered.order_by_last_name.all
       doc_body = render_to_string(doc_name, args)
       response = @access_token.post(tlist, doc_body, {'Slug' => "#{doc_slug}", 'Content-Type' => ctype})
       if response.is_a?(Net::HTTPSuccess)

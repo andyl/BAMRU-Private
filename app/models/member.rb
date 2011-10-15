@@ -92,6 +92,7 @@ class Member < ActiveRecord::Base
   scope :with_photos,            where("id     IN (SELECT member_id from photos)")
   scope :without_photos,         where("id NOT IN (SELECT member_id from photos)")
   scope :active,                 where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order
+  scope :registered,             where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order
   scope :inactive,               where(:typ => ["R", "S", "A"]).standard_order
 
   

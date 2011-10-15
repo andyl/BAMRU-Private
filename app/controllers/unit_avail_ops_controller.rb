@@ -6,7 +6,7 @@ class UnitAvailOpsController < ApplicationController
     @fragment_type = cookies['rsa_show'] == 'true' ? "all" : "active"
     unless fragment_exist?(:fragment => "unit_avail_ops_table-#{@fragment_type}")
       if cookies['rsa_show'] == 'true'
-        @members = Member.order_by_typ_score.all
+        @members = Member.order_by_typ_score.registered
       else
         @members = Member.order_by_typ_score.active
       end
