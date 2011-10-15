@@ -52,7 +52,21 @@ clearAll = ->
 $(document).ready ->
   $("#clear_all").click -> clearAll()
 
-# ----- 4) clear oot -----
+# ----- 4) clear sms, email, oot -----
+
+clearSMS = ->
+  $(".sms_ck").prop("checked", false)
+  updateAddressCount()
+
+$(document).ready ->
+  $("#clear_sms").click -> clearSMS()
+
+clearMail = ->
+  $(".mail_ck").prop("checked", false)
+  updateAddressCount()
+
+$(document).ready ->
+  $("#clear_mail").click -> clearMail()
 
 clearOOT = ->
   $(".oot_member .rck").prop("checked", false)

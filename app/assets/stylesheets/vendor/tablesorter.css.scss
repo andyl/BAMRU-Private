@@ -48,12 +48,92 @@ table.tablesorter tr.oot_member td {
   background-color: #FFEEFF;
 }
 
-.clear_oot {
-  background-color: #FFEEFF;
-  padding-left: 3px;
-  padding-right: 3px;
+.xbutton {
+  width: 80px;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 11px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 1em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.xbutton:hover {
+  text-decoration: none;
+}
+.xbutton:active {
+  position: relative;
+  top: 1px;
 }
 
-.clear_button {
-  width: 90px;
+$gray0: #ffffff;
+$gray1: darken($gray0, 10%);
+$gray2: darken($gray0, 20%);
+$gray3: darken($gray0, 30%);
+$gray4: darken($gray0, 40%);
+$gray5: darken($gray0, 50%);
+$gray_s: $gray0;
+$gray_f: $gray1;
+$gray_sh: $gray1;
+$gray_fh: $gray3;
+
+.xgray {
+  color: #fef4e9;
+  border: solid 1px $gray5;
+  background: $gray_s;
+  background: -webkit-gradient(linear, left top, left bottom, from($gray_s), to($gray_f));
+  background: -moz-linear-gradient(top,  $gray_s,  $gray_f);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_s', endColorstr='$gray_f');
+}
+.xgray:hover {
+  background: $gray_sh;
+  background: -webkit-gradient(linear, left top, left bottom, from($gray_sh), to($gray_fh));
+  background: -moz-linear-gradient(top,  $gray_sh,  $gray_fh);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_sh', endColorstr='$gray_fh');
+}
+.xgray:active {
+  color: $gray_sh;
+  background: -webkit-gradient(linear, left top, left bottom, from($gray_fh), to($gray_sh));
+  background: -moz-linear-gradient(top,  $gray_fh,  $gray_sh);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_fh', endColorstr='$gray_sh');
+}
+
+$pinkb: #ffeeff;
+$pink0: #ffffff;
+$pink1: $pinkb;
+$pink2: darken($pinkb, 10%);
+$pink3: darken($pinkb, 20%);
+$pink4: darken($pinkb, 30%);
+$pink5: darken($pinkb, 50%);
+$pink_s:  $pink0;
+$pink_f:  $pink1;
+$pink_sh: $pink1;
+$pink_fh: $pink2;
+
+.xpink {
+  color: #fef4e9;
+  border: solid 1px $gray5;
+  background: $pink_s;
+  background: -webkit-gradient(linear, left top, left bottom, from($pink_s), to($pink_f));
+  background: -moz-linear-gradient(top,  $pink_s,  $pink_f);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_s', endColorstr='$pink_f');
+}
+.xpink:hover {
+  background: $pink_sh;
+  background: -webkit-gradient(linear, left top, left bottom, from($pink_sh), to($pink_fh));
+  background: -moz-linear-gradient(top,  $pink_sh,  $pink_fh);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_sh', endColorstr='$pink_fh');
+}
+.xpink:active {
+  color: $pink_sh;
+  background: -webkit-gradient(linear, left top, left bottom, from($pink_fh), to($pink_sh));
+  background: -moz-linear-gradient(top,  $pink_fh,  $pink_sh);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_fh', endColorstr='$pink_sh');
 }

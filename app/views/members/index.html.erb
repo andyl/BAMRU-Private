@@ -1,4 +1,4 @@
-<%= javascript_include_tag "members/all_mem_indx"         %>
+<%= javascript_include_tag "members/all_mem_indx"                       %>
 <%= javascript_tag "var PREVIEW_OPTS = #{generate_preview_options};"    %>
 
 <div id=x_container>
@@ -62,9 +62,13 @@
             </td>
             <td align=right valign=top>
               <br/>
-              <button type=button id="clear_all" class=clear_button>Clear All</button>
+              <a href="#" id="clear_all" class="xbutton xgray">Clear All</a>
               <p></p>
-              <button type=button id="clear_oot" class=clear_button><span class=clear_oot>Clear OOT<sup>*</sup></span></button>
+              <a href="#" id="clear_sms" class="xbutton xgray">Clear SMS <img src="/images/page.gif" border=0></a>
+              <p></p>
+              <a href="#" id="clear_mail" class="xbutton xgray">Clear eMail <img src="/images/mail.gif" border=0></a>
+              <p></p>
+              <a href="#" id="clear_oot" class="xbutton xpink">Clear OOT*</a>
             </td>
           </tr>
         </table>
