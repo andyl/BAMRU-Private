@@ -58,8 +58,8 @@
     </div>
     <div id=x_footer style='font-size: 8pt;'>
       If there is a <span style='background-color: pink;'>Bounce Reply</span>,
-      <% if current_member == @member %>
-      edit your <%= raw link_to("email records", edit_member_path(@member)) %>
+      <% if current_member == @member || current_member.admin? %>
+      edit the <%= raw link_to("email records", edit_member_path(@member)) %>
       <% else %>
       <%= @member.first_name %> should edit the broken email address
       <% end %>
