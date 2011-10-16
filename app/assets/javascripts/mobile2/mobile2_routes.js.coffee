@@ -15,6 +15,7 @@ $(window).bind "pageinit", (obj) ->
 
 $(window).bind "pagebeforeshow", (obj) ->
   page = obj.currentTarget.hash
+  console.log page
   if page == "#member"
     obj.preventDefault()
     id = localStorage['memid']
