@@ -42,8 +42,8 @@
         </a><br/>
       <% end %>
     </div>
-    <div id=x_footer>
-      
+    <div id=x_footer style='font-size: 10px;'>
+      <%= link_to "#{@member.first_name}'s Inbox", "/members/#{@member.id}/inbox" %>
     </div>
   </div>
 </div>

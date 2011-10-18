@@ -64,13 +64,22 @@ table.tablesorter tr.oot_member td {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
   box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  color: black;
 }
+
+.xbutton:visited {
+  color: black;
+}
+
 .xbutton:hover {
   text-decoration: none;
+  color: #444;
 }
+
 .xbutton:active {
   position: relative;
   top: 1px;
+  color: black;
 }
 
 $gray0: #ffffff;
@@ -85,7 +94,6 @@ $gray_sh: $gray1;
 $gray_fh: $gray3;
 
 .xgray {
-  color: #fef4e9;
   border: solid 1px $gray5;
   background: $gray_s;
   background: -webkit-gradient(linear, left top, left bottom, from($gray_s), to($gray_f));
@@ -103,6 +111,7 @@ $gray_fh: $gray3;
   background: -webkit-gradient(linear, left top, left bottom, from($gray_fh), to($gray_sh));
   background: -moz-linear-gradient(top,  $gray_fh,  $gray_sh);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_fh', endColorstr='$gray_sh');
+  color: black;
 }
 
 $pinkb: #ffeeff;
@@ -136,4 +145,5 @@ $pink_fh: $pink2;
   background: -webkit-gradient(linear, left top, left bottom, from($pink_fh), to($pink_sh));
   background: -moz-linear-gradient(top,  $pink_fh,  $pink_sh);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_fh', endColorstr='$pink_sh');
+  color: black;
 }

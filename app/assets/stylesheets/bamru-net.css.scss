@@ -40,24 +40,21 @@ a img {
   border: none;
 }
 
-a {
-  color: blue;
-}
-
 a.target {
   color: black;
 }
 
 a {
-  color: #000;
+  color: black;
 }
 
 a:visited {
-  color: #666;
+  color: #333;
 }
 
 a:hover {
-  color: #fff; background-color:#000;
+  color: #fff;
+  background-color:#000;
 }
 
 /* ---------- table formatting ---------- */

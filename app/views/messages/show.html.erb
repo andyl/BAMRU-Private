@@ -72,7 +72,7 @@
         <% @message.distributions.each do |d| %>
           <tr>
             <td><%= link_to(d.member.full_name, member_path(d.member)) %></td>
-            <td align=center><%= raw yes_no_bounce d.bounced %></td>
+            <td align=center><%= raw yes_no_bounce d %></td>
             <td align=center><%= raw yes_no_read d.read %></td>
             <td align=center><%= raw d.rsvp_display_link %></td>
             <td align=center>
@@ -91,7 +91,9 @@
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
           <td align=right>
-            If there are bounced messages, check the <b>history</b> to find out what is failing.
+            <% if @message.has_open_bounce? %>
+              For <span style="background-color: pink;">bounced messages</span>, check the <b>history</b> to find out what is failing.
+            <% end %>
           </td>
         </tr>
       </table>

@@ -167,7 +167,7 @@ module Mobile1Helper
   end
 
   def blue_wrap(text)
-    "<span style='background-color: lightblue; padding-left 3px; padding-right 3px;'>#{text}</span>"
+    "<span style='background-color: #ccffff; padding-left 3px; padding-right 3px;'>#{text}</span>"
   end
 
   def sent_read(msg, format = "short")

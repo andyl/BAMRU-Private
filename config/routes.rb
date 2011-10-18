@@ -28,6 +28,8 @@ Zn::Application.routes.draw do
   put  "password/update"       # updates the password after token is accepted
 
   get '/history/markall'
+  get '/history/disable'
+  get '/history/ignore'
 
   resources :sessions
 

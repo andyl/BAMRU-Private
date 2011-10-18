@@ -40,7 +40,7 @@
             <td><%= m.created_at.strftime("%m-%d %H:%M") %></td>
             <td align=center><%= m.rsvp_stats %></td>
             <td align=center>
-              <%= raw sent_display(m.distributions.count, m.distributions.bounced.count) %> |
+              <%= raw sent_display(m.distributions.count, m) %> |
               <%= raw read_display(m.distributions.count, m.distributions.read.count) %>
             </td>
           </tr>

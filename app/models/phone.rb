@@ -9,7 +9,6 @@ class Phone < ActiveRecord::Base
 
   # ----- Callbacks -----
 
-
   # ----- Validations -----
   validates_format_of :number, :with => /^\d\d\d-\d\d\d-\d\d\d\d$/
 

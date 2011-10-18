@@ -43,7 +43,7 @@
             <td><%= link_to(dist.message.author.short_name, member_path(dist.message.author)) %></td>
             <td><%= dist.message.text_with_rsvp %> <%= raw mark_as_read(dist, @member)%></td>
             <td align=center>
-              <%= raw yes_no_bounce dist.bounced %>
+              <%= raw yes_no_bounce dist %>
               </td>
             <td align=center>
               <%= raw yes_no_read dist.read %>

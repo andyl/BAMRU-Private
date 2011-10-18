@@ -30,7 +30,7 @@
         </tr>
         <tr>
           <td align=right><b>Message Recipient:</b></td>
-          <td><%= link_to(@recipient.full_name, member_path(@recipient)) %></td>
+          <td><%= link_to(@recipient.full_name, member_path(@recipient)) %> (<%= link_to("inbox", "/members/#{@recipient.id}/inbox")%>)</td>
         </tr>
         <tr>
           <td align=right><b>Message Text:</b></td>
@@ -44,7 +44,7 @@
 
       <% @mails.each do |mail| %>
         <hr>
-        Mail <b><%= mail[:outbound].full_label %></b> sent to <b><%= raw address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=sent_time(mail[:outbound])%><br/>
+        Mail <b><%= mail[:outbound].full_label %></b> sent to <b><%= raw history_address(mail[:outbound]) %></b><%= via(mail[:outbound])%> at <%=sent_time(mail[:outbound])%><br/>
         <% mail[:inbound].each do |inb| %>
           => <%= raw reply_txt(inb) %> from <b><%= inb.from %></b> <%= raw inb.rsvp_answer_text %> at <%= reply_time(inb)%> [<%= raw view(inb) %><%= raw hide(inb) %>]<br/>
           <div id=<%=inb.id%>_body class=mail_body><%= raw body(inb) %></div>
@@ -56,14 +56,17 @@
       <% end %>
 
     </div>
-    <div id=x_footer style='font-size: 8pt;'>
-      If there is a <span style='background-color: pink;'>Bounce Reply</span>,
-      <% if current_member == @member || current_member.admin? %>
-      edit the <%= raw link_to("email records", edit_member_path(@member)) %>
-      <% else %>
-      <%= @member.first_name %> should edit the broken email address
+    <div id=x_footer style='font-size: 8pt; text-align: left;'>
+      <% if @distribution.has_open_bounce?  %>
+        <div style='margin-left: 150px;'>
+          To fix a <span style="background-color: pink;">bounced address</span>, you can:<br/>
+          <div style="margin-left: 15px;">
+           - <b>Ignore</b> the error message (do this for a vacation reply)<br/>
+           - <b>Disable</b> the address (to stop sending pages to the address)<br/>
+           - <b>Edit</b> the address (to change or delete the address)
+           </div>
+        </div>
       <% end %>
-      to fix the problem.
     </div>
 
   </div>

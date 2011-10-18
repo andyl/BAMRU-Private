@@ -49,4 +49,20 @@ class HistoryController < ApplicationController
     render :nothing => true
   end
 
+  def ignore
+    puts "IGNORE #{params.inspect}"
+    inb = InboundMail.find(params[:id])
+    inb.update_attributes({:ignore_bounce => true})
+    render :nothing => true
+  end
+
+  def disable
+    puts "DISABLE #{params.inspect}"
+    inb = InboundMail.find(params[:id])
+    om = inb.outbound_mail
+    om.phone.update_attributes({:pagable => "0"}) if om.phone
+    om.email.update_attributes({:pagable => "0"}) if om.email
+    render :nothing => true
+  end
+
 end

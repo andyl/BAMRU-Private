@@ -3,4 +3,5 @@
 
 //= require history/history_update_rsvp
 //= require history/history_show_hide
+//= require history/history_ignore_disable
 

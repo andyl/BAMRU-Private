@@ -72,5 +72,6 @@ end
 #  bounced          :boolean         default(FALSE)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  ignore_bounce    :boolean         default(FALSE)
 #
 

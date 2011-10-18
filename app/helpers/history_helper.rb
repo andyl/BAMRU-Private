@@ -1,33 +1,12 @@
 module HistoryHelper
-  
-  def email_changed?(record)
-    return false if record.email.nil?
-    record.address != record.email.address
-  end
 
-  def phone_changed?(record)
-    return false if record.phone.nil?
-    record.address != record.phone.sms_email
-  end
-
-  def deleted?(record)
-    record.phone.blank? && record.email.blank?
-  end
-
-  def fixed?(record)
-    email_changed?(record) || phone_changed?(record) || deleted?(record)
-  end
-
-  def address(outbound)
-    if outbound.email
-      return "<del>#{outbound.address}</del> (changed)" if email_changed?(outbound)
-      return outbound.address
+  def history_address(outbound)
+    if outbound.email.blank? && outbound.phone.blank?
+      return "<del>#{outbound.address}</del> (deleted)"
     end
-    if outbound.phone
-      return "<del>#{outbound.address}</del> (changed)" if phone_changed?(outbound)
-      return outbound.address
-    end
-    "<del>#{outbound.address}</del> (deleted)"
+    return "<del>#{outbound.address}</del> (changed)" if outbound.changed?
+    return "<del>#{outbound.address}</del> (disabled)" if outbound.disabled?
+    outbound.address
   end
 
   def via(outbound)
@@ -49,11 +28,20 @@ module HistoryHelper
   end
 
   def reply_txt(inbound)
-    color = fixed?(inbound.outbound_mail) ? "lightblue" : "pink"
-    fix   = @recipient == current_member ? link_to("fix", "/members/#{current_member.id}/edit") : "fix"
-    lbl   = fixed?(inbound.outbound_mail) ? "" : " (#{fix})"
+    color = case
+      when inbound.fixed?   : "#ccffff"
+      when inbound.bounced? : "pink"
+      else "white"
+    end
+    e_link = "<a href='/members/#{@recipient.id}/edit'>Edit</a>"
+    i_link = "<a href='#' class='ignore_link' id='i_#{inbound.id}'>Ignore</a>"
+    d_link = "<a href='#' class='disable_link' id='d_#{inbound.id}'>Disable</a>"
+    action = " (#{i_link} | #{d_link} | #{e_link})"
+    f_link = current_member == @recipient || current_member.admin? ? action : " Needs Fixing"
+    lbl    = inbound.fixed? ? "(Fixed)" : f_link
+    lbl    = "(Ignored)" if inbound.ignore_bounce?
     v1 = "Reply "
-    v2 = "<span style='background-color: #{color}; padding-left: 3px; padding-right:3px;'>Bounce Reply#{lbl}</span>"
+    v2 = "<span style='background-color: #{color}; padding-left: 3px; padding-right:3px;'>Bounce #{lbl}</span>"
     inbound.bounced? ? v2 : v1
   end
 

@@ -26,8 +26,13 @@ module MessagesHelper
     "Yes #{num_yes}, No #{num_no}, NONE #{num_none}"
   end
 
-  def sent_display(count, bounce_count)
-    color = bounce_count == 0 ? "white" : "lightpink"
+  def sent_display(count, message)
+    color = case
+      when message.has_open_bounce? : "lightpink"
+      when message.has_fixed_bounce? : "#ccffff"
+      else
+        "white"
+    end
     span_wrap(count, color)
   end
 
@@ -45,10 +50,13 @@ module MessagesHelper
     boolean_value == true ? "yes" : "no"
   end
 
-  def yes_no_bounce(boolean_value)
+  def yes_no_bounce(distribution)
     v1 = "<span style='padding-left: 3px; padding-right: 3px; background-color: lightpink;'>yes</span>"
-    v2 = "no"
-    boolean_value == true ? v1 : v2
+    v2 = "<span style='padding-left: 3px; padding-right: 3px; background-color: #ccffff;'>no</span>"
+    v3 = "no"
+    return v1 if distribution.has_open_bounce?
+    return v2 if distribution.has_fixed_bounce?
+    v3
   end
 
   def yes_no_read(boolean_value)

@@ -9,10 +9,12 @@ class InboundMail < ActiveRecord::Base
 
   # ----- Callbacks -----
 
+
   # ----- Validations -----
 
 
   # ----- Scopes -----
+  scope :bounced, where(:bounced => true)
 
 
   # ----- Local Methods-----
@@ -22,7 +24,50 @@ class InboundMail < ActiveRecord::Base
     "(RSVP=<b>#{rsvp_answer}</b>)"
   end
 
-  # ----- Class Methods
+  def email_changed?
+    return false if outbound_mail.email.nil?
+    outbound_mail.address != outbound_mail.email.address
+  end
+
+  def email_disabled?
+    outbound_mail.email && outbound_mail.email.pagable == '0'
+  end
+
+  def phone_changed?
+    return false if outbound_mail.phone.nil?
+    outbound_mail.address != outbound_mail.phone.sms_email
+  end
+
+  def phone_disabled?
+    outbound_mail.phone && outbound_mail.phone.pagable == '0'
+  end
+
+  def deleted?
+    outbound_mail.phone.blank? && outbound_mail.email.blank?
+  end
+
+  def disabled?
+    email_disabled? || phone_disabled?
+  end
+
+  def ignored?
+    ignore_bounce?
+  end
+
+  def fixed?
+    email_changed? || phone_changed? || deleted?  || disabled? || ignored?
+  end
+
+  def has_open_bounce?
+    bounced? && ! ignore_bounce && ! fixed?
+  end
+
+  def has_fixed_bounce?
+    bounced? && fixed?
+  end
+
+
+  # ----- Class Methods -----
 
   def self.match_code(input)
     input.match(/\[[a-z\- ]*\_([0-9a-z][0-9a-z][0-9a-z][0-9a-z])\]/) ||
@@ -89,5 +134,6 @@ end
 #  bounced          :boolean         default(FALSE)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  ignore_bounce    :boolean         default(FALSE)
 #
 

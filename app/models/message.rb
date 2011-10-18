@@ -21,6 +21,17 @@ class Message < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+  def has_open_bounce?
+    dist_b = distributions.bounced
+    return false if dist_b.blank?
+    dist_b.any? {|dist| dist.has_open_bounce?}
+  end
+
+  def has_fixed_bounce?
+    dist_b = distributions.bounced
+    return false if dist_b.blank?
+    dist_b.any? {|dist| dist.has_fixed_bounce?}
+  end
 
   def text_with_rsvp
     return text unless rsvp

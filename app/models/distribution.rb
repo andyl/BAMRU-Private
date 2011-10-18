@@ -34,7 +34,18 @@ class Distribution < ActiveRecord::Base
   scope :rsvp_none, where("rsvp_answer != 'Yes'").where("rsvp_answer != 'No'")
 
   # ----- Local Methods-----
+  def has_open_bounce?
+    bounced_om = outbound_mails.bounced.all
+    return false if bounced_om.blank?
+    bounced_om.any? { |om| om.has_open_bounce? }
+  end
 
+  def has_fixed_bounce?
+    bounced_om = outbound_mails.bounced.all
+    return false if bounced_om.blank?
+    bounced_om.any? { |om| om.has_fixed_bounce? }
+  end
+  
   def rsvp_display_answer(txt_case = :downcase)
     return "NA" unless message.rsvp
     rsvp_answer.try(txt_case) || "NONE"
@@ -68,8 +79,6 @@ class Distribution < ActiveRecord::Base
       }
     end
   end
-
-
 
 end
 
