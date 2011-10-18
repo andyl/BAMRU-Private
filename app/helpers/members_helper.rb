@@ -29,7 +29,7 @@ module MembersHelper
 
   def roster_oot_label(member)
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " (OOT)"
+    " (Unavail)"
   end
   
   def phone_checkbox(member)
