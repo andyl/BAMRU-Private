@@ -2,7 +2,7 @@ class Message < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :author,     :class_name => 'Member'
+  belongs_to :author,         :class_name => 'Member'
   has_many   :distributions
   has_many   :recipients,     :through => :distributions, :source => :member
   has_many   :outbound_mails, :through => :distributions

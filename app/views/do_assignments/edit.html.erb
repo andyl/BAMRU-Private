@@ -30,15 +30,17 @@
               <% else %>
                 <tr>
               <% end %>
-                <td><%= @quarter[:year] %></td><td><%= @quarter[:quarter] %></td>
-                <td><%= ado.week%></td>
-                <td><%= ado.start_day %> - <%= ado.end_day %></td>
-                <td>
-                  <%= ido.select(:name, [ado.name] + ado.avail_members, {:include_blank => true}) %>
-                </td>
-                <td>
+              <td><%= @quarter[:year] %></td><td><%= @quarter[:quarter] %></td>
+              <td><%= ado.week%></td>
+              <td><%= ado.start_day %> - <%= ado.end_day %></td>
+              <td>
+                <%= ido.select(:name, [ado.name] + ado.avail_members, {:include_blank => true}) %>
+              </td>
+              <td>
+                <% if ado.current? %>
                   <%= ido.select(:backup_id, ado.backup_hash, {:include_blank => true}) %>
-                </td>
+                <% end %>
+              </td>
               </tr>
             <% end %>
           <% end %>
@@ -48,6 +50,8 @@
       <% end %>
 
     </div>
-    <div id=x_footer> </div>
+    <div id=x_footer>
+      <%= link_to "DO Handoffs", "/do_handoffs"  %>
+    </div>
   </div>
 </div>
