@@ -85,15 +85,21 @@
 
     </div>
     <div id=x_footer style='font-size: 8pt;'>
+      <% if @message.has_open_bounce? %>
+        <div style='text-align: center;'>
+          For <span style="background-color: pink;">bounced messages</span>, check the <b>history</b> to find out what is failing.
+        </div>
+      <% end %>
       <table width=100% style='font-size: 8pt;'>
         <tr>
-          <td>
+          <td align=center>
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
-          <td align=right>
-            <% if @message.has_open_bounce? %>
-              For <span style="background-color: pink;">bounced messages</span>, check the <b>history</b> to find out what is failing.
-            <% end %>
+          <td align=center>
+            Last Mail Sync: <%=@sync_time %>
+          </td>
+          <td align=center>
+            <a href='#' id=resync_link>Resync Now</a>
           </td>
         </tr>
       </table>

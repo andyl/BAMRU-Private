@@ -8,4 +8,5 @@
 //= require cookie
 //= require tablesorter_util
 
+//= require messages/messages_resync
 //= require messages/messages_show_table

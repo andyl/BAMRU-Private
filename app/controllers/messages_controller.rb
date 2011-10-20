@@ -9,6 +9,8 @@ class MessagesController < ApplicationController
   end
 
   def show
+    file = "tmp/mail_sync_time.txt"
+    @sync_time = File.exist?(file) ? File.read(file) : "NA"
     @message = Message.where(:id => params["id"]).first
     @msg = @message
     @dists = @msg.distributions
