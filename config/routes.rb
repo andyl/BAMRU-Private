@@ -55,32 +55,30 @@ Zn::Application.routes.draw do
   end
 
   get "mobile1" => "mobile1#index", :as => "mobile1"
-  get "mobile1/about"
-  get "mobile1/map"
-  get "mobile1/geo"
-  get "mobile1/unread"
-  get "mobile1/inbox"
-  get "mobile1/paging"
-  get "mobile1/status"
-  get "mobile1/login"  => "mobile1/sessions#new",     :as => "mobile_login"
-  get "mobile1/logout" => "mobile1/sessions#destroy", :as => "mobile_logout"
-  post "mobile1/send_page"
-
   namespace "mobile1" do
+    get "about"
+    get "map"
+    get "geo"
+    get "unread"
+    get "inbox"
+    get "paging"
+    get "status"
+    get "login"   => "mobile1/sessions#new",     :as => "mobile_login"
+    get "logout"  => "mobile1/sessions#destroy", :as => "mobile_logout"
     resources :members
     resources :messages
     resources :sessions
     resources :chats
   end
 
-  get "mobile2"           => "mobile2#index"
-
+  get "mobile2" => "mobile2#index"
   namespace "mobile2" do
     resources :members
     resources :messages
   end
 
   namespace "api" do
+    get "mails/:id/sent_at_now"
     resources :mails
   end
 

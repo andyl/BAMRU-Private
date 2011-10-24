@@ -3,8 +3,10 @@ namespace :ops do
   desc "RAKE TEST COMMAND"
   task :raketest do
     puts "STARTING TEST COMMAND (PID: #{Process.pid})"
+    STDOUT.flush
     sleep 10
     puts "ENDING TEST COMMAND (PID: #{Process.pid})"
+    STDOUT.flush
   end
 
   namespace :email do
@@ -27,6 +29,7 @@ namespace :ops do
     desc "Send Password Reset Mail ADDRESS=<email_address> URL=<return_url>"
     task :password_reset => ['environment'] do
       puts "Sending forgot password mail to #{ENV["ADDRESS"]} at #{Time.now}"
+      STDOUT.flush
       Time.zone = "Pacific Time (US & Canada)"
       mailing = Notifier.password_reset_email(ENV["ADDRESS"], ENV["URL"])
       mailing.deliver
@@ -63,6 +66,7 @@ namespace :ops do
       while send_obj = send_list.get
         send_mail(send_obj)
       end
+      STDOUT.flush
     end
 
     # ----- Inbound Pager Messages -----
@@ -90,11 +94,13 @@ namespace :ops do
       gm = Gmail.new(GMAIL_USER, GMAIL_PASS)
       gm.inbox.emails.each do |email|
         puts "Processing mail #{email.uid}"
+        STDOUT.flush
         InboundMail.create_from_mail(email)
         email.archive!
       end
       gm.logout
       puts "Mail Sync Finished " + Time.now.to_s
+      STDOUT.flush
     end
 
   end
