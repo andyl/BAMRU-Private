@@ -19,15 +19,21 @@
 
 # Learn more: http://github.com/javan/whenever
 
+job_type :nq, "cd :path && export RAILS_ENV=:environment && script/nq :task"
+
+every 2.minutes do
+  nq "rake ops:raketest"
+end
+
 every 30.minutes do
-  rake "email:import ONLY_ON=bamru.net"
+  nq "rake ops:email:import ONLY_ON=bamru.net"
 end
 
 every 1.day, :at => '0:05 am' do
-  rake "tmp:clear"
+  nq "rake tmp:clear"
 end
 
 every 1.day, :at => '23:55 pm' do
-  rake "tmp:clear"
+  nq "rake tmp:clear"
 end
 

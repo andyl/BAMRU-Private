@@ -26,7 +26,7 @@ namespace :ops do
 
     desc "Send Password Reset Mail ADDRESS=<email_address> URL=<return_url>"
     task :password_reset => ['environment'] do
-      puts "Sending mail to #{ENV["ADDRESS"]} at #{Time.now}"
+      puts "Sending forgot password mail to #{ENV["ADDRESS"]} at #{Time.now}"
       Time.zone = "Pacific Time (US & Canada)"
       mailing = Notifier.password_reset_email(ENV["ADDRESS"], ENV["URL"])
       mailing.deliver
@@ -77,13 +77,11 @@ namespace :ops do
       file = "tmp/mail_sync_time.txt"
       if ENV['ONLY_ON'] && ENV['ONLY_ON'] != ENV['SYSNAME']
         puts "Exiting: command runs only on #{ENV["ONLY_ON"]}"
-        puts '-' * 50
         exit
       end
       if File.exists?(file)
         if last_update_less_than_two_minutes_ago(file)
           puts "Exiting: last mail sync was less than two minutes ago."
-          puts "-" * 50
           exit
         end
       end
@@ -97,7 +95,6 @@ namespace :ops do
       end
       gm.logout
       puts "Mail Sync Finished " + Time.now.to_s
-      puts "-" * 50
     end
 
   end
