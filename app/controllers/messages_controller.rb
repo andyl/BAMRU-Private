@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  before_filter :authenticate_member!
+  before_filter :authenticate_member_with_basic_auth!
 
   def index
     file = "tmp/mail_sync_time.txt"
@@ -45,7 +45,8 @@ class MessagesController < ApplicationController
       opts[:message_id] = m.id
       p = Rsvp.create(opts)
     end
-    call_rake('email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'development'
+    m.create_all_outbound_mails
+    call_rake('ops:email:send_pending_mails')
     redirect_to messages_path, :notice => "Message sent."
   end
   

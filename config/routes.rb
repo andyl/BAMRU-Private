@@ -11,6 +11,7 @@ Zn::Application.routes.draw do
   get "home/mail_sync"
   get "home/silent_mail_sync"
   get "home/preview"
+  get "home/testrake"
 
   get "preview/sms"
   get "preview/mail_txt"
@@ -31,8 +32,7 @@ Zn::Application.routes.draw do
   get '/history/disable'
   get '/history/ignore'
 
-  resources :sessions
-
+  resources  :sessions
   resources  :members
   resources  :messages
   resources  :unit_photos
@@ -59,15 +59,12 @@ Zn::Application.routes.draw do
   get "mobile1/map"
   get "mobile1/geo"
   get "mobile1/unread"
-
   get "mobile1/inbox"
   get "mobile1/paging"
   get "mobile1/status"
-
-  post "mobile1/send_page"
-
   get "mobile1/login"  => "mobile1/sessions#new",     :as => "mobile_login"
   get "mobile1/logout" => "mobile1/sessions#destroy", :as => "mobile_logout"
+  post "mobile1/send_page"
 
   namespace "mobile1" do
     resources :members
@@ -81,6 +78,10 @@ Zn::Application.routes.draw do
   namespace "mobile2" do
     resources :members
     resources :messages
+  end
+
+  namespace "api" do
+    resources :mails
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos

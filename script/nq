@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+
+width    = 80
+base_dir = "tmp/nq"
+pid_file = base_dir + "/_nq_pid.txt"
+prog = $0
+
+system "mkdir -p #{base_dir}"
+
+if ARGV.length > 0
+  cmd_file = base_dir + "/nq_#{Time.now.strftime("%y%m%d_%H%M%S")}.txt"
+  command  = ARGV.join(' ')
+  File.open(cmd_file, 'w') { |f| f.puts command }
+  puts " Wrote Cmd File: #{cmd_file} ".center(width, '=')
+  puts command
+  if File.exist?(pid_file)
+    nq_pid = File.read(pid_file).chomp
+    depth = Dir.glob("#{base_dir}/nq_*").length
+    puts "Added to Queue | nq PID: #{nq_pid} | Queue Depth: #{depth}"
+    puts "=" * width
+    STDOUT.flush
+    abort
+  end
+  puts "=" * width
+  STDOUT.flush
+end
+
+File.open(pid_file, 'w') {|f| f.puts Process.pid}
+
+def ts() Time.now.strftime("%H:%M:%S"); end
+
+STDOUT.flush
+
+while (file = Dir.glob("#{base_dir}/nq_*").first) != nil do
+  cmd = File.read(file).chomp
+  depth = Dir.glob("#{base_dir}/nq_*").length
+  puts (" Starting nq PID:#{Process.pid} @ #{ts} ").center(width, '-')
+  puts (" Using Cmd File: #{file.split('/').last} | Queue Depth: #{depth} ").center(width, '-')
+  puts cmd
+  STDOUT.flush
+  system cmd
+  puts (" Finished PID:#{Process.pid} @ #{ts} ").center(width, '-')
+  system "rm #{file}"
+  STDOUT.flush
+  sleep 10
+end
+
+STDOUT.flush
+
+system "rm -f #{pid_file}"

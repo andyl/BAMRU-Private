@@ -43,6 +43,44 @@ class Message < ActiveRecord::Base
     "Y:#{distributions.rsvp_yes.count} N:#{distributions.rsvp_no.count}"
   end
 
+  # ----- Create Outbound Mails -----
+
+  def label4c
+    rand((36**4)-1).to_s(36)
+  end
+
+  def gen_label
+    new_label = label4c
+    new_label = label4c until OutboundMail.where(:label => new_label).empty?
+    #puts "New Label is #{new_label}"
+    new_label
+  end
+
+  def create_one_outbound_mail(dist, hash)
+    hash[:label] = gen_label
+    hash[:distribution_id] = dist.id
+    ! dist.outbound_mails.where(:address => hash[:address]).empty? || OutboundMail.create!(hash)
+    if dist.message.rsvp
+      dist.update_attributes({:rsvp => true})
+    end
+  end
+
+  def create_all_outbound_mails
+    self.distributions.each do |dist|
+      member = dist.member
+      if dist.phone?
+        member.phones.pagable.each do |phone|
+          create_one_outbound_mail(dist, {:phone_id => phone.id, :address => phone.sms_email})
+        end
+      end
+      if dist.email?
+        member.emails.pagable.each do |email|
+          create_one_outbound_mail(dist, {:email_id => email.id, :address => email.address})
+        end
+      end
+    end
+  end
+
 
   # ----- Class Methods
 

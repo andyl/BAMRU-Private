@@ -20,9 +20,7 @@ class DoHandoff < ActiveRecord::Base
   scope :started,   where(:status => "started")
   scope :finished,  where(:status => "finished")
   scope :abandoned, where(:status => "abandoned")
-  def self.not_id(id)
-    where('id != ?', id)
-  end
+  scope :not_id,    lambda {|id| where('id != ?', id) }
 
   # ----- Class Methods -----
 
@@ -43,7 +41,7 @@ class DoHandoff < ActiveRecord::Base
     params['text'] = "Message Here"
     params['distributions_attributes'] = [{'member_id' => incoming_do_id, 'phone' => false, 'email' => true}]
     m = Message.create(np)
-    call_rake('email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
+    call_rake('ops:email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
   end
 
   def send_reminder_notice
@@ -51,7 +49,7 @@ class DoHandoff < ActiveRecord::Base
     params['text'] = "Message Here"
     params['distributions_attributes'] = [{'member_id' => incoming_do_id, 'phone' => false, 'email' => true}]
     m = Message.create(np)
-    call_rake('email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
+    call_rake('ops:email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
   end
 
   def send_finish_notice
@@ -59,7 +57,7 @@ class DoHandoff < ActiveRecord::Base
     params['text'] = "Message Here"
     params['distributions_attributes'] = [{'member_id' => incoming_do_id, 'phone' => false, 'email' => true}]
     m = Message.create(np)
-    call_rake('email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
+    call_rake('ops:email:send_distribution', {:message_id => m.id}) unless %w(development test).include? ENV['RAILS_ENV']
   end
 
   private

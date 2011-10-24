@@ -26,16 +26,20 @@ class HomeController < ApplicationController
   end
 
   def mail_sync
-    call_rake("email:import")
+    call_rake("ops:email:import")
   end
 
   def silent_mail_sync
-    call_rake("email:import")
+    call_rake("ops:email:import")
     render :nothing => true
   end
 
   def preview
     @response = params[:response]
+  end
+
+  def testrake
+    call_rake("ops:raketest")
   end
 
 

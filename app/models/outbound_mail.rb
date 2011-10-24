@@ -18,6 +18,7 @@ class OutboundMail < ActiveRecord::Base
   scope :bounced, where(:bounced => true)
   scope :emails, where('email_id is not null')
   scope :phones, where('phone_id is not null')
+  scope :pending, where(:sent_at => nil)
 
   # ----- Local Methods-----
   def has_open_bounce?
@@ -88,6 +89,10 @@ class OutboundMail < ActiveRecord::Base
 
   def disabled?
     phone_disabled? || email_disabled?
+  end
+
+  def to_json
+    as_json.to_json
   end
 
   # ----- Class Methods

@@ -30,11 +30,12 @@ class ApplicationController < ActionController::Base
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
-    system "date >> #{Rails.root}/log/rake.log"
-    system "pwd  >> #{Rails.root}/log/rake.log"
-    cmd = "cd #{Rails.root}; /usr/bin/rake #{task} #{args.join(' ')} --trace >> #{Rails.root}/log/rake.log 2>&1 &"
-    puts cmd
-    system cmd
+    cmd = "/usr/bin/rake #{task} #{args.join(' ')} --trace"
+    nq(cmd)
+  end
+
+  def nq(cmd)
+    system "(cd #{Rails.root}; script/nq #{cmd}) >> #{Rails.root}/log/nq.log 2>&1 &"
   end
 
   def device
@@ -73,6 +74,19 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_member
   helper_method :member_signed_in?
+
+  # can be called with curl using http_basic authentication
+  # curl -u user_name:pass http://bamru.net/reports
+  # curl -u user_name:pass http://bamru.net/reports/BAMRU-report.csv
+  #    note: user_name should be in the form of user_name, not user.name
+  def authenticate_member_with_basic_auth!
+    if member = authenticate_with_http_basic { |u,p| Member.find_by_user_name(u).authenticate(p) }
+      session[:member_id] = member.id
+    else
+      authenticate_member!
+    end
+  end
+
 
   def authenticate_member!
     unless member_signed_in?

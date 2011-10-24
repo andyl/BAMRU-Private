@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 
-  before_filter :authenticate_member_for_reports
+  before_filter :authenticate_member_with_basic_auth!
   before_filter :gdocs_oauth_setup, :except => [:index, :show]
 
   def report_list
@@ -122,18 +122,6 @@ class ReportsController < ApplicationController
       @access_token = OAuth::AccessToken.new(@consumer, acc_token, acc_token_secret)
     end
 
-  end
-
-  # can be called with curl using http_basic authentication
-  # curl -u user_name:pass http://bamru.net/reports
-  # curl -u user_name:pass http://bamru.net/reports/BAMRU-report.csv
-  #    note: user_name should be in the form of user_name, not user.name
-  def authenticate_member_for_reports
-    if member = authenticate_with_http_basic { |u,p| Member.find_by_user_name(u).authenticate(p) }
-      session[:member_id] = member.id
-    else
-      authenticate_member!
-    end
   end
 
 end

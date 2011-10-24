@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'lib/carrier'
+require 'lib/carrier_queue'
 
 describe CarrierQueue do
 

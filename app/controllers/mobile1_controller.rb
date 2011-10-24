@@ -66,7 +66,7 @@ class Mobile1Controller < ApplicationController
       opts[:message_id] = m.id
       p = Rsvp.create(opts)
     end
-    call_rake('email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'developmenet'
+    call_rake('ops:email:send_distribution', {:message_id => m.id}) unless ENV['RAILS_ENV'] == 'developmenet'
     redirect_to "/mobile1/messages"
   end
 

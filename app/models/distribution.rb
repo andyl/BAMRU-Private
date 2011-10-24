@@ -22,16 +22,13 @@ class Distribution < ActiveRecord::Base
   scope :sent,      where(:read => [true, false])
   scope :bounced,   where(:bounced => true)
   scope :read,      where(:read => true)
-
   scope :unread,    where(:read => false)
 
-  def self.response_less_than(seconds)
-    where('response_seconds < ?', seconds)
-  end
+  scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
 
   scope :rsvp_yes,  where(:rsvp_answer => "Yes")
   scope :rsvp_no,   where(:rsvp_answer => "No")
-  scope :rsvp_none, where("rsvp_answer != 'Yes'").where("rsvp_answer != 'No'")
+  scope :rsvp_none, where(:rsvp_answer => nil)
 
   # ----- Local Methods-----
   def has_open_bounce?

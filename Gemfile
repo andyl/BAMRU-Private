@@ -18,9 +18,9 @@ platforms :ruby do
   gem "fastercsv"
   gem "nokogiri"
   gem "simple_form"
+  gem "rabl"
 
   gem "draper"
-  #gem "active_presenter"
 
   gem "rack-offline"
 
