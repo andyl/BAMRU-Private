@@ -19,9 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-job_type :nq, "cd :path && export RAILS_ENV=:environment && script/nq :task"
+cmd = "script/nq :task >> log/nq.log 2>1"
+job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
-every 2.minutes do
+every 1.minutes do
   nq "rake ops:raketest"
 end
 
