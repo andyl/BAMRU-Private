@@ -63,7 +63,7 @@ platforms :ruby do
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
     gem "capybara", "~> 1.0.1"
-    gem "capybara-webkit", :git => "https://github.com/thoughtbot/capybara-webkit.git"
+    # gem "capybara-webkit", :git => "https://github.com/thoughtbot/capybara-webkit.git"
     gem "launchy"
     gem 'spork', '~> 0.9.0.rc9'
     gem 'database_cleaner'

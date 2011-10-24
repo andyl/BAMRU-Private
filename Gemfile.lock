@@ -20,13 +20,6 @@ GIT
       activesupport
       sqlite3-ruby
 
-GIT
-  remote: https://github.com/thoughtbot/capybara-webkit.git
-  revision: f493b22f6bb5b468a17d6f768ad4fe76af751901
-  specs:
-    capybara-webkit (0.6.1)
-      capybara (~> 1.0.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -300,7 +293,6 @@ DEPENDENCIES
   cancan
   capistrano
   capybara (~> 1.0.1)
-  capybara-webkit!
   coffee-script
   csv-mapper
   database_cleaner
