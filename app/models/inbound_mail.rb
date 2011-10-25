@@ -82,6 +82,10 @@ class InboundMail < ActiveRecord::Base
     opts[:uid]       = mail.try(:uid)
     opts[:body]      = mail.body.to_s.lstrip
     opts[:send_time] = mail.date.to_s
+    create_from_opts(opts)
+  end
+    
+  def self.create_from_opts(opts)
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     first_words = opts[:body].split(' ')[0..30].join(' ')
     match = first_words.match(/\b(yea|yes|no|y|n)\b/i)

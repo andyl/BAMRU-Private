@@ -107,6 +107,7 @@ class Member < ActiveRecord::Base
       x.current_do = true ; x.save
     end
   end
+
   # ----- Virtual Attributes (Accessors) -----
 
   def full_name_do

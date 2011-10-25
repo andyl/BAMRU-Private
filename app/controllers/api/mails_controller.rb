@@ -18,12 +18,17 @@ class Api::MailsController < ApplicationController
     render :json => "OK\n"
   end
 
-  # curl -X POST -u <first>_<last>:<pwd> -d "<string>" http://server/api/mails/inbound.json
-  def inbound
-    @im = InboundMail.create_from_params(params[inbound])
-    respond_with(@im) do |format|
-      format.json { render :json => "OK\n"}
+  # curl -u <first>_<last>:<pwd> http://server/api/mails/load_inbound.json
+  def load_inbound
+    dir = Rails.root.to_s + "/tmp/inbound_mails"
+    count = 0
+    Dir.glob(dir + '/*').each do |file|
+      count += 1
+      opts   = YAML.load(File.read(file))
+      InboundMail.create_from_opts(opts)
+      system "rm #{file}"
     end
+    render :json => "OK (records: #{count})\n"
   end
 
 end
