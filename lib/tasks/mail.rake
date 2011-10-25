@@ -96,6 +96,11 @@ namespace :ops do
           exit
         end
       end
+
+            #include Rails.application.routes.url_helpers
+            #default_url_options[:host] = (Rails.env == "development") ? "ekel" : "bamru.net"
+            #default_url_options[:port] = "3000" if Rails.env == "development"
+
       File.open(file, 'w') {|f| f.puts Time.now.strftime("%m-%d %H:%M:%S")}
       Time.zone = "Pacific Time (US & Canada)"
       gm = Gmail.new(GMAIL_USER, GMAIL_PASS)
@@ -103,6 +108,15 @@ namespace :ops do
         puts "Processing mail #{email.uid}"
         STDOUT.flush
         InboundMail.create_from_mail(email)
+
+                #id         = outbound_mail.id
+                #local_base = root_url
+                #local_url  = "#{local_base}api/mails/#{id}/sent_at_now.json"
+                #cmd = "curl -s -S -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}"
+                #puts cmd.gsub(SYSTEM_PASS, "....")
+                #system cmd
+
+        #system "curl a b c d e"
         email.archive!
       end
       gm.logout

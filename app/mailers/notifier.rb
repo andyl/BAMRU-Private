@@ -44,5 +44,4 @@ class Notifier < ActionMailer::Base
     )
   end
 
-
 end
