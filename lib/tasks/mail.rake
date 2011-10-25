@@ -54,6 +54,7 @@ namespace :ops do
         local_base = root_url
         local_url  = "#{local_base}api/mails/#{id}/sent_at_now.json"
         cmd = "curl -s -S -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}"
+        puts cmd.gsub(SYSTEM_PASS, "....")
         system cmd
       end
     end
@@ -64,7 +65,7 @@ namespace :ops do
     task :send_pending_mails => 'environment' do
       Time.zone = "Pacific Time (US & Canada)"
       include Rails.application.routes.url_helpers
-      default_url_options[:host] = "localhost"
+      default_url_options[:host] = (Rails.env == "development") ? "ekel" : "bamru.net"
       default_url_options[:port] = "3000" if Rails.env == "development"
       send_list = CarrierQueueCollection.new
       mails = OutboundMail.pending.all
