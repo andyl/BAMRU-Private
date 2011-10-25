@@ -158,5 +158,22 @@ namespace :ops do
       finish_import
     end
 
+    # ----- DO Tasks -----
+
+    desc "DO Reminder Mail"
+    task :do_reminder => 'environment' do
+      puts "DO Reminder TBD"
+    end
+
+    desc "DO Alert Mail"
+    task :do_alert => 'environment' do
+      puts "DO Alert TBD"
+    end
+
+    desc "Set DO"
+    task :set_do => 'environment' do
+      puts "Set DO TBD"
+    end
+
   end
 end

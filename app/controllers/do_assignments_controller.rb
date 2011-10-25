@@ -39,10 +39,10 @@ class DoAssignmentsController < ApplicationController
     expire_fragment('member_index_table-active')
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
+      Member.set_do
       redirect_to do_assignments_path(@org), :notice => "Records Saved"
     else
       render "edit"
     end
-    Member.set_do
   end
 end
