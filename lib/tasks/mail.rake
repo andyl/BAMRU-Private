@@ -1,17 +1,7 @@
 require 'carrier_queue'
+require 'rake_util'
 
-# ----- Utilities for generating unique message labels -----
-
-def label4c
-  rand((36**4)-1).to_s(36)
-end
-
-def gen_label
-  new_label = label4c
-  new_label = label4c until OutboundMail.where(:label => new_label).empty?
-  puts "New Label is #{new_label}"
-  new_label
-end
+include RakeUtil
 
 # ----- Utilities for Rake Tasks -----
 
@@ -66,15 +56,8 @@ def write_email_to_disk(mail)
   File.open(mail_file, 'w') {|f| f.puts opts.to_yaml }
 end
 
-def local_url
-  include Rails.application.routes.url_helpers
-  default_url_options[:host] = (Rails.env == "development") ? "ekel" : "bamru.net"
-  default_url_options[:port] = "3000" if Rails.env == "development"
-  root_url
-end
-
 def load_all_emails_into_database
-  cmd = "curl -s -S -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}/api/mails/load_inbound"
+  cmd = curl_get("api/mails/load_inbound")
   puts "Loading emails into database..."
   puts cmd.gsub(SYSTEM_PASS, "....")
   system cmd
@@ -101,8 +84,8 @@ def send_mail(outbound_mail)
   unless mailing.nil?
     mailing.deliver
     id          = outbound_mail.id
-    invoke_url  = "#{local_url}api/mails/#{id}/sent_at_now.json"
-    cmd = "curl -s -S -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{invoke_url}"
+    invoke_url  = "api/mails/#{id}/sent_at_now.json"
+    cmd = curl_get(invoke_url)
     puts cmd.gsub(SYSTEM_PASS, "....")
     system cmd
   end
@@ -111,16 +94,6 @@ end
 # ----- Rake Tasks -----
 
 namespace :ops do
-
-  desc "RAKE TEST COMMAND"
-  task :raketest do
-    puts "STARTING TEST COMMAND (PID: #{Process.pid})"
-    STDOUT.flush
-    sleep 10
-    puts "ENDING TEST COMMAND (PID: #{Process.pid})"
-    STDOUT.flush
-  end
-
   namespace :email do
 
     # ----- Forgot Password Email -----
@@ -158,22 +131,27 @@ namespace :ops do
       finish_import
     end
 
-    # ----- DO Tasks -----
+    namespace :scheduled do
 
-    desc "DO Reminder Mail"
-    task :do_reminder => 'environment' do
-      puts "DO Reminder TBD"
+      # ----- DO Mails -----
+
+      desc "DO Reminder Mail"
+      task :do_reminder => 'environment' do
+        puts "DO Reminder TBD"
+      end
+
+      desc "DO Alert Mail"
+      task :do_alert => 'environment' do
+        puts "DO Alert TBD"
+      end
+
+      # ----- Cert Reminder Mails -----
+
+      desc "Cert Reminder Mail"
+      task :cert_reminder => 'environment' do
+        puts "CERT REMINDER TBD"
+      end
+
     end
-
-    desc "DO Alert Mail"
-    task :do_alert => 'environment' do
-      puts "DO Alert TBD"
-    end
-
-    desc "Set DO"
-    task :set_do => 'environment' do
-      puts "Set DO TBD"
-    end
-
   end
 end

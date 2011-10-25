@@ -39,7 +39,6 @@ Zn::Application.routes.draw do
   resources  :unit_certs
   resources  :unit_avail_ops
   resources  :do_assignments
-  resources  :do_handoffs
   resources  :files
   resources  :chats
   resources  :rsvp_templates
@@ -81,6 +80,7 @@ Zn::Application.routes.draw do
     get  "mails"                 => "mails#index"
     get  "mails/:id/sent_at_now" => "mails#sent_at_now"
     get  "mails/load_inbound"    => "mails#load_inbound"
+    get  "do/set_do"             => "do#set_do"
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos

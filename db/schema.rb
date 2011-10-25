@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019154108) do
+ActiveRecord::Schema.define(:version => 20111016202911) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -112,19 +112,6 @@ ActiveRecord::Schema.define(:version => 20111019154108) do
     t.integer  "backup_id"
     t.datetime "start"
     t.datetime "finish"
-  end
-
-  create_table "do_handoffs", :force => true do |t|
-    t.integer  "outgoing_do_id"
-    t.integer  "incoming_do_id"
-    t.integer  "created_by_id"
-    t.string   "status"
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.datetime "next_reminder_time"
-    t.integer  "num_reminders"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "emails", :force => true do |t|

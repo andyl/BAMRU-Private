@@ -42,8 +42,14 @@ namespace :data do
             {
                     :name       => "At Home?",
                     :prompt     => "Are you home yet?",
-                    :yes_prompt => "I have returned home.",
-                    :no_prompt  => "I am not home yet."
+                    :yes_prompt => "I have returned home",
+                    :no_prompt  => "I am not home yet"
+            },
+            {
+                    :name       => "Test",
+                    :prompt     => "Does this page look ok?",
+                    :yes_prompt => "Everything looks good",
+                    :no_prompt  => "It has problems"
             }
     ]
   end
@@ -78,30 +84,7 @@ namespace :data do
   task :restore => :data_environment do
     system "xterm_title 'DATA RESTORE'"
     reset_database
-    load_data(RosterLoad.parse_from_file)
-    Rake::Task['data:count'].invoke
-  end
-
-  desc "Restore JSON data with Photos and Certs"
-  task :full_restore => :data_environment do
-    system "xterm_title 'DATA FULL RESTORE'"
-    reset_database
-    load_data(RosterLoad.load_from_zip)
-    Cert.all.each do |cert|
-      zip_dir = RosterLoad.zip_dir
-      unless cert.document_file_name.nil?
-        cert_file = zip_dir + "/certs/" + cert.document_file_name
-        puts "Processing #{cert_file}"
-        cert.update_attributes(:document => File.open(cert_file))
-      end
-    end
-    Photo.all.each do |photo|
-      zip_dir = RosterLoad.zip_dir
-      unless photo.image_file_name.nil?
-        photo_file = zip_dir + "/photos/" + photo.image_file_name
-        photo.update_attributes(:image => File.open(photo_file))
-      end
-    end
+    load_data(RosterLoad.parse_from_url)
     Rake::Task['data:count'].invoke
   end
 

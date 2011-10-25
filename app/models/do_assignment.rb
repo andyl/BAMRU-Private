@@ -6,8 +6,6 @@ class DoAssignment < ActiveRecord::Base
 
   belongs_to :primary, :class_name => 'Member'
   belongs_to :backup,  :class_name => 'Member'
-
-
   # ----- Callbacks -----
 
   before_save :set_primary_from_name
@@ -28,8 +26,8 @@ class DoAssignment < ActiveRecord::Base
 
   # ----- Local Methods-----
   def set_start_and_finish
-    start  = start_time
-    finish = end_time
+    self.start  = start_time
+    self.finish = end_time
   end
 
   def avail_members
@@ -52,7 +50,7 @@ class DoAssignment < ActiveRecord::Base
   def set_primary_from_name
     tname = name.split(' ').join(' ').downcase.gsub(' ', '_')
     if mem = Member.where(:user_name => tname).first
-      primary_id = mem.id
+      self.primary_id = mem.id
     end
   end
 
