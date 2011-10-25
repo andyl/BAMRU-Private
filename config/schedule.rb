@@ -22,9 +22,9 @@
 cmd = "script/nq :task >> log/nq.log 2>1"
 job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
-#every 1.minutes do
-#  nq "rake ops:raketest"
-#end
+every 1.minutes do
+  nq "rake ops:raketest"
+end
 
 every 30.minutes do
   nq "rake ops:email:import ONLY_ON=bamru.net"

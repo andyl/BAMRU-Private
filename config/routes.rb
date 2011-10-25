@@ -78,8 +78,9 @@ Zn::Application.routes.draw do
   end
 
   namespace "api" do
-    #get "mails/:id/sent_at_now"
-    resources :mails
+    get  "mails"                 => "mails#index"
+    get  "mails/:id/sent_at_now" => "mails#sent_at_now"
+    post "mails/inbound"         => "mails#inbound"
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos

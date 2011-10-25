@@ -40,6 +40,7 @@ namespace :ops do
     def send_mail(outbound_mail)
       puts "sending to #{outbound_mail.address}"
       STDOUT.flush
+      debugger
       mailing    = nil
       message    = outbound_mail.distribution.message
       address    = outbound_mail.email_address
@@ -52,6 +53,12 @@ namespace :ops do
         mailing.deliver
         outbound_mail.sent_at = Time.now
         outbound_mail.save
+        id         = outbound_mail.id
+        local_base = root_url
+        local_url  = "#{local_base}/api/mails/#{id}/sent_at_now"
+        debugger
+        cmd = "curl -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}"
+        system cmd
       end
     end
 
@@ -60,6 +67,9 @@ namespace :ops do
     desc "Send Pending Mails"
     task :send_pending_mails => 'environment' do
       Time.zone = "Pacific Time (US & Canada)"
+      include Rails.application.routes.url_helpers
+      default_url_options[:host] = "localhost"
+      default_url_options[:port] = "3000" if Rails.env == "development"
       send_list = CarrierQueueCollection.new
       mails = OutboundMail.pending.all
       mails.each { |om| send_list.add(om) }

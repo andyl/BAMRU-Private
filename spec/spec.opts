@@ -3,5 +3,5 @@
 --format progress
 --debug
 --fail-fast
-     #tag ~capybara
-     #tag ~js
+--tag ~capybara
+--tag ~js

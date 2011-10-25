@@ -10,24 +10,22 @@ class Api::MailsController < ApplicationController
     respond_with(@mails)
   end
 
-  # curl -u <first>_<last>:<pwd> http://server/api/mails/<id>.json
-  def show
-    id = params[:id].to_i
-    @mail = OutboundMail.where(:id => id).first
-    (render :text => "Not Found (#{id})"; return) if @mail.nil? || @mail.invalid?
-    (render :text => "Already Sent (#{id})"; return) unless @mail.sent_at.blank?
-    @mailing    = nil
-    message    = @mail.distribution.message
-    address    = @mail.email_address
-    full_label = @mail.full_label
-    dist       = @mail.distribution
-    opts    = Notifier.set_optz(message, address, full_label, dist)
-    @mailing = Notifier.process_email_message(opts) if @mail.email
-    @mailing = Notifier.process_sms_message(opts)   if @mail.phone
-    (render :text => "Bad eMail (#{id})"; return) if @mailing.nil?
-    debugger
-    respond_with(@mailing) do |format|
-      format.json { render :json => @mailing.to_json }
+  # curl -u <first>_<last>:<pwd> http://server/api/mails/<id>/sent_at_now.json
+  def sent_at_now
+    id = params[:id]
+    @om = OutboundMail.find id
+    @om.update_attributes(:sent_at => Time.now) unless @om.nil?
+    respond_with(@om) do |format|
+      format.json { render :json => "OK" }
     end
   end
+
+  # curl -X POST -u <first>_<last>:<pwd> -d "<string>" http://server/api/mails/inbound.json
+  def inbound
+    @im = InboundMail.create_from_params(params[inbound])
+    respond_with(@im) do |format|
+      format.json { render :json => "OK"}
+    end
+  end
+
 end
