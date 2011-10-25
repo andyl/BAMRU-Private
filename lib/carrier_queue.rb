@@ -13,7 +13,7 @@ class CarrierQueue
   end
 
   def time_delay_per_message
-    0.25 # seconds
+    0.33 # seconds
   end
 
   def initialize

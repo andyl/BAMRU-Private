@@ -9,4 +9,3 @@ window.startMailSync = ->
 
 $(document).ready ->
   $("#resync_link").click -> startMailSync()
-

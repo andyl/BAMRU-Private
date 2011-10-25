@@ -14,17 +14,15 @@ class Api::MailsController < ApplicationController
   def sent_at_now
     id = params[:id]
     @om = OutboundMail.find id
-    @om.update_attributes(:sent_at => Time.now) unless @om.nil?
-    respond_with(@om) do |format|
-      format.json { render :json => "OK" }
-    end
+    @om.update_attributes(:sent_at => Time.now) unless @om.nil?  || ! @om.sent_at.nil?
+    render :json => "OK\n"
   end
 
   # curl -X POST -u <first>_<last>:<pwd> -d "<string>" http://server/api/mails/inbound.json
   def inbound
     @im = InboundMail.create_from_params(params[inbound])
     respond_with(@im) do |format|
-      format.json { render :json => "OK"}
+      format.json { render :json => "OK\n"}
     end
   end
 

@@ -40,7 +40,6 @@ namespace :ops do
     def send_mail(outbound_mail)
       puts "sending to #{outbound_mail.address}"
       STDOUT.flush
-      debugger
       mailing    = nil
       message    = outbound_mail.distribution.message
       address    = outbound_mail.email_address
@@ -51,13 +50,10 @@ namespace :ops do
       mailing = Notifier.process_sms_message(opts)   if outbound_mail.phone
       unless mailing.nil?
         mailing.deliver
-        outbound_mail.sent_at = Time.now
-        outbound_mail.save
         id         = outbound_mail.id
         local_base = root_url
-        local_url  = "#{local_base}/api/mails/#{id}/sent_at_now"
-        debugger
-        cmd = "curl -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}"
+        local_url  = "#{local_base}api/mails/#{id}/sent_at_now.json"
+        cmd = "curl -s -S -u #{SYSTEM_USER}:#{SYSTEM_PASS} #{local_url}"
         system cmd
       end
     end
