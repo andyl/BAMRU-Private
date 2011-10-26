@@ -14,10 +14,12 @@ class DoAssignment < ActiveRecord::Base
 
   # ----- Validations -----
 
-
-
   # ----- Scopes -----
+  scope :last_wk, where('start < ?', Time.now - 1.week).where('finish > ?', Time.now - 1.week)
   scope :current, where('start < ?', Time.now).where('finish > ?', Time.now)
+  scope :this_wk, where('start < ?', Time.now).where('finish > ?', Time.now)
+  scope :next_wk, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
+  scope :pending, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
 
   # ----- Class Methods -----
   def self.find_or_new(hash)

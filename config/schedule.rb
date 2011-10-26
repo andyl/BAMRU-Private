@@ -19,23 +19,24 @@
 
 # Learn more: http://github.com/javan/whenever
 
-cmd = "script/nq :task >> log/nq.log 2>1"
+cmd = "script/nq :task >> log/nq.log 2>&1"
 job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
 every :sunday,  :at => '10:00 pm' do
-  nq "rake ops:email:scheduled:cert_reminder"
+  nq "rake ops:email:generate:cert_reminders"
+  nq "rake ops:email:send_pending"
 end
 
 every :sunday,  :at => '11:30 pm' do
-  nq "rake ops:email:scheduled:do_reminder"
+  nq "rake ops:email:generate:do_reminder"
 end
 
 every :tuesday, :at => '8:01 am' do
   nq "rake ops:set_do"
   nq "rake tmp:clear"
-  nq "rake ops:email:scheduled:do_notice"
+  nq "rake ops:email:generate:do_notice"
 end
 
 # ----- Retrieve incoming email from Google -----

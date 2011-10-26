@@ -94,7 +94,7 @@ namespace :ops do
     # ----- Forgot Password Email -----
 
     desc "Send Password Reset Mail ADDRESS=<email_address> URL=<return_url>"
-    task :password_reset => ['environment'] do
+    task :password_reset => 'environment' do
       puts "Sending forgot password mail to #{ENV["ADDRESS"]} at #{Time.now}"
       STDOUT.flush
       Time.zone = "Pacific Time (US & Canada)"
@@ -125,24 +125,30 @@ namespace :ops do
       load_all_emails_into_database
     end
 
-    namespace :scheduled do
+    namespace :generate do
 
       # ----- DO Mails -----
 
       desc "DO Reminder Mail"
       task :do_reminder => 'environment' do
-        puts "DO Reminder TBD"
+        member = DoAssignment.next_wk.first.primary
+        puts "Sending DO Assignment Reminder to #{member.full_name}"
+        STDOUT.flush
+        Time.zone = "Pacific Time (US & Canada)"
+        mailing = Notifier.do_reminder_email(member)
+        mailing.deliver
       end
 
       desc "DO Alert Mail"
       task :do_alert => 'environment' do
+
         puts "DO Alert TBD"
       end
 
       # ----- Cert Reminder Mails -----
 
-      desc "Cert Reminder Mail"
-      task :cert_reminder => 'environment' do
+      desc "Cert Reminders Mail"
+      task :cert_reminders => 'environment' do
         puts "CERT REMINDER TBD"
       end
 

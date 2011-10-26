@@ -147,6 +147,8 @@ GEM
       spruz (~> 0.2.8)
     launchy (2.0.5)
       addressable (~> 2.2.6)
+    letter_opener (0.0.2)
+      launchy
     libv8 (3.3.10.2)
     linecache (0.43)
     livereload (1.6)
@@ -315,6 +317,7 @@ DEPENDENCIES
   jruby-poi (= 0.8.2)
   json
   launchy
+  letter_opener
   linecache (= 0.43)
   livereload
   mail

@@ -52,7 +52,6 @@ class Message < ActiveRecord::Base
   def gen_label
     new_label = label4c
     new_label = label4c until OutboundMail.where(:label => new_label).empty?
-    #puts "New Label is #{new_label}"
     new_label
   end
 

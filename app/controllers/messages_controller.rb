@@ -46,6 +46,7 @@ class MessagesController < ApplicationController
       p = Rsvp.create(opts)
     end
     m.create_all_outbound_mails
+    debugger
     call_rake('ops:email:send_pending_mails')
     redirect_to messages_path, :notice => "Message sent."
   end

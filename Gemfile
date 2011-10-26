@@ -38,7 +38,7 @@ platforms :ruby do
   gem 'mime'
   gem 'mail_view', :git => "git://github.com/andyl/mail_view.git"
 
-# Asset template engines
+  # Asset template engines
   gem 'json'
   gem 'sass'
   gem 'coffee-script'
@@ -63,7 +63,7 @@ platforms :ruby do
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
     gem "capybara", "~> 1.0.1"
-    # gem "capybara-webkit", :git => "https://github.com/thoughtbot/capybara-webkit.git"
+    #gem "capybara-webkit", "~> 0.7.2" # see notes in spec_opts.rb
     gem "launchy"
     gem 'spork', '~> 0.9.0.rc9'
     gem 'database_cleaner'
@@ -73,5 +73,6 @@ platforms :ruby do
     gem "interactive_editor"
     gem "awesome_print", :require => "ap"
     gem "drx"
+    gem "letter_opener"
   end
 end

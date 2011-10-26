@@ -1,7 +1,7 @@
---drb
 --colour
 --format progress
 --debug
 --fail-fast
---tag ~capybara
---tag ~js
+     # drb
+     # tag capybara
+     # tag js

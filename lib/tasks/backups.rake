@@ -16,7 +16,7 @@ namespace :ops do
         "wiki_data" => {
                 :host   => "wiki.bamru.net",
                 :target => %w(mediawiki/data mediawiki/extensions),
-                :copies => 20 },
+                :copies => 10 },
         "system" => {
                 :host   => "bamru.net",
                 :target => "a/BAMRU-Private/shared/system",
@@ -33,8 +33,8 @@ namespace :ops do
       params     = backup_params[label]
       base_dir   = File.expand_path("~/.backup")
       time_stamp = Time.now.strftime("%y%m%d_%H%M%S")
-      lbl_dir    = [base_dir  , label].join('/')
-      tgt_dir    = [base_dir  , label, time_stamp].join('/')
+      lbl_dir    = [base_dir, label].join('/')
+      tgt_dir    = [base_dir, label, time_stamp].join('/')
       system "mkdir -p #{tgt_dir}"
 
       # ----- alternate commands for local and remote copying -----
@@ -47,6 +47,7 @@ namespace :ops do
       targets = target.class == Array ? target : [target]
 
       # ----- copy each target -----
+      puts "Backing up #{label}"
       targets.each do |z|
         cmd = pcmd.call(z)
         puts cmd
@@ -56,9 +57,16 @@ namespace :ops do
       # ----- delete old backups if they exceed the copy limit -----
       list = Dir.glob(lbl_dir + '/*').sort.reverse
       list.each_with_index do |name, index|
-        cmd = "rm -r #{name}"
-        system cmd if index > params[:copies]
+        if index >= params[:copies]
+          puts   "Removing old backup: #{name}"
+          system "rm -r #{name}"
+        end
       end
+    end
+
+    desc "Backup all Targets"
+    task :all => [:wiki_full, :wiki_data, :system, :db] do
+      puts "All targets backed up"
     end
 
     desc "Backup Full Wiki"

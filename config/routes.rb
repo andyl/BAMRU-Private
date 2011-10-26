@@ -77,10 +77,13 @@ Zn::Application.routes.draw do
   end
 
   namespace "api" do
-    get  "mails"                 => "mails#index"
-    get  "mails/:id/sent_at_now" => "mails#sent_at_now"
-    get  "mails/load_inbound"    => "mails#load_inbound"
-    get  "do/set_do"             => "do#set_do"
+    get  "mails"                      => "mails#index"
+    get  "mails/:id/sent_at_now"      => "mails#sent_at_now"
+    get  "mails/load_inbound"         => "mails#load_inbound"
+    get  "do/set_do"                  => "do#set_do"
+    get  "reminders/do_shift_pending" => "reminders#do_shift_pending"
+    get  "reminders/do_shift_started" => "reminders#do_shift_started"
+    get  "reminders/cert_expiration"  => "reminders#cert_expiration"
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
