@@ -93,6 +93,8 @@ namespace :data do
     system "xterm_title 'DATA IMPORT'"
     reset_database
     load_data(RosterLoad.parse_from_url)
+    Member.create(:user_name => "system_user")
+    Member.create(:user_name => "public_user")
     x = Member.create!(:user_name => "mark_lowpensky", :typ => "A")
     (x.admin = true; x.save) unless x.nil?
     Org.create(:name => "BAMRU")

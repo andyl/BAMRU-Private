@@ -7,14 +7,78 @@ include RakeUtil
 namespace :ops do
   namespace :backup do
 
-    desc "Backup Wiki"
-    task :wiki => 'environment' do
-      puts "WIKI Backup TBD"
+    def backup_params
+      {
+        "wiki_full" => {
+                :host   => "wiki.bamru.net",
+                :target => "mediawiki",
+                :copies => 2 },
+        "wiki_data" => {
+                :host   => "wiki.bamru.net",
+                :target => %w(mediawiki/data mediawiki/extensions),
+                :copies => 20 },
+        "system" => {
+                :host   => "bamru.net",
+                :target => "a/BAMRU-Private/shared/system",
+                :copies => 5 },
+        "db"     => {
+                :host   => "bamru.net",
+                :target => "a/BAMRU-Private/shared/db/production.sqlite3",
+                :copies => 20 }
+      }
     end
 
-    desc "Backup Database and System"
-    task :db_and_system do
-      puts "Database/System Backup TBD"
+    def backup(label)
+      host       = `hostname`.chomp
+      params     = backup_params[label]
+      base_dir   = File.expand_path("~/.backup")
+      time_stamp = Time.now.strftime("%y%m%d_%H%M%S")
+      lbl_dir    = [base_dir  , label].join('/')
+      tgt_dir    = [base_dir  , label, time_stamp].join('/')
+      system "mkdir -p #{tgt_dir}"
+
+      # ----- alternate commands for local and remote copying -----
+      scp_cmd = Proc.new {|x| "scp -r -q #{params[:host]}:#{x} #{tgt_dir}"}
+      cp_cmd  = Proc.new {|x| "cp -r #{x} #{tgt_dir}"}
+      pcmd = host == params[:host] ? cp_cmd : scp_cmd
+
+      # ----- build a list of targets to copy -----
+      target  = params[:target]
+      targets = target.class == Array ? target : [target]
+
+      # ----- copy each target -----
+      targets.each do |z|
+        cmd = pcmd.call(z)
+        puts cmd
+        system cmd
+      end
+
+      # ----- delete old backups if they exceed the copy limit -----
+      list = Dir.glob(lbl_dir + '/*').sort.reverse
+      list.each_with_index do |name, index|
+        cmd = "rm -r #{name}"
+        system cmd if index > params[:copies]
+      end
+    end
+
+    desc "Backup Full Wiki"
+    task :wiki_full => 'environment' do
+      backup("wiki_full")
+    end
+
+    desc "Backup Wiki Data"
+    task :wiki_data => 'environment' do
+      backup("wiki_data")
+    end
+
+    desc "Backup System Directory"
+    task :system do
+      backup("system")
+    end
+
+    desc "Backup Database"
+    task :db do
+      backup("db")
     end
 
   end

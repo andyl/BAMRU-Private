@@ -22,6 +22,8 @@
 cmd = "script/nq :task >> log/nq.log 2>1"
 job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
+# ----- Automated eMail Reminders and Alerts -----
+
 every :sunday,  :at => '10:00 pm' do
   nq "rake ops:email:scheduled:cert_reminder"
 end
@@ -36,27 +38,38 @@ every :tuesday, :at => '8:01 am' do
   nq "rake ops:email:scheduled:do_notice"
 end
 
-every :wednesday, :at => '4:00 am' do
-  nq "rake ops:log_cleanup"
-end
+# ----- Retrieve incoming email from Google -----
 
 every 30.minutes do
   nq "rake ops:email:import ONLY_ON=bamru.net"
 end
 
-every 1.day, :at => '2:00 am' do
-  nq "rake ops:backup:wiki"
-end
+# ----- Reset Page Cache -----
 
-every 1.day, :at => '3:00 am' do
-  nq "rake ops:backup:db_and_system"
-end
-
-every 1.day, :at => '0:05 am' do
+every 1.day, :at => '0:02 am' do
   nq "rake tmp:clear"
 end
 
-every 1.day, :at => '23:55 pm' do
-  nq "rake tmp:clear"
+# ----- Backups -----
+
+every 1.month, :at => "start of the month at 1:00 am" do
+  nq "rake ops:backup:wiki_full"
 end
 
+every 1.week, :at => '2:00 am' do
+  nq "rake ops:backup:wiki_data"
+end
+
+every 1.week, :at => '3:00 am' do
+  nq "rake ops:backup:system"
+end
+
+every 1.day, :at => '4:00 am' do
+  nq "rake ops:backup:db"
+end
+
+# ----- Reset the Log file every Week -----
+
+every :wednesday, :at => '5:00 am' do
+  nq "rake ops:log_cleanup"
+end
