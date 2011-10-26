@@ -1,4 +1,4 @@
-requrie "reminder_params"
+require "reminder_params"
 
 class Api::RemindersController < ApplicationController
 
