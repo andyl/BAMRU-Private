@@ -3,8 +3,12 @@
 <%= @opts['rsvp_text'] -%>
 -----------------------------------------
 Sent by <%= @opts['author_name']   %>
+<% if @opts['author_mobile'] != "NA" %>
 Mobile: <%= @opts['author_mobile'] %>
- eMail: <%= @opts['author_email']  %>
+<% end %>
+<% if @opts['author_email'] != "NA" %>
+  eMail: <%= @opts['author_email']  %>
+<% end %>
 -----------------------------------------
 <% if @opts['prompt'].blank? %>
 Please reply to let others know you

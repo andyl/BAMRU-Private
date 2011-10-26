@@ -25,18 +25,20 @@ job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 # ----- Automated eMail Reminders and Alerts -----
 
 every :sunday,  :at => '10:00 pm' do
-  nq "rake ops:email:generate:cert_reminders"
+  nq "rake ops:email:generate:cert_expiration_reminders"
   nq "rake ops:email:send_pending"
 end
 
 every :sunday,  :at => '11:30 pm' do
-  nq "rake ops:email:generate:do_reminder"
+  nq "rake ops:email:generate:do_shift_pending_reminder"
+  nq "rake ops:email:send_pending"
 end
 
-every :tuesday, :at => '8:01 am' do
+every :tuesday, :at => '8:02 am' do
   nq "rake ops:set_do"
   nq "rake tmp:clear"
-  nq "rake ops:email:generate:do_notice"
+  nq "rake ops:email:generate:do_shift_started_reminder"
+  nq "rake ops:email:send_pending"
 end
 
 # ----- Retrieve incoming email from Google -----

@@ -48,8 +48,12 @@
 <%= raw @opts['rsvp_html'] -%>
 <hr>
 Sent by <%= @opts['author_name']   %><br/>
+<% if @opts['author_mobile'] != "NA" %>
 Mobile: <%= @opts['author_mobile'] %><br/>
+<% end %>
+<% if @opts['author_email'] != "NA" %>
  eMail: <%= @opts['author_email']  %><br/>
+<% end %>
 <hr>
 <% if @opts['prompt'].blank? %>
 Please reply to let others know you

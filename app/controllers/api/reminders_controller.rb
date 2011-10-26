@@ -17,9 +17,10 @@ class Api::RemindersController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> http://server/api/reminders/do_alert.json
   def do_shift_started
-    #member = Member.new
-    #message = Message.create
-    #message.create_all_outbound_mails
+    member  = DoAssignment.this_wk.first.primary
+    params  = ReminderParams.do_shift_started(member)
+    message = Message.create(params)
+    message.create_all_outbound_mails
     render :json => "OK\n"
   end
 

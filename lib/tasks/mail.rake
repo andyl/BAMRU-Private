@@ -104,8 +104,15 @@ namespace :ops do
 
     # ----- Outbound Pager Messages -----
 
+    desc "Show Pending Count"
+    task :pending_count => 'environment' do
+      count = OutboundMail.pending.count
+      puts "Pending Outbound Mails: #{count}"
+      STDOUT.flush
+    end
+
     desc "Send Pending Mails"
-    task :send_pending_mails => 'environment' do
+    task :send_pending => 'environment' do
       Time.zone = "Pacific Time (US & Canada)"
       send_list = CarrierQueueCollection.new
       mails = OutboundMail.pending.all
@@ -129,26 +136,24 @@ namespace :ops do
 
       # ----- DO Mails -----
 
-      desc "DO Reminder Mail"
-      task :do_reminder => 'environment' do
-        member = DoAssignment.next_wk.first.primary
-        puts "Sending DO Assignment Reminder to #{member.full_name}"
-        STDOUT.flush
-        Time.zone = "Pacific Time (US & Canada)"
-        mailing = Notifier.do_reminder_email(member)
-        mailing.deliver
+      desc "DO Shift Pending Reminder"
+      task :do_shift_pending_reminder => 'environment' do
+        cmd = curl_get('api/reminders/do_shift_pending')
+        puts "Generating DO Shift Pending Reminder"
+        system cmd
       end
 
-      desc "DO Alert Mail"
-      task :do_alert => 'environment' do
-
-        puts "DO Alert TBD"
+      desc "DO Shift Started Reminder"
+      task :do_shift_started_reminder => 'environment' do
+        cmd = curl_get('api/reminders/do_shift_started')
+        puts "Generating DO Shift Started Reminder"
+        system cmd
       end
 
       # ----- Cert Reminder Mails -----
 
-      desc "Cert Reminders Mail"
-      task :cert_reminders => 'environment' do
+      desc "Cert Expiration Reminder"
+      task :cert_expiration_reminders => 'environment' do
         puts "CERT REMINDER TBD"
       end
 
