@@ -59,13 +59,8 @@ end
 def load_all_emails_into_database
   cmd = curl_get("api/mails/load_inbound")
   puts "Loading emails into database..."
-  puts cmd.gsub(SYSTEM_PASS, "....")
+  # puts cmd.gsub(SYSTEM_PASS, "....")
   system cmd
-end
-
-def finish_import
-  puts "Mail Sync Finished " + Time.now.to_s
-  STDOUT.flush
 end
 
 # ----- Method for sending mail -----
@@ -128,7 +123,6 @@ namespace :ops do
       check_host_and_run_frequency
       get_all_emails_from_gmail
       load_all_emails_into_database
-      finish_import
     end
 
     namespace :scheduled do
