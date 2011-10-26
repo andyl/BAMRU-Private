@@ -44,15 +44,4 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def do_reminder_email(member, address)
-    Time.zone = "Pacific Time (US & Canada)"
-    @address = address
-    mail (
-            :to => @address,
-            :from => "blah",
-            :subject => ""
-
-         )
-  end
-
 end
