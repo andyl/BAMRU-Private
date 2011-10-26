@@ -39,7 +39,7 @@ namespace :ops do
 
       # ----- alternate commands for local and remote copying -----
       scp_cmd = Proc.new {|x| "scp -r -q #{params[:host]}:#{x} #{tgt_dir}"}
-      cp_cmd  = Proc.new {|x| "cp -r #{x} #{tgt_dir}"}
+      cp_cmd  = Proc.new {|x| "cp -r /home/aleak/#{x} #{tgt_dir}"}
       pcmd = host == params[:host] ? cp_cmd : scp_cmd
 
       # ----- build a list of targets to copy -----
