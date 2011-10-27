@@ -6,8 +6,8 @@ module MembersHelper
       :author_name       => mem.full_name,
       :author_short_name => mem.short_name,
       :author_last_name  => mem.last_name,
-      :author_mobile     => mem.phones.order('position ASC').first.number,
-      :author_email      => mem.emails.order('position ASC').first.address
+      :author_mobile     => mem.phones.order('position ASC').first.try(:number),
+      :author_email      => mem.emails.order('position ASC').first.try(:address)
     }
     body = opts.map {|k,v | "#{k.to_s}:'#{v}'"}.join(',')
     "{#{body}}"
