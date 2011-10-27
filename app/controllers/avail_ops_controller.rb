@@ -14,6 +14,7 @@ class AvailOpsController < ApplicationController
     @member.member_avails << @avail
     @member.save
     expire_fragment(/unit_avail_ops_table/)
+    expire_fragment(/member_index_table/)
     redirect_to member_avail_ops_path(@member), :notice => "Created record"
   end
 
@@ -25,6 +26,7 @@ class AvailOpsController < ApplicationController
     @member = Member.where(:id => params['member_id']).first
     @member.update_attributes(params["member"])
     expire_fragment(/unit_avail_ops_table/)
+    expire_fragment(/member_index_table/)
     redirect_to member_avail_ops_path(@member), :notice => "Updated records"
   end
 
@@ -33,6 +35,7 @@ class AvailOpsController < ApplicationController
     @avail  = AvailOp.where(:id => params['id']).first
     @avail.destroy
     expire_fragment(/unit_avail_ops_table/)
+    expire_fragment(/member_index_table/)
     redirect_to member_avail_ops_path(@member), :notice => "Deleted Busy Period"
   end
 

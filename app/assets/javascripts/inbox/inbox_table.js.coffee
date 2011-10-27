@@ -11,11 +11,14 @@ last_name_options =
 
 sort_opts =
   headers:
-    0: {sorter: 'last_name'}     # sort col 3 using last_name options
+#    0: {sorter: 'last_name'}
+    0: {sorter: false}
+    1: {sorter: false }
     2: {sorter: false }
     3: {sorter: false }
     4: {sorter: false }
     5: {sorter: false }
+    6: {sorter: false }
 
 $(document).ready ->
   $.tablesorter.addParser last_name_options
