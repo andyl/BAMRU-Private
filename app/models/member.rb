@@ -19,17 +19,17 @@ class Member < ActiveRecord::Base
   attr_accessible :bd, :ol, :admin
 
   # ----- Associations -----
-  has_many :addresses,          :order => 'position'
-  has_many :phones,             :order => 'position'
-  has_many :emails,             :order => 'position'
-  has_many :photos,             :order => 'position'
-  has_many :other_infos,        :order => 'position'
-  has_many :emergency_contacts, :order => 'position'
-  has_many :roles
-  has_many :certs
+  has_many :addresses,          :order => 'position', :dependent => :destroy
+  has_many :phones,             :order => 'position', :dependent => :destroy
+  has_many :emails,             :order => 'position', :dependent => :destroy
+  has_many :photos,             :order => 'position', :dependent => :destroy
+  has_many :other_infos,        :order => 'position', :dependent => :destroy
+  has_many :emergency_contacts, :order => 'position', :dependent => :destroy
+  has_many :roles,              :dependent => :destroy
+  has_many :certs,              :dependent => :destroy
   has_many :data_files
-  has_many :avail_ops,          :order => 'start'
-  has_many :avail_dos
+  has_many :avail_ops,          :order => 'start', :dependent => :destroy
+  has_many :avail_dos,          :dependent => :destroy
   has_many :messages
   has_many :distributions
   has_many :journals

@@ -8,7 +8,7 @@ namespace :ops do
 
   desc "Set DO"
   task :set_do => 'environment' do
-    cmd = curl_get("api/do/set_do")
+    cmd = curl_get("api/ops/set_do")
     puts "Setting DO Assignment"
     puts cmd.gsub(SYSTEM_PASS, "....")
     system cmd
@@ -33,6 +33,14 @@ namespace :ops do
     system "echo 'Log File Reset (#{date})' > #{nq_log}"
     system "echo 'Log File Reset (#{date})' > #{production_log}"
     puts "Log Files Reset"
+  end
+
+  desc "Cleanup Message Files"
+  task :message_cleanup => 'environment' do
+    cmd = curl_get("api/ops/message_cleanup")
+    puts "Cleaning up old messages"
+    system cmd
+    STDOUT.flush
   end
   
 end

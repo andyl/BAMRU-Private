@@ -71,8 +71,9 @@ every 1.day, :at => '4:00 am' do
   nq "rake ops:backup:db"
 end
 
-# ----- Reset the Log file every Week -----
+# ----- Remove Old Data -----
 
 every :wednesday, :at => '5:00 am' do
   nq "rake ops:log_cleanup"
+  nq "rake ops:message_cleanup"
 end

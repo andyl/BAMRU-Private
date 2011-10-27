@@ -5,7 +5,7 @@ class OutboundMail < ActiveRecord::Base
   belongs_to :distribution
   belongs_to :email
   belongs_to :phone
-  has_many   :inbound_mails
+  has_many   :inbound_mails, :dependent => :destroy
 
   # ----- Callbacks -----
 

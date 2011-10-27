@@ -4,8 +4,8 @@ class Distribution < ActiveRecord::Base
 
   belongs_to :member
   belongs_to :message
-  has_many   :outbound_mails
-  has_many   :journals
+  has_many   :outbound_mails, :dependent => :destroy
+  has_many   :journals,       :dependent => :destroy
 
 
   # ----- Callbacks -----

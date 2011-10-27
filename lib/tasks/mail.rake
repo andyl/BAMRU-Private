@@ -81,7 +81,7 @@ def send_mail(outbound_mail)
     id          = outbound_mail.id
     invoke_url  = "api/mails/#{id}/sent_at_now.json"
     cmd = curl_get(invoke_url)
-    puts cmd.gsub(SYSTEM_PASS, "....")
+    #puts cmd.gsub(SYSTEM_PASS, "....")
     system cmd
   end
 end
