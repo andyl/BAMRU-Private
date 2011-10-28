@@ -76,6 +76,8 @@ Zn::Application.routes.draw do
     resources :messages
   end
 
+  get "mtimer" => "mtimer#index"
+
   namespace "api" do
     get  "mails"                      => "mails#index"
     get  "mails/:id/sent_at_now"      => "mails#sent_at_now"
@@ -104,7 +106,7 @@ Zn::Application.routes.draw do
     mount Jasminerice::Engine => "/jasmine"
   end
 
-  offline = Rack::Offline.configure do
+  jqm_mobile = Rack::Offline.configure do
     cache "http://code.jquery.com/jquery-1.6.2.min.js"
     cache "/stylesheets/jquery.mobile-1.0rc1.css"
     cache "/favicon_d1.ico"
@@ -119,7 +121,16 @@ Zn::Application.routes.draw do
     network "/"
   end
 
-  match "/jqm_mobile.manifest" => offline
+  mtimerf = Rack::Offline.configure do
+    cache "/assets/mtimer.css"
+    cache "/assets/mtimer/all_mtimer.js"
+    cache "/ding.wav"
+
+    network "/"
+  end
+
+  match "/jqm_mobile.manifest" => jqm_mobile
+  match "/mtimerf.manifest"     => mtimerf
 
   root :to => 'home#index'
 
