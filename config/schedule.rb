@@ -24,7 +24,7 @@ job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
-every :sunday,  :at => '10:00 pm' do
+every 1.day,  :at => '10:00 pm' do
   nq "rake ops:email:generate:cert_expiration_reminders"
   nq "rake ops:email:send_pending"
 end
@@ -73,7 +73,12 @@ end
 
 # ----- Remove Old Data -----
 
-every :wednesday, :at => '5:00 am' do
+every :wednesday, :at => '10:00 pm' do
+  nq "rake ops:log_cleanup"
+  nq "rake ops:message_cleanup"
+end
+
+every :sunday, :at => '5:00 am' do
   nq "rake ops:log_cleanup"
   nq "rake ops:message_cleanup"
 end

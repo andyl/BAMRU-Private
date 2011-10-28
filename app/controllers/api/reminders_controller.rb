@@ -26,7 +26,31 @@ class Api::RemindersController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> http://server/api/reminders/cert_reminders.json
   def cert_expiration
-    render :json => "OK\n"
+    expire_count = 0
+    Cert.expired_not_notified.all.each do |cert|
+      params = ReminderParams.cert_notice(cert, "has expired")
+      message = Message.create(params)
+      message.create_all_outbound_mails
+      cert.update_attributes({:expired_notice_sent_at => Time.now})
+      expire_count += 1
+    end
+    thirty_count = 0
+    Cert.thirty_day_not_notified.all.each do |cert|
+      params = ReminderParams.cert_notice(cert, "will expire within thirty days")
+      message = Message.create(params)
+      message.create_all_outbound_mails
+      cert.update_attributes({:thirty_day_notice_sent_at => Time.now})
+      thirty_count += 1
+    end
+    ninety_count = 0
+    Cert.ninety_day_not_notified.all.each do |cert|
+      params = ReminderParams.cert_notice(cert, "will expire within ninety days")
+      message = Message.create(params)
+      message.create_all_outbound_mails
+      cert.update_attributes({:ninety_day_notice_sent_at => Time.now})
+      ninety_count += 1
+    end
+    render :json => "OK (ninety:#{ninety_count} thirty:#{thirty_count} expired:#{expire_count})\n"
   end
 
 end

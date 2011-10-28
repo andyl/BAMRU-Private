@@ -24,5 +24,15 @@ class ReminderParams
       "distributions_attributes" => dist
     }.merge(base_params)
   end
+
+  def self.cert_notice(cert, message)
+    member = cert.member
+    txt = "Notice: Your #{cert.typ} cert #{message}. (#{member.last_name})"
+    dist = [{"member_id" => member.id.to_s, "email" => true}]
+    {
+      "text" => txt,
+      "distributions_attributes" => dist
+    }.merge(base_params)
+  end
   
 end

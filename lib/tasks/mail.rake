@@ -154,7 +154,9 @@ namespace :ops do
 
       desc "Cert Expiration Reminder"
       task :cert_expiration_reminders => 'environment' do
-        puts "CERT REMINDER TBD"
+        cmd = curl_get('api/reminders/cert_expiration')
+        puts "Generating DO Shift Started Reminder"
+        system cmd
       end
 
     end

@@ -12,7 +12,7 @@ class PasswordController < ApplicationController
       address = @email.address
       call_rake('ops:email:password_reset', {:address => address, :url => password_reset_url})
       auth = Member.find_or_create_by_user_name "public_user"
-      text = "Forgot Password message for #{@member.full_name} (#{address})"
+      text = "Forgot Password mail for #{@member.last_name} (#{address})"
       hash = {:ip_address => request.remote_ip, :author => auth, :recipients => [@member], :text => text}
       Message.create(hash)
       redirect_to "/password/sending?address=#{address}"

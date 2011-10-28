@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016202911) do
+ActiveRecord::Schema.define(:version => 20111028001611) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20111016202911) do
     t.string   "cert_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "ninety_day_notice_sent_at"
+    t.datetime "thirty_day_notice_sent_at"
+    t.datetime "expired_notice_sent_at"
   end
 
   create_table "chats", :force => true do |t|

@@ -9,6 +9,9 @@ class Cert < ActiveRecord::Base
   attr_accessible :cert
   attr_accessible :cert_file_name, :cert_content_type
   attr_accessible :cert_file_size, :cert_updated_at
+  attr_accessible :ninety_day_notice_sent_at
+  attr_accessible :thirty_day_notice_sent_at
+  attr_accessible :expired_notice_sent_at
 
   # ----- Associations -----
   belongs_to :member
@@ -26,6 +29,7 @@ class Cert < ActiveRecord::Base
   # ----- Callbacks -----
   before_validation :cleanup_fields
   before_save       :cleanup_fields
+  before_save       :clear_notice_timestamps, :unless => :timestamps_changed?
 
   # ----- Scopes -----
   scope :medical,    where(:typ => "medical")
@@ -43,10 +47,21 @@ class Cert < ActiveRecord::Base
   scope :with_jpgs, where("cert_file like ?", "%jpg")
   scope :with_docs, where("cert_file <> ''")
 
-  scope :expired,               where("expiration <= ?", Date.today)
+  scope :ninety_day, where("expiration <= ? AND expiration > ?", Date.today + 90, Date.today + 30)
+  scope :thirty_day, where("expiration <= ? AND expiration > ?", Date.today + 30, Date.today)
+  scope :expired,    where("expiration <= ?", Date.today)
+
+  scope :ninety_day_notified, ninety_day.where("ninety_day_notice_sent_at != ''")
+  scope :thirty_day_notified, thirty_day.where("thirty_day_notice_sent_at != ''")
+  scope :expired_notified,    expired.where("expired_notice_sent_at != ''")
+
+  scope :ninety_day_not_notified, ninety_day.where(:ninety_day_notice_sent_at => nil)
+  scope :thirty_day_not_notified, thirty_day.where(:thirty_day_notice_sent_at => nil)
+  scope :expired_not_notified,    expired.where(:expired_notice_sent_at => nil)
+
   scope :pending_and_expired,   where("expiration <= ?", Date.today + 90)
   scope :pending,               pending_and_expired - expired
-  
+
   def self.oldest
     order("expiration ASC").last
   end
@@ -56,6 +71,18 @@ class Cert < ActiveRecord::Base
   end
 
   # ----- Instance Methods -----
+  def timestamps_changed?
+    self.ninety_day_notice_sent_at_changed? ||
+    self.thirty_day_notice_sent_at_changed? ||
+    self.expired_notice_sent_at_changed?
+  end
+
+  def clear_notice_timestamps
+    self.ninety_day_notice_sent_at = nil
+    self.thirty_day_notice_sent_at = nil
+    self.expired_notice_sent_at    = nil
+  end
+
   def export
     atts = attributes
     %w(id member_id).each {|a| atts.delete(a)}
@@ -129,6 +156,12 @@ class Cert < ActiveRecord::Base
 
 
   # ----- Class Methods -----
+  def self.clear_all_notices
+    args = {:ninety_day_notice_sent_at => nil,
+            :thirty_day_notice_sent_at => nil,
+            :expired_notice_sent_at    => nil}
+    Cert.all.each {|x| x.update_attributes(args)}
+  end
 
 end
 
