@@ -3,6 +3,7 @@
 window.time = 0
 
 window.playDing = ->
+  navigator.notification.beep(1)
   ding = new Audio("ding.wav")
   ding.play()
 
