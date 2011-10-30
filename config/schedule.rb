@@ -24,12 +24,12 @@ job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
-every 1.day,  :at => '10:00 pm' do
+every 1.day,  :at => '10:10 pm' do
   nq "rake ops:email:generate:cert_expiration_reminders"
   nq "rake ops:email:send_pending"
 end
 
-every :sunday,  :at => '11:30 pm' do
+every :sunday,  :at => '11:10 pm' do
   nq "rake ops:email:generate:do_shift_pending_reminder"
   nq "rake ops:email:send_pending"
 end
@@ -55,30 +55,30 @@ end
 
 # ----- Backups -----
 
-every 1.month, :at => "start of the month at 1:00 am" do
+every 1.month, :at => "start of the month at 1:10 am" do
   nq "rake ops:backup:wiki_full"
 end
 
-every 1.week, :at => '2:00 am' do
+every 1.week, :at => '2:10 am' do
   nq "rake ops:backup:wiki_data"
 end
 
-every 1.week, :at => '3:00 am' do
+every 1.week, :at => '3:10 am' do
   nq "rake ops:backup:system"
 end
 
-every 1.day, :at => '4:00 am' do
+every 1.day, :at => '4:10 am' do
   nq "rake ops:backup:db"
 end
 
 # ----- Remove Old Data -----
 
-every :wednesday, :at => '10:00 pm' do
+every :wednesday, :at => '10:10 pm' do
   nq "rake ops:log_cleanup"
   nq "rake ops:message_cleanup"
 end
 
-every :sunday, :at => '5:00 am' do
+every :sunday, :at => '5:10 am' do
   nq "rake ops:log_cleanup"
   nq "rake ops:message_cleanup"
 end
