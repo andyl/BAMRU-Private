@@ -1,4 +1,4 @@
-# The mail servers of many SMS gateways treat email as spam if the mails 
+# The mail servers of many SMS gateways treat email as spam if the messages
 # arrive too frequently.  This has happened using the SMS-gateways managed
 # by Verizon, Sprint, and other carriers.
 #

@@ -34,11 +34,14 @@ every :sunday,  :at => '11:10 pm' do
   nq "rake ops:email:send_pending"
 end
 
-every :tuesday, :at => '8:02 am' do
+every :tuesday, :at => '8:05 am' do
   nq "rake ops:set_do"
-  nq "rake tmp:clear"
+  sleep 30
   nq "rake ops:email:generate:do_shift_started_reminder"
+  sleep 30
   nq "rake ops:email:send_pending"
+  sleep 60
+  nq "rake tmp:clear"
 end
 
 # ----- Retrieve incoming email from Google -----
@@ -73,7 +76,7 @@ end
 
 # ----- Remove Old Data -----
 
-every :wednesday, :at => '10:10 pm' do
+every :wednesday, :at => '11:10 pm' do
   nq "rake ops:log_cleanup"
   nq "rake ops:message_cleanup"
 end

@@ -36,3 +36,7 @@ end
 Spork.each_run do
 end
 
+def basic_auth(user)
+  Member.find_or_create_by_user_name(user)
+  ActionController::HttpAuthentication::Basic.encode_credentials user, "welcome"
+end

@@ -57,7 +57,7 @@ def write_email_to_disk(mail)
 end
 
 def load_all_emails_into_database
-  cmd = curl_get("api/mails/load_inbound")
+  cmd = curl_get("api/messages/load_inbound")
   puts "Loading emails into database..."
   # puts cmd.gsub(SYSTEM_PASS, "....")
   system cmd
@@ -79,7 +79,7 @@ def send_mail(outbound_mail)
   unless mailing.nil?
     mailing.deliver
     id          = outbound_mail.id
-    invoke_url  = "api/mails/#{id}/sent_at_now.json"
+    invoke_url  = "api/messages/#{id}/sent_at_now.json"
     cmd = curl_get(invoke_url)
     #puts cmd.gsub(SYSTEM_PASS, "....")
     system cmd

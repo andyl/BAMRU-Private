@@ -11,7 +11,7 @@ class ReminderParams
   def self.do_shift_pending(member)
     dist = [{"member_id" => member.id.to_s, "email" => true}]
     {
-      "text" => "Your DO shift starts Tuesday 8:00am. DO instructions are on the wiki.",
+      "text" => "Reminder: Your DO shift starts Tuesday 8:00am.",
       "distributions_attributes" => dist
     }.merge(base_params)
   end

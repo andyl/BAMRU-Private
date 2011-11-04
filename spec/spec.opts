@@ -2,6 +2,6 @@
 --format progress
 --debug
 --fail-fast
-     # drb
-     # tag capybara
-     # tag js
+    # drb
+    # tag capybara
+    # tag ~js
