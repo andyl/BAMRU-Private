@@ -5,13 +5,11 @@ class Api::Mobile3::MessagesController < ApplicationController
   before_filter :authenticate_member_with_basic_auth!
 
   def index
-    @messages = Message.order('id DESC').limit(15).all
-    respond_with(@messages)
+    render :json => MessageDecorator.mobile_json, :layout => false
   end
 
   def show
     
   end
-
 
 end

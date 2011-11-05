@@ -19,7 +19,6 @@ $(document).ready ->
         dataType: 'script'
   $("#sortable_photos").disableSelection()
 
-
 setInput = (index, element) ->
   tgtInput = $(element).children('input').first()
   newIdx = index + 1
