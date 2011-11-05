@@ -1,3 +1,3 @@
 #= require ./common_model
 
-class @Distribution extends CommonModel
+class @M2_Distribution extends M2_CommonModel

@@ -1,4 +1,4 @@
-class @DistributionsIndexView extends Backbone.View
+class @M2_DistributionsIndexView extends Backbone.View
   el: "#distribution_index"
   render: =>
     $(@el).html("")

@@ -76,24 +76,33 @@ Zn::Application.routes.draw do
     resources :messages
   end
 
+  get "mobile3" => "mobile3#index"
+
   get "mtimer" => "mtimer#index"
 
   namespace "api" do
-    get  "messages"                      => "messages#index"
-    get  "messages/:id/sent_at_now"      => "messages#sent_at_now"
-    get  "messages/load_inbound"         => "messages#load_inbound"
+    get  "messages"                   => "messages#index"
+    get  "messages/:id/sent_at_now"   => "messages#sent_at_now"
+    get  "messages/load_inbound"      => "messages#load_inbound"
     get  "ops/set_do"                 => "ops#set_do"
     get  "ops/message_cleanup"        => "ops#message_cleanup"
     get  "reminders/do_shift_pending" => "reminders#do_shift_pending"
     get  "reminders/do_shift_started" => "reminders#do_shift_started"
-    get  "reminders/cert_expiration"  => "reminders#cert_expiration"
-    get  "mobile3"                    => "mobile3#index"
+
+    get "mobile2" => "mobile2#index"
+    namespace "mobile2" do
+      resources :members
+      resources :messages
+    end
+
+    get  "mobile3" => "mobile3#index"
     namespace "mobile3" do
       resources :members
       resources :messages
       get      "do"
       get      "rsvp"
     end
+
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
@@ -108,12 +117,13 @@ Zn::Application.routes.draw do
   match '/reports/gdocs/:title'    => "reports#gdocs_show"
   match '/reports/:title'          => "reports#show"
 
+  root :to => 'home#index'
 
   if %w(development test).include? Rails.env
     mount Jasminerice::Engine => "/jasmine"
   end
 
-  jqm_mobile = Rack::Offline.configure do
+  manifest_mobile2 = Rack::Offline.configure do
     cache "http://code.jquery.com/jquery-1.6.2.min.js"
     cache "/stylesheets/jquery.mobile-1.0rc1.css"
     cache "/favicon_d1.ico"
@@ -128,9 +138,7 @@ Zn::Application.routes.draw do
     network "/"
   end
 
-  root :to => 'home#index'
-
-  mtimerf = Rack::Offline.configure do
+  manifest_mtimer = Rack::Offline.configure do
     cache "/assets/mtimer.css"
     cache "/assets/mtimer/all_mtimer.js"
     cache "/ding.wav"
@@ -138,7 +146,7 @@ Zn::Application.routes.draw do
     network "/"
   end
 
-  match "/jqm_mobile.manifest" => jqm_mobile
-  match "/mtimerf.manifest"     => mtimerf
+  match "/mobile2.manifest"     => manifest_mobile2
+  match "/mtimerf.manifest"     => manifest_mtimer
 
 end

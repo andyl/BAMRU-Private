@@ -16,7 +16,7 @@ main_template = '''
 </table>
 '''
 
-class @MessageShowView extends CommonView
+class @M2_MessageShowView extends M2_CommonView
   initialize: ->
     @template = _.template(main_template)
   sent_read_helper: ->

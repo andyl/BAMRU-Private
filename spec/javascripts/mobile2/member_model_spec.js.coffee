@@ -2,10 +2,10 @@
 
 # ----- Model Specs -----
 
-describe "Mobile2 Member", ->
+describe "M2_Member", ->
   beforeEach ->
     @col_path = "/collection"
-    @mem0 = new Member(member_test_data[0])
+    @mem0 = new M2_Member(member_test_data[0])
     col  = { url: @col_path }
     @mem0.collection = col
   describe "basic object generation", ->
@@ -30,8 +30,8 @@ describe "Mobile2 Member", ->
         expect(@mem0.url()).toEqual @col_path + '/1'
   describe "Member Predicates", ->
     beforeEach ->
-      @mem1 = new Member(member_test_data[1])
-      @mem2 = new Member(member_test_data[2])
+      @mem1 = new M2_Member(member_test_data[1])
+      @mem2 = new M2_Member(member_test_data[2])
     describe "#hasPhone", ->
       it 'returns false when phone does not exist', ->
         expect(@mem0.hasPhone()).toEqual false
@@ -48,9 +48,9 @@ describe "Mobile2 Member", ->
 
 # ----- Collection Specs -----
 
-describe "Mobile2 Members", ->
+describe "M2_Members", ->
   beforeEach ->
-    @obj = new Members(member_test_data)
+    @obj = new M2_Members(member_test_data)
   describe "basic object generation", ->
     it "generates an object", ->
       expect(@obj).toBeDefined()
@@ -66,7 +66,7 @@ describe "Mobile2 Server Fetch", ->
       "Content-Type": "application/json"
       JSON.stringify(member_test_data)
     ]
-    @members = new Members
+    @members = new M2_Members
 
   afterEach ->
     @server.restore()

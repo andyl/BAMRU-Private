@@ -4,7 +4,7 @@ main_template = '''
   <%= this.email_helper() %>
 '''
 
-class @MemberShowView extends Backbone.View
+class @M2_MemberShowView extends Backbone.View
   initialize: ->
     @main_template  = _.template(main_template)
   header: (id) ->

@@ -2,11 +2,11 @@
 
 window.inbox = []
 
-class @Message extends CommonModel
+class @M2_Message extends M2_CommonModel
   initialize: ->
     obj = @
     if @has('distributions')
-      @distributions = new Distributions @get('distributions')
+      @distributions = new M2_Distributions @get('distributions')
       _(@distributions.models).each (dist) ->
         dist.set({'message': obj})
         window.inbox = window.inbox.concat(dist) if dist.get('member_id') == myid

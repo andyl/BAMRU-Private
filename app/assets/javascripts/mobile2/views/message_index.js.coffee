@@ -10,7 +10,7 @@ message_index_template = '''
 </a>
 '''
 
-class @MessageIndexView extends CommonView
+class @M2_MessageIndexView extends M2_CommonView
   tagName:    "li"
   initialize: ->
     @template = _.template(message_index_template)

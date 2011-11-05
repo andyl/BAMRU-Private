@@ -1,6 +1,6 @@
 #= require ./common_model
 
-class @Member extends CommonModel
+class @M2_Member extends M2_CommonModel
   hasPhone: -> @hasAttr('phones_attributes')
   hasEmail: -> @hasAttr('emails_attributes')
   hasPhoto: -> @hasAttr('photos_attributes')

@@ -2,10 +2,10 @@
 
 describe "Mobile2 Message", ->
   beforeEach ->
-    @msg0 = new Message(message_test_data[0])
-    @msg1 = new Message(message_test_data[1])
-    @msg2 = new Message(message_test_data[2])
-    window.inbox = new Distributions()
+    @msg0 = new M2_Message(message_test_data[0])
+    @msg1 = new M2_Message(message_test_data[1])
+    @msg2 = new M2_Message(message_test_data[2])
+    window.inbox = new M2_Distributions()
   describe "basic object generation (no params)", ->
     it "generates an object",        -> expect(@msg0).toBeDefined()
     it "shows a valid id attribute", -> expect(@msg0.get('id')).toEqual(24)

@@ -1,3 +1,3 @@
-class @Distributions extends Backbone.Collection
-  model: Distribution
+class @M2_Distributions extends Backbone.Collection
+  model: M2_Distribution
   url:   "/mobile2/distributions"
