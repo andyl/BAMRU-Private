@@ -1,7 +1,7 @@
 #= require mobile3/views/common_view
 
 message_index_template = '''
-<a class="msglink" data-msgid="<%= id %>" href="#message">
+<a class="nav" href="#messages/<%= id %>">
 #<%= id %> <%= creation_date %> from <%= author_short_name %>
 <p class='ui-li-desc' style='margin-top: 3px;'>
 <%= this.text_helper() %>

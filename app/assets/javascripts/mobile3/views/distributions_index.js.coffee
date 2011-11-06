@@ -5,5 +5,4 @@ class @M3_DistributionsIndexView extends Backbone.View
     _(inbox).each (dist) ->
       view = new M3_DistributionIndexView({model: dist})
       $("#distribution_index").append(view.render().el)
-    $(@el).listview()
     @

@@ -8,8 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <script>
-    //window.members  = new Members(<%# raw File.read("db/members.json").chomp %>)
-    //window.messages = new Messages(<%# raw File.read('db/messages.json').chomp %>)
+    window.members  = new M3_Members(<%= raw MemberDecorator.mobile_json %>)
+    window.messages = new M3_Messages(<%= raw MessageDecorator.mobile_json %>)
+    window.myID = returnSelf(<%= current_member.id %>)
   </script>
 </head>
 <body>
@@ -24,13 +25,12 @@
 </div>
 
 <div id='home' class='page'>
-  <a class='nav' href="#members">Members</a>
-  <a class='nav' href="#duty">Duty Officer</a>
-  <a class='nav' href="#status">Status Line</a>
-  <a class='nav' href="#send">Send Page</a>
+  <a class='nav' href="#members" >Members</a>
+  <a class='nav' href="#members/<%=@do_id%>">DO: <%= @do_name %></a>
+  <a class='nav' href="#status"  >Status Line</a>
+  <a class='nav' href="#send"    >Send Page</a>
   <a class='nav' href="#messages">Unit Message Log</a>
-
-  <a class='nav' href="#inbox">Inbox</a>
+  <a class='nav' href="#inbox"><%= @inbox_label %></a>
 </div>
 
 <div id='members' class='page'>
@@ -43,11 +43,16 @@
 
 <div id='duty' class='page'>
   DUTY OFFICER
-
 </div>
 
 <div id='status' class='page'>
-  STATUS LINE
+  BAMRU Status Line
+  <p></p>
+  <b>650-858-4618</b>
+  <p></p>
+  <% if @is_phone %>
+    <a href='tel:650-858-4618'>Dial</a>
+  <% end %>
 </div>
 
 <div id='send' class='page'>
