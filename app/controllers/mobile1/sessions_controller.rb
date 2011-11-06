@@ -22,7 +22,7 @@ class Mobile1::SessionsController < ApplicationController
       member_login(member)
       redirect_to (session[:ref] || params[:ref] || mobile1_path)
     else
-      render new
+      render :new
     end
   end
 

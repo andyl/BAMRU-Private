@@ -1,5 +1,7 @@
 class Mobile3Controller < ApplicationController
 
+  before_filter :authenticate_mobile_member!
+  
   def index
     @mem_json = MemberDecorator.mobile_json
     @msg_json = MessageDecorator.mobile_json
