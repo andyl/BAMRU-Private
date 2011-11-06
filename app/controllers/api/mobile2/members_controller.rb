@@ -1,4 +1,4 @@
-class Mobile2::MembersController < ApplicationController
+class Api::Mobile2::MembersController < ApplicationController
 
   respond_to :html, :json
 
