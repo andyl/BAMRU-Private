@@ -36,7 +36,7 @@ window.isPhone = ->
   window.deviceName() in ["Android", "BlackBerry", "iPhone", "Chrome"]
 
 window.mobileDevice = ->
-  window.deviceName() in ["Android", "BlackBerry", "iPhone", "iPad"]
+  window.deviceName() in ["Android", "BlackBerry", "iPhone", "iPod"]
 
 $(document).ready ->
   window.App = new M3_BaseRoute()
