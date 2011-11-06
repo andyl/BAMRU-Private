@@ -35,9 +35,12 @@ window.deviceName = ->
 window.isPhone = ->
   window.deviceName() in ["Android", "BlackBerry", "iPhone", "Chrome"]
 
+window.mobileDevice = ->
+  window.deviceName() in ["Android", "BlackBerry", "iPhone", "iPad"]
+
 $(document).ready ->
   window.App = new M3_BaseRoute()
   Backbone.history.start()
-  window.scrollTo 0, 1  if navigator.userAgent.match(/Android/i)
+  window.scrollTo 0, 1  if window.mobileDevice()
   document.body.addEventListener "offline", -> setState()
   document.body.addEventListener "online",  -> setState()

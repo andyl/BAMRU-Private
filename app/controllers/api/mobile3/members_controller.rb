@@ -12,5 +12,4 @@ class Api::Mobile3::MembersController < ApplicationController
     
   end
 
-
 end
