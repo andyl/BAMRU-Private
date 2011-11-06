@@ -2,8 +2,6 @@ class Mobile2Controller < ApplicationController
 
   before_filter :authenticate_mobile_member!
 
-  layout 'mobile2'
-
   def index
     @mem_json = MemberDecorator.mobile_json
     @msg_json = MessageDecorator.mobile_json
@@ -15,6 +13,7 @@ class Mobile2Controller < ApplicationController
     @inbox_label = "My Inbox#{txt}"
     @do_name = DoAssignment.current.first.primary.last_name
     @do_id   = DoAssignment.current.first.primary.id
+    render :layout => false
   end
 
 end

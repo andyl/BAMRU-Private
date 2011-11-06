@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html manifest="/mobile3f.manifest">
 <head>
-  <title>Mobile3</title>
+  <title>BAMRU Mobile 3</title>
+  <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <script src="/assets/mobile3/application.js"></script>
   <link rel="stylesheet" href="/assets/mobile3.css">
   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <script>
-    window.members  = new M3_Members(<%= raw MemberDecorator.mobile_json %>)
-    window.messages = new M3_Messages(<%= raw MessageDecorator.mobile_json %>)
+    window.members   = new M3_Members(<%= raw @mem_json %>)
+    window.messages  = new M3_Messages(<%= raw @msg_json %>)
+    window.inbox     = new M3_Distributions(<%= raw @dst_json %>)
     window.myID = returnSelf(<%= current_member.id %>)
   </script>
 </head>
@@ -31,6 +33,9 @@
   <a class='nav' href="#send"    >Send Page</a>
   <a class='nav' href="#messages">Unit Message Log</a>
   <a class='nav' href="#inbox"><%= @inbox_label %></a>
+  <div class=state>
+    <span id=state></span>
+  </div>
 </div>
 
 <div id='members' class='page'>

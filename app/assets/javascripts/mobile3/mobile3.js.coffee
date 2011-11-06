@@ -10,6 +10,11 @@
 #  Routers: {}
 #  Views: {}
 
+window.setStateOn  = -> $('#state').text("Online")
+window.setStateOff = -> $('#state').text("Offline")
+window.setState = (event, ui) ->
+  if navigator.onLine then setStateOn() else setStateOff()
+
 window.returnSelf = (object) -> object
 
 window.deviceName = ->
@@ -34,3 +39,5 @@ $(document).ready ->
   window.App = new M3_BaseRoute()
   Backbone.history.start()
   window.scrollTo 0, 1  if navigator.userAgent.match(/Android/i)
+  document.body.addEventListener "offline", -> setState()
+  document.body.addEventListener "online",  -> setState()

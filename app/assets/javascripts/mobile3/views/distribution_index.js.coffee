@@ -1,14 +1,17 @@
 
-
 window.distribution_index_template = '''
-<a class="msglink" data-msgid="<%= message_id %>" href="#message"><%= message_id %> - <%= this.gtext() %></a>
+<a class=nav href="#messages/<%= message_id %>"><%= message_id %> - <%= this.gText() %></a>
 '''
 
 class @M3_DistributionIndexView extends M3_CommonView
   tagName:    "li"
   initialize: ->
     @template = _.template(distribution_index_template)
-  gtext: -> @model.get('message').get('text')
+  gText: ->
+    @distMsg().get('text')
+  distMsg: ->
+    lclID = @model.get('message_id')
+    messages.get(lclID)
   render: =>
-    $(@el).html(@template(@model.toJSON()))
+    $(@el).html(@template(@model.toJSON())) unless @distMsg() == undefined
     @

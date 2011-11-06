@@ -138,6 +138,15 @@ Zn::Application.routes.draw do
     network "/"
   end
 
+  manifest_mobile3 = Rack::Offline.configure do
+    cache "/favicon_d1.ico"
+    cache "/favicon_p1.ico"
+    cache "/assets/mobile3/application.js"
+    cache "/assets/mobile3.css"
+
+    network "/"
+  end
+
   manifest_mtimer = Rack::Offline.configure do
     cache "/assets/mtimer.css"
     cache "/assets/mtimer/all_mtimer.js"
@@ -146,7 +155,8 @@ Zn::Application.routes.draw do
     network "/"
   end
 
-  match "/mobile2.manifest"     => manifest_mobile2
-  match "/mtimerf.manifest"     => manifest_mtimer
+  match "/mobile2f.manifest"     => manifest_mobile2
+  match "/mobile3f.manifest"     => manifest_mobile3
+  match "/mtimerf.manifest"      => manifest_mtimer
 
 end

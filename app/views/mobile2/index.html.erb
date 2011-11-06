@@ -1,21 +1,37 @@
+<!DOCTYPE html>
+<html manifest="/mobile2f.manifest">
+<head>
+  <title>BAMRU Mobile 2</title>
+  <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
+  <link rel="stylesheet" href="/stylesheets/jquery.mobile-1.0rc1.css" />
+  <script>
+    window.myid = "<%= current_member.id %>";
+  </script>
+  <%= javascript_include_tag "mobile2/all_mobile2" %>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
 <script>
-  window.members  = new Members(<%= raw MemberDecorator.mobile_json    %>)
-  window.messages = new Messages(<%= raw MessageDecorator.mobile_json %>)
+  window.members  = new M2_Members(<%= raw @mem_json    %>)
+  window.messages = new M2_Messages(<%= raw @msg_json %>)
   window.is_phone = "<%= @is_phone ? 'true' : 'false' %>"
 </script>
 
 <%= page_start "home" %>
-  <div data-role="listview" data-inset="true" data-theme="c">
-    <li><%= link_to "Roster",           "#roster"      , {'class' => 'home_nav'} %></li>
-    <li><%= link_to "DO: #{@do_name}",  "#member"      , {'class' => 'mem_home', 'data-memid' => "#{@do_id}" } %></li>
-    <li><%= link_to "Status Line",      "#status"      , {'class' => 'home_nav'} %></li>
-    <li><%= link_to "Send Page",        "#send-page"   , {'class' => 'home_nav'} %></li>
-    <li><%= link_to "Unit Message Log", "#message-log" , {'class' => 'home_nav'} %></li>
-    <li><%= link_to "My Inbox",         "#inbox"       , {'class' => 'home_nav'} %></li>
-    <div style='text-align: center;'>
-      <span id=state></span>
-    </div>
+<div data-role="listview" data-inset="true" data-theme="c">
+  <li><%= link_to "Roster",           "#roster"      , {'class' => 'home_nav'} %></li>
+  <li><%= link_to "DO: #{@do_name}",  "#member"      , {'class' => 'mem_home', 'data-memid' => "#{@do_id}" } %></li>
+  <li><%= link_to "Status Line",      "#status"      , {'class' => 'home_nav'} %></li>
+  <li><%= link_to "Send Page",        "#send-page"   , {'class' => 'home_nav'} %></li>
+  <li><%= link_to "Unit Message Log", "#message-log" , {'class' => 'home_nav'} %></li>
+  <li><%= link_to "My Inbox",         "#inbox"       , {'class' => 'home_nav'} %></li>
+  <div style='text-align: center;'>
+    <span id=state></span>
   </div>
+</div>
 <%= page_end %>
 
 <%= page_start "roster", "Roster" %>
@@ -43,7 +59,7 @@
 <%= page_end %>
 
 <%= page_start "send-page", "Send Page" %>
-  SEND PAGE (Under Construction)
+SEND PAGE (Under Construction)
 <%= page_end %>
 
 <%= page_start "message-log", "Message Log" %>
@@ -63,3 +79,7 @@
   MY INBOX (Under Construction)
 </div>
 <%= page_end %>
+
+
+</body>
+</html>

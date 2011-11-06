@@ -1,6 +1,6 @@
 class Api::Mobile3::MembersController < ApplicationController
 
-  respond_to :xml, :json
+  respond_to :json
 
   before_filter :authenticate_member_with_basic_auth!
 

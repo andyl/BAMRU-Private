@@ -12,8 +12,7 @@ window.pageName = (page) ->
     when "#default"  then "Not Found"
     else page
 
-window.render_page = (page) ->
-  console.log page
+window.renderPage = (page) ->
   $(".page").hide()
   if page == "#home"
     $(".back").hide()
@@ -33,32 +32,33 @@ class @M3_BaseRoute extends Backbone.Router
     "messages/:id" : "message"
     "inbox"        : "inbox"
     "home"         : "home"
-    "/home"        : "home"
-    "/"            : "home"
-    "#home"        : "home"
     ""             : "home"
     "*actions"     : "default"
-  initialize  : -> console.log "LOADING"
-  home        : -> window.render_page "#home"
+  home        : -> 
+    window.renderPage "#home"
+    window.setState()
   members     : ->
-    window.render_page "#members"
+    window.renderPage "#members"
     miv = new M3_MembersIndexView
     miv.render()
   member      : (id) ->
     memb = members.get(id)
     view = new M3_MemberShowView({model: memb})
-    window.render_page "#member"
+    window.renderPage "#member"
     $('#member').html(view.render().el)
-  status      : -> window.render_page "#status"
-  send        : -> window.render_page "#send"
+  status      : -> window.renderPage "#status"
+  send        : -> window.renderPage "#send"
   messages    : ->
-    window.render_page "#messages"
+    window.renderPage "#messages"
     miv = new M3_MessagesIndexView
     miv.render()
   message     : (id) ->
     memb = messages.get(id)
     view = new M3_MessageShowView({model: memb})
-    window.render_page "#message"
+    window.renderPage "#message"
     $('#message').html(view.render().el)
-  inbox       : -> window.render_page "#inbox"
-  default     : -> window.render_page "#default"
+  inbox       : ->
+    window.renderPage "#inbox"
+    view = new M3_DistributionsIndexView
+    view.render()
+  default     : -> window.renderPage "#default"
