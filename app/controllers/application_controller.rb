@@ -57,6 +57,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ipad_device?
+    device == "iPad"
+  end
+
   def phone_device?
     return true if device == "Chrome" && ENV['RAILS_ENV'] == "development"
     %w(Android iPhone BlackBerry).include? device

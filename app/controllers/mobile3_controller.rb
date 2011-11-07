@@ -3,6 +3,7 @@ class Mobile3Controller < ApplicationController
   before_filter :authenticate_mobile_member!
   
   def index
+    @ipad_device = ipad_device?
     @mem_json = MemberDecorator.mobile_json
     @msg_json = MessageDecorator.mobile_json
     @dst_json = DistributionDecorator.mobile_json(current_member.id)

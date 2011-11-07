@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html manifest="/mobile3f.manifest">
+<!--<html manifest="/mobile3f.manifest">-->
+<html>
 <head>
   <title>BAMRU Mobile 3</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
+  <% if @ipad_device %>
+    <script src="/assets/mobile3/iscroll.js"></script>
+  <% end %>
   <script src="/assets/mobile3/application.js"></script>
   <link rel="stylesheet" href="/assets/mobile3.css">
-  <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=1;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <script>
     window.members   = new M3_Members(<%= raw @mem_json %>)
     window.messages  = new M3_Messages(<%= raw @msg_json %>)
@@ -17,94 +21,75 @@
 </head>
 <body>
 
-<div id="title" class="title">
-  <div class=header>
+<header>
+  <div id=title>
     <div class=bookend><a class='back' href='#home'>Home</a></div>
     <div id="label">Text Here</div>
     <div class=bookend> </div>
   </div>
 
-</div>
+</header>
 
-<div id='home' class='page'>
-  <a class='nav' href="#members" >Members</a>
-  <a class='nav' href="#members/<%=@do_id%>">DO: <%= @do_name %></a>
-  <a class='nav' href="#status"  >Status Line</a>
-  <a class='nav' href="#send"    >Send Page</a>
-  <a class='nav' href="#messages">Unit Message Log</a>
-  <a class='nav' href="#inbox"><%= @inbox_label %></a>
-  <div class=state>
-    <span id=state></span>
+<div id='wrapper'>
+  <div id='content'>
+
+
+    <div id='home' class='page'>
+      <a class='nav' href="#members" >Members</a>
+      <a class='nav' href="#members/<%=@do_id%>">DO: <%= @do_name %></a>
+      <a class='nav' href="#status"  >Status Line</a>
+      <a class='nav' href="#send"    >Send Page</a>
+      <a class='nav' href="#messages">Unit Message Log</a>
+      <a class='nav' href="#inbox"><%= @inbox_label %></a>
+      <div class=state>
+        <span id=state></span>
+      </div>
+    </div>
+
+    <div id='members' class='page'>
+      MEMBERS
+    </div>
+
+    <div id='member' class='page'>
+      MEMBER
+    </div>
+
+    <div id='duty' class='page'>
+      DUTY OFFICER
+    </div>
+
+    <div id='status' class='page'>
+      BAMRU Status Line
+      <p></p>
+      <b>650-858-4618</b>
+      <p></p>
+      <% if @is_phone %>
+        <a href='tel:650-858-4618'>Dial</a>
+      <% end %>
+    </div>
+
+    <div id='send' class='page'>
+      <div style='text-align: center; padding:  20px;'>
+        Under Construction
+      </div>
+    </div>
+
+    <div id='messages' class='page'>
+      MESSAGES
+    </div>
+
+    <div id='message' class='page'>
+      MESSAGE
+    </div>
+
+    <div id='inbox' class='page'>
+      INBOX
+    </div>
+
+    <div id='default' class='page'>
+      PAGE NOT FOUND
+    </div>
   </div>
 </div>
-
-<div id='members' class='page'>
-  MEMBERS
-</div>
-
-<div id='member' class='page'>
-  MEMBER
-</div>
-
-<div id='duty' class='page'>
-  DUTY OFFICER
-</div>
-
-<div id='status' class='page'>
-  BAMRU Status Line
-  <p></p>
-  <b>650-858-4618</b>
-  <p></p>
-  <% if @is_phone %>
-    <a href='tel:650-858-4618'>Dial</a>
-  <% end %>
-</div>
-
-<div id='send' class='page'>
-  <div style='text-align: center; padding:  20px;'>
-    Under Construction
-  </div>
-</div>
-
-<div id='messages' class='page'>
-  MESSAGES
-</div>
-
-<div id='message' class='page'>
-  MESSAGE
-</div>
-
-<div id='inbox' class='page'>
-  INBOX
-</div>
-
-<div id='default' class='page'>
-  PAGE NOT FOUND
-</div>
-
- <br/>
-
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
-
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
- <br/>
-
- <br/>
-
 </body>
 </html>

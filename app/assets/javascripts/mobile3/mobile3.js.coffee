@@ -38,9 +38,67 @@ window.isPhone = ->
 window.mobileDevice = ->
   window.deviceName() in ["Android", "BlackBerry", "iPhone", "iPod"]
 
+window.touchDevice = ->
+  window.deviceName() in ["Android", "BlackBerry", "iPhone", "iPad", "iPod", "Chrome"]
+
+window.iDevice = ->
+  window.deviceName() in ["iPhone", "iPad", "iPod"]
+
+window.iScrollDevice = ->
+  window.deviceName() in ["iPad"]
+
+window.topDevice = ->
+  window.deviceName() in ["Android", "iPad", "iPod", "iPhone"]
+
+window.browserDevice = ->
+  window.deviceName() in ["Firefox", "Chrome", "IE", "Safari", "Netscape"]
+
+window.desktopOrIpadDevice = ->
+  window.browserDevice() || window.iScrollDevice()
+
 $(document).ready ->
   window.App = new M3_BaseRoute()
   Backbone.history.start()
-  window.scrollTo 0, 1  if window.mobileDevice()
   document.body.addEventListener "offline", -> setState()
   document.body.addEventListener "online",  -> setState()
+
+window.myScroll = undefined
+
+window.scrollSetup = ->
+  return unless window.iScrollDevice()
+  args = {momentum: true, hScrollbar: false, vScrollbar: true}
+  if window.myScroll == undefined
+    window.myScroll = new iScroll('wrapper', args)
+  window.myScroll.refresh()
+
+window.hideUrlBar = ->
+  window.scrollTo(0,1)
+
+window.noDefault = (e) -> e.preventDefault()
+
+window.wrapperProps =
+  'position': 'absolute'
+  'z-index':  '1'
+  'top':      '60px'
+  'bottom':   '0'
+  'left':     '0'
+  'width':    '100%'
+  'overflow': 'auto'
+
+window.headerProps =
+  'position': 'absolute'
+  
+window.configurePage = ->
+  if window.desktopOrIpadDevice()
+    document.documentElement.style.overflow = 'hidden'
+    document.body.scroll = 'no'
+    document.documentElement.style.overflowX = 'hidden'
+    $('#wrapper').css(window.wrapperProps)
+    $('header').css(window.headerProps)
+
+$(document).ready ->
+  window.configurePage()
+  setTimeout('scrollSetup()', 100)
+  setTimeout('hideUrlBar()', 1000)
+  if window.touchDevice()
+    $(document).bind('touchmove', -> noDefault(e))

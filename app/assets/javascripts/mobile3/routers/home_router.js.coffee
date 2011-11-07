@@ -12,6 +12,13 @@ window.pageName = (page) ->
     when "#default"  then "Not Found"
     else page
 
+window.setHeight = ->
+  return if window.desktopOrIpadDevice()
+  $('#wrapper').css("height", '')
+  tgtHeight = window.innerHeight + 50
+  if tgtHeight > document.body.clientHeight
+    $('#wrapper').css("height", window.innerHeight)
+
 window.renderPage = (page) ->
   $(".page").hide()
   if page == "#home"
@@ -20,7 +27,9 @@ window.renderPage = (page) ->
     $(".back").show()
   $("#label").html("<b>#{pageName(page)}</b>")
   $(page).show()
-  window.scrollTo 0, 1  if navigator.userAgent.match(/Android/i)
+  setHeight()
+  setTimeout('scrollSetup()', 100)
+  setTimeout('hideUrlBar()', 300)
 
 class @M3_BaseRoute extends Backbone.Router
   routes :
