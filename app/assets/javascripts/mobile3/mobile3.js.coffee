@@ -96,9 +96,19 @@ window.configurePage = ->
     $('#wrapper').css(window.wrapperProps)
     $('header').css(window.headerProps)
 
+window.scrollStop = ->
+  if window.pageYOffset < 100
+    window.hideUrlBar()
+  window.scrollActive = false
+
 $(document).ready ->
   window.configurePage()
   setTimeout('scrollSetup()', 100)
   setTimeout('hideUrlBar()', 1000)
   if window.touchDevice()
     $(document).bind('touchmove', -> noDefault(e))
+  window.scrollActive = false
+  $(window).bind 'swipeDown', ->
+    return if scrollActive
+    scrollActive = true
+    setInterval("scrollStop()", 2000)
