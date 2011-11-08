@@ -37,11 +37,11 @@ end
 every :tuesday, :at => '8:05 am' do
   nq "rake ops:set_do"
   sleep 30
+  nq "rake tmp:clear"
+  sleep 30
   nq "rake ops:email:generate:do_shift_started_reminder"
   sleep 30
   nq "rake ops:email:send_pending"
-  sleep 60
-  nq "rake tmp:clear"
 end
 
 # ----- Retrieve incoming email from Google -----

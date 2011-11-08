@@ -1,3 +1,6 @@
+
+/* ----- page ----- */
+
 body, ul, li {
   padding: 0;
   margin:  0;
@@ -9,6 +12,8 @@ body {
   background: #b0acac;
   font-family: arial, sans-serif;
 }
+
+/* ----- header ----- */
 
 header {
   /*position: absolute;*/
@@ -71,33 +76,7 @@ header {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 
-.nav {
-  text-align: left;
-  display: block;
-  margin: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 20px;
-  text-decoration: none;
-  border: 1px solid black;
-  background: white;
-  color: black;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  }
-
-.nav:hover {
-  color: black; }
-
-.nav:selected {
-  color: black; }
-
-.nav:visted {
-  color: black; }
+/* ----- content styling ----- */
 
 .page {
   text-align: left;
@@ -112,12 +91,76 @@ header {
   list-style-type: none;
 }
 
-.data {
-  padding: 10px;
+/* ----- nav links and dividers ----- */
+
+@mixin nav-base-style {
+  display: block;
+  margin: 0;
+  margin-top: 10px;
+  padding: 20px;
+  text-decoration: none;
+  background: white;
+  color: black;
+  text-align: left;
 }
 
-.sms {
-  float: right;
+@mixin nav-nowrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin radius($position: "") {
+  border#{$position}-radius: 15px;
+  -moz#{$position}-border-radius: 15px;
+  -webkit#{$position}-border-radius: 15px;
+}
+
+.nav {
+  @include nav-base-style;
+  @include nav-nowrap;
+  @include radius;
+  border: 1px solid black;
+  }
+
+.navbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  width: 100%;
+}
+
+.lnav {
+  @include nav-base-style;
+  @include nav-nowrap;
+  @include radius("-top-left");
+  @include radius("-bottom-left");
+
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+
+.rnav {
+  @include nav-base-style;
+  @include radius("-top-right");
+  @include radius("-bottom-right");
+
+  border: 1px solid black;
+  text-align: right;
+}
+
+.nav:hover, .nav:selected, .nav:visited,
+.rnav:hover, .rnav:selected, .rnav:visited,
+.lnav:hover, .lnav:selected, .lnav:visited {
+  color: black;
 }
 
 .divider {
@@ -126,6 +169,17 @@ header {
   display: block;
   background: black;
   color: white;
+}
+
+/* ----- utility styles ----- */
+
+.data {
+  padding: 10px;
+}
+
+.center {
+  text-align: center;
+  padding: 50px;
 }
 
 .state {

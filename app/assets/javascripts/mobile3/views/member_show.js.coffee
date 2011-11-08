@@ -18,20 +18,22 @@ class @M3_MemberShowView extends Backbone.View
     display = _(@model.attributes.phones_attributes).map (phone) ->
       num  = phone.number
       typ  = phone.typ
-      val1 = "<a href='tel:#{num}'>#{num} - #{typ}</a>"
-      val2 = if typ == "Mobile" then "<a class=sms href='sms:#{num}'>SMS</a>" else ""
-      if window.isPhone()
-        "<div class=data>#{val1}#{val2}</div>"
-      else
-        "<div class=data>#{num} - #{typ}</div>"
+      unless window.isPhone()
+        return "<div class=data>#{num} - #{typ}</div>"
+      unless typ == "Mobile"
+        return "<a class=nav href='tel:#{num}'>#{num} - #{typ}</a>"
+      val1 = "<a class='lnav' href='tel:#{num}'>#{num} - #{typ}</a>"
+      val2 = "<a class='rnav' href='sms:#{num}'>SMS</a>"
+      "<div class=navbox>#{val1}#{val2}</div>"
+
     @divider("Phones") + display.join('')
   email_helper: ->
     return "" unless @model.hasEmail
     display = "<li>email value</li>"
     display = _(@model.attributes.emails_attributes).map (email) ->
       adr  = email.address
-      val1 = "<a href='mailto:#{adr}'>#{adr}</a>"
-      "<div class=data>#{val1}</div>"
+      val1 = "<a class=nav href='mailto:#{adr}'>#{adr}</a>"
+      "#{val1}"
     @divider("Emails") + display.join('')
   render: =>
     $(@el).html(@main_template(@model.toJSON()))

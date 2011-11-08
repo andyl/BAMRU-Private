@@ -94,8 +94,8 @@ class Member < ActiveRecord::Base
   scope :active,                 where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order
   scope :registered,             where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order
   scope :inactive,               where(:typ => ["R", "S", "A"]).standard_order
+  scope :current_do,             where(:current_do => true)
 
-  
   # ----- Class Methods ----
   def self.set_do
     where(:current_do => true).all.each {|mem| mem.current_do = false ; mem.save}

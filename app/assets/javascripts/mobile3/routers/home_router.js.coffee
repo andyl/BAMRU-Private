@@ -2,8 +2,7 @@ window.pageName = (page) ->
   switch page
     when "#member"   then "Member Detail"
     when "#members"  then "Roster"
-    when "#home"     then "BAMRU Mobile 3"
-    when "/home"     then "BAMRU Mobile 3"
+    when "#home"     then "BAMRU Mobile"
     when "#status"   then "Status Line"
     when "#messages" then "Message Log"
     when "#message"  then "Message"
@@ -36,6 +35,7 @@ class @M3_BaseRoute extends Backbone.Router
     "members"      : "members"
     "members/:id"  : "member"
     "status"       : "status"
+    "test"         : "test"
     "send"         : "send"
     "messages"     : "messages"
     "messages/:id" : "message"
@@ -57,6 +57,7 @@ class @M3_BaseRoute extends Backbone.Router
     $('#member').html(view.render().el)
   status      : -> window.renderPage "#status"
   send        : -> window.renderPage "#send"
+  test        : -> window.renderPage "#test"
   messages    : ->
     window.renderPage "#messages"
     miv = new M3_MessagesIndexView

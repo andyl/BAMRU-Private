@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html manifest="/mobile3f.manifest">
-<!--<html>-->
+<!--<html manifest="/mobile3f.manifest">-->
+<html>
 <head>
-  <title>BAMRU Mobile 3</title>
+  <title>BAMRU Mobile</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <% if @ipad_device %>
     <script src="/assets/mobile3/iscroll.js"></script>
@@ -35,15 +35,25 @@
 
 
     <div id='home' class='page'>
+      <a class='nav' href="#test" >Test</a>
       <a class='nav' href="#members" >Members</a>
       <a class='nav' href="#members/<%=@do_id%>">DO: <%= @do_name %></a>
       <a class='nav' href="#status"  >Status Line</a>
-      <a class='nav' href="#send"    >Send Page</a>
+      <!--<a class='nav' href="#send"    >Send Page</a>-->
       <a class='nav' href="#messages">Unit Message Log</a>
       <a class='nav' href="#inbox"><%= @inbox_label %></a>
       <div class=state>
         <span id=state></span>
       </div>
+    </div>
+
+    <div id='test' class='page'>
+      <a href="xx" class=nav>this is a link</a>
+      <div class=navbox>
+        <a class="lnav" href="ccc">lnav</a>
+        <a class="rnav" href="ddd">rnav</a>
+      </div>
+      <a href="xx" class=nav>this is a link</a>
     </div>
 
     <div id='members' class='page'>
@@ -59,13 +69,15 @@
     </div>
 
     <div id='status' class='page'>
-      BAMRU Status Line
-      <p></p>
-      <b>650-858-4618</b>
-      <p></p>
-      <% if @is_phone %>
-        <a href='tel:650-858-4618'>Dial</a>
-      <% end %>
+      <div class='center'>
+        <b>BAMRU Status Line</b>
+        <p></p>
+        <% if @is_phone %>
+          <a class='nav' href='tel:650-858-4618' style='text-align: center;'>Dial 650-858-4618</a>
+        <% else %>
+          650-858-4618
+        <% end %>
+      </div>
     </div>
 
     <div id='send' class='page'>
