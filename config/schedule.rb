@@ -26,21 +26,28 @@ job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 every 1.day,  :at => '10:10 pm' do
   nq "rake ops:email:generate:cert_expiration_reminders"
+end
+every 1.day,  :at => '10:15 pm' do
   nq "rake ops:email:send_pending"
 end
 
 every :sunday,  :at => '11:10 pm' do
   nq "rake ops:email:generate:do_shift_pending_reminder"
+end
+every :sunday, :at => '11.15 pm' do
   nq "rake ops:email:send_pending"
 end
 
-every :tuesday, :at => '8:05 am' do
+every :tuesday, :at => '8:02 am' do
   nq "rake ops:set_do"
-  sleep 30
+end
+every :tuesday, :at => '8:03 am' do
   nq "rake tmp:clear"
-  sleep 30
+end
+every :tuesday, :at => '8:04 am' do
   nq "rake ops:email:generate:do_shift_started_reminder"
-  sleep 30
+end
+every :tuesday, :at => '8:05 am' do
   nq "rake ops:email:send_pending"
 end
 
