@@ -8,7 +8,7 @@ platforms :ruby do
   gem 'linecache', "0.43"
   gem 'sqlite3'
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'faye'
+  gem 'faye',          "0.6.7"
   gem 'em-http-request'
   gem "thin"
 

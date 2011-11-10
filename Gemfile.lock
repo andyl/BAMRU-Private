@@ -109,9 +109,9 @@ GEM
     faker (0.9.5)
       i18n (~> 0.4)
     fastercsv (1.5.4)
-    faye (0.6.4)
+    faye (0.6.7)
       em-hiredis (>= 0.0.1)
-      em-http-request (>= 0.2)
+      em-http-request (~> 0.3)
       eventmachine (~> 0.12.0)
       json (>= 1.0)
       rack (>= 1.0)
@@ -305,7 +305,7 @@ DEPENDENCIES
   factory_girl
   faker
   fastercsv
-  faye
+  faye (= 0.6.7)
   foreman
   guard
   guard-coffeescript
