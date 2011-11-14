@@ -54,5 +54,9 @@ ul#mobile_chat li .created_at {
 }
 
 #chat_text {
-  width: 98%;
+  width: 85%;
+}
+
+input[name="commit"] {
+  float: right;
 }

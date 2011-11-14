@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "chat.css" %>
+<%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
+<%= javascript_include_tag "bchat/application.js" %>
+
+<script>
+  window.bchats = new BC1_Chats(<%= raw @bchat_json %>)
+</script>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=center><b>BAMRU Bchat</b></td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+      <div id="chat_label" style="text-align: center;"></div>
+
+      <ul id="chat">
+      </ul>
+
+      <div id="chat_form">
+        <%= form_for Chat.new, :remote => true do |f| %>
+          <%= f.text_field :text %> <%= f.submit "Send" %>
+        <% end %>
+      </div>
+
+    </div>
+    <div id=x_footer> </div>
+  </div>
+</div>

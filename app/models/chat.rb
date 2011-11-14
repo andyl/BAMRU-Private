@@ -16,7 +16,7 @@ class Chat < ActiveRecord::Base
   # ----- Local Methods-----
 
 
-  # ----- Class Methods
+  # ----- Class Methods -----
 
 
 end

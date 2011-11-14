@@ -4,7 +4,7 @@
 //= require underscore-min
 //= require backbone-min
 
-//= require jasmine-zepto
+//= require jasmine-jquery-1_3_1
 //= require sinon-1_2_0
 
 //= require mobile2/all_backbone

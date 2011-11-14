@@ -41,6 +41,7 @@ Zn::Application.routes.draw do
   resources  :do_assignments
   resources  :files
   resources  :chats
+  resources  :bchats
   resources  :rsvp_templates
   resources  :history
   resources  :rsvps
@@ -103,6 +104,11 @@ Zn::Application.routes.draw do
       get      "rsvp"
     end
 
+    get "bchat" => "bchat#index"
+    namespace "bchat" do
+      resources :chats
+    end
+
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
@@ -121,6 +127,8 @@ Zn::Application.routes.draw do
 
   if %w(development test).include? Rails.env
     mount Jasminerice::Engine => "/jasmine"
+    mount Jasminerice::Engine => "/jas2"
+    mount Jasminerice::Engine => "/jas3"
   end
 
   manifest_mobile2 = Rack::Offline.configure do

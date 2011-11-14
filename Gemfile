@@ -58,11 +58,11 @@ platforms :ruby do
     gem "faker"
     gem "rcov"
     gem "ruby-debug"
-    gem "rspec-core",  "2.6.3"
-    gem "rspec-rails", "2.6.1"
+    gem "rspec-core",  "2.7.1"
+    gem "rspec-rails", "2.7.0"
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
-    gem "capybara", "~> 1.0.1"
+    gem "capybara", "~> 1.1.1"
     #gem "capybara-webkit", "~> 0.7.2" # see notes in spec_opts.rb
     gem "launchy"
     gem 'spork', '~> 0.9.0.rc9'

@@ -1,4 +1,4 @@
-class Api::Mobile3::MessagesController < ApplicationController
+class Api::Mobile3::ChatsController < ApplicationController
 
   respond_to :xml, :json
 
