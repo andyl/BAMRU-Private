@@ -23,7 +23,7 @@
       </ul>
 
       <div id="chat_form">
-        <%= form_for Chat.new, :remote => true do |f| %>
+        <%= form_for Chat.new, :url => bchats_path, :html => {'data-type' => 'json'}, :remote => true do |f| %>
           <%= f.text_field :text %> <%= f.submit "Send" %>
         <% end %>
       </div>

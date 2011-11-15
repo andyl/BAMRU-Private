@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
 window.resizeChatList = ->
   target = $('#mobile_chat, #chat').first()
   list   = target.children()
@@ -15,20 +11,22 @@ window.resizeChatList = ->
       $(ele).show()
     else
       $(ele).hide()
-    $(ele).remove() if idx > 34
+    $(ele).remove() if idx > 15
 
-window.updateChatList = (element)->
-  target = $('#chat, #mobile_chat').first()
-  target.append(element)
+window.zupdateChatList = (json) ->
+  obj  = JSON.parse json
+  tmpl = "<li>#{obj.text}<span class='created_at'>#{obj.short_name} | #{obj.created_at}</span></li>"
+  $('#chat').append(tmpl)
   window.resizeChatList()
+  window.clearText() if $('#chat_text').attr('value') == obj.text
 
 window.sizeLabel = ->
   str = "#{$(document).height()}H / #{$(document).width()}W"
   $('#chat_label').text(str)
 
+window.clearText = ->
+  $('#chat_text').attr('value','')
+
 $(document).ready ->
   faye = new Faye.Client("<%= FAYE_SERVER %>")
-  faye.subscribe("/chats/new", (data) -> eval(data))
-  window.resizeChatList()
-  $(window).resize ->
-    window.resizeChatList()
+  faye.subscribe("/chats/new", (data) -> zupdateChatList(data))

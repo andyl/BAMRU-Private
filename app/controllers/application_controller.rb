@@ -22,6 +22,12 @@ class ApplicationController < ActionController::Base
     new_member.save
   end
 
+  def local_cast(channel, string)
+    message = {:channel => channel, :data => string}
+    uri = URI.parse("#{FAYE_SERVER}/faye")
+    Net::HTTP.post_form(uri, :message => message.to_json)
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access Denied."
     redirect_to root_url
