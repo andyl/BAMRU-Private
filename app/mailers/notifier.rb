@@ -27,6 +27,7 @@ class Notifier < ActionMailer::Base
   def process_email_message(opts = {})
     Time.zone      = "Pacific Time (US & Canada)"
     @opts = Notifier.query_opts(opts)
+    @short_label = @opts['label'].split('_').last
     mail(
             :to          => @opts['recipient_email'],
             :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",

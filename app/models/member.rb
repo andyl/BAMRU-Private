@@ -127,11 +127,11 @@ class Member < ActiveRecord::Base
     end
     str = input.split(' ')
     if str[0].include?('.')
-      self.title = str[0].try(:capitalize_all)
+      self.title      = str[0].try(:capitalize_all)
       self.first_name = str[1].try(:capitalize_all)
-      self.last_name = str.length > 1 ? str[2..-1].join(' ').try(:capitalize_all) : ""
+      self.last_name  = str.length > 1 ? str[2..-1].join(' ').try(:capitalize_all) : ""
     else
-      self.title = ""
+      self.title      = ""
       self.first_name = str[0].try(:capitalize)
       self.last_name  = str[1] ? str[1..-1].join(' ').try(:capitalize_all) : ""
     end
@@ -354,9 +354,9 @@ class Member < ActiveRecord::Base
   end
 
   def cleanup_user_names
-    self.user_name = self.user_name.downcase unless self.user_name.blank?
+    self.user_name  = self.user_name.downcase unless self.user_name.blank?
     self.first_name = self.first_name.capitalize unless self.first_name.blank?
-    self.last_name = self.last_name.capitalize_all unless self.last_name.blank?
+    self.last_name  = self.last_name.capitalize_all unless self.last_name.blank?
   end
 
   def names_changed?

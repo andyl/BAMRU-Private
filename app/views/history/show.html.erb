@@ -52,7 +52,7 @@
       <% end %>
       <% @journals.each do |journal| %>
         <hr>
-        Web Update by <b><%= journal.member.short_name %></b> at <%= created_time(journal) %> : <b><%= journal.action %></b><br/>
+        Update by <b><%= journal.member.short_name %></b> at <%= created_time(journal) %> : <b><%= journal.action %></b><br/>
       <% end %>
 
     </div>

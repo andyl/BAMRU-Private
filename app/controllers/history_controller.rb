@@ -12,7 +12,7 @@ class HistoryController < ApplicationController
       x_hash = {
               :distribution_id => @distribution.id,
               :member_id       => current_member.id,
-              :action          => "Read message"
+              :action          => "Read via web"
       }
       Journal.create(x_hash) if @distribution.read == false
       @distribution.read = true

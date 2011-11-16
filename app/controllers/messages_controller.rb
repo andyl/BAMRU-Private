@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
       x_hash = {
               :distribution_id => @mydist.id,
               :member_id       => current_member.id,
-              :action          => "Read message"
+              :action          => "Read via web"
       }
       Journal.create(x_hash) if @mydist.read == false
       @mydist.read = true

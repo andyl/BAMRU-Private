@@ -30,3 +30,6 @@ window.clearText = ->
 $(document).ready ->
   faye = new Faye.Client("<%= FAYE_SERVER %>")
   faye.subscribe("/chats/new", (data) -> zupdateChatList(data))
+
+$(document).ready ->
+  clearText()

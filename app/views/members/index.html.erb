@@ -9,6 +9,7 @@
           <td align=left><b>Unit Roster / Paging</b></td>
           <td align=right>
             <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
+
           </td>
         </tr>
       </table>
@@ -24,7 +25,7 @@
           </td>
         </tr></table>
         <% cache("member_index_table-#{@fragment_type}") do %>
-          <table id="myTable" class="tablesorter" style="margin-top: 0px;">
+          <table id="myTable" class="tablesorter" style="margin-top: 0;">
             <thead>
             <tr>
               <th>Role</th>
@@ -90,10 +91,10 @@
             </tr>
           </table>
 
-          <div style="line-height: 10px; margin-bottom: 0px;">
-            <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0px; margin-bottom: 0px;"></textarea>
+          <div style="line-height: 10px; margin-bottom: 0;">
+            <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0; margin-bottom: 0;"></textarea>
 
-            <table width=100% style='font-size: 8pt; margin-bottom: 0px; padding-bottom: 0px;'>
+            <table width=100% style='font-size: 8pt; margin-bottom: 0; padding-bottom: 0;'>
               <tr>
                 <td>
                   RSVP <%= raw rsvp_select %>

@@ -123,6 +123,8 @@ Zn::Application.routes.draw do
   match '/reports/gdocs/:title'    => "reports#gdocs_show"
   match '/reports/:title'          => "reports#show"
 
+  match '/icon/:label.gif'         => "icon#show"
+
   root :to => 'home#index'
 
   if %w(development test).include? Rails.env
