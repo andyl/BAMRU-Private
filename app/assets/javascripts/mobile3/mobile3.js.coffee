@@ -4,11 +4,12 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-#window.Mobile3 =
-#  Models: {}
-#  Collections: {}
-#  Routers: {}
-#  Views: {}
+# this code is to skip the 'double reload' issue with the application manifest
+window.addEventListener "load", (e) ->
+  window.applicationCache.addEventListener "updateready", (e) ->
+    if window.applicationCache.status is window.applicationCache.UPDATEREADY
+      window.applicationCache.swapCache()
+      window.location.reload()
 
 window.setStateOn  = -> $('#state').text("Online")
 window.setStateOff = -> $('#state').text("Offline")
