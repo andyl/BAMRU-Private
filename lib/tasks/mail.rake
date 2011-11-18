@@ -57,13 +57,32 @@ def write_email_to_disk(mail)
 end
 
 def load_all_emails_into_database
-  cmd = curl_get("api/messages/load_inbound")
+  cmd = curl_get("api/rake/messages/load_inbound")
   puts "Loading emails into database..."
   # puts cmd.gsub(SYSTEM_PASS, "....")
   system cmd
 end
 
 # ----- Method for sending mail -----
+
+def process_email_message(opts, format)
+  case format
+    when 'page'             : Notifier.page_email(opts)
+    when 'password_reset'   : Notifier.password_reset_email(opts)
+    when 'do_shift_pending' : Notifier.do_shift_pending_email(opts)
+    when 'do_shift_started' : Notifier.do_shift_started_email(opts)
+    when 'cert_notice'      : Notifier.cert_notice_email(opts)
+    else nil
+  end
+end
+
+def process_phone_message(opts, format)
+  case format
+    when 'page'             : Notifier.page_phone(opts)
+    when 'do_shift_started' : Notifier.do_shift_started_phone(opts)
+    else nil
+  end
+end
 
 def send_mail(outbound_mail)
   puts "sending to #{outbound_mail.address}"
@@ -73,15 +92,14 @@ def send_mail(outbound_mail)
   address    = outbound_mail.email_address
   full_label = outbound_mail.full_label
   dist       = outbound_mail.distribution
-  opts    = Notifier.set_optz(message, address, full_label, dist)
-  mailing = Notifier.process_email_message(opts) if outbound_mail.email
-  mailing = Notifier.process_sms_message(opts)   if outbound_mail.phone
+  format     = message.format
+  opts       = Notifier.set_optz(message, address, full_label, dist)
+  mailing    = process_email_message(opts, format) if outbound_mail.email
+  mailing    = process_phone_message(opts, format) if outbound_mail.phone
   unless mailing.nil?
     mailing.deliver
-    id          = outbound_mail.id
-    invoke_url  = "api/messages/#{id}/sent_at_now.json"
-    cmd = curl_get(invoke_url)
-    #puts cmd.gsub(SYSTEM_PASS, "....")
+    invoke_url = "api/rake/messages/#{outbound_mail.id}/sent_at_now.json"
+    cmd        = curl_get(invoke_url)
     system cmd
   end
 end
@@ -91,36 +109,27 @@ end
 namespace :ops do
   namespace :email do
 
-    # ----- Forgot Password Email -----
+    namespace :pending do
 
-    desc "Send Password Reset Mail ADDRESS=<email_address> URL=<return_url>"
-    task :password_reset => 'environment' do
-      puts "Sending forgot password mail to #{ENV["ADDRESS"]} at #{Time.now}"
-      STDOUT.flush
-      Time.zone = "Pacific Time (US & Canada)"
-      mailing = Notifier.password_reset_email(ENV["ADDRESS"], ENV["URL"])
-      mailing.deliver
-    end
-
-    # ----- Outbound Pager Messages -----
-
-    desc "Show Pending Count"
-    task :pending_count => 'environment' do
-      count = OutboundMail.pending.count
-      puts "Pending Outbound Mails: #{count}"
-      STDOUT.flush
-    end
-
-    desc "Send Pending Mails"
-    task :send_pending => 'environment' do
-      Time.zone = "Pacific Time (US & Canada)"
-      send_list = CarrierQueueCollection.new
-      mails = OutboundMail.pending.all
-      mails.each { |om| send_list.add(om) }
-      while send_obj = send_list.get
-        send_mail(send_obj)
+      desc "Count Pending Mails"
+      task :count => 'environment' do
+        count = OutboundMail.pending.count
+        puts "Pending Outbound Mails: #{count}"
+        STDOUT.flush
       end
-      STDOUT.flush
+
+      desc "Send Pending Mails"
+      task :send => 'environment' do
+        Time.zone = "Pacific Time (US & Canada)"
+        send_list = CarrierQueueCollection.new
+        mails     = OutboundMail.pending.all
+        mails.each { |om| send_list.add(om) }
+        while send_obj = send_list.get
+          send_mail(send_obj)
+        end
+        STDOUT.flush
+      end
+
     end
 
     # ----- Inbound Pager Messages -----
@@ -134,28 +143,38 @@ namespace :ops do
 
     namespace :generate do
 
+      # ----- Password Reset -----
+
+      desc "Password Reset ADDRESS=<email_address>"
+      task :password_reset => 'environment' do
+        adr = ENV["ADDRESS"]
+        cmd = curl_get("api/rake/password/reset?address=#{adr}")
+        puts "Generating password reset mail for #{adr} at #{Time.now}"
+        system cmd
+      end
+
       # ----- DO Mails -----
 
       desc "DO Shift Pending Reminder"
-      task :do_shift_pending_reminder => 'environment' do
-        cmd = curl_get('api/reminders/do_shift_pending')
+      task :do_shift_pending => 'environment' do
+        cmd = curl_get('api/rake/reminders/do_shift_pending')
         puts "Generating DO Shift Pending Reminder"
         system cmd
       end
 
       desc "DO Shift Started Reminder"
-      task :do_shift_started_reminder => 'environment' do
-        cmd = curl_get('api/reminders/do_shift_started')
+      task :do_shift_started => 'environment' do
+        cmd = curl_get('api/rake/reminders/do_shift_started')
         puts "Generating DO Shift Started Reminder"
         system cmd
       end
 
       # ----- Cert Reminder Mails -----
 
-      desc "Cert Expiration Reminder"
-      task :cert_expiration_reminders => 'environment' do
-        cmd = curl_get('api/reminders/cert_expiration')
-        puts "Generating DO Shift Started Reminder"
+      desc "Cert Expiration Notices"
+      task :cert_notices => 'environment' do
+        cmd = curl_get('api/rake/reminders/cert_expiration')
+        puts "Generating Cert Expiration Notice"
         system cmd
       end
 

@@ -9,7 +9,7 @@ describe MessageDecorator do
     }
   end
 
-  def create_valid_chats(count = 2)
+  def create_valid_messages(count = 2)
     (1..count).each do |m|
       atts = valid_atts
       atts[:text] = "Helloooooooooooooooo"[0..-m]

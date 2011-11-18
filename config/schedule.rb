@@ -1,9 +1,8 @@
-# Use this file to easily define all of your cron jobs.
+# Use this file to define cron jobs.
 #
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
+# More info on cron: http://en.wikipedia.org/wiki/Cron
 
-# Example:
+# Examples:
 #
 # set :output, "/path/to/my/cron_log.log"
 #
@@ -24,18 +23,18 @@ job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
-every 1.day,  :at => '10:10 pm' do
-  nq "rake ops:email:generate:cert_expiration_reminders"
+every 1.day,  :at => '5:10 pm' do
+  nq "rake ops:email:generate:cert_notices"
 end
-every 1.day,  :at => '10:15 pm' do
-  nq "rake ops:email:send_pending"
+every 1.day,  :at => '5:15 pm' do
+  nq "rake ops:email:pending:send"
 end
 
-every :sunday,  :at => '11:10 pm' do
-  nq "rake ops:email:generate:do_shift_pending_reminder"
+every :sunday,  :at => '6:10 pm' do
+  nq "rake ops:email:generate:do_shift_pending"
 end
-every :sunday, :at => '11.15 pm' do
-  nq "rake ops:email:send_pending"
+every :sunday, :at => '6.15 pm' do
+  nq "rake ops:email:pending:send"
 end
 
 every :tuesday, :at => '8:02 am' do
@@ -45,10 +44,10 @@ every :tuesday, :at => '8:03 am' do
   nq "rake tmp:clear"
 end
 every :tuesday, :at => '8:04 am' do
-  nq "rake ops:email:generate:do_shift_started_reminder"
+  nq "rake ops:email:generate:do_shift_started"
 end
 every :tuesday, :at => '8:05 am' do
-  nq "rake ops:email:send_pending"
+  nq "rake ops:email:pending:send"
 end
 
 # ----- Retrieve incoming email from Google -----

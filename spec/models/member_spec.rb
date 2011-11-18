@@ -16,7 +16,7 @@ describe Member do
    specify { @obj.should respond_to(:emails)        } 
    specify { @obj.should respond_to(:roles)         } 
    specify { @obj.should respond_to(:photos)        } 
-   specify { @obj.should respond_to(:chats)      }
+   specify { @obj.should respond_to(:chats)         }
  end
 
  describe "Instance Methods" do

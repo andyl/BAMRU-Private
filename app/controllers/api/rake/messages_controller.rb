@@ -1,16 +1,16 @@
-class Api::MessagesController < ApplicationController
+class Api::Rake::MessagesController < ApplicationController
 
-  respond_to :xml, :json
+  respond_to :json
 
   before_filter :authenticate_member_with_basic_auth!
 
-  # curl -u <first>_<last>:<pwd> http://server/api/messages.json
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/messages.json
   def index
     @mails = OutboundMail.pending.all
-    respond_with(@mails)
+    render :json => @mails.to_json
   end
 
-  # curl -u <first>_<last>:<pwd> http://server/api/messages/<id>/sent_at_now.json
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/messages/<id>/sent_at_now.json
   def sent_at_now
     id = params[:id]
     @om = OutboundMail.find id
@@ -18,7 +18,7 @@ class Api::MessagesController < ApplicationController
     render :json => "OK\n"
   end
 
-  # curl -u <first>_<last>:<pwd> http://server/api/messages/load_inbound.json
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/messages/load_inbound.json
   def load_inbound
     dir = Rails.root.to_s + "/tmp/inbound_mails"
     count = 0

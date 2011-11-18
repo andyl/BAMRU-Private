@@ -36,6 +36,7 @@ class Member < ActiveRecord::Base
   has_many :primary_do_assignments, :class_name => 'DoAssignment', :foreign_key => 'primary_id'
   has_many :backup_do_assignments,  :class_name => 'DoAssignment', :foreign_key => 'backup_id'
   has_many :notices, :through => :distributions, :source => :message
+  has_many :chats
 
   accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
   accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
@@ -48,6 +49,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :avail_dos,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
   accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
   accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
+  accepts_nested_attributes_for :chats
 
   # ----- Validations -----
   validates_associated    :addresses # ,                        :on => [:create,  :update]

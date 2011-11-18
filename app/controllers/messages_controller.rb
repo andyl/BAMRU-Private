@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
   before_filter :authenticate_member_with_basic_auth!
 
   def index
+    puts '>'
+    puts "SDF"
     file = "tmp/mail_sync_time.txt"
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
     @messages = Message.order('created_at DESC').limit(30).all
@@ -39,6 +41,7 @@ class MessagesController < ApplicationController
       return
     end
     np[:distributions_attributes] = Message.distributions_params(params[:history])
+    np[:format] = 'page'
     m = Message.create(np)
     if params['rsvps']
       opts = JSON.parse(params['rsvps'])

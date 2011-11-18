@@ -1,6 +1,14 @@
 class Notifier < ActionMailer::Base
   extend NotifierHelper
 
+  def platform_url
+    return "http://ekel:3000/" if Rails.env.development?
+    return "http://bamru.net/" if Rails.env.production?
+    ""
+  end
+
+  # ----- test -----
+
   def test(opts = {})
     address = opts[:author_email] ? 'test@what.com' : opts[:author_email]
     mail(
@@ -10,32 +18,40 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def password_reset_email(address, url)
-    Time.zone = "Pacific Time (US & Canada)"
-    @address = address
-    @url     = url
-    @member  = Email.find_by_address(address).member
+  # ----- password reset -----
+
+  def password_reset_email(opts = {})
+    Time.zone     = "Pacific Time (US & Canada)"
+    @platform_url = platform_url
+    @url          = @platform_url + "password/reset"
+    @opts         = opts
+    @address      = opts['recipient_email']
+    @short_label  = opts['label'].split('_').last
+    @member       = Email.find_by_address(@address).member
     @member.reset_forgot_password_token
-    @expire  = @member.forgot_password_expires_at.strftime("%H:%M")
+    @expire       = @member.forgot_password_expires_at.strftime("%H:%M")
     mail(
-            :to => address,
-            :from => 'bamru.net@gmail.com',
-            :subject => "BAMRU.net Password Reset"
+            :to      => @address,
+            :from    => 'bamru.net@gmail.com',
+            :subject => "BAMRU.net Password Reset (#{opts['label']})"
     )
   end
 
-  def process_email_message(opts = {})
-    Time.zone      = "Pacific Time (US & Canada)"
-    @opts = Notifier.query_opts(opts)
-    @short_label = @opts['label'].split('_').last
+  # ----- page -----
+
+  def page_email(opts = {})
+    Time.zone     = "Pacific Time (US & Canada)"
+    @opts         = Notifier.query_opts(opts)
+    @short_label  = @opts['label'].split('_').last
+    @platform_url = platform_url
     mail(
-            :to          => @opts['recipient_email'],
-            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject     => "BAMRU Page [#{@opts['label']}]"
+            :to      => @opts['recipient_email'],
+            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject => "BAMRU Page [#{@opts['label']}]"
     )
   end
 
-  def process_sms_message(opts = {})
+  def page_phone(opts = {})
     Time.zone = "Pacific Time (US & Canada)"
     @opts = Notifier.query_opts(opts)
     mail(
@@ -44,5 +60,57 @@ class Notifier < ActionMailer::Base
             :subject     => "BAMRU [#{@opts['label']}]"
     )
   end
+
+  # ----- do_shift_pending -----
+
+  def do_shift_pending_email(opts = {})
+    Time.zone     = "Pacific Time (US & Canada)"
+    @opts         = Notifier.query_opts(opts)
+    @short_label  = @opts['label'].split('_').last
+    @platform_url = platform_url
+    mail(
+            :to      => @opts['recipient_email'],
+            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject => "BAMRU Page [#{@opts['label']}]"
+    )
+  end
+
+  # ----- do_shift_started -----
+
+  def do_shift_started_email(opts = {})
+    Time.zone     = "Pacific Time (US & Canada)"
+    @opts         = Notifier.query_opts(opts)
+    @short_label  = @opts['label'].split('_').last
+    @platform_url = platform_url
+    mail(
+            :to      => @opts['recipient_email'],
+            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject => "BAMRU Page [#{@opts['label']}]"
+    )
+  end
+
+  def do_shift_started_phone(opts = {})
+    Time.zone = "Pacific Time (US & Canada)"
+    @opts = Notifier.query_opts(opts)
+    mail(
+            :to          => @opts['recipient_email'],
+            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :subject     => "BAMRU [#{@opts['label']}]"
+    )
+  end
+
+    # ----- cert_notice -----
+
+    def cert_notice_email(opts = {})
+      Time.zone     = "Pacific Time (US & Canada)"
+      @opts         = Notifier.query_opts(opts)
+      @short_label  = @opts['label'].split('_').last
+      @platform_url = platform_url
+      mail(
+              :to      => @opts['recipient_email'],
+              :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+              :subject => "BAMRU Page [#{@opts['label']}]"
+      )
+    end
 
 end

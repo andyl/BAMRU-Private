@@ -3,17 +3,5 @@ A 'password reset' email is being sent to you at <%= @address %>.
 <p></p>
 When the email arrives, please open it and follow
 the instructions to reset your password.
-<p></p> <br/>
+<p></p><br/>
 
-<% if Rails.env.development? %>
-<hr>
-<p></p> <br/> 
-<h3>NOTICE !!</h3>
-  This application is currently running in development mode.
-  <p></p>
-  Emails are not generated in development mode.
-  <p><p/>
-  So - the email is actually not being sent.  Sorry!
-  <p></p>
-  If you really need your password to be reset, please contact Andy Leak.
-<% end %>
