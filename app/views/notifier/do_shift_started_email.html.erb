@@ -1,65 +1,29 @@
-<style type='text/css'>
-  .myButton {
-    -moz-border-radius:border6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    display:inline-block;
-    color:#ffffff;
-    font-family:arial;
-    font-size:12px;
-    font-weight:bold;
-    padding:6px 10px;
-    text-decoration:none;
-  }
-  .redButton {
-    -moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
-    box-shadow:inset 0px  1px 0px 0px #f29c93;
-    background-color:#fe1a00;
-    border:1px solid      #d83526;
-  }
-  .greenButton {
-    -moz-box-shadow:inset 0px 1px 0px 0px #99ff99;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #99ff99;
-    box-shadow:inset 0px  1px 0px 0px #99ff99;
-    background-color: #33cc00;
-    border:1px solid #009900;
-  }
-  .redButton:hover {
-    background-color:#ce0100;
-    background:-webkit-gradient( linear, left top,  left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
-    backgroundground:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
-  }
-  .greenButton:hover {
-    background-color: #33AA00;
-    background:-webkit-gradient( linear, left top,  left bottom, color-stop(0.05, #33AA00), color-stop(1, #337700) );
-    backgroundground:-moz-linear-gradient( center top, #33AA00 5%, #337700 100% );
-  }
-  .myButton:active {
-    position:relative;
-    top:1px;
-  }
-</style>
-
-<%= @opts['text'] %>
+<p><p/>
+<b>ATTENTION:</b> Your BAMRU DO shift has started!!
+<p><p/>
+<b>Next Steps:</b><br/>
+1) Update the Status Line<br/>
+2) Send a page to the Unit with your Contact Info
+<p><p/>
+<hr>
 <p></p>
-<%= raw @opts['rsvp_html'] -%>
+<b>BAMRU DO Schedule:</b><br/>
+http://bamru.net/do_assignments
+<p><p/>
+<b>How to DO:</b><br/>
+http://wiki.bamru.net/index.php/How_to_DO
+<p><p/>
+<b>How to AHC:</b><br/>
+http://wiki.bamru.net/index.php/How_to_AHC
+<p><p/>
+<b>How to Callout:</b><br/>
+http://wiki.bamru.net/index.php/How_to_Callout
+<p><p/>
 <hr>
 Sent by <%= @opts['author_name']   %><br/>
-<% if @opts['author_mobile'] != "NA" %>
-Mobile: <%= @opts['author_mobile'] %><br/>
-<% end %>
-<% if @opts['author_email'] != "NA" %>
- eMail: <%= @opts['author_email']  %><br/>
-<% end %>
 <hr>
-<% if @opts['prompt'].blank? %>
 Please reply to let others know you
 have read this message. Learn more at the
 <a href="http://wiki.bamru.net/index.php/Paging">BAMRU Wiki</a>
-<% else %>
-Please RSVP!  Learn more at the
-<a href='http://wiki.bamru.net/index.php/RSVPs'>BAMRU Wiki</a>
-<% end %>
 <p></p>
 <img src="<%= @platform_url %>icon/<%= @short_label %>.gif"/>

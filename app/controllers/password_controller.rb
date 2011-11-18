@@ -11,7 +11,7 @@ class PasswordController < ApplicationController
     if @member.try(:valid?)
       address = @email.address
       call_rake('ops:email:generate:password_reset', {:address => address})
-      sleep 1
+      sleep 2
       call_rake('ops:email:pending:send')
       redirect_to "/password/sending?address=#{address}"
     else

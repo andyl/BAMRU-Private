@@ -1,19 +1,23 @@
-<%= @opts['text'] %>
+
+REMINDER: Your BAMRU DO Shift starts Tuesday at 8:00am.
+
+Please review the DO guides and be prepared for your shift!
+
+BAMRU DO Schedule:
+http://bamru.net/do_assignments
+
+How to DO:
+http://wiki.bamru.net/index.php/How_to_DO
+
+How to AHC:
+http://wiki.bamru.net/index.php/How_to_AHC
+
+How to Callout:
+http://wiki.bamru.net/index.php/How_to_Callout
 
 -----------------------------------------
 Sent by <%= @opts['author_name']   %>
-<% if @opts['author_mobile'] != "NA" %>
-Mobile: <%= @opts['author_mobile'] %>
-<% end %>
-<% if @opts['author_email'] != "NA" %>
-  eMail: <%= @opts['author_email']  %>
-<% end %>
 -----------------------------------------
-<% if @opts['prompt'].blank? %>
 Please reply to let others know you
 have read this message. Learn more at
 http://wiki.bamru.net/index.php/Paging
-<% else %>
-Please RSVP!  Learn more at:
-http://wiki.bamru.net/index.php/RSVPs
-<% end %>

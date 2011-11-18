@@ -71,7 +71,7 @@ class Notifier < ActionMailer::Base
     mail(
             :to      => @opts['recipient_email'],
             :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject => "BAMRU Page [#{@opts['label']}]"
+            :subject => "BAMRU DO Shift: Reminder [#{@opts['label']}]"
     )
   end
 
@@ -85,7 +85,7 @@ class Notifier < ActionMailer::Base
     mail(
             :to      => @opts['recipient_email'],
             :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject => "BAMRU Page [#{@opts['label']}]"
+            :subject => "BAMRU DO Shift: Started! [#{@opts['label']}]"
     )
   end
 
@@ -109,7 +109,7 @@ class Notifier < ActionMailer::Base
       mail(
               :to      => @opts['recipient_email'],
               :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-              :subject => "BAMRU Page [#{@opts['label']}]"
+              :subject => "BAMRU Cert Notice [#{@opts['label']}]"
       )
     end
 

@@ -1,19 +1,27 @@
-<%= @opts['text'] %>
+
+ATTENTION: Your BAMRU DO shift has started!!
+
+Next Steps:
+1) Update the Status Line
+2) Send a page to the Unit with your Contact Info
+
+-----------------------------------------
+
+BAMRU DO Schedule:
+http://bamru.net/do_assignments
+
+How to DO:
+http://wiki.bamru.net/index.php/How_to_DO
+
+How to AHC:
+http://wiki.bamru.net/index.php/How_to_AHC
+
+How to Callout:
+http://wiki.bamru.net/index.php/How_to_Callout
 
 -----------------------------------------
 Sent by <%= @opts['author_name']   %>
-<% if @opts['author_mobile'] != "NA" %>
-Mobile: <%= @opts['author_mobile'] %>
-<% end %>
-<% if @opts['author_email'] != "NA" %>
-  eMail: <%= @opts['author_email']  %>
-<% end %>
 -----------------------------------------
-<% if @opts['prompt'].blank? %>
 Please reply to let others know you
 have read this message. Learn more at
 http://wiki.bamru.net/index.php/Paging
-<% else %>
-Please RSVP!  Learn more at:
-http://wiki.bamru.net/index.php/RSVPs
-<% end %>
