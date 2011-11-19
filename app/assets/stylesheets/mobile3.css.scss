@@ -78,6 +78,17 @@ header {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 
+/* ----- table styling ----- */
+
+.mobile_table td {
+  padding: 2px;
+}
+
+.mobile_table tr>:first-child {
+  font-weight: bold;
+  text-align: right;
+}
+
 /* ----- content styling ----- */
 
 .page {

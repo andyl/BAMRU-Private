@@ -55,8 +55,6 @@ Zn::Application.routes.draw do
   end
 
   get "mobile1" => "mobile1#index", :as => "mobile1"
-  get "mobile1/login"   => "mobile1/sessions#new",     :as => "mobile_login"
-  get "mobile1/logout"  => "mobile1/sessions#destroy", :as => "mobile_logout"
   namespace "mobile1" do
     get "about"
     get "map"
@@ -77,7 +75,12 @@ Zn::Application.routes.draw do
     resources :messages
   end
 
-  get "mobile3" => "mobile3#index"
+  get "mobile3"  => "mobile3#index"
+  get "mobile3/login"   => "mobile3/sessions#new",     :as => "mobile_login"
+  get "mobile3/logout"  => "mobile3/sessions#destroy", :as => "mobile_logout"
+  namespace "mobile3" do
+    resources :sessions
+  end
 
   get "mtimer" => "mtimer#index"
 

@@ -4,6 +4,41 @@
 #= require_tree ./views
 #= require_tree ./routers
 
+window.createCookie = (name, value, days) ->
+  if days
+    date = new Date()
+    date.setTime date.getTime() + (days * 24 * 60 * 60 * 1000)
+    expires = "; expires=" + date.toGMTString()
+  else
+    expires = ""
+  document.cookie = name + "=" + value + expires + "; path=/"
+
+window.readCookie = (name) ->
+  nameEQ = name + "="
+  ca = document.cookie.split(";")
+  i = 0
+
+  while i < ca.length
+    c = ca[i]
+    c = c.substring(1, c.length)  while c.charAt(0) is " "
+    return c.substring(nameEQ.length, c.length)  if c.indexOf(nameEQ) is 0
+    i++
+  null
+
+window.eraseCookie = (name) ->
+  createCookie name, "", -1
+
+# this code resets the logged in state
+#window.applicationCache.addEventListener "downloading", ->
+#  console.log window.localStorage.getItem("logged_in")
+#  window.localStorage.setItem("logged_in", 'true')
+#  window.localStorage.setItem("super", 'true')
+#  window.localStorage.setItem("duper", 'true')
+#  window.sessionStorage.setItem("logged_in", 'true')
+#  window.sessionStorage.setItem("super", 'true')
+#  window.sessionStorage.setItem("duper", 'true')
+#  console.log "DOWNLOADING..."
+
 # this code is to skip the 'double reload' issue with the application manifest
 window.addEventListener "load", (e) ->
   window.applicationCache.addEventListener "updateready", (e) ->
@@ -113,3 +148,8 @@ $(document).ready ->
     return if scrollActive
     scrollActive = true
     setInterval("scrollStop()", 2000)
+
+$(document).ready ->
+  $('#logout').click ->
+    window.localStorage.setItem("logged_in", 'false')
+    window.location = "/mobile3/logout"

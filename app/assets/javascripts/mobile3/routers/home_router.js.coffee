@@ -8,6 +8,7 @@ window.pageName = (page) ->
     when "#message"  then "Message"
     when "#inbox"    then "My Inbox"
     when "#send"     then "Send Page"
+    when "#profile"  then "My Profile"
     when "#default"  then "Not Found"
     else page
 
@@ -40,6 +41,7 @@ class @M3_BaseRoute extends Backbone.Router
     "messages"     : "messages"
     "messages/:id" : "message"
     "inbox"        : "inbox"
+    "profile"      : "profile"
     "home"         : "home"
     ""             : "home"
     "*actions"     : "default"
@@ -70,4 +72,5 @@ class @M3_BaseRoute extends Backbone.Router
     window.renderPage "#inbox"
     view = new M3_DistributionsIndexView
     view.render()
+  profile     : -> window.renderPage "#profile"
   default     : -> window.renderPage "#default"

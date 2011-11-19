@@ -16,9 +16,10 @@
     window.members   = new M3_Members(<%= raw @mem_json %>)
     window.messages  = new M3_Messages(<%= raw @msg_json %>)
     window.inbox     = new M3_Distributions(<%= raw @dst_json %>)
-    window.myID = returnSelf(<%= current_member.id %>)
+    window.myID   = returnSelf(<%= current_member.id %>)
   </script>
 </head>
+
 <body>
 
 <header>
@@ -27,7 +28,6 @@
     <div id="label">Text Here</div>
     <div class=bookend> </div>
   </div>
-
 </header>
 
 <div id='wrapper'>
@@ -40,6 +40,7 @@
       <!--<a class='nav' href="#send"    >Send Page</a>-->
       <a class='nav' href="#messages">Unit Message Log</a>
       <a class='nav' href="#inbox"><%= @inbox_label %></a>
+      <a class='nav' href="#profile">My Profile</a>
       <div class=state>
         <span id=state></span>
       </div>
@@ -87,10 +88,21 @@
       INBOX
     </div>
 
+    <div id='profile' class='page'>
+      <table class="mobile_table">
+        <tr><td>Username</td>    <td><%= current_member.short_name %></td> </tr>
+        <tr><td>Device</td>      <td><%= @device %></td>                   </tr>
+        <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
+        <tr><td>Location</td>    <td id="xloc">TBD</td>                    </tr>
+      </table>
+      <a href="#" id="logout" class="nav">Log Out</a>
+    </div>
+
     <div id='default' class='page'>
       PAGE NOT FOUND
     </div>
   </div>
 </div>
 </body>
+
 </html>
