@@ -153,3 +153,11 @@ $(document).ready ->
   $('#logout').click ->
     window.localStorage.setItem("logged_in", 'false')
     window.location = "/mobile3/logout"
+
+window.getSize = ->
+  "#{$(window).height()}H x #{$(window).width()}W"
+
+$(document).ready ->
+  $("#xsize").text(getSize())
+  $(window).resize ->
+    $("#xsize").text(getSize())

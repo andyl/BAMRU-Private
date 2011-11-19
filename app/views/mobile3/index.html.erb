@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html manifest="/mobile3f.manifest">
-<!--<html>-->
+<!--<html manifest="/mobile3f.manifest">-->
+<html>
 <head>
   <title>BAMRU Mobile</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
-  <% if @ipad_device %>
-    <script src="/assets/mobile3/iscroll.js"></script>
-  <% end %>
-  <script src="/assets/mobile3/application.js"></script>
   <link rel="stylesheet" href="/assets/mobile3.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <script src="/assets/mobile3/application.js"></script>
   <script>
     window.members   = new M3_Members(<%= raw @mem_json %>)
     window.messages  = new M3_Messages(<%= raw @msg_json %>)
@@ -93,9 +90,14 @@
         <tr><td>Username</td>    <td><%= current_member.short_name %></td> </tr>
         <tr><td>Device</td>      <td><%= @device %></td>                   </tr>
         <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
-        <tr><td>Location</td>    <td id="xloc">TBD</td>                    </tr>
       </table>
-      <a href="#" id="logout" class="nav">Log Out</a>
+      <a class="nav" href='#location'>My Location</a>
+      <a class="nav" href="#" id="logout">Log Out</a>
+    </div>
+    
+    <div id='location' class="page">
+      <div id='coords' style='text-align: center;'>TBD...</div>
+      <div id="canvas" style="margin:0; width: 100%; margin-top: 10px;"></div>
     </div>
 
     <div id='default' class='page'>
@@ -103,6 +105,12 @@
     </div>
   </div>
 </div>
+
+<% if @is_ipad %>
+  <script src="/assets/mobile3/iscroll.js"></script>
+<% end %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=<%= @sensor %>"></script>
+
 </body>
 
 </html>

@@ -6,9 +6,10 @@ window.pageName = (page) ->
     when "#status"   then "Status Line"
     when "#messages" then "Message Log"
     when "#message"  then "Message"
-    when "#inbox"    then "My Inbox"
     when "#send"     then "Send Page"
+    when "#inbox"    then "My Inbox"
     when "#profile"  then "My Profile"
+    when "#location" then "My Location"
     when "#default"  then "Not Found"
     else page
 
@@ -19,7 +20,11 @@ window.setHeight = ->
   if tgtHeight > document.body.clientHeight
     $('#wrapper').css("height", window.innerHeight)
 
+window.unbindListeners = ->
+#  $(window).removeAttr('resize')
+
 window.renderPage = (page) ->
+  unbindListeners()
   $(".page").hide()
   if page == "#home"
     $(".back").hide()
@@ -42,6 +47,7 @@ class @M3_BaseRoute extends Backbone.Router
     "messages/:id" : "message"
     "inbox"        : "inbox"
     "profile"      : "profile"
+    "location"     : "location"
     "home"         : "home"
     ""             : "home"
     "*actions"     : "default"
@@ -73,4 +79,8 @@ class @M3_BaseRoute extends Backbone.Router
     view = new M3_DistributionsIndexView
     view.render()
   profile     : -> window.renderPage "#profile"
+  location    : ->
+    window.renderPage "#location"
+    window.getLocationAndDrawMap()
+    $(window).resize -> getLocationAndDrawMap()
   default     : -> window.renderPage "#default"

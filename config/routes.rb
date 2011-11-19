@@ -163,6 +163,20 @@ Zn::Application.routes.draw do
     cache "/assets/mobile3.css"
 
     network "/"
+    network "http://maps.google.com"
+    network "http://maps.gstatic.com"
+    network "http://csi.gstatic.com"
+    network "http://maps.googleapis.com"
+    network "http://mt0.googleapis.com"
+    network "http://mt1.googleapis.com"
+    network "http://mt2.googleapis.com"
+    network "http://mt3.googleapis.com"
+    network "http://khm0.googleapis.com"
+    network "http://khm1.googleapis.com"
+    network "http://cbk0.googleapis.com"
+    network "http://cbk1.googleapis.com"
+    network "http://www.google-analytics.com"
+    network "http://gg.google.com"
   end
 
   manifest_mtimer = Rack::Offline.configure do

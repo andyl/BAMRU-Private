@@ -34,6 +34,9 @@ navSuccess = (position) ->
 $(document).ready ->
   $("#device").text(deviceName())
 
+getSize = ->
+  "#{$(document).height()}H x #{$(document).width()}W"
+
 $(document).ready ->
   $("#size").text(getSize())
   $(window).resize ->
