@@ -9,7 +9,7 @@ class IconController < ApplicationController
     x_hash = {
             :distribution_id => dist.id,
             :member_id       => dist.member.id,
-            :action          => "Read via HTML eMail"
+            :action          => "Read via HTML eMail (#{label})"
     }
     Journal.create(x_hash)
     dist.read = true
