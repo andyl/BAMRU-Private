@@ -91,7 +91,9 @@
         <tr><td>Device</td>      <td><%= @device %></td>                   </tr>
         <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
       </table>
-      <a class="nav" href='#location'>My Location</a>
+      <% if current_member.developer? %>
+        <a class="nav" href='#location'>My Location</a>
+      <% end %>
       <a class="nav" href="#" id="logout">Log Out</a>
     </div>
     

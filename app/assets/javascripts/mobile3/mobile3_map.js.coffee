@@ -29,8 +29,8 @@ window.mapOpts = (latlon) ->
   center:            latlon
   zoom:              12
   navigationControl: false
-  streetViewControl: true #
-  mapTypeControl:    true #
+  streetViewControl: false
+  mapTypeControl:    false
   zoomControl:       true #
   mapTypeId:         google.maps.MapTypeId.ROADMAP
   navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
