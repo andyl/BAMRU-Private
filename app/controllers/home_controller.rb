@@ -21,7 +21,8 @@ class HomeController < ApplicationController
   end
 
   def wiki
-    path = params[:wiki_path].split('?').first || ""
+    path = params[:wiki_path] || ""
+    path = path.split('?').first unless path.blank?
     mw_file = "/home/aleak/.mw_auth/#{current_member.wiki_name}"
     system "ssh wiki.bamru.net 'touch #{mw_file}'"
     @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
