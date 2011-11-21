@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
   def wiki
     path = params[:wiki_path] || ""
-    mw_file = "/home/aleak/.wm_auth/#{current_member.wiki_name}"
+    mw_file = "/home/aleak/.mw_auth/#{current_member.wiki_name}"
     puts '-' * 60
     puts "Updating wiki login file #{mw_file}"
     puts '-' * 60
