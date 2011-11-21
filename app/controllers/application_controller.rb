@@ -47,12 +47,14 @@ class ApplicationController < ActionController::Base
   def device
     agent = env["HTTP_USER_AGENT"]
     case agent
+      when /Kindle/      then "Kindle"
       when /Android/     then "Android"
       when /iPod/        then "iPod"
       when /iPhone/      then "iPhone"
       when /iPad/        then "iPad"
       when /BlackBerry/  then "BlackBerry"
       when /MSIE/        then "IE"
+      when /Silk/        then "Silk"
       when /Firefox/     then "Firefox"
       when /Konqueror/   then "Konqueror"
       when /Netscape/    then "Netscape"

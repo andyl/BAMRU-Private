@@ -4,6 +4,7 @@
 
 deviceName = ->
   ua = navigator.userAgent
+  return "Kindle"     if ua.match(/Kindle/)
   return "Android"    if ua.match(/Android/)
   return "iPod"       if ua.match(/iPod/)
   return "iPad"       if ua.match(/iPad/)
@@ -11,6 +12,7 @@ deviceName = ->
   return "BlackBerry" if ua.match(/BlackBerry/)
   return "Firefox"    if ua.match(/Firefox/)
   return "Chrome"     if ua.match(/Chrome/)
+  return "Silk"       if ua.match(/Silk/)
   return "Safari"     if ua.match(/Safari/)
   return "Opera"      if ua.match(/Opera/)
   "Unknown"
@@ -31,7 +33,7 @@ window.mapOpts = (latlon) ->
   navigationControl: false
   streetViewControl: false
   mapTypeControl:    false
-  zoomControl:       true #
+  zoomControl:       true
   mapTypeId:         google.maps.MapTypeId.ROADMAP
   navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
 
