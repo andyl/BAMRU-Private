@@ -10,8 +10,10 @@ class Api::Rake::RemindersController < ApplicationController
   def do_shift_pending
     member  = DoAssignment.next_wk.first.primary
     params  = MessageParams.do_shift_pending(member)
-    message = Message.create(params)
-    message.create_all_outbound_mails
+    if OutboundMail.pending.count == 0
+      message = Message.create(params)
+      message.create_all_outbound_mails
+    end
     render :json => "OK\n"
   end
 
@@ -19,8 +21,10 @@ class Api::Rake::RemindersController < ApplicationController
   def do_shift_started
     member  = DoAssignment.this_wk.first.primary
     params  = MessageParams.do_shift_started(member)
-    message = Message.create(params)
-    message.create_all_outbound_mails
+    if OutboundMail.pending.count == 0
+      message = Message.create(params)
+      message.create_all_outbound_mails
+    end
     render :json => "OK\n"
   end
 

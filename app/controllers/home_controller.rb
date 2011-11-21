@@ -22,6 +22,9 @@ class HomeController < ApplicationController
 
   def wiki
     path = params[:wiki_path] || ""
+    mw_file = "/home/aleak/.wm_auth/#{current_member.wiki_name}"
+    system "scp wiki.bamru.net 'touch #{mw_file}'"
+    sleep 0.25
     @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
   end
 
