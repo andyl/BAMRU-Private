@@ -21,11 +21,8 @@ class HomeController < ApplicationController
   end
 
   def wiki
-    path = params[:wiki_path] || ""
+    path = params[:wiki_path].split('?').first || ""
     mw_file = "/home/aleak/.mw_auth/#{current_member.wiki_name}"
-    puts '-' * 60
-    puts "Updating wiki login file #{mw_file}"
-    puts '-' * 60
     system "ssh wiki.bamru.net 'touch #{mw_file}'"
     @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
   end
