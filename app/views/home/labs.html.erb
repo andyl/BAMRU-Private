@@ -12,23 +12,30 @@ You can also test on your desktop, using a new version of Chrome or Firefox.
     <td>
       <b>Mobile 1</b><br/>
       Works fine on wifi.<br/>
-      Not so great when network is slow.<br/>
-      <%= image_tag("mobile1.png") %><br/>
+      No offline support.<br/>
+      <%= raw qr_tag(mobile1_url) %><br/>
       <%= link_to mobile1_url, mobile1_path %>
     </td>
     <td>
       <b>Mobile 2</b><br/>
-      Works w/o network connection.<br/>
-      Scrolling performance is poor.<br/>
-      <%= image_tag("mobile2.png") %><br/>
+      Good offline support.<br/>
+      Poor scrolling.<br/>
+      <%= raw qr_tag(mobile2_url) %><br/>
       <%= link_to mobile2_url, mobile2_path %>
     </td>
     <td valign=top>
       <b>Mobile 3</b><br/>
-      Good performance, online and off.<br/>
-      Minimal styling.<br/>
-      <%= image_tag("mobile3.png") %><br/>
+      Fast, online and off.<br/>
+      Minimal but usable.<br/>
+      <%= raw qr_tag(mobile3_url) %><br/>
       <%= link_to mobile3_url, mobile3_path %>
+    </td>
+    <td valign=top>
+      <b>Mobile 4</b><br/>
+      Experimental prototype.<br/>
+      Mapping & Geolocation.<br/>
+      <%= raw qr_tag(mobile4_url) %><br/>
+      <%= link_to mobile4_url, mobile4_path %>
     </td>
   </tr>
 </table>

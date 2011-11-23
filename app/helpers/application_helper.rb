@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+  def qr_tag(label, size = 8)
+    file = "#{label.hash.abs}.png"
+    loc = "/public/qrcodes"
+    dir = Rails.root.to_s + loc
+    puts dir
+    uri = '/' + loc.split('/').last + '/' + file
+    path = dir + '/' + file
+    puts path
+    unless File.exist?(path)
+      system "mkdir -p #{dir}"
+      Pngqr.encode label, :file => path, :border => 5, :size => size
+    end
+    "<img src='#{uri}'></img>"
+  end
+
   def broadcast(channel, &block)
     message = {:channel => channel, :data => capture(&block)}
     uri = URI.parse("#{FAYE_SERVER}/faye")

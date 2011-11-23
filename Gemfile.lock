@@ -76,6 +76,7 @@ GEM
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     chronic (0.6.4)
+    chunky_png (1.2.5)
     cocaine (0.2.0)
     coffee-script (2.2.0)
       coffee-script-source
@@ -182,6 +183,9 @@ GEM
       blankslate (~> 2.0)
     pdf-reader (0.10.0)
       Ascii85 (~> 1.0.0)
+    pngqr (0.5)
+      chunky_png
+      rqrcode
     polyglot (0.3.2)
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
@@ -219,6 +223,7 @@ GEM
       ffi (>= 0.5.0)
     rcov (0.9.10)
     rdoc (3.9.4)
+    rqrcode (0.4.2)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
       rspec-expectations (~> 2.7.0)
@@ -329,6 +334,7 @@ DEPENDENCIES
   oauth
   paperclip
   parslet
+  pngqr
   prawn
   rabl
   rack-offline

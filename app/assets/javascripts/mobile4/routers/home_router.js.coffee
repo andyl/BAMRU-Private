@@ -2,13 +2,14 @@ window.pageName = (page) ->
   switch page
     when "#member"   then "Member Detail"
     when "#members"  then "Roster"
-    when "#home"     then "BAMRU Mobile"
+    when "#home"     then "BAMRU Mobile 4"
     when "#status"   then "Status Line"
     when "#messages" then "Message Log"
     when "#message"  then "Message"
     when "#send"     then "Send Page"
     when "#inbox"    then "My Inbox"
     when "#profile"  then "My Profile"
+    when "#location" then "My Location"
     when "#default"  then "Not Found"
     else page
 
@@ -35,7 +36,7 @@ window.renderPage = (page) ->
   setTimeout('scrollSetup()', 100)
   setTimeout('hideUrlBar()', 300)
 
-class @M3_BaseRoute extends Backbone.Router
+class @M4_BaseRoute extends Backbone.Router
   routes :
     "members"      : "members"
     "members/:id"  : "member"
@@ -55,27 +56,31 @@ class @M3_BaseRoute extends Backbone.Router
     window.setState()
   members     : ->
     window.renderPage "#members"
-    miv = new M3_MembersIndexView
+    miv = new M4_MembersIndexView
     miv.render()
   member      : (id) ->
     memb = members.get(id)
-    view = new M3_MemberShowView({model: memb})
+    view = new M4_MemberShowView({model: memb})
     window.renderPage "#member"
     $('#member').html(view.render().el)
   status      : -> window.renderPage "#status"
   send        : -> window.renderPage "#send"
   messages    : ->
     window.renderPage "#messages"
-    miv = new M3_MessagesIndexView
+    miv = new M4_MessagesIndexView
     miv.render()
   message     : (id) ->
     memb = messages.get(id)
-    view = new M3_MessageShowView({model: memb})
+    view = new M4_MessageShowView({model: memb})
     window.renderPage "#message"
     $('#message').html(view.render().el)
   inbox       : ->
     window.renderPage "#inbox"
-    view = new M3_DistributionsIndexView
+    view = new M4_DistributionsIndexView
     view.render()
   profile     : -> window.renderPage "#profile"
+  location    : ->
+    window.renderPage "#location"
+    window.getLocationAndDrawMap()
+    $(window).resize -> getLocationAndDrawMap()
   default     : -> window.renderPage "#default"

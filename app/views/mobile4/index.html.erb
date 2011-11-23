@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html manifest="/mobile3f.manifest">
-<!--<html>-->
+<!--<html manifest="/mobile3f.manifest">-->
+<html>
 <head>
-  <title>BAMRU Mobile</title>
+  <title>BAMRU Mobile 4</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <link rel="stylesheet" href="/assets/mobile3.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <script src="/assets/mobile3/application.js"></script>
-  <% if @is_ipad %>
-    <script src="/assets/mobile3/iscroll.js"></script>
-  <% end %>
+  <script src="/assets/mobile4/application.js"></script>
   <script>
-    window.members   = new M3_Members(<%= raw @mem_json %>)
-    window.messages  = new M3_Messages(<%= raw @msg_json %>)
-    window.inbox     = new M3_Distributions(<%= raw @dst_json %>)
+    window.members   = new M4_Members(<%= raw @mem_json %>)
+    window.messages  = new M4_Messages(<%= raw @msg_json %>)
+    window.inbox     = new M4_Distributions(<%= raw @dst_json %>)
     window.myID   = returnSelf(<%= current_member.id %>)
   </script>
 </head>
@@ -84,6 +81,11 @@
       MESSAGE
     </div>
 
+    <div id='location' class="page">
+      <div id='coords' style='text-align: center;'>TBD...</div>
+      <div id="canvas" style="margin:0; width: 100%; margin-top: 10px;"></div>
+    </div>
+
     <div id='inbox' class='page'>
       INBOX
     </div>
@@ -94,6 +96,9 @@
         <tr><td>Device</td>      <td><%= @device %></td>                   </tr>
         <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
       </table>
+      <% if current_member.developer? %>
+        <a class="nav" href='#location'>My Location</a>
+      <% end %>
       <a class="nav" href="#" id="logout">Log Out</a>
     </div>
 
@@ -102,6 +107,11 @@
     </div>
   </div>
 </div>
+
+<% if @is_ipad %>
+  <script src="/assets/mobile3/iscroll.js"></script>
+<% end %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=<%= @sensor %>"></script>
 
 </body>
 

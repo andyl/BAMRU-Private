@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mobile 4 Login</title>
+  <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
+  <% if @ipad_device %>
+    <script src="/assets/mobile4/iscroll.js"></script>
+  <% end %>
+  <!--<script src="/assets/mobile3/application.js"></script>-->
+  <link rel="stylesheet" href="/assets/mobile3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+<body>
+
+<header>
+  <div id=title>
+    <div class=bookend> </div>
+    <div id="label">Login</div>
+    <div class=bookend> </div>
+  </div>
+
+</header>
+
+<div id='wrapper'>
+  <div id='content'>
+
+    <div id='login' class='page'>
+
+      <h2>Log In</h2>
+
+      <form method="POST" action="<%= mobile4_sessions_path %>" data-ajax=false>
+        <div class="field">
+          <%= label_tag :user_name %><br>
+          <%= text_field_tag :user_name, params['user_name'] %><br/>
+          <span style="color: gray; margin-left: 10px; font-size: 8pt;">use "first-name.last-name"</span>
+        </div>
+        <p></p>
+        <div class="field">
+          <%= label_tag :password %><br/>
+          <%= password_field_tag :password %>
+        </div>
+        <p></p>
+        <div class="field">
+          <%= check_box_tag :remember_me %>
+          <label for="remember_me">Remember me?</label>
+        </div>
+        <input type='hidden' name=ref value=<%=session[:ref]%>>
+        <p></p>
+        <div class="actions"><%= submit_tag "Log in" %></div>
+      </form>
+
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -88,6 +88,13 @@ Zn::Application.routes.draw do
     resources :sessions
   end
 
+  get "mobile4"  => "mobile4#index"
+  get "mobile4/login"   => "mobile4/sessions#new",     :as => "mobile_login"
+  get "mobile4/logout"  => "mobile4/sessions#destroy", :as => "mobile_logout"
+  namespace "mobile4" do
+    resources :sessions
+  end
+
   get "mtimer" => "mtimer#index"
 
   namespace "api" do
@@ -116,6 +123,11 @@ Zn::Application.routes.draw do
       resources :messages
       get      "do"
       get      "rsvp"
+    end
+
+    get  "chat2" => "chat2#index"
+    namespace "chat2" do
+      resource :chats
     end
 
   end
@@ -164,6 +176,15 @@ Zn::Application.routes.draw do
     cache "/assets/mobile3.css"
 
     network "/"
+  end
+
+  manifest_mobile4 = Rack::Offline.configure do
+    cache "/favicon_d1.ico"
+    cache "/favicon_p1.ico"
+    cache "/assets/mobile4/application.js"
+    cache "/assets/mobile3.css"
+
+    network "/"
     network "http://maps.google.com"
     network "http://maps.gstatic.com"
     network "http://csi.gstatic.com"
@@ -190,6 +211,7 @@ Zn::Application.routes.draw do
 
   match "/mobile2f.manifest"     => manifest_mobile2
   match "/mobile3f.manifest"     => manifest_mobile3
+  match "/mobile4f.manifest"     => manifest_mobile4
   match "/mtimerf.manifest"      => manifest_mtimer
 
 end

@@ -3,6 +3,7 @@
 //= require underscore-min
 //= require backbone-min
 
-//= require ./mobile3
+//= require ./mobile4_map
+//= require ./mobile4
 
 //= require_tree .

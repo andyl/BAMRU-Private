@@ -10,6 +10,7 @@ platforms :ruby do
   gem "sqlite3"
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "faye",          "0.7.0"
+  gem "pngqr"
   gem "em-http-request"
   gem "thin"
 

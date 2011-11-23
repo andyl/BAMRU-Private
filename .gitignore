@@ -31,6 +31,8 @@ public/assets/**/*
 public/system
 public/system/*
 public/system/**/*
+public/qrcodes
+public/qrcodes/*
 public/javascripts/compiled
 public/javascripts/compiled/*
 public/javascripts/compiled/**/*
