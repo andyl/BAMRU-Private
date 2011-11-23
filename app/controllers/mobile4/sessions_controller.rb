@@ -12,8 +12,8 @@ class Mobile4::SessionsController < ApplicationController
   end
   
   def create
-    params[:user_name] = params[:user_name].gsub('.','_').downcase if params[:user_name]
-    member = Member.find_by_user_name(params[:user_name])
+    user_name = params[:user_name].squeeze.strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
+    member = Member.find_by_user_name(user_name)
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"
         cookies[:logged_in] = {:value => "true", :expires => Time.now + 360000}
@@ -33,7 +33,7 @@ class Mobile4::SessionsController < ApplicationController
     session[:member_id] = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil
-    redirect_to mobile_login_path, :notice => "Logged out!"
+    redirect_to "/mobile4/login", :notice => "Logged out!"
   end
 
 end

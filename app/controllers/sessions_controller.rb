@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
   end
   
   def create
-    params[:user_name] = params[:user_name].gsub('.','_').downcase if params[:user_name]
-    member = Member.find_by_user_name(params[:user_name])
+    user_name = params[:user_name].squeeze.strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
+    member = Member.find_by_user_name(user_name)
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"
         cookies[:remember_me_token] = {:value => member.remember_me_token, :expires => Time.now + 360000}
