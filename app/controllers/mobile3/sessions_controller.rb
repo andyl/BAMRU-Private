@@ -33,7 +33,7 @@ class Mobile3::SessionsController < ApplicationController
     session[:member_id] = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil
-    redirect_to mobile_login_path, :notice => "Logged out!"
+    redirect_to '/mobile3/login', :notice => "Logged out!"
   end
 
 end
