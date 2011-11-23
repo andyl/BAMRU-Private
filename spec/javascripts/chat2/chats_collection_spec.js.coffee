@@ -1,9 +1,9 @@
 #= require ./chat_fixture
-#= require bchat/collections/chats
+#= require chat2/collections/chats
 
-describe "BC1_Chats Collection", ->
+describe "C2_Chats Collection", ->
   beforeEach ->
-    @col = new BC1_Chats(bchat_test_data)
+    @col = new C2_Chats(chat_test_data)
     
   describe "basic object generation (no params)", ->
     it "generates an object", -> expect(@col).toBeDefined()

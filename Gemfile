@@ -5,14 +5,15 @@ platforms :jruby do
 end
 
 platforms :ruby do
-  gem 'linecache', "0.43"
-  gem 'sqlite3'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'faye',          "0.6.7"
-  gem 'em-http-request'
+
+  gem "linecache", "0.43"
+  gem "sqlite3"
+  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "faye",          "0.7.0"
+  gem "em-http-request"
   gem "thin"
 
-  gem 'rails',         '3.1.0'
+  gem "rails",         "3.1.0"
   gem "capistrano"
   gem "factory_girl"
   gem "fastercsv"
@@ -24,7 +25,7 @@ platforms :ruby do
 
   gem "rack-offline"
 
-  gem 'jquery-rails'
+  gem "jquery-rails"
   gem 'paperclip'
   gem 'parslet'
   gem 'aalf',         :git => "http://github.com/andyl/aalf.git"

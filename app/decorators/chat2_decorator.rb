@@ -1,4 +1,4 @@
-class BchatDecorator < ApplicationDecorator
+class Chat2Decorator < ApplicationDecorator
   decorates :chat
 
   def mobile_json
@@ -10,9 +10,9 @@ class BchatDecorator < ApplicationDecorator
   end
 
   def self.mobile_json
-    bchat_set = Chat.order('id DESC').limit(15).all.reverse
-    result = bchat_set.map do |m|
-      BchatDecorator.new(m).mobile_json
+    chat_set = Chat.order('id DESC').limit(15).all.reverse
+    result = chat_set.map do |m|
+      Chat2Decorator.new(m).mobile_json
     end.join(',')
     "[#{result}]"
   end

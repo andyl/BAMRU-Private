@@ -1,4 +1,4 @@
-window.bchat_test_data = [
+window.chat_test_data = [
     id:            24
     text:          "Last Message."
     short_name:    "J. Doe"

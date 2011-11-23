@@ -7,7 +7,7 @@
 //= require_tree ./collections
 //= require_tree ./views
 
-//= require ./bchat
+//= require ./chat2
 
 //= require_tree .
 

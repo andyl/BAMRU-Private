@@ -1,7 +1,11 @@
-class BchatsController < ApplicationController
+class Chat2Controller < ApplicationController
 
   def index
-    @bchat_json = BchatDecorator.mobile_json
+    @chat_json = Chat2Decorator.mobile_json
+  end
+
+  def show
+
   end
 
   def create

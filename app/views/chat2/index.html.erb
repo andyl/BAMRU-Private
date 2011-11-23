@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "chat.css" %>
 <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
-<%= javascript_include_tag "bchat/application.js" %>
+<%= javascript_include_tag "chat2/application.js" %>
 
 <script>
-  window.bchats = new BC1_Chats(<%= raw @bchat_json %>)
+  window.chats = new C2_Chats(<%= raw @chat_json %>)
 </script>
 
 <div id=x_container>
@@ -11,7 +11,7 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=center><b>BAMRU Bchat</b></td>
+          <td align=center><b>Chat2</b></td>
         </tr>
       </table>
     </div>
@@ -23,7 +23,7 @@
       </ul>
 
       <div id="chat_form">
-        <%= form_for Chat.new, :url => bchats_path, :html => {'data-type' => 'json'}, :remote => true do |f| %>
+        <%= form_for Chat.new, :url => chat2_path, :html => {'data-type' => 'json'}, :remote => true do |f| %>
           <%= f.text_field :text %> <%= f.submit "Send" %>
         <% end %>
       </div>

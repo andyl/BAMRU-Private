@@ -1,10 +1,10 @@
 #= require ./chat_fixture
 
-describe "BC1_Chat", ->
+describe "C2_Chat", ->
   beforeEach ->
-    @chat0 = new BC1_Chat(message_test_data[0])
-    @chat1 = new BC1_Chat(message_test_data[1])
-    @chat2 = new BC1_Chat(message_test_data[2])
+    @chat0 = new C2_Chat(message_test_data[0])
+    @chat1 = new C2_Chat(message_test_data[1])
+    @chat2 = new C2_Chat(message_test_data[2])
 
   describe "basic object generation (no params)", ->
     it "generates an object",        -> expect(@chat0).toBeDefined()

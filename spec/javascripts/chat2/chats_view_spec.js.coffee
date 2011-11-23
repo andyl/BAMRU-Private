@@ -1,14 +1,14 @@
 #= require ./chat_fixture
-#= require bchat/views/chat_index
-#= require bchat/views/chats_index
+#= require chat2/views/chat_index
+#= require chat2/views/chats_index
 
 # ----- View Specs -----
 
-describe "BC1_ChatsIndexView", ->
+describe "C2_ChatsIndexView", ->
   beforeEach ->
-    @coll =  new BC1_Chats bchat_test_data
+    @coll =  new C2_Chats chat_test_data
     @model = @coll.models[0]
-    @view0 = new BC1_ChatsIndexView()
+    @view0 = new C2_ChatsIndexView()
 
   describe "basic object generation", ->
     it "generates a collection object", ->

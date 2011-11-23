@@ -3,7 +3,7 @@ window.chat_index_template = '''
 <%= text %>
 '''
 
-class @BC1_ChatIndexView extends Backbone.View
+class @C2_ChatIndexView extends Backbone.View
   tagName:    "li"
   initialize: ->
     @template = _.template(chat_index_template)

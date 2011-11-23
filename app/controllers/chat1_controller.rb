@@ -1,12 +1,11 @@
-class ChatsController < ApplicationController
+class Chat1Controller < ApplicationController
 
   def index
     @chats = Chat.order('created_at DESC').limit(20).reverse
-    @what  = Chat.order('great DESC') do
-      x = 1
-      y = 2
-      render :action => "certs/new", :layout => "mobile1"
-    end
+  end
+
+  def show
+
   end
 
   def create

@@ -1,13 +1,13 @@
 #= require ./chat_fixture
-#= require bchat/views/chat_index
+#= require chat2/views/chat_index
 
 # ----- View Specs -----
 
-describe "BC1_ChatIndexView", ->
+describe "C2_ChatIndexView", ->
   beforeEach ->
-    @coll =  new BC1_Chats bchat_test_data
+    @coll =  new C2_Chats chat_test_data
     @model = @coll.models[0]
-    @view0 = new BC1_ChatIndexView({model: @model})
+    @view0 = new C2_ChatIndexView({model: @model})
     @rend0 = @view0.render()
 
   describe "basic object generation", ->

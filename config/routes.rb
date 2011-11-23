@@ -4,8 +4,7 @@ Zn::Application.routes.draw do
   get "home/test"
   get "home/tbd"
   get "home/contact"
-  get "home/mobile"
-  get "home/xmobile"
+  get "home/labs"
   get "home/wiki"
   get "home/edit_info"
   get "home/mail_sync"
@@ -40,8 +39,6 @@ Zn::Application.routes.draw do
   resources  :unit_avail_ops
   resources  :do_assignments
   resources  :files
-  resources  :chats
-  resources  :bchats
   resources  :rsvp_templates
   resources  :history
   resources  :rsvps
@@ -52,6 +49,15 @@ Zn::Application.routes.draw do
     resources  :avail_dos
     resource   :avail_ops
     resources  :inbox, :controller => :inbox
+  end
+
+  get  "/chat1" => "chat1#index"
+  post "/chat1" => "chat1#create"
+
+  get  "/chat2" => "chat2#index"
+  post "/chat2" => "chat2#create"
+  namespace "chat2" do
+    resources :chats
   end
 
   get "mobile1" => "mobile1#index", :as => "mobile1"
@@ -110,11 +116,6 @@ Zn::Application.routes.draw do
       resources :messages
       get      "do"
       get      "rsvp"
-    end
-
-    get "bchat" => "bchat#index"
-    namespace "bchat" do
-      resources :chats
     end
 
   end

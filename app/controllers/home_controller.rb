@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   def contact
   end
 
-  def mobile
+  def labs
   end
 
   def edit_info

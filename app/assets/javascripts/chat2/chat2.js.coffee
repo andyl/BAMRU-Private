@@ -7,13 +7,13 @@ window.updateChatDisplay = (json) ->
   $('#chat').append(tmpl)
   window.resizeChatList()
 
-#= require ./bchat-faye
+#= require ./chat2-faye
 
 window.clearText = ->
   $('#chat_text').attr('value','')
 
 $(document).ready ->
-  view = new BC1_ChatsIndexView
+  view = new C2_ChatsIndexView
   view.render()
   $('input[value=Send]').click ->
     setTimeout('clearText()', 250)

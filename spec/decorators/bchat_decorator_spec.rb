@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BchatDecorator do
+describe Chat2Decorator do
 
   def valid_atts
     {
@@ -17,7 +17,7 @@ describe BchatDecorator do
     end
   end
 
-  before(:each) { @obj = BchatDecorator.new(Chat.new(valid_atts)) }
+  before(:each) { @obj = Chat2Decorator.new(Chat.new(valid_atts)) }
   
   describe "Object Attributes" do
     specify { @obj.should respond_to(:text)         }
@@ -26,7 +26,7 @@ describe BchatDecorator do
   end
 
   describe "#mobile_json" do
-    before(:each) { @obj = BchatDecorator.new(Chat.new(valid_atts)) }
+    before(:each) { @obj = Chat2Decorator.new(Chat.new(valid_atts)) }
     specify { @obj.mobile_json.should_not be_nil }
     specify { @obj.mobile_json.should be_a(String) }
   end
@@ -34,7 +34,7 @@ describe BchatDecorator do
   describe "self.mobile_json" do
     before(:each) do
       create_valid_chats(3)
-      @col = BchatDecorator.mobile_json
+      @col = Chat2Decorator.mobile_json
     end
     specify { @col.should be_a String }
     specify { JSON.parse(@col).should_not be_nil  }
