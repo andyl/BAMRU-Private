@@ -30,10 +30,17 @@ every 1.day,  :at => '5:15 pm' do
   nq "rake ops:email:pending:send"
 end
 
-every :sunday,  :at => '6:10 pm' do
+every :thursday,  :at => '6:40 pm' do
   nq "rake ops:email:generate:do_shift_pending"
 end
-every :sunday, :at => '6.15 pm' do
+every :thursday, :at => '7.10 pm' do
+  nq "rake ops:email:pending:send"
+end
+
+every :tuesday, :at => '6:40 am' do
+  nq "rake ops:email:generate:do_shift_starting"
+end
+every :tuesday, :at => '7:10 am' do
   nq "rake ops:email:pending:send"
 end
 
@@ -42,12 +49,6 @@ every :tuesday, :at => '8:02 am' do
 end
 every :tuesday, :at => '8:03 am' do
   nq "rake tmp:clear"
-end
-every :tuesday, :at => '8:04 am' do
-  nq "rake ops:email:generate:do_shift_started"
-end
-every :tuesday, :at => '8:05 am' do
-  nq "rake ops:email:pending:send"
 end
 
 # ----- Retrieve incoming email from Google -----

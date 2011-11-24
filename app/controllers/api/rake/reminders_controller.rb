@@ -6,22 +6,27 @@ class Api::Rake::RemindersController < ApplicationController
 
   before_filter :authenticate_member_with_basic_auth!
 
-  # curl -u <first>_<last>:<pwd> http://server/api/rake/reminders/do_reminder.json
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/reminders/do_shift_pending.json
   def do_shift_pending
-    member  = DoAssignment.next_wk.first.primary
-    params  = MessageParams.do_shift_pending(member)
-    if OutboundMail.pending.count == 0
+    shift   = DoAssignment.next_wk.first
+    if shift.reminder_notice_sent_at.blank?
+      shift.update_attributes(:reminder_notice_sent_at => Time.now)
+      member  = shift.primary
+      params  = MessageParams.do_shift_pending(member)
       message = Message.create(params)
       message.create_all_outbound_mails
     end
     render :json => "OK\n"
   end
 
-  # curl -u <first>_<last>:<pwd> http://server/api/rake/reminders/do_alert.json
-  def do_shift_started
-    member  = DoAssignment.this_wk.first.primary
-    params  = MessageParams.do_shift_started(member)
-    if OutboundMail.pending.count == 0
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/reminders/do_shift_starting.json
+  def do_shift_starting
+    shift   = DoAssignment.next_wk.first
+    if shift.alert_notice_sent_at.blank?
+      shift.update_attributes(:reminder_notice_sent_at => Time.now) if shift.reminder_notice_sent_at.blank?
+      shift.update_attributes(:alert_notice_sent_at => Time.now)
+      member  = shift.primary
+      params  = MessageParams.do_shift_starting(member)
       message = Message.create(params)
       message.create_all_outbound_mails
     end

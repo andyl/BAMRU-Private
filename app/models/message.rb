@@ -120,5 +120,6 @@ end
 #  text       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  format     :string(255)
 #
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117004818) do
+ActiveRecord::Schema.define(:version => 20111124031208) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20111117004818) do
   end
 
   create_table "do_assignments", :force => true do |t|
-    t.integer  "org_id",     :default => 1
+    t.integer  "org_id",                  :default => 1
     t.integer  "year"
     t.integer  "quarter"
     t.integer  "week"
@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(:version => 20111117004818) do
     t.integer  "backup_id"
     t.datetime "start"
     t.datetime "finish"
+    t.datetime "reminder_notice_sent_at"
+    t.datetime "alert_notice_sent_at"
   end
 
   create_table "emails", :force => true do |t|

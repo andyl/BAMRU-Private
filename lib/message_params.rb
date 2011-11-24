@@ -26,12 +26,12 @@ class MessageParams
     }.merge(base_params)
   end
 
-  def self.do_shift_started(member)
-    txt  = "Attention: Your DO shift has started. (#{member.last_name})"
+  def self.do_shift_starting(member)
+    txt  = "Attention: Your DO shift is starting. (#{member.last_name})"
     dist = [{"member_id" => member.id.to_s, "email" => true, "phone" => true}]
     {
       "text" => txt,
-      "format" => "do_shift_started",
+      "format" => "do_shift_starting",
       "distributions_attributes" => dist
     }.merge(base_params)
   end

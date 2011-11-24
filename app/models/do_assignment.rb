@@ -79,17 +79,19 @@ end
 #
 # Table name: do_assignments
 #
-#  id         :integer         not null, primary key
-#  org_id     :integer         default(1)
-#  year       :integer
-#  quarter    :integer
-#  week       :integer
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  primary_id :integer
-#  backup_id  :integer
-#  start      :datetime
-#  finish     :datetime
+#  id                      :integer         not null, primary key
+#  org_id                  :integer         default(1)
+#  year                    :integer
+#  quarter                 :integer
+#  week                    :integer
+#  name                    :string(255)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  primary_id              :integer
+#  backup_id               :integer
+#  start                   :datetime
+#  finish                  :datetime
+#  reminder_notice_sent_at :datetime
+#  alert_notice_sent_at    :datetime
 #
 

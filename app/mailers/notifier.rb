@@ -71,13 +71,13 @@ class Notifier < ActionMailer::Base
     mail(
             :to      => @opts['recipient_email'],
             :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject => "BAMRU DO Shift: Reminder [#{@opts['label']}]"
+            :subject => "BAMRU DO shift - Reminder [#{@opts['label']}]"
     )
   end
 
   # ----- do_shift_started -----
 
-  def do_shift_started_email(opts = {})
+  def do_shift_starting_email(opts = {})
     Time.zone     = "Pacific Time (US & Canada)"
     @opts         = Notifier.query_opts(opts)
     @short_label  = @opts['label'].split('_').last
@@ -85,11 +85,11 @@ class Notifier < ActionMailer::Base
     mail(
             :to      => @opts['recipient_email'],
             :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
-            :subject => "BAMRU DO Shift: Started! [#{@opts['label']}]"
+            :subject => "BAMRU DO shift - starting! [#{@opts['label']}]"
     )
   end
 
-  def do_shift_started_phone(opts = {})
+  def do_shift_starting_phone(opts = {})
     Time.zone = "Pacific Time (US & Canada)"
     @opts = Notifier.query_opts(opts)
     mail(

@@ -169,20 +169,23 @@ end
 #
 # Table name: certs
 #
-#  id                :integer         not null, primary key
-#  member_id         :integer
-#  typ               :string(255)
-#  expiration        :date
-#  description       :string(255)
-#  comment           :string(255)
-#  link              :string(255)
-#  position          :integer
-#  cert_file         :string(255)
-#  cert_file_name    :string(255)
-#  cert_content_type :string(255)
-#  cert_file_size    :string(255)
-#  cert_updated_at   :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
+#  id                        :integer         not null, primary key
+#  member_id                 :integer
+#  typ                       :string(255)
+#  expiration                :date
+#  description               :string(255)
+#  comment                   :string(255)
+#  link                      :string(255)
+#  position                  :integer
+#  cert_file                 :string(255)
+#  cert_file_name            :string(255)
+#  cert_content_type         :string(255)
+#  cert_file_size            :string(255)
+#  cert_updated_at           :string(255)
+#  created_at                :datetime
+#  updated_at                :datetime
+#  ninety_day_notice_sent_at :datetime
+#  thirty_day_notice_sent_at :datetime
+#  expired_notice_sent_at    :datetime
 #
 

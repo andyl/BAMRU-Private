@@ -67,19 +67,19 @@ end
 
 def process_email_message(opts, format)
   case format
-    when 'page'             : Notifier.page_email(opts)
-    when 'password_reset'   : Notifier.password_reset_email(opts)
-    when 'do_shift_pending' : Notifier.do_shift_pending_email(opts)
-    when 'do_shift_started' : Notifier.do_shift_started_email(opts)
-    when 'cert_notice'      : Notifier.cert_notice_email(opts)
+    when 'page'              : Notifier.page_email(opts)
+    when 'password_reset'    : Notifier.password_reset_email(opts)
+    when 'do_shift_pending'  : Notifier.do_shift_pending_email(opts)
+    when 'do_shift_starting' : Notifier.do_shift_starting_email(opts)
+    when 'cert_notice'       : Notifier.cert_notice_email(opts)
     else nil
   end
 end
 
 def process_phone_message(opts, format)
   case format
-    when 'page'             : Notifier.page_phone(opts)
-    when 'do_shift_started' : Notifier.do_shift_started_phone(opts)
+    when 'page'              : Notifier.page_phone(opts)
+    when 'do_shift_starting' : Notifier.do_shift_starting_phone(opts)
     else nil
   end
 end
@@ -155,6 +155,7 @@ namespace :ops do
 
       # ----- DO Mails -----
 
+      # sent 4 days before the shift starts
       desc "DO Shift Pending Reminder"
       task :do_shift_pending => 'environment' do
         cmd = curl_get('api/rake/reminders/do_shift_pending')
@@ -162,10 +163,11 @@ namespace :ops do
         system cmd
       end
 
-      desc "DO Shift Started Reminder"
-      task :do_shift_started => 'environment' do
-        cmd = curl_get('api/rake/reminders/do_shift_started')
-        puts "Generating DO Shift Started Reminder"
+      # sent 1 hours before the shift starts
+      desc "DO Shift Starting Alert"
+      task :do_shift_starting => 'environment' do
+        cmd = curl_get('api/rake/reminders/do_shift_starting')
+        puts "Generating DO Shift Starting Reminder"
         system cmd
       end
 
