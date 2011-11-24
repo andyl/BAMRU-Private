@@ -40,7 +40,7 @@ class @M3_MemberShowView extends Backbone.View
       nam = emc.name
       typ = emc.typ
       num = emc.number
-      dst = "#{nam} / #{num} - #{typ}"
+      dst = "#{nam} #{num} - #{typ}"
       unless window.isPhone()
         return "<div class=data>#{dst}</div>"
       unless typ == "Mobile"
