@@ -81,6 +81,7 @@ Zn::Application.routes.draw do
     resources :messages
   end
 
+  get "mobile"   => "mobile3#index"
   get "mobile3"  => "mobile3#index"
   get "mobile3/login"   => "mobile3/sessions#new",     :as => "mobile_login"
   get "mobile3/logout"  => "mobile3/sessions#destroy", :as => "mobile_logout"

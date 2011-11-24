@@ -24,7 +24,7 @@ class Mobile3::SessionsController < ApplicationController
         cookies[:remember_me_token] = nil
       end
       member_login(member)
-      redirect_to mobile3_path
+      redirect_to mobile_path
     else
       @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
