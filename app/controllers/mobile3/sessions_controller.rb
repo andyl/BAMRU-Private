@@ -26,7 +26,7 @@ class Mobile3::SessionsController < ApplicationController
       member_login(member)
       redirect_to mobile3_path
     else
-      @msg = "Bad username or password<p><p/>"
+      @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
     end
   end
