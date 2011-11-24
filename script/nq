@@ -27,7 +27,7 @@ end
 
 File.open(pid_file, 'w') {|f| f.puts Process.pid}
 
-def ts() Time.now.strftime("%H:%M:%S"); end
+def ts() Time.now.strftime("%y-%m-%d_%H:%M:%S"); end
 
 STDOUT.flush
 
