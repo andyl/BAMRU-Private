@@ -195,8 +195,17 @@ header {
   padding: 50px;
 }
 
-.state {
-  text-align: center;
+.footer {
   color: gray;
-  margin-top: 20px;
+  margin-top: 15px;
+}
+
+#state {
+  float: left;
+  margin-left: 25px;
+}
+
+#update {
+  float: right;
+  margin-right: 25px;
 }

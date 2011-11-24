@@ -43,8 +43,9 @@
       <a class='nav' href="#messages">Unit Message Log</a>
       <a class='nav' href="#inbox"><%= @inbox_label %></a>
       <a class='nav' href="#profile">My Profile</a>
-      <div class=state>
-        <span id=state></span>
+      <div class=footer>
+        <div id=state></div>
+        <div id=update>Updated <%= Time.now.strftime("%b-%d %H:%M:%S") %></div>
       </div>
     </div>
 
