@@ -4,9 +4,11 @@ class MemberDecorator < ApplicationDecorator
   def mobile_json
     member_fields = %w(first_name last_name id typ)
     result = subset(model.attributes, member_fields)
-    result["full_roles"] = model.full_roles
-    result["phones_attributes"] = phone_data if has_phone?
-    result["emails_attributes"] = email_data if has_email?
+    result["full_roles"]                    = model.full_roles
+    result["phones_attributes"]             = phone_data     if has_phone?
+    result["emails_attributes"]             = email_data     if has_email?
+    result["emergency_contacts_attributes"] = emergency_data if has_emergency_contacts?
+    result["photos"]                        = photo_data     if has_photo?
     result.to_json
   end
 
@@ -35,5 +37,19 @@ class MemberDecorator < ApplicationDecorator
   def email_data
     email_fields = %w(address id typ)
     model.emails.map {|email| subset(email.attributes, email_fields)}
+  end
+
+  def emergency_data
+    emc_fields = %w(name number typ id)
+    model.emergency_contacts.map {|emc| subset(emc.attributes, emc_fields)}
+  end
+
+  #def display_photos(member)
+  #  return "" if member.photos.blank?
+  #  member.photos.limit(3).map {|pic| image_tag(pic.image.url(:thumb))}.join + "<br/>"
+  #end
+
+  def photo_data
+    []
   end
 end
