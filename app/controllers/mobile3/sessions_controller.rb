@@ -2,6 +2,7 @@ class Mobile3::SessionsController < ApplicationController
 
   def new
     @page_name = "Login"
+    @msg = ""
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
       cookies[:logged_in] = {:value => "true", :expires => Time.now + 360000}
@@ -25,6 +26,7 @@ class Mobile3::SessionsController < ApplicationController
       member_login(member)
       redirect_to mobile3_path
     else
+      @msg = "Bad username or password<p><p/>"
       render :new, :layout => false
     end
   end
