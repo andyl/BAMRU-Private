@@ -8,19 +8,9 @@ namespace :ops do
 
   desc "Set DO"
   task :set_do => 'environment' do
-    cmd = curl_get("api/ops/set_do")
+    cmd = curl_get("api/rake/ops/set_do")
     puts "Setting DO Assignment"
-    puts cmd.gsub(SYSTEM_PASS, "....")
     system cmd
-    STDOUT.flush
-  end
-
-  desc "RAKE TEST COMMAND"
-  task :raketest do
-    puts "STARTING TEST COMMAND (PID: #{Process.pid})"
-    STDOUT.flush
-    sleep 10
-    puts "ENDING TEST COMMAND (PID: #{Process.pid})"
     STDOUT.flush
   end
 
@@ -37,7 +27,7 @@ namespace :ops do
 
   desc "Cleanup Message Files"
   task :message_cleanup => 'environment' do
-    cmd = curl_get("api/ops/message_cleanup")
+    cmd = curl_get("api/rake/ops/message_cleanup")
     puts "Cleaning up old messages"
     system cmd
     STDOUT.flush
