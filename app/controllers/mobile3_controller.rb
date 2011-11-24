@@ -14,8 +14,9 @@ class Mobile3Controller < ApplicationController
     txt    = unread == 0 ? "" : " (#{unread})"
     @inbox_label = "My Inbox#{txt}"
     @device   = device
-    @do_name = DoAssignment.current.first.primary.last_name
-    @do_id   = DoAssignment.current.first.primary.id
+    doa = DoAssignment.current.first
+    @do_name = doa.backup.try(:last_name) || doa.primary.last_name
+    @do_id   = doa.backup.try(:id)        || doa.primary.id
 
     render :layout => false
   end

@@ -34,8 +34,10 @@
   <div id='content'>
 
     <div id='home' class='page'>
-      <a class='nav' href="#members" >Members</a>
-      <a class='nav' href="#members/<%=@do_id%>">DO: <%= @do_name %></a>
+      <div class="navbox">
+        <a class='lnav' href="#members" >Members</a>
+        <a class='rnav' href="#members/<%=@do_id%>">DO:<%= @do_name %></a>
+      </div>
       <a class='nav' href="#status"  >Status Line</a>
       <!--<a class='nav' href="#send"    >Send Page</a>-->
       <a class='nav' href="#messages">Unit Message Log</a>
