@@ -1,21 +1,6 @@
 # Use this file to define cron jobs.
 #
 # More info on cron: http://en.wikipedia.org/wiki/Cron
-
-# Examples:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
 # Learn more: http://github.com/javan/whenever
 
 cmd = "script/nq :task >> log/nq.log 2>&1"
@@ -44,10 +29,10 @@ every :tuesday, :at => '7:10 am' do
   nq "rake ops:email:pending:send"
 end
 
-every :tuesday, :at => '8:02 am' do
+every :tuesday, :at => '8:05 am' do
   nq "rake ops:set_do"
 end
-every :tuesday, :at => '8:03 am' do
+every :tuesday, :at => '8:10 am' do
   nq "rake tmp:clear"
 end
 
@@ -59,7 +44,7 @@ end
 
 # ----- Reset Page Cache -----
 
-every 1.day, :at => '0:02 am' do
+every 1.day, :at => '0:05 am' do
   nq "rake tmp:clear"
 end
 
@@ -85,10 +70,15 @@ end
 
 every :wednesday, :at => '11:10 pm' do
   nq "rake ops:log_cleanup"
+end
+every :wednesday, :at => '11:40 pm' do
   nq "rake ops:message_cleanup"
 end
 
 every :sunday, :at => '5:10 am' do
   nq "rake ops:log_cleanup"
+end
+every :sunday, :at => '5:40 am' do
   nq "rake ops:message_cleanup"
 end
+
