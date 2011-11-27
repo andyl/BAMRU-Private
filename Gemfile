@@ -21,22 +21,24 @@ platforms :ruby do
   gem "nokogiri"
   gem "simple_form"
   gem "rabl"
+  gem "sprite-factory"
+  gem "rmagick"
 
   gem "draper"
 
   gem "rack-offline"
 
   gem "jquery-rails"
-  gem 'paperclip'
-  gem 'parslet'
-  gem 'aalf',         :git => "http://github.com/andyl/aalf.git"
-  gem 'dynamic_form'
-  gem 'cancan'
-  gem 'mail'
-  gem 'prawn'
-  gem 'foreman'
-  gem 'oauth'
-  gem 'ruby-gmail', :require => 'gmail'
+  gem "paperclip"
+  gem "parslet"
+  gem "aalf",         :git => "http://github.com/andyl/aalf.git"
+  gem "dynamic_form"
+  gem "cancan"
+  gem "mail"
+  gem "prawn"
+  gem "foreman"
+  gem "oauth"
+  gem "ruby-gmail", :require => 'gmail'
   gem 'mime'
   gem 'mail_view', :git => "git://github.com/andyl/mail_view.git"
 

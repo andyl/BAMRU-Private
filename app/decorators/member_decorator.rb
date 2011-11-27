@@ -8,7 +8,7 @@ class MemberDecorator < ApplicationDecorator
     result["phones_attributes"]   = phone_data    if has_phone?
     result["emails_attributes"]   = email_data    if has_email?
     result["contacts_attributes"] = contacts_data if has_contacts?
-    #result["photos"]                        = photo_data     if has_photo?
+    result["photo"]               = "true"        if has_photo?
     result.to_json
   end
 

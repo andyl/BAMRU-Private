@@ -175,7 +175,9 @@ Zn::Application.routes.draw do
     cache "/favicon_p1.ico"
     cache "/assets/mobile3/application.js"
     cache "/assets/mobile3.css"
-
+    cache "/images/icons.css"
+    cache "/images/icons.png"
+    cache "/assets/s.gif"
     network "/"
   end
 

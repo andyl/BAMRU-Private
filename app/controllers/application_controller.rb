@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
     Time.zone = "Pacific Time (US & Canada)"
   end
 
+
+
   def current_ability
     @current_ability ||= Ability.new(current_member)
   end

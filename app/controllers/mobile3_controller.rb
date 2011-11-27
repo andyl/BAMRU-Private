@@ -3,6 +3,7 @@ class Mobile3Controller < ApplicationController
   before_filter :authenticate_mobile_member!
   
   def index
+    SpriteGen.generate_sprite_icons
     @is_ipad  = ipad_device?
     @is_phone = phone_device?
     @sensor   = phone_device? ? "true" : "false"

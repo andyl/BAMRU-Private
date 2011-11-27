@@ -1,4 +1,5 @@
 main_template = '''
+  <%= this.photo_helper() %>
   <b><%= first_name %> <%= last_name %></b> - <%= full_roles %>
   <%= this.phone_helper() %>
   <%= this.email_helper() %>
@@ -27,6 +28,9 @@ class @M3_MemberShowView extends Backbone.View
       val2 = "<a class='rnav' href='sms:#{num}'>SMS</a>"
       "<div class=navbox>#{val1}#{val2}</div>"
     @divider("Phones") + display.join('')
+  photo_helper: ->
+    return "" unless @model.hasPhoto()
+    "<img src='/assets/s.gif' class='#{@model.attributes.last_name.toLowerCase()} photo_icon'></img>"
   email_helper: ->
     return "" unless @model.hasEmail()
     display = _(@model.attributes.emails_attributes).map (email) ->

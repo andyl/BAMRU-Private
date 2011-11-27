@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def sprite_tag(klass, options = {})
+    image_tag('s.gif', {:class => klass, :alt => klass}.merge(options))
+  end
+
   def qr_tag(label, size = 8)
     file = "#{label.hash.abs}.png"
     loc = "/public/qrcodes"

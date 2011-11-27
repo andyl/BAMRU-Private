@@ -223,6 +223,7 @@ GEM
       ffi (>= 0.5.0)
     rcov (0.9.10)
     rdoc (3.9.4)
+    rmagick (2.13.1)
     rqrcode (0.4.2)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
@@ -260,6 +261,7 @@ GEM
       activemodel (~> 3.0)
     spoon (0.0.1)
     spork (0.9.0.rc9)
+    sprite-factory (1.4.1)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -341,6 +343,7 @@ DEPENDENCIES
   rails (= 3.1.0)
   rb-inotify
   rcov
+  rmagick
   rspec-core (= 2.7.1)
   rspec-rails (= 2.7.0)
   ruby-debug
@@ -350,6 +353,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   spork (~> 0.9.0.rc9)
+  sprite-factory
   sqlite3
   sqlite3-ruby
   therubyracer

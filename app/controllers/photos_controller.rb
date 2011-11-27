@@ -14,16 +14,18 @@ class PhotosController < ApplicationController
   def create
     @member = Member.where(:id => params['member_id']).first
     @member.photos.create(params[:photo])
-    expire_fragment('unit_photos_table')
     @member.save
+    expire_fragment('unit_photos_table')
+    SpriteGen.clear_sprite_icons
     redirect_to edit_member_path(@member)
   end
 
   def destroy
     @member = Member.where(:id => params['member_id']).first
     @photo = Photo.where(:id => params['id']).first
-    expire_fragment('unit_photos_table')
     @photo.destroy
+    expire_fragment('unit_photos_table')
+    SpriteGen.clear_sprite_icons
     redirect_to edit_member_path @member
   end
 
@@ -32,6 +34,7 @@ class PhotosController < ApplicationController
       Photo.update_all(['position=?', index+1], ['id=?', id])
     end
     expire_fragment('unit_photos_table')
+    SpriteGen.clear_sprite_icons
     render :nothing => true
   end
 

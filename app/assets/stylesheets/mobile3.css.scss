@@ -129,6 +129,10 @@ header {
   -webkit#{$position}-border-radius: 15px;
 }
 
+.photo_icon {
+  margin-right: 10px;
+}
+
 .nav {
   @include nav-base-style;
   @include nav-nowrap;
