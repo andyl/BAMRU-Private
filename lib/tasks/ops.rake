@@ -24,7 +24,7 @@ namespace :ops do
     system "mv #{production_log} #{production_log}.backup"
     system "echo 'Log File Reset (#{date})' > #{nq_log}"
     system "echo 'Log File Reset (#{date})' > #{production_log}"
-    system "touch #{Rails.root.to_s/tmp/restart.txt}"
+    system "touch #{Rails.root.to_s}/tmp/restart.txt"
     puts "Log Files Reset"
   end
 
