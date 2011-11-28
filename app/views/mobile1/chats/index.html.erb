@@ -9,7 +9,7 @@
 </ul>
 
 <div id="mobile_form">
-  <%= form_for Chat.new, :remote => true do |f| %>
+  <%= form_for Chat.new, :url => chat1_path, :remote => true do |f| %>
     <%= f.text_field :text %>
     <%= f.submit "Send" %>
   <% end %>
