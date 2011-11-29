@@ -1,7 +1,7 @@
 # Use this file to define cron jobs.
 #
 # More info on cron: http://en.wikipedia.org/wiki/Cron
-# Learn more: http://github.com/javan/whenever
+# Learn more: http://gigbthub.com/javan/whenever
 
 cmd = "script/nq :task >> log/nq.log 2>&1"
 job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
@@ -15,24 +15,31 @@ every 1.day,  :at => '5:15 pm' do
   nq "rake ops:email:pending:send"
 end
 
-every :thursday,  :at => '6:40 pm' do
+every :thursday,  :at => '7:10 pm' do
   nq "rake ops:email:generate:do_shift_pending"
 end
-every :thursday, :at => '7.10 pm' do
+every :thursday, :at => '7.15 pm' do
   nq "rake ops:email:pending:send"
 end
 
-every :tuesday, :at => '6:40 am' do
+every :tuesday, :at => '7:10 am' do
   nq "rake ops:email:generate:do_shift_starting"
 end
-every :tuesday, :at => '7:10 am' do
+every :tuesday, :at => '7:15 am' do
   nq "rake ops:email:pending:send"
 end
 
 every :tuesday, :at => '8:05 am' do
   nq "rake ops:set_do"
 end
-every :tuesday, :at => '8:10 am' do
+every :tuesday, :at => '8:07 am' do
+  nq "rake tmp:clear"
+end
+
+every :tuesday, :at => '8:15 am' do
+  nq "rake ops:set_do"
+end
+every :tuesday, :at => '8:17 am' do
   nq "rake tmp:clear"
 end
 

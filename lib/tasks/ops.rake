@@ -22,6 +22,7 @@ namespace :ops do
     date           = Time.now.to_s
     system "mv #{nq_log} #{nq_log}.backup"
     system "mv #{production_log} #{production_log}.backup"
+    system "mv #{production_log} #{production_log}.backup"
     system "echo 'Log File Reset (#{date})' > #{nq_log}"
     system "echo 'Log File Reset (#{date})' > #{production_log}"
     system "touch #{Rails.root.to_s}/tmp/restart.txt"
