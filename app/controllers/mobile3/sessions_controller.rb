@@ -28,6 +28,7 @@ class Mobile3::SessionsController < ApplicationController
       member_login(member)
       redirect_to mobile_path
     else
+      ActiveSupport::Notifications.instrument("login.mobile3.invalid", {:text => params[:user_name]})
       @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
     end

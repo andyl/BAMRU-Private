@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
       member_login(member)
       redirect_to (session[:tgt_path] || root_path), :notice => "Logged in!"
     else
+      ActiveSupport::Notifications.instrument("login.browser.invalid", {:text => params[:user_name]})
       flash.now.alert = "Invalid user name or password"
       render "new"
     end

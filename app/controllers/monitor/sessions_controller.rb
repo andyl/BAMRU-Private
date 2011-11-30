@@ -28,6 +28,7 @@ class Monitor::SessionsController < ApplicationController
       member_login(member)
       redirect_to monitor_path
     else
+      ActiveSupport::Notifications.instrument("login.monitor.invalid", {:text => params[:user_name]})
       @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
     end
