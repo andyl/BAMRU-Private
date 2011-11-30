@@ -2,12 +2,11 @@ namespace :faye do
 
   desc "Run Faye Server"
   task :run_server do
-    #system "rackup faye.ru -s thin -E production 2>&1 >> log/faye.log &"
     system "rackup faye.ru -s thin -E production"
   end
 
-  desc "Send Faye Message"
-  task :send do
+  desc "Send Faye Message using CURL"
+  task :send_curl do
     require 'env_settings'
     abort("Need a message (MSG='...')") unless ENV['MSG']
     msg = %Q('message={"channel":"/chats/new", "data":"#{ENV['MSG']}"}')
@@ -16,8 +15,8 @@ namespace :faye do
     system cmd
   end
 
-  desc "Send Faye Message"
-  task :send2 do
+  desc "Send Faye Message using HTTP Post"
+  task :send_post do
     require 'env_settings'
     abort("Need a message (MSG='...')") unless ENV['MSG']
     message = {:channel => '/chats/new', :data => ENV['MSG']}
@@ -30,12 +29,12 @@ namespace :faye do
     system "sudo bundle exec foreman export upstart /etc/init -u aleak -a bnet"
   end
 
-  desc "CL Chat Client"
+  desc "CL Chat Client CHANNEL='/chats/new'"
   task :chat do
     require 'env_settings'
     require File.dirname(File.expand_path(__FILE__)) + '/../faye_chat'
     nick    = Process.pid.to_s
-    channel = "/chats/new"
+    channel = ENV['CHANNEL'] || "/chats/new"
     puts "Using Faye parameters #{FAYE_SERVER}, #{channel}, #{nick}"
     FayeChat.run(FAYE_SERVER, channel, nick)
   end
