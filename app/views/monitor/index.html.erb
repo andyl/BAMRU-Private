@@ -24,7 +24,7 @@
 
 <header>
   <div id=title>
-    <div id="label">Text Here</div>
+    <div id="label">System Monitor</div>
   </div>
 </header>
 
@@ -34,7 +34,10 @@
     <div id='home' class='page'>
 
       <div class="stats">
-        <div id="snapshot_time" style='margin-bottom: 5px;'>TBD</div>
+        <div style='margin-bottom: 5px;'>
+          <%= raw root_url.gsub("http:","").gsub('/','') %>
+          <span id="snapshot_time" style='margin-left: 20px;'>TBD</span>
+        </div>
         cpu
         <span id="cpu_spark" data-ymin="0" data-ymax="100" class="sparkline">1 1 1</span>
         <span id="cpu">TBD</span>%

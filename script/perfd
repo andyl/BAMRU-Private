@@ -20,7 +20,7 @@ end
 def update_log_file(data)
   data
   File.open(LOG_FILE, 'a') {|f| f.puts data.to_json}
-  system "tail -n 26 #{LOG_FILE} > #{LOG_FILE}.tmp"
+  system "tail -n 24 #{LOG_FILE} > #{LOG_FILE}.tmp"
   system "mv #{LOG_FILE}.tmp #{LOG_FILE}"
 end
 
@@ -41,7 +41,7 @@ while true
   while (Time.now.to_i % 5) != 0
     sleep 0.5
   end
-  data[:time] = Time.now.strftime("%b-%d %H:%M:%S")
+  data[:time] = Time.now.strftime("%b-%d %H:%M:%S").downcase
   update_log_file(data)
   send_faye(data)
   sleep 3

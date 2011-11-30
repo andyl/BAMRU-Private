@@ -6,7 +6,7 @@ LOG_FILE = LOG_DIR + '/monitor.log'
 
 def write_log(data)
   File.open(LOG_FILE, 'a') {|f| f.puts data.to_json}
-  system "tail -n 50 #{LOG_FILE} > #{LOG_FILE}.tmp"
+  system "tail -n 80 #{LOG_FILE} > #{LOG_FILE}.tmp"
   system "mv #{LOG_FILE}.tmp #{LOG_FILE}"
   send_faye(data)
 end
