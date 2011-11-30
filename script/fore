@@ -1,0 +1,2 @@
+xterm_title "<foreman>"
+foreman start -f Procfile.dev

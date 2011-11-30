@@ -1,4 +1,3 @@
 faye: bundle exec rackup faye.ru -s thin -E production
-#rails: rails server
-#rpf: rpf r210x.com:3000 3000
-#spork: spork
+rails: rails server
+perfd: script/perfd

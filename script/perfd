@@ -32,6 +32,9 @@ end
 
 count = 0
 
+sleep 30
+puts "perfd is starting..."
+
 while true
   data = get_perf_numbers
   data[:id] = count += 1
