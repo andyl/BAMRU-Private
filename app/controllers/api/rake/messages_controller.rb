@@ -14,6 +14,8 @@ class Api::Rake::MessagesController < ApplicationController
   def sent_at_now
     id = params[:id]
     @om = OutboundMail.find id
+    member = @om.distriution.member
+    ActiveSupport::Notifications.instrument("rake.messages.send", {:member => member})
     @om.update_attributes(:sent_at => Time.now) unless @om.nil?  || ! @om.sent_at.nil?
     render :json => "OK\n"
   end
@@ -28,6 +30,7 @@ class Api::Rake::MessagesController < ApplicationController
       InboundMail.create_from_opts(opts)
       system "rm #{file}"
     end
+    ActiveSupport::Notifications.instrument("rake.messages.load", {:text => "records: #{count}"})
     render :json => "OK (records: #{count})\n"
   end
 

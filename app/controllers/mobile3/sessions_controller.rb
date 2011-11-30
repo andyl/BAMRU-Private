@@ -5,6 +5,7 @@ class Mobile3::SessionsController < ApplicationController
     @msg = ""
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
+      ActiveSupport::Notifications.instrument("login.mobile3.cookie", {:member => member})
       cookies[:logged_in] = {:value => "true", :expires => Time.now + 360000}
       redirect_to mobile3_path, :notice => "Welcome back #{member.first_name}"
       return
@@ -23,6 +24,7 @@ class Mobile3::SessionsController < ApplicationController
         cookies[:logged_in] = nil
         cookies[:remember_me_token] = nil
       end
+      ActiveSupport::Notifications.instrument("login.mobile3.form", {:member => member})
       member_login(member)
       redirect_to mobile_path
     else
@@ -32,6 +34,7 @@ class Mobile3::SessionsController < ApplicationController
   end
 
   def destroy
+    ActiveSupport::Notifications.instrument("logout.mobile3", {:member => current_member})
     session[:member_id] = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil

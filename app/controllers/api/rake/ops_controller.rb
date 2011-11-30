@@ -7,7 +7,9 @@ class Api::Rake::OpsController < ApplicationController
   # curl -u <first>_<last>:<pwd> http://server/api/rake/ops/set_do.json
   def set_do
     Member.set_do
-    render :json => "OK\n"
+    name = Member.current_do.last_name
+    ActiveSupport::Notifications.instrument("rake.ops.set_do", {:text => "current do: #{name}"})
+    render :json => "OK (current do: #{name})\n"
   end
 
   # curl -u <first>_<last>:<pwd> http://server/api/rake/ops/message_cleanup.json
@@ -20,6 +22,7 @@ class Api::Rake::OpsController < ApplicationController
         purge_count += 1
       end
     end
+    ActiveSupport::Notifications.instrument("rake.ops.message_cleanup", {:text => "records purged: #{purge_count}"})
     render :json => "OK (records purged: #{purge_count})\n"
   end
 

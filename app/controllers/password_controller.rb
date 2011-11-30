@@ -36,6 +36,7 @@ class PasswordController < ApplicationController
     @member = Member.find_by_forgot_password_token(params['token'])
     if @member && (@member.forgot_password_expires_at > Time.now)
       @member.clear_forgot_password_token
+      ActiveSupport::Notifications.instrument("password.reset", {:member => @member})
       member_login(@member) unless member_signed_in?
       @member.password = ""
       authorize! :manage, @member

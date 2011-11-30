@@ -143,6 +143,12 @@ class Member < ActiveRecord::Base
     full_name.gsub(' ','.')
   end
 
+  def monitor_name
+    first = self.first_name[0..0].downcase
+    last  = self.last_name[0..2].downcase
+    first + last
+  end
+
   def bd
     roles.all.find {|r| r.typ.downcase == "bd"} ? true : false
   end

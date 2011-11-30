@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>System Monitor</title>
+  <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
+  <link rel="stylesheet" href="/assets/mobile3.css" type="text/css">
+  <link rel="stylesheet" href="/assets/monitor.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <script src="/assets/monitor/application.js"></script>
+  <% if @is_ipad %>
+    <script src="/assets/monitor/iscroll.js"></script>
+  <% end %>
+  <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
+  <script>
+    window.events      = new Monitor_Events(<%= raw @event_json %>)
+    window.snapshots   = new Monitor_Snapshots(<%= raw @snapshot_json %>)
+    window.faye_server = "<%= FAYE_SERVER %>"
+  </script>
+</head>
+
+<body>
+
+<header>
+  <div id=title>
+    <div id="label">Text Here</div>
+  </div>
+</header>
+
+<div id='wrapper'>
+  <div id='content'>
+
+    <div id='home' class='page'>
+
+      <div class="stats">
+        <div id="snapshot_time" style='margin-bottom: 5px;'>TBD</div>
+        cpu
+        <span id="cpu_spark" data-ymin="0" data-ymax="100" class="sparkline">1 1 1</span>
+        <span id="cpu">TBD</span>%
+        <span style='margin-left: 10px;'>mem</span>
+        <span id="mem_spark" data-ymin="0" data-ymax="100" class="sparkline">1 1 1</span>
+        <span id="mem">TBD</span>%
+      </div>
+      
+      <div id="xevents" class="xevents">
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,11 +1,13 @@
-class Mobile4::SessionsController < ApplicationController
+class Monitor::SessionsController < ApplicationController
 
   def new
     @page_name = "Login"
+    @msg = ""
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
+      ActiveSupport::Notifications.instrument("login.monitor.cookie", {:member => member})
       cookies[:logged_in] = {:value => "true", :expires => Time.now + 360000}
-      redirect_to mobile4_path, :notice => "Welcome back #{member.first_name}"
+      redirect_to monitor_path, :notice => "Welcome back #{member.first_name}"
       return
     end
     render :layout => false
@@ -22,19 +24,21 @@ class Mobile4::SessionsController < ApplicationController
         cookies[:logged_in] = nil
         cookies[:remember_me_token] = nil
       end
+      ActiveSupport::Notifications.instrument("login.monitor.form", {:member => member})
       member_login(member)
-      redirect_to mobile4_path
+      redirect_to monitor_path
     else
+      @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
     end
   end
 
   def destroy
-    ActiveSupport::Notifications.instrument("logout.mobile4", {:member => current_member})
+    ActiveSupport::Notifications.instrument("logout.monitor", {:member => current_member})
     session[:member_id] = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil
-    redirect_to "/mobile4/login", :notice => "Logged out!"
+    redirect_to '/monitor/login', :notice => "Logged out!"
   end
 
 end

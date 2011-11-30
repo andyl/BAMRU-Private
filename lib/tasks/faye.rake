@@ -16,6 +16,15 @@ namespace :faye do
     system cmd
   end
 
+  desc "Send Faye Message"
+  task :send2 do
+    require 'env_settings'
+    abort("Need a message (MSG='...')") unless ENV['MSG']
+    message = {:channel => '/chats/new', :data => ENV['MSG']}
+    uri = URI.parse(FAYE_SERVER)
+    Net::HTTP.post_form(uri, :message => message.to_json)
+  end
+
   desc "Generate Upstart config files"
   task :upstart do
     system "sudo bundle exec foreman export upstart /etc/init -u aleak -a bnet"

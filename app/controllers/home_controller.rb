@@ -15,6 +15,7 @@ class HomeController < ApplicationController
   end
 
   def labs
+    ActiveSupport::Notifications.instrument("service.labs", {:member => current_member})
   end
 
   def edit_info
@@ -24,6 +25,7 @@ class HomeController < ApplicationController
     path = params[:wiki_path] || ""
     path = path.split('?').first unless path.blank?
     mw_file = "/home/aleak/.mw_auth/#{current_member.wiki_name}"
+    ActiveSupport::Notifications.instrument("service.wiki", {:member => current_member})
     system "ssh wiki.bamru.net 'touch #{mw_file}'"
     @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
   end

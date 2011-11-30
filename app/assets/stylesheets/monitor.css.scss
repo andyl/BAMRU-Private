@@ -1,0 +1,46 @@
+.sparkline {color: red;}
+
+.stats {
+  background: lightblue;
+  text-align: center;
+  padding: 3px;
+}
+
+.xevents {
+  background: white;
+  border: 1px black;
+  margin-top: 10px;
+  padding: 2px 1px 1px 1px;
+}
+
+.xrow {
+  margin-bottom: 1px;
+}
+
+.xintro {
+  width: 60px;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  background: #cccccc;
+  margin-right:  2px;
+  padding-right: 2px;
+  padding-left:  2px;
+}
+
+.xcontent {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.xmem {
+  float: left;
+  width: 40px;
+  text-align: right;
+  margin-right: 3px;
+  overflow: hidden;
+  whitespace: nowrap;
+  background: #fafad2
+}
+

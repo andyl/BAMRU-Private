@@ -83,7 +83,6 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     columnize (0.3.4)
-    cookiejar (0.3.0)
     csv-mapper (0.5.1)
       fastercsv
     daemons (1.1.4)
@@ -111,10 +110,9 @@ GEM
     faker (0.9.5)
       i18n (~> 0.4)
     fastercsv (1.5.4)
-    faye (0.7.0)
-      cookiejar (>= 0.3.0)
+    faye (0.6.4)
       em-hiredis (>= 0.0.1)
-      em-http-request (~> 0.3)
+      em-http-request (>= 0.2)
       eventmachine (~> 0.12.0)
       json (>= 1.0)
       rack (>= 1.0)
@@ -314,7 +312,7 @@ DEPENDENCIES
   factory_girl
   faker
   fastercsv
-  faye (= 0.7.0)
+  faye (= 0.6.4)
   foreman
   guard
   guard-coffeescript

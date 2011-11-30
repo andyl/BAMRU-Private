@@ -83,6 +83,7 @@ Zn::Application.routes.draw do
 
   get "mobile"   => "mobile3#index"
   get "mobile3"  => "mobile3#index"
+  get "mobile/login"    => "mobile3/sessions#new"
   get "mobile3/login"   => "mobile3/sessions#new",     :as => "mobile_login"
   get "mobile3/logout"  => "mobile3/sessions#destroy", :as => "mobile_logout"
   namespace "mobile3" do
@@ -95,6 +96,13 @@ Zn::Application.routes.draw do
   namespace "mobile4" do
     resources :sessions
   end
+
+  get "monitor"  => "monitor#index"
+  get "monitor/login"   => "monitor/sessions#new",     :as => "monitor_login"
+  get "monitor/logout"  => "monitor/sessions#destroy", :as => "monitor_logout"
+  namespace "monitor" do
+    resources :sessions
+  end  
 
   get "mtimer" => "mtimer#index"
 

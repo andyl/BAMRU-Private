@@ -1,6 +1,6 @@
 class Mobile3Controller < ApplicationController
 
-  before_filter :authenticate_mobile_member!
+  before_filter { authenticate_mobile_member! '/mobile3/login' }
   
   def index
     SpriteGen.generate_sprite_icons

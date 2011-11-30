@@ -2,6 +2,8 @@ BNET_ENVIRONMENT_FILE = '/home/aleak/.bnet_environment.yaml'
 
 abort "MISSING ENVIRONMENT FILE" unless File.exist?(BNET_ENVIRONMENT_FILE)
 
+require 'yaml'
+
 yaml_env = YAML.load(File.read(BNET_ENVIRONMENT_FILE))
 
 GOOGLE_CONSUMER_KEY    = yaml_env[:google_consumer_key]

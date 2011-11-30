@@ -15,6 +15,7 @@ class Api::Rake::RemindersController < ApplicationController
       params  = MessageParams.do_shift_pending(member)
       message = Message.create(params)
       message.create_all_outbound_mails
+      ActiveSupport::Notifications.instrument("rake.reminders.do_shift_pending", {:member => member})
     end
     render :json => "OK\n"
   end
@@ -29,6 +30,7 @@ class Api::Rake::RemindersController < ApplicationController
       params  = MessageParams.do_shift_starting(member)
       message = Message.create(params)
       message.create_all_outbound_mails
+      ActiveSupport::Notifications.instrument("rake.reminders.do_shift_starting", {:member => member})
     end
     render :json => "OK\n"
   end
@@ -59,7 +61,9 @@ class Api::Rake::RemindersController < ApplicationController
       cert.update_attributes({:ninety_day_notice_sent_at => Time.now})
       ninety_count += 1
     end
-    render :json => "OK (ninety:#{ninety_count} thirty:#{thirty_count} expired:#{expire_count})\n"
+    message_text = "ninety:#{ninety_count} thirty:#{thirty_count} expired:#{expire_count}"
+    ActiveSupport::Notifications.instrument("rake.reminders.cert_expiration", {:text => message_text})
+    render :json => "OK (#{message_text})\n"
   end
 
 end
