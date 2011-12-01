@@ -40,6 +40,7 @@ class DoAssignmentsController < ApplicationController
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
       Member.set_do
+      ActiveSupport::Notifications.instrument("ops.do_assignments.update", {:member => current_member})
       rstr = "/do_assignments?quarter=#{params[:quarter]}&year=#{params[:year]}"
       redirect_to rstr, :notice => "Records Saved"
     else

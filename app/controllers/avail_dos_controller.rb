@@ -23,6 +23,7 @@ class AvailDosController < ApplicationController
       cy = params['member']['current_year']
       cq = params['member']['current_quarter']
       hash = {:year => cy, :quarter => cq} if (cy && cq)
+      ActiveSupport::Notifications.instrument("ops.avail_dos.update", {:member => @member})
       redirect_to(hash, {:notice => "Records Saved"})
     else
       render "edit"

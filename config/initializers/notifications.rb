@@ -27,7 +27,7 @@ def prep_data(args)
   data
 end
 
-event_list = /service|logout|login|password|rake/
+event_list = /ops|service|logout|login|password|rake/
 
 ActiveSupport::Notifications.subscribe(event_list) do |*args|
   data = prep_data(args)
