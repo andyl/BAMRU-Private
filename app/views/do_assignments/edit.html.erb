@@ -5,21 +5,28 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=left><b>Unit Duty Officers</b></td>
-          <td align=right>
-            <%= link_to("DO Schedule", do_assignments_path(@quarter)) %>
+          <td width=33% align=left><b>Edit Unit Duty Officers</b></td>
+          <td width=33% align=center><%= link_to("Show Q#{@quarter[:quarter]} Unit DO Schedule", do_assignments_path(@quarter)) %></td>
+          <td width=33% align=right>
+            <%= avail_dos_link_next_quarter("Edit My Q#{next_quarter_number} DO Availability") %>
           </td>
         </tr>
       </table>
     </div>
     <div id=x_single_col class=centered>
-      <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %> <p/>
-
-      <%= edit_link_prev(@quarter) %> <%= edit_link_current_quarter %> <%= edit_link_next(@quarter) %><p/>
+      <table width=100%>
+        <tr>
+          <td width=40% align=right>Editing <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %></td>
+          <td width=20%</td>
+          <td width=40% align=left><%= edit_link_prev(@quarter) %> <%= edit_link_current_quarter %> <%= edit_link_next(@quarter) %></td>
+        </tr>
+      </table>
 
       <%= form_for @org, :method => :post, :url => do_assignments_path do |org| %>
         <table align=center border=1>
           <tr><th>Year</th><th>Quarter</th><th>Week</th><th>Start - End</th><th>Primary DO</th><th>Backup DO</th></tr>
+          <input type="hidden" name="quarter" value="<%= @quarter[:quarter] %>" />
+          <input type="hidden" name="year"    value="<%= @quarter[:year] %>" />
           <% @org.do_assignments_for(@quarter[:year], @quarter[:quarter]).each do |ado| %>
             <%= org.fields_for :do_assignments, ado do |ido| %>
               <%= ido.hidden_field :year, :value => ado.year %>
@@ -34,7 +41,7 @@
               <td><%= ado.week%></td>
               <td><%= ado.start_day %> - <%= ado.end_day %></td>
               <td>
-                <%= ido.select(:name, [ado.name] + ado.avail_members, {:include_blank => true}) %>
+                <%= ido.select(:name, [""] + ado.avail_members) %>
               </td>
               <td>
                 <% if ado.current? %>

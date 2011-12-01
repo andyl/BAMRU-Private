@@ -10,6 +10,7 @@ class DoAssignment < ActiveRecord::Base
 
   before_save :set_primary_from_name
   before_save :set_start_and_finish
+  before_save :sync_name_and_primary
 
 
   # ----- Validations -----
@@ -20,6 +21,8 @@ class DoAssignment < ActiveRecord::Base
   scope :this_wk, where('start < ?', Time.now).where('finish > ?', Time.now)
   scope :next_wk, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
   scope :pending, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
+  scope :has_backup,  where("backup_id <> ''")
+  scope :non_current, where('start > ? OR finish < ?', x = Time.now, x)
 
   # ----- Class Methods -----
   def self.find_or_new(hash)
@@ -32,8 +35,13 @@ class DoAssignment < ActiveRecord::Base
     self.finish = end_time
   end
 
+  def sync_name_and_primary
+    self.primary_id = nil if self.name.blank?
+    self.backup_id  = nil if self.primary_id.blank?
+  end
+
   def avail_members
-    AvailDo.where(:year => year, :quarter => quarter, :week => week).
+    AvailDo.where(:year => year, :quarter => quarter, :week => week, :typ => "available").
             all.
             map {|a| a.member}.
             sort {|a,b| a.last_name <=> b.last_name}.

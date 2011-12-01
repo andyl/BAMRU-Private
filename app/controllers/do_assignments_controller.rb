@@ -40,7 +40,8 @@ class DoAssignmentsController < ApplicationController
     @org = Org.where(:name => "BAMRU").first
     if @org.update_attributes(params["org"])
       Member.set_do
-      redirect_to do_assignments_path(@org), :notice => "Records Saved"
+      rstr = "/do_assignments?quarter=#{params[:quarter]}&year=#{params[:year]}"
+      redirect_to rstr, :notice => "Records Saved"
     else
       render "edit"
     end

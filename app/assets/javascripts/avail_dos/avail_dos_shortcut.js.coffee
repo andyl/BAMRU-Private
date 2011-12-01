@@ -7,8 +7,11 @@ $(document).ready ->
     return if value == "*"
     mem_select = $("select[id^=mem]")
     mem_select.children("option").attr("selected", false)
+    console.log value
     if value == "unavailable"
       mem_select.children("option[value^=un]").attr("selected", true)
     if value == "available"
       mem_select.children("option[value^=av]").attr("selected", true)
+    if value == ""
+      $("input[type=text]").attr("value", " ")
     setTimeout('$("#quickset option").attr("selected", false)', 1000)

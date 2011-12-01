@@ -17,7 +17,7 @@
           </td>
           <% if current_member.admin? %>
             <td width=20% align=center>
-              <%= link_to("Unit DO Schedule", do_assignments_path) %>
+              <%= link_to("Show Q#{@quarter[:quarter]} Unit DO Schedule", do_assignments_path(@quarter)) %>
             </td>
             <td width=40% align=right>
               <%= link_to('<', member_avail_dos_path(@member.prev_member_id)) %>
@@ -26,7 +26,7 @@
             </td>
           <% else %>
             <td width=60% align=right>
-              <%= link_to("Unit DO Schedule", do_assignments_path) %>
+              <%= link_to("Show Unit DO Schedule", do_assignments_path) %>
             </td>
           <% end %>
         </tr>
@@ -35,9 +35,15 @@
 
     <div id=x_single_col class=centered>
 
-      <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %><p/>
-      
-      <%= avail_dos_link_prev(@quarter) %> <%= avail_dos_link_current_quarter(@quarter) %> <%= avail_dos_link_next(@quarter) %><p/>
+      <table width=100%>
+        <tr>
+          <td width=40% align=right>Editing <%= @quarter[:year] %> / Q<%= @quarter[:quarter] %></td>
+          <td width=20%</td>
+          <td width=40% align=left>
+            <%= avail_dos_link_prev(@quarter) %> <%= avail_dos_link_current_quarter(@quarter) %> <%= avail_dos_link_next(@quarter) %>
+          </td>
+        </tr>
+      </table>
 
       <%= form_for @member, :method => :post, :url => member_avail_dos_path(@member) do |mem| %>
         <%= mem.hidden_field :current_year, :value => @quarter[:year] %>
@@ -71,7 +77,6 @@
             <td width=50%>Shortcut:
               <select id=quickset>
               <option value="*"></option>
-              <option value="">Clear all</option>
               <option value="available">Set all to Available</option>
               <option value="unavailable">Set all to Unavailable</option>
               </select>

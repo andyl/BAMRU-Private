@@ -101,11 +101,15 @@ class Member < ActiveRecord::Base
   # ----- Class Methods ----
   def self.set_do
     where(:current_do => true).all.each {|mem| mem.current_do = false ; mem.save}
+    DoAssignment.non_current.has_backup.all.each do |doa|
+      doa.update_attributes(:backup_id => nil)
+    end
     ass = DoAssignment.current.first
     if x = ass.backup
       x.current_do = true ; x.save
     else
       x = ass.primary
+      return if x.blank?
       x.current_do = true ; x.save
     end
   end

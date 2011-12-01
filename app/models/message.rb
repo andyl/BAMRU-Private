@@ -3,10 +3,10 @@ class Message < ActiveRecord::Base
   # ----- Associations -----
 
   belongs_to :author,         :class_name => 'Member'
-  has_one    :rsvp,           :dependent => :destroy
-  has_many   :distributions,  :dependent => :destroy
-  has_many   :outbound_mails, :through => :distributions
-  has_many   :recipients,     :through => :distributions, :source => :member
+  has_one    :rsvp,           :dependent  => :destroy
+  has_many   :distributions,  :dependent  => :destroy
+  has_many   :outbound_mails, :through    => :distributions
+  has_many   :recipients,     :through    => :distributions, :source => :member
 
   accepts_nested_attributes_for :distributions, :allow_destroy => true
 
