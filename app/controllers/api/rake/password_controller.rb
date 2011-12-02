@@ -14,7 +14,7 @@ class Api::Rake::PasswordController < ApplicationController
     hash    = MessageParams.password_reset(member, adr)
     message = Message.create(hash)
     message.create_all_outbound_mails
-    ActiveSupport::Notifications.instrument("rake.password.reset", {:member => member, :text => "email: #{adr}"})
+    ActiveSupport::Notifications.instrument("rake.password.reset", {:member => member, :text => adr})
     render :json => "OK\n"
   end
 

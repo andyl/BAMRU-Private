@@ -44,12 +44,4 @@ class MemberDecorator < ApplicationDecorator
     model.emergency_contacts.map {|emc| subset(emc.attributes, emc_fields)}
   end
 
-  #def display_photos(member)
-  #  return "" if member.photos.blank?
-  #  member.photos.limit(3).map {|pic| image_tag(pic.image.url(:thumb))}.join + "<br/>"
-  #end
-
-  def photo_data
-    []
-  end
 end

@@ -75,12 +75,6 @@ Zn::Application.routes.draw do
     resources :chats
   end
 
-  get "mobile2" => "mobile2#index"
-  namespace "mobile2" do
-    resources :members
-    resources :messages
-  end
-
   get "mobile"   => "mobile3#index"
   get "mobile3"  => "mobile3#index"
   get "mobile/login"    => "mobile3/sessions#new"
@@ -120,12 +114,6 @@ Zn::Application.routes.draw do
       get  "reminders/cert_expiration"   => "reminders#cert_expiration"
     end
 
-    get "mobile2" => "mobile2#index"
-    namespace "mobile2" do
-      resources :members
-      resources :messages
-    end
-
     get  "mobile3" => "mobile3#index"
     namespace "mobile3" do
       resources :members
@@ -161,21 +149,6 @@ Zn::Application.routes.draw do
     mount Jasminerice::Engine => "/jasmine"
     mount Jasminerice::Engine => "/jas2"
     mount Jasminerice::Engine => "/jas3"
-  end
-
-  manifest_mobile2 = Rack::Offline.configure do
-    cache "http://code.jquery.com/jquery-1.6.2.min.js"
-    cache "/stylesheets/jquery.mobile-1.0rc1.css"
-    cache "/favicon_d1.ico"
-    cache "/favicon_p1.ico"
-    cache "/images/jqm/ajax-loader.png"
-    cache "/images/jqm/icons-18-black.png"
-    cache "/images/jqm/icons-18-white.png"
-    cache "/images/jqm/icons-36-black.png"
-    cache "/images/jqm/icons-36-white.png"
-    cache "/assets/mobile2/all_mobile2.js"
-
-    network "/"
   end
 
   manifest_mobile3 = Rack::Offline.configure do
@@ -220,7 +193,6 @@ Zn::Application.routes.draw do
     network "/"
   end
 
-  match "/mobile2f.manifest"     => manifest_mobile2
   match "/mobile3f.manifest"     => manifest_mobile3
   match "/mobile4f.manifest"     => manifest_mobile4
   match "/mtimerf.manifest"      => manifest_mtimer

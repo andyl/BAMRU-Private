@@ -15,7 +15,7 @@ class Api::Rake::MessagesController < ApplicationController
     id = params[:id]
     @om = OutboundMail.find id
     member = @om.distribution.member
-    ActiveSupport::Notifications.instrument("rake.message.send", {:member => member})
+    ActiveSupport::Notifications.instrument("rake.message.send", {:member => member, :text => @om.address})
     @om.update_attributes(:sent_at => Time.now) unless @om.nil?  || ! @om.sent_at.nil?
     render :json => "OK\n"
   end
