@@ -1,7 +1,7 @@
 #= require mobile3/models/common_model
 
-window.inbox = []
-window.myid  = 24
+window.distributions = []
+#window.myid  = 24
 
 class @M3_Message extends M3_CommonModel
   initialize: ->
@@ -10,7 +10,7 @@ class @M3_Message extends M3_CommonModel
       @distributions = new M3_Distributions @get('distributions')
       _(@distributions.models).each (dist) ->
         dist.set({'message': obj})
-        window.inbox = window.inbox.concat(dist) if dist.get('member_id') == window.myid
+        window.distributions = window.distributions.concat(dist) if dist.get('member_id') == window.myid
   hasRSVP:      -> @has('rsvp_prompt')
   sentCount:    -> @distributions.models.length
   readCount:    ->
@@ -29,3 +29,18 @@ class @M3_Message extends M3_CommonModel
     val = _(@distributions.models).select (dist)->
       dist.get('rsvp') == "no"
     val.length
+  markAsRead: ->
+    dist = _(@distributions.models).select (dist) ->
+      dist.get('member_id') == myID
+    return if dist.length == 0
+    window.fdist = dist[0]
+    return unless navigator.onLine
+#    $.post('/api/mobile3/distributions/1/markread')
+    console.log "GOING TO SET FDIST TO TRUE"
+    console.log fdist
+    console.log fdist.get('name')
+    fdist.set({'read':'yes'})
+    console.log fdist
+    console.log fdist.get('read')
+
+

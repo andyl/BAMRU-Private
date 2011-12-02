@@ -1,7 +1,9 @@
 window.member_test_data = [
+    id:         1
     first_name: "Andy"
     last_name:  "Leak"
     full_roles:  "FM"
+
   ,
     first_name: "John"
     last_name:  "Chang"

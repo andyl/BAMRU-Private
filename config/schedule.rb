@@ -1,7 +1,7 @@
 # Use this file to define cron jobs.
 #
 # More info on cron: http://en.wikipedia.org/wiki/Cron
-# Learn more: http://gigbthub.com/javan/whenever
+# Learn more: http://github.com/javan/whenever
 
 cmd = "script/nq :task >> log/nq.log 2>&1"
 job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
@@ -41,6 +41,11 @@ every :tuesday, :at => '8:15 am' do
 end
 every :tuesday, :at => '8:17 am' do
   nq "rake tmp:clear"
+end
+
+# ----- Broadcast the date to the Event Monitor channel -----
+every 6.hours do
+  nq "rake faye:datecast"
 end
 
 # ----- Retrieve incoming email from Google -----

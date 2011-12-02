@@ -33,9 +33,11 @@ class @M3_MessageShowView extends M3_CommonView
     return "" unless @model.hasRSVP()
     return "<br/>RSVP: #{@model.attributes.rsvp_prompt} #{@yes_no_helper()} "
   distribution_helper: ->
-    rows = _(@model.attributes.distributions).map (dist) ->
-      "<tr><td>#{dist.name}</td><td>#{dist.read}</td><td>#{dist.rsvp}</td></tr>"
+    window.what = @model.distributions
+    rows = _(@model.distributions.models).map (dist) ->
+      "<tr><td>#{dist.get('name')}</td><td>#{dist.get('read')}</td><td>#{dist.get('rsvp')}</td></tr>"
     rows.join('')
   render: =>
+    @model.markAsRead()
     $(@el).html(@template(@model.toJSON()))
     @

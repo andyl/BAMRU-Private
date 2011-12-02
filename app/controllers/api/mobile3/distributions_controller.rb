@@ -8,7 +8,8 @@ class Api::Mobile3::DistributionsController < ApplicationController
     render :json => DistributionDecorator.mobile_json(current_member.id), :layout => false
   end
 
-  def show
+  def update
+    debugger
     
   end
 

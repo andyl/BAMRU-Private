@@ -1,4 +1,15 @@
+require 'env_settings'
+
+require File.dirname(__FILE__) + "/../../lib/notifications_util"
+
 namespace :faye do
+
+  desc "Broadcast the Date"
+  task :datecast do
+    time = Time.now.strftime("%a %b %d")
+    data = prep_data(["date", Time.now, "-", "-", {:text => time}])
+    write_log(data)
+  end
 
   desc "Run Faye Server"
   task :run_server do
@@ -7,7 +18,6 @@ namespace :faye do
 
   desc "Send Faye Message using CURL"
   task :send_curl do
-    require 'env_settings'
     abort("Need a message (MSG='...')") unless ENV['MSG']
     msg = %Q('message={"channel":"/chats/new", "data":"#{ENV['MSG']}"}')
     cmd = "curl #{FAYE_SERVER} -d #{msg}"
@@ -17,7 +27,6 @@ namespace :faye do
 
   desc "Send Faye Message using HTTP Post"
   task :send_post do
-    require 'env_settings'
     abort("Need a message (MSG='...')") unless ENV['MSG']
     message = {:channel => '/chats/new', :data => ENV['MSG']}
     uri = URI.parse(FAYE_SERVER)
@@ -31,7 +40,6 @@ namespace :faye do
 
   desc "CL Chat Client CHANNEL='/chats/new'"
   task :chat do
-    require 'env_settings'
     require File.dirname(File.expand_path(__FILE__)) + '/../faye_chat'
     nick    = Process.pid.to_s
     channel = ENV['CHANNEL'] || "/chats/new"

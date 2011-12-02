@@ -107,6 +107,8 @@ class ApplicationController < ActionController::Base
       session[:tgt_path]  = request.url
       redirect_to login_url, :alert => "You must first log in to access this page"
     end
+    txt = "#{params[:controller]}##{params[:action]}"
+    ActiveSupport::Notifications.instrument("pgvw", {:member => current_member, :text => txt})
   end
 
   def authenticate_mobile_member!(redirect_url = mobile_login_url)
