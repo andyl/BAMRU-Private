@@ -1,19 +1,21 @@
-#window.distribution_test_data = [
-#    id:            24
-#    author_id:     23
-#    text:          "Last Message."
-#    creation_date: "Jan-4 15:33"
-#  ,
-#    id:            23
-#    author_id:     19
-#    text:          "Middle Message."
-#    creation_date: "Jan-3 12:33"
-#  ,
-#    id:            22
-#    author_id:     17
-#    text:          "First Message."
-#    creation_date: "Jan-2 09:33"
-#    rsvp_prompt:   "Do you see this?"
-#    rsvp_yes_prompt: "Yes I do"
-#    rsvp_no_prompt:  "No I don't"
-#  ]
+window.distribution_test_data = [
+  member_id:  2
+  message_id: 1
+  read: true
+  rsvp_answer: "yes"
+  ,
+  member_id:  2
+  message_id: 2
+  read: false
+  rsvp_answer: "NA"
+  ,
+  member_id:  3
+  message_id: 3
+  read: true
+  rsvp_answer: "no"
+  ,
+  member_id:  4
+  message_id: 4
+  read: true
+  rsvp_answer: "NA"
+]

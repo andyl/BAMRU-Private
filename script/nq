@@ -2,13 +2,14 @@
 
 width    = 80
 base_dir = "tmp/nq"
+PID      = Process.pid
 pid_file = base_dir + "/_nq_pid.txt"
 prog = $0
 
 system "mkdir -p #{base_dir}"
 
 if ARGV.length > 0
-  cmd_file = base_dir + "/nq_#{Time.now.strftime("%y%m%d_%H%M%S")}.txt"
+  cmd_file = base_dir + "/nq_#{Time.now.strftime("%y%m%d_%H%M%S")}_#{PID}.txt"
   command  = ARGV.join(' ')
   File.open(cmd_file, 'w') { |f| f.puts command }
   puts " Wrote Cmd File: #{cmd_file} ".center(width, '=')
@@ -25,7 +26,7 @@ if ARGV.length > 0
   STDOUT.flush
 end
 
-File.open(pid_file, 'w') {|f| f.puts Process.pid}
+File.open(pid_file, 'w') {|f| f.puts PID}
 
 def ts() Time.now.strftime("%y-%m-%d_%H:%M:%S"); end
 
@@ -34,12 +35,12 @@ STDOUT.flush
 while (file = Dir.glob("#{base_dir}/nq_*").first) != nil do
   cmd = File.read(file).chomp
   depth = Dir.glob("#{base_dir}/nq_*").length
-  puts (" Starting nq PID:#{Process.pid} @ #{ts} ").center(width, '-')
+  puts (" Starting nq PID:#{PID} @ #{ts} ").center(width, '-')
   puts (" Using Cmd File: #{file.split('/').last} | Queue Depth: #{depth} ").center(width, '-')
   puts cmd
   STDOUT.flush
   system cmd
-  puts (" Finished PID:#{Process.pid} @ #{ts} ").center(width, '-')
+  puts (" Finished PID:#{PID} @ #{ts} ").center(width, '-')
   system "rm #{file}"
   STDOUT.flush
   sleep 10

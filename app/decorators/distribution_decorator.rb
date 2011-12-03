@@ -2,7 +2,7 @@ class DistributionDecorator < ApplicationDecorator
   decorates :distribution
 
   def mobile_json
-    fields = ["id", "message_id"]
+    fields = ["id", "message_id", "member_id", "read", "rsvp_answer"]
     hash = subset(model.attributes, fields)
     hash.to_json
   end
