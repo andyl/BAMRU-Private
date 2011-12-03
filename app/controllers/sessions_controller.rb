@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_name = params[:user_name].squeeze.strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
+    user_name = params[:user_name].squeeze(' ').strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
     member = Member.find_by_user_name(user_name)
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"

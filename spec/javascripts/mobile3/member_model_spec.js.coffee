@@ -11,19 +11,19 @@ describe "M3_Member", ->
   describe "basic object generation", ->
     it "generates an object", ->
       expect(@mem0).toBeDefined()
-    it "generates a new object", ->
-      expect(@mem0.isNew()).toBeTruthy()
+#    it "generates a new object", ->
+#      expect(@mem0.isNew()).toBeTruthy()
     it "updates the input name", ->
       local_name     = "New Name"
       @mem0.set({"full_name": local_name})
       (expect @mem0.get('full_name')).toEqual(local_name)
   describe "url", ->
-    it 'has a default url', ->
-      expect(@mem0.url()).toBeDefined()
-      expect(@mem0.url()).toEqual @col_path
-    describe "when no id is set", ->
-      it "returns the collection URL", ->
-        expect(@mem0.url()).toEqual @col_path
+#    it 'has a default url', ->
+#      expect(@mem0.url()).toBeDefined()
+#      expect(@mem0.url()).toEqual @col_path
+#    describe "when no id is set", ->
+#      it "returns the collection URL", ->
+#        expect(@mem0.url()).toEqual @col_path
     describe "when id is set", ->
       it "returns the collection URL and ID", ->
         @mem0.id = 1
@@ -39,11 +39,11 @@ describe "M3_Member", ->
         expect(@mem1.hasPhone()).toEqual true
       it 'returns false when phone is empty', ->
         expect(@mem2.hasPhone()).toEqual false
-    describe "#hasHam", ->
-      it 'returns false when ham does not exist', ->
-        expect(@mem0.hasHam()).toEqual false
-      it 'returns true when ham exists', ->
-        expect(@mem1.hasHam()).toEqual true
+#    describe "#hasHam", ->
+#      it 'returns false when ham does not exist', ->
+#        expect(@mem0.hasHam()).toEqual false
+#      it 'returns true when ham exists', ->
+#        expect(@mem1.hasHam()).toEqual true
 
 
 # ----- Collection Specs -----
