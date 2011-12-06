@@ -13,9 +13,7 @@ class Distribution < ActiveRecord::Base
   before_save :set_read_time
 
 
-
   # ----- Validations -----
-
 
 
   # ----- Scopes -----
@@ -24,6 +22,7 @@ class Distribution < ActiveRecord::Base
   scope :read,      where(:read => true)
   scope :unread,    where(:read => false)
 
+  scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
   scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
 
   scope :rsvp_yes,  where(:rsvp_answer => "Yes")

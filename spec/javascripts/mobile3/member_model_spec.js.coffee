@@ -5,33 +5,36 @@
 describe "M3_Member", ->
   beforeEach ->
     @col_path = "/collection"
-    @mem0 = new M3_Member(member_test_data[0])
+    @mem0 = new M3_Member(m3_member_test_data[0])
     col  = { url: @col_path }
     @mem0.collection = col
+
   describe "basic object generation", ->
     it "generates an object", ->
       expect(@mem0).toBeDefined()
     it "generates a new object", ->
-      expect(@mem0.isNew()).toBeTruthy()
+      expect(@mem0.isNew()).toBeFalsy()
     it "updates the input name", ->
       local_name     = "New Name"
       @mem0.set({"full_name": local_name})
       (expect @mem0.get('full_name')).toEqual(local_name)
+
   describe "url", ->
     it 'has a default url', ->
       expect(@mem0.url()).toBeDefined()
-      expect(@mem0.url()).toEqual @col_path
-    describe "when no id is set", ->
-      it "returns the collection URL", ->
-        expect(@mem0.url()).toEqual @col_path
+      expect(@mem0.url()).toEqual "#{@col_path}/1"
     describe "when id is set", ->
       it "returns the collection URL and ID", ->
         @mem0.id = 1
         expect(@mem0.url()).toEqual @col_path + '/1'
+  describe "shortName", ->
+    it "returns the shortName", ->
+      expect(@mem0.shortName()).toEqual "A. Leak"
+
   describe "Member Predicates", ->
     beforeEach ->
-      @mem1 = new M3_Member(member_test_data[1])
-      @mem2 = new M3_Member(member_test_data[2])
+      @mem1 = new M3_Member(m3_member_test_data[1])
+      @mem2 = new M3_Member(m3_member_test_data[2])
     describe "#hasPhone", ->
       it 'returns false when phone does not exist', ->
         expect(@mem0.hasPhone()).toEqual false
@@ -50,7 +53,8 @@ describe "M3_Member", ->
 
 describe "M3_Members", ->
   beforeEach ->
-    @obj = new M3_Members(member_test_data)
+    @obj = new M3_Members(m3_member_test_data)
+
   describe "basic object generation", ->
     it "generates an object", ->
       expect(@obj).toBeDefined()
@@ -64,7 +68,7 @@ describe "M3 Server Fetch", ->
     @server.respondWith "GET", @url, [
       200
       "Content-Type": "application/json"
-      JSON.stringify(member_test_data)
+      JSON.stringify(m3_member_test_data)
     ]
     @members = new M3_Members
 

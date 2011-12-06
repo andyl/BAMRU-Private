@@ -2,7 +2,7 @@ class MemberDecorator < ApplicationDecorator
   decorates :member
 
   def mobile_json
-    member_fields = %w(first_name last_name id typ)
+    member_fields = %w(id typ first_name last_name)
     result = subset(model.attributes, member_fields)
     result["full_roles"]          = model.full_roles
     result["phones_attributes"]   = phone_data    if has_phone?

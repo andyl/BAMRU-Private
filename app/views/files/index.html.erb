@@ -43,7 +43,7 @@
               <td><%= raw(link_to(d.data_file_name, files_path + '/' + d.data_file_name, :target => "_blank")) %></td>
               <td><%= d.data_file_extension.upcase %></td>
               <td><%= d.member.full_name if d.member %></td>
-              <td><%= d.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= d.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= d.download_count %></td>
               <td><%= raw(link_to("Delete", file_path(d), :confirm => "Are you sure?", :method => :delete))%> </td>
             </tr>

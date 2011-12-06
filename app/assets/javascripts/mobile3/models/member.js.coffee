@@ -7,4 +7,7 @@ class @M3_Member extends M3_CommonModel
   hasContact:   -> @hasAttr('contacts_attributes')
   hasOtherInfo: -> @hasAttr('other_infos_attributes')
   hasHam:       -> @hasAttr('ham')
-  hasV9:        ->  @hasAttr('v9')
+  hasV9:        -> @hasAttr('v9')
+  shortName: ->
+    initial = @get('first_name').substring(0,1)
+    "#{initial}. #{@get('last_name')}"

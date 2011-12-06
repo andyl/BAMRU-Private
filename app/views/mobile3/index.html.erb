@@ -14,10 +14,11 @@
     <script src="/assets/mobile3/iscroll.js"></script>
   <% end %>
   <script>
+    window.myID          =  parseInt("<%= current_member.id %>");
     window.members       = new M3_Members(<%= raw @mem_json %>);
     window.messages      = new M3_Messages(<%= raw @msg_json %>);
     window.distributions = new M3_Distributions(<%= raw @dst_json %>);
-    window.myID      = "<%= current_member.id %>";
+    window.inbox         = new M3_Distributions(distributions.inbox(myID))
   </script>
 </head>
 
@@ -39,11 +40,11 @@
         <a class='lnav' href="#members" >Members</a>
         <a class='rnav' href="#members/<%=@do_id%>">DO:<%= @do_name %></a>
       </div>
-      <a class='nav' href="#status"  >Status Line</a>
-      <!--<a class='nav' href="#send"    >Send Page</a>-->
-      <a class='nav' href="#messages">Unit Message Log</a>
+      <a class='nav' href="#status"     >Status Line</a>
+      <a class='nav' href="#page_select">Send Page</a>
+      <a class='nav' href="#messages"   >Unit Message Log</a>
       <a class='nav' id="myinbox" href="#inbox"><%= @inbox_label %></a>
-      <a class='nav' href="#profile">My Profile</a>
+      <a class='nav' href="#profile"  >My Profile</a>
       <div class=footer>
         <div id=state></div>
         <div id=update>updated <%= Time.now.strftime("%b-%d %H:%M:%S") %></div>
@@ -74,11 +75,46 @@
       </div>
     </div>
 
-    <div id='send' class='page'>
-      <div style='text-align: center; padding:  20px;'>
-        Under Construction
+    <form action='/mobile3/send_page' method='POST'>
+      <div id='page_select' class='page'>
+
+        <div class="page_nav">
+          <li><a href="#page_select" class="page_nav_on">Select<span class=select_count></span></a></li>
+          <li><a href="#page_send" class="page_nav_off">Compose</a></li>
+        </div>
+
+        <div>
+          <% @members.each do |mem| -%>
+            <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="custom rck <%=mem.full_roles %> <%= mem.current_status %>" />
+            <label for="checkbox-<%= mem.id %>"><%= "#{mem.typ} - #{mem.full_name_do}" %></label>
+          <% end %>
+        </div>
+
       </div>
-    </div>
+
+      <div id='page_send' class='page'>
+
+        <div class="page_nav">
+          <li><a href="#page_select" class="page_nav_off">Select<span class=select_count></span></a></li>
+          <li><a href="#page_send" class="page_nav_on">Compose</a></li>
+        </div>
+
+        <div style='text-align: center;'>
+          <b>Message Text <span id='chars_remaining'></span></b>
+        </div>
+        <div class='ui-select' style="padding-right: 40px;">
+          <textarea rows=3 name="message[text]" id="textarea" style='width:100%; padding: 0px; border: 0px;'></textarea>
+        </div>
+        <div style='text-align: center; margin-top: 10px; margin-bottom: 0px; padding-bottom: 0px;'>
+          <b>RSVP</b>
+        </div>
+        <%= raw rsvp_mobile_select %>
+        <p></p>
+        <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
+        <button id=pgr_submit class='ui-btn-hidden' type="submit">Send to 0 members</button>
+      </div>
+
+    </form>
 
     <div id='messages' class='page'>
       MESSAGES

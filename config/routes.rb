@@ -20,7 +20,7 @@ Zn::Application.routes.draw do
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
 
-  get  "password/forgot" 
+  get  "password/forgot"
   post "password/send_email"   # collects an email address and sends email
   get  "password/sending"      # user notice after the email has been sent
 
@@ -60,7 +60,8 @@ Zn::Application.routes.draw do
     resources :chats
   end
 
-  get "mobile1" => "mobile1#index", :as => "mobile1"
+  get  "mobile1" => "mobile1#index", :as => "mobile1"
+  post "mobile1/send_page" => "mobile1#send_page"
   namespace "mobile1" do
     get "about"
     get "map"
@@ -77,6 +78,7 @@ Zn::Application.routes.draw do
 
   get "mobile"   => "mobile3#index"
   get "mobile3"  => "mobile3#index"
+  post "mobile3/send_page" => "mobile3#send_page"
   get "mobile/login"    => "mobile3/sessions#new"
   get "mobile3/login"   => "mobile3/sessions#new",     :as => "mobile_login"
   get "mobile3/logout"  => "mobile3/sessions#destroy", :as => "mobile_logout"

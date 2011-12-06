@@ -5,7 +5,7 @@
 
 describe "C2_ChatIndexView", ->
   beforeEach ->
-    @coll =  new C2_Chats chat_test_data
+    @coll =  new C2_Chats c2_chat_test_data
     @model = @coll.models[0]
     @view0 = new C2_ChatIndexView({model: @model})
     @rend0 = @view0.render()

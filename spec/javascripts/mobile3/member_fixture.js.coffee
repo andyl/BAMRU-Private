@@ -1,4 +1,5 @@
-window.member_test_data = [
+window.m3_member_test_data = [
+    id: 1
     first_name: "Andy"
     last_name:  "Leak"
     full_roles:  "FM"
@@ -7,6 +8,7 @@ window.member_test_data = [
     contacts_attributes: []
     photo: "false"
   ,
+    id: 2
     first_name: "John"
     last_name:  "Chang"
     full_roles:  "Bd TM"
@@ -16,6 +18,7 @@ window.member_test_data = [
     contacts_attributes:    []
     photo: "true"
   ,
+    id: 3
     first_name: "Winston"
     last_name:  "Smith"
     full_roles:  "T"

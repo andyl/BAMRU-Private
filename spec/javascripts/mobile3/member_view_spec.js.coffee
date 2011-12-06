@@ -5,7 +5,7 @@
 #describe "MemberShowView", ->
 #  beforeEach ->
 #    window.is_phone = "true"
-#    @coll =  new Members member_test_data
+#    @coll =  new Members m3_member_test_data
 #    @model = @coll.models[0]
 #    @view0 = new MemberShowView({model: @model})
 #

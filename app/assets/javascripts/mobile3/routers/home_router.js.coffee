@@ -1,15 +1,16 @@
 window.pageName = (page) ->
   switch page
-    when "#member"   then "Member Detail"
-    when "#members"  then "Roster"
-    when "#home"     then "BAMRU Mobile"
-    when "#status"   then "Status Line"
-    when "#messages" then "Message Log"
-    when "#message"  then "Message"
-    when "#send"     then "Send Page"
-    when "#inbox"    then "My Inbox"
-    when "#profile"  then "My Profile"
-    when "#default"  then "Not Found"
+    when "#member"      then "Member Detail"
+    when "#members"     then "Roster"
+    when "#home"        then "BAMRU Mobile"
+    when "#status"      then "Status Line"
+    when "#messages"    then "Message Log"
+    when "#message"     then "Message"
+    when "#page_select" then "Send Page"
+    when "#page_send"   then "Send Page"
+    when "#inbox"       then "My Inbox"
+    when "#profile"     then "My Profile"
+    when "#default"     then "Not Found"
     else page
 
 window.setHeight = ->
@@ -41,7 +42,8 @@ class @M3_BaseRoute extends Backbone.Router
     "members/:id"  : "member"
     "status"       : "status"
     "test"         : "test"
-    "send"         : "send"
+    "page_select"  : "page_select"
+    "page_send"    : "page_send"
     "messages"     : "messages"
     "messages/:id" : "message"
     "inbox"        : "inbox"
@@ -63,7 +65,8 @@ class @M3_BaseRoute extends Backbone.Router
     window.renderPage "#member"
     $('#member').html(view.render().el)
   status      : -> window.renderPage "#status"
-  send        : -> window.renderPage "#send"
+  page_select : -> window.renderPage "#page_select"
+  page_send   : -> window.renderPage "#page_send"
   messages    : ->
     window.renderPage "#messages"
     miv = new M3_MessagesIndexView

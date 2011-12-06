@@ -1,46 +1,48 @@
 #= require mobile3/models/common_model
 
-window.distributions = []
-#window.myid  = 24
-
 class @M3_Message extends M3_CommonModel
-  initialize: ->
-    obj = @
-    if @has('distributions')
-      @distributions = new M3_Distributions @get('distributions')
-      _(@distributions.models).each (dist) ->
-        dist.set({'message': obj})
-        window.distributions = window.distributions.concat(dist) if dist.get('member_id') == window.myid
+  unitRoster: ->
+    return @get('unitRoster') if @has('unitRoster')
+    return members unless members == undefined
+    null
+  author: ->
+    return null if @unitRoster() == null
+    @unitRoster().get(@get('author_id'))
+  unitDistributions: ->
+    return @get('unitDistributions') if @has('unitDistributions')
+    return distributions unless distributions == undefined
+    null
+  distributions: ->
+    return null if @unitDistributions() == null
+    msgID = @get('id')
+    vals = @unitDistributions().select (dist) ->
+      dist.get('message_id') == msgID
+    new M3_Distributions vals
   hasRSVP:      -> @has('rsvp_prompt')
-  sentCount:    -> @distributions.models.length
+  sentCount:    ->
+    @distributions().length
   readCount:    ->
-    val = _(@distributions.models).select (dist)->
+    val = _(@distributions().models).select (dist)->
       dist.get('read') == "yes"
     val.length
   unreadCount:  ->
-    val = _(@distributions.models).select (dist)->
+    val = _(@distributions().models).select (dist)->
       dist.get('read') == "no"
     val.length
   rsvpYesCount: ->
-    val = _(@distributions.models).select (dist)->
-      dist.get('rsvp') == "yes"
+    val = _(@distributions().models).select (dist)->
+      dist.get('rsvp_answer') == "Yes"
     val.length
   rsvpNoCount:  ->
-    val = _(@distributions.models).select (dist)->
-      dist.get('rsvp') == "no"
+    val = _(@distributions().models).select (dist)->
+      dist.get('rsvp_answer') == "No"
     val.length
   markAsRead: ->
-    dist = _(@distributions.models).select (dist) ->
+    return unless navigator.onLine
+    dist = _(@distributions().models).select (dist) ->
       dist.get('member_id') == myID
     return if dist.length == 0
     window.fdist = dist[0]
-    return unless navigator.onLine
-#    $.post('/api/mobile3/distributions/1/markread')
-    console.log "GOING TO SET FDIST TO TRUE"
-    console.log fdist
-    console.log fdist.get('name')
-    fdist.set({'read':'yes'})
-    console.log fdist
-    console.log fdist.get('read')
+    fdist.set({'read':'yes'}) unless fdist.get('read') == 'yes'
 
 

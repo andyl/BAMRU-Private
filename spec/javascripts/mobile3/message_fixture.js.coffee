@@ -1,16 +1,16 @@
-window.message_test_data = [
-    id:            24
-    author_id:     23
+window.m3_message_test_data = [
+    id:            1
+    author_id:     1
     text:          "Last Message."
     creation_date: "Jan-4 15:33"
   ,
-    id:            23
-    author_id:     19
+    id:            2
+    author_id:     2
     text:          "Middle Message."
     creation_date: "Jan-3 12:33"
   ,
-    id:            22
-    author_id:     17
+    id:            2
+    author_id:     2
     text:          "First Message."
     creation_date: "Jan-2 09:33"
     rsvp_prompt:   "Do you see this?"

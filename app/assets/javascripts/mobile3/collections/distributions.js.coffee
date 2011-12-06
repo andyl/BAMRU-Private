@@ -3,6 +3,7 @@ class @M3_Distributions extends Backbone.Collection
   url:   "/api/mobile3/distributions"
   unreadCount: ->
     filtered_list = _.filter @models, (dist) ->
-      dist.get('read') == "no"
-      messages.get(id) != undefined
-    filtered_list.length()
+      dist.get('read') == false
+    filtered_list.length
+  inbox: (memid) ->
+    _.filter @models, (dist) -> dist.get('member_id') == memid

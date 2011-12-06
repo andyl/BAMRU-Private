@@ -89,6 +89,16 @@ header {
   text-align: right;
 }
 
+/* ----- page-nav styling ----- */
+.page_nav {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.page_nav li {
+  display: inline;
+  padding-right: 20px;
+}
+
 /* ----- content styling ----- */
 
 .page {

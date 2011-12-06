@@ -8,8 +8,8 @@ class DistributionDecorator < ApplicationDecorator
   end
 
   def self.mobile_json(id = nil)
-    distribution_set = Distribution.order('id DESC').limit(15)
-    distribution_set = distribution_set.where(:member_id => id) unless id.nil?
+    msg_top_ten = Message.select(:id).order('id DESC').limit(10)
+    distribution_set = Distribution.where(:message_id => msg_top_ten).all
     result = distribution_set.map do |m|
       DistributionDecorator.new(m).mobile_json
     end.join(',')

@@ -1,5 +1,5 @@
 main_template = '''
-<b>#<%= id %> <%= creation_date %> from <%= author_short_name %></b><br/>
+<b>#<%= id %> <%= creation_date %> from <%= this.author_short_name() %></b><br/>
 <%= this.text_helper() %>
 <%= this.rsvp_helper() %>
 <hr>
@@ -23,6 +23,10 @@ class @M3_MessageShowView extends M3_CommonView
     sent = @model.sentCount()
     read = @model.readCount()
     @blue_wrap("(Sent #{sent} / Read #{read})")
+  author_short_name: ->
+    window.auth = @model.author()
+    return "" if auth == null
+    auth.shortName()
   text_helper: ->
     "#{@model.attributes.text} #{@sent_read_helper()}"
   yes_no_helper: ->
@@ -32,10 +36,19 @@ class @M3_MessageShowView extends M3_CommonView
   rsvp_helper: ->
     return "" unless @model.hasRSVP()
     return "<br/>RSVP: #{@model.attributes.rsvp_prompt} #{@yes_no_helper()} "
+  read_helper: (dist) ->
+    read = dist.get('read')
+    return "Yes" if read == "yes"
+    "No"
+  rsvp_helper2: (dist) ->
+    return "Yes" if dist.get('rsvp_answer') == "Yes"
+    return "No" if dist.get('rsvp_answer')  == "No"
+    "NA"
   distribution_helper: ->
-    window.what = @model.distributions
-    rows = _(@model.distributions.models).map (dist) ->
-      "<tr><td>#{dist.get('name')}</td><td>#{dist.get('read')}</td><td>#{dist.get('rsvp')}</td></tr>"
+    me   = @
+    rows = _(@model.distributions().models).map (dist) ->
+      console.log dist
+      "<tr><td>#{dist.member().shortName()}</td><td>#{me.read_helper(dist)}</td><td>#{me.rsvp_helper2(dist)}</td></tr>"
     rows.join('')
   render: =>
     @model.markAsRead()
