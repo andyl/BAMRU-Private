@@ -20,6 +20,7 @@
     window.distributions = new M3_Distributions(<%= raw @dst_json %>);
     window.inbox         = new M3_Distributions(distributions.inbox(myID))
   </script>
+  <%= csrf_meta_tags %>
 </head>
 
 <body>
@@ -76,17 +77,20 @@
     </div>
 
     <form action='/mobile3/send_page' method='POST'>
+      <input name='authenticity_token' type='hidden' value="<%= form_authenticity_token %>"/>
       <div id='page_select' class='page'>
 
-        <div class="page_nav">
-          <li><a href="#page_select" class="page_nav_on">Select<span class=select_count></span></a></li>
-          <li><a href="#page_send" class="page_nav_off">Compose</a></li>
+        <div class="navbox" style='margin-bottom: 15px;'>
+          <a href="#page_select" class="l_header_nav selected">Select<span class=select_count></span></a></li>
+          <a href="#page_send" class="r_header_nav">Compose</a></li>
         </div>
 
         <div>
           <% @members.each do |mem| -%>
-            <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="custom rck <%=mem.full_roles %> <%= mem.current_status %>" />
-            <label for="checkbox-<%= mem.id %>"><%= "#{mem.typ} - #{mem.full_name_do}" %></label>
+            <label for="checkbox-<%= mem.id %>">
+            <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="rck <%=mem.full_roles %> <%= mem.current_status %>" />
+            <%= "#{mem.typ} - #{mem.full_name_do}" %>
+            </label>
           <% end %>
         </div>
 
@@ -94,16 +98,16 @@
 
       <div id='page_send' class='page'>
 
-        <div class="page_nav">
-          <li><a href="#page_select" class="page_nav_off">Select<span class=select_count></span></a></li>
-          <li><a href="#page_send" class="page_nav_on">Compose</a></li>
+        <div class="navbox" style='margin-bottom: 15px;'>
+          <a href="#page_select" class="l_header_nav">Select<span class=select_count></span></a></li>
+          <a href="#page_send" class="r_header_nav selected">Compose</a></li>
         </div>
 
         <div style='text-align: center;'>
           <b>Message Text <span id='chars_remaining'></span></b>
         </div>
-        <div class='ui-select' style="padding-right: 40px;">
-          <textarea rows=3 name="message[text]" id="textarea" style='width:100%; padding: 0px; border: 0px;'></textarea>
+        <div class='textarea_wrapper'>
+          <textarea rows=3 name="message[text]" id="textarea" style='padding: 0px; border: 0px;'></textarea>
         </div>
         <div style='text-align: center; margin-top: 10px; margin-bottom: 0px; padding-bottom: 0px;'>
           <b>RSVP</b>
@@ -111,7 +115,7 @@
         <%= raw rsvp_mobile_select %>
         <p></p>
         <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
-        <button id=pgr_submit class='ui-btn-hidden' type="submit">Send to 0 members</button>
+        <button id=pgr_submit type="submit">Send</button>
       </div>
 
     </form>

@@ -8,7 +8,7 @@ namespace :ops do
 
   desc "Set DO"
   task :set_do => 'environment' do
-    cmd = curl_get("api/rake/ops/set_do")
+    cmd = curl_get("api/rake/ops/set_do.json")
     puts "Setting DO Assignment"
     system cmd
     STDOUT.flush

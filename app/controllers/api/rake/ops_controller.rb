@@ -7,7 +7,7 @@ class Api::Rake::OpsController < ApplicationController
   # curl -u <first>_<last>:<pwd> http://server/api/rake/ops/set_do.json
   def set_do
     Member.set_do
-    name = Member.current_do.last_name
+    name = Member.current_do.first.last_name
     ActiveSupport::Notifications.instrument("rake.ops.set_do", {:text => "current do: #{name}"})
     render :json => "OK (current do: #{name})\n"
   end
