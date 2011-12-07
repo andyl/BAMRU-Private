@@ -1,23 +1,3 @@
-# ----- Select and Send Nav Bar -----
-
-window.m3_togglePage = (a_page, b_page)->
-  $(a_page).show()
-  $(b_page).hide()
-  $("#{a_page}_link").attr("data-theme", "b")
-  $("#{a_page}_link").removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c")
-  $("#{a_page}_link").addClass("ui-btn-up-b").addClass("ui-btn-hover-b")
-  $("#{b_page}_link").attr("data-theme", "c")
-  $("#{b_page}_link").removeClass("ui-btn-up-b").removeClass("ui-btn-hover-b")
-  $("#{b_page}_link").addClass("ui-btn-up-c").addClass("ui-btn-hover-c")
-
-displaySend   = -> m3_togglePage("#send", "#select")
-displaySelect = -> m3_togglePage("#select", "#send")
-
-$(document).ready ->
-  displaySelect()
-  $("#send_link").click   -> displaySend()
-  $("#select_link").click -> displaySelect()
-
 # ----- Positioning for Select and Clear Buttons -----
 
 window.setBreak = ->
@@ -38,54 +18,48 @@ $(document).ready ->
 window.updateSelectCount = ->
   count = $('.rck:checked').length
   txt   = if count == 0 then "" else " (#{count})"
-  $('#select_count').text(txt)
+  $('.select_count').text(txt)
   mem_txt = if count == 0 then "0" else "#{count}"
   word    = if count == 1 then "member" else "members"
-  $('#pgr_submit').prev().children('.ui-btn-text').text("Send to #{mem_txt} #{word}")
+  $('#pgr_submit').text("Send to #{mem_txt} #{word}")
 
-window.processClick = (ele) ->
-  name = $(ele).attr("for")
-  nele = $("##{name}")
-  checked = nele.is(':checked')
-  if checked then nele.prop("checked", false) else nele.prop("checked", true)
+$(document).ready ->
   updateSelectCount()
-  if checked then nele.prop("checked", true) else nele.prop("checked", false)
-
-#$(document).ready ->
-#  updateSelectCount()
-#  $(".rck").change ->
-#    processClick(this)
+  $(".rck").click ->
+    updateSelectCount()
 
 # ----- Pressing Clear Buttons -----
 
 window.clearAll = ->
-  $('.rck').prop("checked", false).checkboxradio("refresh")
-  $('.sbx').prop("checked", false).checkboxradio("refresh")
+  $('.rck').each -> @.checked = false
+  $('.sbx').each -> @.checked = false
   updateSelectCount()
+  false
 
 window.clearOOT = ->
-  $('.unavailable').prop("checked", false).checkboxradio("refresh")
+  $('.unavailable').each -> @.checked = false
   updateSelectCount()
+  false
 
-#$(document).ready ->
-#  $('.clear_all').click -> clearAll()
-#  $('.clear_oot').click -> clearOOT()
+$(document).ready ->
+  $('.clear_all').click -> clearAll()
+  $('.clear_oot').click -> clearOOT()
 
 # ----- Toggling Select Buttons -----
 
 setBtns = (typ, state) ->
-  $(".b_#{typ}").prop('checked', state).checkboxradio("refresh")
-  $(".#{typ}").prop('checked', state).checkboxradio("refresh")
+  $(".#{typ}").each -> @.checked = state
   updateSelectCount()
+  false
 
 window.toggleTm = (box) -> setBtns("TM", $(box).is(':checked'))
 window.toggleFm = (box) -> setBtns("FM", $(box).is(':checked'))
 window.toggleT  = (box) -> setBtns("T",  $(box).is(':checked'))
 
 $(document).ready ->
-  $('.b_TM').change -> toggleTm(this)
-  $('.b_FM').change -> toggleFm(this)
-  $('.b_T').change ->  toggleT(this)
+  $('#tm_ck').change -> toggleTm(this)
+  $('#fm_ck').change -> toggleFm(this)
+  $('#t_ck').change ->  toggleT(this)
 
 # ----- Update Remaining Characters -----
 

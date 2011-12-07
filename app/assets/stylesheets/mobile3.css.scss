@@ -214,9 +214,18 @@ header {
   color: white;
 }
 
+/* ----- select buttons ----- */
+#buttons_nav {
+  margin-bottom: 15px;
+}
+#select_buttons {
+ float: left;
+ margin-right: 20px;
+}
+
 /* ----- checkboxes ----- */
 
-label {
+.checklist > label {
   display: block;
   background: white;
   border: 1px solid black;

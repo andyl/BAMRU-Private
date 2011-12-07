@@ -85,7 +85,22 @@
           <a href="#page_send" class="r_header_nav">Compose</a></li>
         </div>
 
-        <div>
+        <div id="buttons_nav">
+
+          <div id='select_buttons'>
+            <label><input class='sbx' type="checkbox" id="tm_ck"/>TM</label>
+            <label><input class='sbx' type="checkbox" id="fm_ck"/>FM</label>
+            <label><input class='sbx' type="checkbox" id="t_ck"/>T</label>
+          </div>
+
+          <div id='clear_buttons'>
+            <a href="#" class="clear_all"><del>All</del></a>
+            <a href="#" class="clear_oot"><del>OOT</del></a>
+          </div>
+
+        </div>
+
+        <div class='checklist'>
           <% @members.each do |mem| -%>
             <label for="checkbox-<%= mem.id %>">
             <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="rck <%=mem.full_roles %> <%= mem.current_status %>" />

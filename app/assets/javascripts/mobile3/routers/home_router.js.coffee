@@ -51,8 +51,8 @@ class @M3_BaseRoute extends Backbone.Router
     "location"     : "location"
     "home"         : "home"
     ""             : "home"
-    "*actions"     : "default"
-  home        : -> 
+
+  home        : ->
     window.renderPage "#home"
     window.setState()
   members     : ->
