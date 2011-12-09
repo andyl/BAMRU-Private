@@ -6,6 +6,8 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :image, :styles => {:medium => "300x300", :roster => "150x150", :thumb => "100x100", :icon => "30x30"}
 
+  before_post_process :cleanup_file_name
+
   # ----- Callbacks -----
 
 
@@ -25,6 +27,9 @@ class Photo < ActiveRecord::Base
     atts
   end
 
+  def cleanup_file_name
+    self.image.instance_write(:file_name, "#{self.image_file_name.gsub(' ','_')}")
+  end
 
 end
 
