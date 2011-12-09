@@ -3,7 +3,7 @@ window.pageName = (page) ->
     when "#member"      then "Member Detail"
     when "#members"     then "Roster"
     when "#home"        then "BAMRU Mobile"
-    when "#status"      then "Status Line"
+    when "#status"      then "Status Lines"
     when "#messages"    then "Message Log"
     when "#message"     then "Message"
     when "#page_select" then "Send Page"
