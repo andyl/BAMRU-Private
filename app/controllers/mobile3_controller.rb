@@ -4,6 +4,7 @@ class Mobile3Controller < ApplicationController
   
   def index
     SpriteGen.generate_sprite_icons
+    ActiveSupport::Notifications.instrument("service.mobile3", {:member => current_member})
     @is_ipad  = ipad_device?
     @is_phone = phone_device?
     @sensor   = phone_device? ? "true" : "false"
@@ -24,6 +25,7 @@ class Mobile3Controller < ApplicationController
   end
 
   def send_page
+    ActiveSupport::Notifications.instrument("service.mobile3.send_page", {:member => current_member})
     np = params[:message]
     np[:author_id] = current_member.id
     if params[:targets].blank?

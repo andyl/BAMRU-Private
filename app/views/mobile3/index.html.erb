@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html manifest="/mobile3f.manifest">
-<!--<html>-->
+<!--<html manifest="/mobile3f.manifest">-->
+<html>
 <head>
   <title>BAMRU Mobile</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
@@ -144,6 +144,7 @@
         <p></p>
         <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
         <button class="send_btn" id=pgr_submit type="submit">Send</button>
+        <div class="send_btn" id=pgr_text>Please Select Member(s) & Add Message Text</div>
       </div>
 
     </form>
@@ -158,6 +159,11 @@
 
     <div id='inbox' class='page'>
       INBOX
+    </div>
+
+    <div id='offline' class='page'>
+      Currently your internet connection is Offline.<p></p>
+      Must be Online to use this function.
     </div>
 
     <div id='profile' class='page'>

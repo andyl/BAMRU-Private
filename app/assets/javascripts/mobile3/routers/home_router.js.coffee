@@ -65,8 +65,16 @@ class @M3_BaseRoute extends Backbone.Router
     window.renderPage "#member"
     $('#member').html(view.render().el)
   status      : -> window.renderPage "#status"
-  page_select : -> window.renderPage "#page_select"
-  page_send   : -> window.renderPage "#page_send"
+  page_select : ->
+    if navigator.onLine
+      window.renderPage "#page_select"
+    else
+      window.renderPage "#offline"
+  page_send   : ->
+    if navigator.onLine
+      window.renderPage "#page_send"
+    else
+      window.renderPage "#offline"
   messages    : ->
     window.renderPage "#messages"
     miv = new M3_MessagesIndexView

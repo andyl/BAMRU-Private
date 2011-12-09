@@ -1,17 +1,15 @@
-# ----- Positioning for Select and Clear Buttons -----
+# ----- Enabling / Disabling the Send Button -----
 
-window.setBreak = ->
-  width = $(document).width()
-  if (width < 453)
-    $('#wideLayout').hide()
-    $('#narrowLayout').show()
+window.updatePageButton = ->
+  if $('.rck:checked').length > 0 && $("#textarea").val().length > 0
+    $('#pgr_submit').show()
+    $('#pgr_text').hide()
   else
-    $('#narrowLayout').hide()
-    $('#wideLayout').show()
+    $('#pgr_submit').hide()
+    $('#pgr_text').show()
 
 $(document).ready ->
-  $(window).resize -> setBreak()
-  setBreak()
+  updatePageButton()
 
 # ----- Update Select Count -----
 
@@ -22,6 +20,7 @@ window.updateSelectCount = ->
   mem_txt = if count == 0 then "0" else "#{count}"
   word    = if count == 1 then "member" else "members"
   $('#pgr_submit').text("Send to #{mem_txt} #{word}")
+  updatePageButton()
 
 $(document).ready ->
   updateSelectCount()
@@ -90,8 +89,10 @@ updateTextBoxCount = ->
   remain = 136 - headerCount() - messageCount() - nameCount() - rsvpCount()
   out_txt = if remain >= 30 then "" else " (#{remain} characters left)"
   $("#chars_remaining").text(out_txt)
+  updatePageButton()
 
 $(document).ready ->
   updateTextBoxCount()
   $("#textarea").keyup     -> updateTextBoxCount()
   $("#rsvp_select").change -> updateTextBoxCount()
+
