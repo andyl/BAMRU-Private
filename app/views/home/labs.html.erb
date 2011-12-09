@@ -4,34 +4,26 @@ These prototypes are for learning new software tools and techniques.  They are n
 Let Andy know if you spot problems or have ideas for improvement.
 <p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Mobile</h3>
-BAMRU Mobile is designed for Android, iPhone, iPad, iPod, Kindle Fire and BlackBerry.<br/>
-You can also test on your desktop, using a new version of Chrome or Firefox.
-<p></p>
-<table width=100%>
+<table>
   <tr>
     <td>
-      <b>Mobile 1</b><br/>
-      Works fine on wifi.<br/>
-      No offline support.<br/>
-      <%= raw qr_tag(mobile1_url) %><br/>
-      <%= link_to mobile1_url, mobile1_path %>
+      BAMRU Mobile enables a DO/AHC to initiate a callout using a smartphone.<br/>
+      It is designed for Android, iPhone, iPad, iPod, Kindle Fire. (also works on Chrome/Firefox)<br/>
+      Features Include: Team Roster, Page Sending, Unit Message Log, Message Inbox<br/>
+      BAMRU Mobile is simple and fast, and works online or offline.
     </td>
-    <td valign=top>
-      <b>Mobile 3</b><br/>
-      Fast, online and off.<br/>
-      Minimal but usable.<br/>
-      <%= raw qr_tag(mobile3_url) %><br/>
-      <%= link_to mobile3_url, mobile3_path %>
-    </td>
-    <td valign=top>
-      <b>Mobile 4</b><br/>
-      Experimental prototype.<br/>
-      Mapping & Geolocation.<br/>
-      <%= raw qr_tag(mobile4_url) %><br/>
-      <%= link_to mobile4_url, mobile4_path %>
+    <td>
+      <div style='margin-left: 40px;'>
+        <%= raw qr_tag(mobile_url) %><br/>
+        <%= link_to mobile_url, mobile_path %>
+      </div>
     </td>
   </tr>
 </table>
+<p></p>
+Other Mobile Prototypes:<br/>
+Mobile 1 - Uses jQuery Mobile - no offline support - <%= link_to mobile1_url, mobile1_path %><br/>
+Mobile 4 - Experiments with mapping and geolocation - <%= link_to mobile4_url, mobile4_path %>
 
 <p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Messaging</h3>

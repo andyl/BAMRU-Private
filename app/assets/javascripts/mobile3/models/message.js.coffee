@@ -23,11 +23,11 @@ class @M3_Message extends M3_CommonModel
     @distributions().length
   readCount:    ->
     val = _(@distributions().models).select (dist)->
-      dist.get('read') == "yes"
+      dist.get('read') == true
     val.length
   unreadCount:  ->
     val = _(@distributions().models).select (dist)->
-      dist.get('read') == "no"
+      dist.get('read') == false
     val.length
   rsvpYesCount: ->
     val = _(@distributions().models).select (dist)->
@@ -43,6 +43,6 @@ class @M3_Message extends M3_CommonModel
       dist.get('member_id') == myID
     return if dist.length == 0
     window.fdist = dist[0]
-    fdist.set({'read':'yes'}) unless fdist.get('read') == 'yes'
+    fdist.set({'read':true}) unless fdist.get('read') == true
 
 

@@ -118,7 +118,7 @@ class Member < ActiveRecord::Base
 
   def full_name_do
     do_text = current_do ? " (DO)" : ""
-    unavail = current_status == "unavailable" ? " (OOT)" : ""
+    unavail = current_status == "unavailable" ? " (Unavail)" : ""
     full_name + do_text + unavail
   end
 

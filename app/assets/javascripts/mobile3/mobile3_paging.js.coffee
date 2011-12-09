@@ -33,6 +33,8 @@ $(document).ready ->
 window.clearAll = ->
   $('.rck').each -> @.checked = false
   $('.sbx').each -> @.checked = false
+  $(".checked").addClass("unchecked")
+  $(".checked").removeClass("checked")
   updateSelectCount()
   false
 
@@ -49,6 +51,10 @@ $(document).ready ->
 
 setBtns = (typ, state) ->
   $(".#{typ}").each -> @.checked = state
+  newState = if state then "checked" else "unchecked"
+  $(".#{typ}x").removeClass("checked")
+  $(".#{typ}x").removeClass("unchecked")
+  $(".#{typ}x").addClass(newState)
   updateSelectCount()
   false
 
@@ -85,7 +91,7 @@ updateTextBoxCount = ->
   out_txt = if remain >= 30 then "" else " (#{remain} characters left)"
   $("#chars_remaining").text(out_txt)
 
-#$(document).ready ->
-#  updateTextBoxCount()
-#  $("#textarea").keyup     -> updateTextBoxCount()
-#  $("#rsvp_select").change -> updateTextBoxCount()
+$(document).ready ->
+  updateTextBoxCount()
+  $("#textarea").keyup     -> updateTextBoxCount()
+  $("#rsvp_select").change -> updateTextBoxCount()

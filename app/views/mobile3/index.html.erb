@@ -41,7 +41,7 @@
         <a class='lnav' href="#members" >Members</a>
         <a class='rnav' href="#members/<%=@do_id%>">DO:<%= @do_name %></a>
       </div>
-      <a class='nav' href="#status"     >Status Line</a>
+      <a class='nav' href="#status"     >Status Lines</a>
       <a class='nav' href="#page_select">Send Page</a>
       <a class='nav' href="#messages"   >Unit Message Log</a>
       <a class='nav' id="myinbox" href="#inbox"><%= @inbox_label %></a>
@@ -66,12 +66,24 @@
 
     <div id='status' class='page'>
       <div class='center'>
-        <b>BAMRU Status Line</b>
-        <p></p>
+        <b style='margin-bottom: 5px;'>BAMRU</b><br/>
         <% if @is_phone %>
-          <a class='nav' href='tel:650-858-4618' style='text-align: center;'>Dial 650-858-4618</a>
+          <a class='nav' href='tel:650-858-4618' style='text-align: center;'>Status Line: 650-858-4618</a>
+          <a class='nav' href='tel:800-888-6423' style='text-align: center;'>Vmail: 800-888-6423 x8584618</a>
         <% else %>
-          650-858-4618
+          Status Line: 650-858-4618<br/>
+          Vmail: 800-888-6423 x8584618
+        <% end %>
+        <p></p>
+        <b style='margin-bottom: 5px;'>SMSO</b><br/>
+        <% if @is_phone %>
+          <a class='nav' href='tel:650-599-2162' style='text-align: center;'>Status Line: 650-599-2162</a>
+          <a class='nav' href='tel:650-363-4000' style='text-align: center;'>Switchboard: 650-363-4000</a>
+          <a class='nav' href='tel:650-363-4911' style='text-align: center;'>24-Hr Comms: 650-363-4911</a>
+        <% else %>
+          Status Line: 650-599-2162<br/>
+          Switchboard: 650-363-4000<br/>
+          24-Hr Comms: 650-363-4911
         <% end %>
       </div>
     </div>
@@ -88,14 +100,14 @@
         <div id="buttons_nav">
 
           <div id='select_buttons'>
-            <label><input class='sbx' type="checkbox" id="tm_ck"/>TM</label>
-            <label><input class='sbx' type="checkbox" id="fm_ck"/>FM</label>
-            <label><input class='sbx' type="checkbox" id="t_ck"/>T</label>
+            <label class='TMx unchecked'><input class='sbx' type="checkbox" id="tm_ck"/>TM</label>
+            <label class='FMx unchecked'><input class='sbx' type="checkbox" id="fm_ck"/>FM</label>
+            <label class='Tx unchecked'><input class='sbx' type="checkbox" id="t_ck"/>T</label>
           </div>
 
           <div id='clear_buttons'>
-            <a href="#" class="clear_all"><del>All</del></a>
-            <a href="#" class="clear_oot"><del>OOT</del></a>
+            <a href="#" class="clear_all zbx"><del>All</del></a>
+            <a href="#" class="clear_oot zbx"><del>Unavail</del></a>
           </div>
 
         </div>
@@ -130,7 +142,7 @@
         <%= raw rsvp_mobile_select %>
         <p></p>
         <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
-        <button id=pgr_submit type="submit">Send</button>
+        <button class="send_btn" id=pgr_submit type="submit">Send</button>
       </div>
 
     </form>

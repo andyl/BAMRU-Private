@@ -62,7 +62,8 @@ header {
   font-size: 14pt;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
-  box-flex: 1; }
+  box-flex: 1;
+  }
 
 #backlink {
   text-align: left; }
@@ -216,11 +217,59 @@ header {
 
 /* ----- select buttons ----- */
 #buttons_nav {
+  text-align: center;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  display: box;
+  box-orient: horizontal;
   margin-bottom: 15px;
 }
+
 #select_buttons {
- float: left;
- margin-right: 20px;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+
+#clear_buttons {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+
+#select_buttons > label {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.sbx {
+  display: none;
+}
+
+.checked {
+  background: purple;
+}
+
+.unchecked {
+  background: white;
+}
+
+#clear_buttons > a {
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.send_btn {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 /* ----- checkboxes ----- */

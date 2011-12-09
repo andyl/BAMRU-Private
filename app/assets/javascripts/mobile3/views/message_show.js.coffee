@@ -38,7 +38,7 @@ class @M3_MessageShowView extends M3_CommonView
     return "<br/>RSVP: #{@model.attributes.rsvp_prompt} #{@yes_no_helper()} "
   read_helper: (dist) ->
     read = dist.get('read')
-    return "Yes" if read == "yes"
+    return "Yes" if read == true
     "No"
   rsvp_helper2: (dist) ->
     return "Yes" if dist.get('rsvp_answer') == "Yes"
