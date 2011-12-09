@@ -2,5 +2,4 @@
 $(document).ready ->
   window.faye = new Faye.Client("<%= FAYE_SERVER %>")
   window.faye.subscribe "/chats/bnew", (data) ->
-    console.log data
     updateChatDisplay(data)

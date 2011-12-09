@@ -47,7 +47,6 @@ class @M3_MessageShowView extends M3_CommonView
   distribution_helper: ->
     me   = @
     rows = _(@model.distributions().models).map (dist) ->
-      console.log dist
       "<tr><td>#{dist.member().shortName()}</td><td>#{me.read_helper(dist)}</td><td>#{me.rsvp_helper2(dist)}</td></tr>"
     rows.join('')
   render: =>

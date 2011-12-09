@@ -3,7 +3,6 @@
 window.updateChatDisplay = (json) ->
   obj  = JSON.parse json
   tmpl = "<li>#{obj.text}<span class='created_at'>#{obj.short_name} | #{obj.created_at}</span></li>"
-  console.log tmpl
   $('#chat').append(tmpl)
   window.resizeChatList()
 

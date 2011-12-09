@@ -50,6 +50,11 @@ window.setStateOn  = -> $('#state').text("Online")
 window.setStateOff = -> $('#state').text("Offline")
 window.setState = (event, ui) ->
   if navigator.onLine then setStateOn() else setStateOff()
+window.setUnreadCount = ->
+  val = inbox.unreadCount()
+  mString = if val == 0 then "My Inbox" else "My Inbox (#{val})"
+  $('.myinbox').text(mString)
+  mString
 
 window.returnSelf = (object) -> object
 

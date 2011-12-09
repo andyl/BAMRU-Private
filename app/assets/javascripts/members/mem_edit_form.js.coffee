@@ -35,7 +35,6 @@ window.add_fields = (link, association, content) ->
   tgtInput = lastLi.children("input").first()
   tgtInput.attr("value", length)
   # set the icons
-  console.log tgtDiv.attr('id')
   set_field_icons(tgtDiv.attr('id'))
   # highlight the inserted element
   lastLi.effect("shake", {times:1}, 250)

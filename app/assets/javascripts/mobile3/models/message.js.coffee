@@ -37,6 +37,15 @@ class @M3_Message extends M3_CommonModel
     val = _(@distributions().models).select (dist)->
       dist.get('rsvp_answer') == "No"
     val.length
+  updateReadOnServer: (dist) ->
+    console.log "UROS: ", dist
+    url = "/history/#{dist.get('id')}"
+    data = {dist: {read:true}}
+    $.ajax
+      type: 'PUT'
+      url: url
+      data: data
+      headers: {'X-CSRF-Token': csrfToken}
   markAsRead: ->
     return unless navigator.onLine
     dist = _(@distributions().models).select (dist) ->
@@ -44,5 +53,7 @@ class @M3_Message extends M3_CommonModel
     return if dist.length == 0
     window.fdist = dist[0]
     fdist.set({'read':true}) unless fdist.get('read') == true
+    @updateReadOnServer(fdist)
+
 
 

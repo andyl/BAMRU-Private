@@ -1,6 +1,6 @@
 
 window.distribution_index_template = '''
-<a class=nav href="#messages/<%= message_id %>"><%= message_id %> - <%= this.gText() %></a>
+<a class=nav href="#messages/<%= message_id %>"><%= this.readYesNoHelper() %><%= message_id %> - <%= this.gText() %></a>
 '''
 
 class @M3_DistributionIndexView extends M3_CommonView
@@ -12,6 +12,8 @@ class @M3_DistributionIndexView extends M3_CommonView
   distMsg: ->
     lclID = @model.get('message_id')
     messages.get(lclID)
+  readYesNoHelper: ->
+    if @model.get('read') == true then "-" else "*"
   render: =>
     $(@el).html(@template(@model.toJSON())) unless @distMsg() == undefined
     @

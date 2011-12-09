@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--<html manifest="/mobile3f.manifest">-->
-<html>
+<html manifest="/mobile3f.manifest">
+<!--<html>-->
 <head>
   <title>BAMRU Mobile</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
@@ -19,6 +19,7 @@
     window.messages      = new M3_Messages(<%= raw @msg_json %>);
     window.distributions = new M3_Distributions(<%= raw @dst_json %>);
     window.inbox         = new M3_Distributions(distributions.inbox(myID))
+    window.csrfToken     = "<%= form_authenticity_token.to_s %>"
   </script>
   <%= csrf_meta_tags %>
 </head>
@@ -44,7 +45,7 @@
       <a class='nav' href="#status"     >Status Lines</a>
       <a class='nav' href="#page_select">Send Page</a>
       <a class='nav' href="#messages"   >Unit Message Log</a>
-      <a class='nav' id="myinbox" href="#inbox"><%= @inbox_label %></a>
+      <a class='nav myinbox' href="#inbox"><%= @inbox_label %></a>
       <a class='nav' href="#profile"  >My Profile</a>
       <div class=footer>
         <div id=state></div>

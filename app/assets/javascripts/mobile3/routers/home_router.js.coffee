@@ -8,7 +8,7 @@ window.pageName = (page) ->
     when "#message"     then "Message"
     when "#page_select" then "Send Page"
     when "#page_send"   then "Send Page"
-    when "#inbox"       then "My Inbox"
+    when "#inbox"       then window.setUnreadCount()
     when "#profile"     then "My Profile"
     when "#default"     then "Not Found"
     else page
@@ -77,6 +77,7 @@ class @M3_BaseRoute extends Backbone.Router
     window.renderPage "#message"
     $('#message').html(view.render().el)
   inbox       : ->
+    window.setUnreadCount()
     window.renderPage "#inbox"
     view = new M3_DistributionsIndexView
     view.render()
