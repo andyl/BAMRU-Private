@@ -73,7 +73,17 @@ class DoAssignment < ActiveRecord::Base
   end
 
   def start_time
-    Time.parse("Jan #{year}") + (quarter-1).quarters + (week-1).weeks + 3.days + 8.hours
+    day = Time.parse("Jan #{year}") + (quarter-1).quarters + (week-1).weeks + 8.hours
+    adj_factor = case day.wday
+      when 0 : 2
+      when 1 : 1
+      when 2 : 0
+      when 3 : 6
+      when 4 : 5
+      when 5 : 4
+      when 6 : 3
+    end
+    day + adj_factor.days
   end
   
   def end_time
