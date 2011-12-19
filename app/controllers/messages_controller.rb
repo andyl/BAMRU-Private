@@ -49,8 +49,9 @@ class MessagesController < ApplicationController
       p = Rsvp.create(opts)
     end
     m.create_all_outbound_mails
+    out_count = m.outbound_mails.count
     call_rake('ops:email:pending:send')
-    redirect_to messages_path, :notice => "Message sent."
+    redirect_to messages_path, :notice => "Message sent to #{count} addresses."
   end
   
 end
