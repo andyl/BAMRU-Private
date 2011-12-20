@@ -53,8 +53,8 @@ class Member < ActiveRecord::Base
 
   # ----- Validations -----
   validates_associated    :addresses # ,                        :on => [:create,  :update]
-  validates_associated    :phones, :emails,                  :on => [:create,  :update]
-  validates_associated    :emergency_contacts, :other_infos, :on => [:create,  :update]
+  validates_associated    :phones, :emails #,                  :on => [:create,  :update]
+  validates_associated    :emergency_contacts, :other_infos #, :on => [:create,  :update]
 
   validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :title,      :with => /^[A-Za-z\.]+$/, :allow_blank => true
@@ -406,14 +406,14 @@ class Member < ActiveRecord::Base
 
   def role_val(role)
     case role
-      when "Bd" : -500
-      when "OL" : -250
-      when "TM" : -100
-      when "FM" : -50
-      when "T"  : -25
-      when "R"  : -10
-      when "S"  : -5
-      when "A"  : -1
+      when "Bd" then -500
+      when "OL" then -250
+      when "TM" then -100
+      when "FM" then -50
+      when "T"  then -25
+      when "R"  then -10
+      when "S"  then -5
+      when "A"  then -1
       else 0
     end
   end

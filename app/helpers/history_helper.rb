@@ -29,8 +29,8 @@ module HistoryHelper
 
   def reply_txt(inbound)
     color = case
-      when inbound.fixed?   : "#ccffff"
-      when inbound.bounced? : "pink"
+      when inbound.fixed?   then "#ccffff"
+      when inbound.bounced? then "pink"
       else "white"
     end
     e_link = "<a href='/members/#{@recipient.id}/edit'>Edit</a>"

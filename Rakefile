@@ -8,7 +8,7 @@ require File.expand_path('../config/application', __FILE__)
 
 Zn::Application.load_tasks
 
-require 'lib/shared/tasks/rake_tasks'
+require_relative 'lib/shared/tasks/rake_tasks'
 
 desc "Run the development server"
 task :run_server do

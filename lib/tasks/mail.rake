@@ -66,19 +66,19 @@ end
 
 def render_email_message(opts, format)
   case format
-    when 'page'              : Notifier.page_email(opts)
-    when 'password_reset'    : Notifier.password_reset_email(opts)
-    when 'do_shift_pending'  : Notifier.do_shift_pending_email(opts)
-    when 'do_shift_starting' : Notifier.do_shift_starting_email(opts)
-    when 'cert_notice'       : Notifier.cert_notice_email(opts)
+    when 'page'              then Notifier.page_email(opts)
+    when 'password_reset'    then Notifier.password_reset_email(opts)
+    when 'do_shift_pending'  then Notifier.do_shift_pending_email(opts)
+    when 'do_shift_starting' then Notifier.do_shift_starting_email(opts)
+    when 'cert_notice'       then Notifier.cert_notice_email(opts)
     else nil
   end
 end
 
 def render_phone_message(opts, format)
   case format
-    when 'page'              : Notifier.page_phone(opts)
-    when 'do_shift_starting' : Notifier.do_shift_starting_phone(opts)
+    when 'page'              then Notifier.page_phone(opts)
+    when 'do_shift_starting' then Notifier.do_shift_starting_phone(opts)
     else nil
   end
 end
