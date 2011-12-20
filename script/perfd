@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'json'
 require 'net/http'
-require File.dirname(__FILE__) + '/../lib/env_settings'
+require File.expand_path(File.dirname(__FILE__)) + '/../lib/env_settings'
 LOG_FILE = File.dirname(__FILE__) + "/../tmp/perf.log"
 
 puts "Performance Demon - Starting #{Time.now} - Ctrl-C to exit..."

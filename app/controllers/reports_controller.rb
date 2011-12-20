@@ -76,11 +76,11 @@ class ReportsController < ApplicationController
 
   def cx_type(format)
     case format.upcase
-      when "XLS"  : 'application/vnd.ms-excel'
-      when "PDF"  : 'application/pdf'
-      when "CSV"  : 'text/csv'
-      when "VCF"  : 'text/plain'
-      when "HTML" : "text/html"
+      when "XLS"  then 'application/vnd.ms-excel'
+      when "PDF"  then 'application/pdf'
+      when "CSV"  then 'text/csv'
+      when "VCF"  then 'text/plain'
+      when "HTML" then "text/html"
       else "text/plain"
     end
   end

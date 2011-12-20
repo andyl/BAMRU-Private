@@ -6,16 +6,15 @@ end
 
 platforms :ruby do
 
-  gem "linecache", "0.43"
+  # gem "linecache"
   gem "sqlite3"
   gem "sqlite3-ruby", :require => "sqlite3"
-  # gem "faye",          "0.7.0"
   gem "faye",          "0.6.4"
   gem "pngqr"
   gem "em-http-request"
   gem "thin"
 
-  gem "rails",         "3.1.0"
+  gem "rails",         "3.2.0.rc1"
   gem "capistrano"
   gem "factory_girl"
   gem "fastercsv"
@@ -41,6 +40,7 @@ platforms :ruby do
   gem "oauth"
   gem "ruby-gmail", :require => 'gmail'
   gem 'mime'
+  gem 'bcrypt-ruby', "~> 3.0.0"
 
   # Asset template engines
   gem 'json'
@@ -61,9 +61,8 @@ platforms :ruby do
     gem 'guard-livereload'
     gem "faker"
     gem "rcov"
-    gem "ruby-debug"
-    gem "rspec-core",  "2.7.1"
-    gem "rspec-rails", "2.7.0"
+    gem "ruby-debug19", :require => 'ruby-debug'
+    gem "rspec-rails", "2.8.0.rc2"
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
     gem "capybara", "~> 1.1.1"

@@ -28,8 +28,8 @@ module MessagesHelper
 
   def sent_display(count, message)
     color = case
-      when message.has_open_bounce? : "lightpink"
-      when message.has_fixed_bounce? : "#ccffff"
+      when message.has_open_bounce?  then "lightpink"
+      when message.has_fixed_bounce? then "#ccffff"
       else
         "white"
     end

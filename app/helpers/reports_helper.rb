@@ -7,20 +7,20 @@ module ReportsHelper
 
   def field_record(mem, type)
     case type
-      when "organization"   : "BAMRU"
-      when "roles"          : mem.full_roles
-      when "full_name"      : mem.full_name
-      when "mobile_phone"   : mem.phone("Mobile").try(:number)
-      when "home_phone"     : mem.phone("Gome").try(:number)
-      when "work_phone"     : mem.phone("Work").try(:number)
-      when "home_address"   : quote mem.address("Home").try(:full_address)
-      when "work_address"   : quote mem.address("Work").try(:full_address)
-      when "other_address"  : quote mem.address("Other").try(:full_address)
-      when "home_email"     : mem.email("Home").try(:address)
-      when "personal_email" : mem.email("Personal").try(:address)
-      when "work_email"     : mem.email("Work").try(:address)
-      when "ham"            : mem.ham
-      when "v9"             : mem.v9
+      when "organization"   then "BAMRU"
+      when "roles"          then mem.full_roles
+      when "full_name"      then mem.full_name
+      when "mobile_phone"   then mem.phone("Mobile").try(:number)
+      when "home_phone"     then mem.phone("Gome").try(:number)
+      when "work_phone"     then mem.phone("Work").try(:number)
+      when "home_address"   then quote mem.address("Home").try(:full_address)
+      when "work_address"   then quote mem.address("Work").try(:full_address)
+      when "other_address"  then quote mem.address("Other").try(:full_address)
+      when "home_email"     then mem.email("Home").try(:address)
+      when "personal_email" then mem.email("Personal").try(:address)
+      when "work_email"     then mem.email("Work").try(:address)
+      when "ham"            then mem.ham
+      when "v9"             then mem.v9
     end
   end
 
