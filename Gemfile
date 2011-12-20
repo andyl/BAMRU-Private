@@ -41,7 +41,6 @@ platforms :ruby do
   gem "oauth"
   gem "ruby-gmail", :require => 'gmail'
   gem 'mime'
-  gem 'mail_view', :git => "git://github.com/andyl/mail_view.git"
 
   # Asset template engines
   gem 'json'
@@ -52,7 +51,7 @@ platforms :ruby do
   gem 'whenever', :require => false
 
   group :development, :test do
-    gem "jasminerice"
+    gem 'jasminerice'
     gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
     gem 'csv-mapper'
     gem 'rb-inotify'
@@ -68,7 +67,6 @@ platforms :ruby do
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
     gem "capybara", "~> 1.1.1"
-    #gem "capybara-webkit", "~> 0.7.2" # see notes in spec_opts.rb
     gem "launchy"
     gem 'spork', '~> 0.9.0.rc9'
     gem 'database_cleaner'

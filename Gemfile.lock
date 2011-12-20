@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/andyl/mail_view.git
-  revision: ca4b3f60a4116c9471d3259b99a9b66be373d5dd
-  specs:
-    mail_view (1.0.0)
-
-GIT
   remote: git://github.com/jeremyolliver/annotate_models.git
   revision: 4d57e4fe6360125f17886168120a48091a268e45
   branch: rake_compatibility
@@ -328,7 +322,6 @@ DEPENDENCIES
   linecache (= 0.43)
   livereload
   mail
-  mail_view!
   mime
   nokogiri
   oauth
