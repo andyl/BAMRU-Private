@@ -65,7 +65,7 @@ end
 
 # ----- Method for sending mail -----
 
-def process_email_message(opts, format)
+def render_email_message(opts, format)
   case format
     when 'page'              : Notifier.page_email(opts)
     when 'password_reset'    : Notifier.password_reset_email(opts)
@@ -76,7 +76,7 @@ def process_email_message(opts, format)
   end
 end
 
-def process_phone_message(opts, format)
+def render_phone_message(opts, format)
   case format
     when 'page'              : Notifier.page_phone(opts)
     when 'do_shift_starting' : Notifier.do_shift_starting_phone(opts)
@@ -94,8 +94,8 @@ def send_mail(outbound_mail)
   dist       = outbound_mail.distribution
   format     = message.format
   opts       = Notifier.set_optz(message, address, full_label, dist)
-  mailing    = process_email_message(opts, format) if outbound_mail.email
-  mailing    = process_phone_message(opts, format) if outbound_mail.phone
+  mailing    = render_email_message(opts, format) if outbound_mail.email
+  mailing    = render_phone_message(opts, format) if outbound_mail.phone
   unless mailing.nil?
     mailing.deliver
     invoke_url = "api/rake/messages/#{outbound_mail.id}/sent_at_now.json"
@@ -117,6 +117,42 @@ namespace :ops do
         puts "Pending Outbound Mails: #{count}"
         STDOUT.flush
       end
+
+      def render_mail(outbound_mail)
+        puts "rendering message for #{outbound_mail.address}"
+        STDOUT.flush
+        mailing    = nil
+        message    = outbound_mail.distribution.message
+        address    = outbound_mail.email_address
+        full_label = outbound_mail.full_label
+        dist       = outbound_mail.distribution
+        format     = message.format
+        opts       = Notifier.set_optz(message, address, full_label, dist)
+        mailing    = render_email_message(opts, format) if outbound_mail.email
+        mailing    = render_phone_message(opts, format) if outbound_mail.phone
+        unless mailing.nil?
+          File.open("/tmp/render_msg/#{outbound_mail.label}", 'w') {|f| f.puts mailing.to_yaml}
+          invoke_url = "api/rake/messages/render?address=#{outbound_mail.address}"
+          cmd        = curl_get(invoke_url)
+          system cmd
+        end
+      end
+
+      #def send_mail(outbound_mail)
+      #  puts "sending message for #{outbound_mail.address}"
+      #  STDOUT.flush
+      #  label = outbound_mail.label
+      #  file  = "/tmp/render_msg/#{label}"
+      #  return unless File.exist?(file)
+      #  mailing = Mail.new(YAML.load_file(file))
+      #  debugger
+      #  unless mailing.nil?
+      #    mailing.deliver
+      #    invoke_url = "api/rake/messages/#{outbound_mail.id}/sent_at_now.json"
+      #    cmd        = curl_get(invoke_url)
+      #    system cmd
+      #  end
+      #end
 
       desc "Send Pending Mails"
       task :send => 'environment' do
