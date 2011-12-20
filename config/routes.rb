@@ -106,6 +106,7 @@ Zn::Application.routes.draw do
 
     namespace "rake" do
       get  "messages"                    => "messages#index"
+      get  "messages/render"             => "messages#render_notification"
       get  "messages/:id/sent_at_now"    => "messages#sent_at_now"
       get  "messages/load_inbound"       => "messages#load_inbound"
       get  "password/reset"              => "password#reset"
