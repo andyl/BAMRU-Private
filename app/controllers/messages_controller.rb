@@ -49,9 +49,18 @@ class MessagesController < ApplicationController
       p = Rsvp.create(opts)
     end
     m.create_all_outbound_mails
-    out_count = m.outbound_mails.count
-    call_rake('ops:email:pending:send')
-    redirect_to messages_path, :notice => "Message sent to #{count} addresses."
+
+    m.create_all_outbound_mails
+    member_count    = m.distributions.count
+    outbound_count  = m.outbound_mails.count
+    comp_mins = outbound_count / 11 + 1
+    dst = "#{pluralize(member_count, "member")} (#{pluralize(outbound_count, "address")})"
+    round_up = lambda {|val| (val * 1.5).to_i + 1}
+    est    = "should complete in #{comp_mins}-#{round_up.call(comp_mins)} mins."
+    link   = "(<a target='_blank' href='/monitor'>monitor</a>)"
+    notice = "Message being sent to #{dst} - #{est} #{link}"
+    call_rake("ops:email:pending:render")
+    redirect_to messages_path, :notice => notice
   end
   
 end
