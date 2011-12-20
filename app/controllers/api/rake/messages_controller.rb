@@ -9,6 +9,13 @@ class Api::Rake::MessagesController < ApplicationController
     @mails = OutboundMail.pending.all
     render :json => @mails.to_json
   end
+  
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/messages/render?address=<address>
+  def render_notification
+    address = params[:address]
+    ActiveSupport::Notifications.instrument("rake.message.render", {:text => address}) unless address.blank?
+    render(:json => "OK\n")
+  end
 
   # curl -u <first>_<last>:<pwd> http://server/api/rake/messages/<id>/sent_at_now.json
   def sent_at_now
