@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 platforms :jruby do
-  gem 'jruby-poi', '0.8.2'
+  gem "jruby-poi", '0.8.2'
 end
 
 platforms :ruby do
@@ -9,7 +9,6 @@ platforms :ruby do
   gem "linecache", "0.43"
   gem "sqlite3"
   gem "sqlite3-ruby", :require => "sqlite3"
-  # gem "faye",          "0.7.0"
   gem "faye",          "0.6.4"
   gem "pngqr"
   gem "em-http-request"
@@ -39,26 +38,26 @@ platforms :ruby do
   gem "prawn"
   gem "foreman"
   gem "oauth"
-  gem "ruby-gmail", :require => 'gmail'
-  gem 'mime'
+  gem "ruby-gmail", :require => "gmail"
+  gem "mime"
 
   # Asset template engines
-  gem 'json'
-  gem 'sass'
-  gem 'coffee-script'
-  gem 'uglifier'
-  gem 'therubyracer', :require => 'v8'
-  gem 'whenever', :require => false
+  gem "json"
+  gem "sass"
+  gem "coffee-script"
+  gem "uglifier"
+  gem "therubyracer", :require => "v8"
+  gem "whenever", :require => false
 
   group :development, :test do
-    gem 'jasminerice'
-    gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
-    gem 'csv-mapper'
-    gem 'rb-inotify'
-    gem 'guard'
-    gem 'guard-coffeescript'
-    gem 'livereload'
-    gem 'guard-livereload'
+    gem "jasminerice"
+    gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
+    gem "csv-mapper"
+    gem "rb-inotify"
+    gem "guard"
+    gem "guard-coffeescript"
+    gem "livereload"
+    gem "guard-livereload"
     gem "faker"
     gem "rcov"
     gem "ruby-debug"
@@ -68,8 +67,8 @@ platforms :ruby do
     gem "selenium-webdriver", "~> 2.0"
     gem "capybara", "~> 1.1.1"
     gem "launchy"
-    gem 'spork', '~> 0.9.0.rc9'
-    gem 'database_cleaner'
+    gem "spork", "~> 0.9.0.rc9"
+    gem "database_cleaner"
 
     gem "hirb"
     gem "wirble"
