@@ -123,20 +123,6 @@ def send_mail(outbound_mail)
   end
 end
 
-# ----- Rake Tasks -----
-
-namespace :ops do
-  namespace :email do
-
-    namespace :pending do
-
-      desc "Count Pending Mails"
-      task :count => 'environment' do
-        count = OutboundMail.pending.count
-        puts "Pending Outbound Mails: #{count}"
-        STDOUT.flush
-      end
-
       #def send_mail(outbound_mail)
       #  puts "sending message for #{outbound_mail.address}"
       #  STDOUT.flush
@@ -152,6 +138,29 @@ namespace :ops do
       #    system cmd
       #  end
       #end
+
+# ----- Rake Tasks -----
+
+namespace :ops do
+  namespace :email do
+
+    namespace :pending do
+
+      desc "Count Pending Mails"
+      task :count => 'environment' do
+        count = OutboundMail.pending.count
+        puts "Pending Outbound Mails: #{count}"
+        STDOUT.flush
+      end
+
+      desc "Render Pending Mails"
+      task :render => 'environment' do
+        system "mkdir -p /tmp/render_msg; rm -f /tmp/render_msg/*"
+        Time.zone = "Pacific Time (US & Canada)"
+        mails     = OutboundMail.pending.all
+        mails.each { |om| render_mail(om) }
+        STDOUT.flush
+      end
 
       desc "Send Pending Mails"
       task :send => 'environment' do
