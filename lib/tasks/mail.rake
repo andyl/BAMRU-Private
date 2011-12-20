@@ -59,7 +59,6 @@ end
 def load_all_emails_into_database
   cmd = curl_get("api/rake/messages/load_inbound")
   puts "Loading emails into database..."
-  # puts cmd.gsub(SYSTEM_PASS, "....")
   system cmd
 end
 
@@ -81,6 +80,26 @@ def render_phone_message(opts, format)
     when 'page'              : Notifier.page_phone(opts)
     when 'do_shift_starting' : Notifier.do_shift_starting_phone(opts)
     else nil
+  end
+end
+
+def render_mail(outbound_mail)
+  puts "rendering message for #{outbound_mail.address}"
+  STDOUT.flush
+  mailing    = nil
+  message    = outbound_mail.distribution.message
+  address    = outbound_mail.email_address
+  full_label = outbound_mail.full_label
+  dist       = outbound_mail.distribution
+  format     = message.format
+  opts       = Notifier.set_optz(message, address, full_label, dist)
+  mailing    = render_email_message(opts, format) if outbound_mail.email
+  mailing    = render_phone_message(opts, format) if outbound_mail.phone
+  unless mailing.nil?
+    File.open("/tmp/render_msg/#{outbound_mail.label}", 'w') {|f| f.puts mailing.to_yaml}
+    invoke_url = "api/rake/messages/render?address=#{outbound_mail.address}"
+    cmd        = curl_get(invoke_url)
+    system cmd
   end
 end
 
@@ -116,26 +135,6 @@ namespace :ops do
         count = OutboundMail.pending.count
         puts "Pending Outbound Mails: #{count}"
         STDOUT.flush
-      end
-
-      def render_mail(outbound_mail)
-        puts "rendering message for #{outbound_mail.address}"
-        STDOUT.flush
-        mailing    = nil
-        message    = outbound_mail.distribution.message
-        address    = outbound_mail.email_address
-        full_label = outbound_mail.full_label
-        dist       = outbound_mail.distribution
-        format     = message.format
-        opts       = Notifier.set_optz(message, address, full_label, dist)
-        mailing    = render_email_message(opts, format) if outbound_mail.email
-        mailing    = render_phone_message(opts, format) if outbound_mail.phone
-        unless mailing.nil?
-          File.open("/tmp/render_msg/#{outbound_mail.label}", 'w') {|f| f.puts mailing.to_yaml}
-          invoke_url = "api/rake/messages/render?address=#{outbound_mail.address}"
-          cmd        = curl_get(invoke_url)
-          system cmd
-        end
       end
 
       #def send_mail(outbound_mail)
