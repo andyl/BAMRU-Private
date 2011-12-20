@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
 
-  before_filter :authenticate_member_with_basic_auth!
+ include ActionView::Helpers::TextHelper
+
+ before_filter :authenticate_member_with_basic_auth!
 
   def index
     puts '>'
