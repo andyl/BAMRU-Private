@@ -16,10 +16,11 @@ module RakeUtil
   # ----- Generates a URL to the local machine -----
 
   def local_url
-    include Rails.application.routes.url_helpers
-    default_url_options[:host] = (Rails.env == "development") ? "ekel" : "bamru.net"
-    default_url_options[:port] = "3000" if Rails.env == "development"
-    root_url
+    if ENV['SYSNAME'] == "ekel"
+      "http://ekel:3000/"
+    else
+      "http://bamru.net/"
+    end
   end
 
   # ----- Generates a CURL Stringjj

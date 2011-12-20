@@ -43,7 +43,7 @@ while (file = Dir.glob("#{base_dir}/nq_*").first) != nil do
   puts (" Finished PID:#{PID} @ #{ts} ").center(width, '-')
   system "rm #{file}"
   STDOUT.flush
-  sleep 10
+  sleep 4
 end
 
 STDOUT.flush

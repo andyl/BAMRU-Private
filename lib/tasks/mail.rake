@@ -86,6 +86,8 @@ end
 def render_mail(outbound_mail)
   puts "rendering message for #{outbound_mail.address}"
   STDOUT.flush
+  yaml_file = "/tmp/render_msg/#{outbound_mail.id}_#{outbound_mail.label}"
+  return if File.exists?(yaml_file)
   mailing    = nil
   message    = outbound_mail.distribution.message
   address    = outbound_mail.email_address
@@ -96,7 +98,7 @@ def render_mail(outbound_mail)
   mailing    = render_email_message(opts, format) if outbound_mail.email
   mailing    = render_phone_message(opts, format) if outbound_mail.phone
   unless mailing.nil?
-    File.open("/tmp/render_msg/#{outbound_mail.label}", 'w') {|f| f.puts mailing.to_yaml}
+    File.open(yaml_file, 'w') {|f| f.puts mailing.to_yaml}
     invoke_url = "api/rake/messages/render?address=#{outbound_mail.address}"
     cmd        = curl_get(invoke_url)
     system cmd
@@ -158,7 +160,7 @@ namespace :ops do
         system "mkdir -p /tmp/render_msg; rm -f /tmp/render_msg/*"
         Time.zone = "Pacific Time (US & Canada)"
         mails     = OutboundMail.pending.all
-        mails.each { |om| render_mail(om) }
+        mails.each { |om| sleep 0.5; render_mail(om) }
         STDOUT.flush
       end
 
@@ -172,6 +174,47 @@ namespace :ops do
           send_mail(send_obj)
         end
         STDOUT.flush
+      end
+
+      desc "Send Pending Mails V2"
+      task :send2 do
+        require 'mail'
+        require 'letter_opener'
+        Mail.defaults do
+          delivery_method LetterOpener::DeliveryMethod, :location => "/tmp/letter_opener"
+        end
+        module LetterOpener
+          class DeliveryMethod
+            def settings
+              ""
+            end
+          end
+        end
+        require 'gmail'
+        require 'yaml'
+        Time.zone = "Pacific Time (US & Canada)"
+        gmail_service = Gmail.new(GMAIL_USER, GMAIL_PASS)
+        Dir.glob("/tmp/render_msg/*").each do |file|
+          sleep 1
+          mail  = Mail.new(YAML.load_file(file))
+          msgid = file.split('/').last.split('_').first
+          puts "sending message #{msgid}"
+          if ENV['SYSNAME'] == 'ekel'
+            mail.deliver!
+          else
+            orig_stderr = $stderr
+            $stderr = File.new('/dev/null', 'w')
+            gmail_service.deliver(mail)
+            $stderr = orig_stderr
+          end
+          unless msgid.blank?
+            invoke_url = "api/rake/messages/#{msgid}/sent_at_now.json"
+            cmd        = curl_get(invoke_url)
+            system cmd
+          end
+          system "rm -f #{file}"
+        end
+        gmail_service.logout
       end
 
     end
