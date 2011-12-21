@@ -51,18 +51,15 @@ class MessagesController < ApplicationController
       p = Rsvp.create(opts)
     end
     m.create_all_outbound_mails
-
-    m.create_all_outbound_mails
     member_count    = m.distributions.count
     outbound_count  = m.outbound_mails.count
-    comp_mins = outbound_count / 11 + 1
     dst = "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
-    round_up = lambda {|val| (val * 1.5).to_i + 1}
     link   = "(<a target='_blank' href='/monitor'>monitor</a>)"
     notice = "Message being sent to #{dst} #{link}"
-    call_rake("ops:email:pending:render")
-    sleep 1
-    call_rake("ops:email:pending:send2")
+    timestamp = Time.now.strftime("%y%m%d_%H%M%S")
+    call_rake("ops:email:pending:render", {}, "#{timestamp}_1")
+    call_rake("ops:email:pending:send2",  {}, "#{timestamp}_2")
+    ActiveSupport::Notifications.instrument("page.send", {:member => current_member, :text => dst})
     redirect_to messages_path, :notice => notice
   end
   

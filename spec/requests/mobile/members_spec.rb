@@ -16,7 +16,7 @@ describe "Members", :js => true, :capybara => true do
       fill_in "user_name", :with => user_name
       fill_in "password",  :with => 'welcome'
       click_button 'Log in'
-      current_path.should == mobile1_path
+      current_path.should == mobile_path
     end
   end
 end

@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
 platforms :jruby do
   gem "jruby-poi", '0.8.2'
@@ -6,7 +6,6 @@ end
 
 platforms :ruby do
 
-  # gem "linecache"
   gem "sqlite3"
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "faye",          "0.6.4"
@@ -38,14 +37,9 @@ platforms :ruby do
   gem "prawn"
   gem "foreman"
   gem "oauth"
-<<<<<<< HEAD
   gem "ruby-gmail", :require => "gmail"
   gem "mime"
-=======
-  gem "ruby-gmail", :require => 'gmail'
-  gem 'mime'
-  gem 'bcrypt-ruby', "~> 3.0.0"
->>>>>>> master
+  gem "bcrypt-ruby", "~> 3.0.0"
 
   # Asset template engines
   gem "json"
@@ -66,7 +60,7 @@ platforms :ruby do
     gem "guard-livereload"
     gem "faker"
     gem "rcov"
-    gem "ruby-debug19", :require => 'ruby-debug'
+    gem "ruby-debug19", :require => "ruby-debug"
     gem "rspec-rails", "2.8.0.rc2"
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"

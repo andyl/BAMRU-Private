@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'lib/carrier_queue'
+require Rails.root.to_s + '/lib/carrier_queue'
 
 describe CarrierQueue do
 

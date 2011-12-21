@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'lib/address_parser'
+require Rails.root.to_s + '/lib/address_parser'
 
 describe AddressParser do
 

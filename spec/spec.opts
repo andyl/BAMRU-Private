@@ -3,5 +3,3 @@
 --debug
 --fail-fast
 --drb
-   # tag capybara
---tag ~js

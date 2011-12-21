@@ -35,15 +35,16 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  def call_rake(task, options = {})
+  def call_rake(task, options = {}, sequence = "")
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }
-    cmd = "/usr/bin/rake #{task} #{args.join(' ')} --trace"
-    nq(cmd)
+    cmd = "rake #{task} #{args.join(' ')} --trace"
+    nq(cmd, sequence)
   end
 
-  def nq(cmd)
-    system "(cd #{Rails.root}; script/nq #{cmd}) >> #{Rails.root}/log/nq.log 2>&1 &"
+  def nq(cmd, sequence)
+    string = sequence.empty? ? "" : "-s#{sequence}"
+    system "(cd #{Rails.root}; script/nq #{string} #{cmd}) >> #{Rails.root}/log/nq.log 2>&1 &"
   end
 
   def device

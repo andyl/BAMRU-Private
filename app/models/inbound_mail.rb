@@ -79,7 +79,7 @@ class InboundMail < ActiveRecord::Base
     opts[:subject]   = mail.subject
     opts[:from]      = mail.from.join(' ')
     opts[:to]        = mail.to.join(' ')
-    opts[:uid]       = mail.try(:uid)
+    #opts[:uid]       = mail.try(:uid)
     opts[:body]      = mail.body.to_s.lstrip
     opts[:send_time] = mail.date.to_s
     create_from_opts(opts)

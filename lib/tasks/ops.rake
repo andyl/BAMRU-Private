@@ -6,6 +6,12 @@ include RakeUtil
 
 namespace :ops do
 
+  desc "Rake Test"
+  task :raketest => 'environment' do
+    puts "Hello World at #{Time.now}"
+    STDOUT.flush
+  end
+
   desc "Set DO"
   task :set_do => 'environment' do
     cmd = curl_get("api/rake/ops/set_do.json")
