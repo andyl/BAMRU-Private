@@ -60,7 +60,7 @@ platforms :ruby do
     gem "guard-livereload"
     gem "faker"
     gem "rcov"
-    gem "ruby-debug19", :require => "ruby-debug"
+    gem "ruby-debug19", :require => "ruby-debug" if ENV['SYSNAME'] == 'ekel'
     gem "rspec-rails", "2.8.0.rc2"
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
