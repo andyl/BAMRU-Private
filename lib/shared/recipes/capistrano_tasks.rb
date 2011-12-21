@@ -1,4 +1,4 @@
-require "whenever/capistrano"
+#require "whenever/capistrano"
 
 set :scm, :git
 set :git_shallow_clone, 1

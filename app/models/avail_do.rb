@@ -31,13 +31,13 @@ class AvailDo < ActiveRecord::Base
   def start_time
       day = Time.parse("Jan #{year}") + (quarter-1).quarters + (week-1).weeks + 8.hours
       adj_factor = case day.wday
-        when 0 : 2
-        when 1 : 1
-        when 2 : 0
-        when 3 : 6
-        when 4 : 5
-        when 5 : 4
-        when 6 : 3
+        when 0 then 2
+        when 1 then 1
+        when 2 then 0
+        when 3 then 6
+        when 4 then 5
+        when 5 then 4
+        when 6 then 3
       end
       day + adj_factor.days
   end
