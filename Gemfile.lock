@@ -338,6 +338,7 @@ DEPENDENCIES
   rabl
   rack-offline
   rails (= 3.2.0.rc1)
+  rake
   rb-inotify
   rcov
   rmagick
