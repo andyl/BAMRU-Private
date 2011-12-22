@@ -55,6 +55,7 @@ class MessagesController < ApplicationController
     outbound_count  = m.outbound_mails.count
     dst = "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
     link   = "(<a target='_blank' href='/monitor'>monitor</a>)"
+    link   = ""
     notice = "Message being sent to #{dst} #{link}"
     timestamp = Time.now.strftime("%y%m%d_%H%M%S")
     call_rake("ops:email:pending:render", {}, "#{timestamp}_1")
