@@ -165,10 +165,13 @@ namespace :ops do
         require 'yaml'
         Time.zone = "Pacific Time (US & Canada)"
         Dir.glob("/tmp/render_msg/*").each do |file|
-          mail = ActionMailer::Base.mail(YAML.load_file(file))
+          mail_attributes = YAML.load_file(file)
+          mail = ActionMailer::Base.mail(mail_attributes)
+          mail.subject = mail_attributes["Subject"]
           msgid = file.split('/').last.split('_').first
           puts "sending message #{msgid} (#{mail.to.first})"
           smtp_settings = [:smtp, SMTP_SETTINGS]
+          debugger
           mail.delivery_method(*smtp_settings) if Rails.env.production?
           mail.deliver
           unless msgid.blank?
