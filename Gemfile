@@ -41,6 +41,7 @@ platforms :ruby do
   gem "ruby-gmail", :require => "gmail"
   gem "mime"
   gem "bcrypt-ruby", "~> 3.0.0"
+  gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
   # Asset template engines
   gem "json"
