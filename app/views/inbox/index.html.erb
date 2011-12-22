@@ -28,11 +28,17 @@
 
     <div id=x_single_col>
 
+
+
       <table id="myTable" class="tablesorter">
         <thead>
-        <th>From</th>
-        <th>Message Text</th>
-        <th>Sent At</th>
+        <th width=70>From</th>
+        <th width=280>
+          Message Text
+          <% if (current_member == @member) && (current_member.distributions.unread.count != 0) %>
+            <span style='margin-left: 60px;'>(<a href="#" id=mark_all>mark all as read</a>)</span>
+          <% end %>
+        </th>
         <th align=center>Bounced?</th>
         <th align=center>Read?</th>
         <th align=center>RSVP</th>
@@ -41,9 +47,12 @@
 
         <% @dists.each do |dist| %>
           <tr>
-            <td><%= link_to(dist.message.author.short_name, member_path(dist.message.author)) %></td>
+            <td>
+              <%= link_to(dist.message.author.short_name, member_path(dist.message.author)) %>
+              <br/>
+              <%= dist.created_at.strftime("%m-%d %H:%M") %>
+            </td>
             <td><%= dist.message.text_with_rsvp %> <%= raw mark_as_read(dist, @member)%></td>
-            <td><%= dist.created_at.strftime("%m-%d %H:%M") %></td>
             <td align=center>
               <%= raw yes_no_bounce dist %>
               </td>
@@ -64,14 +73,7 @@
     <div id=x_footer style='font-size: 8pt;'>
       <table width=100% style='font-size: 8pt;'>
         <tr>
-          <% if (current_member == @member) && (current_member.distributions.unread.count != 0) %>
-            <td>
-              <a href="#" id=mark_all>mark all as read</a>
-            </td>
-            <td align=right>
-          <% else %>
-            <td>
-          <% end %>
+          <td>
           If there are <span style='background-color: pink;'>bounced messages</span>, check the <b>history</b> to find out what is failing.
           </td>
         </tr>
