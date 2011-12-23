@@ -6,15 +6,16 @@ end
 
 platforms :ruby do
 
+  #gem "rails",         "3.2.0.rc1"
+  gem "rails",          "3.1.3"
+
   gem "rake"
   gem "sqlite3"
-  # gem "sqlite3-ruby", :require => "sqlite3"
   gem "faye",          "0.6.4"
   gem "pngqr"
   gem "em-http-request"
   gem "thin"
 
-  gem "rails",         "3.2.0.rc1"
   gem "capistrano"
   gem "factory_girl"
   gem "fastercsv"
