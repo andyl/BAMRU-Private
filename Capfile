@@ -1,4 +1,4 @@
-PRIMARY      = "bamru.net"
+#PRIMARY      = "bamru.net"
 BACKUP       = "backup.bamru.net"
 APPDIR       = "BAMRU-Private"
 

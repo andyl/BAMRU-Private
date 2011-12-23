@@ -8,7 +8,7 @@ platforms :ruby do
 
   gem "rake"
   gem "sqlite3"
-  gem "sqlite3-ruby", :require => "sqlite3"
+  # gem "sqlite3-ruby", :require => "sqlite3"
   gem "faye",          "0.6.4"
   gem "pngqr"
   gem "em-http-request"
