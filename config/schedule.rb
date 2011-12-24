@@ -1,4 +1,4 @@
-# Use this file to define cron jobs. 
+# Use this file to define cron jobs.
 #
 # More info on cron: http://en.wikipedia.org/wiki/Cron
 # Learn more: http://github.com/javan/whenever

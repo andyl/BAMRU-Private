@@ -18,10 +18,13 @@ def get_perf_numbers
 end
 
 def update_log_file(data)
-  data
-  File.open(LOG_FILE, 'a') {|f| f.puts data.to_json}
-  system "tail -n 24 #{LOG_FILE} > #{LOG_FILE}.tmp"
-  system "mv #{LOG_FILE}.tmp #{LOG_FILE}"
+  max_log_file_lines = 24
+  file_lines = File.readlines(LOG_FILE)
+  file_lines << data.to_json + "\n"
+  if file_lines.length > max_log_file_lines
+    file_lines = file_lines[-max_log_file_lines..-1]
+  end
+  File.open(LOG_FILE, 'w') {|f| f.puts file_lines.join}
 end
 
 def send_faye(data)
