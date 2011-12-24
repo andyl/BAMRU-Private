@@ -106,7 +106,7 @@ end
 if File.basename($0) == File.basename(__FILE__)
   require 'drb'
   DRb.start_service('druby://localhost:9000', PoiDrb.new)
-  puts "Starting PoiDrb server on port 9000."
+  puts "Starting PoiDrb server on port 9000 @ #{Time.now}"
   puts "Ctrl-C to exit..."
   DRb.thread.join
 end
