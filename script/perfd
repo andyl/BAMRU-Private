@@ -19,7 +19,7 @@ end
 
 def update_log_file(data)
   max_log_file_lines = 24
-  file_lines = File.readlines(LOG_FILE)
+  file_lines = File.exist?(LOG_FILE) ? File.readlines(LOG_FILE) : []
   file_lines << data.to_json + "\n"
   if file_lines.length > max_log_file_lines
     file_lines = file_lines[-max_log_file_lines..-1]
