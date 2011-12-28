@@ -9,8 +9,7 @@ class Api::Mobile3::DistributionsController < ApplicationController
   end
 
   def update
-    debugger
-    
+
   end
 
 end

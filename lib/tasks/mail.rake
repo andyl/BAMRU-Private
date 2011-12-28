@@ -116,7 +116,7 @@ def send_mail(outbound_mail)
   mailing    = render_phone_message(opts, format) if outbound_mail.phone
   unless mailing.nil?
     mailing.deliver
-    invoke_url = "api/rake/messages/#{outbound_mail.id}/sent_at_now.json"
+    invoke_url = "api/rake/messages/#{outbound_mail.id}/sent_at_now.json?update=true"
     cmd        = curl_get(invoke_url)
     system cmd
   end
@@ -209,8 +209,7 @@ namespace :ops do
           data       = File.read(file)
           invoke_url = "api/rake/messages/update_sent_at"
           cmd        = curl_post(invoke_url, data)
-          value = `#{cmd}`
-          puts value
+          value      = `#{cmd}`
           system "rm -f #{file}" if value[0..1] == "OK"
           sleep 1
         end
@@ -232,7 +231,7 @@ namespace :ops do
       # ----- Password Reset -----
 
       desc "Password Reset ADDRESS=<email_address>"
-      task :password_reset => 'environment' do
+      task :password_reset => :environment do
         adr = ENV["ADDRESS"]
         cmd = curl_get("api/rake/password/reset?address=#{adr}")
         puts "Generating password reset mail for #{adr} at #{Time.now}"
@@ -243,7 +242,7 @@ namespace :ops do
 
       # sent 4 days before the shift starts
       desc "DO Shift Pending Reminder"
-      task :do_shift_pending => 'environment' do
+      task :do_shift_pending => :environment do
         cmd = curl_get('api/rake/reminders/do_shift_pending')
         puts "Generating DO Shift Pending Reminder"
         system cmd
