@@ -58,8 +58,7 @@ class MessagesController < ApplicationController
     link   = ""
     notice = "Message being sent to #{dst} #{link}"
     timestamp = Time.now.strftime("%y%m%d_%H%M%S")
-    call_rake("ops:email:pending:render", {}, "#{timestamp}_1")
-    call_rake("ops:email:pending:send2",  {}, "#{timestamp}_2")
+    call_rake("ops:email:pending:send2",           {}, "#{timestamp}_2")
     ActiveSupport::Notifications.instrument("page.send", {:member => current_member, :text => dst})
     redirect_to messages_path, :notice => notice
   end

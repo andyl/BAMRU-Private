@@ -4,6 +4,8 @@ class Api::Rake::MessagesController < ApplicationController
 
   before_filter :authenticate_member_with_basic_auth!
 
+  skip_before_filter :verify_authenticity_token
+
   # curl -u <first>_<last>:<pwd> http://server/api/rake/messages.json
   def index
     @mails = OutboundMail.pending.all
@@ -11,9 +13,10 @@ class Api::Rake::MessagesController < ApplicationController
   end
   
   # curl -u <first>_<last>:<pwd> http://server/api/rake/messages/render?address=<address>
-  def render_notification
-    address = params[:address]
-    ActiveSupport::Notifications.instrument("rake.message.render", {:text => address}) unless address.blank?
+  def render_notice
+    count = params[:count]
+    msg = "#{params[:label]} #{count} addresses"
+    ActiveSupport::Notifications.instrument("rake.message.render", {:text => msg}) unless count.blank?
     render(:json => "OK\n")
   end
 
@@ -23,7 +26,24 @@ class Api::Rake::MessagesController < ApplicationController
     @om = OutboundMail.find id
     member = @om.distribution.member
     ActiveSupport::Notifications.instrument("rake.message.send", {:member => member, :text => "#{@om.address}-#{@om.label}"})
-    @om.update_attributes(:sent_at => Time.now) unless @om.nil?  || ! @om.sent_at.nil?
+    render :json => "OK\n"
+  end
+
+  # curl -X POST -u <first>_<last>:<pwd> http://server/api/rake/messages/record_sent_at
+  def update_sent_at
+    unless (data = params[:data]).blank?
+      clean_data = URI.unescape(data)
+      update_list = clean_data.split("\n").map do |value|
+        id, time = value.split('|')
+        [OutboundMail.find(id), Time.parse(time)]
+      end
+      update_list.each do |item|
+        outbound_mail, time = item
+        outbound_mail.update_column(:sent_at, time)
+      end
+      ActiveSupport::Notifications.instrument("rake.messages.send", {:text => "update sent_at: #{update_list.length} records"})
+    end
+
     render :json => "OK\n"
   end
 

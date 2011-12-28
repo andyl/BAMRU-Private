@@ -99,9 +99,6 @@ def render_mail(outbound_mail)
   mailing    = render_phone_message(opts, format) if outbound_mail.phone
   unless mailing.nil?
     File.open(yaml_file, 'w') {|f| f.puts mailing.to_yaml}
-    invoke_url = "api/rake/messages/render?address=#{outbound_mail.address}"
-    cmd        = curl_get(invoke_url)
-    system cmd
   end
 end
 
@@ -140,16 +137,26 @@ namespace :ops do
       end
 
       desc "Render Pending Mails"
-      task :render => 'environment' do
+      task :render => [:environment, :update_sent_at] do
         system "mkdir -p /tmp/render_msg; rm -f /tmp/render_msg/*"
-        Time.zone = "Pacific Time (US & Canada)"
-        mails     = OutboundMail.pending.all
-        mails.each { |om| sleep 0.5; render_mail(om) }
-        STDOUT.flush
+        Time.zone  = "Pacific Time (US & Canada)"
+        mails      = OutboundMail.pending.all
+        if mails.count > 0
+          invoke_url = "api/rake/messages/render_notice?label=started&count=#{mails.count}"
+          cmd        = curl_get(invoke_url)
+          puts cmd
+          system cmd
+          mails.each { |om| render_mail(om) }
+          invoke_url = "api/rake/messages/render_notice?label=finished&count=#{mails.count}"
+          cmd        = curl_get(invoke_url)
+          puts cmd
+          system cmd
+          STDOUT.flush
+        end
       end
 
       desc "Send Pending Mails"
-      task :send => 'environment' do
+      task :send => :environment do
         Time.zone = "Pacific Time (US & Canada)"
         send_list = CarrierQueueCollection.new
         mails     = OutboundMail.pending.all
@@ -161,25 +168,50 @@ namespace :ops do
       end
 
       desc "Send Pending Mails V2"
-      task :send2 => :environment do
+      task :send2 => [:environment, :render] do
         require 'yaml'
         Time.zone = "Pacific Time (US & Canada)"
+
+        tdate = Time.now.strftime("%y%m%d_%H%M%S")
+
         Dir.glob("/tmp/render_msg/*").each do |file|
           mail_attributes = YAML.load_file(file)
           mail = ActionMailer::Base.mail(mail_attributes)
           mail.subject = mail_attributes["Subject"]
-          msgid = file.split('/').last.split('_').first
-          puts "sending message #{msgid} (#{mail.to.first})"
+          outbound_mail_id = file.split('/').last.split('_').first
+          puts "sending message #{outbound_mail_id} (#{mail.to.first})"
           smtp_settings = [:smtp, SMTP_SETTINGS]
-          debugger
           mail.delivery_method(*smtp_settings) if Rails.env.production?
           mail.deliver
-          unless msgid.blank?
-            invoke_url = "api/rake/messages/#{msgid}/sent_at_now.json"
+
+          unless outbound_mail_id.blank?
+            system "mkdir -p /tmp/sent_at"
+
+            invoke_url = "api/rake/messages/#{outbound_mail_id}/sent_at_now.json"
             cmd        = curl_get(invoke_url)
             system cmd
+
+            File.open("/tmp/sent_at/#{tdate}", "a") do |f|
+              f.puts "#{outbound_mail_id}|#{Time.now}"
+            end
+
           end
           system "rm -f #{file}"
+          sleep 0.25
+        end
+        Rake::Task['ops:email:pending:update_sent_at'].execute
+      end
+
+      desc "Update email sent at"
+      task :update_sent_at do
+        Dir.glob("/tmp/sent_at/*").each do |file|
+          puts "Recording data values from #{file}"
+          data       = File.read(file)
+          invoke_url = "api/rake/messages/update_sent_at"
+          cmd        = curl_post(invoke_url, data)
+          value = `#{cmd}`
+          puts value
+          system "rm -f #{file}" if value[0..1] == "OK"
           sleep 1
         end
       end

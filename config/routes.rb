@@ -105,16 +105,17 @@ Zn::Application.routes.draw do
   namespace "api" do
 
     namespace "rake" do
-      get  "messages"                    => "messages#index"
-      get  "messages/render"             => "messages#render_notification"
-      get  "messages/:id/sent_at_now"    => "messages#sent_at_now"
-      get  "messages/load_inbound"       => "messages#load_inbound"
-      get  "password/reset"              => "password#reset"
-      get  "ops/set_do"                  => "ops#set_do"
-      get  "ops/message_cleanup"         => "ops#message_cleanup"
-      get  "reminders/do_shift_pending"  => "reminders#do_shift_pending"
-      get  "reminders/do_shift_starting" => "reminders#do_shift_starting"
-      get  "reminders/cert_expiration"   => "reminders#cert_expiration"
+      get  "messages"                     => "messages#index"
+      get  "messages/render_notice"       => "messages#render_notice"
+      get  "messages/:id/sent_at_now"     => "messages#sent_at_now"
+      get  "messages/load_inbound"        => "messages#load_inbound"
+      post "messages/update_sent_at"      => "messages#update_sent_at"
+      get  "password/reset"               => "password#reset"
+      get  "ops/set_do"                   => "ops#set_do"
+      get  "ops/message_cleanup"          => "ops#message_cleanup"
+      get  "reminders/do_shift_pending"   => "reminders#do_shift_pending"
+      get  "reminders/do_shift_starting"  => "reminders#do_shift_starting"
+      get  "reminders/cert_expiration"    => "reminders#cert_expiration"
     end
 
     get  "mobile3" => "mobile3#index"
