@@ -32,9 +32,21 @@ class Message < ActiveRecord::Base
     dist_b.any? {|dist| dist.has_fixed_bounce?}
   end
 
+  def breakify(text)
+    text_index = 0
+    while text[text_index..-1].length > 70
+      next_index = text[text_index..-1].index(' ') || text.length
+      next_index = 1 if next_index == 0
+      text.insert(text_index + 70, ' ') if next_index > 70
+      text_index = next_index + text_index
+    end
+    text
+  end
+
   def text_with_rsvp
-    return text unless rsvp
-    "#{text} (RSVP: #{rsvp.prompt})"
+    text_with_spaces = breakify(text)
+    return text_with_spaces unless rsvp
+    "#{text_with_spaces} (RSVP: #{rsvp.prompt})"
   end
 
   def rsvp_stats

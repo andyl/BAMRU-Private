@@ -144,13 +144,13 @@ namespace :ops do
         if mails.count > 0
           invoke_url = "api/rake/messages/render_notice?label=started&count=#{mails.count}"
           cmd        = curl_get(invoke_url)
-          puts cmd
+          puts "Started Rendering"
           system cmd
           mails.each { |om| render_mail(om) }
           invoke_url = "api/rake/messages/render_notice?label=finished&count=#{mails.count}"
           cmd        = curl_get(invoke_url)
-          puts cmd
           system cmd
+          puts "Finished Rendering"
           STDOUT.flush
         end
       end
