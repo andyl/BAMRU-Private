@@ -36,12 +36,7 @@
   <div id="footer">
     <table width=100% style='padding-left: 30px; padding-right: 30px;'>
       <tr>
-        <% if member_signed_in? %>
-          <td align=left>Current DO: <%= raw do_assignment_display_name_footer(DoAssignment.current.first) %></td>
-          <td align=right>Internal Use Only</td>
-        <% else %>
-          <td align=center>Internal Use Only</td>
-        <% end %>
+        <td align=center>Internal Use Only</td>
       </tr>
     </table>
   </div>

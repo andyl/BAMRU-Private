@@ -9,9 +9,9 @@ class MembersController < ApplicationController
     @fragment_type = cookies['rsa_show'] == 'true' ? "all" : "active"
     unless fragment_exist?(:fragment => "member_index_table-#{@fragment_type}")
       if cookies['rsa_show'] == 'true'
-        @members = Member.order_by_do_role_score.registered
+        @members = Member.order_by_role_score.registered
       else
-        @members = Member.order_by_do_role_score.active
+        @members = Member.order_by_role_score.active
       end
     end
   end
