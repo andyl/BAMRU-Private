@@ -206,6 +206,7 @@ class Member < ActiveRecord::Base
 
   def full_roles
     do_txt = current_do ? "DO " : ""
+    do_txt = ""
     arr = ([typ] + roles.map {|r| r.typ})
     do_txt + arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
