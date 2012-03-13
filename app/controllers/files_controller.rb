@@ -19,7 +19,8 @@ class FilesController < ApplicationController
     if @member.save
       redirect_to files_path, :notice => "File saved (#{@file.data_file_name})"
     else
-      flash.now.alert = "Error: file upload error - please try again"
+      string = @file.errors.full_messages.join(', ')
+      flash.now.alert = "Error: #{string}"
       render "new"
     end
   end

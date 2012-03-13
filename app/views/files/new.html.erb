@@ -19,7 +19,7 @@
     <div id=x_single_col>
 
       <%= simple_form_for @file, :url => files_path do |f|   %>
-        <%= f.input  :data, :label => "File"   %>
+        <%= f.input  :data, :label => "File", :hint => "Valid file types: #{@file.valid_filetypes}"   %>
         <%= f.button :submit                   %>
       <% end %>
 

@@ -3,7 +3,7 @@ require 'time'
 
 class DataFile < ActiveRecord::Base
 
-  TYPES = /^xls|doc|png|jpg|gif|zip|60r|sin|pdf|odf|txt|ppt|ogg|vcf$/
+  TYPES = /^xls|eps|doc|png|jpg|gif|zip|60r|sin|pdf|odf|txt|ppt|ogg|vcf$/
 
   # ----- Attributes -----
   attr_accessible :data, :download_count
@@ -34,6 +34,10 @@ class DataFile < ActiveRecord::Base
     atts = attributes
     %w(id member_id).each {|a| atts.delete(a)}
     atts
+  end
+
+  def valid_filetypes
+    TYPES.to_s[8..-3].gsub('|', ', ')
   end
 
   def cleanup_filename
