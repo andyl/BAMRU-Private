@@ -43,6 +43,8 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
 
+  get '/do_planner' => "do_planner#index"
+
   resources  :members do
     resources  :photos
     resources  :certs

@@ -140,6 +140,11 @@ module ApplicationHelper
     current_quarter == 4 ? 1 : current_quarter + 1
   end
 
+  def avail_dos_link_for_member(member, quarter)
+    hash = {:member_id => member.id}.merge(quarter)
+    link_to member.last_name, member_avail_dos_path(hash)
+  end
+
   def avail_dos_link_next_quarter(message)
     hash = {:member_id => current_member.id, :quarter => Time.now.current_quarter, :year => Time.now.year}
     link_to message, member_avail_dos_path(next_quarter(hash))
@@ -159,6 +164,37 @@ module ApplicationHelper
 
   def edit_link_current_quarter
     link_to "Current Quarter", edit_do_assignment_path
+  end
+
+  def plan_link_prev(hash)
+    link_to "<", do_planner_path(prev_quarter(hash))
+  end
+
+  def plan_link_next(hash)
+    link_to ">", do_planner_path(next_quarter(hash))
+  end
+
+  def plan_link_current_quarter
+    link_to "Current Quarter", do_planner_path
+  end
+
+  def get_status(member, quarter, week)
+    label = AvailDo.where(quarter).where(:member_id => member.id).where(:week => week).first
+    return "" if label.blank?
+    text = label.typ[0].capitalize
+    ftext = text == "A" ? "<b>#{text}</b>" : text
+    comment = label.comment.blank? ? "" : "*"
+    ftext + comment
+  end
+
+  def display_member_row(member, quarter)
+    memlink = avail_dos_link_for_member(member, quarter)
+    part1 = "<tr><td><nobr>#{memlink}</nobr></td>"
+    part2 = 13.times.map do |week|
+      "<td class='status'>#{get_status(member, quarter, week+1)}</td>"
+    end.join
+    part3 = "</tr>"
+    part1 + part2 + part3
   end
 
   def day_label(offset = 0)

@@ -1,0 +1,67 @@
+<%# javascript_include_tag "do_planner.js"   %>
+
+<style>
+  #dodata th {
+    width: 30px;
+  }
+  .status:hover {
+    background: lightblue;
+  }
+</style>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=33% align=left><b>Duty Officer Planner</b></td>
+          <td width=33% align=center><%= link_to("Edit Q#{@quarter[:quarter]} Unit DO Schedule", edit_do_assignment_path(1, @quarter)) %></td>
+          <td width=33% align=right>
+            <%= avail_dos_link_next_quarter("Edit My Q#{next_quarter_number} DO Availability") %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id=x_single_col class=centered>
+      <table width=100%>
+        <tr>
+          <td width=40% align=right>Planning <%= @quarter[:year] %> /
+            Q<%= @quarter[:quarter] %></td>
+          <td width=20%</td>
+          <td width=40% align=left><%= plan_link_prev(@quarter) %> <%= plan_link_current_quarter %> <%= plan_link_next(@quarter) %></td>
+        </tr>
+      </table>
+
+      <table id='dodata' align=center border=1 style='font-size: 10px;'>
+        <tr>
+          <th>Member</th>
+          <th>W1</th>
+          <th>W2</th>
+          <th>W3</th>
+          <th>W4</th>
+          <th>W5</th>
+          <th>W6</th>
+          <th>W7</th>
+          <th>W8</th>
+          <th>W9</th>
+          <th>W10</th>
+          <th>W11</th>
+          <th>W12</th>
+          <th>W13</th>
+        </tr>
+        <% @members.each do |mem| %>
+          <%= raw display_member_row(mem, @quarter) %>
+        <% end %>
+      </table>
+
+      <div style='height: 10px;'></div>
+    </div>
+    <div id=x_footer>
+      Instructions: Click a cell to create a DO assignment, click again to
+      un-assign.<br/> Legend: <b>A</b> = Available, <b>U</b> = Unavailable, '*'
+      means there is a comment
+    </div>
+  </div>
+</div>
+
