@@ -1,12 +1,17 @@
-<%# javascript_include_tag "do_planner.js"   %>
+<%= javascript_include_tag "do_planner.js"   %>
 
 <style>
   #dodata th {
     width: 30px;
   }
   .status:hover {
-    background: lightblue;
+    border-color: blue;
+    border-style: double;
+    cursor: pointer;
   }
+
+  .green { background: lightgreen; }
+
 </style>
 
 <div id=x_container>
@@ -54,6 +59,7 @@
           <%= raw display_member_row(mem, @quarter) %>
         <% end %>
       </table>
+      <div style='text-align: center'>* Comment: <span id='comment-span'>NA</span></div>
 
       <div style='height: 10px;'></div>
     </div>

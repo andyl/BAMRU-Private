@@ -20,18 +20,26 @@ class DoPlannerController < ApplicationController
     end
   end
 
-  def create
-    expire_fragment('footer-table')
-    expire_fragment('member_index_table-all')
-    expire_fragment('member_index_table-active')
-    @org = Org.where(:name => "BAMRU").first
-    if @org.update_attributes(params["org"])
-      Member.set_do
-      ActiveSupport::Notifications.instrument("ops.do_assignments.update", {:member => current_member})
-      rstr = "/do_assignments?quarter=#{params[:quarter]}&year=#{params[:year]}"
-      redirect_to rstr, :notice => "Records Saved"
-    else
-      render "edit"
+  def update
+    directive = params[:directive]
+    year, quarter, week, memid = params[:id].split('-')
+    case directive
+      when 'select'
+        options = {year: year, quarter: quarter, week: week}
+        assignment = DoAssignment.where(options).try(:first)
+        member_name = Member.find(memid).try(:full_name)
+        if assignment.blank?
+          new_opts = options.merge({primary_id: memid, name: member_name})
+          DoAssignment.create(new_opts)
+        else
+          assignment.update_attributes(primary_id: memid, name: member_name)
+        end
+      when 'unselect'
+        options = {year: year, quarter: quarter, week: week, primary_id: memid}
+        assignment = DoAssignment.where(options).try(:first)
+        assignment.try(:destroy)
     end
+    render :nothing => true
   end
+
 end

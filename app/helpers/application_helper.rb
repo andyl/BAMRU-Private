@@ -186,12 +186,33 @@ module ApplicationHelper
     comment = label.comment.blank? ? "" : "*"
     ftext + comment
   end
+  
+  def cellid(opts)
+    "#{opts[:year]}-#{opts[:quarter]}-#{opts[:week]}-#{opts[:member].id}"
+  end
+
+  def selecthelper(opts)
+    doa = DoAssignment.where(opts.slice(:year, :quarter, :week)).first
+    #debugger
+    return "" if doa.blank?
+    return "" if doa.primary_id != opts[:member].id
+    " green"
+  end
+
+  def comment_helper(opts)
+    new_opts = opts.slice(:year, :quarter, :week).merge(member_id: opts[:member].id)
+    avail = AvailDo.where(new_opts).first
+    return "NA" if avail.blank?
+    return "NA" if avail.comment.blank?
+    avail.comment
+  end
 
   def display_member_row(member, quarter)
     memlink = avail_dos_link_for_member(member, quarter)
     part1 = "<tr><td><nobr>#{memlink}</nobr></td>"
     part2 = 13.times.map do |week|
-      "<td class='status'>#{get_status(member, quarter, week+1)}</td>"
+      opts = quarter.merge({:member => member, :week => week+1})
+      "<td id='#{cellid(opts)}' data-comments='#{comment_helper(opts)}' class='status#{selecthelper(opts)}'>#{get_status(member, quarter, week+1)}</td>"
     end.join
     part3 = "</tr>"
     part1 + part2 + part3

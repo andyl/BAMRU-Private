@@ -43,7 +43,8 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
 
-  get '/do_planner' => "do_planner#index"
+  get  '/do_planner'     => "do_planner#index"
+  post '/do_planner/:id' => "do_planner#update"
 
   resources  :members do
     resources  :photos
