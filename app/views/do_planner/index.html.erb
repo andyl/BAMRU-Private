@@ -1,4 +1,5 @@
 <%= javascript_include_tag "do_planner.js"   %>
+<%= stylesheet_link_tag "tipsy.css" %>
 
 <style>
   #dodata th {
@@ -10,7 +11,9 @@
     cursor: pointer;
   }
 
-  .green { background: lightgreen; }
+  .green { background: #b8edab; }
+  .blue {background: #caf0f0; }
+  .pink {background: #ffdfe4; }
 
 </style>
 
@@ -39,34 +42,26 @@
       </table>
 
       <table id='dodata' align=center border=1 style='font-size: 10px;'>
-        <tr>
-          <th>Member</th>
-          <th>W1</th>
-          <th>W2</th>
-          <th>W3</th>
-          <th>W4</th>
-          <th>W5</th>
-          <th>W6</th>
-          <th>W7</th>
-          <th>W8</th>
-          <th>W9</th>
-          <th>W10</th>
-          <th>W11</th>
-          <th>W12</th>
-          <th>W13</th>
+        <tr style='background: #ededed;'>
+          <th></th>
+          <% 13.times do |idx| %>
+            <th id='week<%= idx+1 %>' <%= raw display_date_range(@quarter, idx+1) %>>W<%= idx+1 %></th>
+          <% end %>
         </tr>
         <% @members.each do |mem| %>
           <%= raw display_member_row(mem, @quarter) %>
         <% end %>
       </table>
-      <div style='text-align: center'>* Comment: <span id='comment-span'>NA</span></div>
-
       <div style='height: 10px;'></div>
     </div>
     <div id=x_footer>
       Instructions: Click a cell to create a DO assignment, click again to
-      un-assign.<br/> Legend: <b>A</b> = Available, <b>U</b> = Unavailable, '*'
-      means there is a comment
+      un-assign.<br/>
+      Legend: <b>A</b> = Available, <b>-</b> = Unavailable, '*'
+      means there is a comment<br/>
+      <span class='blue'>Unscheduled Member</span>
+      <span class='pink'>Unscheduled Week</span>
+      <span class='green'>DO Assignment</span>
     </div>
   </div>
 </div>

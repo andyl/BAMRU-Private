@@ -182,6 +182,7 @@ module ApplicationHelper
     label = AvailDo.where(quarter).where(:member_id => member.id).where(:week => week).first
     return "" if label.blank?
     text = label.typ[0].capitalize
+    text = '-' if text == "U"
     ftext = text == "A" ? "<b>#{text}</b>" : text
     comment = label.comment.blank? ? "" : "*"
     ftext + comment
@@ -193,7 +194,6 @@ module ApplicationHelper
 
   def selecthelper(opts)
     doa = DoAssignment.where(opts.slice(:year, :quarter, :week)).first
-    #debugger
     return "" if doa.blank?
     return "" if doa.primary_id != opts[:member].id
     " green"
@@ -202,20 +202,51 @@ module ApplicationHelper
   def comment_helper(opts)
     new_opts = opts.slice(:year, :quarter, :week).merge(member_id: opts[:member].id)
     avail = AvailDo.where(new_opts).first
-    return "NA" if avail.blank?
-    return "NA" if avail.comment.blank?
-    avail.comment
+    return "" if avail.blank?
+    return "" if avail.comment.blank?
+    "data-comments='#{avail.comment}'"
   end
 
   def display_member_row(member, quarter)
     memlink = avail_dos_link_for_member(member, quarter)
-    part1 = "<tr><td><nobr>#{memlink}</nobr></td>"
+    part1 = "<tr class='memrow'><td class='memlabel'><nobr>#{memlink}</nobr></td>"
     part2 = 13.times.map do |week|
       opts = quarter.merge({:member => member, :week => week+1})
-      "<td id='#{cellid(opts)}' data-comments='#{comment_helper(opts)}' class='status#{selecthelper(opts)}'>#{get_status(member, quarter, week+1)}</td>"
+      "<td id='#{cellid(opts)}' #{comment_helper(opts)} class='status#{selecthelper(opts)}'>#{get_status(member, quarter, week+1)}</td>"
     end.join
     part3 = "</tr>"
     part1 + part2 + part3
+  end
+
+  def display_date_range(quarter, week)
+    "data-weekid='#{quarter[:year]}-#{quarter[:quarter]}-#{week}' " +
+    "data-week='#{start_day(quarter, week)} - #{end_day(quarter, week)}'"
+  end
+
+  def start_day(quarter, week)
+    start_time(quarter, week).strftime("%b #{start_time(quarter, week).day.ordinalize}")
+  end
+
+  def end_day(quarter, week)
+    end_time(quarter, week).strftime("%b #{end_time(quarter, week).day.ordinalize}")
+  end
+
+  def start_time(quarter, week)
+    day = Time.parse("Jan #{quarter[:year]}") + (quarter[:quarter]-1).quarters + (week-1).weeks + 8.hours
+    adj_factor = case day.wday
+      when 0 then 2
+      when 1 then 1
+      when 2 then 0
+      when 3 then 6
+      when 4 then 5
+      when 5 then 4
+      when 6 then 3
+    end
+    day + adj_factor.days
+  end
+
+  def end_time(quarter, week)
+    start_time(quarter, week) + 1.week - 1.minute
   end
 
   def day_label(offset = 0)
