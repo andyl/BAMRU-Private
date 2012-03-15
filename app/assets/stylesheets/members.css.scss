@@ -2,6 +2,8 @@
   Styles for Members Controller
 */
 
+
+
 $wide_body_width: 905px;
 $body_width:      644px;
 $border_width:    1px;
@@ -164,5 +166,7 @@ top: 100px;
   border-style: none;
 }
 
-
-
+#pager_icon:hover, #email_icon:hover {
+  cursor: pointer;
+  background: blue;
+}

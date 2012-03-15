@@ -54,15 +54,23 @@ $(document).ready ->
 
 # ----- 4) clear sms, email, oot -----
 
-clearSMS = ->
+window.clearSMS = ->
   $(".sms_ck").prop("checked", false)
+  updateAddressCount()
+
+window.selectSMS = ->
+  $(".sms_ck").prop("checked", true)
   updateAddressCount()
 
 $(document).ready ->
   $("#clear_sms").click -> clearSMS()
 
-clearMail = ->
+window.clearMail = ->
   $(".mail_ck").prop("checked", false)
+  updateAddressCount()
+
+window.selectMail = ->
+  $(".mail_ck").prop("checked", true)
   updateAddressCount()
 
 $(document).ready ->
