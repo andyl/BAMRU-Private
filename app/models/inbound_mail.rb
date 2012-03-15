@@ -88,11 +88,10 @@ class InboundMail < ActiveRecord::Base
   def self.create_from_opts(opts)
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     first_words = opts[:body].split(' ')[0..30].join(' ')
-    match = first_words.match(/\b(yea|yes|no|y|n)\b/i)
+    match = first_words.match(/\b(yep|yea|yes|y|no|n|not|unavail|unavailable)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
-    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] == "Yea"
-    opts[:rsvp_answer] = "Yes" if opts[:rsvp_answer] == "Y"
-    opts[:rsvp_answer] = "No"  if opts[:rsvp_answer] == "N"
+    opts[:rsvp_answer] = "Yes" if %w(Yep Yea Y).include? opts[:rsvp_answer]
+    opts[:rsvp_answer] = "No"  if %w(N Not Unavail Unavailable).include? opts[:rsvp_answer]
     outbound = nil
     if match = self.match_code("#{opts[:subject]} #{opts[:body]}")
       opts[:label] = match[1]
