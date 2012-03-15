@@ -20,10 +20,10 @@ module MessagesHelper
 
   def rsvp_display(message)
     return "NA" unless message.rsvp
-    num_yes  = message.distributions.rsvp_yes.count
-    num_no   = message.distributions.rsvp_no.count
-    num_none = message.distributions.rsvp_none.count
-    "Yes #{num_yes}, No #{num_no}, NONE #{num_none}"
+    num_yes     = message.distributions.rsvp_yes.count
+    num_no      = message.distributions.rsvp_no.count
+    num_pending = message.distributions.rsvp_pending.count
+    "Yes #{num_yes}, No #{num_no}, PENDING #{num_pending}"
   end
 
   def sent_display(count, message)

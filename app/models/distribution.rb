@@ -25,9 +25,9 @@ class Distribution < ActiveRecord::Base
   scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
   scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
 
-  scope :rsvp_yes,  where(:rsvp_answer => "Yes")
-  scope :rsvp_no,   where(:rsvp_answer => "No")
-  scope :rsvp_none, where(:rsvp_answer => nil)
+  scope :rsvp_yes,     where(:rsvp_answer => "Yes")
+  scope :rsvp_no,      where(:rsvp_answer => "No")
+  scope :rsvp_pending, where(:rsvp_answer => nil)
 
   # ----- Local Methods-----
   def has_open_bounce?
@@ -44,7 +44,7 @@ class Distribution < ActiveRecord::Base
   
   def rsvp_display_answer(txt_case = :downcase)
     return "NA" unless message.rsvp
-    rsvp_answer.try(txt_case) || "NONE"
+    rsvp_answer.try(txt_case) || "PENDING"
   end
 
   def rsvp_display_link

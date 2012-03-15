@@ -27,7 +27,7 @@ module Mobile1Helper
   end
 
   def response_helper(msg, dist)
-    ans = dist.rsvp_answer || "NONE"
+    ans = dist.rsvp_answer || "PENDING"
     prompt = ""
     prompt = msg.rsvp.yes_prompt if ans == "Yes"
     prompt = msg.rsvp.no_prompt  if ans == "No"
@@ -35,7 +35,7 @@ module Mobile1Helper
   end
 
   def response_buttons(msg, dist)
-    ans = dist.rsvp_answer || "NONE"
+    ans = dist.rsvp_answer || "PENDING"
     yr = ""; nr = ""
     yr = "<a href='/mobile1/messages/#{msg.id}?response=yes' data-role='button'>Change to: YES #{msg.rsvp.yes_prompt}</a>" unless ans=="Yes"
     nr = "<a href='/mobile1/messages/#{msg.id}?response=no' data-role='button'>Change to: NO #{msg.rsvp.no_prompt}</a>" unless ans=="No"

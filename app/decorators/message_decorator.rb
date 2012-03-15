@@ -15,7 +15,7 @@ class MessageDecorator < ApplicationDecorator
     #          :member_id  => "#{dist.member_id}",
     #          :name       => dist.member.short_name,
     #          :read       => dist.read ? "yes" : "no",
-    #          :rsvp       => model.rsvp ? (dist.rsvp_answer.try(:downcase) || "NONE") : "NA"
+    #          :rsvp       => model.rsvp ? (dist.rsvp_answer.try(:downcase) || "PENDING") : "NA"
     #  }
     #end
     #hash[:distributions] = dists

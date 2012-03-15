@@ -60,7 +60,7 @@ module HistoryHelper
   def rsvp_history_display(distribution)
     return "NA" unless distribution.rsvp
     ans = distribution.rsvp_answer
-    ans.blank? ? "NONE" : ans
+    ans.blank? ? "PENDING" : ans
   end
 
   def rsvp_link_helper(distribution)
