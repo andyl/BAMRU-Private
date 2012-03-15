@@ -24,8 +24,9 @@
       </tr></table>
     </div>
     <div id=mem_left_col>
-      <b><%= @member.full_name %><br/></b>
+      <b><%= @member.full_name %></b><br/>
       <%= @member.full_roles %><p></p>
+      <%= raw show_oot_label(@member) %>
       <%= raw @member.all_assoc %><p></p>
       <% unless @member.ham.blank? %>
         <b>Ham:</b> <%= @member.ham %><br/>
@@ -43,6 +44,7 @@
       <% end %>
     </div>
     <div id=x_footer style='font-size: 10px;'>
+      <%= link_to "#{@member.first_name}'s Availability", "/members/#{@member.id}/avail_ops" %> |
       <%= link_to "#{@member.first_name}'s Inbox", "/members/#{@member.id}/inbox" %>
     </div>
   </div>

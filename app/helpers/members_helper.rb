@@ -31,6 +31,11 @@ module MembersHelper
     return "" unless member.avail_ops.busy_on?(Time.now)
     " (<a href='/members/#{member.id}/avail_ops'>Unavail</a>)"
   end
+
+  def show_oot_label(member)
+    return "" unless member.avail_ops.busy_on?(Time.now)
+    " <span style='background: #fef;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span><p></p>"
+  end
   
   def phone_checkbox(member)
     list = member.phones.pagable
