@@ -28,6 +28,7 @@ class HomeController < ApplicationController
     ActiveSupport::Notifications.instrument("service.wiki", {:member => current_member})
     system "ssh wiki.bamru.net 'touch #{mw_file}'"
     @link = "http://wiki.bamru.net#{path}?username=#{current_member.wiki_name}"
+    redirect_to @link
   end
 
   def mail_sync
