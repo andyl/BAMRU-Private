@@ -20,6 +20,8 @@ class AvailOp < ActiveRecord::Base
 
   # ----- Scopes -----
   scope :current, where("start < ?", Time.now).where("end > ?", Time.now)
+  scope :older_than_this_month, where("end < ?", Time.now.beginning_of_month)
+
 
   # ----- Attr Accessors -----
   def start_txt

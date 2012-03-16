@@ -94,3 +94,6 @@ every :sunday, :at => '5:40 am' do
   nq "rake ops:message_cleanup"
 end
 
+every :sunday, :at => '5:50 am' do
+  nq "rake ops:avail_op_cleanup"
+end

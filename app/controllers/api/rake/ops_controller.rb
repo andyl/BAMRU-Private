@@ -26,4 +26,13 @@ class Api::Rake::OpsController < ApplicationController
     render :json => "OK (records purged: #{purge_count})\n"
   end
 
+  # curl -u <first>_<last>:<pwd> http://server/api/rake/ops/avail_op_cleanup.json
+  def avail_op_cleanup
+    records = AvailOp.older_than_this_month.all
+    purge_count = records.length
+    records.each { |rec| rec.destroy }
+    ActiveSupport::Notifications.instrument("rake.ops.avail_op_cleanup", {:text => "records purged: #{purge_count}"})
+    render :json => "OK (records purged: #{purge_count})\n"
+  end
+
 end

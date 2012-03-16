@@ -42,5 +42,13 @@ namespace :ops do
     system cmd
     STDOUT.flush
   end
-  
+
+  desc "Cleanup Old AvailOp Records"
+  task :avail_op_cleanup => 'environment' do
+    cmd = curl_get("api/rake/ops/avail_op_cleanup")
+    puts "Cleaning up old avail_op records"
+    system cmd
+    STDOUT.flush
+  end
+
 end

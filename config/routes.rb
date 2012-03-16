@@ -118,6 +118,7 @@ Zn::Application.routes.draw do
       get  "password/reset"               => "password#reset"
       get  "ops/set_do"                   => "ops#set_do"
       get  "ops/message_cleanup"          => "ops#message_cleanup"
+      get  "ops/avail_op_cleanup"         => "ops#avail_op_cleanup"
       get  "reminders/do_shift_pending"   => "reminders#do_shift_pending"
       get  "reminders/do_shift_starting"  => "reminders#do_shift_starting"
       get  "reminders/cert_expiration"    => "reminders#cert_expiration"
