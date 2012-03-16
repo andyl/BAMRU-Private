@@ -56,9 +56,12 @@
 
       <% if @message.distributions.count > 4 %>
         <div style='background-color: lightgray; padding: 3px 25px 3px 108px;'>
-          <div style='float:right; text-align: right; margin-top: 4px'><a href="http://wiki.bamru.net/index.php/Paging_Protips" target="_blank">help</a></div>
+          <div style='float:right; text-align: right; margin-top: 4px'>
+            <a href="http://wiki.bamru.net/index.php/Paging_Protips" target="_blank">help</a>
+          </div>
           <div style='text-align: left;'>
-            Search: <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
+            Search:
+            <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
             <input id="filter-clear-button" type="button" value="Clear"/>
           </div>
         </div>
@@ -67,7 +70,7 @@
       <table id=myTable class="tablesorter">
         <thead>
         <th>Recipient</th>
-        <th>Last Update</th>
+        <th>Updated</th>
         <th>Read?</th>
         <th>RSVP</th>
         <th align=center>Detail</th>
@@ -79,7 +82,7 @@
             <td align=center><%= raw yes_no_read d.read %></td>
             <td align=center><%= raw d.rsvp_display_link %></td>
             <td align=center>
-              <%= link_to("history", history_path(d))%> |
+              <%= link_to("history", history_path(d)) %> |
               <%= link_to("inbox", member_inbox_index_path(d.member)) %>
             </td>
           </tr>
@@ -90,7 +93,8 @@
     <div id=x_footer style='font-size: 8pt;'>
       <% if @message.has_open_bounce? %>
         <div style='text-align: center;'>
-          For <span style="background-color: yellow;">bounced messages</span>, check the <b>history</b> to find out what is failing.
+          For <span style="background-color: yellow;">bounced messages</span>,
+          check the <b>history</b> to find out what is failing.
         </div>
       <% end %>
       <table width=100% style='font-size: 8pt;'>
@@ -99,7 +103,7 @@
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
           <td align=center>
-            Last Mail Sync: <%=@sync_time %>
+            Last Mail Sync: <%= @sync_time %>
           </td>
           <td align=center>
             <a href='#' id=resync_link>Resync Now</a>
@@ -108,5 +112,30 @@
       </table>
     </div>
 
+  </div>
+</div>
+
+<style>
+  #rsvp_popup {
+    width:  350px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    background: #ffffff;
+    position: absolute;
+    top: 40px;
+  }
+</style>
+
+<div id="blanket" style="display: none;"></div>
+<div id="rsvp_popup" style="display: none;">
+  <b>Update the RSVP response for <span id=member_name>TBD</span></b><p></p>
+  RSVP: <%= @message.rsvp.try(:prompt) %><p></p>
+  The current response is <b id=current_response>TBD</b><hr/><p></p><br/>
+  <span class=yes_response><a id=yes_link href='#'>Change the response to <b>YES</b></a>: <%= @message.rsvp.try(:yes_prompt) %><p></p></span>
+  <span class=no_response><a id=no_link href='#'>Change the response to <b>NO</b></a>: <%= @message.rsvp.try(:no_prompt) %></span>
+  <p></p><br/>
+  <div style='text-align: center;'>
+    <a href="#" onclick="msgClosePopup();">Cancel</a>
   </div>
 </div>

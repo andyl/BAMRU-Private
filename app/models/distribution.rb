@@ -50,7 +50,7 @@ class Distribution < ActiveRecord::Base
   def rsvp_display_link
     val = rsvp_display_answer
     return val if val == "NA"
-    "<a href='/rsvps/#{id}'>#{val}</a>"
+    "<a class='rsvp_link' id='rsvp_link_#{self.member.id}' data-msgid='#{self.message.id}' data-rsvpid='#{self.id}' data-name='#{self.member.full_name}' href='#'>#{val}</a>"
   end
 
   def set_read_time

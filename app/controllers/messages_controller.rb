@@ -29,6 +29,13 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update_rsvp
+    dist   = Distribution.find_by_id(params[:rsvpid])
+    name   = dist.member.full_name
+    string = "You set the RSVP response for <b>#{name}</b> to <b>#{params[:value].upcase}</b>"
+    redirect_to "/messages/#{params[:id]}", :notice => string
+  end
+
   def create
     puts params.inspect
     np = params[:message]

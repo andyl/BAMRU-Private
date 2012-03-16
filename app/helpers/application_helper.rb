@@ -24,10 +24,15 @@ module ApplicationHelper
     uri = URI.parse("#{FAYE_SERVER}/faye")
     Net::HTTP.post_form(uri, :message => message.to_json)
   end
-  
+
+  def checkbox(clas)
+    %Q(<div style='float:right; margin-right: 10px;'>[<a href='#' onclick='$(".#{clas}").hide()'>X</a>]</div>)
+  end
+
   def app_notice
     notice_value = notice
-    notice_value.blank? ? "<p/>" : "<p class='notice'>#{notice_value}</p>"
+    string = "<p></p><div class='notice'>#{checkbox('notice')}<div>#{notice_value}</div></div>"
+    notice_value.blank? ? "<p></p>" : string
   end
 
   def app_alert

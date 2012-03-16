@@ -113,27 +113,26 @@ $col_height: 225px;
 /* this is for the pop-up boxes for member editing */
 
 #blanket {
-height: 100%;
-width: 100%;
-background: #000000;
-position: absolute;
-top: 0;
-left: 0;
--moz-opacity:0.75;
--khtml-opacity: 0.75;
-opacity: 0.75;
-filter:alpha(opacity=75);
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -moz-opacity:0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  filter:alpha(opacity=75);
 }
 
-#phone_popup, #email_popup, #do_popup {
-width:  400px;
-/*height: 300px;*/
-margin: 20px;
-padding: 20px;
-border: 1px solid #000000;
-background: #ffffff;
-position: absolute;
-top: 100px;
+#phone_popup, #email_popup, #do_popup, #rsvp_popup {
+  width:  400px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  position: absolute;
+  top: 100px;
 }
 
 .black_box {

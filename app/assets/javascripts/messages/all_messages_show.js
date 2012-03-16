@@ -10,3 +10,4 @@
 
 //= require messages/messages_resync
 //= require messages/messages_show_table
+//= require messages/messages_rsvp_popup
