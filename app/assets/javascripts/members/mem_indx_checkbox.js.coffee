@@ -7,9 +7,14 @@ This file has three jQuery functions:
 
 # ----- 1) update address count -----
 
+ootCount = ->
+  $('.oot_member .rck:checked').length
+
+
 window.updateAddressCount = ->
   addr_count = $(".rck:checked").length
   label = if addr_count == 1 then "address" else "addresses"
+  if ootCount() == 0 then $('#clearoot').hide() else $('#clearoot').show()
   $("#addr_count").text("#{addr_count} #{label}")
 
 $(document).ready ->
@@ -76,7 +81,7 @@ window.selectMail = ->
 $(document).ready ->
   $("#clear_mail").click -> clearMail()
 
-clearOOT = ->
+window.clearOOT = ->
   $(".oot_member .rck").prop("checked", false)
   updateAddressCount()
 
