@@ -28,7 +28,7 @@ module MessagesHelper
 
   def sent_display(count, message)
     color = case
-      when message.has_open_bounce?  then "lightpink"
+      when message.has_open_bounce?  then "yellow"
       when message.has_fixed_bounce? then "#ccffff"
       else
         "white"
@@ -50,6 +50,12 @@ module MessagesHelper
     boolean_value == true ? "yes" : "no"
   end
 
+  def yes_no_read(boolean_value)
+    v1 = "yes"
+    v2 = "<span style='padding-left: 3px; padding-right: 3px; background-color: lightyellow;'>no</span>"
+    boolean_value == true ? v1 : v2
+  end
+
   def yes_no_bounce(distribution)
     v1 = "<span style='padding-left: 3px; padding-right: 3px; background-color: lightpink;'>yes</span>"
     v2 = "<span style='padding-left: 3px; padding-right: 3px; background-color: #ccffff;'>no</span>"
@@ -59,11 +65,22 @@ module MessagesHelper
     v3
   end
 
-  def yes_no_read(boolean_value)
-    v1 = "yes"
-    v2 = "<span style='padding-left: 3px; padding-right: 3px; background-color: lightyellow;'>no</span>"
-    boolean_value == true ? v1 : v2
+  def message_bounce_helper(distribution)
+    v1 = "<span style='margin-left: 5px; padding-left: 3px; padding-right: 3px; background-color: yellow;'>[bounced]</span>"
+    v2 = "<span style='margin-left: 5px; padding-left: 3px; padding-right: 3px; background-color: #ccffff;'>(fixed bounce)</span>"
+    v3 = ""
+    return v1 if distribution.has_open_bounce?
+    return v2 if distribution.has_fixed_bounce?
+    v3
   end
+
+  def message_oot_helper(distribution)
+    return "" unless distribution.created_at.strftime("%y%m%d") == Time.now.strftime("%y%m%d")
+    member = distribution.member
+    return "" unless member.avail_ops.busy_on?(Time.now)
+    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span><p></p>"
+  end
+
 
 
 
