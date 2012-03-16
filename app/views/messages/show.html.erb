@@ -55,9 +55,12 @@
       </table>
 
       <% if @message.distributions.count > 4 %>
-        <div style='text-align: center; margin-bottom: 0px; background-color: lightgray; padding: 3px;'>
-          Search: <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
-          <input id="filter-clear-button" type="button" value="Clear"/>
+        <div style='background-color: lightgray; padding: 3px 25px 3px 108px;'>
+          <div style='float:right; text-align: right; margin-top: 4px'><a href="http://wiki.bamru.net/index.php/Paging_Protips" target="_blank">help</a></div>
+          <div style='text-align: left;'>
+            Search: <input name="filter" id="filter-box" value="" maxlength="22" size="22" type="text">
+            <input id="filter-clear-button" type="button" value="Clear"/>
+          </div>
         </div>
       <% end %>
 
