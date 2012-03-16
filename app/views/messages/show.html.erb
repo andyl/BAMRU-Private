@@ -67,7 +67,7 @@
       <table id=myTable class="tablesorter">
         <thead>
         <th>Recipient</th>
-        <th>Bounced?</th>
+        <th>Last Update</th>
         <th>Read?</th>
         <th>RSVP</th>
         <th align=center>Detail</th>
@@ -75,7 +75,7 @@
         <% @message.distributions.each do |d| %>
           <tr>
             <td><%= link_to(d.member.full_name, member_path(d.member)) %><%= raw message_oot_helper(d) %><%= raw message_bounce_helper(d) %></td>
-            <td align=center><%= raw yes_no_bounce d %></td>
+            <td align=center><%= d.updated_at.strftime("%m-%d %H:%M:%S") %></td>
             <td align=center><%= raw yes_no_read d.read %></td>
             <td align=center><%= raw d.rsvp_display_link %></td>
             <td align=center>

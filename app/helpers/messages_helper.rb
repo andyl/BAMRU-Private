@@ -78,7 +78,7 @@ module MessagesHelper
     return "" unless distribution.created_at.strftime("%y%m%d") == Time.now.strftime("%y%m%d")
     member = distribution.member
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span><p></p>"
+    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span>"
   end
 
 
