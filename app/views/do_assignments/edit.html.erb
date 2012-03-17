@@ -41,7 +41,7 @@
               <td><%= ado.week%></td>
               <td><%= ado.start_day %> - <%= ado.end_day %></td>
               <td>
-                <%= ido.select(:name, [""] + ado.avail_members + ["<< Unavailable >>"] + ado.unavail_members, {:disabled => "<< Unavailable >>"}) %>
+                <%= ido.select(:name, [""] + ["< Available >"] + ado.avail_members + ["< Unavailable >"] + ado.unavail_members, {:disabled => ["< Available >", "< Unavailable >"]}) %>
               </td>
               <td>
                 <% if ado.current? %>
