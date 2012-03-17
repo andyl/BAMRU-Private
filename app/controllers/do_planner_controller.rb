@@ -10,7 +10,9 @@ class DoPlannerController < ApplicationController
     }
     @current_week    = Time.now.current_week
     @current_quarter = Time.now.current_quarter
-    @mem_ids = AvailDo.where(@quarter).map {|x| x.member_id}.uniq.sort
+    availdo_ids = AvailDo.where(@quarter).map {|x| x.member_id}.uniq
+    assign_ids  = DoAssignment.where(@quarter).map {|x| x.primary_id}.uniq
+    @mem_ids = (availdo_ids + assign_ids).uniq
     @members = Member.order(:last_name).find(@mem_ids)
     @do_assignments = (1..13).map do |num|
       quarter = @quarter.clone
