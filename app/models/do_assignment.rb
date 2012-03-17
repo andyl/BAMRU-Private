@@ -49,6 +49,23 @@ class DoAssignment < ActiveRecord::Base
             uniq
   end
 
+  def unavail_members
+    all_members = Member.order('last_name ASC').all.map {|mem| mem.full_name}
+    all_members - avail_members
+  end
+
+  def avail_members_with_unavail
+    avails  = avail_members
+    memlist = Member.order('last_name ASC').all.map {|m| [m.full_name, m.id]}
+    memlist.map do |mem|
+      if avails.include? mem.first
+        mem
+      else
+        [mem[0].downcase + " (unavail)", mem[1]]
+      end
+    end.sort_by {|x| x[0].split[1]}
+  end
+
   def backup_hash
     Member.order('last_name ASC').all.map {|m| [m.full_name, m.id]}
   end
