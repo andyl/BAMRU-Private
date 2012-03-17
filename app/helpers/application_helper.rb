@@ -140,6 +140,10 @@ module ApplicationHelper
     link_to ">", member_avail_dos_path(next_quarter(hash))
   end
 
+  def this_quarter_number
+    Time.now.current_quarter
+  end
+
   def next_quarter_number
     current_quarter = Time.now.current_quarter
     current_quarter == 4 ? 1 : current_quarter + 1

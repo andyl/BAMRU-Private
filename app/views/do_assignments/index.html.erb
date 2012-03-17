@@ -44,6 +44,6 @@
     <p></p>
   </div>
   <div id=x_footer style='font-size: 10pt;'>
-      <%= link_to "Edit", edit_do_assignment_path(1, @quarter) %> | <%= link_to "Plan", do_planner_path(@quarter) %>
+      <%= link_to "Edit Q#{@quarter[:quarter]}", edit_do_assignment_path(1, @quarter) %> | <%= link_to "Plan Q#{next_quarter(@quarter)[:quarter]}", do_planner_path(next_quarter(@quarter)) %>
   </div>
 </div>
