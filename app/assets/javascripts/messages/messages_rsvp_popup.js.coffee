@@ -36,7 +36,10 @@ window.changeRSVP = (el, value)->
   console.log el
   rsvpid = $(el).attr('data-rsvpid')
   msgid  = $(el).attr('data-msgid')
-  $.get("/rsvps/#{rsvpid}?response=#{value}")
+  $.ajax
+    url: "/rsvps/#{rsvpid}?response=#{value}"
+    async: false
+    type: "GET"
   newurl = "/messages/#{msgid}/update_rsvp?rsvpid=#{rsvpid}&value=#{value}"
   window.location.href = newurl
 
