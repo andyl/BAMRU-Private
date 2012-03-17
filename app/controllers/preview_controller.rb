@@ -30,7 +30,7 @@ class PreviewController < ApplicationController
   def mail_htm
     opts = preview_query_opts
     opts['recipient_email'] = 'member_address@gmail.com'
-    @mail = ::Notifier.render_email_message(opts)
+    @mail = ::Notifier.page_email(opts)
     bpart = @mail.parts.find {|x| x.content_type.include? "html"}
     @body = "#{bpart.body}"
     render :template => "preview/email", :layout => false
@@ -39,7 +39,7 @@ class PreviewController < ApplicationController
   def mail_txt
     opts = preview_query_opts
     opts['recipient_email'] = 'member_address@gmail.com'
-    @mail = ::Notifier.render_email_message(opts)
+    @mail = ::Notifier.page_email(opts)
     bpart = @mail.parts.find {|x| x.content_type.include? "plain"}
     @body = "<pre id='message_body'>#{bpart.body}</pre>"
     render :template => "preview/email", :layout => false
@@ -48,7 +48,7 @@ class PreviewController < ApplicationController
   def sms
     opts = preview_query_opts
     opts['recipient_email'] = 'member_address@gmail.com'
-    @mail = ::Notifier.process_sms_message(opts)
+    @mail = ::Notifier.page_phone(opts)
     @body = "<pre id='message_body'>#{@mail.body}</pre>"
     render :template => "preview/email", :layout => false
   end
