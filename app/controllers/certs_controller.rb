@@ -54,7 +54,7 @@ class CertsController < ApplicationController
   def destroy
     @member = Member.where(:id => params['member_id']).first
     @cert = Cert.where(:id => params['id']).first
-    typ = @cert.type
+    typ = @cert.typ
     @cert.destroy
     cert_list = @member.certs.where(:typ => @cert.typ).order('position ASC')
     cert_list.each_with_index do |cert, idx|
