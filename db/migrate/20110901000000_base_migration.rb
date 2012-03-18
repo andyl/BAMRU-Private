@@ -152,7 +152,7 @@ class BaseMigration < ActiveRecord::Migration
       t.string        :text
       t.timestamps
     end
-    create_table :chats do |t|
+    create_table :messages do |t|
       t.integer       :author_id
       t.string        :ip_address
       t.string        :text
