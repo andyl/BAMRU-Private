@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def checkbox(clas)
-    %Q(<div style='float:right; margin-right: 10px;'>[<a href='#' onclick='$(".#{clas}").hide()'>X</a>]</div>)
+    %Q(<div style='float:right; margin-right: 10px;'><a href='#' onclick='$(".#{clas}").hide()'>X</a></div>)
   end
 
   def app_notice
