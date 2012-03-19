@@ -7,7 +7,8 @@ end
 platforms :ruby do
 
   #gem "rails",         "3.2.0.rc1"
-  gem "rails",          "3.1.3"
+  #gem "rails",          "3.1.3"
+  gem "rails",          "3.2.2"
 
   gem "rake"
   gem "sqlite3"
@@ -62,8 +63,9 @@ platforms :ruby do
     #gem "livereload"
     #gem "guard-livereload"
     gem "faker"
-    gem "rcov"
-    gem "ruby-debug19", :require => "ruby-debug" if ENV['SYSNAME'] == 'ekel'
+    # gem "rcov"
+    gem "simplecov"
+    gem "ruby-debug19", :require => "ruby-debug" #if ENV['SYSNAME'] == 'ekel'
     gem "rspec-rails"
     gem "shoulda-matchers"
     gem "selenium-webdriver", "~> 2.0"
