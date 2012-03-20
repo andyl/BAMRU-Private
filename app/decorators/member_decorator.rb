@@ -12,8 +12,8 @@ class MemberDecorator < ApplicationDecorator
     result.to_json
   end
 
-  def self.mobile_json
-    result = Member.order_by_last_name.all.map do |m|
+  def self.mobile_json(collection)
+    result = collection.map do |m|
       MemberDecorator.new(m).mobile_json
     end.join(',')
     "[#{result}]"

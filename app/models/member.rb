@@ -2,6 +2,8 @@ class Member < ActiveRecord::Base
 
   has_secure_password
 
+  include MemberExtension::Base
+
   # ----- Attributes -----
 
   # Setup accessible (or protected) attributes for your model

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'request_helper'
 
 describe "Members/Edit", :capybara => true do
 
@@ -16,18 +15,18 @@ describe "Members/Edit", :capybara => true do
       current_path.should == edit_member_path(@member)
     end
 
-    it "adds items", :js => true do
-      click_link('add_phone')
-      page.should_not be_nil
-      click_link('add_email')
-      page.should_not be_nil
-      click_link('add_phone')
-      page.should_not be_nil
-      click_link('add_emergency_contact')
-      page.should_not be_nil
-      click_link('add_other_info')
-      page.should_not be_nil
-    end
+    #it "adds items", :js => true do
+    #  click_link('add_phone')
+    #  page.should_not be_nil
+    #  click_link('add_email')
+    #  page.should_not be_nil
+    #  click_link('add_phone')
+    #  page.should_not be_nil
+    #  click_link('add_emergency_contact')
+    #  page.should_not be_nil
+    #  click_link('add_other_info')
+    #  page.should_not be_nil
+    #end
 
   end
 end

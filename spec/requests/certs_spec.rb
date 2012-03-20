@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'request_helper'
 
 describe "Certs", :capybara => true do
   before(:each) do

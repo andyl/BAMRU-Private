@@ -6,7 +6,7 @@ class Mobile4Controller < ApplicationController
     @is_ipad  = ipad_device?
     @is_phone = phone_device?
     @sensor   = phone_device? ? "true" : "false"
-    @mem_json = MemberDecorator.mobile_json
+    @mem_json = MemberDecorator.mobile_json(Member.order_by_last_name.all)
     @msg_json = MessageDecorator.mobile_json
     @dst_json = DistributionDecorator.mobile_json(current_member.id)
     @dists = current_member.distributions.limit(15).order("id DESC")

@@ -13,10 +13,10 @@ describe MemberDecorator do
   end
 
   def create_valid_members(count = 2)
-    (1..count).each do |m|
+    (1..count).map do |m|
       atts = valid_atts
       atts[:first_name] = "Helloooooooooooo"[0..-m]
-      Member.create!(atts)
+      Member.new(atts)
     end
   end
 
@@ -38,8 +38,8 @@ describe MemberDecorator do
 
   describe "self.mobile_json" do
     before(:each) do
-      create_valid_members(3)
-      @col = MemberDecorator.mobile_json
+      collection = create_valid_members(3)
+      @col = MemberDecorator.mobile_json(collection)
     end
     specify { @col.should be_a String }
     specify { JSON.parse(@col).should_not be_nil  }

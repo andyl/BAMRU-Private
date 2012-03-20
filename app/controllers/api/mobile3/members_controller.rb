@@ -5,7 +5,7 @@ class Api::Mobile3::MembersController < ApplicationController
   before_filter :authenticate_member_with_basic_auth!
 
   def index
-    render :json => MemberDecorator.mobile_json, :layout => false
+    render :json => MemberDecorator.mobile_json(Member.order_by_last_name.all), :layout => false
   end
 
   def show

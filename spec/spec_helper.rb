@@ -40,3 +40,12 @@ def basic_auth(user)
   Member.find_or_create_by_user_name(user)
   ActionController::HttpAuthentication::Basic.encode_credentials user, "welcome"
 end
+
+require 'launchy'
+
+def login(member)
+  visit login_path
+  fill_in "user_name", :with => member.user_name
+  fill_in "password",  :with => 'welcome'
+  click_button 'Log in'
+end

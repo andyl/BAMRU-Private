@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lib" type="RSpecRunConfigurationType" factoryName="RSpec">
+  <configuration default="false" name="Extensions" type="RSpecRunConfigurationType" factoryName="RSpec">
     <predefined_log_file id="RUBY_RSPEC" enabled="true" />
     <module name="BAMRU-Private" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -14,7 +14,7 @@
         <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
       </COVERAGE_PATTERN>
     </EXTENSION>
-    <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="$PROJECT_DIR$/spec/lib" />
+    <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="$PROJECT_DIR$/spec/extensions" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
@@ -23,7 +23,7 @@
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="-O spec/spec.poro.opts" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-    <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+    <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="true" />
     <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
     <RunnerSettings RunnerId="RubyRunner" />
     <ConfigurationWrapper RunnerId="RubyRunner" />
