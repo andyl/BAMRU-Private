@@ -29,6 +29,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activeresource (v3.2.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.2.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.2.7, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ancestry (v1.2.5, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="annotate (v2.4.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="archive-tar-minitar (v0.5.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v3.0.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
@@ -40,6 +41,7 @@
     <orderEntry type="library" scope="PROVIDED" name="cancan (v1.6.7, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capistrano (v2.11.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v1.1.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capybara-webkit (v0.11.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.3.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chronic (v0.6.7, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chunky_png (v1.2.5, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />

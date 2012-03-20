@@ -117,4 +117,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def as_notify(label, hash)
+    ActiveSupport::Notifications.instrument(label, hash)
+  end
+
 end

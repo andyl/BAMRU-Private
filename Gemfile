@@ -6,8 +6,6 @@ end
 
 platforms :ruby do
 
-  #gem "rails",         "3.2.0.rc1"
-  #gem "rails",          "3.1.3"
   gem "rails",          "3.2.2"
 
   gem "rake"
@@ -16,6 +14,7 @@ platforms :ruby do
   gem "pngqr"
   gem "em-http-request"
   gem "thin"
+  gem "ancestry"
 
   gem "capistrano"
   gem "factory_girl"
@@ -60,25 +59,24 @@ platforms :ruby do
     gem "rb-inotify"
     gem "guard"
     gem "guard-coffeescript"
-    #gem "livereload"
-    #gem "guard-livereload"
     gem "faker"
-    # gem "rcov"
     gem "simplecov"
     gem "ruby-debug19", :require => "ruby-debug" #if ENV['SYSNAME'] == 'ekel'
     gem "rspec-rails"
     gem "shoulda-matchers"
-    gem "selenium-webdriver", "~> 2.0"
-    gem "capybara", "~> 1.1.1"
+    gem "selenium-webdriver"
+    gem "capybara-webkit"
+    gem "capybara"
     gem "launchy"
-    gem "spork", "~> 0.9.0.rc9"
+    gem "spork"
     gem "database_cleaner"
+
+    gem "letter_opener"
 
     gem "hirb"
     gem "wirble"
     gem "interactive_editor"
     gem "awesome_print", :require => "ap"
     gem "drx"
-    gem "letter_opener"
   end
 end

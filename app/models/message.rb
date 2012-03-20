@@ -1,5 +1,10 @@
 class Message < ActiveRecord::Base
 
+  has_ancestry
+
+  include MessageExtension::Base
+  extend  MessageExtension::Klass
+
   # ----- Associations -----
 
   belongs_to :author,         :class_name => 'Member'
@@ -32,17 +37,6 @@ class Message < ActiveRecord::Base
     dist_b.any? {|dist| dist.has_fixed_bounce?}
   end
 
-  def breakify(text)
-    text_index = 0
-    while text[text_index..-1].length > 70
-      next_index = text[text_index..-1].index(' ') || text.length
-      next_index = 1 if next_index == 0
-      text.insert(text_index + 70, ' ') if next_index > 70
-      text_index = next_index + text_index
-    end
-    text
-  end
-
   def text_with_rsvp
     text_with_spaces = breakify(text)
     return text_with_spaces unless rsvp
@@ -54,11 +48,7 @@ class Message < ActiveRecord::Base
     "Y:#{distributions.rsvp_yes.count} N:#{distributions.rsvp_no.count}"
   end
 
-  # ----- Create Outbound Mails -----
-
-  def label4c
-    rand((36**4)-1).to_s(36)
-  end
+  # ----- Local Methods (Create Outbound Mails) -----
 
   def gen_label
     new_label = label4c
@@ -91,33 +81,20 @@ class Message < ActiveRecord::Base
     end
   end
 
+  # ----- Class Methods -----
 
-  # ----- Class Methods
-
-  def self.devices(array)
-    array.reduce({}) do |a,v|
-      a[v] = true
-      a
+  def self.generate(mesg, dist, rsvp = {})
+    mesg[:distributions_attributes] = Message.distributions_params(dist)
+    mesg[:format] = 'page'
+    mesg_obj = Message.create(mesg)
+    puts dist.inspect
+    unless rsvp.blank?
+      opts = JSON.parse(rsvp)
+      opts[:message_id] = mesg_obj.id
+      Rsvp.create(opts)
     end
-  end
-
-  def self.distributions_params(hash)
-    int1 = hash.keys.map {|k| k.split('_')}
-    int2 = int1.reduce({}) do |a,v|
-      a[v.first] = ((a[v.first] || []) << v.last).uniq
-      a
-    end
-    int2.keys.reduce([]) do |a,v|
-      a << {:member_id => v}.merge(devices(int2[v]))
-      a
-    end
-  end
-
-  def self.mobile_distributions_params(hash)
-    int1 = hash.keys.map {|k| k.split('-').last}  #array of member id's
-    int1.map do |v|
-      {:member_id => v, :email => true, :phone => true}
-    end
+    mesg_obj.create_all_outbound_mails
+    mesg_obj
   end
 
 end

@@ -1,4 +1,21 @@
 module MessagesHelper
+  def dist_label(mesg)
+    member_count    = mesg.distributions.count
+    outbound_count  = mesg.outbound_mails.count
+    "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
+  end
+
+  def validate_params(mesg, dist)
+    err = ""
+    err = "Empty message text"  if mesg.blank? || mesg[:text].blank?
+    err = "No address selected" if dist.blank?
+    err.blank? ? nil : "#{err} - Please try again"
+  end
+
+  def timestamp
+    Time.now.strftime("%y%m%d_%H%M%S")
+  end
+
   def span_wrap(value, color = "white")
     padding = "3px"
     "<span style='background-color: #{color}; padding-left: #{padding}; padding-right: #{padding};'>#{value}</span>"

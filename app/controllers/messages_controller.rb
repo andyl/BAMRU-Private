@@ -1,8 +1,9 @@
 class MessagesController < ApplicationController
 
- include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::TextHelper
+  include MessagesHelper
 
- before_filter :authenticate_member_with_basic_auth!
+  before_filter :authenticate_member_with_basic_auth!
 
   def index
     file = "tmp/mail_sync_time.txt"
@@ -29,43 +30,31 @@ class MessagesController < ApplicationController
     end
   end
 
+  def create
+    mesg_params = params[:message]
+    dist_params = params[:history]
+    rsvp_params = params[:rsvps]
+
+    if error = validate_params(mesg_params, dist_params)
+      redirect_to members_path, :alert => "#{error}"
+      return
+    end
+
+    mesg = Message.generate(mesg_params, dist_params, rsvp_params)
+
+    call_rake("ops:email:pending:send2", {}, "#{timestamp}_2")
+
+    label = dist_label(mesg)
+    as_notify("page.send", {:member => current_member, :text => label})
+    redirect_to messages_path, :notice => "Message being sent to #{label}"
+  end
+
   def update_rsvp
     dist   = Distribution.find_by_id(params[:rsvpid])
     name   = dist.member.full_name
-    string = "You set the RSVP response for <b>#{name}</b> to <b>#{params[:value].upcase}</b>"
+    value  = params[:value].upcase
+    string = "You set the RSVP response for <b>#{name}</b> to <b>#{value}</b>"
     redirect_to "/messages/#{params[:id]}", :notice => string
   end
 
-  def create
-    puts params.inspect
-    np = params[:message]
-    if params[:history].blank?
-      redirect_to members_path, :alert => "No addresses selected - Please try again."
-      return
-    end
-    if params[:message][:text].blank?
-      redirect_to members_path, :alert => "Empty message text - Please try again"
-      return
-    end
-    np[:distributions_attributes] = Message.distributions_params(params[:history])
-    np[:format] = 'page'
-    m = Message.create(np)
-    if params['rsvps']
-      opts = JSON.parse(params['rsvps'])
-      opts[:message_id] = m.id
-      p = Rsvp.create(opts)
-    end
-    m.create_all_outbound_mails
-    member_count    = m.distributions.count
-    outbound_count  = m.outbound_mails.count
-    dst = "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
-    link   = "(<a target='_blank' href='/monitor'>monitor</a>)"
-    link   = ""
-    notice = "Message being sent to #{dst} #{link}"
-    timestamp = Time.now.strftime("%y%m%d_%H%M%S")
-    call_rake("ops:email:pending:send2",           {}, "#{timestamp}_2")
-    ActiveSupport::Notifications.instrument("page.send", {:member => current_member, :text => dst})
-    redirect_to messages_path, :notice => notice
-  end
-  
 end

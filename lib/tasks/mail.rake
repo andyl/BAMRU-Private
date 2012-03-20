@@ -179,6 +179,7 @@ namespace :ops do
           mail = ActionMailer::Base.mail(mail_attributes)
           mail.subject = mail_attributes["Subject"]
           outbound_mail_id = file.split('/').last.split('_').first
+          debugger
           puts "sending message #{outbound_mail_id} (#{mail.to.first})"
           smtp_settings = [:smtp, SMTP_SETTINGS]
           mail.delivery_method(*smtp_settings) if Rails.env.production?
