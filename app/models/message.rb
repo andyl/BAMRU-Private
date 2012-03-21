@@ -87,7 +87,6 @@ class Message < ActiveRecord::Base
     mesg[:distributions_attributes] = Message.distributions_params(dist)
     mesg[:format] = 'page'
     mesg_obj = Message.create(mesg)
-    puts dist.inspect
     unless rsvp.blank?
       opts = JSON.parse(rsvp)
       opts[:message_id] = mesg_obj.id

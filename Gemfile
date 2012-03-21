@@ -18,7 +18,6 @@ platforms :ruby do
   gem "ancestry"
 
   gem "capistrano"
-  gem "factory_girl"
   gem "fastercsv"
   gem "nokogiri"
   gem "simple_form"
@@ -71,6 +70,7 @@ platforms :ruby do
     gem "launchy"
     gem "spork"
     gem "database_cleaner"
+    gem "factory_girl_rails"
 
     gem "letter_opener"
 

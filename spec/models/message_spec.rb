@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-SAMPLE_HASH = {"22_email" => "on",
-               "22_phone" => "on",
-               "19_phone" => "on",
-               "12_email" => "on"}
-
-
 describe Message do
 
   describe "associations" do
@@ -14,6 +8,36 @@ describe Message do
     specify { @obj.should respond_to :rsvp             }
     specify { @obj.should respond_to :outbound_mails   }
     specify { @obj.should respond_to :recipients       }
+  end
+
+  describe "#generate" do
+    before(:each) do
+      @phon = FactoryGirl.create(:phone)
+      @mem1 = FactoryGirl.create(:member_with_phone_and_email)
+      @mem2 = FactoryGirl.create(:member_with_phone_and_email)
+      @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
+      @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
+      @rsvp = ""
+    end
+    it "generates a valid message object" do
+      msg = Message.generate(@mesg, @dist, @rsvp)
+      msg.should be_a Message
+      msg.should be_valid
+      msg.rsvp.should be_false
+      msg.author.phones.length.should == 3
+      msg.author.emails.length.should == 3
+      msg.distributions.length.should == 2
+      msg.distributions.first.email.should == true
+      msg.distributions.first.phone.should == true
+      msg.distributions.first.outbound_mails.length.should == 6
+    end
+    it "generates a valid message object with rsvp" do
+      rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
+      msg = Message.generate(@mesg, @dist, rsvp)
+      msg.should be_a Message
+      msg.should be_valid
+      msg.rsvp.should be_true
+    end
   end
 
   describe "ancestry" do
@@ -56,21 +80,6 @@ describe Message do
     context "when the tree is three levels deep"
     context "when the tree is four levels deep"
     context "when deleting a parent"
-  end
-
-  describe "#distributions_params" do
-    before(:each) do
-      @res = Message.distributions_params(SAMPLE_HASH)
-      x = 1
-    end
-
-    it "returns the right number of keys" do
-      @res.length.should == 3
-    end
-    it "returns an array of hashes" do
-      @res.class.should == Array
-      @res.first.class.should == Hash
-    end
   end
   
 end
