@@ -32,9 +32,15 @@ module MembersHelper
     " (<a href='/members/#{member.id}/avail_ops'>Unavail</a>)"
   end
 
+  def return_date_label(member)
+    day = Time.now
+    return_date = member.avail_ops.return_date(day)
+    return_date.nil? ? "" : (return_date + 1.day).strftime("%b %d")
+  end
+
   def show_oot_label(member)
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " <span style='background: #fef;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span><p></p>"
+    " <span style='background: #fef;'>(<a href='/members/#{member.id}/avail_ops'>Unavailable until #{return_date_label(member)}</a>)</span><p></p>"
   end
   
   def phone_checkbox(member)

@@ -91,11 +91,17 @@ module MessagesHelper
     v3
   end
 
+  def return_date_label(member)
+    day = Time.now
+    return_date = member.avail_ops.return_date(day)
+    return_date.nil? ? "" : (return_date + 1.day).strftime("%b %d")
+  end
+
   def message_oot_helper(distribution)
     return "" unless distribution.created_at.strftime("%y%m%d") == Time.now.strftime("%y%m%d")
     member = distribution.member
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>Currently Unavailable</a>)</span>"
+    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>unavailable until #{return_date_label(member)}</a>)</span>"
   end
 
 
