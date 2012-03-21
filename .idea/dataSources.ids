@@ -596,7 +596,7 @@
     </table>
     <table name="UNIQUE_SCHEMA_MIGRATIONS" schema="" catalog="" type="INDEX" />
   </data-source>
-  <data-source source="LOCAL" name="Rails BAMRU-Private: production" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="6454908e-16a0-4fc6-9b38-8a0eade28b35">
+  <data-source source="LOCAL" name="Rails BAMRU-Private: production" product="SQLite" version="3.7.2" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" uuid="93bb9e0d-3d4c-4f12-ace3-a58435cfab41">
     <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
     <jdbc-url>jdbc:sqlite:/home/aleak/lr/BAMRU-Private/db/production.sqlite3</jdbc-url>
     <libraries>

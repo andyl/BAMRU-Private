@@ -6,7 +6,8 @@ end
 
 platforms :ruby do
 
-  gem "rails",          "3.2.2"
+  gem "rails",          "3.1.3"
+  #gem "rails",          "3.2.2"
 
   gem "rake"
   gem "sqlite3"
