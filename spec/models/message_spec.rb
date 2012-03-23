@@ -12,7 +12,6 @@ describe Message do
 
   describe "#generate" do
     before(:each) do
-      @phon = FactoryGirl.create(:phone)
       @mem1 = FactoryGirl.create(:member_with_phone_and_email)
       @mem2 = FactoryGirl.create(:member_with_phone_and_email)
       @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
@@ -42,58 +41,82 @@ describe Message do
 
   describe "ancestry" do
 
-    context "basic object creation" do
-      before(:all) { @msg = Message.new }
-      specify { @msg.should respond_to :parent   }
-      specify { @msg.should respond_to :children }
-    end
-
-    context "object creation with RSVP" do
-      before(:all) do
-
-      end
-    end
-
-    context "inter-object interactions" do
+    context "basic object manipulation" do
       before(:each) do
-        @m1 = Message.create!
-        @m2 = Message.new(:parent=> @m1)
+        @msg1 = Message.create
+        @msg2 = Message.create(:parent => @msg1)
+        @msg3 = Message.create(:parent => @msg2)
       end
-
-      it "has a parent" do
-        @m1.should respond_to :parent
-        @m2.should respond_to :children
-        @m2.parent.should == @m1
+      context "object creation" do
+        it "handles basic manipulation" do
+          @msg1.should respond_to :parent
+          @msg2.should respond_to :children
+          @msg1.children.first.should == @msg2
+          @msg2.parent.should == @msg1
+          @msg3.parent.should == @msg2
+          @msg1.parent.should be_nil
+          @msg3.children.should == []
+        end
+      end
+      context "object deletion" do
+        it "handles deleting a parent" do
+          @msg1.should_not be_nil
+          @msg2.parent.should == @msg1
+          @msg3.root.should == @msg1
+          @msg1.destroy
+          @msg2.reload; @msg3.reload
+          @msg2.should_not be_nil
+          @msg2.should respond_to :parent
+          @msg2.parent.should be_nil
+          @msg3.parent.should == @msg2
+          @msg2.root.should == @msg2
+          @msg3.root.should == @msg2
+        end
       end
     end
-  end
 
-  describe "linked RSVPs" do
-    context "creating a repage" do
+    context "rsvps and valid states" do
+      #it "can't have a linked RSVP without a parent"
+      #it "can't have a linked RSVP if the parent has no RSVP"
+    end
+
+    context "using linked RSVPs" do
       before(:each) do
-        @mp = Message.create!
-        @mc = Message.create(:parent => @mp, :linked_parent_rsvp => true)
+        @mem1 = FactoryGirl.create(:member_with_phone_and_email)
+        @mem2 = FactoryGirl.create(:member_with_phone_and_email)
+        @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
+        @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
+        @rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
+        @msg1 = Message.generate(@mesg, @dist, @rsvp)
+        new_params = {:parent => @msg1, :linked_rsvp_id => @msg1.id}
+        @msg2 = Message.generate(@mesg.merge(new_params), @dist, {})
+      end
+      it "has the same RSVP prompt" do
+        @msg1.rsvp.prompt.should == @msg2.rsvp.prompt
+      end
+      it "assigns the same linked_rsvp_id to parent and child" do
+        @msg1.reload; @msg2.reload
+        @msg1.linked_rsvp_id.should == @msg2.linked_rsvp_id
       end
     end
-    context "when updating a child"
-    context "when updating a parent"
-    context "when the tree is three levels deep"
-    context "when the tree is four levels deep"
-    context "when deleting a parent"
+
   end
-  
 end
+
 
 # == Schema Information
 #
 # Table name: messages
 #
-#  id         :integer         not null, primary key
-#  author_id  :integer
-#  ip_address :string(255)
-#  text       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  format     :string(255)
+#  id                 :integer         not null, primary key
+#  author_id          :integer
+#  ip_address         :string(255)
+#  text               :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  format             :string(255)
+#  linked_parent_rsvp :boolean         default(FALSE)
+#  linked_rsvp_id     :integer
+#  ancestry           :string(255)
 #
 

@@ -1,5 +1,16 @@
 module ApplicationHelper
 
+  def rsvp_display_answer(dist, txt_case = :downcase)
+    return "NA" unless dist.message.rsvp
+    dist.rsvp_answer.try(txt_case) || "PENDING"
+  end
+
+  def rsvp_display_link(dist)
+    val = rsvp_display_answer(dist)
+    return val if val == "NA"
+    "<a class='rsvp_link' id='rsvp_link_#{dist.member.id}' data-msgid='#{dist.message.id}' data-rsvpid='#{dist.id}' data-name='#{dist.member.full_name}' href='#'>#{val}</a>"
+  end
+
   def sprite_tag(klass, options = {})
     image_tag('s.gif', {:class => klass, :alt => klass}.merge(options))
   end

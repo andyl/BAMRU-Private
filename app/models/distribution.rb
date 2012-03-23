@@ -41,25 +41,6 @@ class Distribution < ActiveRecord::Base
     return false if bounced_om.blank?
     bounced_om.any? { |om| om.has_fixed_bounce? }
   end
-  
-  def rsvp_display_answer(txt_case = :downcase)
-    return "NA" unless message.rsvp
-    rsvp_answer.try(txt_case) || "PENDING"
-  end
-
-  def rsvp_display_link
-    val = rsvp_display_answer
-    return val if val == "NA"
-    "<a class='rsvp_link' id='rsvp_link_#{self.member.id}' data-msgid='#{self.message.id}' data-rsvpid='#{self.id}' data-name='#{self.member.full_name}' href='#'>#{val}</a>"
-  end
-
-  def set_read_time
-    return unless self.read_at.blank?
-    if self.read == true
-      self.read_at = Time.now
-      self.response_seconds = (self.read_at - self.message.created_at).to_i
-    end
-  end
 
   def status
     base  = self.read? ? "Read" : "Sent"
@@ -74,6 +55,64 @@ class Distribution < ActiveRecord::Base
         :inbound  => outb.inbound_mails.all
       }
     end
+  end
+
+  # For this distribution and each linked distribution:
+  # - mark the distribution as read
+  # - update the RSVP answer
+  # - generates a Journal entry
+  #
+  # @param member [Member] Member or member_id
+  # @param new_rsvp_value [String] 'Yes' or 'No'
+  def set_rsvp(member, new_rsvp_value)
+    return unless self.rsvp?
+    answer = cleanup_rsvp_value(new_rsvp_value)
+    target_list(member).each do |dist|
+      dist.mark_as_read(member, "Marked as read")
+      dist.update_attributes rsvp_answer: answer
+      Journal.add_entry(self.id, member, "Set RSVP to #{answer}")
+    end
+  end
+
+  # For this distribution and each linked distribution:
+  # - mark the distribution as read
+  # - generate a Journal entry
+  #
+  # @param member [Member] Member or member_id
+  # @param comment [String] Comment text
+  def mark_as_read(member, comment = "Marked as read")
+    return if self.read?
+    kk = target_list(member)
+    kk.each do |dist|
+      next if dist.read?
+      Journal.add_entry(dist.id, member, comment)
+      dist.update_attributes(read:true)
+    end
+  end
+
+  private
+
+  def target_list(member)
+    if link_id = self.message.linked_rsvp_id
+      msg_list = Message.where(:linked_rsvp_id => link_id)
+      msg_list.reduce([]) do |a, msg|
+        a + msg.distributions.where(:member_id => member.id).all
+      end
+    else
+      [self]
+    end
+  end
+
+  def set_read_time
+    return unless self.read_at.blank?
+    if self.read == true
+      self.read_at = Time.now
+      self.response_seconds = (self.read_at - self.message.created_at).to_i
+    end
+  end
+
+  def cleanup_rsvp_value(new_value)
+    raise 'Invalid RSVP Response' unless valid_rsvp_value?(new_value)
   end
 
 end

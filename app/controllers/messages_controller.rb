@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   def index
     file = "tmp/mail_sync_time.txt"
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
-    @messages = Message.order('created_at DESC').limit(30).all
+    @messages = Message.order('created_at DESC').limit(40).all
   end
 
   def show
@@ -18,16 +18,7 @@ class MessagesController < ApplicationController
     @msg = @message
     @dists = @msg.distributions
     @mydist = @dists.where(:member_id => current_member.id).first
-    if @mydist
-      x_hash = {
-              :distribution_id => @mydist.id,
-              :member_id       => current_member.id,
-              :action          => "Read via web"
-      }
-      Journal.create(x_hash) if @mydist.read == false
-      @mydist.read = true
-      @mydist.save
-    end
+    @mydist.mark_as_read(current_member, "Read via web") if @mydist
   end
 
   def create

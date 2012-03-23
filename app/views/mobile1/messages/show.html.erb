@@ -21,7 +21,7 @@ You said: <%= raw response_helper(@message, @mydist) %>
     <tr>
       <td><%= dist.member.try(:short_name) %></td>
       <td><%= dist.read? ? "yes" : "no" %></td>
-      <td><%= dist.rsvp_display_answer %></td>
+      <td><%= rsvp_display_answer(dist) %></td>
     </tr>
   <% end %>
   </tbody>

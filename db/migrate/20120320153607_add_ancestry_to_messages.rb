@@ -1,6 +1,6 @@
 class AddAncestryToMessages < ActiveRecord::Migration
   def self.up
-    add_column :messages, :linked_parent_rsvp, :boolean, :default => false
+    add_column :messages, :linked_rsvp_id, :integer
     add_column :messages, :ancestry, :string
     add_index  :messages, :ancestry
   end
@@ -8,6 +8,6 @@ class AddAncestryToMessages < ActiveRecord::Migration
   def self.down
     remove_index  :messages, :ancestry
     remove_column :messages, :ancestry
-    remove_column :messages, :linked_parent_rsvp, :boolean
+    remove_column :messages, :linked_rsvp_id, :integer
   end
 end

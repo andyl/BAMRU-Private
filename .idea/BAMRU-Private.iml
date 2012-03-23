@@ -63,6 +63,7 @@
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v0.12.10, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v1.3.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl (v2.6.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v1.7.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v1.0.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fastercsv (v1.5.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faye (v0.6.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />

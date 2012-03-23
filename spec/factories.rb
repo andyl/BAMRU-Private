@@ -41,4 +41,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :message do
+  end
+
+  factory :distribution do
+    association :message
+  end
+
 end

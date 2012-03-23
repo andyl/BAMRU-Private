@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
 
-  has_ancestry
+  has_ancestry :orphan_strategy => :rootify
 
   include MessageExtension::Base
   extend  MessageExtension::Klass
@@ -60,7 +60,7 @@ class Message < ActiveRecord::Base
     hash[:label] = gen_label
     hash[:distribution_id] = dist.id
     ! dist.outbound_mails.where(:address => hash[:address]).empty? || OutboundMail.create!(hash)
-    if dist.message.rsvp
+    if dist.message.try(:rsvp)
       dist.update_attributes({:rsvp => true})
     end
   end
@@ -87,10 +87,18 @@ class Message < ActiveRecord::Base
     mesg[:distributions_attributes] = Message.distributions_params(dist)
     mesg[:format] = 'page'
     mesg_obj = Message.create(mesg)
-    unless rsvp.blank?
-      opts = JSON.parse(rsvp)
+    #debugger if mesg_obj.linked_rsvp_id
+    if mesg_obj.parent && mesg_obj.linked_rsvp_id
+      mesg_obj.parent.update_attributes(:linked_rsvp_id => mesg_obj.linked_rsvp_id)
+      opts = mesg_obj.parent.rsvp.attributes.slice("prompt", "yes_prompt", "no_prompt")
       opts[:message_id] = mesg_obj.id
       Rsvp.create(opts)
+    else
+      unless rsvp.blank?
+        opts = JSON.parse(rsvp)
+        opts[:message_id] = mesg_obj.id
+        Rsvp.create(opts)
+      end
     end
     mesg_obj.create_all_outbound_mails
     mesg_obj
@@ -102,12 +110,14 @@ end
 #
 # Table name: messages
 #
-#  id         :integer         not null, primary key
-#  author_id  :integer
-#  ip_address :string(255)
-#  text       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  format     :string(255)
+#  id                 :integer         not null, primary key
+#  author_id          :integer
+#  ip_address         :string(255)
+#  text               :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  format             :string(255)
+#  linked_rsvp_id     :integer
+#  ancestry           :string(255)
 #
 

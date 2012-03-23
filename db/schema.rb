@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(:version => 20120320153607) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format"
-    t.boolean  "linked_parent_rsvp", :default => false
+    t.integer  "linked_rsvp_id"
     t.string   "ancestry"
   end
 
