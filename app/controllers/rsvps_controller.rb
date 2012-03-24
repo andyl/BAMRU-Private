@@ -16,7 +16,7 @@ class RsvpsController < ApplicationController
       if response && valid_response?(response)
         flash[:notice] = "You set the RSVP response to '#{response}'"
         if @dist.rsvp_answer != response
-          @dist.set_rsvp_answer(current_member, response)
+          @dist.set_rsvp(current_member, @member, response)
         end
       end
       @rsvp = @dist.message.rsvp

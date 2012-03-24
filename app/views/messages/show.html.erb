@@ -1,4 +1,5 @@
 <%= javascript_include_tag "messages/all_messages_show" %>
+<%= javascript_tag "var PREVIEW_OPTS = #{generate_preview_options};"    %>
 
 <div id=x_container>
   <div id=x_body>
@@ -16,15 +17,16 @@
     </div>
 
     <div id=x_single_col>
-      <table>
+      <table width=100%>
         <tr>
           <td align=right width=150><b>Message ID:</b></td>
-          <td><%= @message.id %></td>
+          <td><%= @message.id %><%= raw parent_repage_link(@message) %></td>
         </tr>
         <tr>
           <td align=right width=150><b>Message Date:</b></td>
           <td><%= @message.created_at.strftime("%y-%m-%d %H:%M:%S") %></td>
         </tr>
+        <%= raw child_repage_link(@message) %>
         <tr>
           <td align=right><b>Message Author:</b></td>
           <td>
@@ -50,7 +52,7 @@
         </tr>
         <tr>
           <td align=right><b>RSVP:</b></td>
-          <td><%= rsvp_display(@message) %></td>
+          <td><%= raw rsvp_repage_link(@message) %><%= rsvp_display(@message) %></td>
         </tr>
       </table>
 
@@ -115,27 +117,12 @@
   </div>
 </div>
 
-<style>
-  #rsvp_popup {
-    width:  350px;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #000000;
-    background: #ffffff;
-    position: absolute;
-    top: 40px;
-  }
-</style>
-
 <div id="blanket" style="display: none;"></div>
-<div id="rsvp_popup" style="display: none;">
-  <b>Update the RSVP response for <span id=member_name>TBD</span></b><p></p>
-  RSVP: <%= @message.rsvp.try(:prompt) %><p></p>
-  The current response is <b id=current_response>TBD</b><hr/><p></p><br/>
-  <span class=yes_response><a id=yes_link href='#'>Change the response to <b>YES</b></a>: <%= @message.rsvp.try(:yes_prompt) %><p></p></span>
-  <span class=no_response><a id=no_link href='#'>Change the response to <b>NO</b></a>: <%= @message.rsvp.try(:no_prompt) %></span>
-  <p></p><br/>
-  <div style='text-align: center;'>
-    <a href="#" onclick="msgClosePopup();">Cancel</a>
-  </div>
-</div>
+
+<% if @message.rsvp %>
+
+  <%= render :partial => 'rsvp_popup' %>
+
+  <%= render :partial => 'repage_popup' %>
+
+<% end %>

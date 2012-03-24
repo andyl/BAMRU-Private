@@ -11,7 +11,7 @@ window.show_popup = (link) ->
   left_position = halfw - halfp
   $("#popname").html(link.getAttribute("data-name"))
   $("#popcomment").html(link.getAttribute("data-comment"))
-  $("#cert_popup").css("left", left_position)
+  $("#cert_popup").css("left", leftPositionRepage)
   $('#cert_blanket').fadeIn('fast');
   $('#cert_popup').fadeIn('fast');
 

@@ -1,8 +1,35 @@
 module ApplicationHelper
 
+
+
+def parent_repage_link(message)
+   return "" unless message.parent
+   label = "repage of ##{message.parent.id}"
+   " [#{link_to(label, message.parent)}]"
+ end
+
+   def child_repage_link(message)
+     return "" if message.children.blank?
+     child_links = message.children.map do |msg|
+       link_to("##{msg.id}", msg)
+     end.join(", ")
+     <<-EOF
+         <tr>
+           <td align=right><b>Follow-on Repages:</b></td>
+           <td>
+             #{child_links}
+           </td>
+         </tr>
+     EOF
+   end
+
   def rsvp_display_answer(dist, txt_case = :downcase)
     return "NA" unless dist.message.rsvp
     dist.rsvp_answer.try(txt_case) || "PENDING"
+  end
+
+  def pending_member_list(message)
+    message.distributions.rsvp_pending.map {|d| d.member.last_name}.sort
   end
 
   def rsvp_display_link(dist)
@@ -76,13 +103,14 @@ module ApplicationHelper
 
   def signed_in_header_nav
     roster = link_to_unless_current("Roster", members_path)
+    log    = link_to_unless_current("Log", messages_path)
     photos = link_to_unless_current("Photos", unit_photos_path)
     certs  = link_to_unless_current("Certs", unit_certs_path)
     avail  = link_to_unless_current("Availability", unit_avail_ops_path)
     duty   = link_to_unless_current("DO", do_assignments_path)
     report = link_to_unless_current("Reports", '/reports')
     inbox  = link_to_unless_current(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
-    opts   = [roster, photos, certs, avail, duty, report, inbox]
+    opts   = [roster, log, photos, certs, avail, duty, report, inbox]
     opts.join(' | ')
   end
 

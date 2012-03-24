@@ -1,0 +1,122 @@
+<style>
+  #repage_popup {
+    width:  675px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    background: #ffffff;
+    position: absolute;
+    top: 40px;
+  }
+</style>
+
+<div id="repage_popup" style="display: none;">
+
+  <div id=y_container>
+    <div id=y_body>
+      <div id=y_header style='text-align: center;'>
+        <b>Repage <%= pluralize(@message.distributions.rsvp_pending.count, 'pending member').titleize %></b>
+      </div>
+
+        <div id=y_left_col style='height: 350px;'>
+
+          <b>Original Page</b><br/>
+          <%= @message.text_with_rsvp %><br/>
+          <span style='font-size: 10px;'>sent <%= time_ago_in_words(@message.created_at) %> ago by <%= @message.author.last_name %></span>
+          <p></p>
+          <b>Pending Members</b><br/>
+          <%= pending_member_list(@message).join(', ') %>
+          <p></p>
+          <b>About Repaging</b><br/>
+          > Pending members haven't yet RSVP'd.<br/>
+          > Repaging is a fast way to send a reminder.<br/>
+          > Responses are linked to the original page.
+
+        </div>
+
+      <div id=y_right_col>
+
+        <div style="padding: 4px; background-color:lightblue;">
+
+          <table width=100%>
+            <tr>
+              <td style='font-size: 12px;'>
+                <b>Send SMS / eMail</b>
+              </td>
+              <td align=right style='font-size: 10px;'>
+                <a href="http://wiki.bamru.net/index.php/Sending_Pages" target="_blank">help</a>
+              </td>
+            </tr>
+          </table>
+          <table width=100%>
+            <tr>
+              <td><b>To:</b> <%= pluralize(@message.distributions.rsvp_pending.count, 'pending member') %></td>
+              <td align=right><b>From:</b> <%= current_member.last_name %>
+              </td>
+            </tr>
+          </table>
+
+          <div style="line-height: 10px; margin-bottom: 0;">
+
+            <%= form_for Message.new, :html => {:id => "repage_form"} do |f| %>
+              <input type="hidden" name="message[parent_id]" value="<%=@message.id%>"/>
+              <input type="hidden" name="message[linked_rsvp_id]" value="<%=@message.linked_rsvp_id || @message.id%>"/>
+              <input type="hidden" name="message[author_id]" value="<%=current_member.id%>"/>
+              <input type="hidden" name="message[ip_address]" value="<%=@client_ip%>"/>
+              <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0; margin-bottom: 0;"></textarea>
+              <%= raw generate_user_inputs(@message) %>
+              <%= raw generate_rsvp_inputs(@message) %>
+            <% end %>
+
+          </div>
+
+          <div id="rsvp_display" style='padding-top: 0px; margin-top: 0px; font-size: 10px; padding-right: 4px; padding-left: 4px; background-color: lightcyan;'>
+
+            <div style="font-size: 10px; margin-bottom: 0px;">
+
+              <style type="text/css">
+                .rsvp_lbl {
+                  display       : inline-block;
+                  width         : 30px;
+                  text-align    : right;
+                  padding-right : 5px;
+                }
+              </style>
+
+              <div style="border-bottom: solid 1px; align: center; margin-top: 3px;">
+                <table width="100%" style="font-size: 8pt; margin-bottom: 0px;">
+                  <tbody>
+                  <tr>
+                    <td><b>Resend the RSVP</b></td>
+                    <td align="right">
+                      <span><span id="chars_remaining">TBD</span> characters left</span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <span class="rsvp_lbl">RSVP:</span><span id="rsvp_prompt"><%= @message.rsvp.prompt %></span><br>
+              <span class="rsvp_lbl">YES:</span><span id="rsvp_yes_prompt"><%= @message.rsvp.yes_prompt %></span><br>
+              <span class="rsvp_lbl">NO:</span><span id="rsvp_no_prompt"><%= @message.rsvp.no_prompt %></span><br>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div style='text-align: center; margin-top: 15px;'>
+          <div style='float: left; margin-left: 50px;'>
+            <input style='width: 80px;' type='submit' id="send_button" value="Send"/>
+          </div>
+          <div style='float: right; margin-right: 50px;'>
+            <input style='width: 80px;' type='submit' id="cancel_button" onclick="msgClosePopupRepage();" value="Cancel" />
+          </div>
+        </div>
+      </div>
+
+        <div id="x_footer">
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<%= javascript_include_tag 'jquery.tablesorter2' %>
+<%# javascript_include_tag 'jquery.tablesorter_filter' %>
+
+<script>
+  $(document).ready(function() {
+    $('#mytable').tablesorter();
+  });
+</script>
+
+Current Count - Messages:<%= Message.count %> Distributions:<%= Distribution.count %> Unread:<%= Distribution.where(read:false).count %>
+
+<table id="mytable" class="tablesorter">
+  <thead>
+
+<tr>
+  <th>Name</th>
+  <th>Role</th>
+  <th># Pages</th>
+  <th># Unread</th>
+  <th>% Unread</th>
+  <th># Logins</th>
+  <th>Last Login Date</th>
+</tr>
+  </thead>
+  <tbody>
+
+<% @members.each do |mem| %>
+  <tr>
+    <td><%= mem.full_name %></td>
+    <td><%= mem.typ %></td>
+    <td><%= @mem_cnt[mem.id].to_s.rjust(2,'0') %></td>
+    <td><%= @mem_hsh[mem.id].to_s.rjust(2,'0') %></td>
+    <td><%= @mem_pct[mem.id].to_s.rjust(3,'0') %></td>
+    <td><%= mem.sign_in_count.to_s.rjust(2,'0') %></td>
+    <td><%= mem.last_sign_in_at %></td>
+  </tr>
+    <% end %>
+  </tbody>
+</table>

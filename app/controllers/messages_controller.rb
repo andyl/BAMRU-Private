@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
 
   def show
     file = "tmp/mail_sync_time.txt"
+    @client_ip = request.remote_ip
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
     @message = Message.where(:id => params["id"]).first
     @msg = @message

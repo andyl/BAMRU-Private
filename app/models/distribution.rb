@@ -62,15 +62,17 @@ class Distribution < ActiveRecord::Base
   # - update the RSVP answer
   # - generates a Journal entry
   #
-  # @param member [Member] Member or member_id
+  # @param admin_member [Member] Member who updates the record
+  # @param target_member [Member] Target member
   # @param new_rsvp_value [String] 'Yes' or 'No'
-  def set_rsvp(member, new_rsvp_value)
+  def set_rsvp(admin_member, target_member, new_rsvp_value)
     return unless self.rsvp?
     answer = cleanup_rsvp_value(new_rsvp_value)
-    target_list(member).each do |dist|
-      dist.mark_as_read(member, "Marked as read")
+    target_list(target_member).each do |dist|
+      next if dist.rsvp_answer == answer
+      dist.mark_as_read(admin_member, target_member, "Marked as read")
       dist.update_attributes rsvp_answer: answer
-      Journal.add_entry(self.id, member, "Set RSVP to #{answer}")
+      Journal.add_entry(dist.id, admin_member, "Set RSVP to #{answer}")
     end
   end
 
@@ -78,14 +80,14 @@ class Distribution < ActiveRecord::Base
   # - mark the distribution as read
   # - generate a Journal entry
   #
-  # @param member [Member] Member or member_id
+  # @param admin_member [Member] Member who updates the record
+  # @param target_member [Member] Target member
   # @param comment [String] Comment text
-  def mark_as_read(member, comment = "Marked as read")
+  def mark_as_read(admin_member, target_member, comment = "Marked as read")
     return if self.read?
-    kk = target_list(member)
-    kk.each do |dist|
+    target_list(target_member).each do |dist|
       next if dist.read?
-      Journal.add_entry(dist.id, member, comment)
+      Journal.add_entry(dist.id, admin_member, comment)
       dist.update_attributes(read:true)
     end
   end
@@ -94,9 +96,10 @@ class Distribution < ActiveRecord::Base
 
   def target_list(member)
     if link_id = self.message.linked_rsvp_id
-      msg_list = Message.where(:linked_rsvp_id => link_id)
+      msg_list = Message.where(:linked_rsvp_id => link_id).all
       msg_list.reduce([]) do |a, msg|
-        a + msg.distributions.where(:member_id => member.id).all
+        a = a + msg.distributions.where(:member_id => member.id).all
+        a
       end
     else
       [self]
@@ -112,7 +115,9 @@ class Distribution < ActiveRecord::Base
   end
 
   def cleanup_rsvp_value(new_value)
-    raise 'Invalid RSVP Response' unless valid_rsvp_value?(new_value)
+    answer = new_value.capitalize
+    raise 'Invalid RSVP Response' unless %q(Yes No).include? answer
+    answer
   end
 
 end

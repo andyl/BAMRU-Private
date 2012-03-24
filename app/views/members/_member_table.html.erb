@@ -1,0 +1,20 @@
+<table id="myTable" class="tablesorter" style="margin-top: 0;">
+  <thead>
+  <tr>
+    <th>Role</th>
+    <th align=center><img id='pager_icon' src="/images/page.gif" border=0></th>
+    <th align=center><img id='email_icon' src="/images/mail.gif" border=0></th>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @members.each do |m| %>
+    <tr<%= roster_oot_class(m) %>>
+      <td><%= m.full_roles %></td>
+      <%= raw phone_checkbox(m) %>
+      <%= raw email_checkbox(m) %>
+      <td><a href="/members/<%= m.id %>"><%= m.full_name %></a> <%= raw roster_oot_label(m) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

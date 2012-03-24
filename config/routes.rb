@@ -11,6 +11,7 @@ Zn::Application.routes.draw do
   get "home/silent_mail_sync"
   get "home/preview"
   get "home/testrake"
+  get "home/readstats"
 
   get "preview/sms"
   get "preview/mail_txt"

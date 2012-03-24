@@ -1,0 +1,23 @@
+<style>
+  #rsvp_popup {
+    width:  350px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    background: #ffffff;
+    position: absolute;
+    top: 40px;
+  }
+</style>
+
+<div id="rsvp_popup" style="display: none;">
+  <b>Update the RSVP response for <span id=member_name>TBD</span></b><p></p>
+  RSVP: <%= @message.rsvp.try(:prompt) %><p></p>
+  The current response is <b id=current_response>TBD</b><hr/><p></p><br/>
+  <span class=yes_response><a id=yes_link href='#'>Change the response to <b>YES</b></a>: <%= @message.rsvp.try(:yes_prompt) %><p></p></span>
+  <span class=no_response><a id=no_link href='#'>Change the response to <b>NO</b></a>: <%= @message.rsvp.try(:no_prompt) %></span>
+  <p></p><br/>
+  <div style='text-align: center;'>
+    <a href="#" onclick="msgClosePopup();">Cancel</a>
+  </div>
+</div>

@@ -85,9 +85,9 @@ class Message < ActiveRecord::Base
 
   def self.generate(mesg, dist, rsvp = {})
     mesg[:distributions_attributes] = Message.distributions_params(dist)
+    #mesg[:parent_id] = mesg[:parent_id].to_i if mesg[:parent_id]
     mesg[:format] = 'page'
     mesg_obj = Message.create(mesg)
-    #debugger if mesg_obj.linked_rsvp_id
     if mesg_obj.parent && mesg_obj.linked_rsvp_id
       mesg_obj.parent.update_attributes(:linked_rsvp_id => mesg_obj.linked_rsvp_id)
       opts = mesg_obj.parent.rsvp.attributes.slice("prompt", "yes_prompt", "no_prompt")

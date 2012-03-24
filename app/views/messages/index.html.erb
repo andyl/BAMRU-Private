@@ -35,7 +35,7 @@
         <% @messages.each do |m| %>
           <tr>
             <td><%= m.id %></td>
-            <td><%= link_to(m.text_with_rsvp, message_path(m)) %></td>
+            <td><%= link_to(m.text_with_rsvp, message_path(m)) %><%= raw parent_repage_link(m) %></td>
             <td><%= link_to(m.author.short_name, member_path(m.author)) %><br/></td>
             <td><%= m.created_at.strftime("%m-%d %H:%M") %></td>
             <td align=center><%= m.rsvp_stats %></td>

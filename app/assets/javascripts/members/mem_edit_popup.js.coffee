@@ -2,7 +2,7 @@
 managed pagable popups
 ###
 
-window.left_position = (type) ->
+window.leftPositionRepage = (type) ->
   screen_width   = $(window).width()
   popup_width_s  = $(type).css("width").split("p",1)
   popup_width_i  = parseInt(popup_width_s)
@@ -66,7 +66,7 @@ window.mem_save_phone = ->
 
 window.mem_show_popup = (link, type) ->
   window.tgtlink = link
-  $(type).css("left", left_position(type))
+  $(type).css("left", leftPositionRepage(type))
   setup_email(link)        if type == "#email_popup"
   validate_email_address() if type == "#phone_popup"
   hide_invalid_message()   if type == "#phone_popup"

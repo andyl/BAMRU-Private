@@ -48,5 +48,23 @@ class HomeController < ApplicationController
     call_rake("ops:raketest")
   end
 
+  def readstats
+    @mem_hsh = Distribution.where(read:false).all.reduce({}) do |acc, dist|
+            id = dist.member_id
+            acc[id] = acc[id] ? acc[id] += 1 : 1
+            acc
+    end
+    @mem_arr = @mem_hsh.to_a.sort_by {|x| x.last}.reverse
+    @mem_cnt = @mem_hsh.keys.reduce({}) do |acc, memid|
+      acc[memid] = Distribution.where(member_id: memid).count
+      acc
+    end
+    @mem_pct = @mem_cnt.keys.reduce({}) do |acc, memid|
+      acc[memid] = (@mem_hsh[memid] * 100) / @mem_cnt[memid]
+      acc
+    end
+    @members = Member.find(@mem_arr.map {|x| x.first})
+  end
+
 
 end

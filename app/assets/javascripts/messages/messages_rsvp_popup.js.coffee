@@ -3,7 +3,7 @@ Used to sort photos (drag & drop)
 Relies on jQuery UI
 ###
 
-window.left_position = (type) ->
+window.leftPositionRepage = (type) ->
   screen_width   = $(window).width()
   popup_width_s  = $(type).css("width").split("p",1)
   popup_width_i  = parseInt(popup_width_s)
@@ -45,7 +45,7 @@ window.changeRSVP = (el, value)->
 
 window.msgShowPopup = (link, type) ->
   setupRSVP(link)
-  $(type).css("left", left_position(type))
+  $(type).css("left", leftPositionRepage(type))
   $('#blanket').fadeIn('fast')
   $(type).fadeIn('fast')
 

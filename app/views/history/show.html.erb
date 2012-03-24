@@ -22,12 +22,13 @@
       <table>
         <tr>
           <td align=right width=150><b>Message ID:</b></td>
-          <td><%= @message.id %></td>
+          <td><%= @message.id %><%= raw parent_repage_link(@message) %></td>
         </tr>
         <tr>
           <td align=right width=150><b>Message Date:</b></td>
           <td><%= @message.created_at.strftime("%y-%m-%d %H:%M:%S") %></td>
         </tr>
+        <%= raw child_repage_link(@message) %>
         <tr>
           <td align=right><b>Message Recipient:</b></td>
           <td><%= link_to(@recipient.full_name, member_path(@recipient)) %> (<%= link_to("inbox", "/members/#{@recipient.id}/inbox")%>)</td>

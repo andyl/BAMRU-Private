@@ -22,7 +22,7 @@ describe Distribution do
        @obj.response_seconds.should be_nil
     end
     it "updates the read-at date" do
-      @obj.mark_as_read(@mem)
+      @obj.mark_as_read(@mem, @mem)
       @obj.read.should be_true
       @obj.read_at.should_not be_nil
       @obj.response_seconds.should_not be_nil
@@ -44,7 +44,7 @@ describe Distribution do
       it "updates the child when the parent is updated" do
         dist1 = Distribution.where(member_id: @mem1.id, message_id: @msg1.id).first
         dist2 = Distribution.where(member_id: @mem1.id, message_id: @msg2.id).first
-        dist2.mark_as_read(@mem1)
+        dist2.mark_as_read(@mem1, @mem1)
         dist1.reload; dist2.reload
         dist1.should be_read
         dist2.should be_read
@@ -52,7 +52,7 @@ describe Distribution do
       it "updates the parent when the child is updated" do
         dist1 = Distribution.where(member_id: @mem1.id, message_id: @msg1.id).first
         dist2 = Distribution.where(member_id: @mem1.id, message_id: @msg2.id).first
-        dist1.mark_as_read(@mem1)
+        dist1.mark_as_read(@mem1, @mem1)
         dist1.reload; dist2.reload
         dist1.should be_read
         dist2.should be_read

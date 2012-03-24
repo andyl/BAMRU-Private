@@ -9,7 +9,7 @@ class HistoryController < ApplicationController
     @message      = @distribution.message
     @mails        = @distribution.all_mails
     if @distribution.member_id == current_member.id
-      @distribution.mark_as_read(current_member, "Read via web")
+      @distribution.mark_as_read(current_member, current_member, "Read via web")
     end
     @journals     = @distribution.journals
   end
@@ -18,9 +18,9 @@ class HistoryController < ApplicationController
     @member       = current_member
     @dist_id      = params['id'].to_i
     @distribution = Distribution.find(@dist_id)
-    @distribution.mark_as_read(@member, "Marked as read")
+    @distribution.mark_as_read(current_member, @member, "Marked as read")
     if newval = params['dist']['rsvp_answer']
-      @distribution.set_rsvp(@member, newval)
+      @distribution.set_rsvp(current_member, @member, newval)
     end
     render :nothing => true
   end
@@ -28,7 +28,7 @@ class HistoryController < ApplicationController
   def markall
     @member = current_member
     @member.distributions.unread.all.each do |d|
-      d.mark_as_read(@member, "Marked as read")
+      d.mark_as_read(current_member, @member, "Marked as read")
     end
     render :nothing => true
   end

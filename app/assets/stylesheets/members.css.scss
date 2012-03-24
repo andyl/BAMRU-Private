@@ -4,14 +4,16 @@
 
 
 
-$wide_body_width: 905px;
-$body_width:      644px;
-$border_width:    1px;
-$col_padding:     8px;
-$col_offset:      100;
-$right_width:     220px;
-$left_width:      $wide_body_width - $right_width - $col_padding*2 - $border_width;
-$col_base_width:  $body_width/2 - $col_padding*2 - $border_width;
+$wide_body_width:   905px;
+$body_width:        644px;
+$narrow_body_width: 644px;
+$border_width:      1px;
+$col_padding:       8px;
+$col_offset:        100;
+$right_width:       220px;
+$narrow_base_width: $narrow_body_width/2 - $col_padding*2 - $border_width;
+$left_width:        $wide_body_width - $right_width - $col_padding*2 - $border_width;
+$col_base_width:    $body_width/2 - $col_padding*2 - $border_width;
 
 @mixin x_border {
   border: solid gray $border_width;
@@ -31,7 +33,7 @@ $col_base_width:  $body_width/2 - $col_padding*2 - $border_width;
   padding: 2px;
 }
 
-#x_container {
+#x_container, #y_container {
   align: center;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -42,12 +44,17 @@ $col_base_width:  $body_width/2 - $col_padding*2 - $border_width;
   margin:auto;
 }
 
+#y_body {
+  width: $narrow_body_width;
+  margin: auto;
+}
+
 #x_wide_body {
   width: $wide_body_width;
   margin:auto;
 }
 
-#x_header{
+#x_header, #y_header {
   @include x_header_footer;
 }
 
@@ -87,7 +94,20 @@ $col_height: 225px;
   width: $col_base_width;
 }
 
-#x_footer{
+#y_left_col {
+  @include col_style;
+  float: left;
+  width: $narrow_base_width - $border_width;
+}
+
+#y_right_col {
+  @include col_style;
+  float: right;
+  border-left-style: none;
+  width: $narrow_base_width;
+}
+
+#x_footer, #y_footer{
   @include x_header_footer;
   clear: both;
   padding: 4px;

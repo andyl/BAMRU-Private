@@ -21,6 +21,24 @@ module MessagesHelper
     "<span style='background-color: #{color}; padding-left: #{padding}; padding-right: #{padding};'>#{value}</span>"
   end
 
+  def generate_user_inputs(message)
+    cstr = ->(val){%Q(<input type='hidden' name='history[#{val}]' value='1'/>\n)}
+    @message.distributions.rsvp_pending.map do |dist|
+      output = ""
+      output << cstr["#{dist.member_id}_phone"] if dist.phone?
+      output << cstr["#{dist.member_id}_email"] if dist.phone?
+    end.join
+  end
+
+  def generate_rsvp_inputs(message)
+    rsvp = message.rsvp
+    <<-EOF.gsub('    ','')
+    <input type='hidden' name='rsvps[prompt]' value='#{rsvp.prompt}'/>
+    <input type='hidden' name='rsvps[yes_prompt]' value='#{rsvp.yes_prompt}'/>
+    <input type='hidden' name='rsvps[no_prompt]' value='#{rsvp.no_prompt}'/>
+    EOF
+  end
+
   def response_time_display(message)
     count = message.distributions.count
     read15  = @message.distributions.response_less_than(60*15).count
@@ -33,6 +51,14 @@ module MessagesHelper
     min60   =  "#{pct60}% in 60min"
     min120  =  "#{pct120}% in 120min"
     [min15, min60, min120].join(", ")
+  end
+
+  def rsvp_repage_link(message)
+    return "" unless message.rsvp
+    count = message.distributions.rsvp_pending.count
+    return "" unless count > 0
+    label = pluralize(count, 'pending member')
+    "<span style='font-size: 10px; float: right; margin-right: 20px;'><a id='repage_link' href='#'>repage #{label}</a></span>"
   end
 
   def rsvp_display(message)
@@ -94,14 +120,15 @@ module MessagesHelper
   def return_date_label(member)
     day = Time.now
     return_date = member.avail_ops.return_date(day)
-    return_date.nil? ? "" : (return_date + 1.day).strftime("%b %d")
+    return_date.nil? ? "" : (return_date + 1.day).strftime("%b %-d")
   end
 
   def message_oot_helper(distribution)
     return "" unless distribution.created_at.strftime("%y%m%d") == Time.now.strftime("%y%m%d")
     member = distribution.member
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " <span style='background: lightpink;'>(<a href='/members/#{member.id}/avail_ops'>unavailable until #{return_date_label(member)}</a>)</span>"
+    link = "<a href='/members/#{member.id}/avail_ops'>Unavail until #{return_date_label(member)}</a>"
+    " <span style='background: lightpink; padding-left: 2px; padding-right: 2px;'>#{link}</span>"
   end
 
 

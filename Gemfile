@@ -16,6 +16,7 @@ platforms :ruby do
   gem "em-http-request"
   gem "thin"
   gem "ancestry"
+  gem "haml-rails"
 
   gem "capistrano"
   gem "fastercsv"

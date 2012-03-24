@@ -44,8 +44,8 @@ describe Message do
     context "basic object manipulation" do
       before(:each) do
         @msg1 = Message.create
-        @msg2 = Message.create(:parent => @msg1)
-        @msg3 = Message.create(:parent => @msg2)
+        @msg2 = Message.create(:parent => @msg1)       # using the object
+        @msg3 = Message.create(:parent_id => @msg2.id) # using the object.id
       end
       context "object creation" do
         it "handles basic manipulation" do

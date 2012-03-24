@@ -1,0 +1,47 @@
+<div style="padding: 4px; margin-top:10px; margin-bottom:10px; background-color:lightblue;">
+
+  <table width=100%>
+    <tr>
+      <td style='font-size: 12px;'>
+        <b>Send SMS / eMail</b>
+      </td>
+      <td align=right style='font-size: 10px;'><a href="http://wiki.bamru.net/index.php/Sending_Pages" target="_blank">help</a></td>
+    </tr>
+  </table>
+  <table width=100%>
+    <tr>
+      <td><b>To:</b> <span id="addr_count">0 addresses</span></td>
+      <td align=right><b>From:</b> <%= current_member.short_name %></td>
+    </tr>
+    <tr id='clearoot' style="background: #fef; font-size: 10px;"><td style='padding-left: 4px;' colspan=2>some recipients are unavailable!<span style='margin-right: 5px; float: right'><a href="#" onclick='clearOOT();'>clear unavail</a></span></td></tr>
+  </table>
+
+  <div style="line-height: 10px; margin-bottom: 0;">
+    <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0; margin-bottom: 0;"></textarea>
+
+    <table width=100% style='font-size: 8pt; margin-bottom: 0; padding-bottom: 0;'>
+      <tr>
+        <td>
+          RSVP <%= raw rsvp_select %>
+        </td>
+        <td align=right>
+          <span id="chars_remaining">132</span> characters left
+        </td>
+      </tr>
+    </table>
+
+  </div>
+  <div id="rsvp_display" style='padding-top: 0px; margin-top: 0px; font-size: 10px; padding-right: 4px; padding-left: 4px; background-color: lightcyan;'></div>
+  <div style="font-size: 10px; margin-bottom: 0px;">
+    <table width=100% style='margin-top: 0px; padding-top: 0px;'>
+      <tr style='margin-top: 0px; padding-top: 0px;'>
+        <td style='font-size: 8pt;'>
+          <a href='#' id="preview_link">preview</a>
+        </td>
+        <td valign=top align=right>
+          <input style='width: 60px;' type="submit" value="Send"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

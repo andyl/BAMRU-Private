@@ -72,6 +72,7 @@
     <orderEntry type="library" scope="PROVIDED" name="guard (v1.0.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-coffeescript (v0.5.6, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml (v3.1.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="haml-rails (v0.3.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="highline (v1.6.11, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hirb (v0.6.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
