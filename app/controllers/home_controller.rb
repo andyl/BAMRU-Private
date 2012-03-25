@@ -49,9 +49,10 @@ class HomeController < ApplicationController
   end
 
   def readstats
+    ids = Member.all.map {|mem| mem.id}
     @mem_hsh = Distribution.where(read:false).all.reduce({}) do |acc, dist|
             id = dist.member_id
-            acc[id] = acc[id] ? acc[id] += 1 : 1
+            acc[id] = acc[id] ? acc[id] += 1 : 1 if ids.include?(id)
             acc
     end
     @mem_arr = @mem_hsh.to_a.sort_by {|x| x.last}.reverse

@@ -15,7 +15,7 @@ class IconController < ApplicationController
     om = OutboundMail.where(:label => label).first
     return if om.nil?
     dist = om.distribution
-    dist.mark_as_read(dist.member, "Read via HTML eMail (#{label})")
+    dist.mark_as_read(dist.member, dist.member, "Read via HTML eMail (#{label})")
   end
 
 end

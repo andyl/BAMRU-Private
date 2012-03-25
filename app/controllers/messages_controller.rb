@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @msg = @message
     @dists = @msg.distributions
     @mydist = @dists.where(:member_id => current_member.id).first
-    @mydist.mark_as_read(current_member, "Read via web") if @mydist
+    @mydist.mark_as_read(current_member, current_member, "Read via web") if @mydist
   end
 
   def create
