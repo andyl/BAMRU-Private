@@ -19,19 +19,17 @@
       </div>
 
         <div id=y_left_col style='height: 350px;'>
-
+          <b>About Repaging</b><br/>
+          > Pending members haven't yet RSVP'd.<br/>
+          > Repaging is a fast way to send a reminder.<br/>
+          > Responses are linked to the original page.
+          <p></p>
           <b>Original Page</b><br/>
           <%= @message.text_with_rsvp %><br/>
           <span style='font-size: 10px;'>sent <%= time_ago_in_words(@message.created_at) %> ago by <%= @message.author.last_name %></span>
           <p></p>
           <b>Pending Members</b><br/>
           <%= pending_member_list(@message).join(', ') %>
-          <p></p>
-          <b>About Repaging</b><br/>
-          > Pending members haven't yet RSVP'd.<br/>
-          > Repaging is a fast way to send a reminder.<br/>
-          > Responses are linked to the original page.
-
         </div>
 
       <div id=y_right_col>
