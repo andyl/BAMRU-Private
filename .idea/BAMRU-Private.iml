@@ -31,6 +31,7 @@
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.2.7, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ancestry (v1.2.5, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="annotate (v2.4.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="archive-tar-minitar (v0.5.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v2.2.3, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.0.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
@@ -47,6 +48,7 @@
     <orderEntry type="library" scope="PROVIDED" name="cocaine (v0.2.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.2.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="columnize (v0.3.6, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="csv-mapper (v0.5.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.8, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v0.7.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
@@ -83,6 +85,7 @@
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.1.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="letter_opener (v0.0.2, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="libv8 (v3.3.10.4, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="linecache19 (v0.5.13, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.3.3, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail_view (v1.0.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime (v0.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
@@ -119,8 +122,11 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.9.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v2.9.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v2.9.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-debug-base19 (v0.11.26, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-debug19 (v0.11.6, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-gmail (v0.2.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-rc4 (v0.1.5, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby_core_source (v0.1.5, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v0.9.6.1, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.1.15, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v2.20.0, RVM: ruby-1.9.3-p0 [private]) [gem]" level="application" />
