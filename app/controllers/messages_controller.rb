@@ -36,9 +36,15 @@ class MessagesController < ApplicationController
 
     call_rake("ops:email:pending:send2", {}, "#{timestamp}_2")
 
-    label = dist_label(mesg)
+    label, minutes = dist_label(mesg)
     as_notify("page.send", {:member => current_member, :text => label})
-    redirect_to messages_path, :notice => "Message being sent to #{label}"
+
+    wiki_link = "<a href='http://wiki.bamru.net/index.php/Paging_Performance'>here</a>"
+
+    string1 = "Page being sent to #{label}"
+    string2 = "It will take at least <span id='mincount'>#{minutes}</span> to deliver all messages."
+    string3 = "Learn more about our delivery performance #{wiki_link}"
+    redirect_to messages_path, :notice => [string1, string2, string3].join("<br/>")
   end
 
   def update_rsvp

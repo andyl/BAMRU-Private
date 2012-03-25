@@ -14,7 +14,7 @@
         </tr>
       </table>
     </div>
-    <%= form_for @message do |f| %>
+    <%= form_for @message, :html => {:id => "pageform"} do |f| %>
       <input type="hidden" name="message[author_id]" value="<%=current_member.id%>"/>
       <input type="hidden" name="message[ip_address]" value="<%=@client_ip%>"/>
       <div id=x_left_col>

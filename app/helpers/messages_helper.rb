@@ -2,7 +2,10 @@ module MessagesHelper
   def dist_label(mesg)
     member_count    = mesg.distributions.count
     outbound_count  = mesg.outbound_mails.count
-    "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
+    minutes = outbound_count / 18 + 1
+    msg1 = "#{pluralize(member_count, "member")} / #{pluralize(outbound_count, "address")}"
+    msg2 = pluralize(minutes, "minute")
+    [msg1, msg2]
   end
 
   def validate_params(mesg, dist)

@@ -20,3 +20,11 @@ $(document).ready ->
   $.tablesorter.addParser last_name_options
   $("#myTable").tablesorter(sort_opts)
 
+minCountAlert = ->
+  minStr = $('#mincount').text().split(' ')[0]
+  minInt = parseInt(minStr)
+  if minInt > 1
+    alert("Page being sent!\n\nNote: it will take at least #{minStr} minutes to deliver all messages.")
+
+$(document).ready ->
+  minCountAlert()
