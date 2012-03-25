@@ -47,6 +47,8 @@ task :first_deploy do
   puts "READY TO RUN on #{rem_host}"
 end
 
+before :deploy, "deploy:web:disable REASON='a software upgrade - will take a couple minutes."
+after  :deploy, "deploy:web:enable"
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
 after :deploy, :setup_shared_cache, :update_gems, :restart_faye
 after :nginx_conf, :restart_nginx
