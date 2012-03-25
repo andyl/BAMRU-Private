@@ -49,10 +49,9 @@ end
 
 before :deploy, "deploy:web:disable"
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
-after :deploy, :setup_shared_cache, :update_gems, :restart_faye
+after :deploy, :setup_shared_cache, :update_gems, :restart_faye, "deploy:web:enable"
 after :nginx_conf, :restart_nginx
 after "deploy:symlink", :link_shared
-after :restart_nginx, "deploy:web:enable"
 
 desc "Reload database."
 task :reload_database do

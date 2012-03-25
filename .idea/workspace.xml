@@ -9,6 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mobile3/index.html.erb" afterPath="$PROJECT_DIR$/app/views/mobile3/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" afterPath="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
     </list>
     <ignored path="BAMRU-Private.iws" />
@@ -116,30 +117,28 @@
     <splitter split-orientation="horizontal" split-proportion="0.7604674">
       <split-first>
         <leaf>
-          <file leaf-file-name="all_messages_indx.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/all_messages_indx.js">
+          <file leaf-file-name="sessions_controller.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/controllers/mobile4/sessions_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="25" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="messages_indx_table.js.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="36" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="capistrano_tasks.rb" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb">
+          <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/mobile4/index.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="54" column="6" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.44045678">
+                <state line="36" column="42" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-13.125">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/views/mobile3/index.html.erb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="44" column="40" selection-start="1702" selection-end="1702" vertical-scroll-proportion="0.48859936">
                   <folding />
                 </state>
               </provider>
@@ -198,7 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/messages/messages_repage_popup.js.coffee" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/history/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/messages/show.html.erb" />
@@ -214,6 +212,7 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
+        <option value="$PROJECT_DIR$/app/views/mobile3/index.html.erb" />
       </list>
     </option>
   </component>
@@ -344,7 +343,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -358,11 +361,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,15 +383,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BAMRU-Private" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BAMRU-Private" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="recipes" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -928,27 +945,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="9" selection-start="939" selection-end="939" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="6" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20110901000000_base_migration.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="34" selection-start="514" selection-end="549" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120320154000_change_member_login_at.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
@@ -1037,7 +1033,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="6" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.44045678">
+        <state line="54" column="0" selection-start="1695" selection-end="1695" vertical-scroll-proportion="-10.8">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/mobile4/sessions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/mobile4/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="42" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-13.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/mobile3/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="40" selection-start="1702" selection-end="1702" vertical-scroll-proportion="0.48859936">
           <folding />
         </state>
       </provider>
