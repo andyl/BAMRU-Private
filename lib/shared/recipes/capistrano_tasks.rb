@@ -34,7 +34,8 @@ task :update_gems do
   rem_host = get_host
   system "bundle pack"
   system "cd vendor ; rsync -a --delete cache #{rem_host}:a/#{APPDIR}/shared"
-  run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
+  # run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
+  run "cd #{current_path} ; bundle install --local --path=/home/aleak/.gems"
 end
 
 desc "RUN THIS FIRST!"
@@ -48,11 +49,11 @@ task :first_deploy do
 end
 
 before :deploy, "deploy:web:disable"
-after  :deploy, "deploy:web:enable"
 after "deploy:setup", :permissions, :keysend, :deploy, :nginx_conf
 after :deploy, :setup_shared_cache, :update_gems, :restart_faye
 after :nginx_conf, :restart_nginx
 after "deploy:symlink", :link_shared
+after  :link_shared, "deploy:web:enable"
 
 desc "Reload database."
 task :reload_database do
