@@ -62,7 +62,7 @@ platforms :ruby do
     gem "guard-coffeescript"
     gem "faker"
     gem "simplecov"
-    # gem "ruby-debug19", :require => "ruby-debug" if ENV['SYSNAME'] == 'ekel'
+    gem "ruby-debug19", :require => "ruby-debug" # if ENV['SYSNAME'] == 'ekel'
     gem "rspec-rails"
     gem "shoulda-matchers"
     gem "selenium-webdriver"

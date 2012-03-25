@@ -34,8 +34,7 @@ task :update_gems do
   rem_host = get_host
   system "bundle pack"
   system "cd vendor ; rsync -a --delete cache #{rem_host}:a/#{APPDIR}/shared"
-  # run "cd #{current_path} ; bundle install --quiet --local --path=/home/aleak/.gems"
-  run "cd #{current_path} ; bundle install --local --path=/home/aleak/.gems"
+  run "cd #{current_path} ; bundle install --quiet --local --without test development --path=/home/aleak/.gems"
 end
 
 desc "RUN THIS FIRST!"
