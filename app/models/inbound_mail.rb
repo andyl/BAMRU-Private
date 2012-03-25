@@ -86,19 +86,22 @@ class InboundMail < ActiveRecord::Base
   end
     
   def self.create_from_opts(opts)
+    valid_yes = %w(Yep Yea Y)
+    valid_no  = %w(N Not Unavail Unavailable)
     opts[:bounced]  = true if opts[:from].match(/mailer-daemon/i)
     first_words = opts[:body].split(' ')[0..30].join(' ')
     match = first_words.match(/\b(yep|yea|yes|y|no|n|not|unavail|unavailable)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
-    opts[:rsvp_answer] = "Yes" if %w(Yep Yea Y).include? opts[:rsvp_answer]
-    opts[:rsvp_answer] = "No"  if %w(N Not Unavail Unavailable).include? opts[:rsvp_answer]
+    opts[:rsvp_answer] = "Yes" if valid_yes.include? opts[:rsvp_answer]
+    opts[:rsvp_answer] = "No"  if valid_no.include? opts[:rsvp_answer]
     outbound = nil
     if match = self.match_code("#{opts[:subject]} #{opts[:body]}")
       opts[:label] = match[1]
       outbound = OutboundMail.where(:label => opts[:label]).first
     end
     if outbound.nil?
-      outbound = OutboundMail.where(:address => opts[:from].downcase).order('created_at ASC').last
+      select_hash = {:address => opts[:from].downcase}
+      outbound = OutboundMail.where(select_hash).order('created_at ASC').last
     end
     unless outbound.nil?
       opts[:outbound_mail_id] = outbound.id
@@ -109,9 +112,13 @@ class InboundMail < ActiveRecord::Base
         outbound.save
       else
         outbound.read = true ; outbound.save
-        outbound.distribution.read = true
-        outbound.distribution.rsvp_answer = opts[:rsvp_answer] unless opts[:rsvp_answer].nil?
-        outbound.distribution.save
+
+        member = outbound.distribution.member
+        answer = opts[:rsvp_answer]
+
+        label = "Marked as read (reply to #{opts[:label]})"
+        outbound.distribution.mark_as_read(member, member, label)
+        outbound.distribution.set_rsvp(member, member, answer) unless answer.nil?
       end
     end
     create!(opts)
