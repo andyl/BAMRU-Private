@@ -1,20 +1,4 @@
 == BAMRU Private
 
-This is a prototype for the re-write of BAMRU Private website.
+This is the code for the BAMRU Private website.
 
-The goals of the re-write are to:
-* preserve the existing functionality and style
-* get a system that is more robust and maintainable
-
-
-=== Demo Site
-
-See http://bamru.net for a live site running the current work in progress.
-
-=== Related
-
-There is also a prototype for the BAMRU Public website.
-
-Live demo at http://bamru.info
-
-Source code at http://github.com/andyl/BAMRU-Public

@@ -8,7 +8,7 @@ set :user,          "vagrant"     # vagrant, aleak
 set :proxy,         "bnetv"       # bnetv,   bnetx, 
 
 # ===== App Config =====
-set :application, "BAMRU-Public"
+set :application, "BAMRU-Private"
 set :app_name,    "bnet"
 set :repository,  "https://github.com/andyl/#{application}.git"
 set :vhost_names, %w(bnet bnettest)
@@ -30,7 +30,7 @@ require base_dir + "/config/deploy/shared/packages/sqlite"
 
 # ===== Package Definitions =====
 
-after 'deploy:setup',  'keys:upload'
+before 'deploy:setup',  'keys:upload'
 
 namespace :keys do
 

@@ -1,4 +1,4 @@
-BNET_ENVIRONMENT_FILE = '/home/aleak/.bnet_environment.yaml'
+BNET_ENVIRONMENT_FILE = File.expand_path('~/.bnet_environment.yaml')
 
 abort "MISSING ENVIRONMENT FILE" unless File.exist?(BNET_ENVIRONMENT_FILE)
 
