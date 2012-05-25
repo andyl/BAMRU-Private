@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# should be called from tmux_console
+
+export APP="flex"
+
+create_new_session()
+{
+
+  ABS_LOG_DIR=`cd $ABS_SRC_DIR/../log ; pwd`
+
+  tmux new-session -s $APP -n sysmon -d
+
+  tmux split-window -t $APP:1 -v
+  tmux split-window -t $APP:1 -h
+  tmux send-keys -t $APP:1.1 'htop'  C-m
+  tmux send-keys -t $APP:1.2 'cls && syslinks' C-m
+  tmux send-keys -t $APP:1.3 'sudo iftop' C-m
+
+  tmux new-window  -t $APP -n weblog
+  tmux send-keys -t $APP:2 "multitail /var/log/nginx/access.log $ABS_LOG_DIR/web*.log" C-m
+
+  tmux select-window -t $APP:1
+
+}
+
