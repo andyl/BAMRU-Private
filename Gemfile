@@ -30,6 +30,8 @@ gem "draper"
 
 gem "rack-offline"
 
+gem "passenger"
+
 gem "jquery-rails"
 gem "paperclip"
 gem "parslet"
