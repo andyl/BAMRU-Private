@@ -12,7 +12,7 @@ set :application, "BAMRU-Private"
 set :app_name,    "bnet"
 set :repository,  "https://github.com/andyl/#{application}.git"
 set :vhost_names, %w(bnet bnettest)
-set :web_port,    9500
+set :web_port,    8500
 
 # ===== Stage-Specific Code (config/deploy/<stage>) =====
 require 'capistrano/ext/multistage'
