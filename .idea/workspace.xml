@@ -9,8 +9,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mobile3/index.html.erb" afterPath="$PROJECT_DIR$/app/views/mobile3/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" afterPath="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.rvmrc" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Capfile" afterPath="$PROJECT_DIR$/Capfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
     </list>
     <ignored path="BAMRU-Private.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,78 +36,6 @@
     <flatten value="false" />
     <groupTables value="false" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <splitter split-orientation="horizontal" split-proportion="0.56875">
-            <split-first>
-              <leaf>
-                <file leaf-file-name="mail.rake" pinned="false" current="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/lib/tasks/mail.rake">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="37" column="11" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/app/views/members/index.html.erb">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="16" column="49" selection-start="526" selection-end="526" vertical-scroll-proportion="-4.897959">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="_page_form.html.erb" pinned="false" current="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/app/views/members/_page_form.html.erb">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="24" column="37" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.5546875">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf>
-                <file leaf-file-name="messages_show_table.js.coffee" pinned="false" current="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/messages_show_table.js.coffee">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="11" column="11" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="members_controller.rb" pinned="false" current="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/app/controllers/members_controller.rb">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="16" column="5" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="messages_controller.rb" pinned="false" current="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/app/controllers/messages_controller.rb">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state line="21" column="82" selection-start="748" selection-end="749" vertical-scroll-proportion="0.33333334">
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="BAMRU-Private">
       <favorite_root url="file://$PROJECT_DIR$/app/assets/javascripts/messages" module="BAMRU-Private" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -114,31 +44,31 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7604674">
+    <splitter split-orientation="horizontal" split-proportion="0.5189137">
       <split-first>
         <leaf>
-          <file leaf-file-name="sessions_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/mobile4/sessions_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/mobile4/index.html.erb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="42" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-13.125">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/mobile3/index.html.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="44" column="40" selection-start="1702" selection-end="1702" vertical-scroll-proportion="0.48859936">
+                <state line="42" column="35" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Capfile" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Capfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="0" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/config/application.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="23" column="0" selection-start="825" selection-end="825" vertical-scroll-proportion="0.023510972">
                   <folding />
                 </state>
               </provider>
@@ -148,28 +78,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="distribution.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/distribution.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="87" column="15" selection-start="2609" selection-end="2609" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Gemfile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="64" column="51" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.49161074">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/history_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="47" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
+                <state line="21" column="14" selection-start="349" selection-end="349" vertical-scroll-proportion="0.023510972">
                   <folding />
                 </state>
               </provider>
@@ -197,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/history/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/messages/show.html.erb" />
         <option value="$PROJECT_DIR$/app/models/inbound_mail.rb" />
@@ -210,9 +121,10 @@
         <option value="$PROJECT_DIR$/app/helpers/messages_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
         <option value="$PROJECT_DIR$/app/views/mobile3/index.html.erb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/Capfile" />
       </list>
     </option>
   </component>
@@ -333,78 +245,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="RailsProjectView">
@@ -423,14 +263,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="88" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="105" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="97" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="110" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="947" />
+    <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="934" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="947" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="112" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="107" />
@@ -442,7 +282,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.sourceCode.HAML" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
     <property name="dynamic.classpath" value="false" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
     <property name="options.searchVisible" value="true" />
@@ -861,14 +701,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="768" width="1280" height="775" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924837" sideWeight="0.2324159" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.67737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37961596" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25490198" sideWeight="0.40978593" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19261007" sideWeight="0.4549483" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894654" sideWeight="0.4549483" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2955975" sideWeight="0.53471196" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33944955" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -878,6 +717,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37961596" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32647058" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294025" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -945,116 +785,83 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120320154000_change_member_login_at.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/distribution.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="87" column="15" selection-start="2609" selection-end="2609" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1695" selection-end="1695" vertical-scroll-proportion="-10.8" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/mobile4/sessions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/mobile4/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="42" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-13.125" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/history_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="47" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/mail.rake">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="11" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/messages/_repage_popup.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1066" selection-end="1066" vertical-scroll-proportion="-12.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/messages_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="800" selection-end="800" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/messages_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="82" selection-start="748" selection-end="749" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/messages/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="47" selection-start="47" selection-end="47" vertical-scroll-proportion="-0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/all_messages_indx.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="25" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="37" column="11" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/members/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="49" selection-start="526" selection-end="526" vertical-scroll-proportion="-4.897959">
-          <folding />
-        </state>
+        <state line="16" column="49" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/members/_page_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="37" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.5546875">
+        <state line="24" column="37" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.34375" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/messages_show_table.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="11" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/members_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="5" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/messages_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="82" selection-start="748" selection-end="749" vertical-scroll-proportion="0.05120482" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/mobile3/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="35" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee">
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="36" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/distribution.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="15" selection-start="2609" selection-end="2609" vertical-scroll-proportion="0.0">
+        <state line="23" column="0" selection-start="825" selection-end="825" vertical-scroll-proportion="0.023510972">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="51" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.49161074">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1695" selection-end="1695" vertical-scroll-proportion="-10.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/mobile4/sessions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/mobile4/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="42" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-13.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/mobile3/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="40" selection-start="1702" selection-end="1702" vertical-scroll-proportion="0.48859936">
+        <state line="21" column="14" selection-start="349" selection-end="349" vertical-scroll-proportion="0.023510972">
           <folding />
         </state>
       </provider>

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# Syncs this gem directory to a shared copy using unison
+# For development of a shared gem amount multiple apps
+
+cur_path = File.expand_path(File.dirname(__FILE__))
+tgt_path = File.expand_path("~/lr/cap_share")
+
+abort "Can't run from #{tgt_path}" if cur_path == tgt_path
+
+cmd = "unison #{cur_path} #{tgt_path} -terse -auto -batch -fastcheck true -ignore 'Path .git'"
+
+system "sudo rm -rf .git" if Dir.exist?(".git")
+
+puts cmd
+system cmd
+
