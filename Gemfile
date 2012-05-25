@@ -4,7 +4,6 @@ source "http://rubygems.org"
 #   gem "jruby-poi", '0.8.2'
 # end
 
-
 gem "rails",          "3.1.3"
 #gem "rails",          "3.2.2"
 
@@ -16,6 +15,7 @@ gem "em-http-request"
 gem "thin"
 gem "ancestry"
 gem "haml-rails"
+gem "net-ssh", "2.4.0"
 
 gem "fastercsv"
 gem "nokogiri"
