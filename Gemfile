@@ -19,8 +19,6 @@ platforms :ruby do
   gem "haml-rails"
 
   gem "capistrano"
-  gem "chef_cap"
-
   gem "fastercsv"
   gem "nokogiri"
   gem "simple_form"
@@ -64,7 +62,6 @@ platforms :ruby do
     gem "guard-coffeescript"
     gem "faker"
     gem "simplecov"
-    # gem "ruby-debug19", :require => "ruby-debug" # if ENV['SYSNAME'] == 'ekel'
     gem "rspec-rails"
     gem "shoulda-matchers"
     gem "selenium-webdriver"
@@ -74,6 +71,8 @@ platforms :ruby do
     gem "spork"
     gem "database_cleaner"
     gem "factory_girl_rails"
+
+    gem "vagrant"
 
     gem "letter_opener"
 
