@@ -24,6 +24,8 @@ gem "rabl"
 gem "sprite-factory"
 gem "rmagick"
 
+gem "ghost"
+
 gem "draper"
 
 gem "rack-offline"
