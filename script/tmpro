@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # should be called from tmux_console
 
-export APP="flex"
+export APP="bnet"
 
 create_new_session()
 {

@@ -55,6 +55,13 @@ gem "uglifier"
 gem "therubyracer", :require => "v8"
 gem "whenever",     :require => false
 
+# console tools
+gem "hirb"
+gem "wirble"
+gem "interactive_editor"
+gem "awesome_print", :require => "ap"
+gem "drx"
+
 group :development, :test do
   gem "jasminerice"
   gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
@@ -80,9 +87,4 @@ group :development, :test do
 
   gem "letter_opener"
 
-  gem "hirb"
-  gem "wirble"
-  gem "interactive_editor"
-  gem "awesome_print", :require => "ap"
-  gem "drx"
 end
