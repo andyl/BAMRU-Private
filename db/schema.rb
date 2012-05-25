@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320154000) do
+ActiveRecord::Schema.define(:version => 20120525003832) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -92,17 +92,21 @@ ActiveRecord::Schema.define(:version => 20120320154000) do
   create_table "distributions", :force => true do |t|
     t.integer  "message_id"
     t.integer  "member_id"
-    t.boolean  "email",            :default => false
-    t.boolean  "phone",            :default => false
-    t.boolean  "read",             :default => false
-    t.boolean  "bounced",          :default => false
+    t.boolean  "email",                  :default => false
+    t.boolean  "phone",                  :default => false
+    t.boolean  "read",                   :default => false
+    t.boolean  "bounced",                :default => false
     t.datetime "read_at"
     t.integer  "response_seconds"
-    t.boolean  "rsvp",             :default => false
+    t.boolean  "rsvp",                   :default => false
     t.string   "rsvp_answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unauth_rsvp_token"
+    t.datetime "unauth_rsvp_expires_at"
   end
+
+  add_index "distributions", ["unauth_rsvp_token"], :name => "index_distributions_on_unauth_rsvp_token", :unique => true
 
   create_table "do_assignments", :force => true do |t|
     t.integer  "org_id",                  :default => 1

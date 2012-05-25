@@ -10,6 +10,7 @@ class Distribution < ActiveRecord::Base
 
   # ----- Callbacks -----
 
+  after_initialize :set_unauth_rsvp_token
   before_save :set_read_time
 
 
@@ -23,7 +24,7 @@ class Distribution < ActiveRecord::Base
   scope :unread,    where(:read => false)
 
   scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
-  scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
+  scope :response_greater_than, lambda {|seconds| where('response_seconds > ?', seconds)}
 
   scope :rsvp_yes,     where(:rsvp_answer => "Yes")
   scope :rsvp_no,      where(:rsvp_answer => "No")
@@ -114,6 +115,15 @@ class Distribution < ActiveRecord::Base
     end
   end
 
+  def set_unauth_rsvp_token
+    #if self.unauth_rsvp_token.blank?
+    if self.unauth_rsvp_expires_at.blank?
+      self.unauth_rsvp_token = rand(36 ** 8).to_s(36)
+      self.unauth_rsvp_expires_at = Time.now + 1.week
+      self.save
+    end
+  end
+
   def cleanup_rsvp_value(new_value)
     answer = new_value.capitalize
     raise 'Invalid RSVP Response' unless %q(Yes No).include? answer
@@ -126,18 +136,20 @@ end
 #
 # Table name: distributions
 #
-#  id               :integer         not null, primary key
-#  message_id       :integer
-#  member_id        :integer
-#  email            :boolean         default(FALSE)
-#  phone            :boolean         default(FALSE)
-#  read             :boolean         default(FALSE)
-#  bounced          :boolean         default(FALSE)
-#  read_at          :datetime
-#  response_seconds :integer
-#  rsvp             :boolean         default(FALSE)
-#  rsvp_answer      :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                      :integer         not null, primary key
+#  message_id              :integer
+#  member_id               :integer
+#  email                   :boolean         default(FALSE)
+#  phone                   :boolean         default(FALSE)
+#  read                    :boolean         default(FALSE)
+#  bounced                 :boolean         default(FALSE)
+#  read_at                 :datetime
+#  response_seconds        :integer
+#  rsvp                    :boolean         default(FALSE)
+#  rsvp_answer             :string(255)
+#  created_at              :datetime
+#  updated_at              :datetime
+#  unauth_rsvp_token       :string(255)
+#  unauth_rsvp_expires_at  :datetime
 #
 
