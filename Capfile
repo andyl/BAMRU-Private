@@ -4,14 +4,14 @@ require 'bundler/setup'
 # ====== Deployment Stages =====
 set :stages,        %w(staging production)
 set :default_stage, "staging"
-set :user,          "vagrant"   # vagrant, aleak
-set :proxy,         "bnetv"     # bnetv,   bnetx, 
+set :user,          "aleak"     # vagrant, aleak
+set :proxy,         "bnetx"     # bnetv,   bnetx, 
 
 # ===== App Config =====
-set :application, "BAMRU-Private"
+set :application, "BAMRU-Public"
 set :app_name,    "bnet"
 set :repository,  "https://github.com/andyl/#{application}.git"
-set :vhost_names, %w(borg borgtest)
+set :vhost_names, %w(bnet bnettest)
 set :web_port,    9500
 
 # ===== Stage-Specific Code (config/deploy/<stage>) =====
