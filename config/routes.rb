@@ -43,8 +43,11 @@ Zn::Application.routes.draw do
   resources  :rsvp_templates
   resources  :history
   resources  :rsvps
+  resources  :unauth_rsvps
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
+
+
 
   get  '/do_planner'     => "do_planner#index"
   post '/do_planner/:id' => "do_planner#update"
