@@ -157,7 +157,6 @@ GEM
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    jruby-pageant (1.0.2)
     json (1.7.3)
     launchy (2.1.0)
       addressable (~> 2.2.6)
@@ -178,8 +177,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.4.0)
-      jruby-pageant (>= 1.0.2)
+    net-ssh (2.2.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.2)
@@ -260,7 +258,7 @@ GEM
       shared-mime-info
     ruby-rc4 (0.1.5)
     rubyzip (0.9.8)
-    sass (3.1.18)
+    sass (3.1.19)
     selenium-webdriver (2.21.2)
       childprocess (>= 0.2.5)
       ffi (~> 1.0)
@@ -360,7 +358,7 @@ DEPENDENCIES
   mail
   mail_view!
   mime
-  net-ssh (= 2.4.0)
+  net-ssh (= 2.2.2)
   nokogiri
   oauth
   paperclip

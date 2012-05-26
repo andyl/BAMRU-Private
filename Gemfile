@@ -15,7 +15,7 @@ gem "em-http-request"
 gem "thin"
 gem "ancestry"
 gem "haml-rails"
-gem "net-ssh", "2.4.0"
+gem "net-ssh", "2.2.2"
 
 gem "fastercsv"
 gem "nokogiri"
