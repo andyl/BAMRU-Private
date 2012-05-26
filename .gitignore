@@ -36,4 +36,5 @@ public/javascripts/compiled/**/*
 spec/javascripts/compiled
 spec/javascripts/compiled/*
 spec/javascripts/compiled/**/*
-
+bin
+bin/*
