@@ -17,6 +17,8 @@ gem "ancestry"
 gem "haml-rails"
 gem "net-ssh", "2.2.2"
 
+gem "pg"
+
 gem "fastercsv"
 gem "nokogiri"
 gem "simple_form"

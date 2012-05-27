@@ -198,6 +198,7 @@ GEM
     pdf-reader (1.1.1)
       Ascii85 (~> 1.0.0)
       ruby-rc4
+    pg (0.13.2)
     pngqr (0.6)
       chunky_png
       rqrcode
@@ -367,6 +368,7 @@ DEPENDENCIES
   paperclip
   parslet
   passenger
+  pg
   pngqr
   prawn
   rabl
