@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'lib/env_settings'
+require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 
 # ====== Deployment Stages =====
 set :stages,        %w(staging production)
@@ -10,7 +10,7 @@ set :proxy,         "bnetv"       # bnetv,   bnetx
 
 # ===== App Config =====
 set :application, "BAMRU-Private"
-set :app_name,    "bnet"
+set :app_name,    APP_NAME
 set :repository,  "https://github.com/andyl/#{application}.git"
 set :vhost_names, %w(bnet bnettest)
 set :web_port,    8500

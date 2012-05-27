@@ -6,6 +6,7 @@ require 'yaml'
 
 yaml_env = YAML.load(File.read(BNET_ENVIRONMENT_FILE))
 
+APP_NAME               = yaml_env[:app_name]
 GOOGLE_CONSUMER_KEY    = yaml_env[:google_consumer_key]
 GOOGLE_CONSUMER_SECRET = yaml_env[:google_consumer_secret]
 FAYE_TOKEN             = yaml_env[:faye_token]
