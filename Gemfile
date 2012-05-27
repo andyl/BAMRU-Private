@@ -25,6 +25,7 @@ gem "sprite-factory"
 gem "rmagick"
 
 gem "ghost"
+gem "valkyrie"
 
 gem "draper"
 
