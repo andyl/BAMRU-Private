@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320154000) do
+ActiveRecord::Schema.define(:version => 20120528220020) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -147,13 +147,13 @@ ActiveRecord::Schema.define(:version => 20120320154000) do
     t.string   "uid"
     t.string   "subject"
     t.string   "label"
-    t.string   "body"
+    t.text     "body",             :limit => 255
     t.string   "rsvp_answer"
     t.datetime "send_time"
-    t.boolean  "bounced",          :default => false
+    t.boolean  "bounced",                         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "ignore_bounce",    :default => false
+    t.boolean  "ignore_bounce",                   :default => false
   end
 
   create_table "journals", :force => true do |t|
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20120320154000) do
   create_table "messages", :force => true do |t|
     t.integer  "author_id"
     t.string   "ip_address"
-    t.string   "text"
+    t.text     "text",           :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format"
