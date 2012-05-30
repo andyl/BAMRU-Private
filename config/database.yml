@@ -12,7 +12,7 @@ development:
   pool: 5
   template: template0
   username: bnet
-  password: <%= POSTGRES_PASS %>
+  password: simple
 
 test:
   adapter: postgresql
@@ -21,7 +21,7 @@ test:
   pool: 5
   username: bnet
   template: template0
-  password: <%= POSTGRES_PASS %>
+  password: simple
 
 production:
   adapter: postgresql
@@ -30,4 +30,4 @@ production:
   pool: 5
   username: bnet
   template: template0
-  password: <%= POSTGRES_PASS %>
+  password: simple
