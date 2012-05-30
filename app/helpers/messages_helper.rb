@@ -29,7 +29,7 @@ module MessagesHelper
     @message.distributions.rsvp_pending.map do |dist|
       output = ""
       output << cstr["#{dist.member_id}_phone"] if dist.phone?
-      output << cstr["#{dist.member_id}_email"] if dist.phone?
+      output << cstr["#{dist.member_id}_email"] if dist.email?
     end.join
   end
 
