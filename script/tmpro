@@ -22,6 +22,9 @@ create_new_session()
   tmux new-window  -t $APP -n proclog
   tmux send-keys -t $APP:3 "multitail $ABS_LOG_DIR/faye*.log $ABS_LOG_DIR/perf*.log" C-m
 
+  tmux new-window  -t $APP -n dblog
+  tmux send-keys -t $APP:4 "multitail /var/log/postgresql/*log" C-m
+
   tmux select-window -t $APP:1
 
 }
