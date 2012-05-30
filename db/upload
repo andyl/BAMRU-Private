@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require File.expand_path("../lib/env_settings", File.dirname(__FILE__))
+
+system "valkyrie sqlite://development.sqlite3 postgres://bnet:#{POSTGRES_PASS}@bnetx/bnet_production"

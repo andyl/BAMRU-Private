@@ -5,8 +5,8 @@ require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 # ====== Deployment Stages =====
 set :stages,        %w(staging production)
 set :default_stage, "staging"
-set :user,          "vagrant"     # vagrant, aleak
-set :proxy,         "bnetv"       # bnetv,   bnetx
+set :user,          "aleak"       # vagrant, aleak
+set :proxy,         "bnetx"       # bnetv,   bnetx
 
 # ===== App Config =====
 set :application, "BAMRU-Private"
