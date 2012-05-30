@@ -8,8 +8,9 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Make a shared database folder"
     task :make_shared_db, :roles => :db do
       run "mkdir -p #{shared_path}/db"
-      db_data = File.read("db/development.sqlite3")
-      put db_data, "#{shared_path}/db/production.sqlite3"
+      upload "db/development.sqlite3", "#{shared_path}/db/production.sqlite3"
+      run "chown -R #{user} #{shared_path}/db"
+      run "chgrp -R #{user} #{shared_path}/db"
     end
 
     desc "Link shared database"
