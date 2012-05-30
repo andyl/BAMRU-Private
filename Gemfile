@@ -86,7 +86,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "factory_girl_rails"
 
-  gem "vagrant"
+  gem "vagrant", "1.0.3"
 
   gem "letter_opener"
 
