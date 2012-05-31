@@ -30,7 +30,7 @@ class Member < ActiveRecord::Base
   has_many :roles,              :dependent => :destroy
   has_many :certs,              :dependent => :destroy
   has_many :data_files
-  has_many :avail_ops,          :order => 'start', :dependent => :destroy
+  has_many :avail_ops,          :order => 'start_on', :dependent => :destroy
   has_many :avail_dos,          :dependent => :destroy
   has_many :messages
   has_many :distributions

@@ -4,7 +4,7 @@ class AvailOpsController < ApplicationController
 
   def new
     @member = Member.where(:id => params['member_id']).first
-    @avail   = @member.avail_ops.create(:start => 1.week.from_now.to_date, :end => 2.weeks.from_now.to_date)
+    @avail   = @member.avail_ops.create(:start_on => 1.week.from_now.to_date, :end_on => 2.weeks.from_now.to_date)
     redirect_to member_avail_ops_path(@member), :notice => "Created Busy Period"
   end
 

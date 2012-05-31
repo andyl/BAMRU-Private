@@ -88,6 +88,8 @@ group :development, :test do
 
   gem "vagrant", "1.0.3"
 
+  gem "debugger"
+
   gem "letter_opener"
 
 end

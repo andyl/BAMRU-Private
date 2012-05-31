@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528220020) do
+ActiveRecord::Schema.define(:version => 20120531131003) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20120528220020) do
 
   create_table "avail_ops", :force => true do |t|
     t.integer  "member_id"
-    t.date     "start"
-    t.date     "end"
+    t.date     "start_on"
+    t.date     "end_on"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -254,7 +254,7 @@ ActiveRecord::Schema.define(:version => 20120528220020) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "member_id"
+    t.integer  "member_id",  :limit => 255
     t.string   "typ"
     t.datetime "created_at"
     t.datetime "updated_at"

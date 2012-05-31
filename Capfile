@@ -49,3 +49,20 @@ namespace :keys do
 
 end
 
+after 'deploy:setup',  'system:setup'
+after 'deploy',        'system:symlink'
+
+namespace :system do
+
+  desc "Create shared system directory"
+  task :setup do
+    run "mkdir #{shared_dir}/system"
+  end
+
+  desc "Symlink to the shared system directory"
+  task :symlink do
+    run "ln -s #{shared_dir}/system #{current_dir}/public/system"
+  end
+
+end
+
