@@ -16,7 +16,7 @@ class Email < ActiveRecord::Base
   validates_uniqueness_of :address
 
   # ----- Scopes -----
-  scope :pagable, where(:pagable => 1)
+  scope :pagable, where(:pagable => '1')
   scope :non_standard, where('typ <> "Work"').
                        where('typ <> "Home"').
                        where('typ <> "Personal"').

@@ -9,15 +9,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/upload" afterPath="$PROJECT_DIR$/db/upload" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Capfile" afterPath="$PROJECT_DIR$/Capfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/avail_ops_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/avail_ops_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/avail_op.rb" afterPath="$PROJECT_DIR$/app/models/avail_op.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/member.rb" afterPath="$PROJECT_DIR$/app/models/member.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/cert.rb" afterPath="$PROJECT_DIR$/app/models/cert.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/email.rb" afterPath="$PROJECT_DIR$/app/models/email.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/phone.rb" afterPath="$PROJECT_DIR$/app/models/phone.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="BAMRU-Private.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,70 +44,35 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.30261883">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/application.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="30" column="0" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application_helper.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="303" column="12" selection-start="8318" selection-end="8318" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Gemfile">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="90" column="15" selection-start="1653" selection-end="1653" vertical-scroll-proportion="2.2727273">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="avail_op.rb" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/models/avail_op.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="63" column="30" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.55284554">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="member.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/member.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="32" column="51" selection-start="1530" selection-end="1530" vertical-scroll-proportion="-4.76">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="avail_ops_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/avail_ops_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="85" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="phone.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="-3.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/member.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="112" selection-start="2192" selection-end="2194" vertical-scroll-proportion="-10.56">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="email.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/email.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="39" selection-start="393" selection-end="393" vertical-scroll-proportion="0.41347626">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -132,9 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20120320154000_change_member_login_at.rb" />
-        <option value="$PROJECT_DIR$/app/views/messages/_repage_popup.html.erb" />
         <option value="$PROJECT_DIR$/app/views/members/_page_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/members/index.html.erb" />
         <option value="$PROJECT_DIR$/app/helpers/messages_helper.rb" />
@@ -143,11 +100,14 @@
         <option value="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
         <option value="$PROJECT_DIR$/app/views/mobile3/index.html.erb" />
         <option value="$PROJECT_DIR$/Capfile" />
-        <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/avail_ops_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/member.rb" />
         <option value="$PROJECT_DIR$/app/models/avail_op.rb" />
+        <option value="$PROJECT_DIR$/config/database.yml" />
+        <option value="$PROJECT_DIR$/app/models/cert.rb" />
+        <option value="$PROJECT_DIR$/app/models/phone.rb" />
+        <option value="$PROJECT_DIR$/app/models/email.rb" />
       </list>
     </option>
   </component>
@@ -289,38 +249,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BAMRU-Private" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -844,26 +772,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/members/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="49" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/members/_page_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="37" selection-start="1135" selection-end="1135" vertical-scroll-proportion="0.34375" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/messages/messages_show_table.js.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="11" selection-start="391" selection-end="391" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/members_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="5" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/messages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="82" selection-start="748" selection-end="749" vertical-scroll-proportion="0.05120482" />
@@ -877,34 +785,6 @@
     <entry file="file://$PROJECT_DIR$/Capfile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="97" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="12" selection-start="8318" selection-end="8318" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="15" selection-start="1653" selection-end="1653" vertical-scroll-proportion="2.2727273">
           <folding />
         </state>
       </provider>
@@ -925,14 +805,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/avail_ops_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="85" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/member.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="51" selection-start="1530" selection-end="1530" vertical-scroll-proportion="-4.76">
+        <state line="6" column="85" selection-start="245" selection-end="245" vertical-scroll-proportion="0.140625">
           <folding />
         </state>
       </provider>
@@ -940,6 +813,69 @@
     <entry file="file://$PROJECT_DIR$/app/models/avail_op.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="30" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.55284554">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="303" column="12" selection-start="8318" selection-end="8318" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="15" selection-start="1653" selection-end="1653" vertical-scroll-proportion="-54.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="21" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/cert.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="46" selection-start="2720" selection-end="2720" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/members_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="14" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="-3.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/member.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="112" selection-start="2192" selection-end="2194" vertical-scroll-proportion="-10.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/email.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="39" selection-start="393" selection-end="393" vertical-scroll-proportion="0.41347626">
           <folding />
         </state>
       </provider>

@@ -1,18 +1,18 @@
 
-development:
-   adapter: sqlite3
-   database: db/development.sqlite3
-   pool: 5
-   timeout: 5000
-
 #development:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: bnet_development
-#  pool: 5
-#  template: template0
-#  username: bnet
-#  password: simple
+#   adapter: sqlite3
+#   database: db/development.sqlite3
+#   pool: 5
+#   timeout: 5000
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: bnet_development
+  pool: 5
+  template: template0
+  username: bnet
+  password: simple
 
 test:
   adapter: postgresql

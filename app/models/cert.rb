@@ -67,7 +67,7 @@ class Cert < ActiveRecord::Base
   end
 
   def self.newest
-    where('expiration <> ""').order("expiration ASC").first
+    where('expiration <> null').order("expiration ASC").first
   end
 
   # ----- Instance Methods -----
