@@ -36,7 +36,7 @@ gem "rack-offline"
 gem "passenger"
 
 gem "jquery-rails"
-gem "paperclip"
+gem "paperclip",    "2.7.0"
 gem "parslet"
 gem "aalf",         :git => "http://github.com/andyl/aalf.git"
 gem "dynamic_form"
