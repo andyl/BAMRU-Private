@@ -41,31 +41,31 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.7394107">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/unit_photos/index.html.erb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="0" selection-start="342" selection-end="342" vertical-scroll-proportion="-3.125">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Capfile" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Capfile" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Capfile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="41" column="43" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0">
+                <state line="58" column="18" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.6431853">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sqlite.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="sqlite.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/deploy/shared/packages/sqlite.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="0" selection-start="728" selection-end="728" vertical-scroll-proportion="0.5625">
+                <state line="24" column="0" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="postgresql.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config/deploy/shared/packages/postgresql.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="15" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -78,7 +78,7 @@
           <file leaf-file-name="Capfile" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Capfile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="65" column="51" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.890625">
+                <state line="65" column="51" selection-start="2000" selection-end="2000" vertical-scroll-proportion="0.890625">
                   <folding />
                 </state>
               </provider>
@@ -106,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/helpers/messages_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee" />
         <option value="$PROJECT_DIR$/lib/shared/recipes/capistrano_tasks.rb" />
@@ -121,6 +120,7 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/spec/models/avail_ops_spec.rb" />
         <option value="$PROJECT_DIR$/spec/decorators/message_decorator_spec.rb" />
+        <option value="$PROJECT_DIR$/config/deploy/shared/packages/postgresql.rb" />
         <option value="$PROJECT_DIR$/Capfile" />
       </list>
     </option>
@@ -798,7 +798,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37849778" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25490198" sideWeight="0.40978593" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1894654" sideWeight="0.6215022" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14622642" sideWeight="0.6215022" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2955975" sideWeight="0.53471196" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33944955" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -878,13 +878,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/helpers/members_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="14" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="-3.0">
@@ -976,16 +969,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Capfile">
+    <entry file="file://$PROJECT_DIR$/config/deploy/shared/packages/sqlite.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="43" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0">
+        <state line="24" column="0" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy/shared/packages/sqlite.rb">
+    <entry file="file://$PROJECT_DIR$/config/deploy/shared/packages/postgresql.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="728" selection-end="728" vertical-scroll-proportion="0.5625">
+        <state line="11" column="15" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="18" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.6431853">
           <folding />
         </state>
       </provider>

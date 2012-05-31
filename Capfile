@@ -56,7 +56,7 @@ namespace :sysdir do
 
   desc "Create shared system directory"
   task :setup do
-    run "mkdir #{shared_path}/system"
+    run "mkdir -p #{shared_path}/system"
     run "chown -R #{user} #{shared_path}/system"
     run "chgrp -R #{user} #{shared_path}/system"
   end
