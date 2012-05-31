@@ -4,9 +4,9 @@ describe AvailOp do
 
   describe "object attributes" do
     before(:each) { @obj = AvailOp.new }
-    specify { @obj.should respond_to(:start)    }
-    specify { @obj.should respond_to(:end)      }
-    specify { @obj.should respond_to(:comment)  }
+    specify { @obj.should respond_to(:start_on)    }
+    specify { @obj.should respond_to(:end_on)      }
+    specify { @obj.should respond_to(:comment)     }
   end
 
   describe "associations" do
@@ -21,14 +21,14 @@ describe AvailOp do
 
   describe "validations" do
     before(:each) { @obj = AvailOp.new }
-    specify { @obj.should validate_presence_of(:start)          }
-    specify { @obj.should validate_presence_of(:end)            }
+    specify { @obj.should validate_presence_of(:start_on)          }
+    specify { @obj.should validate_presence_of(:end_on)            }
   end
 
   describe "object creation" do
     context "using date input" do
       before(:each) do
-        @valid_input  = {:start => 1.week.from_now, :end => 2.weeks.from_now }
+        @valid_input  = {:start_on => 1.week.from_now, :end_on => 2.weeks.from_now }
       end
       it "works with valid input" do
         @obj = AvailOp.create!(@valid_input)
@@ -42,10 +42,10 @@ describe AvailOp do
       it "works with string input" do
         @obj = AvailOp.create!(@string_input)
         @obj.should be_valid
-        @obj.start.should_not be_blank
-        @obj.start.should be_a(Time)
-        @obj.end.should_not be_blank
-        @obj.end.should be_a(Time)
+        @obj.start_on.should_not be_blank
+        @obj.start_on.should be_a(Time)
+        @obj.end_on.should_not be_blank
+        @obj.end_on.should be_a(Time)
       end
     end
   end
@@ -53,7 +53,7 @@ describe AvailOp do
   describe "object updating" do
     context "using string update criteria" do
       before(:each) do
-        @obj = AvailOp.create(:start => 2.days.from_now, :end => 3.days.from_now)
+        @obj = AvailOp.create(:start_on => 2.days.from_now, :end_on => 3.days.from_now)
       end
       it "updates the object" do
         date_str = "2011-01-01"

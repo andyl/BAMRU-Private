@@ -9,13 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/cache/paperclip-3.0.4.gem" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/decorators/message_decorator_spec.rb" afterPath="$PROJECT_DIR$/spec/decorators/message_decorator_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/avail_ops_spec.rb" afterPath="$PROJECT_DIR$/spec/models/avail_ops_spec.rb" />
     </list>
     <ignored path="BAMRU-Private.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,25 +46,7 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/unit_photos/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="37" selection-start="515" selection-end="515" vertical-scroll-proportion="0.24350649">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="photo.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/photo.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="20" selection-start="529" selection-end="529" vertical-scroll-proportion="0.0">
+            <state line="42" column="17" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.8035714">
               <folding />
             </state>
           </provider>
@@ -95,8 +72,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/members/_page_form.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/members/index.html.erb" />
         <option value="$PROJECT_DIR$/app/helpers/messages_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/messages_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/messages/messages_indx_table.js.coffee" />
@@ -111,6 +86,8 @@
         <option value="$PROJECT_DIR$/app/models/email.rb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/spec/models/avail_ops_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/decorators/message_decorator_spec.rb" />
       </list>
     </option>
   </component>
@@ -793,20 +770,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/avail_op.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="30" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.55284554">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="303" column="12" selection-start="8318" selection-end="8318" vertical-scroll-proportion="0.0">
@@ -898,9 +861,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spec/decorators/message_decorator_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="49" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.6784074">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/avail_ops_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="7" selection-start="2167" selection-end="2167" vertical-scroll-proportion="0.8089172">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/unit_photos/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="37" selection-start="515" selection-end="515" vertical-scroll-proportion="0.24350649">
+        <state line="42" column="17" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.8035714">
           <folding />
         </state>
       </provider>
