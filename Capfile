@@ -49,19 +49,21 @@ namespace :keys do
 
 end
 
-after 'deploy:setup',  'system:setup'
-after 'deploy',        'system:symlink'
+after 'deploy:setup',  'sysdir:setup'
+after 'deploy',        'sysdir:symlink'
 
-namespace :system do
+namespace :sysdir do
 
   desc "Create shared system directory"
   task :setup do
-    run "mkdir #{shared_dir}/system"
+    run "mkdir #{shared_path}/system"
+    run "chown -R #{user} #{shared_path}/system"
+    run "chgrp -R #{user} #{shared_path}/system"
   end
 
   desc "Symlink to the shared system directory"
   task :symlink do
-    run "ln -s #{shared_dir}/system #{current_dir}/public/system"
+    run "ln -s #{shared_path}/system #{release_path}/public/system"
   end
 
 end
