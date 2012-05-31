@@ -63,6 +63,7 @@ namespace :sysdir do
 
   desc "Symlink to the shared system directory"
   task :symlink do
+    run "rm -rf #{release_path}/public/system"
     run "ln -s #{shared_path}/system #{release_path}/public/system"
   end
 
