@@ -64,3 +64,4 @@ namespace :sysdir do
     run "ln -s #{shared_path}/system #{release_path}/public/system"
   end
 
+end
