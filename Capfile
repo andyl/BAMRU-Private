@@ -10,7 +10,7 @@ set :vhost_names, %w(bnet bnettest)
 set :web_port,    8500
 
 # ===== Stage-Specific Code =====
-stage = "vagrant"            # <--- set to one of [vagrant|staging|production]
+stage = "staging"            # <--- set to one of [vagrant|staging|production]
 require File.expand_path("config/deploy/#{stage}", File.dirname(__FILE__))
 
 # ===== Common Code for All Stages =====

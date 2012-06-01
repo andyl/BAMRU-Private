@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
-  puts '-' * 30, "STAGE: PRODUCTION", '-' * 30
+  puts ' PRODUCTION '.center(70, '-')
 
   set :user,   "deploy" 
   set :proxy,  "bamru1" 
