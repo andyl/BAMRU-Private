@@ -3,7 +3,7 @@
 BOX_NAME = :vagrant
 
 # get bootstrap file
-system "curl -s https://raw.github.com/andyl/base_util/master/bin/bootstrap_base > ~/.bootstrap_base" 
+system "curl -s https://raw.github.com/andyl/base_util/master/bin/bootstrap_base > /tmp/bootstrap_base" 
 
 Vagrant::Config.run do |config|
   config.vm.box     = "precise32"
@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
     box_config.vm.network   :hostonly,   "192.168.33.12"
     box_config.vm.customize ["modifyvm", :id, "--memory", 750]
     box_config.vm.provision :shell do |shell|
-      shell.path = "~/.bootstrap_base"
+      shell.path = "/tmp/bootstrap_base"
       shell.args = "vagrant --proceed"
     end
     if Dir.exist?("/home/aleak/data")

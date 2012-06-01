@@ -6,9 +6,8 @@ This is the code for the BAMRU Private website.
 
 ### Running the App
 
-This app has been developed on Ubuntu 12.04.  It will probably
-work on a Mac w/o changes.  It won't run on a vanilla PC, but
-may work with Cygwin.
+This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
+It won't run on a vanilla PC, but may work with Cygwin.
 
 To run the app:
 - get the application datafiles from Andy (sqlite database, image directory, environment file)
@@ -20,8 +19,8 @@ To run the app:
 ### Deploying the App
 
 This app is built to use three deployment environments:
-- vagrant - for development testing
-- staging - for local integration testing
+- vagrant - for development (requires vagrant/virtualbox)
+- staging - for integration testing
 - production - the live system
 
 Deploying to Vagrant:
@@ -30,10 +29,10 @@ Deploying to Vagrant:
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
 - initialze the app using `cap ops:setup`
-- upload the database using `cd db && upload vagrant`
+- upload the database using `db/upload vagrant`
 - upload the image directory using `scp -r public/system vagrant:a/BAMRU-Private/public`
 - deploy the working system using `cap deploy`
-- run the app dashboard using `cap ops:console`
+- run a tmux-dashboard using `cap ops:console`
 
 Deploying to Staging and Production: ask Andy for instructions
 
