@@ -87,6 +87,8 @@ group :development, :test do
   gem "factory_girl_rails"
 
   gem "vagrant", "1.0.3"
+  gem "virtualbox"
+  gem "vagrant-snap"
 
   gem "debugger"
 

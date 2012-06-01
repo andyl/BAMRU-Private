@@ -26,13 +26,13 @@ This app is built to use three deployment environments:
 - production - the live system
 
 Deploying to Vagrant:
-- edit your Capfile to ensure the :proxy is set to 'vagrant'
+- edit your Capfile to set the stage to 'vagrant'
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns' lookup using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
 - setup the deploy directories using `cap at:setup`
 - upload the database using `db/upload vagrant`
-- upload the system file using `scp -r public/
+- upload the system file using `scp -r public/`
 - deploy the working system using `cap deploy`
 - run the app dashboard using `cap at:console`
 
