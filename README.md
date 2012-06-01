@@ -73,8 +73,9 @@ SOFTWARE.
 
 Non-Permitted Use
 
-Non-Permitted Use is any use of the software for purposes other than BAMRU
+Non-Permitted Use is any use of the Software for purposes other than BAMRU
 administration and operations.  For Non-Permitted Use, rights to copy, modify,
-distribute, reuse, sublicense, and/or sell copies of the Software, to permit
-persons to whom the Software is furnished to do so, or to create derivitave
-works, whether commercial or non-commercial, are denied.
+distribute, or reuse the Software are denied.  For all Uses, rights to
+sublicense and/or sell copies of the Software, to permit persons to whom the
+Software is furnished to do so, or to create derivitave works, whether
+commercial or non-commercial, are denied.
