@@ -11,10 +11,7 @@ work on a Mac w/o changes.  It won't run on a vanilla PC, but
 may work with Cygwin.
 
 To run the app:
-- ask Andy to send you the application datafiles
-  - sqlite database
-  - image directory
-  - environment file 
+- get the application datafiles from Andy (sqlite database, image directory, environment file)
 - clone the app & install the datafiles
 - edit database.yml to use sqlite
 - run `bundle install`
