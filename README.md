@@ -47,3 +47,35 @@ Contributions are encouraged!
 - include tests!
 - send pull-requests to Andy
 
+### License
+
+Copyright (c) 2011-2012 Andy Leak 
+
+Permission is hereby granted, free of charge, to any BAMRU
+member obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the
+Software for non-commercial purposes associated with BAMRU
+adminstration and operations.  Within this context, 
+the rights to use, copy, modify, merge, publish, distribute,
+are provided, subject to the following conditions:
+
+The above copyright notice and this permission notice shall
+be included in all copies or substantial portions of the
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For all persons, rights to distribute, reuse, sublicense,
+and/or sell copies of the Software, to permit persons to
+whom the Software is furnished to do so, to create
+derivitave works for any use other then BAMRU administration
+& operations, whether commercial or non-commercial, is
+denied.
+
