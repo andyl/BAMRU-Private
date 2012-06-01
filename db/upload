@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+msg = "Usage: upload <environment>  (valkyrie|staging|'production')"
+abort msg unless ARGV.length == 1
+
 require File.expand_path("../lib/env_settings", File.dirname(__FILE__))
 
-target = "staging"
+target = ARGV[0]
 
 system "valkyrie sqlite://development.sqlite3 postgres://bnet:#{POSTGRES_PASS}@#{target}/bnet_production"
-# system "valkyrie sqlite://development.sqlite3 postgres://bnet:#{POSTGRES_PASS}@localhost/bnet_development"
