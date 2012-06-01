@@ -8,14 +8,17 @@ class UnauthRsvpsController < ApplicationController
     @member  = @dist.member
     unless @dist.blank?
       response = params[:response].try(:capitalize)
-      render "expired" unless valid_token?(@token)
-      if response && valid_response?(response)
-        flash[:notice] = "You set the RSVP response to '#{response}'"
-        if @dist.rsvp_answer != response
-          @dist.set_rsvp(@member, @member, response)
+      if valid_token?(@token)
+        if response && valid_response?(response)
+          flash[:notice] = "You set the RSVP response to '#{response}'"
+          if @dist.rsvp_answer != response
+            @dist.set_rsvp(@member, @member, response)
+          end
         end
+        @rsvp = @dist.message.rsvp
+      else
+        render "expired" unless valid_token?(@token)
       end
-      @rsvp = @dist.message.rsvp
     end
   end
 
