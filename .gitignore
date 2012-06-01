@@ -1,4 +1,6 @@
-.idea/workspace.xml
+.idea
+.idea/*
+.idea/.*
 .sass-cache
 .sass-cache/*
 .sass-cache/**/*
