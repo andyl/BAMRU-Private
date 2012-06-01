@@ -1,6 +1,7 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
   before "deploy:setup", "postgresql:create_user"
+  before "db:migrate",   "postgresql:create_databases"
 
   namespace :postgresql do
 
@@ -13,6 +14,11 @@ Capistrano::Configuration.instance(:must_exist).load do
           #{sudo} -u postgres psql -c "create user #{app_name} with password '#{POSTGRES_PASS}' login createdb;" ;
         fi
       END
+    end
+
+    desc "Create databases."
+    task :create_databases, roles: :db, only: {primary: true} do
+      run "rake db:create:all"
     end
 
   end

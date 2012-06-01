@@ -27,6 +27,7 @@ require base_dir + "/config/deploy/shared/packages/postgresql"
 
 # ===== App-Specific Tasks =====
 
+# ----- keys -----
 before 'deploy:setup',  'keys:upload'
 
 namespace :keys do
@@ -44,6 +45,7 @@ namespace :keys do
 
 end
 
+# ----- sqlite database -----
 after 'deploy:setup',  'sysdir:setup'
 after 'deploy',        'sysdir:symlink'
 
@@ -61,6 +63,4 @@ namespace :sysdir do
     run "rm -rf #{release_path}/public/system"
     run "ln -s #{shared_path}/system #{release_path}/public/system"
   end
-
-end
 
