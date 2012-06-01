@@ -11,10 +11,11 @@ work on a Mac w/o changes.  It won't run on a vanilla PC, but
 may work with Cygwin.
 
 To run the app:
-- ask Andy to send you sample data files
+- ask Andy to send you the application datafiles
   - sqlite database
   - image directory
-- clone the app
+  - environment file 
+- clone the app & install the datafiles
 - edit database.yml to use sqlite
 - run `bundle install`
 - run `foreman start`
@@ -38,14 +39,14 @@ Deploying to Vagrant:
 - deploy the working system using `cap deploy`
 - run the app dashboard using `cap at:console`
 
-Deploying to Staging and Production:
-- ask Andy for instructions
+Deploying to Staging and Production: ask Andy for instructions
 
 ### Contributing to the App
 
-We encourage contributions.
+Contributions are encouraged!
 - fork the app
-- edit on your fork
-- include tests, if possible
+- clone & edit your fork
+- make your edits in a separate branch
+- include tests!
 - send pull-requests to Andy
 
