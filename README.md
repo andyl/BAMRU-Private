@@ -15,7 +15,6 @@ To run the app:
 - clone the app & install the datafiles
 - edit database.yml to use sqlite
 - run `bundle install`
-- run `foreman start`
 - run `rails server`
 
 ### Deploying the App
@@ -29,12 +28,12 @@ Deploying to Vagrant:
 - edit your Capfile to set the stage to 'vagrant'
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
-- add 'dns' lookup using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
-- setup the deploy directories using `cap at:setup`
-- upload the database using `db/upload vagrant`
-- upload the system file using `scp -r public/`
+- add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
+- initialze the app using `cap ops:setup`
+- upload the database using `cd db && upload vagrant`
+- upload the image directory using `scp -r public/system vagrant:a/BAMRU-Private/public`
 - deploy the working system using `cap deploy`
-- run the app dashboard using `cap at:console`
+- run the app dashboard using `cap ops:console`
 
 Deploying to Staging and Production: ask Andy for instructions
 
