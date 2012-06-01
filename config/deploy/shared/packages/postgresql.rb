@@ -1,7 +1,7 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
   before "deploy:setup", "postgresql:create_user"
-  before "db:migrate",   "postgresql:create_databases"
+  before "deploy:migrate",   "postgresql:create_databases"
 
   namespace :postgresql do
 
@@ -18,7 +18,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Create databases."
     task :create_databases, roles: :db, only: {primary: true} do
-      run "rake db:create:all"
+      run "cd #{release_path} && rake db:create:all"
     end
 
   end
