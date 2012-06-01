@@ -2,21 +2,16 @@ require 'rubygems'
 require 'bundler/setup'
 require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 
-# ====== Deployment Stages =====
-set :stages,        %w(staging production)
-set :default_stage, "staging"
-set :user,          "deploy"       # vagrant, deploy
-set :proxy,         "bnetx"        # bnetv,   bnetx
-
 # ===== App Config =====
+set :app_name,    APP_NAME         # <- this comes from lib/env_settings
 set :application, "BAMRU-Private"
-set :app_name,    APP_NAME
 set :repository,  "https://github.com/andyl/#{application}.git"
 set :vhost_names, %w(bnet bnettest)
 set :web_port,    8500
 
-# ===== Stage-Specific Code (config/deploy/<stage>) =====
-require 'capistrano/ext/multistage'
+# ===== Stage-Specific Code =====
+stage = "vagrant"            # <--- set to one of [vagrant|staging|production]
+require File.expand_path("config/deploy/#{stage}", File.dirname(__FILE__))
 
 # ===== Common Code for All Stages =====
 load 'deploy'
@@ -30,7 +25,7 @@ require base_dir + "/config/deploy/shared/packages/foreman"
 require base_dir + "/config/deploy/shared/packages/sqlite"
 require base_dir + "/config/deploy/shared/packages/postgresql"
 
-# ===== Package Definitions =====
+# ===== App-Specific Tasks =====
 
 before 'deploy:setup',  'keys:upload'
 

@@ -1,8 +1,10 @@
-server 'fj1', :app, :web, :primary => true
-server 'kana', :app, :web
-server 'fils', :app, :web
+Capistrano::Configuration.instance(:must_exist).load do
 
-desc "This is a production only task"
-task :zzz do
-  run "uptime"
+  puts '-' * 30, "STAGE: PRODUCTION", '-' * 30
+
+  set :user,   "deploy" 
+  set :proxy,  "bamru1" 
+
+  server proxy, :app, :web, :db, :primary => true
+
 end

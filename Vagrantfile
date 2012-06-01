@@ -1,6 +1,6 @@
 # vi: set ft=ruby :
 
-BOX_NAME = :bnetv
+BOX_NAME = :vagrant
 
 Vagrant::Config.run do |config|
   config.vm.box     = "precise32"
