@@ -1,10 +1,10 @@
-== BAMRU Private
+## BAMRU Private
 
 This is the code for the BAMRU Private website.
 
-== Maintaing and Contributing 
+## Maintaing and Contributing 
 
-=== Running the App
+### Running the App
 
 This app has been developed on Ubuntu 12.04.  It will probably
 work on a Mac w/o changes.  It won't run on a vanilla PC, but
@@ -20,7 +20,7 @@ To run the app:
 - run `foreman start`
 - run `rails server`
 
-=== Deploying the App
+### Deploying the App
 
 This app is built to use three deployment environments:
 - vagrant - for development testing
@@ -41,7 +41,7 @@ Deploying to Vagrant:
 Deploying to Staging and Production:
 - ask Andy for instructions
 
-=== Contributing to the App
+### Contributing to the App
 
 We encourage contributions.
 - fork the app
