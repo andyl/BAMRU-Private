@@ -1,0 +1,57 @@
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+    </div>
+
+    <div id=x_single_col>
+
+      <% if @dist.blank? %>
+        Unrecognized RSVP Key: <%= @key %>
+      <% else %>
+
+        <p></p>
+        <table>
+          <tr>
+            <td align=right><b>RSVP:</b></td>
+            <td><%= @rsvp.prompt %></td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td>
+              <div style='margin: 20px;'>
+                Your current response is <b><%= raw rsvp_display_answer(@dist).chomp %></b>
+                <% if @dist.rsvp_answer.try(:downcase) == "yes" %>
+                  <%= @rsvp.yes_prompt %>
+                <% end %>
+                <% if @dist.rsvp_answer.try(:downcase) == "no" %>
+                  <%= @rsvp.no_prompt %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <% if @dist.rsvp_answer != "Yes" %>
+                <%= link_to "Change your response to YES", "/unauth_rsvps/#{@token}?response=yes" %>: <%= @rsvp.yes_prompt %><br/>
+              <% end %>
+              <% if @dist.rsvp_answer != "No" %>
+                <%= link_to "Change your response to NO", "/unauth_rsvps/#{@token}?response=no"  %>: <%= @rsvp.no_prompt %><br/>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+
+        <p></p>
+	<%= link_to "Show details (requires login)", "/rsvps/#{@dist.id}" %>
+        <br/>
+
+      <% end %>
+
+    </div>
+    <div id=x_footer style='font-size: 8pt;'>
+    </div>
+
+  </div>
+</div>

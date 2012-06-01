@@ -4,7 +4,7 @@ module NotifierHelper
 
   def rsvp_text(opts)
     return "" if opts['prompt'].blank?
-    dist = opts['dist_id'] ? "#{ROOT_URL}rsvps/#{opts['dist_id']}" : "/home/preview"
+    dist = opts['dist_id'] ? "#{ROOT_URL}unauth_rsvps/#{opts['unauth_rsvp_token']}" : "/home/preview"
     <<-EOF.gsub(/^      /, "")
       RSVP: #{opts['prompt']}
        YES: #{opts['yes_prompt']} (#{dist}?response=yes)
@@ -14,7 +14,7 @@ module NotifierHelper
 
   def rsvp_html(opts)
     return "" if opts['prompt'].blank?
-    dist = opts['dist_id'] ? "#{ROOT_URL}rsvps/#{opts['dist_id']}" : "/home/preview"
+    dist = opts['dist_id'] ? "#{ROOT_URL}unauth_rsvps/#{opts['unauth_rsvp_token']}" : "/home/preview"
     <<-EOF.gsub(/^      /, "")
       RSVP: #{opts['prompt']}<p></p>
       <a href='#{dist}?response=yes' class='myButton greenButton'>YES #{opts['yes_prompt']}</a>
@@ -36,6 +36,7 @@ module NotifierHelper
     opts['prompt']            ||= ""
     opts['no_prompt']         ||= ""
     opts['yes_prompt']        ||= ""
+    opts['unauth_rsvp_token'] ||= "invalid"
     opts['rsvp_text']         = rsvp_text(opts)
     opts['rsvp_html']         = rsvp_html(opts)
     opts
@@ -55,6 +56,7 @@ module NotifierHelper
     opts['yes_prompt']        = message.rsvp.try(:yes_prompt)
     opts['no_prompt']         = message.rsvp.try(:no_prompt)
     opts['dist_id']           = dist.id
+    opts['unauth_rsvp_token'] = dist.unauth_rsvp_token
     opts['rsvp_text']         = rsvp_text(opts)
     opts['rsvp_html']         = rsvp_html(opts)
     opts

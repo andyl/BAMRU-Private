@@ -61,10 +61,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.4650924">
       <split-first>
         <leaf>
-          <file leaf-file-name="Capfile" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="Capfile" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Capfile">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="55" column="18" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.7509804">
+                <state line="52" column="0" selection-start="1650" selection-end="1657" vertical-scroll-proportion="0.6627451">
                   <folding />
                 </state>
               </provider>
@@ -110,7 +110,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="rsvps_controller.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="rsvps_controller.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/rsvps_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -839,13 +839,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/distribution.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="6" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/models/distribution_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="11" selection-start="1305" selection-end="1309" vertical-scroll-proportion="-9.6">
@@ -947,6 +940,13 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/rsvps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1650" selection-end="1657" vertical-scroll-proportion="0.6627451">
           <folding />
         </state>
       </provider>
