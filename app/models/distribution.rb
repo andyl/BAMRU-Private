@@ -116,11 +116,9 @@ class Distribution < ActiveRecord::Base
   end
 
   def set_unauth_rsvp_token
-    #if self.unauth_rsvp_token.blank?
     if self.unauth_rsvp_expires_at.blank?
       self.unauth_rsvp_token = rand(36 ** 8).to_s(36)
       self.unauth_rsvp_expires_at = Time.now + 1.week
-      self.save
     end
   end
 
