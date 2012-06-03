@@ -66,7 +66,7 @@ end
 #  uid              :string(255)
 #  subject          :string(255)
 #  label            :string(255)
-#  body             :string(255)
+#  body             :text
 #  rsvp_answer      :string(255)
 #  send_time        :datetime
 #  bounced          :boolean         default(FALSE)

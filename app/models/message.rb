@@ -87,8 +87,6 @@ class Message < ActiveRecord::Base
     mesg[:distributions_attributes] = Message.distributions_params(dist)
     #mesg[:parent_id] = mesg[:parent_id].to_i if mesg[:parent_id]
     mesg[:format] = 'page'
-    require 'debugger'
-    debugger
     mesg_obj = Message.create(mesg)
     if mesg_obj.parent && mesg_obj.linked_rsvp_id
       mesg_obj.parent.update_attributes(:linked_rsvp_id => mesg_obj.linked_rsvp_id)
@@ -112,14 +110,14 @@ end
 #
 # Table name: messages
 #
-#  id                 :integer         not null, primary key
-#  author_id          :integer
-#  ip_address         :string(255)
-#  text               :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  format             :string(255)
-#  linked_rsvp_id     :integer
-#  ancestry           :string(255)
+#  id             :integer         not null, primary key
+#  author_id      :integer
+#  ip_address     :string(255)
+#  text           :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  format         :string(255)
+#  linked_rsvp_id :integer
+#  ancestry       :string(255)
 #
 

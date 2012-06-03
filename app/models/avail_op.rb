@@ -73,8 +73,8 @@ end
 #
 #  id         :integer         not null, primary key
 #  member_id  :integer
-#  start      :date
-#  end        :date
+#  start_on   :date
+#  end_on     :date
 #  comment    :string(255)
 #  created_at :datetime
 #  updated_at :datetime

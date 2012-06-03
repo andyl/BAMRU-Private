@@ -66,18 +66,20 @@ end
 #
 # Table name: distributions
 #
-#  id               :integer         not null, primary key
-#  message_id       :integer
-#  member_id        :integer
-#  email            :boolean         default(FALSE)
-#  phone            :boolean         default(FALSE)
-#  read             :boolean         default(FALSE)
-#  bounced          :boolean         default(FALSE)
-#  read_at          :datetime
-#  response_seconds :integer
-#  rsvp             :boolean         default(FALSE)
-#  rsvp_answer      :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                     :integer         not null, primary key
+#  message_id             :integer
+#  member_id              :integer
+#  email                  :boolean         default(FALSE)
+#  phone                  :boolean         default(FALSE)
+#  read                   :boolean         default(FALSE)
+#  bounced                :boolean         default(FALSE)
+#  read_at                :datetime
+#  response_seconds       :integer
+#  rsvp                   :boolean         default(FALSE)
+#  rsvp_answer            :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  unauth_rsvp_token      :string(255)
+#  unauth_rsvp_expires_at :datetime
 #
 

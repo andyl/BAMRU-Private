@@ -33,7 +33,7 @@ end
 # Table name: roles
 #
 #  id         :integer         not null, primary key
-#  member_id  :string(255)
+#  member_id  :integer
 #  typ        :string(255)
 #  created_at :datetime
 #  updated_at :datetime

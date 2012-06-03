@@ -108,15 +108,14 @@ end
 #
 # Table name: messages
 #
-#  id                 :integer         not null, primary key
-#  author_id          :integer
-#  ip_address         :string(255)
-#  text               :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  format             :string(255)
-#  linked_parent_rsvp :boolean         default(FALSE)
-#  linked_rsvp_id     :integer
-#  ancestry           :string(255)
+#  id             :integer         not null, primary key
+#  author_id      :integer
+#  ip_address     :string(255)
+#  text           :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  format         :string(255)
+#  linked_rsvp_id :integer
+#  ancestry       :string(255)
 #
 

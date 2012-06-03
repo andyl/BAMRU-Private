@@ -328,7 +328,6 @@ end
 #  typ_score                  :integer
 #  password_digest            :string(255)
 #  sign_in_count              :integer         default(0)
-#  last_sign_in_at            :time
 #  ip_address                 :string(255)
 #  remember_me_token          :string(255)
 #  forgot_password_token      :string(255)
@@ -338,5 +337,6 @@ end
 #  created_at                 :datetime
 #  updated_at                 :datetime
 #  current_do                 :boolean         default(FALSE)
+#  last_sign_in_at            :datetime
 #
 
