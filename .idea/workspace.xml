@@ -8,13 +8,7 @@
     <bookmark url="file://$PROJECT_DIR$/app/assets/stylesheets/mobile3.css.scss" line="217" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/address.rb" afterPath="$PROJECT_DIR$/app/models/address.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/email.rb" afterPath="$PROJECT_DIR$/app/models/email.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/phone.rb" afterPath="$PROJECT_DIR$/app/models/phone.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/phone_spec.rb" afterPath="$PROJECT_DIR$/spec/models/phone_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/spec_helper.rb" afterPath="$PROJECT_DIR$/spec/spec_helper.rb" />
-    </list>
+    <list default="true" id="f26f2966-8589-467d-a3cc-bd6d2ed0f8a8" name="Default" comment="" />
     <ignored path="BAMRU-Private.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,10 +78,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.51619047">
       <split-first>
         <leaf>
-          <file leaf-file-name="phone.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="phone.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.421875">
+                <state line="6" column="46" selection-start="151" selection-end="151" vertical-scroll-proportion="0.140625">
                   <folding />
                 </state>
               </provider>
@@ -124,7 +118,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="address.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="address.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/models/address.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="35" column="0" selection-start="960" selection-end="960" vertical-scroll-proportion="0.8203125">
@@ -944,13 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.421875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/email.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="20" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
@@ -961,6 +948,13 @@
     <entry file="file://$PROJECT_DIR$/app/models/address.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="0" selection-start="960" selection-end="960" vertical-scroll-proportion="0.8203125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/phone.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="46" selection-start="151" selection-end="151" vertical-scroll-proportion="0.140625">
           <folding />
         </state>
       </provider>
