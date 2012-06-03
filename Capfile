@@ -20,9 +20,9 @@ Dir.glob("config/deploy/shared/base/*.rb").each {|f| require base_dir + '/' + f}
 Dir.glob("config/deploy/shared/recipes/*.rb").each {|f| require base_dir + '/' + f}
 
 # ===== Package Definitions =====
-require base_dir + "/config/deploy/shared/packages/nginx"
-require base_dir + "/config/deploy/shared/packages/foreman"
-require base_dir + "/config/deploy/shared/packages/sqlite"
+require base_dir + "/config/deploy/shared/packages/passenger"   # nginx config
+require base_dir + "/config/deploy/shared/packages/foreman"     # foreman processes managed by upstart
+require base_dir + "/config/deploy/shared/packages/sqlite"      # shared sqlite script
 require base_dir + "/config/deploy/shared/packages/postgresql"
 
 # ===== App-Specific Tasks =====
