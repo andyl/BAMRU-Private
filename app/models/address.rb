@@ -30,9 +30,9 @@ class Address < ActiveRecord::Base
   end
 
   # ----- Scopes -----
-  scope :non_standard, where('typ <> "Work"').
-                       where('typ <> "Home"').
-                       where('typ <> "Other"')
+  scope :non_standard, where("typ <> 'Work'").
+                       where("typ <> 'Home'").
+                       where("typ <> 'Other'")
 
   # ----- Local Methods-----
   def export

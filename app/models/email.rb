@@ -17,10 +17,10 @@ class Email < ActiveRecord::Base
 
   # ----- Scopes -----
   scope :pagable, where(:pagable => '1')
-  scope :non_standard, where('typ <> "Work"').
-                       where('typ <> "Home"').
-                       where('typ <> "Personal"').
-                       where('typ <> "Other"')
+  scope :non_standard, where("typ <> 'Work'").
+                       where("typ <> 'Home'").
+                       where("typ <> 'Personal'").
+                       where("typ <> 'Other'")
 
   # ----- Local Methods-----
   def export

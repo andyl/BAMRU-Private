@@ -10,18 +10,19 @@ class Phone < ActiveRecord::Base
   # ----- Callbacks -----
 
   # ----- Validations -----
-  validates_format_of :number, :with => /^\d\d\d-\d\d\d-\d\d\d\d$/
+  validates_format_of   :number, :with => /^\d\d\d-\d\d\d-\d\d\d\d$/
+  #validates_presence_of :member_id
 
 
   # ----- Scopes -----
   scope :pagable, where(:pagable => '1')
-  scope :non_standard, where('typ <> "Work"').
-                       where('typ <> "Home"').
-                       where('typ <> "Mobile"').
-                       where('typ <> "Pager"').
-                       where('typ <> "Other"')
+  scope :non_standard, where("typ <> 'Work'").
+                       where("typ <> 'Home'").
+                       where("typ <> 'Mobile'").
+                       where("typ <> 'Pager'").
+                       where("typ <> 'Other'")
 
-  scope :mobile, where(:typ => "Mobile").order("position ASC")
+  scope :mobile, where(:typ => 'Mobile').order("position ASC")
 
   # ----- Local Methods-----
   def export
