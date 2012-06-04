@@ -4,11 +4,7 @@ class QcMail
     OutboundMail.pending.count
   end
 
-  def self.say_hi
-    puts "HI - #{Time.now} - what"
-  end
-
-  def render_email_message(opts, format)
+  def self.render_email_message(opts, format)
     case format
       when 'page'              then Notifier.page_email(opts)
       when 'password_reset'    then Notifier.password_reset_email(opts)
@@ -19,7 +15,7 @@ class QcMail
     end
   end
 
-  def render_phone_message(opts, format)
+  def self.render_phone_message(opts, format)
     case format
       when 'page'              then Notifier.page_phone(opts)
       when 'do_shift_starting' then Notifier.do_shift_starting_phone(opts)
@@ -28,9 +24,8 @@ class QcMail
   end
 
   def self.render_mail(outbound_mail)
-    puts "rendering message for #{outbound_mail.address}"
-    STDOUT.flush
     yaml_file = "/tmp/render_msg/#{outbound_mail.id}_#{outbound_mail.label}"
+    system "mkdir -p #{File.dirname(yaml_file)}"
     return if File.exists?(yaml_file)
     mailing    = nil
     message    = outbound_mail.distribution.message
@@ -50,27 +45,28 @@ class QcMail
   def self.send_mail(yaml_file)
     require 'yaml'
     Time.zone = "Pacific Time (US & Canada)"
-    tdate = Time.now.strftime("%y%m%d_%H%M%S")
-      mail_attributes = YAML.load_file(yaml_file)
-      mail = ActionMailer::Base.mail(mail_attributes)
-      mail.subject = mail_attributes["Subject"]
-      outbound_mail_id = yaml_file.split('/').last.split('_').first
-      puts "sending message #{outbound_mail_id} (#{mail.to.first})"
-      smtp_settings = [:smtp, SMTP_SETTINGS]
-      mail.delivery_method(*smtp_settings) if Rails.env.production?
-      mail.deliver
+    mail_attributes = YAML.load_file(yaml_file)
+    mail = ActionMailer::Base.mail(mail_attributes)
+    mail.subject = mail_attributes["Subject"]
+    outbound_mail_id = yaml_file.split('/').last.split('_').first
+    puts "sending message #{outbound_mail_id} (#{mail.to.first})"
+    smtp_settings = [:smtp, SMTP_SETTINGS]
+    mail.delivery_method(*smtp_settings) if Rails.env.production?
+    mail.deliver
   end
 
   def self.send_pending
+    start = Time.now
+    ActiveSupport::Notifications.instrument("page.send", {:text => "Start #{Time.now.strftime("%H:%M:%S")}"})
     OutboundMail.pending.each do |outbound_mail|
       yaml_file = render_mail(outbound_mail)
-      result = send_mail(yaml_file)
-      if result == 'success'
-        outbound_mail.send_at = Time.now
-        outbound_mail.save
-      end
-      sleep 0.25
+      send_mail(yaml_file)
+      outbound_mail.update_attributes(:sent_at => Time.now)
+      label = "#{outbound_mail.address}-#{outbound_mail.label}"
+      ActiveSupport::Notifications.instrument("page.send", {:text => label})
     end
+    duration = (Time.now - start).round
+    ActiveSupport::Notifications.instrument("page.send", {:text => "Finish #{Time.now.strftime("%H:%M:%S")} (#{duration} sec)"})
   end
 
 end

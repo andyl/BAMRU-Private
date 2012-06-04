@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
 
     mesg = Message.generate(mesg_params, dist_params, rsvp_params)
 
-    call_rake("ops:email:pending:send2", {}, "#{timestamp}_2")
+    QC.enqueue "QcMail.send_pending"
 
     label, minutes = dist_label(mesg)
     as_notify("page.send", {:member => current_member, :text => label})
