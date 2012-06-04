@@ -98,7 +98,6 @@ class OutboundMail < ActiveRecord::Base
   # ----- Class Methods
 
 
-
 end
 
 # == Schema Information
