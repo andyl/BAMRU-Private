@@ -23,6 +23,15 @@ test:
   template: template0
   password: <%= POSTGRES_PASS %>
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: bnet_staging
+  pool: 5
+  username: bnet
+  template: template0
+  password: <%= POSTGRES_PASS %>
+
 production:
   adapter: postgresql
   encoding: unicode

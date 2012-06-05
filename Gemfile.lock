@@ -214,6 +214,9 @@ GEM
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
+    queue_classic (2.0.0)
+      pg (~> 0.13.2)
+      scrolls (~> 0.0.8)
     rabl (0.6.12)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -268,6 +271,7 @@ GEM
     ruby-rc4 (0.1.5)
     rubyzip (0.9.8)
     sass (3.1.19)
+    scrolls (0.0.9)
     selenium-webdriver (2.22.0)
       childprocess (>= 0.2.5)
       ffi (~> 1.0)
@@ -385,6 +389,7 @@ DEPENDENCIES
   pg
   pngqr
   prawn
+  queue_classic
   rabl
   rack-offline
   rails (= 3.1.3)
