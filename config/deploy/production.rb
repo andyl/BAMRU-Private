@@ -1,10 +1,7 @@
-Capistrano::Configuration.instance(:must_exist).load do
+puts ' PRODUCTION '.center(70, '-')
 
-  puts ' PRODUCTION '.center(70, '-')
+set :proxy,     "bamru1"
+set :branch,    fetch(:branch, "master")
+set :rails_env, fetch(:env,    "production")
 
-  set :user,   "deploy" 
-  set :proxy,  "bamru1" 
-
-  server proxy, :app, :web, :db, :primary => true
-
-end
+server proxy, :app, :web, :db, :primary => true

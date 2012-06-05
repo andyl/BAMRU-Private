@@ -25,7 +25,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :ghost do
 
-    desc "Update /etc/hosts on remote machines using ghost"
+    desc "Update /etc/hosts on #{user} remote machines using ghost"
     task :remote do
       vhost_names.each do |name|
         run "cd #{deploy_to}/current ; #{sudo} -E ghost modify #{name} 127.0.0.1"

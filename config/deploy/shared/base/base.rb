@@ -3,7 +3,8 @@ Capistrano::Configuration.instance(:must_exist).load do
   set :scm,        :git
   set :appdir,     application
   set :deploy_via, :remote_cache
-  set :deploy_to,  "/home/#{user}/a/#{application}"
+
+  set :deploy_to, "/home/#{user}/a/#{application}"
   set :use_sudo,   false
 
   default_run_options[:pty]   = true

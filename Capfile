@@ -10,20 +10,21 @@ set :vhost_names, %w(bnet bnettest)
 set :web_port,    8500
 
 # ===== Stage-Specific Code =====
-stage = "production"            # <--- set to one of [vagrant|staging|production]
-require File.expand_path("config/deploy/#{stage}", File.dirname(__FILE__))
+set :stages, %w(vagrant devstage pubstage production)
+set :default_stage, "vagrant"
+set :user, default_stage == "vagrant" ? "vagrant" : "deploy"
+require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
 load 'deploy'
-base_dir = File.expand_path(File.dirname(__FILE__))
-Dir.glob("config/deploy/shared/base/*.rb").each {|f| require base_dir + '/' + f}
-Dir.glob("config/deploy/shared/recipes/*.rb").each {|f| require base_dir + '/' + f}
+share_dir = File.expand_path("config/deploy/shared", File.dirname(__FILE__))
+require "#{share_dir}/tasks"
 
 # ===== Package Definitions =====
-require base_dir + "/config/deploy/shared/packages/passenger"   # nginx config
-require base_dir + "/config/deploy/shared/packages/foreman"     # foreman processes managed by upstart
-require base_dir + "/config/deploy/shared/packages/sqlite"      # shared sqlite script
-require base_dir + "/config/deploy/shared/packages/postgresql"
+require share_dir + "/packages/passenger"   # nginx config
+require share_dir + "/packages/foreman"     # foreman processes managed by upstart
+require share_dir + "/packages/sqlite"      # shared sqlite script
+require share_dir + "/packages/postgresql"  # postgres database
 
 # ===== App-Specific Tasks =====
 
