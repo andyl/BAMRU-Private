@@ -4,44 +4,77 @@ This is the code for the BAMRU Private website.
 
 ## Maintaing and Contributing 
 
-### Running the App
+### Bootstrapping/Running in Development Mode
 
 This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
 It won't run on a vanilla PC, but may work with Cygwin.
 
-To run the app:
-- get the application datafiles from Andy (sqlite database, image directory, environment file)
+To bootstrap the app:
+- get the application datafiles from Andy (database, image directory, environment file)
 - clone the app & install the datafiles
 - edit database.yml to use sqlite
+- install postgres and/or sqlite
 - run `bundle install`
-- run `rails server`
+
+To run the app:
+- run `rails server` to run just the web app
+- run `foreman -p 3000 -e .rbenv-vars` to run the full stack 
+
+### Provisioning a Server
+
+We use a combination of shell scripts and Puppet manifests to auto-configure
+the staging and production servers.  Main elements of the stack include:
+- nginx - reverse proxy
+- monit - monitoring and alerting
+- upstart - application init and auto-restart on failure
+- passenger-standalone - web server
+- foreman - process initiation
+- postgres - database
+- queue-classic - background job manager
+- faye - ruby/javascript pub-sub
+- rbenv - ruby version manager
+
+See the Vagrantfile and the "bootstrap-base" shell script to learn how
+auto-provisioning is done.
 
 ### Deploying the App
 
-This app is built to use three deployment environments:
+This app is built to use four deployment environments:
 - vagrant - for development (requires vagrant/virtualbox)
-- staging - for integration testing
+- devstage - local staging server for integration testing
+- pubstage - public staging server for integration testing
 - production - the live system
 
 Deploying to Vagrant:
-- edit your Capfile to set the stage to 'vagrant'
+- edit your Capfile to set the default stage to 'vagrant'
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
-- initialze the app using `cap ops:setup`
-- upload the database using `db/upload vagrant`
-- upload the image directory using `scp -r public/system vagrant:a/BAMRU-Private/public`
+- initialze the app using `cap deploy:setup ; cap deploy:cold`
+- upload the image directory using `cap data:upload:sysdir`
+- upload the database using `cap data:upload:db`
+- import the database using `cap data:import:db`
 - deploy the working system using `cap deploy`
 - run a tmux-dashboard using `cap ops:console`
 
 Deploying to Staging and Production: ask Andy for instructions
+
+### Git Organization
+
+The Git repo is organized to roughly follow the 
+[nvie guidelines](http://nvie.com/posts/a-successful-git-branching-model/).
+
+Main Branches:
+- master - used for production deploy, per nvie
+- dev    - default branch for vagrant & staging deploys
+- dev-<feature> - feature branch
 
 ### Contributing to the App
 
 Contributions are encouraged!
 - fork the app
 - clone & edit your fork
-- make your edits in a separate branch
+- make your edits in a separate development branch
 - include tests!
 - send pull-requests to Andy
 
