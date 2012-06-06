@@ -6,12 +6,12 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       desc "Upload yaml_db file"
       task :db, :role => :db do
-        upload "db/data.yml", "#{release_path}/db/data.yml"
+        upload "db/data.yml", "#{current_path}/db/data.yml"
       end
 
       desc "Upload system directory"
       task :sysdir do
-        upload("public/system", "#{release_path}/public", :via=> :scp, :recursive => true)
+        upload("public/system", "#{current_path}/public", :via=> :scp, :recursive => true)
       end
 
     end
@@ -20,7 +20,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       desc "Import the yaml_db file"
       task :import, :role => :db do
-        run "cd #{release_path} && rake db:data:load"
+        run "cd #{current_path} && rake db:data:load"
       end
 
     end

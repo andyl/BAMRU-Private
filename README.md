@@ -48,12 +48,12 @@ This app is built to use four deployment environments:
 - pubstage - public staging server for integration testing
 - production - the live system
 
-Provisioning the Vagrant box:
+Deploying to Vagrant: Provision the Box
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
 
-Deploying the App:
+Deploying to Vagrant: Bootstrap & Run the App
 - edit your Capfile to set the default stage to 'vagrant'
 - initialze the app using `cap deploy:setup ; cap deploy:cold`
 - upload the image directory using `cap data:upload:sysdir`
