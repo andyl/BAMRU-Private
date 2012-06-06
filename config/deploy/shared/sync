@@ -12,6 +12,6 @@ cmd = "unison #{cur_path} #{tgt_path} -terse -auto -batch -fastcheck true -ignor
 
 system "sudo rm -rf .git" if Dir.exist?(".git")
 
-puts cmd
+# puts cmd
 system cmd
 

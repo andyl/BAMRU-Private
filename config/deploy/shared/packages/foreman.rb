@@ -7,7 +7,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Export the Procfile to Ubuntu's upstart scripts"
     task :export, :roles => :app do
       run "#{sudo} rm -f /etc/init/#{app_name}*.conf"
-      run "cd #{release_path} && foreman export upstart /tmp/xinit -p #{web_port} -a #{app_name} -u #{user} -l #{shared_path}/log"
+      run "cd #{release_path} && foreman export upstart /tmp/xinit -e .rbenv-vars -p #{web_port} -a #{app_name} -u #{user} -l #{shared_path}/log"
       run "#{sudo} mv /tmp/xinit/* /etc/init"
       run "rm -rf /tmp/xinit"
     end
