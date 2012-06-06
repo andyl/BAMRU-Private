@@ -159,6 +159,7 @@ Zn::Application.routes.draw do
 
   root :to => 'home#index'
 
+  puts Rails.env
   if %w(development test).include? Rails.env
     mount Jasminerice::Engine => "/jasmine"
     mount Jasminerice::Engine => "/jas2"

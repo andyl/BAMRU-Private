@@ -12,8 +12,7 @@ set :web_port,    8500
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
 set :default_stage, "vagrant"
-# TODO: move user definition to stage file
-set :user, default_stage == "vagrant" ? "vagrant" : "deploy"
+set :user, default_stage == "vagrant" ? "vagrant" : "deploy" # FIXME - move to stage file
 require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
