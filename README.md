@@ -7,18 +7,21 @@ This is the code for the BAMRU Private website.
 ### Bootstrap & Run in Development Mode
 
 This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
-It won't run on a vanilla PC, but may work with Cygwin.
+It won't run on a vanilla PC, but may work with Cygwin. 
 
 To bootstrap the app:
 - get the application datafiles from Andy (database, image directory, environment file)
 - clone the repo & install the datafiles
-- install postgres and/or sqlite
-- edit database.yml to use the appropriate database engine
+- install ruby 1.9.3 
+- install postgres, add postgres user & password
 - run `bundle install`
+- run `rake db:create:all`
+- run `rake db:migrate`
+- run `rake db:data:load`
 
 To run the app in development:
 - run `rails server` to run just the web app
-- run `foreman -p 3000 -e .rbenv-vars` to run the full stack 
+- run `foreman start -p 3000 -e .rbenv-vars` to run the full stack 
 
 ### Provisioning a Server
 
@@ -45,11 +48,13 @@ This app is built to use four deployment environments:
 - pubstage - public staging server for integration testing
 - production - the live system
 
-Deploying to Vagrant:
-- edit your Capfile to set the default stage to 'vagrant'
+Provisioning the Vagrant box:
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
+
+Deploying the App:
+- edit your Capfile to set the default stage to 'vagrant'
 - initialze the app using `cap deploy:setup ; cap deploy:cold`
 - upload the image directory using `cap data:upload:sysdir`
 - upload the database using `cap data:upload:db`
@@ -63,8 +68,7 @@ Deploying to Staging and Production: ask Andy for instructions
 
 The Git repo is organized to roughly follow the 
 [nvie guidelines](http://nvie.com/posts/a-successful-git-branching-model/).
-
-Main Branches:
+The main branches in the repo include:
 - master - used for production deploy
 - dev    - default branch for vagrant & staging deploys
 - dev-feature - feature branch
@@ -72,7 +76,7 @@ Main Branches:
 ### Contributing to the App
 
 Contributions are encouraged!
-- fork the app
+- fork the repo
 - clone & edit your fork
 - make your edits in a separate development branch
 - include tests!
