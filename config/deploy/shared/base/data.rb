@@ -6,12 +6,22 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       desc "Upload yaml_db file"
       task :db, :role => :db do
-        upload "db/data.yml", "#{current_path}/db/data.yml"
+        yml_file = File.expand_path('../../../../db/data.yml', File.dirname(__FILE__))
+        if File.exist? yml_file
+          put File.read(yml_file), "#{current_path}/db/data.yml"
+        else
+          puts "Database file doesn't exist (#{yml_file})"
+        end
       end
 
       desc "Upload system directory"
       task :sysdir do
-        upload("public/system", "#{current_path}/public", :via=> :scp, :recursive => true)
+        sys_path = File.expand_path('../../../../public/system', File.dirname(__FILE__))
+        if Dir.exist? sys_path
+          system "scp -r #{sys_path} #{proxy}:#{current_path}/public"
+        else
+          puts "System directory doesn't exist (#{sys_path})"
+        end
       end
 
     end
