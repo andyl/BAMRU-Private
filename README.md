@@ -4,19 +4,19 @@ This is the code for the BAMRU Private website.
 
 ## Maintaing and Contributing 
 
-### Bootstrapping/Running in Development Mode
+### Bootstrap & Run in Development Mode
 
 This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
 It won't run on a vanilla PC, but may work with Cygwin.
 
 To bootstrap the app:
 - get the application datafiles from Andy (database, image directory, environment file)
-- clone the app & install the datafiles
-- edit database.yml to use sqlite
+- clone the repo & install the datafiles
 - install postgres and/or sqlite
+- edit database.yml to use the appropriate database engine
 - run `bundle install`
 
-To run the app:
+To run the app in development:
 - run `rails server` to run just the web app
 - run `foreman -p 3000 -e .rbenv-vars` to run the full stack 
 
@@ -25,9 +25,9 @@ To run the app:
 We use a combination of shell scripts and Puppet manifests to auto-configure
 the staging and production servers.  Main elements of the stack include:
 - nginx - reverse proxy
+- passenger-standalone - web server
 - monit - monitoring and alerting
 - upstart - application init and auto-restart on failure
-- passenger-standalone - web server
 - foreman - process initiation
 - postgres - database
 - queue-classic - background job manager
@@ -65,9 +65,9 @@ The Git repo is organized to roughly follow the
 [nvie guidelines](http://nvie.com/posts/a-successful-git-branching-model/).
 
 Main Branches:
-- master - used for production deploy, per nvie
+- master - used for production deploy
 - dev    - default branch for vagrant & staging deploys
-- dev-<feature> - feature branch
+- dev-feature - feature branch
 
 ### Contributing to the App
 
@@ -78,7 +78,7 @@ Contributions are encouraged!
 - include tests!
 - send pull-requests to Andy
 
-### License
+## License
 
 Copyright (c) 2011-2012 Andy Leak 
 
