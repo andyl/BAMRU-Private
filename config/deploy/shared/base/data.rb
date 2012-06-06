@@ -18,8 +18,9 @@ Capistrano::Configuration.instance(:must_exist).load do
       task :sysdir do
         sys_path = File.expand_path('../../../../public/system', File.dirname(__FILE__))
         if Dir.exist? sys_path
-          puts "Uploading system directory - this might take awhile..."
+          puts "Uploading system directory - this might take awhile. (#{Time.now.strftime('%H:%M:%S')})"
           system "scp -rq #{sys_path} #{proxy}:#{shared_path}"
+          puts "Uploading finished. (#{Time.now.strftime('%H:%M:%S')})"
         else
           puts "System directory doesn't exist (#{sys_path})"
         end
@@ -30,7 +31,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     namespace :import do
 
       desc "Import the yaml_db file"
-      task :import, :role => :db do
+      task :db, :role => :db do
         run "cd #{current_path} && rake db:data:load"
       end
 
