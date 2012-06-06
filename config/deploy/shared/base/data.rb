@@ -18,7 +18,8 @@ Capistrano::Configuration.instance(:must_exist).load do
       task :sysdir do
         sys_path = File.expand_path('../../../../public/system', File.dirname(__FILE__))
         if Dir.exist? sys_path
-          system "scp -r #{sys_path} #{proxy}:#{current_path}/public"
+          puts "Uploading system directory - this might take awhile..."
+          system "scp -rq #{sys_path} #{proxy}:#{current_path}/public"
         else
           puts "System directory doesn't exist (#{sys_path})"
         end
