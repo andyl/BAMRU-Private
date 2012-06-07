@@ -1,3 +1,4 @@
+
 Capistrano::Configuration.instance(:must_exist).load do
 
   after 'deploy', 'cron:reset'
@@ -6,7 +7,9 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Reset Cron"
     task :reset do
-      run "cd #{current_path} && bundle exec whenever --update-crontab #{application}"
+      set :whenever_environment, defer { stage }
+      require 'whenever/capistrano'
+      run "cd #{current_path} && whenever --update-crontab #{application}"
     end
 
   end

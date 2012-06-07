@@ -3,8 +3,8 @@
 # More info on cron: http://en.wikipedia.org/wiki/Cron
 # Learn more: http://github.com/javan/whenever
 
-cmd = "script/nq :task >> log/nq.log 2>&1"
-job_type :nq, "cd :path && export RAILS_ENV=staging && #{cmd}"
+cmd = "script/enqueue :task >> log/crontask.log 2>&1"
+job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
