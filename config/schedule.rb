@@ -3,30 +3,21 @@
 # More info on cron: http://en.wikipedia.org/wiki/Cron
 # Learn more: http://github.com/javan/whenever
 
-cmd = "script/enqueue :task >> log/crontask.log 2>&1"
-job_type :nq, "cd :path && export RAILS_ENV=:environment && #{cmd}"
+cmd = "script/nq :task >> log/crontask.log 2>&1"
+job_type :nq, "cd :path && export RAILS_ENV=:env && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
 every 1.day,  :at => '5:10 pm' do
   nq "rake ops:email:generate:cert_notices"
 end
-every 1.day,  :at => '5:15 pm' do
-  nq "rake ops:email:pending:send"
-end
 
 every :thursday,  :at => '7:10 pm' do
   nq "rake ops:email:generate:do_shift_pending"
 end
-every :thursday, :at => '7.15 pm' do
-  nq "rake ops:email:pending:send"
-end
 
 every :tuesday, :at => '7:10 am' do
   nq "rake ops:email:generate:do_shift_starting"
-end
-every :tuesday, :at => '7:15 am' do
-  nq "rake ops:email:pending:send"
 end
 
 every :tuesday, :at => '8:02 am' do
