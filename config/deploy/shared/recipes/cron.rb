@@ -7,7 +7,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Reset Cron"
     task :reset do
-      set :whenever_environment, defer { stage }
+      set(:whenever_environment) { stage }
       require 'whenever/capistrano'
       run "cd #{current_path} && whenever --update-crontab #{application}"
     end
