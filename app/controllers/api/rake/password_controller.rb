@@ -15,6 +15,7 @@ class Api::Rake::PasswordController < ApplicationController
     message = Message.create(hash)
     message.create_all_outbound_mails
     ActiveSupport::Notifications.instrument("rake.password.reset", {:member => member, :text => adr})
+    QC.enqueue "QcMail.send_pending"
     render :json => "OK\n"
   end
 

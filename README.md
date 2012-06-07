@@ -56,9 +56,7 @@ Deploying to Vagrant: Provision the Box
 Deploying to Vagrant: Bootstrap & Run the App
 - edit your Capfile to set the default stage to 'vagrant'
 - initialze the app using `cap deploy:setup ; cap deploy:cold`
-- upload the image directory using `cap data:upload:sysdir`
-- upload the database using `cap data:upload:db`
-- import the database using `cap data:import:db`
+- upload the images & load database using `cap data:init`
 - deploy the working system using `cap deploy`
 - run a tmux-dashboard using `cap ops:console`
 
