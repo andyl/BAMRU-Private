@@ -1,4 +1,4 @@
 APP_NAME=bnet
 RAILS_ENV=development
 QC_LISTENING_WORKER=true
-QC_DATABASE_URL=postgres://bnet:${POSTGRTES_PASS}@localhost/bnet_${RAILS_ENV}
+QC_DATABASE_URL=postgres://bnet:${POSTGRES_PASS}@localhost/bnet_${RAILS_ENV}
