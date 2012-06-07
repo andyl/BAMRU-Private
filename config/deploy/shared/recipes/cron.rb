@@ -1,5 +1,7 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
+  after 'deploy', 'cron:reset'
+
   namespace :cron do
 
     desc "Reset Cron"

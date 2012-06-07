@@ -71,6 +71,13 @@ The main branches in the repo include:
 - dev    - default branch for vagrant & staging deploys
 - dev-feature - feature branch
 
+### Scheduled Tasks
+
+This system uses the 'whenever' gem to managed scheduled/cron tasks,
+including system backups and automatic notifications.
+
+See `schedule.rb` for the list of scheduled tasks.
+
 ### Contributing to the App
 
 Contributions are encouraged!
