@@ -58,7 +58,7 @@ Deploying to Vagrant: Bootstrap & Run the App
 - initialze the app using `cap deploy:setup ; cap deploy:cold`
 - upload the images & load database using `cap data:init`
 - deploy the working system using `cap deploy`
-- run a tmux-dashboard using `cap dashboard`
+- run a tmux-dashboard using `cap console`
 
 Deploying to Staging and Production: ask Andy for instructions
 
