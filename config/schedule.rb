@@ -29,16 +29,10 @@ every :tuesday, :at => '7:15 am' do
   nq "rake ops:email:pending:send"
 end
 
-every :tuesday, :at => '8:01 am' do
-  nq "rake ops:set_do"
-end
 every :tuesday, :at => '8:02 am' do
   nq "rake tmp:clear"
 end
 
-every :tuesday, :at => '8:10 am' do
-  nq "rake ops:set_do"
-end
 every :tuesday, :at => '8:11 am' do
   nq "rake tmp:clear"
 end
