@@ -1,5 +1,6 @@
 puts ' DEVSTAGE '.center(70, '-')
 
+set :user,      "deploy"
 set :proxy,     "devstage"
 set :branch,    fetch(:branch, "dev")
 set :rails_env, fetch(:env,    "staging")

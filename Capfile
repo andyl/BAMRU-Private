@@ -12,7 +12,6 @@ set :web_port,    8500
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
 set :default_stage, "vagrant"
-#set :user, default_stage == "vagrant" ? "vagrant" : "deploy" # FIXME - move to stage file
 require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
@@ -29,7 +28,7 @@ require share_dir + "/packages/postgresql"  # postgres database
 # ===== App-Specific Tasks =====
 
 # ----- keys -----
-before 'deploy:update_code',  'keys:upload'
+after 'deploy:update_code',  'keys:upload'
 
 namespace :keys do
 

@@ -1,5 +1,6 @@
 puts ' PUBSTAGE '.center(70, '-')
 
+set :user,      "deploy"
 set :proxy,     "bamru1"
 set :branch,    fetch(:branch, "dev")
 set :rails_env, fetch(:env,    "staging")
