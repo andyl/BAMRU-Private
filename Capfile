@@ -12,7 +12,7 @@ set :web_port,    8500
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
 set :default_stage, "vagrant"
-set :user, default_stage == "vagrant" ? "vagrant" : "deploy" # FIXME - move to stage file
+#set :user, default_stage == "vagrant" ? "vagrant" : "deploy" # FIXME - move to stage file
 require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
@@ -29,19 +29,19 @@ require share_dir + "/packages/postgresql"  # postgres database
 # ===== App-Specific Tasks =====
 
 # ----- keys -----
-before 'deploy:setup',  'keys:upload'
+before 'deploy:update_code',  'keys:upload'
 
 namespace :keys do
 
   desc "upload keys"
   task :upload do
-    file = ".bnet_environment.yaml"
-    keyfile = File.expand_path("~/#{file}")
-    keytext = File.read(keyfile)
-    tgtfile = "/home/#{user}/#{file}"
-    put keytext, tgtfile 
-    run "chown -R #{user} #{tgtfile}"
-    run "chgrp -R #{user} #{tgtfile}"
+    if File.exist? ".rbenv-vars-private"
+      txt = File.read(".rbenv-vars-private")
+      put txt, "#{release_path}/.rbenv-vars-private"
+    else
+      puts " WARNING - no private keyfile ".center(80, '*')
+    end
+
   end
 
 end
