@@ -54,7 +54,7 @@ class QcMail
     mail.delivery_method(*smtp_settings) unless Rails.env.development?
     case Rails.env
       when "development" then mail.deliver
-      when "staging"     then mail.deliver if valid_staging_address(mail.to)
+      when "staging"     then mail.deliver if valid_staging_address?(mail.to)
       when "production"  then mail.deliver
     end
 
