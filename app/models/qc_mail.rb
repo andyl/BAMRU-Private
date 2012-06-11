@@ -71,7 +71,7 @@ class QcMail
 
   private
 
-  def valid_staging_address?(address)
+  def self.valid_staging_address?(address)
     STAGING_VALID_EMAILS.split(' ').include? address
   end
 

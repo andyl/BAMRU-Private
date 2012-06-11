@@ -26,10 +26,10 @@ create_new_session()
   tmux send-keys -t $APP:4 "multitail $ABS_LOG_DIR/faye*.log $ABS_LOG_DIR/perf*.log" C-m
 
   tmux new-window  -t $APP -n envlog
-  tmux send-keys -t $APP:5 "multitail $ABS_LOG_DIR/faye*.log $ABS_LOG_DIR/#{Rails.env}.log" C-m
+  tmux send-keys -t $APP:5 "multitail $ABS_LOG_DIR/staging.log $ABS_LOG_DIR/production.log" C-m
 
   tmux new-window  -t $APP -n qclog
-  tmux send-keys -t $APP:6 "multitail $ABS_LOG_DIR/faye*.log $ABS_LOG_DIR/qc*.log" C-m
+  tmux send-keys -t $APP:6 "multitail $ABS_LOG_DIR/qc*.log" C-m
 
   tmux select-window -t $APP:1
 
