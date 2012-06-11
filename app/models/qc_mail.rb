@@ -26,7 +26,7 @@ class QcMail
   def self.render_mail(outbound_mail)
     yaml_file = "/tmp/render_msg/#{outbound_mail.id}_#{outbound_mail.label}"
     system "mkdir -p #{File.dirname(yaml_file)}"
-    return if File.exists?(yaml_file)
+    return yaml_file if File.exists?(yaml_file)
     mailing    = nil
     message    = outbound_mail.distribution.message
     address    = outbound_mail.email_address
@@ -52,7 +52,12 @@ class QcMail
     puts "sending message #{outbound_mail_id} (#{mail.to.first})"
     smtp_settings = [:smtp, SMTP_SETTINGS]
     mail.delivery_method(*smtp_settings) unless Rails.env.development?
-    mail.deliver if Rails.env.production? || valid_staging_address?(mail.to)
+    case Rails.env
+      when "development" then mail.deliver
+      when "staging"     then mail.deliver if valid_staging_address(mail.to)
+      when "production"  then mail.deliver
+    end
+
   end
 
   def self.send_pending
@@ -72,7 +77,8 @@ class QcMail
   private
 
   def self.valid_staging_address?(address)
-    STAGING_VALID_EMAILS.split(' ').include? address
+    debugger
+    STAGING_VALID_EMAILS.gsub("'","").split(' ').include? address.first
   end
 
 
