@@ -22,15 +22,19 @@ env_settings.each_line do |val|
   abort "ERROR: Missing Environment Value (#{constant})" if constant.nil?
 end
 
-GMAIL_USER = Rails.env.production? ? PRODUCTION_GMAIL_USER : STAGING_GMAIL_USER
-GMAIL_PASS = Rails.env.production? ? PRODUCTION_GMAIL_PASS : STAGING_GMAIL_PASS
+if defined?(Rails)
 
-SMTP_SETTINGS = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :domain               => "gmail.com",
-  :user_name            => GMAIL_USER,
-  :password             => GMAIL_PASS,
-  :authentication       => "plain",
-  :enable_starttls_auto => true
-}
+  GMAIL_USER = Rails.env.production? ? PRODUCTION_GMAIL_USER : STAGING_GMAIL_USER
+  GMAIL_PASS = Rails.env.production? ? PRODUCTION_GMAIL_PASS : STAGING_GMAIL_PASS
+
+  SMTP_SETTINGS = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => "gmail.com",
+      :user_name            => GMAIL_USER,
+      :password             => GMAIL_PASS,
+      :authentication       => "plain",
+      :enable_starttls_auto => true
+  }
+
+end
