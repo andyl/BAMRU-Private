@@ -1,4 +1,4 @@
-require File.expand_path('/../../lib/mail_interceptor', File.dirname(__FILE__))
+require File.expand_path('../../lib/mail_interceptor', File.dirname(__FILE__))
 
 ActionMailer::Base.smtp_settings = SMTP_SETTINGS
 
