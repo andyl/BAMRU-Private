@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# sends an alert mail to ENV['ALERT_ADDRESSES']
+
+require 'rubygems'
+require 'mail'
+require File.expand_path("../lib/env_settings", File.dirname(__FILE__))
+
+mail = Mail.new do
+  from    'bamru.net@gmail.com'
+  to      'andy@r210.com'
+  subject '[BAMRUNET] test email'
+  body    "Hello World"
+end
+
+mail.delivery_method(:smtp, SMTP_SETTINGS)
+mail.deliver
+
+puts "OK"

@@ -51,8 +51,8 @@ class QcMail
     outbound_mail_id = yaml_file.split('/').last.split('_').first
     puts "sending message #{outbound_mail_id} (#{mail.to.first})"
     smtp_settings = [:smtp, SMTP_SETTINGS]
-    mail.delivery_method(*smtp_settings) if Rails.env.production?
-    mail.deliver
+    mail.delivery_method(*smtp_settings) unless Rails.env.development?
+    mail.deliver if Rails.env.production? || valid_staging_address?(mail.to)
   end
 
   def self.send_pending
@@ -68,5 +68,12 @@ class QcMail
     duration = (Time.now - start).round
     ActiveSupport::Notifications.instrument("page.send", {:text => "Finish #{Time.now.strftime("%H:%M:%S")} (#{duration} sec)"})
   end
+
+  private
+
+  def valid_staging_address?(address)
+    STAGING_VALID_EMAILS.split(' ').include? address
+  end
+
 
 end

@@ -47,14 +47,6 @@ end
 
 # ----- Backups -----
 
-every 1.month, :at => "start of the month at 1:10 am" do
-  nq "rake ops:backup:wiki_full"
-end
-
-every 1.week, :at => '2:10 am' do
-  nq "rake ops:backup:wiki_data"
-end
-
 every 1.week, :at => '3:10 am' do
   nq "rake ops:backup:system"
 end

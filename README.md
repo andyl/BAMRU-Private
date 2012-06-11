@@ -36,6 +36,7 @@ the staging and production servers.  Main elements of the stack include:
 - queue-classic - background job manager
 - faye - ruby/javascript pub-sub
 - rbenv - ruby version manager
+- whenever - schedule (cron) processes
 
 See the Vagrantfile and the "bootstrap-base" shell script to learn how
 auto-provisioning is done.
@@ -77,6 +78,16 @@ This system uses the 'whenever' gem to managed scheduled/cron tasks,
 including system backups and automatic notifications.
 
 See `schedule.rb` for the list of scheduled tasks.
+
+### Email Testing
+
+In development, emails are rendered to the browser on localhost,
+using the `letter_opener` gem.
+
+In staging, emails are only sent for the addresses specified in
+the STAGING_VALID_EMAILS environment variable.  And also, staging
+emails are all routed to a single address, specified by the
+STAGING_DELIVERY_ADDRESS environment variable.
 
 ### Contributing to the App
 

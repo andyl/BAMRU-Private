@@ -1,4 +1,8 @@
 APP_NAME=bnet
+
+# default environment - automatically changed during deployment
 RAILS_ENV=development
-QC_LISTENING_WORKER=true
+
+# queue_classic variables
 QC_DATABASE_URL=postgres://bnet:${POSTGRES_PASS}@localhost/bnet_${RAILS_ENV}
+QC_LISTENING_WORKER=true
