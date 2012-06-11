@@ -4,7 +4,7 @@
 # Learn more: http://github.com/javan/whenever
 
 cmd = "script/nq :task >> log/crontask.log 2>&1"
-job_type :nq, "cd :path && export RAILS_ENV=:env && #{cmd}"
+job_type :nq, "cd :path && export RAILS_ENV=:renv && #{cmd}"
 
 # ----- Automated eMail Reminders and Alerts -----
 
