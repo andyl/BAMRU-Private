@@ -4,6 +4,12 @@ This is the code for the BAMRU Private website.
 
 ## Maintaing and Contributing 
 
+### Target Audience
+
+To be a successful maintainer/contributor, you'll need reasonable familiarity
+with linux, git, ruby & rails.  You should be comfortable with the material in
+the [UC Berkeley SAAS online class](https://www.coursera.org/course/saas).
+
 ### Bootstrap & Run in Development Mode
 
 This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.

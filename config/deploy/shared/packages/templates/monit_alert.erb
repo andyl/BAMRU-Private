@@ -1,0 +1,8 @@
+# see http://blog.markfeeney.com/2010/09/monit-notifications-using-google-gmail.html
+
+set mailserver smtp.gmail.com port 587
+  username "<%= ENV['MONIT_GMAIL_USER'] %>"
+  password "<%= ENV['MONIT_GMAIL_PASS'] %>"
+  using tlsv1
+  with timeout 30 seconds
+

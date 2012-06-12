@@ -24,6 +24,7 @@ require share_dir + "/packages/passenger"   # nginx config
 require share_dir + "/packages/foreman"     # foreman processes managed by upstart
 require share_dir + "/packages/sqlite"      # shared sqlite script
 require share_dir + "/packages/postgresql"  # postgres database
+require share_dir + "/packages/monit"       # setup monit_alert
 
 # ===== App-Specific Tasks =====
 
