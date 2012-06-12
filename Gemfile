@@ -23,6 +23,8 @@ gem "yaml_db"
 
 gem "pg"
 
+gem "aws-ses", :require => "aws/ses"
+
 gem "fastercsv"
 gem "nokogiri"
 gem "simple_form"
