@@ -20,6 +20,7 @@ share_dir = File.expand_path("config/deploy/shared", File.dirname(__FILE__))
 require "#{share_dir}/tasks"
 
 # ===== Package Definitions =====
+require share_dir + "/packages/cron"        # setup cron using whenever
 require share_dir + "/packages/passenger"   # nginx config
 require share_dir + "/packages/foreman"     # foreman processes managed by upstart
 require share_dir + "/packages/sqlite"      # shared sqlite script
