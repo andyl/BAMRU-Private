@@ -78,7 +78,6 @@ class QcMail
   private
 
   def self.valid_staging_address?(address)
-    debugger
     STAGING_VALID_EMAILS.gsub("'","").split(' ').include? address.first
   end
 
