@@ -36,7 +36,7 @@ end
 # ----- Retrieve incoming email from Google -----
 
 every 30.minutes do
-  nq "rake ops:email:import ONLY_ON=bamru.net"
+  nq "rake ops:email:import"
 end
 
 # ----- Reset Page Cache -----

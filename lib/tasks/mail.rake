@@ -8,10 +8,6 @@ include RakeUtil
 
 def check_host_and_run_frequency
   file = "tmp/mail_sync_time.txt"
-  if ENV['ONLY_ON'] && ENV['ONLY_ON'] != ENV['SYSNAME']
-    puts "Exiting: command runs only on #{ENV["ONLY_ON"]}"
-    exit
-  end
   if File.exists?(file)
     if last_update_less_than_two_minutes_ago(file)
       puts "Exiting: last mail sync was less than two minutes ago."
