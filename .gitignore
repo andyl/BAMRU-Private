@@ -1,6 +1,8 @@
 .idea
 .idea/workspace.xml
 .idea/*
+.idea/data*
+.idea/B*
 .idea/.*
 .sass-cache
 .sass-cache/*
