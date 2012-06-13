@@ -28,6 +28,9 @@ create_new_session()
   tmux new-window  -t $APP -n qclog
   tmux send-keys -t $APP:5 "multitail $ABS_LOG_DIR/qc*.log" C-m
 
+  tmux new-window  -t $APP -n cronlog
+  tmux send-keys -t $APP:6 "multitail $ABS_LOG_DIR/crontask.log $ABS_LOG_DIR/nq.log" C-m
+
   tmux select-window -t $APP:1
 
 }

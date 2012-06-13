@@ -1,6 +1,10 @@
+# nginx_passenger
+# this file created by Capistrano
+
 server {
   listen 80;
   server_name <%= vhost_names.join(' ') %>;
+  client_max_body_size 20M;
   root <%= deploy_to %>/current/public;
   location / {
     proxy_pass http://127.0.0.1:<%= web_port %>;
