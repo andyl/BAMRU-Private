@@ -1,5 +1,6 @@
 require 'carrier_queue'
 require 'rake_util'
+require File.expand_path("../../lib/env_settings", File.dirname(__FILE__))
 
 include RakeUtil
 
