@@ -62,7 +62,7 @@ class QcMail
 
   def self.send_pending
     start = Time.now
-    ActiveSupport::Notifications.instrument("page.send", {:text => "Start #{Time.now.strftime("%H:%M:%S")}"})
+    ActiveSupport::Notifications.instrument("page.send", {:text => "start #{Time.now.strftime("%H:%M:%S")}"})
     OutboundMail.pending.each do |outbound_mail|
       yaml_file = render_mail(outbound_mail)
       send_mail(yaml_file)
@@ -71,7 +71,8 @@ class QcMail
       ActiveSupport::Notifications.instrument("page.send", {:text => label})
     end
     duration = (Time.now - start).round
-    ActiveSupport::Notifications.instrument("page.send", {:text => "Finish #{Time.now.strftime("%H:%M:%S")} (#{duration} sec)"})
+    message  = "finish #{Time.now.strftime('%H:%M:%S')} (#{duration} sec)"
+    ActiveSupport::Notifications.instrument("page.send", {:text => message })
   end
 
   private
