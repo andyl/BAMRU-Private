@@ -26,8 +26,9 @@ To bootstrap the app:
 - run `rake db:data:load`
 
 To run the app in development:
-- run `rails server` to run just the web app
-- run `foreman start -p 3000 -e .rbenv-vars` to run the full stack 
+- `rails server` to run just the web app
+   OR
+- `foreman start -p 3000 -e .rbenv-vars` to run the full stack
 
 ### Provisioning a Server
 
