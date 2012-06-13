@@ -6,12 +6,12 @@ require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 set :app_name,    APP_NAME         # <- this comes from lib/env_settings
 set :application, "BAMRU-Private"
 set :repository,  "https://github.com/andyl/#{application}.git"
-set :vhost_names, %w(bnet bnettest)
+set :vhost_names, %w(bamru1 bnet www.bamru.net bamru.net)
 set :web_port,    8500
 
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
-set :default_stage, "vagrant"
+set :default_stage, "pubstage"
 require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====

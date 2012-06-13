@@ -8,4 +8,5 @@ class AddQueueClassic < ActiveRecord::Migration
   def down
     QC::Setup.drop
   end
+
 end
