@@ -6,6 +6,7 @@ class UnauthRsvpsController < ApplicationController
     @token  = params[:id] || "<none>"
     @dist = Distribution.where(:unauth_rsvp_token => @token).first
     @member  = @dist.member
+    @message = @dist.message
     unless @dist.blank?
       response = params[:response].try(:capitalize)
       if valid_token?(@token)

@@ -40,7 +40,7 @@
             <td> </td>
             <td>
               <div style='margin: 20px;'>
-                Your current response is <b><%= raw rsvp_display_answer(@dist).chomp %></b>
+                Your current response is <b><%= raw rsvp_display_answer(@dist).chomp.upcase %>:</b>
                 <% if @dist.rsvp_answer.try(:downcase) == "yes" %>
                   <%= @rsvp.yes_prompt %>
                 <% end %>
