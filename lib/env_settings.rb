@@ -35,12 +35,14 @@ else
 end
 
 SMTP_SETTINGS = {
-  # :address              => "smtp.gmail.com",
-  # :domain               => "gmail.com",
-  :address              => SES_SMTP_SRVR,
+  :address              => "smtp.gmail.com",
+  :domain               => "gmail.com",
+  :user_name            => GMAIL_USER,
+  :password             => GMAIL_PASS,
+  # :address              => SES_SMTP_SRVR,
+  # :user_name            => SES_SMTP_USER,
+  # :password             => SES_SMTP_PASS,
   :port                 => 587,
-  :user_name            => SES_SMTP_USER,
-  :password             => SES_SMTP_PASS,
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
