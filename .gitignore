@@ -5,6 +5,7 @@
 .sass-cache
 .sass-cache/*
 .sass-cache/**/*
+.rbenv-vars-*
 log
 log/*
 db/data.yml

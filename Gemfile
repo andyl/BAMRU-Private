@@ -17,9 +17,13 @@ gem "ancestry"
 gem "haml-rails"
 gem "net-ssh", "2.2.2"
 
+gem "queue_classic"
+
 gem "yaml_db"
 
 gem "pg"
+
+gem "aws-ses", :require => "aws/ses"
 
 gem "fastercsv"
 gem "nokogiri"

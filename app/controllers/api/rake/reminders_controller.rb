@@ -17,6 +17,7 @@ class Api::Rake::RemindersController < ApplicationController
       message.create_all_outbound_mails
       ActiveSupport::Notifications.instrument("rake.reminders.do_shift_pending", {:member => member})
     end
+    QC.enqueue "QcMail.send_pending"
     render :json => "OK\n"
   end
 
@@ -32,6 +33,7 @@ class Api::Rake::RemindersController < ApplicationController
       message.create_all_outbound_mails
       ActiveSupport::Notifications.instrument("rake.reminders.do_shift_starting", {:member => member})
     end
+    QC.enqueue "QcMail.send_pending"
     render :json => "OK\n"
   end
 
@@ -63,6 +65,7 @@ class Api::Rake::RemindersController < ApplicationController
     end
     message_text = "ninety:#{ninety_count} thirty:#{thirty_count} expired:#{expire_count}"
     ActiveSupport::Notifications.instrument("rake.reminders.cert_expiration", {:text => message_text})
+    QC.enqueue "QcMail.send_pending"
     render :json => "OK (#{message_text})\n"
   end
 

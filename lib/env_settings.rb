@@ -1,18 +1,47 @@
-BNET_ENVIRONMENT_FILE = File.expand_path('~/.bnet_environment.yaml')
 
-abort "MISSING ENVIRONMENT FILE" unless File.exist?(BNET_ENVIRONMENT_FILE)
+env_settings = <<-EOF
+APP_NAME
+GOOGLE_CONSUMER_KEY
+GOOGLE_CONSUMER_SECRET
+FAYE_TOKEN
+FAYE_SERVER
+PRODUCTION_GMAIL_USER
+PRODUCTION_GMAIL_PASS
+STAGING_GMAIL_USER
+STAGING_GMAIL_PASS
+STAGING_VALID_EMAILS
+STAGING_DELIVERY_ADDRESS
+SYSTEM_USER
+SYSTEM_PASS
+POSTGRES_PASS
+ALERT_EMAILS
+SES_SMTP_SRVR
+SES_SMTP_USER
+SES_SMTP_PASS
+EOF
 
-require 'yaml'
+env_settings.each_line do |val|
+  constant = val.chomp.strip
+  eval "#{constant} = ENV['#{constant}']"
+  abort "ERROR: Missing Environment Value (#{constant})" if constant.nil?
+end
 
-yaml_env = YAML.load(File.read(BNET_ENVIRONMENT_FILE))
+# if defined?(Rails)
+#   GMAIL_USER = Rails.env.production? ? PRODUCTION_GMAIL_USER : STAGING_GMAIL_USER
+#   GMAIL_PASS = Rails.env.production? ? PRODUCTION_GMAIL_PASS : STAGING_GMAIL_PASS
+# else
+#   GMAIL_USER = STAGING_GMAIL_USER
+#   GMAIL_PASS = STAGING_GMAIL_PASS
+# end
 
-APP_NAME               = yaml_env[:app_name]
-GOOGLE_CONSUMER_KEY    = yaml_env[:google_consumer_key]
-GOOGLE_CONSUMER_SECRET = yaml_env[:google_consumer_secret]
-FAYE_TOKEN             = yaml_env[:faye_token]
-FAYE_SERVER            = yaml_env[:faye_server]
-GMAIL_USER             = yaml_env[:gmail_user]
-GMAIL_PASS             = yaml_env[:gmail_pass]
-SYSTEM_USER            = yaml_env[:system_user]
-SYSTEM_PASS            = yaml_env[:system_pass]
-POSTGRES_PASS          = yaml_env[:postgres_pass]
+SMTP_SETTINGS = {
+  # :address              => "smtp.gmail.com",
+  :address              => SES_SMTP_SRVR,
+  :port                 => 587,
+  # :domain               => "gmail.com",
+  :user_name            => SES_SMTP_USER,
+  :password             => SES_SMTP_PASS,
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+

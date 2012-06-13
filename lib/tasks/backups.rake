@@ -9,74 +9,54 @@ namespace :ops do
 
     def backup_params
       {
-        "wiki_full" => {
-                :host   => "wiki.bamru.net",
-                :target => "mediawiki",
-                :copies => 2 },
-        "wiki_data" => {
-                :host   => "wiki.bamru.net",
-                :target => %w(mediawiki/data mediawiki/extensions),
-                :copies => 10 },
         "system" => {
-                :host   => "bamru.net",
-                :target => "a/BAMRU-Private/shared/system",
+                :target => "public/system",
                 :copies => 5 },
         "db"     => {
-                :host   => "bamru.net",
-                :target => "a/BAMRU-Private/shared/db/production.sqlite3",
-                :copies => 20 }
+                :target => "db/data.yml",
+                :copies => 25 }
       }
     end
 
-    def backup(label)
+    def backup(dataset)
+      app        = "bnet"
       host       = `hostname`.chomp
-      params     = backup_params[label]
+      user       = `whoami`.chomp
+      params     = backup_params[dataset]
       base_dir   = File.expand_path("~/.backup")
       time_stamp = Time.now.strftime("%y%m%d_%H%M%S")
-      lbl_dir    = [base_dir, label].join('/')
-      tgt_dir    = [base_dir, label, time_stamp].join('/')
+      lbl_dir    = [base_dir, app, host, dataset].join('/')
+      tgt_dir    = [base_dir, app, host, dataset, time_stamp].join('/')
       system "mkdir -p #{tgt_dir}"
 
-      # ----- alternate commands for local and remote copying -----
-      scp_cmd = Proc.new {|x| "scp -r -q #{params[:host]}:#{x} #{tgt_dir}"}
-      cp_cmd  = Proc.new {|x| "cp -r /home/aleak/#{x} #{tgt_dir}"}
-      pcmd = host == params[:host] ? cp_cmd : scp_cmd
+      # ----- copy command -----
+      cp_cmd  = Proc.new {|data_path| "cp -r #{data_path} #{tgt_dir}"}
 
       # ----- build a list of targets to copy -----
       target  = params[:target]
       targets = target.class == Array ? target : [target]
 
       # ----- copy each target -----
-      puts "Backing up #{label}"
-      targets.each do |z|
-        cmd = pcmd.call(z)
+      puts "Backing up #{dataset}"
+      targets.each do |path|
+        cmd = cp_cmd.call(path)
         puts cmd
         system cmd
       end
 
       # ----- delete old backups if they exceed the copy limit -----
       list = Dir.glob(lbl_dir + '/*').sort.reverse
-      list.each_with_index do |name, index|
+      list.each_with_index do |path, index|
         if index >= params[:copies]
-          puts   "Removing old backup: #{name}"
-          system "rm -r #{name}"
+          puts   "Removing old backup: #{path}"
+          system "rm -r #{path}"
         end
       end
     end
 
     desc "Backup all Targets"
-    task :all => [:wiki_full, :wiki_data, :system, :db] do
+    task :all => [:system, :db] do
       puts "All targets backed up"
-    end
-
-    desc "Backup Full Wiki"
-    task :wiki_full => 'environment' do
-      backup("wiki_full")
-    end
-
-    desc "Backup Wiki Data"
-    task :wiki_data => 'environment' do
-      backup("wiki_data")
     end
 
     desc "Backup System Directory"
@@ -85,7 +65,7 @@ namespace :ops do
     end
 
     desc "Backup Database"
-    task :db do
+    task :db => "db:data:dump" do
       backup("db")
     end
 

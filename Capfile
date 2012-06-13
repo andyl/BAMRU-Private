@@ -6,41 +6,43 @@ require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 set :app_name,    APP_NAME         # <- this comes from lib/env_settings
 set :application, "BAMRU-Private"
 set :repository,  "https://github.com/andyl/#{application}.git"
-set :vhost_names, %w(bnet bnettest)
+set :vhost_names, %w(bamru1 bnet www.bamru.net bamru.net)
 set :web_port,    8500
 
 # ===== Stage-Specific Code =====
-stage = "production"            # <--- set to one of [vagrant|staging|production]
-require File.expand_path("config/deploy/#{stage}", File.dirname(__FILE__))
+set :stages, %w(vagrant devstage pubstage production)
+set :default_stage, "production"
+require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
 load 'deploy'
-base_dir = File.expand_path(File.dirname(__FILE__))
-Dir.glob("config/deploy/shared/base/*.rb").each {|f| require base_dir + '/' + f}
-Dir.glob("config/deploy/shared/recipes/*.rb").each {|f| require base_dir + '/' + f}
+share_dir = File.expand_path("config/deploy/shared", File.dirname(__FILE__))
+require "#{share_dir}/tasks"
 
 # ===== Package Definitions =====
-require base_dir + "/config/deploy/shared/packages/passenger"   # nginx config
-require base_dir + "/config/deploy/shared/packages/foreman"     # foreman processes managed by upstart
-require base_dir + "/config/deploy/shared/packages/sqlite"      # shared sqlite script
-require base_dir + "/config/deploy/shared/packages/postgresql"
+require share_dir + "/packages/cron"        # setup cron using whenever
+require share_dir + "/packages/passenger"   # nginx config
+require share_dir + "/packages/foreman"     # foreman processes managed by upstart
+require share_dir + "/packages/sqlite"      # shared sqlite script
+require share_dir + "/packages/postgresql"  # postgres database
+require share_dir + "/packages/monit"       # setup monit_alert
 
 # ===== App-Specific Tasks =====
 
 # ----- keys -----
-before 'deploy:setup',  'keys:upload'
+after 'deploy:update_code',  'keys:upload'
 
 namespace :keys do
 
   desc "upload keys"
   task :upload do
-    file = ".bnet_environment.yaml"
-    keyfile = File.expand_path("~/#{file}")
-    keytext = File.read(keyfile)
-    tgtfile = "/home/#{user}/#{file}"
-    put keytext, tgtfile 
-    run "chown -R #{user} #{tgtfile}"
-    run "chgrp -R #{user} #{tgtfile}"
+    if File.exist? ".rbenv-vars-private"
+      txt = File.read(".rbenv-vars-private")
+      put txt, "#{release_path}/.rbenv-vars-private"
+    else
+      puts " WARNING - no private keyfile ".center(80, '*')
+    end
+
   end
 
 end

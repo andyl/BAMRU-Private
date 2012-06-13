@@ -1,7 +1,7 @@
-puts ' VAGRANT '.center(70, '-')
+puts ' PUBSTAGE '.center(70, '-')
 
-set :user,      "vagrant"
-set :proxy,     "vagrant"
+set :user,      "deploy"
+set :proxy,     "bamru1"
 set :branch,    fetch(:branch, "dev")
 set :rails_env, fetch(:env,    "staging")
 

@@ -4,48 +4,107 @@ This is the code for the BAMRU Private website.
 
 ## Maintaing and Contributing 
 
-### Running the App
+### Target Audience
+
+To be a successful maintainer/contributor, you'll need reasonable familiarity
+with linux, git, ruby & rails.  You should be comfortable with the material in
+the [UC Berkeley SAAS online class](https://www.coursera.org/course/saas).
+
+### Bootstrap & Run in Development Mode
 
 This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
-It won't run on a vanilla PC, but may work with Cygwin.
+It won't run on a vanilla PC, but may work with Cygwin. 
 
-To run the app:
-- get the application datafiles from Andy (sqlite database, image directory, environment file)
-- clone the app & install the datafiles
-- edit database.yml to use sqlite
+To bootstrap the app:
+- get the application datafiles from Andy (database, image directory, environment file)
+- clone the repo & install the datafiles
+- install ruby 1.9.3 
+- install postgres, add postgres user & password
 - run `bundle install`
-- run `rails server`
+- run `rake db:create:all`
+- run `rake db:migrate`
+- run `rake db:data:load`
+
+To run the app in development:
+- run `rails server` to run just the web app
+- run `foreman start -p 3000 -e .rbenv-vars` to run the full stack 
+
+### Provisioning a Server
+
+We use a combination of shell scripts and Puppet manifests to auto-configure
+the staging and production servers.  Main elements of the stack include:
+- nginx - reverse proxy
+- passenger-standalone - web server
+- monit - monitoring and alerting
+- upstart - application init and auto-restart on failure
+- foreman - process initiation
+- postgres - database
+- queue-classic - background job manager
+- faye - ruby/javascript pub-sub
+- rbenv - ruby version manager
+- whenever - schedule (cron) processes
+
+See the Vagrantfile and the "bootstrap-base" shell script to learn how
+auto-provisioning is done.
 
 ### Deploying the App
 
-This app is built to use three deployment environments:
+This app is built to use four deployment environments:
 - vagrant - for development (requires vagrant/virtualbox)
-- staging - for integration testing
+- devstage - local staging server for integration testing
+- pubstage - public staging server for integration testing
 - production - the live system
 
-Deploying to Vagrant:
-- edit your Capfile to set the stage to 'vagrant'
+Deploying to Vagrant: Provision the Box
 - create and provision the VM using `vagrant up`
 - setup ssh using `vagrant ssh-config >> ~/.ssh/config`
 - add 'dns lookup' using `sudo echo '192.168.33.12 vagrant' >> /etc/hosts`
-- initialze the app using `cap ops:setup`
-- upload the database using `db/upload vagrant`
-- upload the image directory using `scp -r public/system vagrant:a/BAMRU-Private/public`
+
+Deploying to Vagrant: Bootstrap & Run the App
+- edit your Capfile to set the default stage to 'vagrant'
+- initialze the app using `cap deploy:setup ; cap deploy:cold`
+- upload the images & load database using `cap data:init`
 - deploy the working system using `cap deploy`
-- run a tmux-dashboard using `cap ops:console`
+- run a tmux-dashboard using `cap console`
 
 Deploying to Staging and Production: ask Andy for instructions
+
+### Git Organization
+
+The Git repo is organized to roughly follow the 
+[nvie guidelines](http://nvie.com/posts/a-successful-git-branching-model/).
+The main branches in the repo include:
+- master - used for production deploy
+- dev    - default branch for vagrant & staging deploys
+- dev-feature - feature branch
+
+### Scheduled Tasks
+
+This system uses the 'whenever' gem to managed scheduled/cron tasks,
+including system backups and automatic notifications.
+
+See `schedule.rb` for the list of scheduled tasks.
+
+### Email Testing
+
+In development, emails are rendered to the browser on localhost,
+using the `letter_opener` gem.
+
+In staging, emails are only sent for the addresses specified in
+the STAGING_VALID_EMAILS environment variable.  And also, staging
+emails are all routed to a single address, specified by the
+STAGING_DELIVERY_ADDRESS environment variable.
 
 ### Contributing to the App
 
 Contributions are encouraged!
-- fork the app
+- fork the repo
 - clone & edit your fork
-- make your edits in a separate branch
+- make your edits in a separate development branch
 - include tests!
 - send pull-requests to Andy
 
-### License
+## License
 
 Copyright (c) 2011-2012 Andy Leak 
 

@@ -1,4 +1,3 @@
-
 # development:
 #    adapter: sqlite3
 #    database: db/development.sqlite3
@@ -18,6 +17,15 @@ test:
   adapter: postgresql
   encoding: unicode
   database: bnet_test
+  pool: 5
+  username: bnet
+  template: template0
+  password: <%= POSTGRES_PASS %>
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: bnet_staging
   pool: 5
   username: bnet
   template: template0
