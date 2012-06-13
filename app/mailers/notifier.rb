@@ -13,7 +13,7 @@ class Notifier < ActionMailer::Base
     address = opts[:author_email] ? 'test@what.com' : opts[:author_email]
     mail(
             :to => address,
-            :from => 'bamru.net@gmail.com',
+            :from => "#{GMAIL_USER}@gmail.com",
             :subject => "Test @ #{Time.now}"
     )
   end
@@ -32,7 +32,7 @@ class Notifier < ActionMailer::Base
     @expire       = @member.forgot_password_expires_at.strftime("%H:%M")
     mail(
             :to      => @address,
-            :from    => 'bamru.net@gmail.com',
+            :from    => "#{GMAIL_USER}@gmail.com",
             :subject => "BAMRU.net Password Reset (#{opts['label']})"
     )
   end
@@ -46,7 +46,7 @@ class Notifier < ActionMailer::Base
     @platform_url = platform_url
     mail(
             :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
             :subject => "BAMRU Page [#{@opts['label']}]"
     )
   end
@@ -56,7 +56,7 @@ class Notifier < ActionMailer::Base
     @opts = Notifier.query_opts(opts)
     mail(
             :to          => @opts['recipient_email'],
-            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :from        => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
             :subject     => "BAMRU [#{@opts['label']}]"
     )
   end
@@ -70,7 +70,7 @@ class Notifier < ActionMailer::Base
     @platform_url = platform_url
     mail(
             :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
             :subject => "BAMRU DO shift - Reminder [#{@opts['label']}]"
     )
   end
@@ -84,7 +84,7 @@ class Notifier < ActionMailer::Base
     @platform_url = platform_url
     mail(
             :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
             :subject => "BAMRU DO shift - starting! [#{@opts['label']}]"
     )
   end
@@ -94,7 +94,7 @@ class Notifier < ActionMailer::Base
     @opts = Notifier.query_opts(opts)
     mail(
             :to          => @opts['recipient_email'],
-            :from        => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+            :from        => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
             :subject     => "BAMRU [#{@opts['label']}]"
     )
   end
@@ -108,7 +108,7 @@ class Notifier < ActionMailer::Base
       @platform_url = platform_url
       mail(
               :to      => @opts['recipient_email'],
-              :from    => "BAMRU (#{@opts['author_short_name']}) <bamru.net@gmail.com>",
+              :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
               :subject => "BAMRU Cert Notice [#{@opts['label']}]"
       )
     end
