@@ -40,9 +40,10 @@
       </tr>
     </table>
   </div>
-  <% if request.host.include?("ekel") %>
+  <% unless Rails.env.production? %>
     <div style='text-align: center;'>
 
+      <div class="debug">RAILS_ENV=<%= Rails.env %></div>
       <div class="debug"><%= raw debug_footer_text %> <a href="/home/testrake">test rake</a></div>
     </div>
   <% end %>
