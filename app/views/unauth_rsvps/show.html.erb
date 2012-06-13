@@ -53,7 +53,7 @@
               <td></td>
               <td>
                 <div style='margin-top: 20px; margin-bottom: 20px;'>
-                  <%= link_to "Show details (requires login)", "/rsvps/#{@dist.id}" %>
+                  <%= link_to "Show details#{member_signed_in? ? ' (requires login)' : ''}", "/rsvps/#{@dist.id}" %>
                 </div>
               </td>
             </tr>
