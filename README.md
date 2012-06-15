@@ -4,7 +4,7 @@ This is the code for the BAMRU Private website.
 
 ## Maintaing and Contributing 
 
-### Target Audience
+### Maintainer Skills
 
 To be a successful maintainer/contributor, you'll need reasonable familiarity
 with linux, git, ruby & rails.  You should be comfortable with the material in
@@ -42,6 +42,7 @@ the staging and production servers.  Main elements of the stack include:
 - queue-classic - background job manager
 - faye - ruby/javascript pub-sub
 - rbenv - ruby version manager
+- collectd/rrd - metrics
 - whenever - schedule (cron) processes
 
 See the Vagrantfile and the "bootstrap-base" shell script to learn how
@@ -87,13 +88,18 @@ See `schedule.rb` for the list of scheduled tasks.
 
 ### Email Testing
 
-In development, emails are rendered to the browser on localhost,
-using the `letter_opener` gem.
+When running in development, emails are rendered to the browser on localhost,
+using the `letter_opener` gem.  No live emails are sent.
 
-In staging, emails are only sent for the addresses specified in
-the STAGING_VALID_EMAILS environment variable.  And also, staging
-emails are all routed to a single address, specified by the
-STAGING_DELIVERY_ADDRESS environment variable.
+When running in staging, we send live emails, with the following
+restrictions/modifications:
+- Staging uses a different gmail account than production.
+- In staging, we intercept all outbound mails, and route them to the address
+  specified in the `STAGING_DELIVERY_ADDRESS` environment variable.  This is to
+  prevent sending accidental unit-wide spam during testing.
+- In staging, emails are only sent for the addresses specified in the
+  `STAGING_VALID_EMAILS` environment variable.  This is to prevent flooding the
+  testers email inbox when sending a unit-wide mail.
 
 ### Contributing to the App
 
