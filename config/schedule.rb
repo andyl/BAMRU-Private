@@ -35,7 +35,7 @@ end
 
 # ----- Retrieve incoming email from Google -----
 
-every 30.minutes do
+every 3.minutes do
   nq "rake ops:email:import"
 end
 
