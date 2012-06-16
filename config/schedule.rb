@@ -29,13 +29,13 @@ every :tuesday, :at => '8:11 am' do
 end
 
 # ----- Broadcast the date to the Event Monitor channel -----
-every 6.hours do
+every 2.hours do
   nq "rake faye:datecast"
 end
 
 # ----- Retrieve incoming email from Google -----
 
-every 20.minutes do
+every 30.minutes do
   nq "rake ops:email:import"
 end
 
