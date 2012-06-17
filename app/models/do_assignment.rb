@@ -21,7 +21,7 @@ class DoAssignment < ActiveRecord::Base
   scope :this_wk, where('start < ?', Time.now).where('finish > ?', Time.now)
   scope :next_wk, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
   scope :pending, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
-  scope :has_backup,  where("backup_id <> ''")
+  scope :has_backup,  where("backup_id <> NULL")
   scope :non_current, where('start > ? OR finish < ?', x = Time.now, x)
 
   # ----- Class Methods -----

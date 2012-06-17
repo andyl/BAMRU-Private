@@ -14,10 +14,11 @@ subject = ARGV[0]
 body    = ARGV[1]
 
 mail = Mail.new do
-  from    GMAIL_USER
-  to      '6508230836@txt.att.net'
-  subject "[BAMRUNET] #{subject}"
-  body    body
+  from     GMAIL_USER
+  reply_to GMAIL_USER
+  to       '6508230836@txt.att.net'
+  subject  "[BAMRUNET] #{subject}"
+  body     body
 end
 
 mail.delivery_method(:smtp, SMTP_SETTINGS)
