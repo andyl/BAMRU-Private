@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def member_login(member)
     session[:member_id] = member.id
+    session[:member_name] = member.short_name
     new_member = Member.where(:id => member.id).first
     new_member.sign_in_count   += 1
     new_member.last_sign_in_at = Time.now

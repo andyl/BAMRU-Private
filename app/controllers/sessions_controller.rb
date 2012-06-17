@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
     member = Member.find_by_remember_me_token(cookies[:remember_me_token])
     unless member.nil?
       session[:member_id] = member.id
+      session[:member_name] = member.short_name
       ActiveSupport::Notifications.instrument("login.browser.cookie", {:member => member})
       redirect_to (session[:tgt_path] || root_path), :notice => "Welcome back #{member.first_name}"
     end
@@ -31,6 +32,7 @@ class SessionsController < ApplicationController
   def destroy
     ActiveSupport::Notifications.instrument("logout.browser", {:member => current_member})
     session[:member_id] = nil
+    session[:member_name] = nil
     cookies[:remember_me_token] = nil
     redirect_to root_path, :notice => "Logged out!"
   end
