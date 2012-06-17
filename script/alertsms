@@ -15,7 +15,7 @@ body    = ARGV[1]
 
 mail = Mail.new do
   from    GMAIL_USER
-  to      'andy@r210.com'
+  to      '6508230836@txt.att.net'
   subject "[BAMRUNET] #{subject}"
   body    body
 end
