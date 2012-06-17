@@ -27,6 +27,11 @@ Zn::Application.configure do
 
   # For email testing
   config.action_mailer.delivery_method = :letter_opener
+
+  # Exception Notification
+  config.middleware.use ExceptionNotifier,
+    sender_address: GMAIL_USER,
+    exception_recipients: ALERT_EMAILS.split(' ')
   
 end
 
