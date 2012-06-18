@@ -83,9 +83,9 @@ class QcMail
   def self.import_mail_in_background
     4.times { puts '*' * 80 }
     system "echo pwd"
-    system "ls"
     if Rails.env.production? || Rails.env.staging?
-      timestamp = Time.now.strftime("%Y%M%D-%h%m%s")
+      timestamp = Time.now.strftime("%y%m%d-%H%M%S")
+      puts timestamp
       system "mkdir -p log/loadmail"
       system "nohup script/loadmail > log/loadmail/#{timestamp}.log &"
     end
