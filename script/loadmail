@@ -3,25 +3,21 @@
 # to be called after sending mail, like:
 # system "script/loadmail &"
 
-def load_mail
-  system "script/nq 'rake ops:email:import'"
-end
-
-def sleep_and_run(sleep_minutes)
-  seconds = sleep_minutes * 60
+def sleep_then_load_mail(sleep_minutes)
   puts "sleeping for #{sleep_minutes} minutes..." ; STDOUT.flush
+  seconds = sleep_minutes * 60
   sleep seconds
-  load_mail
+  system "script/nq 'rake ops:email:import'"
   STDOUT.flush
 end
 
-puts "STARTING LOADMAIL AT #{Time.now.to_s}" ; STDOUT.flush
+puts "STARTING LOADMAIL AT #{Time.now.to_s}"
+puts "CURRENT PROCESS IS #{Process.pid}" ; STDOUT.flush
 
-2.times { sleep_and_run 3 }
+2.times { sleep_then_load_mail 3 }
 
-4.times { sleep_and_run 5 }
+4.times { sleep_then_load_mail 5 }
 
-4.times { sleep_and_run 10 }
+4.times { sleep_then_load_mail 10 }
 
-puts "DONE." ; STDOUT.flush
-
+puts "DONE at #{Time.now.to_s}" ; STDOUT.flush
