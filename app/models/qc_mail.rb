@@ -82,7 +82,7 @@ class QcMail
     if Rails.env.production? || Rails.env.staging?
       timestamp = Time.now.strftime("%Y%M%D-%h%m%s")
       system "mkdir -p log/loadmail"
-      system "script/loadmail > log/loadmail/#{timestamp}.log &"
+      system "nohup script/loadmail > log/loadmail/#{timestamp}.log &"
     end
   end
 
