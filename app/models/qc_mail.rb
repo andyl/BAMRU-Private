@@ -73,19 +73,14 @@ class QcMail
     duration = (Time.now - start).round
     message  = "finish #{Time.now.strftime('%H:%M:%S')} (#{duration} sec)"
     ActiveSupport::Notifications.instrument("page.send", {:text => message })
-    4.times { puts '-' * 80 }
-    puts "Count is #{count}"
     import_mail_in_background if count > 0
   end
 
   private
 
   def self.import_mail_in_background
-    4.times { puts '*' * 80 }
-    system "echo pwd"
     if Rails.env.production? || Rails.env.staging?
       timestamp = Time.now.strftime("%y%m%d-%H%M%S")
-      puts timestamp
       system "mkdir -p log/loadmail"
       system "nohup script/loadmail > log/loadmail/#{timestamp}.log &"
     end

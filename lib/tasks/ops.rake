@@ -29,6 +29,7 @@ namespace :ops do
     system "mv #{nq_log} #{nq_log}.backup"
     system "mv #{production_log} #{production_log}.backup"
     system "mv #{production_log} #{production_log}.backup"
+    system "rm -f #{logdir}/loadmail/*"
     system "echo 'Log File Reset (#{date})' > #{nq_log}"
     system "echo 'Log File Reset (#{date})' > #{production_log}"
     system "touch #{Rails.root.to_s}/tmp/restart.txt"

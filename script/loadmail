@@ -16,8 +16,12 @@ puts "CURRENT PROCESS IS #{Process.pid}" ; STDOUT.flush
 
 2.times { sleep_then_load_mail 3 }
 
-4.times { sleep_then_load_mail 5 }
+2.times { sleep_then_load_mail 5 }
 
-4.times { sleep_then_load_mail 10 }
+2.times { sleep_then_load_mail 7 }
+
+2.times { sleep_then_load_mail 10 }
+
+2.times { sleep_then_load_mail 15 }
 
 puts "DONE at #{Time.now.to_s}" ; STDOUT.flush
