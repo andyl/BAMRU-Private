@@ -12,9 +12,10 @@ class Notifier < ActionMailer::Base
   def test(opts = {})
     address = opts[:author_email] ? 'test@what.com' : opts[:author_email]
     mail(
-            :to => address,
-            :from => "#{GMAIL_USER}@gmail.com",
-            :subject => "Test @ #{Time.now}"
+            :to       => address,
+            :from     => "#{GMAIL_USER}@gmail.com",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "Test @ #{Time.now}"
     )
   end
 
@@ -31,9 +32,10 @@ class Notifier < ActionMailer::Base
     @member.reset_forgot_password_token
     @expire       = @member.forgot_password_expires_at.strftime("%H:%M")
     mail(
-            :to      => @address,
-            :from    => "#{GMAIL_USER}@gmail.com",
-            :subject => "BAMRU.net Password Reset (#{opts['label']})"
+            :to       => @address,
+            :from     => "BAMRU <#{GMAIL_USER}@gmail.com>",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "BAMRU.net Password Reset (#{opts['label']})"
     )
   end
 
@@ -45,9 +47,10 @@ class Notifier < ActionMailer::Base
     @short_label  = @opts['label'].split('_').last
     @platform_url = platform_url
     mail(
-            :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-            :subject => "BAMRU Page [#{@opts['label']}]"
+            :to       => @opts['recipient_email'],
+            :from     => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "BAMRU Page [#{@opts['label']}]"
     )
   end
 
@@ -55,9 +58,10 @@ class Notifier < ActionMailer::Base
     Time.zone = "Pacific Time (US & Canada)"
     @opts = Notifier.query_opts(opts)
     mail(
-            :to          => @opts['recipient_email'],
-            :from        => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-            :subject     => "BAMRU [#{@opts['label']}]"
+            :to        => @opts['recipient_email'],
+            :from      => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+            :reply_to  => "#{GMAIL_USER}@gmail.com",
+            :subject   => "BAMRU [#{@opts['label']}]"
     )
   end
 
@@ -69,9 +73,10 @@ class Notifier < ActionMailer::Base
     @short_label  = @opts['label'].split('_').last
     @platform_url = platform_url
     mail(
-            :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-            :subject => "BAMRU DO shift - Reminder [#{@opts['label']}]"
+            :to       => @opts['recipient_email'],
+            :from     => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "BAMRU DO shift - Reminder [#{@opts['label']}]"
     )
   end
 
@@ -83,9 +88,10 @@ class Notifier < ActionMailer::Base
     @short_label  = @opts['label'].split('_').last
     @platform_url = platform_url
     mail(
-            :to      => @opts['recipient_email'],
-            :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-            :subject => "BAMRU DO shift - starting! [#{@opts['label']}]"
+            :to       => @opts['recipient_email'],
+            :from     => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "BAMRU DO shift - starting! [#{@opts['label']}]"
     )
   end
 
@@ -93,9 +99,10 @@ class Notifier < ActionMailer::Base
     Time.zone = "Pacific Time (US & Canada)"
     @opts = Notifier.query_opts(opts)
     mail(
-            :to          => @opts['recipient_email'],
-            :from        => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-            :subject     => "BAMRU [#{@opts['label']}]"
+            :to       => @opts['recipient_email'],
+            :from     => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+            :reply_to => "#{GMAIL_USER}@gmail.com",
+            :subject  => "BAMRU [#{@opts['label']}]"
     )
   end
 
@@ -107,9 +114,10 @@ class Notifier < ActionMailer::Base
       @short_label  = @opts['label'].split('_').last
       @platform_url = platform_url
       mail(
-              :to      => @opts['recipient_email'],
-              :from    => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
-              :subject => "BAMRU Cert Notice [#{@opts['label']}]"
+              :to       => @opts['recipient_email'],
+              :from     => "BAMRU (#{@opts['author_short_name']}) <#{GMAIL_USER}@gmail.com>",
+              :reply_to => "#{GMAIL_USER}@gmail.com",
+              :subject  => "BAMRU Cert Notice [#{@opts['label']}]"
       )
     end
 

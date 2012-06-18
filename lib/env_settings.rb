@@ -1,4 +1,3 @@
-
 env_settings = <<-EOF
 APP_NAME
 GOOGLE_CONSUMER_KEY

@@ -14,15 +14,13 @@ subject = ARGV[0]
 body    = ARGV[1]
 
 mail = Mail.new do
-  from     GMAIL_USER
-  # reply_to GMAIL_USER
+  from     "BAMRU <#{GMAIL_USER}@gmail.com>"
+  reply_to "#{GMAIL_USER}@gmail.com"
   to       'andy@r210.com'
-  subject  "BAMRUNET #{subject}"
+  subject  "[BAMRUNET] #{subject}"
   body     body
 end
 
-require 'ruby-debug'
-debugger
 mail.delivery_method(:smtp, SMTP_SETTINGS)
 mail.deliver
 
