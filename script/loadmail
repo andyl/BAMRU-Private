@@ -7,15 +7,21 @@ def load_mail
   system "script/nq 'rake ops:email:import'"
 end
 
-def sleep_for(minutes)
-  seconds = minutes * 60
+def sleep_and_run(sleep_minutes)
+  seconds = sleep_minutes * 60
+  puts "sleeping for #{sleep_minutes} minutes..." ; STDOUT.flush
   sleep seconds
+  load_mail
+  STDOUT.flush
 end
 
-2.times { sleep_for 3 ; load_mail }
+puts "STARTING LOADMAIL AT #{Time.now.to_s}" ; STDOUT.flush
 
-4.times { sleep_for 5 ; load_mail }
+2.times { sleep_and_run 3 }
 
-4.times { sleep_for 10 ; load_mail }
+4.times { sleep_and_run 5 }
 
+4.times { sleep_and_run 10 }
+
+puts "DONE." ; STDOUT.flush
 
