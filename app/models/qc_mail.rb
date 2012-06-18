@@ -80,7 +80,9 @@ class QcMail
 
   def self.import_mail_in_background
     if Rails.env.production? || Rails.env.staging?
-      system "script/loadmail > log/loadmail.log &"
+      timestamp = Time.now.strftime("%Y%M%D-%h%m%s")
+      system "mkdir -p log/loadmail"
+      system "script/loadmail > log/loadmail/#{timestamp}.log &"
     end
   end
 
