@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# to be called after sending mail, like:
+# system "script/loadmail &"
+
+def load_mail
+  system "script/nq 'rake ops:email:import'"
+end
+
+def sleep_for(minutes)
+  seconds = minutes * 60
+  sleep seconds
+end
+
+2.times { sleep_for 3 ; load_mail }
+
+4.times { sleep_for 5 ; load_mail }
+
+4.times { sleep_for 10 ; load_mail }
+
+
