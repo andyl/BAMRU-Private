@@ -1,5 +1,6 @@
 Zn::Application.routes.draw do
 
+  get "home/admin"
   get "home/index"
   get "home/test"
   get "home/tbd"
@@ -35,6 +36,7 @@ Zn::Application.routes.draw do
   resources  :sessions
   resources  :members
   resources  :messages
+  resources  :inbound_mails
   resources  :unit_photos
   resources  :unit_certs
   resources  :unit_avail_ops
