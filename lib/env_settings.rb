@@ -9,7 +9,6 @@ PRODUCTION_GMAIL_PASS
 STAGING_GMAIL_USER
 STAGING_GMAIL_PASS
 STAGING_VALID_EMAILS
-STAGING_DELIVERY_ADDRESS
 SYSTEM_USER
 SYSTEM_PASS
 POSTGRES_PASS
@@ -34,12 +33,12 @@ else
 end
 
 SMTP_SETTINGS = {
-  :address              => SES_SMTP_SRVR,
-  :user_name            => SES_SMTP_USER,
-  :password             => SES_SMTP_PASS,
-  #:address              => "smtp.gmail.com",
-  #:user_name            => GMAIL_USER,
-  #:password             => GMAIL_PASS,
+  #:address              => SES_SMTP_SRVR,
+  #:user_name            => SES_SMTP_USER,
+  #:password             => SES_SMTP_PASS,
+  :address              => "smtp.gmail.com",
+  :user_name            => GMAIL_USER,
+  :password             => GMAIL_PASS,
   :domain               => "gmail.com",
   :port                 => 587,
   :authentication       => "plain",

@@ -1,0 +1,46 @@
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      Inbound Mails
+    </div>
+
+    <div id=x_single_col>
+
+      <table id=myTable class="tablesorter">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>FROM</th>
+          <th>OUTBOUND</th>
+          <th>DISTRIBUTION</th>
+          <th>MESSAGE</th>
+          <th>SENT_AT</th>
+          <th>RSVP</th>
+          <th>LABEL</th>
+          <th>ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @inbound_mails.each do |m| %>
+          <tr>
+            <td><%= m.id %></td>
+            <td><%= link_to m.from, inbound_mail_path(m) %></td>
+            <td><%= m.outbound_mail_id %></td>
+            <td><%= raw distribution_link(m) %></td>
+            <td><%= raw message_link(m) %></td>
+            <td><%= m.send_time.strftime("%y-%m-%d") %></td>
+            <td><%= raw rsvp_answer(m) %></td>
+            <td><%= m.label %></td>
+            <td><%= raw delete_link(m) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div id=x_footer >
+      Inbound Mails
+    </div>
+
+  </div>
+</div>

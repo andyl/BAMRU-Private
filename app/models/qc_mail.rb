@@ -57,12 +57,12 @@ class QcMail
       when "staging"     then mail.deliver if valid_staging_address?(mail.to)
       when "production"  then mail.deliver
     end
-
   end
 
   def self.send_pending
     start = Time.now
     ActiveSupport::Notifications.instrument("page.send", {:text => "start #{Time.now.strftime("%H:%M:%S")}"})
+    count = pending_count
     OutboundMail.pending.each do |outbound_mail|
       yaml_file = render_mail(outbound_mail)
       send_mail(yaml_file)
@@ -73,9 +73,18 @@ class QcMail
     duration = (Time.now - start).round
     message  = "finish #{Time.now.strftime('%H:%M:%S')} (#{duration} sec)"
     ActiveSupport::Notifications.instrument("page.send", {:text => message })
+    import_mail_in_background if count > 0
   end
 
   private
+
+  def self.import_mail_in_background
+    if Rails.env.production? || Rails.env.staging?
+      timestamp = Time.now.strftime("%y%m%d-%H%M%S")
+      system "mkdir -p log/loadmail"
+      system "nohup script/loadmail > log/loadmail/#{timestamp}.log &"
+    end
+  end
 
   def self.valid_staging_address?(address)
     STAGING_VALID_EMAILS.gsub("'","").split(' ').include? address.first

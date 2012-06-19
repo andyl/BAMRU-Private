@@ -94,12 +94,9 @@ using the `letter_opener` gem.  No live emails are sent.
 When running in staging, we send live emails, with the following
 restrictions/modifications:
 - Staging uses a different gmail account than production.
-- In staging, we intercept all outbound mails, and route them to the address
-  specified in the `STAGING_DELIVERY_ADDRESS` environment variable.  This is to
-  prevent sending accidental unit-wide spam during testing.
 - In staging, emails are only sent for the addresses specified in the
-  `STAGING_VALID_EMAILS` environment variable.  This is to prevent flooding the
-  testers email inbox when sending a unit-wide mail.
+  `STAGING_VALID_EMAILS` environment variable.  This is to prevent
+  sending accidental unit-wide spam during testing.
 
 ### Monitoring and Alerting
 
