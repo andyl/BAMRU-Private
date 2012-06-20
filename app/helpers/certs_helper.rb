@@ -133,7 +133,7 @@ module CertsHelper
   def cert_opts(cert)
     vals = Cert.select(:description).
                 where(:typ => cert.typ).
-                where('description != ""').
+                where('description != NULL').
                 group(:description)
     vals.map {|item| [item.description, item.description]} + [['< add new >', '*']]
   end

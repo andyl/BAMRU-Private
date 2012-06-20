@@ -37,7 +37,7 @@ else
    GMAIL_PASS = STAGING_GMAIL_PASS
 end
 
-mailservice="mandrill"
+mailservice="gmail"
 
 mandrill_opts = [MANDRILL_SMTP_SRVR , MANDRILL_SMTP_USER , MANDRILL_SMTP_PASS]
 ses_opts      = [SES_SMTP_SRVR      , SES_SMTP_USER      , SES_SMTP_PASS]
