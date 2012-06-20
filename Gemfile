@@ -20,6 +20,8 @@ gem "net-ssh", "2.2.2"
 gem "queue_classic"
 gem "exception_notification"
 
+gem "twilio-ruby"
+
 gem "yaml_db"
 
 gem "pg"
