@@ -45,5 +45,3 @@ describe MessageDecorator do
 
 end
 
-
-

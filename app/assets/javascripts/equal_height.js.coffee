@@ -9,6 +9,7 @@ window.equalHeight = (c1, c2) ->
 
 window.setEqualHeight = ->
   equalHeight("#x_right_col",   "#x_left_col")
+  equalHeight("#ava_right_col", "#ava_left_col")
   equalHeight("#mem_right_col", "#mem_left_col")
 
 $(document).ready ->

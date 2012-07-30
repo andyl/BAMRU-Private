@@ -26,7 +26,7 @@
       </table>
     </div>
 
-    <div id=mem_left_col>
+    <div id=mem_left_col style='width: 70%;'>
 
       <%= @member.first_name %> has
       <%= pluralize(@member.avail_ops.count, " busy period") %>
@@ -58,7 +58,7 @@
       <% end %>
 
     </div>
-    <div id=mem_right_col style='margin:  auto;'>
+    <div id=mem_right_col style='width: 24%;'>
       <%= render 'calendar', :tgt => Time.now           %>
       <%= render 'calendar', :tgt => 1.month.from_now   %>
       <%= render 'calendar', :tgt => 2.months.from_now  %>

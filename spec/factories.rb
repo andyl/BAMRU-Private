@@ -7,13 +7,16 @@ FactoryGirl.define do
     ignore do add_count 3 end
     
     trait :with_phone do
-      after_create do |member, evaluator|
+      after(:create) do |member, evaluator|
         FactoryGirl.create_list(:phone, evaluator.add_count, :member => member)
+      end
+      after(:stub) do |member, evaluator|
+        FactoryGirl.build_stubbed_list(:phone, evaluator.add_count, :member => member)
       end
     end
     
     trait :with_email do
-      after_create do |member, evaluator|
+      after(:create) do |member, evaluator|
         FactoryGirl.create_list(:email, evaluator.add_count, :member => member)
       end
     end

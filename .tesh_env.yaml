@@ -1,0 +1,14 @@
+---
+:tst_include_pattern:
+- spec/**/*_spec.rb
+:tst_exclude_pattern:
+- spec/_*/**/*_spec.rb
+:app_include_pattern:
+- app/**/*.rb
+- app/**/*.erb
+- lib/**/*.rb
+:app_exclude_pattern: []
+:test_files: 
+:test_line: 
+:command_args: 
+:command: bundle exec rspec -O spec/spec.opts

@@ -2,8 +2,6 @@
   Styles for Members Controller
 */
 
-
-
 $wide_body_width:   905px;
 $body_width:        644px;
 $narrow_body_width: 644px;
@@ -63,7 +61,6 @@ $col_height: 225px;
 #mem_left_col {
   @include col_style;
   float: left;
-  /*width: $left_width - 20;*/
   width: 64%;
 }
 
@@ -71,7 +68,6 @@ $col_height: 225px;
   @include col_style;
   float: right;
   border-left-style: none;
-  /*width: $right_width;*/
   width: 30%;
   }
 
