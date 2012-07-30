@@ -16,7 +16,7 @@ describe Journal do
       @obj.distribution_id.should == 1
       @obj.member_id.should == 1
     end
-    it "works with objects" do
+    it "works with objects", slow: true do
       obj1 = FactoryGirl.create(:distribution)
       obj2 = FactoryGirl.create(:member)
       @obj = Journal.add_entry(obj1,obj2,"second")

@@ -18,19 +18,21 @@ describe Message do
       @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
       @rsvp = ""
     end
-    it "generates a valid message object" do
+    it "generates a valid message object", slow: true do
       msg = Message.generate(@mesg, @dist, @rsvp)
       msg.should be_a Message
       msg.should be_valid
       msg.rsvp.should be_false
-      msg.author.phones.length.should == 3
-      msg.author.emails.length.should == 3
-      msg.distributions.length.should == 2
-      msg.distributions.first.email.should == true
-      msg.distributions.first.phone.should == true
-      msg.distributions.first.outbound_mails.length.should == 6
+      author = msg.author
+      author.phones.length.should == 3
+      author.emails.length.should == 3
+      dists = msg.distributions.all
+      dists.length.should == 2
+      dists.first.email.should == true
+      dists.first.phone.should == true
+      dists.first.outbound_mails.length.should == 6
     end
-    it "generates a valid message object with rsvp" do
+    it "generates a valid message object with rsvp", slow: true do
       rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
       msg = Message.generate(@mesg, @dist, rsvp)
       msg.should be_a Message
@@ -59,7 +61,7 @@ describe Message do
         end
       end
       context "object deletion" do
-        it "handles deleting a parent" do
+        it "handles deleting a parent", slow: true do
           @msg1.should_not be_nil
           @msg2.parent.should == @msg1
           @msg3.root.should == @msg1
@@ -80,7 +82,7 @@ describe Message do
       #it "can't have a linked RSVP if the parent has no RSVP"
     end
 
-    context "using linked RSVPs" do
+    context "using linked RSVPs", slow: true do
       before(:each) do
         @mem1 = FactoryGirl.create(:member_with_phone_and_email)
         @mem2 = FactoryGirl.create(:member_with_phone_and_email)

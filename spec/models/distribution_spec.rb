@@ -29,7 +29,7 @@ describe Distribution do
     end
   end
 
-  context "when there are linked RSVPs" do
+  context "when there are linked RSVPs", slow: true do
     before(:each) do
       @mem1 = FactoryGirl.create(:member_with_phone_and_email)
       @mem2 = FactoryGirl.create(:member_with_phone_and_email)

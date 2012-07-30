@@ -12,9 +12,8 @@ Spork.prefork do
   # if this is commented out, Capybara will use the default selenium driver
   # Sep 23 2011 webkit 0.6.0 isn't compatible with spork - generates errors
   # Oct 26 2011 webkit 0.7.2 doesn't run
-  # Mar 20 2012 capybara-webkit 0.11.0 works on command line
-  #                                    but fails within rubyMine
-  #Capybara.javascript_driver = :webkit
+  # Mar 20 2012 capybara-webkit 0.11.0 works on command line but fails within rubyMine
+  Capybara.javascript_driver = :webkit
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 

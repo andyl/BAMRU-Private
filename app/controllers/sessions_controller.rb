@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     member = Member.find_by_user_name(user_name)
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"
-        cookies[:remember_me_token] = {:value => member.remember_me_token, :expires => Time.now + 360000}
+        cookies[:remember_me_token] = {:value => member.remember_me_token, :expires => Time.now + 6.weeks}
       else
         cookies[:remember_me_token] = nil
       end

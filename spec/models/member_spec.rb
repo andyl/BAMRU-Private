@@ -41,14 +41,14 @@ describe Member do
 
  describe "Object Creation" do
    it "works with a user_name attribute" do
-     @obj = Member.create!(:user_name => "xxx_yyy")
+     @obj = Member.new(:user_name => "xxx_yyy")
      @obj.should be_valid
      @obj.first_name.should == "Xxx"
      @obj.last_name.should == "Yyy"
      @obj.user_name.should == "xxx_yyy"
    end
    it "works with user name attributes" do
-     @obj = Member.create!(:first_name => "Xxx", :last_name => "Yyy")
+     @obj = Member.new(:first_name => "Xxx", :last_name => "Yyy")
      @obj.should be_valid
      @obj.first_name.should == "Xxx"
      @obj.last_name.should == "Yyy"
@@ -58,7 +58,7 @@ describe Member do
 
  describe "Object Updating" do
    it "updates properly using #save" do
-     @obj = Member.create!(:user_name => "test_user")
+     @obj = Member.new(:user_name => "test_user")
      @obj.ham = "asdf"
      @obj.save
      @obj.should be_valid
@@ -94,12 +94,12 @@ describe Member do
   describe "#full_name" do
     describe "reader" do
       it "returns the correct string" do
-        @obj = Member.create!(:user_name => "joe_smith", :password => "asdfasdf")
+        @obj = Member.create(:user_name => "joe_smith", :password => "asdfasdf")
         @obj.full_name.should == "Joe Smith"
       end
     end
     describe "writer" do
-      before(:each) { @obj = Member.create(:user_name => "abc_def") }
+      before(:each) { @obj = Member.new(:user_name => "abc_def") }
       it "handle valid input" do
         @obj.update_attributes :full_name => "Joe Smith"
         @obj.should be_valid
@@ -117,14 +117,17 @@ describe Member do
         @obj.user_name.should  == "joe_smith"
       end
       it "returns an invalid object with empty input" do
+        @obj.save
         @obj.update_attributes :full_name => ""
         @obj.should_not be_valid
       end
       it "returns an invalid object with incomplete input" do
+        @obj.save
         @obj.update_attributes :full_name => "joe"
         @obj.should_not be_valid
       end
       it "works with multi word input" do
+        @obj.save
         @obj.update_attributes :full_name => "dep. joe smith"
         @obj.should be_valid
         @obj.title.should == "Dep."
@@ -133,6 +136,7 @@ describe Member do
         @obj.user_name.should == "joe_smith"
       end
       it "works with multi word last names" do
+        @obj.save
         @obj.update_attributes :full_name => "sarah roberts smith"
         @obj.should be_valid
         @obj.title.should == ""
@@ -141,6 +145,7 @@ describe Member do
         @obj.user_name.should == "sarah_roberts_smith"
       end
       it "works with dashes" do
+        @obj.save
         @obj.update_attributes :full_name => "Kito Smith-Jones"
         @obj.should be_valid
         @obj.first_name.should == "Kito"
@@ -148,6 +153,7 @@ describe Member do
         @obj.user_name.should == "kito_smith-jones"
       end
       it "works with other punctuation" do
+        @obj.save
         @obj.update_attributes :full_name => "Kito Smith#jones"
         @obj.should_not be_valid
         @obj.first_name.should == "Kito"
@@ -155,6 +161,7 @@ describe Member do
         @obj.user_name.should == "kito_smith#jones"
       end
       it "works with numbers" do
+        @obj.save
         @obj.update_attributes :full_name => "Kito Smith6jones"
         @obj.should_not be_valid
         @obj.first_name.should == "Kito"

@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: http://github.com/andyl/aalf.git
-  revision: 4708998e1ca2c34c233f03879bb237905ec4dd06
+  revision: 6aa8864ea3514e9a063a86cc3fb14f6b371a72ed
   specs:
     aalf (0.0.1)
       activerecord
@@ -100,13 +100,13 @@ GEM
     daemon_controller (1.0.0)
     daemons (1.1.8)
     database_cleaner (0.7.2)
-    debugger (1.1.3)
+    debugger (1.2.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.2)
-    debugger-linecache (1.1.1)
+      debugger-ruby_core_source (~> 1.1.3)
+    debugger-linecache (1.1.2)
       debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.2)
+    debugger-ruby_core_source (1.1.3)
     diff-lcs (1.1.3)
     draper (0.12.3)
       actionpack (~> 3.1.3)
@@ -269,6 +269,7 @@ GEM
     rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.10.1)
+    rspec-on-rails-matchers (1.0.0)
     rspec-rails (2.10.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -412,10 +413,10 @@ DEPENDENCIES
   rake
   rb-inotify
   rmagick
+  rspec-on-rails-matchers
   rspec-rails
   ruby-gmail
   sass
-  selenium-webdriver
   shoulda-matchers
   simple_form
   simplecov
