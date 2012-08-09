@@ -51,8 +51,8 @@ Zn::Application.configure do
   config.active_support.deprecation = :notify
 
   # Exception Notification
-  config.middleware.use ExceptionNotifier,
-    sender_address: GMAIL_USER,
-    exception_recipients: ALERT_EMAILS.split(' ')
+  #config.middleware.use ExceptionNotifier,
+  #  sender_address: GMAIL_USER,
+  #  exception_recipients: ALERT_EMAILS.split(' ')
 
 end
