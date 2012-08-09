@@ -77,7 +77,7 @@
         <th>RSVP</th>
         <th align=center>Detail</th>
         </thead>
-        <% @message.distributions.each do |d| %>
+        <% @dists.each do |d| %>
           <tr>
             <td><%= link_to(d.member.full_name, member_path(d.member)) %><%= raw message_oot_helper(d) %><%= raw message_bounce_helper(d) %></td>
             <td align=center><%= d.updated_at.strftime("%m-%d %H:%M") %></td>

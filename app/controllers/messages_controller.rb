@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   def index
     file = "tmp/mail_sync_time.txt"
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
-    @messages = Message.order('created_at DESC').limit(40).all
+    @messages = Message.order('created_at DESC').limit(40).includes([:author, :rsvp]).all
   end
 
   def show
@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     @sync_time = File.exist?(file) ? File.read(file) : "NA"
     @message = Message.where(:id => params["id"]).first
     @msg = @message
-    @dists = @msg.distributions
+    @dists = @msg.distributions.includes([:member, :message])
     @mydist = @dists.where(:member_id => current_member.id).first
     @mydist.mark_as_read(current_member, current_member, "Read via web") if @mydist
   end
