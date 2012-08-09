@@ -1,5 +1,9 @@
 --colour
---format progress
 --debug
 --fail-fast
 --drb
+--profile
+-I /home/aleak/lr/BAMRU-Private/spec
+--require rm_auto_display_formatter
+--format progress
+--format RmAutoDisplayFormatter

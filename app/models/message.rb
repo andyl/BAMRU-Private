@@ -66,7 +66,8 @@ class Message < ActiveRecord::Base
   end
 
   def create_all_outbound_mails
-    self.distributions.each do |dist|
+    self
+    .distributions.each do |dist|
       member = dist.member
       if dist.phone?
         member.phones.pagable.each do |phone|
@@ -85,7 +86,6 @@ class Message < ActiveRecord::Base
 
   def self.generate(mesg, dist, rsvp = {})
     mesg[:distributions_attributes] = Message.distributions_params(dist)
-    #mesg[:parent_id] = mesg[:parent_id].to_i if mesg[:parent_id]
     mesg[:format] = 'page'
     mesg_obj = Message.create(mesg)
     if mesg_obj.parent && mesg_obj.linked_rsvp_id

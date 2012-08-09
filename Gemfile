@@ -7,8 +7,8 @@ source "http://rubygems.org"
 gem "rails",          "3.1.3"
 #gem "rails",          "3.2.2"
 
-gem "rake"
 gem "sqlite3"
+gem "rake"
 gem "faye",          "0.6.4"
 gem "pngqr"
 gem "em-http-request"
@@ -39,15 +39,15 @@ gem "ghost"
 gem "valkyrie"
 
 gem "draper"
-
 gem "rack-offline"
-
 gem "passenger"
+
+gem "aalf",      :git => "http://github.com/andyl/aalf.git"
+gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
 gem "jquery-rails"
 gem "paperclip",    "2.7.0"
 gem "parslet"
-gem "aalf",         :git => "http://github.com/andyl/aalf.git"
 gem "dynamic_form"
 gem "cancan"
 gem "mail"
@@ -57,7 +57,6 @@ gem "oauth"
 gem "ruby-gmail", :require => "gmail"
 gem "mime"
 gem "bcrypt-ruby", "~> 3.0.0"
-gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
 # Asset template engines
 gem "json"
@@ -87,7 +86,8 @@ group :development, :test do
   gem "simplecov"
   gem "rspec-rails"
   gem "shoulda-matchers"
-  gem "selenium-webdriver"
+  gem "rspec-on-rails-matchers"
+  #gem "selenium-webdriver"
   gem "capybara-webkit"
   gem "capybara"
   gem "launchy"
@@ -99,8 +99,19 @@ group :development, :test do
   gem "virtualbox"
   gem "vagrant-snap"
 
-  gem "debugger"
+  gem "debugger", :require => "ruby-debug"
+
+  # to get the debugger working on RubyMine
+  # run this on the command line:
+
+  # > curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
+  # > gem install linecache19-0.5.13.gem
+  # > gem install --pre ruby-debug-base19x
+
+  # gem "ruby-debug-base19x", "~> 0.11.30.pre10"
 
   gem "letter_opener"
+
+  gem "bullet"
 
 end
