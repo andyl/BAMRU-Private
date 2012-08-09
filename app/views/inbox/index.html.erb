@@ -59,7 +59,7 @@
             <td align=center>
               <%= raw yes_no_read dist.read %>
             </td>
-            <td align=center><%= raw rsvp_display_link(dist) %></td>
+            <td align=center><%= raw rsvp_display_answer(dist) %></td>
             <td align=center>
               <%= link_to("history", history_path(dist)) %> |
               <%= link_to("msg. ##{dist.message.id}", message_path(dist.message)) %>
