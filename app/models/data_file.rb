@@ -3,7 +3,7 @@ require 'time'
 
 class DataFile < ActiveRecord::Base
 
-  TYPES = /^xls|eps|doc|png|jpg|gif|zip|60r|sin|pdf|odf|txt|ppt|ogg|vcf$/
+  TYPES = /^xls|eps|doc|png|jpg|gif|zip|60r|sin|pdf|odf|txt|ppt|ogg|vcf|htm|html$/
 
   # ----- Attributes -----
   attr_accessible :data, :download_count
