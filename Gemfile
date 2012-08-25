@@ -1,11 +1,6 @@
 source "http://rubygems.org"
 
-# platforms :jruby do
-#   gem "jruby-poi", '0.8.2'
-# end
-
 gem "rails",          "3.1.3"
-#gem "rails",          "3.2.2"
 
 gem "sqlite3"
 gem "rake"
