@@ -32,8 +32,12 @@
         <b>Ham:</b> <%= @member.ham %><br/>
       <% end %>
       <% unless @member.v9.blank? %>
-        <b>V9:</b> <%= @member.v9 %><p/>
+        <b>V9:</b> <%= @member.v9 %><br/>
       <% end %>
+      <% unless @member.dl.blank? %>
+        <b>DL:</b> <%= @member.dl %><br/>
+      <% end %>
+      <p></p>
     </div>
     <div id=mem_right_col style="text-align: center;">
       <% unless @member.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>

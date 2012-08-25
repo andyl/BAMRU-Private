@@ -9,7 +9,7 @@ class Member < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :remember_me
   attr_accessible :title, :first_name, :last_name, :user_name, :full_name
-  attr_accessible :typ, :v9, :ham, :base_role
+  attr_accessible :typ, :v9, :ham, :base_role, :dl
   attr_accessible :phones_attributes, :addresses_attributes
   attr_accessible :roles_attributes,  :emails_attributes
   attr_accessible :photos_attributes, :certs_attributes, :docs_attributes

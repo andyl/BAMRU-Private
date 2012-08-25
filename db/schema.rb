@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603215230) do
+ActiveRecord::Schema.define(:version => 20120825154000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20120603215230) do
     t.datetime "updated_at"
     t.boolean  "current_do",                 :default => false
     t.datetime "last_sign_in_at"
+    t.string   "dl"
   end
 
   add_index "members", ["forgot_password_token"], :name => "index_members_on_forgot_password_token", :unique => true
