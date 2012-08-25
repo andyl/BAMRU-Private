@@ -10,6 +10,8 @@ module ReportsHelper
       when "organization"   then "BAMRU"
       when "roles"          then mem.full_roles
       when "full_name"      then mem.full_name
+      when "first_name"     then mem.first_name
+      when "last_name"      then mem.last_name
       when "mobile_phone"   then mem.phone("Mobile").try(:number)
       when "home_phone"     then mem.phone("Gome").try(:number)
       when "work_phone"     then mem.phone("Work").try(:number)

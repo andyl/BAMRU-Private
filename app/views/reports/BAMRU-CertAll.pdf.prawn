@@ -1,15 +1,15 @@
 def typ_label(typ)
   case typ
-    when "medical"    : "Medical"
-    when "cpr"        : "CPR"
-    when "ham"        : "Ham"
-    when "tracking"   : "Tracking"
-    when "avalanche"  : "Avalanche"
-    when "rigging"    : "Rigging"
-    when "ics"        : "ICS"
-    when "overhead"   : "Search Mgmt."
-    when "driver"     : "SO Driver"
-    when "background" : "SO Background"
+    when "medical"    then "Medical"
+    when "cpr"        then "CPR"
+    when "ham"        then "Ham"
+    when "tracking"   then "Tracking"
+    when "avalanche"  then "Avalanche"
+    when "rigging"    then "Rigging"
+    when "ics"        then "ICS"
+    when "overhead"   then "Search Mgmt."
+    when "driver"     then "SO Driver"
+    when "background" then "SO Background"
     else "Unknown"
   end
 end

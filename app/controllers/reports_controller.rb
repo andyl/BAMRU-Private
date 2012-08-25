@@ -6,14 +6,15 @@ class ReportsController < ApplicationController
   def report_list
     [
       #["Callout", "Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC [runs slow]"],
-      ["Roster",  "Map List",         'BAMRU-roster.html',         "HTML Roster with Gmap links"],
-      ["Roster",  "CSV Report",       'BAMRU-roster.csv',          "For importing into Excel"],
-      ["Roster",  "VCF Report",       'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
-      ["Roster",  "BAMRU Full",       'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
-      ["Misc",    "BAMRU Names",      'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
-      ["Paging",  "Response Times",   'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
-      #["Certs",   "Cert Full Export", 'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
-      ["Certs",   "Cert Expiration",  'BAMRU-CertExpiration.pdf',  "Expired certifications"]
+      ["Roster",  "Map List",          'BAMRU-roster.html',         "HTML Roster with Gmap links"],
+      ["Roster",  "CSV Report",        'BAMRU-roster.csv',          "For importing into Excel"],
+      ["Roster",  "CSV Report (SMSO)", 'BAMRU-roster-smso.csv',     "CSV formatted for SMSO"],
+      ["Roster",  "VCF Report",        'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
+      ["Roster",  "BAMRU Full",        'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
+      ["Misc",    "BAMRU Names",       'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
+      ["Paging",  "Response Times",    'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
+      ["Certs",   "Cert Full Export",  'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
+      ["Certs",   "Cert Expiration",   'BAMRU-CertExpiration.pdf',  "Expired certifications"]
     ]
   end
   
