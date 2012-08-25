@@ -27,16 +27,16 @@
     </div>
 
     <div id=x_single_col>
-      <%= raw cert_category("Medical Certs",       @member, :medical)    %>
-      <%= raw cert_category("CPR Certs",           @member, :cpr)        %>
-      <%= raw cert_category("Ham Certs",           @member, :ham)        %>
-      <%= raw cert_category("Tracking Certs",      @member, :tracking)   %>
-      <%= raw cert_category("Avalanche Certs",     @member, :avalanche)  %>
-      <%= raw cert_category("Rigging Certs",       @member, :rigging)    %>
-      <%= raw cert_category("ICS Certs",           @member, :ics)        %>
-      <%= raw cert_category("Search Mgmt. Certs",  @member, :overhead)   %>
-      <%= raw cert_category("SO Driver Certs",     @member, :driver)     %>
-      <%= raw cert_category("SO Background Certs", @member, :background) %>
+      <%= raw std_cert_category("Medical Certs",       @member, :medical)    %>
+      <%= raw std_cert_category("CPR Certs",           @member, :cpr)        %>
+      <%= raw std_cert_category("Ham Certs",           @member, :ham)        %>
+      <%= raw std_cert_category("Tracking Certs",      @member, :tracking)   %>
+      <%= raw std_cert_category("Avalanche Certs",     @member, :avalanche)  %>
+      <%= raw std_cert_category("Rigging Certs",       @member, :rigging)    %>
+      <%= raw std_cert_category("ICS Certs",           @member, :ics)        %>
+      <%= raw std_cert_category("Search Mgmt. Certs",  @member, :overhead)   %>
+      <%= raw std_cert_category("SO Driver Certs",     @member, :driver)     %>
+      <%= raw adm_cert_category("SO Background Certs", @member, :background) %>
 
     </div>
     <div id=x_footer style='font-size: 8pt;'>
