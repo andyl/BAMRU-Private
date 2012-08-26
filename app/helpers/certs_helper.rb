@@ -1,4 +1,9 @@
 module CertsHelper
+  
+  def can_update?(mem)
+    mem == @context.current_member || @context.current_member.admin?
+  end
+
   def cert_image_label(cert)
     cert.cert_file_name.blank? ? "Cert File" : "New Cert File"
   end
