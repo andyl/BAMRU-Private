@@ -1,7 +1,7 @@
 module CertsHelper
-  
+
   def can_update?(mem)
-    mem == @context.current_member || @context.current_member.admin?
+    mem == current_member || current_member.admin?
   end
 
   def cert_image_label(cert)
