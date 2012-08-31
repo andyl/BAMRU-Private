@@ -46,6 +46,7 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
   resources  :unauth_rsvps
+  resources  :events
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
