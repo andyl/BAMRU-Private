@@ -160,9 +160,7 @@ Zn::Application.routes.draw do
   root :to => 'home#index'
 
   if %w(development test).include? Rails.env
-    mount Jasminerice::Engine => "/jasmine"
-    mount Jasminerice::Engine => "/jas2"
-    mount Jasminerice::Engine => "/jas3"
+    mount Jasminerice::Engine => "/jasmine/:environment"
   end
 
   manifest_mobile3 = Rack::Offline.configure do
