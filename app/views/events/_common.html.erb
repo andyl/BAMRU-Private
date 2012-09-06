@@ -1,0 +1,26 @@
+<style>
+  .cksel {
+    margin-left: 1px;
+    vertical-align: -2px;
+  }
+  .ckpost {
+    margin-right: 14px;
+  }
+  .date_align {
+      margin-right: 16px;
+  }
+</style>
+
+<div id="x_single_col">
+
+  <div class="pane ui-layout-west"><%= render :partial => 'table' %>
+
+  </div>
+
+  <div class="pane ui-layout-center">
+
+    <%= render :partial => @action %>
+
+  </div>
+
+</div>

@@ -306,12 +306,16 @@ describe Member do
       @att1 = JSON.parse(@mem1, :symbolize_names => true)
     end
     it "creates a suite of related objects using nested attributes" do
+      member_count = Member.count
+      phone_count  = Phone.count
+      email_count  = Email.count
+      addrs_count  = Address.count
       @obj = Member.create!(@att1)
       @obj.should be_valid
-      Member.count.should  == 1
-      Phone.count.should   == 1
-      Email.count.should   == 1
-      Address.count.should == 1
+      Member.count.should  == 1 + member_count
+      Phone.count.should   == 1 + phone_count
+      Email.count.should   == 1 + email_count
+      Address.count.should == 1 + addrs_count
     end
   end
 
@@ -345,5 +349,6 @@ end
 #  updated_at                 :datetime
 #  current_do                 :boolean         default(FALSE)
 #  last_sign_in_at            :datetime
+#  dl                         :string(255)
 #
 

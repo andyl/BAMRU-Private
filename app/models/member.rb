@@ -546,5 +546,6 @@ end
 #  updated_at                 :datetime
 #  current_do                 :boolean         default(FALSE)
 #  last_sign_in_at            :datetime
+#  dl                         :string(255)
 #
 

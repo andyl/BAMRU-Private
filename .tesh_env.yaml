@@ -10,5 +10,5 @@
 :app_exclude_pattern: []
 :test_files: 
 :test_line: 
-:command_args: 
+:command_args: -t ~capybara
 :command: bundle exec rspec -O spec/spec.opts

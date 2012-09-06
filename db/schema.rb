@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825154000) do
+ActiveRecord::Schema.define(:version => 20120830111000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -144,6 +144,35 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.datetime "updated_at"
   end
 
+  create_table "event_files", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "file_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_photos", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "typ"
+    t.string   "title"
+    t.text     "description"
+    t.string   "location"
+    t.decimal  "lat",         :precision => 10, :scale => 6
+    t.decimal  "lon",         :precision => 10, :scale => 6
+    t.datetime "start"
+    t.datetime "finish"
+    t.boolean  "public",                                     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "inbound_mails", :force => true do |t|
     t.integer  "outbound_mail_id"
     t.string   "from"
@@ -164,6 +193,14 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.integer  "member_id"
     t.integer  "distribution_id"
     t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leaders", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "event_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -234,6 +271,33 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "sent_at"
+  end
+
+  create_table "participants", :force => true do |t|
+    t.string   "role"
+    t.integer  "member_id"
+    t.integer  "period_id"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "period_pages", :force => true do |t|
+    t.integer  "period_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "periods", :force => true do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.integer  "position"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "phones", :force => true do |t|

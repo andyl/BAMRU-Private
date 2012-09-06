@@ -2,27 +2,40 @@ class AddEventSupport < ActiveRecord::Migration
 
     def change
       create_table  :events do |t|
+        t.string    :typ
         t.string    :title
-        t.string    :description
-        t.integer   :leader
-        t.integer   :lat
-        t.integer   :lon
+        t.text      :description
+        t.string    :location
+        t.decimal   :lat, :precision => 10, :scale => 6
+        t.decimal   :lon, :precision => 10, :scale => 6
         t.datetime  :start
-        t.datetime  :end
-        t.string    :type
+        t.datetime  :finish
+        t.boolean   :public, :default => false
         t.timestamps
       end
 
-      create_table :phases do |t|
+      create_table :leaders do |t|
+        t.integer :member_id
+        t.integer :event_id
+        t.integer :position
+        t.timestamps
+      end
+
+      create_table :periods do |t|
         t.string    :title
         t.integer   :event_id
-        t.integer   :participant_id
+        t.integer   :position
+        t.datetime  :start
+        t.datetime  :finish
         t.timestamps
       end
 
       create_table :participants do |t|
+        t.string    :role
         t.integer   :member_id
-        t.integer   :phase_id
+        t.integer   :period_id
+        t.timestamp :start
+        t.timestamp :finish
         t.timestamps
       end
 
@@ -35,16 +48,17 @@ class AddEventSupport < ActiveRecord::Migration
       create_table :event_files do |t|
         t.integer   :event_id
         t.integer   :file_id
+        t.integer   :position
         t.timestamps
       end
 
-      create_table :event_pages do |t|
-        t.integer   :event_id
+      create_table :period_pages do |t|
+        t.integer   :period_id
         t.integer   :page_id
         t.timestamps
       end
 
-      add_column :members, :dl, :string
+      #add_column :members, :dl, :string
 
     end
 

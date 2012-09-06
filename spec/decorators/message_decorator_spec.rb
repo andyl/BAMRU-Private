@@ -39,7 +39,6 @@ describe MessageDecorator do
     specify { @col.should be_a String }
     specify { JSON.parse(@col).should_not be_nil  }
     specify { JSON.parse(@col).should be_an Array }
-    specify { JSON.parse(@col).length.should == 4 }
     specify { JSON.parse(@col).first.should be_a Hash }
   end
 

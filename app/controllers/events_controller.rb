@@ -3,6 +3,29 @@ class EventsController < ApplicationController
   before_filter :authenticate_member!
 
   def index
+    @action = "index"
+    @start  = Event.date_parse(select_start_date)
+    @finish = Event.date_parse(select_finish_date)
+    @start, @finish  = @finish, @start if @finish < @start
+    get_events(@start, @finish)
+  end
+
+  def show
+    @action = "show"
+    @event  = Event.find(params[:id])
+    @start  = Event.date_parse(select_start_date)
+    @finish = Event.date_parse(select_finish_date)
+    @start, @finish  = @finish, @start if @finish < @start
+    get_events(@start, @finish)
+  end
+
+  def sidebar
+    @action = "show"
+    @start  = Event.date_parse(select_start_date)
+    @finish = Event.date_parse(select_finish_date)
+    @start, @finish  = @finish, @start if @finish < @start
+    get_events(@start, @finish)
+    render :layout => false
   end
   
   def create
@@ -18,23 +41,25 @@ class EventsController < ApplicationController
     end
   end
 
-  def show
-    filename = "#{params['id']}.#{params['format']}"
-    @file = DataFile.where(:data_file_name => filename).first
-    unless @file.nil?
-      @file.download_count += 1
-      @file.save
-      expire_fragment('files_table')
-      render :text => File.read(@file.data.path), :content_type => @file.data_content_type
-    else
-      redirect_to files_path, :alert => "File was not found (#{filename})"
-    end
-  end
-
   def destroy
     @file = DataFile.where(:id => params['id']).first
     @file.destroy
     redirect_to files_path, :notice => "File was Deleted"
   end
+
+  private
+
+  def get_events(start, finish)
+    @events = Event.between(start, finish)
+  end
+
+  def select_start_date
+    params[:start]  || session[:start] ||  Event.default_start
+  end
+
+  def select_finish_date
+    params[:finish] || session[:finish] || Event.default_end
+  end
+
 
 end

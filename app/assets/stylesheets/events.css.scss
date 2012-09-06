@@ -1,0 +1,34 @@
+/* 
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+  You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+
+.evlink-table {
+  font-size: 8pt;
+}
+
+.evlink:hover {
+  color: black;
+  background: lightgrey;
+}
+
+.evlink:visited {
+  color:   black;
+}
+
+.evlink:focus {
+  outline: none;
+}
+
+#search_div {
+  margin-bottom: 6px;
+  margin-left:   10px;
+}
+
+#legend_div {
+  margin: 8px;
+  padding: 4px;
+  background: lightblue;
+  font-size: 9px;
+}
