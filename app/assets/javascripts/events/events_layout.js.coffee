@@ -16,6 +16,7 @@ $(document).ready ->
   setColumnHeight()
   $('#x_single_col').layout(layoutOptions)
   $('#tabs').tabs()
+  $(document).on 'pjax:end', -> $('#tabs').tabs()
   window.onresize = -> setColumnHeight()
 
 

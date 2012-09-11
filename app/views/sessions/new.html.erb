@@ -1,9 +1,19 @@
+<%= javascript_include_tag "sessions/all_sessions" %>
+
 <h2>Log In</h2>
 
 <%= form_tag sessions_path do %>
+  <input type='hidden' id="browser_type"    name='browser[browser_type]'    value="tbd">
+  <input type='hidden' id="browser_version" name='browser[browser_version]' value="tbd">
+  <input type='hidden' id="agent"           name='browser[user_agent]'      value="tbd">
+  <input type='hidden' id="ostype"          name='browser[ostype]'          value="tbd">
+  <input type='hidden' id="javascript"      name='browser[javascript]'      value="tbd">
+  <input type='hidden' id="cookies"         name='browser[cookies]'         value="tbd">
+  <input type='hidden' id="screen_height"   name='browser[screen_height]'   value="tbd">
+  <input type='hidden' id="screen_width"    name='browser[screen_width]'    value="tbd">
   <div class="field">
     <%= label_tag :user_name %><br>
-    <%= text_field_tag :user_name, params['user_name'] %>
+    <%= text_field_tag :user_name, params['user_name'], id: "user-name-field" %>
     <span style="margin-left: 10px; font-size: 8pt; color: gray;">use "first_name last_name"</span>
   </div>
   <p></p>

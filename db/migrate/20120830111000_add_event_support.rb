@@ -27,7 +27,7 @@ class AddEventSupport < ActiveRecord::Migration
         t.integer   :position
         t.datetime  :start
         t.datetime  :finish
-        t.timestamps
+osostype        t.timestamps
       end
 
       create_table :participants do |t|
@@ -55,6 +55,20 @@ class AddEventSupport < ActiveRecord::Migration
       create_table :period_pages do |t|
         t.integer   :period_id
         t.integer   :page_id
+        t.timestamps
+      end
+
+      create_table :browser_profiles do |t|
+        t.integer :member_id
+        t.string  :ip
+        t.string  :browser_type
+        t.string  :browser_version
+        t.string  :user_agent
+        t.string  :ostype
+        t.boolean :javascript
+        t.boolean :cookies
+        t.integer :screen_height
+        t.integer :screen_width
         t.timestamps
       end
 

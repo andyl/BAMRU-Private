@@ -11,6 +11,7 @@
 .evlink:hover {
   color: black;
   background: lightgrey;
+  opacity: 1.0;
 }
 
 .evlink:visited {
@@ -19,6 +20,7 @@
 
 .evlink:focus {
   outline: none;
+  color: black;
 }
 
 #search_div {
@@ -31,4 +33,15 @@
   padding: 4px;
   background: lightblue;
   font-size: 9px;
+}
+
+.cksel {
+  margin-left:    1px;
+  vertical-align: -2px;
+}
+.ckpost {
+  margin-right: 14px;
+}
+.date_align {
+    margin-right: 16px;
 }

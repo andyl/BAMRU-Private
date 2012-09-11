@@ -1,7 +1,7 @@
 //= require jquery
 //= require json2
-//= require underscore-min
-//= require backbone-min
+//= require underscore-min-121
+//= require backbone-min-053
 
 //= require_tree ./models
 //= require_tree ./collections

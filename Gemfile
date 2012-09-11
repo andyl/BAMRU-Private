@@ -17,6 +17,8 @@ gem "net-ssh", "2.2.2"
 gem "queue_classic"
 gem "exception_notification"
 
+gem "rack-pjax"
+
 gem "twilio-ruby"
 
 gem "yaml_db"

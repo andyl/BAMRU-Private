@@ -52,4 +52,12 @@ namespace :ops do
     STDOUT.flush
   end
 
+  desc "Cleanup BrowserProfile Records"
+  task :browser_profile_cleanup => 'environment' do
+    puts "Cleaning up old avail_op records"
+    records = BrowserProfile.where('created_at < ?',3.months.ago)
+    records.each {|record| record.destroy}
+    STDOUT.flush
+  end
+
 end

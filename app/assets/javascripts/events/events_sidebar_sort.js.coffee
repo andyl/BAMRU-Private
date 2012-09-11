@@ -24,7 +24,7 @@ sort_opts =
 
 saveEventSortToCookie = (sort_spec) ->
   spec_string = JSON.stringify(sort_spec)
-  createCookie("event_sort", spec_string)
+  createCookie("event_sort", spec_string, 45)
 
 readEventSortFromCookie = ->
   string = readCookie("event_sort")
@@ -55,6 +55,6 @@ setupClearSort = ->
     refresh_url = window.location.href.split(/[?#]/, 1)
     window.location.assign(refresh_url)
 
-$(document).ready ->
+$(document).on 'sidebar:refresh', ->
   setupSorter()
   setupFilter()

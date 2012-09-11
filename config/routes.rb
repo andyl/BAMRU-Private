@@ -13,6 +13,7 @@ Zn::Application.routes.draw do
   get "home/preview"
   get "home/testrake"
   get "home/readstats"
+  get "home/browserstats"
 
   get "preview/sms"
   get "preview/mail_txt"
@@ -50,8 +51,6 @@ Zn::Application.routes.draw do
 
   get '/events_sidebar'           => "events#sidebar"
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
-
-
 
   get  '/do_planner'     => "do_planner#index"
   post '/do_planner/:id' => "do_planner#update"

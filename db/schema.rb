@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "updated_at"
   end
 
+  create_table "browser_profiles", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "ip"
+    t.string   "browser_type"
+    t.string   "browser_version"
+    t.string   "user_agent"
+    t.string   "ostype"
+    t.boolean  "javascript"
+    t.boolean  "cookies"
+    t.integer  "screen_height"
+    t.integer  "screen_width"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "certs", :force => true do |t|
     t.integer  "member_id"
     t.string   "typ"

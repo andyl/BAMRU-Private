@@ -1,3 +1,5 @@
+# ----- checkboxes for selecting event types -----
+
 trShow = (typ) -> $(".tr-#{typ}").show()
 trHide = (typ) -> $(".tr-#{typ}").hide()
 
@@ -13,6 +15,11 @@ toggleBox = (box) ->
 
 checkAll = -> $('.cksel').prop("checked", true)
 
-$(document).ready ->
-  $(".cksel").click -> toggleBox(this)
+setupSelect = ->
+  $('.cksel').click -> toggleBox(this)
   checkAll()
+
+# ----- initialize -----
+
+$(document).on 'sidebar:refresh', ->
+  setupSelect()

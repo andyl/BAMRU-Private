@@ -67,5 +67,9 @@ class HomeController < ApplicationController
     @members = Member.find(@mem_arr.map {|x| x.first})
   end
 
+  def browserstats
+    @profiles = BrowserProfile.all
+  end
+
 
 end

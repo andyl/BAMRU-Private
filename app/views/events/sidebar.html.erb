@@ -1,1 +1,53 @@
-<%= render :partial => 'table' %>
+<div id='search_div'>
+  <%= raw event_range_select(@start, @finish, "start") %>
+  to <%= raw event_range_select(@start, @finish, "finish") %>
+  <input id="date-change" type="button" value="Change"/>
+
+  <div style='margin-top:4px; margin-bottom: 4px;'>
+    <label for='ck-m'><b>M</b>tngs</label>
+    <input type="checkbox"   id='ck-m' class="cksel ckpost">
+    <label for='ck-t'><b>T</b>rngs</label>
+    <input type="checkbox"   id='ck-t' class="cksel ckpost">
+    <label for='ck-o'><b>O</b>ps</label>
+    <input type="checkbox"     id='ck-o' class="cksel ckpost">
+    <label for='ck-s'><b>S</b>pecial</label>
+    <input type="checkbox" id='ck-s' class="cksel"><br/>
+  </div>
+
+  Search: <input name="filter" id="filter-box" value="" maxlength="16" size="16" type="text">
+  <input id="filter-clear-button" type="button" value="Clear"/>
+</div>
+<table width=100% class='evlink-table'>
+  <tr>
+    <td align="center" width=33%>
+      <a href="#" class='evlink' id='reset_search'>reset</a>
+    </td>
+    <td align="center">
+      <a href="#" class='evlink' id='toggle_link'>hide</a>
+    </td>
+    <td align="center" width=33%>
+      <a href="#" class='evlink' id='create_event'>create</a>
+    </td>
+  </tr>
+</table>
+
+<table id="myTable" class="tablesorter">
+  <thead>
+  <tr>
+    <th width=35>Typ</th>
+    <th>Title</th>
+    <th>Location</th>
+    <th>Start</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+      <tr id='ev-<%= event.id %>' class="tr-<%= event.typ[0] %>">
+        <td align="center"><%= event.typ.capitalize[0] %></td>
+        <td id="ed-<%= event.id %>" class='edtd'><%= link_to(truncate(event.title, length: 16), event_path(event), class: 'ev-pjax') %></td>
+        <td><%= truncate(event.location, length: 14) %></td>
+        <td><nobr><%= event.start.strftime("%Y-%m-%d") %></nobr></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

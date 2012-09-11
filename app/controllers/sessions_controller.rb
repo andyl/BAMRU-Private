@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
   def create
     user_name = params[:user_name].squeeze(' ').strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
     member = Member.find_by_user_name(user_name)
+    browser_params = params["browser"].merge({member_id: member.id})
+    BrowserProfile.create(browser_params)
     if member && member.authenticate(params[:password])
       if params["remember_me"] == "1"
         cookies[:remember_me_token] = {:value => member.remember_me_token, :expires => Time.now + 6.weeks}

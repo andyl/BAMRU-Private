@@ -1,0 +1,54 @@
+<%= javascript_include_tag 'jquery.tablesorter2' %>
+<%# javascript_include_tag 'jquery.tablesorter_filter' %>
+
+<script>
+  $(document).ready(function() {
+    $('#mytable').tablesorter();
+  });
+</script>
+
+<div style='text-align: center;'>
+Total Profiles:<%= @profiles.count %> |
+Linux:<%= BrowserProfile.os_linux.count %>
+Windows:<%= BrowserProfile.os_windows.count %>
+Mac:<%= BrowserProfile.os_mac.count %>
+Other:<%= BrowserProfile.os_other.count %> |
+IE:<%= BrowserProfile.browser_ie.count %>
+Chrome:<%= BrowserProfile.browser_chrome.count %>
+Firefox:<%= BrowserProfile.browser_firefox.count %>
+Other:<%= BrowserProfile.browser_other.count %>
+</div>
+
+<table id="mytable" class="tablesorter">
+
+  <thead>
+  <tr>
+    <th>MemberID</th>
+    <th>BrowserType</th>
+    <th>BrowserVersion</th>
+    <th>OS</th>
+    <th>Javascript</th>
+    <th>Cookies</th>
+    <th>ScreenHeight</th>
+    <th>ScreenWidth</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @profiles.each do |prof| %>
+      <tr>
+        <td><%= prof.member_id %></td>
+        <td><%= prof.browser_type %></td>
+        <td><%= prof.browser_version %></td>
+        <td><%= prof.ostype %></td>
+        <td><%= prof.javascript %></td>
+        <td><%= prof.cookies %></td>
+        <td><%= prof.screen_height %></td>
+        <td><%= prof.screen_width %></td>
+        <td><%= prof.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+
+</table>

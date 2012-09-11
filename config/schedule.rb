@@ -63,8 +63,10 @@ end
 every :wednesday, :at => '11:40 pm' do
   nq "rake ops:message_cleanup"
 end
-
 every :sunday, :at => '5:10 am' do
+  nq "rake ops:browser_profile_cleanup"
+end
+every :sunday, :at => '5:20 am' do
   nq "rake ops:log_cleanup"
 end
 every :sunday, :at => '5:40 am' do
