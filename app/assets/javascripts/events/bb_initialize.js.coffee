@@ -1,6 +1,6 @@
-backboneInitialize = ->
+window.backboneInitialize = ->
   console.log "Running backboneInitialize"
-#  backbone_params = $('#json').text()
-#  window.event = new Event(event_params)
-
-$(document).on "pjax:end", -> backboneInitialize()
+  window.event_params = JSON.parse($('#event-json').text())
+  window.bEvent = new BamEvent(event_params)
+  window.bShowView = new BamShowView({model:bEvent})
+  bShowView.render()

@@ -9,12 +9,17 @@ sidebarHighLight = ->
     $(evTag).css 'background', 'yellow'
     $("#header_right").text evTitle
 
+updateEventHeaderNav = ->
+  $('#event_link').html('<a href="/events">Events</a>')
+
+setupPjaxListener = ->
+  $('.ev-pjax').pjax('[data-pjax-container]')
+
 window.renderSidebar = ->
   $.get '/events_sidebar', (data, status, obj) ->
     $('#ui-table').html(data)
     $('#ui-table').trigger('sidebar:refresh')
-    $('.ev-pjax').pjax('[data-pjax-container]')     # setup the pjax links
-
+    setupPjaxListener()
 
 # ----- initialize -----
 
@@ -23,4 +28,6 @@ $(document).ready ->
     renderSidebar()
 
 $(document).on 'sidebar:refresh', -> sidebarHighLight()
-$(document).on "pjax:end",        -> sidebarHighLight()
+$(document).on "pjax:end",        ->
+  sidebarHighLight()
+  updateEventHeaderNav()

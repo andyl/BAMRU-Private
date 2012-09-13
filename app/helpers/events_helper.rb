@@ -16,6 +16,16 @@ module EventsHelper
     output
   end
 
+  def bb_json(event)
+    fields = %w(typ title location description)
+    field_map = fields.map do |field|
+      value = event.send(field.to_s)
+      %Q("#{field}":"#{value}")
+    end
+    body = field_map.join(',')
+    "{#{body}}"
+  end
+
 end
 
 require 'time'

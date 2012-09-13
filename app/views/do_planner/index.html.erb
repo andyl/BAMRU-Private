@@ -11,9 +11,11 @@
     cursor: pointer;
   }
 
-  .green { background: #b8edab; }
-  .blue {background: #caf0f0; }
-  .pink {background: #ffdfe4; }
+  .green, .green_label { background: #b8edab; }
+  .blue, .blue_label   { background: #caf0f0; }
+  .pink, .pink_label   { background: #ffdfe4; }
+  .padded { padding-left: 3px; padding-right: 3px;}
+
 
 </style>
 
@@ -43,7 +45,7 @@
 
       <table id='dodata' align=center border=1 style='font-size: 10px;'>
         <tr style='background: #ededed;'>
-          <th></th>
+          <th id="top_corner" align="center"></th>
           <% 13.times do |idx| %>
             <th id='week<%= idx+1 %>' <%= raw display_date_range(@quarter, idx+1) %>>W<%= idx+1 %></th>
           <% end %>
@@ -59,9 +61,9 @@
       un-assign.<br/>
       Legend: <b>A</b> = Available, <b>-</b> = Unavailable, '*'
       means there is a comment<br/>
-      <span class='blue'>Unscheduled Member</span>
-      <span class='pink'>Unscheduled Week</span>
-      <span class='green'>DO Assignment</span>
+      <span class='padded blue_label'>Unscheduled Member</span>
+      <span class='padded pink_label'>Unscheduled Week</span>
+      <span class='padded green_label'>DO Assignment</span>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-window.Event = Backbone.Model.extend
+window.BamEvent = Backbone.Model.extend
 
   defaults:
     points: 0

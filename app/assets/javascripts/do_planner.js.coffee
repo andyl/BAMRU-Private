@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 #= require jquery_tipsy
 
+# ----- utility functions -----
 
 findSelectedInCol = (weekId)->
   $("[id^='#{weekId}'].green")
@@ -13,17 +14,23 @@ weekIdFx = (cell) ->
 getId = (cell) ->
   cell.attr('id')
 
-selectNewCell = (el)->
-  new_cell = $(el)
-  week_id  = weekIdFx(new_cell)
-  old_cell = findSelectedInCol(week_id)
-  new_cell.addClass('green')
-  old_cell.removeClass('green')
-  highlightUnassignedMembers()
-  highlightUnscheduledWeek()
-  $.post("/do_planner/#{getId(new_cell)}", {directive: 'select'})
-  unless old_cell.length == 0
-    $.post("/do_planner/#{getId(old_cell)}", {directive: 'unselect'})
+# ----- mouseover display for comments -----
+
+tipsyCommentOptions =
+  title: 'data-comments'
+  opacity: 0.8
+  offset: 8
+
+tipsyWeekOptions =
+  title: 'data-week'
+  opacity: 1.0
+  gravity: 's'
+
+setupMouseoverComments = ->
+  $('[data-comments]').tipsy(tipsyCommentOptions)
+  $('[data-week]').tipsy(tipsyWeekOptions)
+
+# ----- highlight row and column labels -----
 
 highlightUnassignedMembers = ->
   $('.memrow').each (idx, el)->
@@ -44,19 +51,45 @@ highlightUnscheduledWeek = ->
     else
       headerCell.removeClass('pink')
 
-tipsyCommentOptions =
-  title: 'data-comments'
-  opacity: 0.8
-  offset: 8
+# ----- highlight top corner -----
 
-tipsyWeekOptions =
-  title: 'data-week'
-  opacity: 1.0
-  gravity: 's'
+unscheduledMemberCount = ->
+  $('.blue').length
 
-$(document).ready ->
-  $('[data-comments]').tipsy(tipsyCommentOptions)
-  $('[data-week]').tipsy(tipsyWeekOptions)
-  $('.status').click  -> selectNewCell(@)
+unscheduledWeekCount = ->
+  $('.pink').length
+
+highlightTopCorner = ->
+  memberCount = unscheduledMemberCount()
+  weekCount   = unscheduledWeekCount()
+  if weekCount > 0
+    weekHtml = "<span class='pink_label padded'> #{weekCount} </span>"
+    memberHtml = "<span class='blue_label padded'> #{memberCount} </span>"
+    dividerHtml = "<span class='padded'> / </span>"
+    $('#top_corner').html("<nobr class='padded'>#{memberHtml}#{dividerHtml}#{weekHtml}</nobr>")
+  else
+    $('#top_corner').html("")
+
+# ----- callback when a cell is clicked -----
+
+selectNewCell = (el)->
+  new_cell = $(el)
+  week_id  = weekIdFx(new_cell)
+  old_cell = findSelectedInCol(week_id)
+  new_cell.addClass('green')
+  old_cell.removeClass('green')
   highlightUnassignedMembers()
   highlightUnscheduledWeek()
+  highlightTopCorner()
+  $.post("/do_planner/#{getId(new_cell)}", {directive: 'select'})
+  unless old_cell.length == 0
+    $.post("/do_planner/#{getId(old_cell)}", {directive: 'unselect'})
+
+# ----- initializer -----
+
+$(document).ready ->
+  setupMouseoverComments()
+  highlightUnassignedMembers()
+  highlightUnscheduledWeek()
+  highlightTopCorner()
+  $('.status').click  -> selectNewCell(@)

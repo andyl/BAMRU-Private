@@ -1,5 +1,10 @@
 <div data-pjax-container>
 
+  <script type="text/javascript">$(document).ready(function() {backboneInitialize()})</script>
+
+  <div id='event-json-old' style='display: none'>{"typ":"meeting", "title":"Event Title", "location":"Castro Valley", "description":"BAMRU General Meeting"}</div>
+  <div id='event-json' style='display: none'><%= bb_json(@event) %></div>
+
   <div id="tabs" data-title="<%= @event.title %>" data-eventid="<%= @event.id %>">
     <ul>
       <li><a href="#tab1">Overview</a></li>
