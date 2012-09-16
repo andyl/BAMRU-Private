@@ -45,3 +45,34 @@
 .date_align {
     margin-right: 16px;
 }
+
+.boxsizingBorder {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+}
+
+.padded4 {
+  padding-left:  4px;
+  padding-right: 4px;
+}
+
+.orow {
+  clear: both;
+  border-bottom: 1px solid lightgrey;
+  padding-left: 2px;
+}
+
+.leftcol {
+  display: block;
+  width: 41%;
+  float: left;
+}
+
+.rightcol {
+  position: relative;
+  display: block;
+  width: 58%;
+  margin-left: 42%;
+}

@@ -17,7 +17,7 @@ module EventsHelper
   end
 
   def bb_json(event)
-    fields = %w(typ title location description)
+    fields = %w(typ published title location lat lon start finish all_day description)
     field_map = fields.map do |field|
       value = event.send(field.to_s)
       %Q("#{field}":"#{value}")

@@ -2,8 +2,10 @@
 
   <script type="text/javascript">$(document).ready(function() {backboneInitialize()})</script>
 
-  <div id='event-json-old' style='display: none'>{"typ":"meeting", "title":"Event Title", "location":"Castro Valley", "description":"BAMRU General Meeting"}</div>
   <div id='event-json' style='display: none'><%= bb_json(@event) %></div>
+
+  <%= render :partial => 'bb_show_template' %>
+  <%= render :partial => 'bb_edit_template' %>
 
   <div id="tabs" data-title="<%= @event.title %>" data-eventid="<%= @event.id %>">
     <ul>
@@ -16,49 +18,22 @@
     <div id="tab1">
 
       <% if current_member.admin? || @event.typ == "operation" %>
-          <div style='font-size: 8pt; margin-bottom: 4px;'>
-          Clone
-          <%= "| Edit | Delete" if @event.public? || current_member.admin? %>
-          <% if current_member.admin? %>
-              <% if @event.public? %>
-                  | Make Private
-              <% else %>
-                  | Make Public
-              <% end %>
-          <% end %>
+        <div  style='font-size: 8pt; margin-bottom: 4px;'>
+          <div id='overview-show-nav'>
+            <a href="#" id='overview-clone-link'>Clone</a> |
+            <a href="#" id='overview-edit-link'>Edit</a> |
+            <a href="#" id='overview-delete-link'>Delete</a>
           </div>
+          <div id='overview-edit-nav' style='display: none'>
+            <a href="#" id='overview-save-link'>Save</a> |
+            <a href="#" id='overview-cancel-link'>Cancel</a>
+          </div>
+        </div>
       <% end %>
 
-      <table border=1>
-        <tr>
-          <td align="right">Type: </td>
-          <td><%= @event.typ %></td>
-        </tr>
-        <tr>
-          <td align="right">Title: </td>
-          <td><%= @event.title %></td>
-        </tr>
-        <tr>
-          <td align="right">Location: </td>
-          <td><%= @event.location %></td>
-        </tr>
-        <tr>
-          <td align="right">Leaders: </td>
-          <td><%= @event.member.try(:full_name) %></td>
-        </tr>
-        <tr>
-          <td align="right">Start: </td>
-          <td><%= @event.start %></td>
-        </tr>
-        <tr>
-          <td align="right">Finish: </td>
-          <td><%= @event.finish %></td>
-        </tr>
-        <tr>
-          <td align="right">Description: </td>
-          <td><%= @event.description %></td>
-        </tr>
-      </table>
+      <div id='event_overview'>
+      </div>
+
     </div>
     <div id="tab2">
       <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>

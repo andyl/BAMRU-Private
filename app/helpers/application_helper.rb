@@ -207,7 +207,7 @@ def parent_repage_link(message)
 
   def avail_dos_link_for_member(member, quarter)
     hash = {:member_id => member.id}.merge(quarter)
-    link_to member.last_name, member_avail_dos_path(hash)
+    link_to member.last_name, member_avail_dos_path(hash), :class => 'memlink'
   end
 
   def avail_dos_link_next_quarter(message)
@@ -274,7 +274,7 @@ def parent_repage_link(message)
 
   def display_member_row(member, quarter)
     memlink = avail_dos_link_for_member(member, quarter)
-    part1 = "<tr class='memrow'><td class='memlabel'><nobr>#{memlink}</nobr></td>"
+    part1 = "<tr class='memrow'><td id='mem#{member.id}' class='memlabel'><nobr><b class='memtag'>#{memlink}</b></nobr></td>"
     part2 = 13.times.map do |week|
       opts = quarter.merge({:member => member, :week => week+1})
       "<td id='#{cellid(opts)}' #{comment_helper(opts)} class='status#{selecthelper(opts)}'>#{get_status(member, quarter, week+1)}</td>"

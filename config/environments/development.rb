@@ -12,9 +12,10 @@ Zn::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  #config.assets.debug    = true
   #config.assets.compile  = true
+  #config.assets.debug    = true
   #config.assets.compress = false
+  config.serve_static_assets = false
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true

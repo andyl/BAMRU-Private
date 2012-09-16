@@ -3,10 +3,10 @@
 sidebarHighLight = ->
   evId    = $('#tabs').data('eventid')
   evTitle = $('#tabs').data('title')
-  $('.edtd').css 'background', 'white'
+  $('.edtd').removeClass('tgt_event')
   if evTitle
     evTag = "#ed-#{evId}"
-    $(evTag).css 'background', 'yellow'
+    $(evTag).addClass('tgt_event')
     $("#header_right").text evTitle
 
 updateEventHeaderNav = ->

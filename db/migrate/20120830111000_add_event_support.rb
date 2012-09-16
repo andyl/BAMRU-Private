@@ -10,7 +10,8 @@ class AddEventSupport < ActiveRecord::Migration
         t.decimal   :lon, :precision => 10, :scale => 6
         t.datetime  :start
         t.datetime  :finish
-        t.boolean   :public, :default => false
+        t.boolean   :all_day,   :default => true
+        t.boolean   :published, :default => false
         t.timestamps
       end
 
@@ -27,7 +28,7 @@ class AddEventSupport < ActiveRecord::Migration
         t.integer   :position
         t.datetime  :start
         t.datetime  :finish
-osostype        t.timestamps
+        t.timestamps
       end
 
       create_table :participants do |t|

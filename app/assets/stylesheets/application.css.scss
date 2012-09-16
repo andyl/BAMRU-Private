@@ -1,7 +1,5 @@
-/*
-*= require_self
-*= require_tree ./vendor
-*/
+//= require_self
+//= require_tree ./vendor
 
 @import "bamru-net.css.scss";
 @import "layout.css.scss";
@@ -11,5 +9,6 @@
 @import "members.css.scss";
 @import "photos.css.scss";
 @import "unit_certs.css.scss";
-@import "events.css.scss";
 @import "tabs.css.scss";
+@import "events.css.scss";
+

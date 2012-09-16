@@ -183,7 +183,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.decimal  "lon",         :precision => 10, :scale => 6
     t.datetime "start"
     t.datetime "finish"
-    t.boolean  "public",                                     :default => false
+    t.boolean  "all_day",                                    :default => true
+    t.boolean  "published",                                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
