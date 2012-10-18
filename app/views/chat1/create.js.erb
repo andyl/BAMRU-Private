@@ -1,4 +1,0 @@
-<% broadcast "/chats/new" do %>
-  updateChatList("<%= escape_javascript render(@chat) %>");
-<% end %>
-$("#new_chat")[0].reset();

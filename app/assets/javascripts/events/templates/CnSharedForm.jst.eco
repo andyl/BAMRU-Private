@@ -1,0 +1,58 @@
+<!--<script type="text/javascript" src="http://api.mygeoposition.com/api/geopicker/api.js"></script>-->
+
+<%# if current_member.admin? || @event.typ == "operation" %>
+<div  class='eventLinks'>
+  <a href="#" id='CnTabsOverviewForm-cancel'>Cancel</a> |
+  <a href="#" id='CnTabsOverviewForm-save'>Save</a>
+</div>
+<%# end %>
+
+<form>
+  <table width=100% border=0 style='font-size: 8pt;'>
+    <tr>
+      <td align="right">Type: </td>
+      <td colspan=2><%- @fSelectTyp() %></td>
+      <td><%- @fPublished() %></td>
+    </tr>
+    <tr>
+      <td align="right">Title: </td>
+      <td colspan=2><input id='titleField' size='40' name='title' value="<%= @title %>"></td>
+      <td width=100%>e.g. "Snow Skills"</td>
+    </tr>
+    <tr>
+      <td align="right">Locn: </td>
+      <td colspan=2><input size='40' name='location' value="<%= @fLocation() %>"></td>
+      <td>use "TBA" if unknown</td>
+    </tr>
+    <tr>
+      <td align="right">Start: </td>
+      <td><input id='start' size='15' name='start' value='<%= @fStart() %>'>
+      <td align="right"><nobr>End: <input id='finish' size=15 name='finish' value='<%= @fFinish() %>'></nobr></td>
+      <td><%- @fAllDay() %></td>
+    </tr>
+    <tr>
+      <td align="right">Lat: </td>
+      <td><input size='15' id='lat' name='lat' value='<%= @lat %>'></td>
+      <td align="right"><nobr>Lon: <input class='ff' id='lon' size=15 name='lon' value='<%= @lon %>'></nobr></td>
+      <td><button id='geoButton' type='button'>Use GeoPicker</button></td>
+    </tr>
+    <tr>
+      <td align="right">Ldrs: </td>
+      <td colspan=2><input size='40' name='leaders' value='<%= @fLeaders() %>'></td>
+      <td>use "TBA" if unknown</td>
+    </tr>
+    <tr>
+      <td align="right">Desc: </td>
+      <td colspan=3><textarea name='description' rows=6 class='boxsizingBorder'><%= @description %></textarea></td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td colspan=3>
+        Description may contain html.
+        <b>USE FULL SENTENCES, correct punctuation, grammar and spelling. Proofread!</b>
+        Your text will likely published on the internet - what you write here reflects on the unit!
+      </td>
+    </tr>
+  </table>
+</form>

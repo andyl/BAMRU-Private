@@ -1,4 +1,4 @@
-#= require backbone-min-053
+#= require backbone-min-0_5_3
 
 window.app = {}
 app.controllers = {}

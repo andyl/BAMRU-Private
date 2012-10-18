@@ -42,9 +42,9 @@
   </div>
   <% unless Rails.env.production? %>
     <div id="debug_footer" style='text-align: center;'>
-      <div class="debug">RAILS_ENV=<b><%= Rails.env %></b> |  <a href="/home/testrake">test rake</a></div>
       <div class="debug"><%= raw debug_footer_text %></div>
     </div>
+    <%= javascript_include_tag :bb_debug %>
   <% end %>
 </div>
 

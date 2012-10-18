@@ -1,0 +1,25 @@
+<%# if current_member.admin? || @event.typ == "operation" %>
+<div  class='eventLinks'>
+  <a href="#" id='CnTabsOverviewShow-edit'>Edit</a> |
+  <a href="#" id='CnTabsOverviewShow-clone'>Clone</a> |
+  <a href="#" id='CnTabsOverviewShow-delete'>Delete</a>
+</div>
+<%# end %>
+
+<table class='displayTable' width=100% border="0" cellspacing="0">
+  <tr class='activeEvent'>
+    <td><b><%= @title %></b></td>
+    <td><%= @location %> <%- @hLatLon() %></td>
+  </tr>
+  <tr class='ul'>
+    <td><%= @hTyp() %></td>
+    <td><%= @hShowDate() %></td>
+  </tr>
+  <tr class='ul'>
+    <td>Leader(s): <%= @hLeader() %></td>
+    <td><%- @hPublished() %></td>
+  </tr>
+  <tr>
+    <td colspan=2>Description: <%= @description %></td>
+  </tr>
+</table>

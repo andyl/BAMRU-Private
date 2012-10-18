@@ -1,14 +1,37 @@
 class Event < ActiveRecord::Base
 
+  # ----- Attributes -----
+
+  attr_accessible :title, :typ, :start, :finish, :location, :lat, :lon, :leaders
+  attr_accessible :all_day, :published, :description
+
+  # ----- API -----
+
+  def as_json(options = {})
+    {
+        id:       self.id,
+        title:    self.title,
+        typ:      self.typ,
+        start:    self.start.try(:strftime, "%Y-%m-%d %H:%M"),
+        finish:   self.finish.try(:strftime, "%Y-%m-%d %H:%M"),
+        location: self.location,
+        leaders:  self.leaders,
+        lat:      self.lat,
+        lon:      self.lon,
+        all_day:  self.all_day,
+        published:   self.published,
+        description: self.description
+    }
+  end
+
+
   # ----- Associations -----
 
-  belongs_to :member
-  has_many   :leaders,      :dependent => :destroy
+  belongs_to :leader,       :class_name => 'Member'
   has_many   :periods,      :dependent => :destroy
-  has_many   :event_files,  :dependent => :destroy
+  has_many   :event_links,  :dependent => :destroy
   has_many   :event_photos, :dependent => :destroy
-  has_many   :event_pages,  :dependent => :destroy
-
+  has_many   :data_files,   :dependent => :destroy
 
   # ----- Callbacks -----
 
@@ -21,10 +44,9 @@ class Event < ActiveRecord::Base
   #after_destroy     :set_first_in_year_after_delete
   #after_save        :set_first_in_year_after_save
 
-
   # ----- Validations -----
   validates_presence_of :typ, :title, :start
-  validates_format_of   :typ, :with => /^(training)|(operation)|(meeting)|(special)$/
+  validates_format_of   :typ, :with => /^(training)|(operation)|(meeting)|(social)|(community)$/
 
   validate :lat_lon
 
@@ -37,7 +59,6 @@ class Event < ActiveRecord::Base
   msg = "duplicate record - identical title, location, start"
   #validates_uniqueness_of :digest, :message => msg
   validates_presence_of   :typ, :title, :location, :start
-  validates_format_of     :typ, :with => /^(meeting|training|operation|special)$/
 
   validates_numericality_of :lat, :allow_nil => true, :greater_than => 30,   :less_than => 43
   validates_numericality_of :lon, :allow_nil => true, :greater_than => -126, :less_than => -113
@@ -53,7 +74,8 @@ class Event < ActiveRecord::Base
   scope :operations, where(typ: "operation").order('start')
   scope :trainings,  where(typ: "training").order('start')
   scope :meetings,   where(typ: "meeting").order('start')
-  scope :specials,   where(typ: "special").order('start')
+  scope :communities,   where(typ: "community").order('start')
+  scope :socials,   where(typ: "social").order('start')
 
   def self.kind(typ)    where(:typ => typ).order('start');           end
   def self.after(date)  where('start >= ?', self.date_parse(date));  end
@@ -286,14 +308,16 @@ end
 #  id          :integer         not null, primary key
 #  typ         :string(255)
 #  title       :string(255)
+#  leaders     :string(255)
 #  description :text
 #  location    :string(255)
-#  lat         :decimal(10, 6)
-#  lon         :decimal(10, 6)
+#  lat         :decimal(7, 4)
+#  lon         :decimal(7, 4)
 #  start       :datetime
 #  finish      :datetime
-#  public      :boolean         default(FALSE)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  all_day     :boolean         default(TRUE)
+#  published   :boolean         default(FALSE)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 

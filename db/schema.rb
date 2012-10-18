@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.boolean  "cookies"
     t.integer  "screen_height"
     t.integer  "screen_width"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "certs", :force => true do |t|
@@ -102,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.string   "data_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
+    t.string   "caption"
+    t.boolean  "published",           :default => false
   end
 
   create_table "distributions", :force => true do |t|
@@ -159,34 +162,44 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "updated_at"
   end
 
-  create_table "event_files", :force => true do |t|
+  create_table "event_links", :force => true do |t|
+    t.integer  "member_id"
     t.integer  "event_id"
-    t.integer  "file_id"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "url"
+    t.string   "caption"
+    t.boolean  "published",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "event_photos", :force => true do |t|
+    t.integer  "member_id"
     t.integer  "event_id"
-    t.integer  "photo_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "caption"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "image_updated_at"
+    t.integer  "position"
+    t.boolean  "published",          :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "events", :force => true do |t|
     t.string   "typ"
     t.string   "title"
+    t.string   "leaders"
     t.text     "description"
     t.string   "location"
-    t.decimal  "lat",         :precision => 10, :scale => 6
-    t.decimal  "lon",         :precision => 10, :scale => 6
+    t.decimal  "lat",         :precision => 7, :scale => 4
+    t.decimal  "lon",         :precision => 7, :scale => 4
     t.datetime "start"
     t.datetime "finish"
-    t.boolean  "all_day",                                    :default => true
-    t.boolean  "published",                                  :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "all_day",                                   :default => true
+    t.boolean  "published",                                 :default => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "inbound_mails", :force => true do |t|
@@ -209,14 +222,6 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "member_id"
     t.integer  "distribution_id"
     t.string   "action"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "leaders", :force => true do |t|
-    t.integer  "member_id"
-    t.integer  "event_id"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -293,10 +298,12 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.string   "role"
     t.integer  "member_id"
     t.integer  "period_id"
-    t.datetime "start"
-    t.datetime "finish"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "en_route_at"
+    t.datetime "return_home_at"
+    t.datetime "signed_in_at"
+    t.datetime "signed_out_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "period_pages", :force => true do |t|
@@ -312,8 +319,9 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "position"
     t.datetime "start"
     t.datetime "finish"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "rsvp_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "phones", :force => true do |t|

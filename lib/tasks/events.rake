@@ -17,7 +17,8 @@ namespace :events do
     puts "     Meetings: #{Event.meetings.count}"
     puts "    Trainings: #{Event.trainings.count}"
     puts "   Operations: #{Event.operations.count}"
-    puts "     Specials: #{Event.specials.count}"
+    puts "  Communities: #{Event.communities.count}"
+    puts "      Socials: #{Event.socials.count}"
     puts "     Periods: #{Period.count}"
     puts "Participants: #{Participant.count}"
   end
@@ -29,9 +30,18 @@ namespace :events do
   end
 
   def load_events
-    csv_data = get_file("http://bamru.org/calendar.csv")
-    params   = csv_to_params(csv_data)
-    params.each {|p| Event.create(p)}
+    Time.zone = "Pacific Time (US & Canada)"
+    csv_data  = get_file("http://bamru.org/calendar.csv")
+    rows = csv_to_params(csv_data)
+    rows.each do |row|
+      event = Event.create(row)
+      if event.typ == "meeting"
+        event.start   = event.start + 19.hours + 30.minutes
+        event.finish  = event.start + 2.hours
+        event.all_day = false
+        event.save
+      end
+    end
   end
 
   def get_file(url)
@@ -44,9 +54,18 @@ namespace :events do
     headers = array.shift
     array_of_hashes = array.map do |row|
       val = Hash[*headers.zip(row).flatten]
-      val.delete("leaders")
+      if val["kind"].try(:downcase) == "meeting"
+        if val["location"] == "Redwood City"
+          val["lat"] = "37.4888"
+          val["lon"] = "-122.2305"
+        end
+        if val["location"] == "Castro Valley"
+          val["lat"] = "37.7207"
+          val["lon"] = "-122.0962"
+        end
+      end
       val["typ"] = val.delete("kind")
-      val["typ"] = "special" if val["typ"] == "other"
+      val["typ"] = "community" if val["typ"] == "other"
       val
     end
     array_of_hashes

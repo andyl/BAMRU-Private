@@ -1,8 +1,8 @@
 //= require zepto-min
 
 //= require jquery
-//= require underscore-min-121
-//= require backbone-min-053
+//= require underscore-min-1_2_1
+//= require backbone-min-0_5_3
 
 //= require jasmine-jquery-1_3_1
 //= require sinon-1_2_0

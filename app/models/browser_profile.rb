@@ -31,3 +31,23 @@ class BrowserProfile < ActiveRecord::Base
   # ----- Local Methods-----
 
 end
+
+# == Schema Information
+#
+# Table name: browser_profiles
+#
+#  id              :integer         not null, primary key
+#  member_id       :integer
+#  ip              :string(255)
+#  browser_type    :string(255)
+#  browser_version :string(255)
+#  user_agent      :string(255)
+#  ostype          :string(255)
+#  javascript      :boolean
+#  cookies         :boolean
+#  screen_height   :integer
+#  screen_width    :integer
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#
+

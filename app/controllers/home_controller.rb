@@ -71,5 +71,9 @@ class HomeController < ApplicationController
     @profiles = BrowserProfile.all
   end
 
+  def event_publishing
+
+  end
+
 
 end

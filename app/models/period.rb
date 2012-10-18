@@ -4,6 +4,7 @@ class Period < ActiveRecord::Base
 
   belongs_to   :event
   has_many     :participants, :dependent => :destroy
+  has_many     :period_pages
   acts_as_list :scope => :position
 
 
@@ -34,7 +35,8 @@ end
 #  position   :integer
 #  start      :datetime
 #  finish     :datetime
-#  created_at :datetime
-#  updated_at :datetime
+#  rsvp_id    :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

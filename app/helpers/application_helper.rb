@@ -115,18 +115,20 @@ def parent_repage_link(message)
   #  opts.join(' | ')
   #end
 
+  def header_nav_link(label, path)
+    "<span id='hn#{label}'>#{link_to_unless_current(label, path)}</span>"
+  end
+
   def signed_in_header_nav
-    roster = link_to_unless_current("Roster", members_path)
-    log    = link_to_unless_current("Log",    messages_path)
-    events = link_to_unless_current("Events", events_path) do
-      raw "<span id='event_link'>Events</span>"
-    end
-    photos = link_to_unless_current("Photos", unit_photos_path)
-    certs  = link_to_unless_current("Certs",  unit_certs_path)
-    avail  = link_to_unless_current("Availability", unit_avail_ops_path)
-    duty   = link_to_unless_current("DO", do_assignments_path)
-    report = link_to_unless_current("Reports", '/reports')
-    inbox  = link_to_unless_current(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
+    roster = header_nav_link("Roster", members_path)
+    log    = header_nav_link("Log",    messages_path)
+    events = header_nav_link("Events", events_path)
+    photos = header_nav_link("Photos", unit_photos_path)
+    certs  = header_nav_link("Certs",  unit_certs_path)
+    avail  = header_nav_link("Availability", unit_avail_ops_path)
+    duty   = header_nav_link("DO", do_assignments_path)
+    report = header_nav_link("Reports", '/reports')
+    inbox  = header_nav_link(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
     opts   = [roster, log, events, photos, certs, avail, duty, report, inbox]
     opts.join(' | ')
   end

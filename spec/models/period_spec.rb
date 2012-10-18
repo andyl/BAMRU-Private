@@ -39,7 +39,8 @@ end
 #  position   :integer
 #  start      :datetime
 #  finish     :datetime
-#  created_at :datetime
-#  updated_at :datetime
+#  rsvp_id    :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

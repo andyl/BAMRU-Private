@@ -14,6 +14,7 @@ Zn::Application.routes.draw do
   get "home/testrake"
   get "home/readstats"
   get "home/browserstats"
+  get "home/event_publishing"
 
   get "preview/sms"
   get "preview/mail_txt"
@@ -47,9 +48,7 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
   resources  :unauth_rsvps
-  resources  :events
 
-  get '/events_sidebar'           => "events#sidebar"
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
   get  '/do_planner'     => "do_planner#index"
@@ -63,31 +62,6 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get  "/chat1" => "chat1#index"
-  post "/chat1" => "chat1#create"
-
-  get  "/chat2" => "chat2#index"
-  post "/chat2" => "chat2#create"
-  namespace "chat2" do
-    resources :chats
-  end
-
-  get  "mobile1" => "mobile1#index", :as => "mobile1"
-  post "mobile1/send_page" => "mobile1#send_page"
-  namespace "mobile1" do
-    get "about"
-    get "map"
-    get "geo"
-    get "unread"
-    get "inbox"
-    get "paging"
-    get "status"
-    resources :members
-    resources :messages
-    resources :sessions
-    resources :chats
-  end
-
   get "mobile"   => "mobile3#index"
   get "mobile3"  => "mobile3#index"
   post "mobile3/send_page" => "mobile3#send_page"
@@ -98,13 +72,6 @@ Zn::Application.routes.draw do
     resources :sessions
   end
 
-  get "mobile4"  => "mobile4#index"
-  get "mobile4/login"   => "mobile4/sessions#new",     :as => "mobile_login"
-  get "mobile4/logout"  => "mobile4/sessions#destroy", :as => "mobile_logout"
-  namespace "mobile4" do
-    resources :sessions
-  end
-
   get "monitor"  => "monitor#index"
   get "monitor/login"   => "monitor/sessions#new",     :as => "monitor_login"
   get "monitor/logout"  => "monitor/sessions#destroy", :as => "monitor_logout"
@@ -112,7 +79,31 @@ Zn::Application.routes.draw do
     resources :sessions
   end  
 
-  get "mtimer" => "mtimer#index"
+  get '/events'             => 'events#index'
+  get '/events/:id'         => 'events#index'
+  get '/events/:id/edit'    => 'events#index'
+  get '/events/:id/roster'  => 'events#index'
+  get '/events/:id/forum'   => 'events#index'
+  get '/events/:id/media'   => 'events#index'
+  get '/events/:id/aar'     => 'events#index'
+
+  namespace "eapi" do
+
+    resources :events do
+      resources :event_links, controller: 'events/event_links'
+      resources :event_photos
+      resources :data_files
+      resources :periods
+    end
+
+    resources :periods do
+      resources :participants
+    end
+
+    resources :members
+
+  end
+
 
   namespace "api" do
 
@@ -137,11 +128,6 @@ Zn::Application.routes.draw do
       get      "rsvp"
     end
 
-    get  "chat2" => "chat2#index"
-    namespace "chat2" do
-      resource :chats
-    end
-
   end
 
   match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
@@ -163,51 +149,5 @@ Zn::Application.routes.draw do
   if %w(development test).include? Rails.env
     mount Jasminerice::Engine => "/jasmine/:environment"
   end
-
-  manifest_mobile3 = Rack::Offline.configure do
-    cache "/favicon_d1.ico"
-    cache "/favicon_p1.ico"
-    cache "/assets/mobile3/application.js"
-    cache "/assets/mobile3.css"
-    cache "/images/icons.css"
-    cache "/images/icons.png"
-    cache "/assets/s.gif"
-    network "/"
-  end
-
-  manifest_mobile4 = Rack::Offline.configure do
-    cache "/favicon_d1.ico"
-    cache "/favicon_p1.ico"
-    cache "/assets/mobile4/application.js"
-    cache "/assets/mobile3.css"
-
-    network "/"
-    network "http://maps.google.com"
-    network "http://maps.gstatic.com"
-    network "http://csi.gstatic.com"
-    network "http://maps.googleapis.com"
-    network "http://mt0.googleapis.com"
-    network "http://mt1.googleapis.com"
-    network "http://mt2.googleapis.com"
-    network "http://mt3.googleapis.com"
-    network "http://khm0.googleapis.com"
-    network "http://khm1.googleapis.com"
-    network "http://cbk0.googleapis.com"
-    network "http://cbk1.googleapis.com"
-    network "http://www.google-analytics.com"
-    network "http://gg.google.com"
-  end
-
-  manifest_mtimer = Rack::Offline.configure do
-    cache "/assets/mtimer.css"
-    cache "/assets/mtimer/all_mtimer.js"
-    cache "/ding.wav"
-
-    network "/"
-  end
-
-  match "/mobile3f.manifest"     => manifest_mobile3
-  match "/mobile4f.manifest"     => manifest_mobile4
-  match "/mtimerf.manifest"      => manifest_mtimer
 
 end

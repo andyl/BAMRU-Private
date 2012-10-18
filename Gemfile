@@ -2,7 +2,9 @@ source "http://rubygems.org"
 
 ruby "1.9.3"
 
-gem "rails",          "3.1.3"
+gem "rails",          "3.2.8"
+
+gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
 
 gem "sqlite3"
 gem "rake"
@@ -21,9 +23,13 @@ gem "rack-pjax"
 
 gem "twilio-ruby"
 
+gem "turbo-sprockets-rails3"
+
 gem "yaml_db"
 
 gem "pg"
+
+gem "acts_as_api"
 
 gem "aws-ses", :require => "aws/ses"
 
@@ -64,6 +70,7 @@ gem "coffee-script"
 gem "uglifier"
 gem "therubyracer", :require => "v8"
 gem "whenever",     :require => false
+gem "eco"
 
 # console tools
 gem "hirb"
@@ -92,7 +99,7 @@ group :development, :test do
   gem "launchy"
   gem "spork"
   gem "database_cleaner"
-  gem "factory_girl_rails"
+  # gem "factory_girl_rails"
 
   gem "vagrant", "1.0.3"
   gem "virtualbox"

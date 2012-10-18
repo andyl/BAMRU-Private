@@ -71,14 +71,16 @@ end
 #  id          :integer         not null, primary key
 #  typ         :string(255)
 #  title       :string(255)
+#  leaders     :string(255)
 #  description :text
 #  location    :string(255)
-#  lat         :decimal(10, 6)
-#  lon         :decimal(10, 6)
+#  lat         :decimal(7, 4)
+#  lon         :decimal(7, 4)
 #  start       :datetime
 #  finish      :datetime
-#  public      :boolean         default(FALSE)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  all_day     :boolean         default(TRUE)
+#  published   :boolean         default(FALSE)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 

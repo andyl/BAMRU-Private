@@ -41,6 +41,7 @@ module Prawn
   end
 end
 
-Mime::Type.register_alias "application/pdf", :pdf
+#commented this for rails 3.2.8
+#Mime::Type.register_alias "application/pdf", :pdf
 ActionView::Template.register_template_handler(:prawn, Prawn::Rails::TemplateHandler)
 ActionView::Base.send(:include, Prawn::Rails::PrawnHelper)

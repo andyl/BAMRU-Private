@@ -12,7 +12,7 @@ Zn::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  #config.assets.compile  = true
+  #config.assets.compile  = false
   #config.assets.debug    = true
   #config.assets.compress = false
   config.serve_static_assets = false

@@ -1,0 +1,46 @@
+class BB.Views.CnTbodyOverviewShow extends Backbone.Marionette.ItemView
+
+  # ----- configuration -----
+
+  template: 'events/templates/CnTbodyOverviewShow'
+
+  templateHelpers: BB.Helpers.CnTbodyOverviewShowHelpers
+
+  # ----- initialization -----
+
+  initialize: (options) ->
+    @model = options.model
+    @bindTo(BB.vent, 'click:CnTabsOverviewDeleteHotKey', @deleteEv, this)
+    @bindTo(BB.vent, 'click:CnTabsOverviewCloneHotKey',  @clone,   this)
+
+  events:
+    'click #CnTabsOverviewShow-edit'   : "edit"
+    'click #CnTabsOverviewShow-clone'  : "clone"
+    'click #CnTabsOverviewShow-delete' : "deleteEv"
+
+  onShow: ->
+    BB.hotKeys.add("CnSharedKeys",            new BB.HotKeys.CnSharedKeys())
+    BB.hotKeys.add("CnTbodyOverviewShowKeys", new BB.HotKeys.CnTbodyOverviewShowKeys())
+
+  onClose: ->
+    BB.hotKeys.remove("CnSharedKeys")
+    BB.hotKeys.remove("CnTbodyOverviewShowKeys")
+
+  # ----- actions -----
+
+  edit: (event) ->
+    event.preventDefault()
+    BB.vent.trigger("click:CnTabsOverviewEdit")
+
+  clone: (event) ->
+    event?.preventDefault()
+    BB.vent.trigger("click:CnTabsOverviewClone", @model)
+
+  deleteEv: (event) ->
+    event?.preventDefault()
+    answer = confirm("Are you sure you want to delete this event?")
+    console.log "Answer", answer
+    if answer == true
+      @model.destroy()
+      BB.Routers.app.navigate('/events', {trigger: true})
+

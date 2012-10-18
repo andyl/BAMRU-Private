@@ -15,6 +15,7 @@ class DataFile < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to        :member
+  belongs_to        :event
   has_attached_file :data
 
   # ----- Validations -----
@@ -66,5 +67,8 @@ end
 #  data_updated_at     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
+#  event_id            :integer
+#  caption             :string(255)
+#  published           :boolean         default(FALSE)
 #
 

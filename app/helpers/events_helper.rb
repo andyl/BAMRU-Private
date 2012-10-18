@@ -17,9 +17,13 @@ module EventsHelper
   end
 
   def bb_json(event)
-    fields = %w(typ published title location lat lon start finish all_day description)
+    fields = %w(typ published title leader location lat lon start finish all_day description)
     field_map = fields.map do |field|
       value = event.send(field.to_s)
+      value = value.last_name if value.is_a?(Member)
+      if %w(start finish).include?(field)
+        value = value.try(:strftime, "%Y-%m-%d %H:%M")
+      end
       %Q("#{field}":"#{value}")
     end
     body = field_map.join(',')
