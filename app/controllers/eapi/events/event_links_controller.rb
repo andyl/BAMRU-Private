@@ -25,7 +25,7 @@ class Eapi::Events::EventLinksController < ApplicationController
   private
 
   def opts
-    {except: [:created_at, :updated_at]}
+    {except: [:created_at]}
   end
 
 end

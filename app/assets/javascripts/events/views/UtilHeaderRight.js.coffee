@@ -13,7 +13,11 @@ class BB.Views.UtilHeaderRight extends Backbone.Marionette.ItemView
     @updateTitle()
 
   updateTitle: ->
-    @$el.html(@model.get('title')) if @model?
+    return unless @model?
+    title = @model.get('title')
+    date  = moment(@model.get('start')).strftime("%Y-%b-%d")
+    html = "<span class='activeEvent' style='padding-left: 6px; padding-right: 6px;'><b>#{title} #{date}</b></span>"
+    @$el.html(html)
 
   hideTitle: -> @$el.html("")
 

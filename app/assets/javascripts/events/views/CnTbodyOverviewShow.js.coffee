@@ -11,7 +11,8 @@ class BB.Views.CnTbodyOverviewShow extends Backbone.Marionette.ItemView
   initialize: (options) ->
     @model = options.model
     @bindTo(BB.vent, 'click:CnTabsOverviewDeleteHotKey', @deleteEv, this)
-    @bindTo(BB.vent, 'click:CnTabsOverviewCloneHotKey',  @clone,   this)
+    @bindTo(BB.vent, 'click:CnTabsOverviewCloneHotKey',  @clone,    this)
+    @bindTo(BB.Collections.events, 'change add remove',  @render,   this)
 
   events:
     'click #CnTabsOverviewShow-edit'   : "edit"
@@ -19,12 +20,10 @@ class BB.Views.CnTbodyOverviewShow extends Backbone.Marionette.ItemView
     'click #CnTabsOverviewShow-delete' : "deleteEv"
 
   onShow: ->
-    BB.hotKeys.add("CnSharedKeys",            new BB.HotKeys.CnSharedKeys())
-    BB.hotKeys.add("CnTbodyOverviewShowKeys", new BB.HotKeys.CnTbodyOverviewShowKeys())
+    BB.hotKeys.enable("CnTbodyOverviewShow")
 
   onClose: ->
-    BB.hotKeys.remove("CnSharedKeys")
-    BB.hotKeys.remove("CnTbodyOverviewShowKeys")
+    BB.hotKeys.disable("CnTbodyOverviewShow")
 
   # ----- actions -----
 

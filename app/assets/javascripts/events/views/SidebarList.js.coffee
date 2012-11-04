@@ -4,23 +4,26 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
 
   el       : "#sidebar-tbody"
   itemView : BB.Views.SidebarRow
-  emptyView: BB.Views.SidebarListEmpty
 
   # ----- initialization -----
 
   initialize: (options) ->
-    @bindTo(@collection, 'reset',               @render,      this)
-    @bindTo(@collection, 'add',                 @appendHtml,  this)
     @bindTo(BB.vent,     'show:CnTabs',         @setActive,   this)
     @bindTo(BB.vent,     'show:CnIndx',         @clearActive, this)
     @bindTo(BB.vent,     'show:CnNew',          @clearActive, this)
     @bindTo(BB.vent,     'key:nextRow',         @nextRow,     this)
     @bindTo(BB.vent,     'key:prevRow',         @prevRow,     this)
+    @bindTo(BB.vent,     'key:topRow',          @topRow,      this)
+    @bindTo(BB.vent,     'key:bottomRow',       @bottomRow,   this)
     @bindTo(BB.vent,     'uiState:changed',     @updateView,  this)
 
   onRender: ->
     $('#myTable').show()
     @setMyTable()
+    BB.hotKeys.enable("SidebarList")
+
+  onClose: ->
+    BB.hotKeys.disable("SidebarList")
 
   # ----- construction -----
 
@@ -43,6 +46,13 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   nextRow: -> @altRow "next"
 
   prevRow: -> @altRow "prev"
+    
+  displayRow: (targetRow) ->
+    targetId = $(targetRow).attr('id').split('_')[1]
+    if targetId != activeModel?.get('id')
+      targetRow.scrollIntoView(false)
+      @collection.setActive(targetId)
+      BB.Routers.app.navigate("/events/#{targetId}", {trigger: true}) # TODO: fix!!
 
   altRow: (direction) ->
     firstRow =         => $(@$el.find("tr")[0])
@@ -52,16 +62,21 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
     targetRow = if activeModel?
       activeRow = $("#model_#{activeModel.get('id')}")
       if isHidden(activeRow)
-        firstRow()
+        firstRow()[0]
       else
         altRow = eval("activeRow.#{direction}()")
-        if endOfTable(altRow) then activeRow else altRow[0]
+        if endOfTable(altRow) then activeRow[0] else altRow[0]
     else
-      firstRow()
-    targetId = $(targetRow).attr('id').split('_')[1]
-    if targetId != activeModel?.get('id')
-      @collection.setActive(targetId)
-      BB.Routers.app.navigate("/events/#{targetId}", {trigger: true})
+      firstRow()[0]
+    @displayRow(targetRow)
+
+  topRow: ->
+    firstRow = => $(@$el.find("tr")[0])
+    @displayRow(firstRow()[0])
+
+  bottomRow: ->
+    bottomRow = => $(@$el.find("tr:last"))
+    @displayRow(bottomRow()[0])
 
   # ----- filtering -----
 

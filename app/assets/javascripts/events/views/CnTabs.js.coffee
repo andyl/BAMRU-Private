@@ -12,8 +12,10 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
 
   initialize: (options) ->
     @router = BB.Routers.app
-    @model  = BB.Collections.events.get(options.modelId)
     @page   = options.page
+    @model  = BB.Collections.events.get(options.modelId)
+    @model.periods.fetch()
+    @model.eventLinks.fetch()
     @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
     @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
     @bindTo(BB.vent, 'click:tMenu',              @genNewPage,      this)
@@ -30,6 +32,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when "overview-show" then @genOverviewShow navOpt
       when "overview-edit" then @genOverviewEdit navOpt
       when "roster"        then @genRoster       navOpt
+      when "journal"       then @genJournal      navOpt
       when "forum"         then @genForum        navOpt
       when "media"         then @genMedia        navOpt
       when "chronicle"           then @genChronicle          navOpt
@@ -53,7 +56,17 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
   genRoster: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/roster") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
-    @tbody.show(new BB.Views.CnTbodyRoster({model: @model}))
+    # create a period if it doesn't exist
+    view = switch @model.get('typ')
+      when 'meeting',  'social'    then BB.Views.CnTbodyRosterMt
+      when 'training', 'community' then BB.Views.CnTbodyRosterTr
+      when 'operation'             then BB.Views.CnTbodyRosterOp
+    @tbody.show(new view({model: @model}))
+
+  genJournal: (navOption = "NA") ->
+    @router.navigate("/events/#{@model.id}/journal") unless navOption == "noNav"
+    @tmenu.show(new BB.Views.CnTabsMenu(@page))
+    @tbody.show(new BB.Views.CnTbodyJournal({model: @model}))
 
   genForum: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/forum") unless navOption == "noNav"

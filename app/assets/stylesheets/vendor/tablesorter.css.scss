@@ -31,6 +31,19 @@ table.tablesorter tbody td {
   background-color: #FFF;
   vertical-align: top;
 }
+
+table.tablesorter td.pubSubdEvent, .pubSubdEvent {
+  background-color: rgba(153, 16, 176, 0.71);
+}
+
+table.tablesorter td.newMember, .newMember {
+  background-color: #a0f08a;
+}
+
+table.tablesorter td.matchMember, .matchMember {
+  background-color: #fffaaa;
+}
+
 table.tablesorter td.activeEvent, .activeEvent {
   background-color: rgba(255, 165, 0, 0.75);
 }

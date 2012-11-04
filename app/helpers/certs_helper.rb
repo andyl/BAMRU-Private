@@ -117,7 +117,7 @@ class BaseCert
           exp = "| " + expiration(cert)
           doc = "| " + documentation(cert)
           act = can_update?(@mem) ? td(cert_actions(@mem, cert, @type)) : ""
-          "<li style='list-style-@type: none; font-size: 10px;' id=cert_#{cert.id}>" + do_span(des, col1) + do_span(doc, col2) + do_span(exp, col3) + " " + "<span style='float:right'>#{act}</span>" + "</li>"
+          "<li class='certLi' style='list-style-type: none; font-size: 10px;' id=cert_#{cert.id}>" + do_span(des, col1) + do_span(doc, col2) + do_span(exp, col3) + " " + "<span style='float:right'>#{act}</span>" + "</li>"
         end.join + "</div>"
   end
 

@@ -20,12 +20,18 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     'click #ckAllDay'                  : "toggleAllDay"
 
   onShow: ->
-    BB.hotKeys.add("CnTbodyOverviewEditKeys", new BB.HotKeys.CnTbodyOverviewEditKeys())
+    BB.hotKeys.disable("SidebarList")
+    BB.hotKeys.disable("SidebarControl")
+    BB.hotKeys.disable("CnTabsMenu")
+    BB.hotKeys.enable("CnSharedForm")
     if @model.get('all_day') then @setDatePicker() else @setDateTimePicker()
     setTimeout(@setFocus, 250)
 
   onClose: ->
-    BB.hotKeys.remove("CnTbodyOverviewEditKeys")
+    BB.hotKeys.disable("CnSharedForm")
+    BB.hotKeys.enable("SidebarList")
+    BB.hotKeys.enable("SidebarControl")
+    BB.hotKeys.enable("CnTabsMenu")
 
   # ----- methods -----
 

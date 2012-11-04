@@ -40,7 +40,7 @@
         OL: <%= f.check_box('ol') %>
         <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>
       <% end %>
-      <p></p><b>Phones</b> <span class=add_remove><%= link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
+      <p></p><b>Phones</b> <span class=add_remove><%= raw link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
       <div id=sortable_phones>
         <% @member.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
           <%= f.fields_for :phones, xphone do |phone| %>

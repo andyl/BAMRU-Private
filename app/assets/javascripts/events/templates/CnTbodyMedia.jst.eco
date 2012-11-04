@@ -1,1 +1,18 @@
-Media: Under Construction
+<style>
+  .mediaBlock {
+    margin-top:    5px;
+    margin-bottom: 5px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+  }
+  .mediaBlock table {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+</style>
+
+<div id="links"  class='mediaBlock'></div>
+<div id="files"  class='mediaBlock'></div>
+<div id="photos" class='mediaBlock'></div>

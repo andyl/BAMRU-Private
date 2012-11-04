@@ -13,7 +13,6 @@ class BB.Views.CnNewForm extends BB.Views.CnSharedForm
       BB.Collections.events.add(@model)
       BB.Collections.filteredEvents.reFilter()
       BB.Routers.app.navigate("/events/#{@model.get('id')}", {trigger: true})
-      console.log "SAVING IS SUCCESSFIL", @model, @model.get('id')
     noFunc = ->
       alert "THERE WAS AN ERROR"
     @model.set params
@@ -22,5 +21,4 @@ class BB.Views.CnNewForm extends BB.Views.CnSharedForm
 
   cancel: (event) ->
     event?.preventDefault()
-    console.log "IN CnNewForm CANCEL!!!"
     BB.vent.trigger("click:CnTabsOverviewCancelClone")

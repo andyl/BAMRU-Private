@@ -58,10 +58,14 @@ generateBbDebugMenu = ->
 addBbDebugDivToFooter = ->
   html = "<div id='#{debugBb}' class='debug'><b>BB</b></div>"
   $(debugFooterId).append(html)
+  window.footerHeight = $(debugFooterId).height()
   $(window).resize()
 
 updateBbDebugFooter = (html) ->
   $(debugBbId).html(html)
+  if window.footerHeight != $(debugFooterId).height()
+    $(window).resize()
+    window.footerHeight = $(debugFooterId).height()
 
 updateBbDebugMenu = ->
   debugHtml = generateBbDebugMenu()

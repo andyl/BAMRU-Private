@@ -1,4 +1,9 @@
 <%= javascript_include_tag "events/all_events" %>
+<%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
+<script>
+  window.faye_server = "<%= FAYE_SERVER %>"
+  window.sessionId   = "<%= @session_id %>"
+</script>
 
 <div id=x_container>
   <div id=x_wide_body>
@@ -25,6 +30,10 @@
   </div>
 </div>
 
-<script id='json_data' type="text/json_data">
-<%= @event_json %>
+<script id='json_event_data' type="text/json_data">
+  <%= @event_json %>
+</script>
+
+<script id='json_member_data' type="text/json_data">
+  <%= @member_json %>
 </script>

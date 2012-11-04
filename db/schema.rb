@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
   create_table "event_links", :force => true do |t|
     t.integer  "member_id"
     t.integer  "event_id"
-    t.string   "url"
+    t.string   "site_url"
     t.string   "caption"
     t.boolean  "published",  :default => false
     t.datetime "created_at",                    :null => false
@@ -295,15 +295,15 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
   end
 
   create_table "participants", :force => true do |t|
-    t.string   "role"
+    t.boolean  "ol",             :default => false
     t.integer  "member_id"
     t.integer  "period_id"
     t.datetime "en_route_at"
     t.datetime "return_home_at"
     t.datetime "signed_in_at"
     t.datetime "signed_out_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "period_pages", :force => true do |t|
@@ -314,7 +314,6 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
   end
 
   create_table "periods", :force => true do |t|
-    t.string   "title"
     t.integer  "event_id"
     t.integer  "position"
     t.datetime "start"

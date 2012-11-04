@@ -4,14 +4,26 @@ These prototypes are for learning new software tools and techniques.  They are n
 Let Andy know if you spot problems or have ideas for improvement.
 <p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Events</h3>
-Coordination and reporting for BAMRU Events (meetings, trainings, operations).
-
-<b><%= link_to events_url, '/events'  %></b>
+<table>
+  <tr>
+    <td width=500>
+      Coordination and reporting for BAMRU Events (meetings, trainings, operations).<p></p>
+      Note:<br/>
+      - Event data is re-generated periodically.  Edits will not be retained.<br/>
+      - This prototype works best on Chrome, second best on Firefox.  <b>IE9 will not work.</b>
+    </td>
+    <td>
+      <div style='margin-left: 40px;'>
+        <%= link_to events_url, '/events'  %>
+      </div>
+    </td>
+  </tr>
+</table>
 <p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Mobile</h3>
 <table>
   <tr>
-    <td>
+    <td width=500>
       BAMRU Mobile is a small and fast interface that runs in a mobile browser.<br/>
       It is designed for Android, iPhone, iPad, iPod, and also works on Chrome/Firefox.<br/>
     </td>
@@ -25,6 +37,17 @@ Coordination and reporting for BAMRU Events (meetings, trainings, operations).
 </table>
 <p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Messaging</h3>
-Experiments with chat and real-time message feeds.
-<p></p>
-<b><%= link_to "Monitor", '/monitor'  %></b> - streaming performance stats and events
+<table>
+  <tr>
+    <td width=500>
+      Experiments with chat and real-time message feeds.<p></p>
+      The monitor shows a streaming activity log.
+    </td>
+    <td>
+      <div style='margin-left: 40px;'>
+        <%= link_to monitor_url, '/monitor'  %>
+      </div>
+    </td>
+  </tr>
+</table>
+

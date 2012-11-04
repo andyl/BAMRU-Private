@@ -17,7 +17,6 @@ class AddEventSupport < ActiveRecord::Migration
       end
 
       create_table :periods do |t|
-        t.string    :title
         t.integer   :event_id
         t.integer   :position
         t.datetime  :start
@@ -27,9 +26,10 @@ class AddEventSupport < ActiveRecord::Migration
       end
 
       create_table :participants do |t|
-        t.string    :role
+        t.boolean   :ol,          :default => false
         t.integer   :member_id
         t.integer   :period_id
+        t.string    :comment
         t.timestamp :en_route_at
         t.timestamp :return_home_at
         t.timestamp :signed_in_at
@@ -57,13 +57,11 @@ class AddEventSupport < ActiveRecord::Migration
       create_table :event_links do |t|
         t.integer   :member_id
         t.integer   :event_id
-        t.string    :url
+        t.string    :site_url
         t.string    :caption
         t.boolean   :published, :default => false
         t.timestamps
       end
-
-
 
       create_table :browser_profiles do |t|
         t.integer :member_id

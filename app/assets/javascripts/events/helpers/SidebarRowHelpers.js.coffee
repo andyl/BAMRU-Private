@@ -16,7 +16,10 @@ BB.Helpers.SidebarRowHelpers =
 
   bTyp       : -> @typ[0].toUpperCase()
 
-  activeClass: -> if @isActive then " class='activeEvent'" else ""
+  activeClass: ->
+    return " class='pubSubdEvent'" if @pubSub?
+    return " class='activeEvent'"  if @isActive
+    return ""
 
   linkCell   : -> "<td#{@activeClass()}>#{@eventLink()}</td>"
 

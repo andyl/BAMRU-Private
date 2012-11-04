@@ -1,0 +1,6 @@
+<table class='eventFooterTable' width=100% border=0 cellpadding=0 cellmargin=0>
+  <tr>
+    <td id="hotKeyFooter" align="left"></td>
+    <td align="right"><a id='shortCutLink' href='#'><b>*</b> all keyboard shortcuts</a></td>
+  </tr>
+</table>

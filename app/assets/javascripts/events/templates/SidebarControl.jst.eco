@@ -1,33 +1,32 @@
 <table cellpadding=0 border=0 cellspacing=0 width=100% style='margin-bottom: 4px;'>
   <tr>
     <form id='controlForm'>
-    <td>
-      <select name='placeholder' id="typ-button" tabindex="1">
-        <option id='placeDisplay' value='placeholder'>Loading...</option>
-      </select>
-      <input id="select-button" type="button" value="Loading..." tabindex="2"/>
-      <div id='select-menu'>
-        <div class="eventLinks">
-          <table width=100%><tr>
-          <td><a id='checkAll' href='#'>check all</a> | <a id='clearAll' href="#">clear all</a></td>
-          <td align="right">[<a id='closeBox' href='#'>X</a>]</td>
-          </tr></table>
+      <td>
+        <select name='placeholder' id="typ-button" tabindex="1">
+          <option id='placeDisplay' value='placeholder'>Loading...</option>
+        </select>
+        <input id="select-button" type="button" value="Loading..." tabindex="2"/>
+        <div id='select-menu'>
+          <div class="eventLinks">
+            <table width=100%><tr>
+              <td><a id='checkAll' href='#'>check all</a> | <a id='clearAll' href="#">clear all</a></td>
+              <td align="right">[<a id='closeBox' href='#'>X</a>]</td>
+            </tr></table>
+          </div>
+          <table>
+            <%- @genAllRows() %>
+          </table>
         </div>
-        <table>
-          <%- @genAllRows() %>
-        </table>
-      </div>
-    </td>
-    <td align="right">
-      <select id='startSel' class='dateSel' name='start' tabindex=3>
-        <%- @eventRangeSelect(@defaultStart(), @defaultFinish()) %>
-      </select>
-      to
-      <select id='finishSel' class='dateSel' name='finish' tabindex=4>
-        <%- @eventRangeSelect(@defaultFinish(), @defaultStart()) %>
-      </select>
-      </form>
-    </td>
+      </td>
+      <td align="right">
+        <select id='startSel' class='dateSel' name='start' tabindex=3>
+          <%- @eventRangeSelect(@defaultStart(), @defaultFinish()) %>
+        </select>
+        to
+        <select id='finishSel' class='dateSel' name='finish' tabindex=4>
+          <%- @eventRangeSelect(@defaultFinish(), @defaultStart()) %>
+        </select>
+      </td>
     </form>
   </tr>
 </table>

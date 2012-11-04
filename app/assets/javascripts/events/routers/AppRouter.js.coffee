@@ -11,6 +11,8 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     'events/:id/edit/'    : "edit"
     'events/:id/roster'   : "roster"
     'events/:id/roster/'  : "roster"
+    'events/:id/journal'  : "journal"
+    'events/:id/journal/' : "journal"
     'events/:id/media'    : "media"
     'events/:id/media/'   : "media"
     'events/:id/summary'  : "summary"
@@ -21,11 +23,20 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     # ----- state obj -----
     BB.UI.filterState        = new BB.Models.UiState()
     # ----- event collection -----
-    json_data = JSON.parse(_.string.unescapeHTML($('#json_data').text()))
-    BB.Collections.events = new BB.Collections.Events(json_data)
+    json_event_data = JSON.parse(_.string.unescapeHTML($('#json_event_data').text()))
+    BB.Collections.events = new BB.Collections.Events(json_event_data)
     BB.Collections.filteredEvents = new BB.Collections.FilteredEvents(BB.Collections.events)
     @fEvents = BB.Collections.filteredEvents
     @fEvents.filter(BB.UI.filterState.toJSON())
+    # ----- faye -----
+    BB.faye = new Faye.Client(faye_server)
+    BB.faye.subscribe("/events", (data) -> BB.pubSubEvents(data))
+    # ----- current member -----
+    json_member_data = JSON.parse(_.string.unescapeHTML($('#json_member_data').text()))
+    BB.currentMember = new BB.Models.Member(json_member_data)
+    # ----- all members -----
+    BB.members = new BB.Collections.Members()
+    BB.members.fetch()
     # ----- app view -----
     BB.Views.app = new BB.Views.AppLayout()
     @appLayout = BB.Views.app
@@ -51,6 +62,10 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering roster for #{id}"
     @_render {modelId: id, page: 'roster'}
 
+  journal: (id) ->
+    console.log "rendering journal for #{id}"
+    @_render {modelId: id, page: 'journal'}
+
   media: (id) ->
     console.log "rendering media for #{id}"
     @_render {modelId: id, page: 'media'}
@@ -74,7 +89,8 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     @appLayout.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
   _render: (opts) ->
-    if @fEvents.get(opts.modelId)
+#    if @fEvents.get(opts.modelId)
+    if BB.Collections.events.get(opts.modelId)
       @appLayout.showTabs(opts)
     else
       @_showMissingEvent(opts.modelId)

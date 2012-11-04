@@ -13,8 +13,8 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Export an passenger config file."
     task :alert do
-      if ENV['MONIT_GMAIL_USER'].nil?
-        puts "ERROR: MONIT_GMAIL_USER is not defined"
+      if ENV['GMAIL_MONIT_SMTP_USER'].nil?
+        puts "ERROR: GMAIL_MONIT_SMTP_USER is not defined"
       else
         template "monit_alert.erb", "/etc/monit/conf.d/monit_alert.conf"
       end

@@ -17,4 +17,4 @@ class BB.Views.UtilHeaderLeft extends Backbone.Marionette.ItemView
 
   linkToCnIndx: (event) ->
     event.preventDefault()
-    BB.Routers.app.navigate("/events", {trigger: true})
+    BB.vent.trigger "key:Home"

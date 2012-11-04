@@ -549,4 +549,3 @@ end
 #  last_sign_in_at            :datetime
 #  dl                         :string(255)
 #
-

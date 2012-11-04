@@ -1,7 +1,7 @@
 <%# if current_member.admin? || @event.typ == "operation" %>
 <div  class='eventLinks'>
   <a href="#" id='CnTabsOverviewShow-edit'>Edit</a> |
-  <a href="#" id='CnTabsOverviewShow-clone'>Clone</a> |
+  <a href="#" id='CnTabsOverviewShow-clone'>reProduce</a> |
   <a href="#" id='CnTabsOverviewShow-delete'>Delete</a>
 </div>
 <%# end %>

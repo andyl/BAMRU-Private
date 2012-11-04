@@ -19,3 +19,6 @@
 
 <div id="content" class="pane ui-layout-center">
 </div>
+
+<div id='hotKeyHelp'>
+</div>

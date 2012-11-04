@@ -8,10 +8,15 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
   # ----- initialization -----
 
   initialize: ->
-    @bindTo(BB.vent,    'cmd:ToggleCheckbox',     @toggleCheckbox,    this)
-    @bindTo(BB.vent,    'cmd:ExclusiveCheckbox',  @exclusiveCheckbox, this)
-    @bindTo(BB.vent,    'uiState:changed',        @updateControlBox,  this)
-    @bindTo(BB.vent,    'cmd:SidebarFilterFocus', @toggleFilterFocus, this)
+    @bindTo(BB.Collections.events, 'remove',            @reRender,            this)
+    @bindTo(BB.vent,     'cmd:ToggleCheckbox',          @toggleCheckbox,    this)
+    @bindTo(BB.vent,     'cmd:ExclusiveCheckbox',       @exclusiveCheckbox, this)
+    @bindTo(BB.vent,     'uiState:changed',             @updateControlBox,  this)
+    @bindTo(BB.vent,     'cmd:SidebarFilterFocus',      @toggleFilterFocus, this)
+    @bindTo(BB.vent,     'cmd:SidebarControlReset',     @reset,             this)
+    @bindTo(BB.vent,     'cmd:SidebarControlNew',       @newEvent,          this)
+    @bindTo(BB.vent,     'cmd:SidebarControlCheckAll',  @checkAll,          this)
+    @bindTo(BB.vent,     'cmd:SidebarControlToggleAll', @toggleAll,         this)
 
   events:
     'change .typCk'            : 'updateView'
@@ -25,7 +30,17 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     'focus #typ-button'        : 'focusTypButton'
     'click #new-event-button'  : 'newEvent'
 
-  onShow: -> @updateControlBox()
+  reRender: ->
+    console.log "RERENDERING"
+    @render()
+
+
+  onShow: ->
+    BB.hotKeys.enable("SidebarControl")
+    @updateControlBox()
+
+  onClose: ->
+    BB.hotKeys.disable("SidebarControl")
 
   newEvent: -> BB.Routers.app.navigate("/events/new", {trigger: true})
 
@@ -42,12 +57,15 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     typeObj[type] = true
     @model.set(typeObj)
 
+  checkBoxTypes: -> _.omit(@model.toJSON(), ['start', 'finish', 'true'])
+  allChecked:    -> _.all(@checkBoxTypes(), (val, type) -> val)
+
   updateControlBox: ->
     # update checkboxes
-    types = _.omit(@model.toJSON(), ['start', 'finish', 'true'])
+    types = @checkBoxTypes()
     _.each(types, (val, type) -> $("##{type}-id").attr('checked',val))
     # update checkbox-button label
-    label = if _.all(types, (val, type) -> val)
+    label = if @allChecked()
       "All Types"
     else
       checked = reduceArr types, (acc, val, key) -> if val then acc.concat(key.toUpperCase()[0]) else acc
@@ -62,11 +80,16 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     $('#finishSel').html(fOpt)
 
   updateView: ->
-    newFilter = Backbone.Syphon.serialize(this)
-    delete newFilter.placeholder
+    newFilter =
+      start:      $('#startSel').val()
+      finish:     $('#finishSel').val()
+      meeting:    $('#meeting-id').is(':checked')
+      training:   $('#training-id').is(':checked')
+      operation:  $('#operation-id').is(':checked')
+      community:  $('#community-id').is(':checked')
+      social:     $('#social-id').is(':checked')
     oldFilter = @model.toJSON()
     mergeFilter = _.extend(oldFilter, newFilter)
-#    $('.dateSel').blur()
     @model.validSet mergeFilter
     @model.stateChanged()
 
@@ -78,15 +101,20 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
   allTypes: ["meeting", "training", "operation", "community", "social"]
   setAll: (val) -> reduceObj @allTypes, (acc, key) -> acc[key] = val; acc
   checkAll: (ev) ->
-    ev.preventDefault()
+    ev?.preventDefault()
+    console.log "CheckALL"
     @model.set(@setAll(true), {silent: true})
     BB.vent.trigger("uiState:changed", @model)
     @model.saveStateToLocalStorage()
   clearAll: (ev) ->
-    ev.preventDefault()
+    ev?.preventDefault()
+    console.log "ClearAll"
     @model.set(@setAll(false), {silent: true})
     BB.vent.trigger("uiState:changed", @model)
     @model.saveStateToLocalStorage()
+  toggleAll: (ev) ->
+    console.log "Toggle"
+    if @allChecked() then @clearAll() else @checkAll()
 
   # ----- filter box -----
 

@@ -79,13 +79,14 @@ Zn::Application.routes.draw do
     resources :sessions
   end  
 
-  get '/events'             => 'events#index'
-  get '/events/:id'         => 'events#index'
-  get '/events/:id/edit'    => 'events#index'
-  get '/events/:id/roster'  => 'events#index'
-  get '/events/:id/forum'   => 'events#index'
-  get '/events/:id/media'   => 'events#index'
-  get '/events/:id/aar'     => 'events#index'
+  get '/events'                => 'events#index'
+  get '/events/:id'            => 'events#index'
+  get '/events/:id/edit'       => 'events#index'
+  get '/events/:id/roster'     => 'events#index'
+  get '/events/:id/journal'    => 'events#index'
+  get '/events/:id/forum'      => 'events#index'
+  get '/events/:id/media'      => 'events#index'
+  get '/events/:id/chronicle'  => 'events#index'
 
   namespace "eapi" do
 
@@ -93,17 +94,16 @@ Zn::Application.routes.draw do
       resources :event_links, controller: 'events/event_links'
       resources :event_photos
       resources :data_files
-      resources :periods
+      resources :periods, controller: 'events/periods'
     end
 
     resources :periods do
-      resources :participants
+      resources :participants, controller: 'periods/participants'
     end
 
     resources :members
 
   end
-
 
   namespace "api" do
 

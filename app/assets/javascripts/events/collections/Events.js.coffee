@@ -19,13 +19,21 @@ class BB.Collections.Events extends Backbone.Collection
   setActive: (modelId) ->
     @clearActive()
     lclModel = @get(modelId)
-    lclModel.set({isActive: true})
+    lclModel?.set({isActive: true})
 
   getActive: ->
     @select (m) -> m.get('isActive')
 
   yearFilter: (year) ->
     @select (e) -> e.get('start').split('-')[0] == year
+
+  getMeetings:   => @getTyp('meeting')
+  getTrainings:  => @getTyp('training')
+  getOperations: => @getTyp('operation')
+  getCommunity:  => @getTyp('community')
+  getSocial:     => @getTyp('social')
+  getTyp: (type) ->
+    @select (e) -> e.get('typ') == type
 
   objFilter: (filterObj) ->
     @select (e) ->

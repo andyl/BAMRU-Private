@@ -12,16 +12,20 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
 
   # ----- initialization -----
 
-#  initialize: ->
-#    console.log "INIT AppLayout"
-
   onRender: ->
     @applyLayout()
     @showSidebar()
-    @bindTo(BB.vent,     'click:CnTabsOverviewClone',       @clone,       this)
-    @bindTo(BB.vent,     'click:CnTabsOverviewCancelClone', @cancelClone, this)
+    @bindTo(BB.vent,     'click:CnTabsOverviewClone',       @clone,         this)
+    @bindTo(BB.vent,     'click:CnTabsOverviewCancelClone', @cancelClone,   this)
+    @bindTo(BB.vent,     'key:Home',                        @goHome,        this)
+    @bindTo(BB.vent,     'key:ToggleSidebar',               @toggleSidebar, this)
+    BB.Views.utilFooter.render().updateFooter()
+    BB.hotKeys.enable("AppLayout")
 
-  # ----- global event handlers -----
+  onClose: ->
+    BB.hotKeys.disable("AppLayout")
+
+  # ----- event handlers (clone) -----
 
   clone: (model) ->
     @lastModel = model
@@ -33,6 +37,15 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
       BB.Routers.app.navigate("/events/#{@lastModel.get('id')}", {trigger: true})
     else
       BB.Routers.app.navigate("/events", {trigger: true})
+      
+  # ----- event handlers (misc) -----
+  
+  toggleSidebar: ->
+    @jsLayout.toggle('west')
+
+  goHome: ->
+    @jsLayout.open('west')
+    BB.Routers.app.navigate("/events", {trigger: true})
 
   # ----- sidebar -----
 
@@ -58,7 +71,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
       center__onresize  : => @setContentWidth()
     @setColumnHeight()
     $(window).resize => @setColumnHeight()
-    $('#x_single_col').layout(layoutOptions)
+    @jsLayout = $('#x_single_col').layout(layoutOptions)
     @setContentWidth()
 
   setContentWidth: ->
@@ -69,13 +82,15 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
       $(el).width(535)
 
   setColumnHeight: ->
-    window.tgtHeight = window.innerHeight - 170 - $('#debug_footer').height()
+    window.tgtHeight = window.innerHeight - 184 - $('#debug_footer').height()
     $('#x_single_col').css('height', "#{tgtHeight}px")
-    $('#sidebar').height(tgtHeight - 18)
+    $('#sidebar').height(tgtHeight - 14)
+    $('#content').height(tgtHeight - 38)
     @updateSidebar()
     window.setTimeout(@updateSidebar, 250)
 
   updateSidebar: ->
     $('#sidebar').height(tgtHeight - 14)
+    $('#content').height(tgtHeight - 14)
 
 

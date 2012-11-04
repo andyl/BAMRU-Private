@@ -4,7 +4,7 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
 
   template: 'events/templates/CnTabsMenu'
   templateHelpers: BB.Helpers.CnTabsMenuHelpers
-  pages: ["overview", "roster", "forum", "media", "chronicle"]
+  pages: ["overview", "roster", "journal", "forum", "media", "chronicle"]
 
   # ----- initialization -----
 
@@ -20,10 +20,10 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
     "click .tmenuOpt" : "menuClick"
 
   onShow: ->
-    BB.hotKeys.add("CnTabsMenu", new BB.HotKeys.CnTabsMenuKeys())
+    BB.hotKeys.enable("CnTabsMenu")
 
   onClose: ->
-    BB.hotKeys.remove("CnTabsMenu")
+    BB.hotKeys.disable("CnTabsMenu")
 
   # ----- methods -----
 

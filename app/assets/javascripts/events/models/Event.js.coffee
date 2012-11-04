@@ -15,5 +15,7 @@ class BB.Models.Event extends Backbone.Model
   # ----- initialization -----
 
   initialize: ->
-    @event_links = new BB.Collections.EventLinks()
-    @event_links.url = "/eapi/events/#{@.id}/event_links"
+    @eventLinks     = new BB.Collections.EventLinks()
+    @eventLinks.url = "/eapi/events/#{@.id}/event_links"
+    @periods     = new BB.Collections.Periods()
+    @periods.url = "/eapi/events/#{@.id}/periods"

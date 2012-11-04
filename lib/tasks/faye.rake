@@ -44,6 +44,7 @@ namespace :faye do
     nick    = Process.pid.to_s
     channel = ENV['CHANNEL'] || "/chats/new"
     puts "Using Faye parameters #{FAYE_SERVER}, #{channel}, #{nick}"
+    puts "Note: set ENV['CHANNEL'] to change channel."
     FayeChat.run(FAYE_SERVER, channel, nick)
   end
 
