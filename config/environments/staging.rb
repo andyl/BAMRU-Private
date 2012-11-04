@@ -53,6 +53,6 @@ Zn::Application.configure do
   # Exception Notification
   config.middleware.use ExceptionNotifier,
     sender_address: GMAIL_USER,
-    exception_recipients: ALERT_EMAILS.split(' ')
+    exception_recipients: EXCEPTION_ALERT_EMAILS.split(' ')
 
 end
