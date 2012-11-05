@@ -30,7 +30,8 @@ Capistrano::Configuration.instance(:must_exist).load do
 
         require 'erb'
         deadline, reason = ENV['UNTIL'], ENV['REASON']
-        maintenance = ERB.new(File.read("#{current_path}/app/views/layouts/maintenance.erb")).result(binding)
+        erb_file = File.expand_path("../../../../../app/views/layouts/maintenance.html.erb", __FILE__)
+        maintenance = ERB.new(File.read(erb_file)).result(binding)
 
         put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
       end
