@@ -19,6 +19,29 @@ Capistrano::Configuration.instance(:must_exist).load do
       run "touch #{current_path}/tmp/restart.txt"
     end
 
+    namespace :web do
+
+      desc "invoke with UNTIL='16:00' REASON='a database upgrade'"
+      task :disable, :roles => :web do
+        # invoke with
+        # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
+
+        on_rollback { rm "#{shared_path}/system/maintenance.html" }
+
+        require 'erb'
+        deadline, reason = ENV['UNTIL'], ENV['REASON']
+        maintenance = ERB.new(File.read("./app/views/layouts/maintenance.erb")).result(binding)
+
+        put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
+      end
+
+      desc "enable web access"
+      task :enable do
+        rm "#{shared_path}/system/maintenance.html"
+      end
+
+    end
+
   end
 
 end

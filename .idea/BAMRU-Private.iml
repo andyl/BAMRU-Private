@@ -50,6 +50,7 @@
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.3.6, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chronic (v0.6.7, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chunky_png (v1.2.6, ruby-1.9.3-p194) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cocaine (v@23573a, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.0.8, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v3.1.1, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, ruby-1.9.3-p194) [gem]" level="application" />
