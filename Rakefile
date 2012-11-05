@@ -5,7 +5,7 @@
 require 'rake'
 
 require File.expand_path('../config/application', __FILE__)
-require File.expand_path('../config/environment', __FILE__)
+#require File.expand_path('../config/environment', __FILE__)
 
 Zn::Application.load_tasks
 

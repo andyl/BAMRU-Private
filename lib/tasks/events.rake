@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'csv'
+require File.expand_path('../../../config/environment', __FILE__)
 
 namespace :events do
 
