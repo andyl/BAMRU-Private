@@ -1,11 +1,14 @@
 require 'open-uri'
 require 'csv'
-require File.expand_path('../../../config/environment', __FILE__)
 
 namespace :events do
 
+  task :environment do
+    require File.expand_path('../../../config/environment', __FILE__)
+  end
+
   desc "Delete all events"
-  task :reset do
+  task :reset => :environment do
     puts "Clearing old event data"
     Event.destroy_all
     Participant.destroy_all
@@ -13,7 +16,7 @@ namespace :events do
   end
 
   desc "Count Event Objects"
-  task :count do
+  task :count => :environment do
     puts "      Events: #{Event.count}"
     puts "     Meetings: #{Event.meetings.count}"
     puts "    Trainings: #{Event.trainings.count}"
@@ -25,7 +28,7 @@ namespace :events do
   end
 
   desc "Load CSV data"
-  task :load => :reset do
+  task :load => [:environment, :reset] do
     load_events
     Rake::Task["events:count"].invoke
   end
