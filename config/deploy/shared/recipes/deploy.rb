@@ -26,8 +26,6 @@ Capistrano::Configuration.instance(:must_exist).load do
         # invoke with
         # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
 
-        on_rollback { rm "#{shared_path}/system/maintenance.html" }
-
         require 'erb'
         deadline, reason = ENV['UNTIL'], ENV['REASON']
         erb_file = File.expand_path("../../../../../app/views/layouts/maintenance.html.erb", __FILE__)
@@ -38,7 +36,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       desc "enable web access"
       task :enable do
-        rm "#{shared_path}/system/maintenance.html"
+        run "rm #{shared_path}/system/maintenance.html"
       end
 
     end
