@@ -59,7 +59,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     # create a period if it doesn't exist
     view = switch @model.get('typ')
       when 'meeting',  'social'    then BB.Views.CnTbodyRosterMt
-      when 'training', 'community' then BB.Views.CnTbodyRosterTr
+      when 'training', 'community' then BB.Views.CnTbodyRosterOp
       when 'operation'             then BB.Views.CnTbodyRosterOp
     @tbody.show(new view({model: @model}))
 
