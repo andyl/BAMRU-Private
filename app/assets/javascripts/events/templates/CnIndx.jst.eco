@@ -4,45 +4,24 @@
     padding-left: 15px;
     font-weight: bold;
   }
+
+  .eventTable td {
+    font-size: 8pt;
+  }
 </style>
 
 <h3>BAMRU Events</h3>
 
-<b><%= @currentEventsTitle() %>:</b><br/>
-    <table class='eventTable'>
-      <tr>
-        <td>Operation - </td>
-        <td><a class='eventLink' href='/events/394'>Missing Hiker Search @ Desolation Wilderness</a></td>
-      </tr>
-      <tr>
-        <td>Training - </td>
-        <td><a  class='eventLink' href='/events/314'>Advanced Technical Rescue @ Yosemite</a></td>
-      </tr>
-    </table>
+<% @reGenEventList() %>
+
+<b><%= @currentEventsTitle() %></b><br/>
+<%- @eventsTable(@currentEvents()) %>
 <p></p>
-<b>Upcoming (Oct-26 to Nov-26):</b><br/>
-    <table class='eventTable'>
-      <tr>
-        <td>Meeting - </td>
-        <td><a class='eventLink' href='/events/394'>General Meeting @ Castro Valley : Mon Oct 25 17:00 to 19:00</a></td>
-      </tr>
-      <tr>
-        <td>Training - </td>
-        <td><a  class='eventLink' href='/events/314'>Advanced Technical Rescue @ Yosemite : Mon Oct 25 to Tue Oct 27</a></td>
-      </tr>
-    </table>
+<b><%= @upcomingEventsTitle() %></b><br/>
+<%- @eventsTable(@upcomingEvents()) %>
 <p></p>
-<b>Recent (Sep-26 to Oct-26):</b><br/>
-    <table class='eventTable'>
-      <tr>
-        <td>Operation - </td>
-        <td><a class='eventLink' href='/events/394'>Missing Hiker Search @ Yosemite : Oct-26</a></td>
-      </tr>
-      <tr>
-        <td>Training - </td>
-        <td><a  class='eventLink' href='/events/314'>Advanced Technical Rescue @ Yosemite : Oct-25</a></td>
-      </tr>
-    </table>
+<b><%= @recentEventsTitle() %></b><br/>
+<%- @eventsTable(@recentEvents()) %>
 <p></p>
 There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firstEventDate() %> to <%= @lastEventDate() %>.<br/>
 <span style='font-size: 8pt;'>

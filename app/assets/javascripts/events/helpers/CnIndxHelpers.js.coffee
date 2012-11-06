@@ -1,5 +1,10 @@
 BB.Helpers.CnIndxHelpers =
 
+  reGenEventList: ->
+    @eventList = BB.Collections.events.select (event) => @isInRange(event)
+
+  events: -> BB.Collections.events
+
   numEvents: (type) ->
     events = BB.Collections.events
     return events.length if type == "all"
@@ -10,52 +15,86 @@ BB.Helpers.CnIndxHelpers =
   numCommunity:  -> BB.Collections.events.getCommunity().length
   numSocial:     -> BB.Collections.events.getSocial().length
 
+  # ----- event selectors -----
+
   firstEvent: -> BB.Collections.events.sortBy((e) -> e.get('start'))[0]
   lastEvent:  -> BB.Collections.events.sortBy((e) -> e.get('start')).slice(-1)[0]
 
   firstEventDate: -> moment(@firstEvent().get('start')).strftime("%b-%Y")
   lastEventDate:  -> moment(@lastEvent().get('start')).strftime("%b-%Y")
 
-  currentEvents: -> []
+  upcomingStart:  moment()
+  upcomingFinish: moment().add("weeks", 6)
+  recentStart:    moment().subtract("weeks", 4)
+  recentFinish:   moment()
 
-  recentEvents:  -> []
+  eventDates: (event) -> [moment(event.get('start')), moment(event.get('finish'))]
 
-  upcomingEvents: -> []
+  isCurrent: (event) ->
+    [eventStart, eventFinish] = @eventDates(event)
+    if eventFinish
+      eventStart < moment() < eventFinish
+    else
+      moment().subtract('days', 3) < eventStart < moment()
+
+  isRecent: (event) ->
+    return false if @isCurrent(event)
+    [eventStart, eventFinish] = @eventDates(event)
+    @recentStart < eventStart < @recentFinish
+
+  isUpcoming: (event) ->
+    return false if @isCurrent(event)
+    [eventStart, eventFinish] = @eventDates(event)
+    @upcomingStart < eventStart < @upcomingFinish
+
+  isInRange: (event) -> @recentStart < moment(event.get('start')) < @upcomingFinish
+
+  sortByStart: (list) -> _.sortBy list, (event) -> event.get('start')
+  currentEvents:  -> @sortByStart(_.select(@eventList, (event) => @isCurrent(event) ))
+  recentEvents:   -> @sortByStart(_.select(@eventList, (event) => @isRecent(event)  )).reverse()
+  upcomingEvents: -> @sortByStart(_.select(@eventList, (event) => @isUpcoming(event)))
+
+  # ----- headers -----
 
   currentEventsTitle: ->
     switch @currentEvents().length
-      when 0 then "No current events"
-      when 1 then "One current event"
-      when 2 then "Two current events"
-      when 3 then "Three current events"
-      when 4 then "Four current events"
-      when 5 then "Five current events"
-      when 6 then "Six current events"
-      when 7 then "Seven current events"
-      when 8 then "Eight current events"
-      else "Many current events"
+      when 0 then "No current events."
+      when 1 then "Current event:"
+      else "Current events:"
 
-  currentEventsRow: (ev) ->
-    eventLink= (ev) ->
-      "<a href='/events/#{ev.id}'>#{ev.get('title')} @ ${ev.get('location')}</a>"
+  upcomingEventsTitle: ->
+    start  = @upcomingStart.strftime("%b-%d")
+    finish = @upcomingFinish.strftime("%b-%d")
+    "Upcoming (#{start} to #{finish}):"
+
+  recentEventsTitle: ->
+    start  = @recentStart.strftime("%b-%d")
+    finish = @recentFinish.strftime("%b-%d")
+    "Recent (#{finish} back to #{start}):"
+
+  # ----- event display -----
+
+  eventsRow: (ev) =>
+    eventLink = (ev) =>
+      title    = ev.get('title')
+      location = ev.get('location')
+      date     = BB.Helpers.ExtDateHelpers.hShowDate(ev.get('start'), ev.get('finish'), ev.get('all_day'), "%a %b-%d")
+      label    = "#{title} @ #{location} <b>#{date}</b>"
+      "<a class='eventRowLink' href='/events/#{ev.id}'>#{label}</a>"
     """
     <tr>
-      <td>#{_.string(ev.get('typ')).capitalize()}</td>
-      <td>#{@eventLink(ev)}</td>
+      <td width=70><nobr>#{_.string.capitalize(ev.get('typ'))} - </nobr></td>
+      <td>#{eventLink(ev)}</td>
     </tr>
     """
 
-  currentEventsRows: (list) ->
-    _.map(list, (ev) -> @currentEventsRow(ev)).join(' ')
+  eventsRows: (list) ->
+    _.map(list, (ev) => @eventsRow(ev)).join(' ')
 
-  currentEventsTable: ->
-    cEv = @currentEvents()
-    return "" if cEv.length == 0
+  eventsTable: (eventList) ->
+    return "" if eventList.length == 0
     """
     <table class='eventTable'>
-     #{ @currentEventsRows(cEv) }
+     #{ @eventsRows(eventList) }
     </table>
     """
-
-
-_.extend(BB.Helpers.CnIndxHelpers, BB.Helpers.ExtDateHelpers)

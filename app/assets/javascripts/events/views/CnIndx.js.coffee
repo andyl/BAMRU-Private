@@ -7,10 +7,13 @@ class BB.Views.CnIndx extends Backbone.Marionette.ItemView
   initialize: (options) ->
     @bindTo(BB.Collections.events, 'change add remove', @render, this)
 
+  events:
+    'click .eventRowLink' : 'clickEvent'
+
   onShow: ->
     BB.vent.trigger("show:CnIndx")
 
-  events:
+  event:
     "click .eventLink": "clickEvent"
 
   clickEvent: (event) ->
