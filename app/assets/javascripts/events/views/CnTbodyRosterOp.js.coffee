@@ -13,12 +13,22 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     @model      = options.model     # Event
     @collection = @model.periods    # Periods
 
+  events:
+    'click #newPeriod' : 'createPeriod'
+
   onShow: ->
-    @createPeriod() if @collection.length == 0
+    opts =
+      success: => @afterFetch()
+    @collection.fetch(opts)
     @periods.show(new BB.Views.CnTbodyRosterOpPeriods({model: @model}))
 
-  events:
-    'click #newPeriod'          : 'createPeriod'
+  # ----- initialization -----
+
+  afterFetch: ->
+    if @collection.length == 0
+      opts =
+        success: => @createPeriod()
+      @createPeriod(opts)
 
   # ----- methods -----
 

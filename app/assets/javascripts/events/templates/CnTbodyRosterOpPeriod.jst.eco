@@ -1,18 +1,16 @@
 <div class='perioDiv'>
-<table width=100%>
-<tr>
-<td width=150>
-(^) (-) (e) Period <%= @id %>
-</td>
-<td align="center">
-<input size=8 id="memberField" name="newParticipant" placeholder="member id" />
-<input type='button' class='createParticipantButton' value='Add'>
-</td>
-<td align="right">
-<%- @deletePeriodLink(@id) %>
-</td>
-</tr>
-</table>
+  <table width=100%>
+    <tr>
+      <td>
+        (^) (-) Period <%= @id %>
+        <input style='margin-left: 50px;' size=18 class='memberField' id="memberField<%= @id %>" name="newParticipant" placeholder="add participant..." />
+        <a style='display: none;' href='#' class='createGuestLink' id='createGuestLink<%= @id %>'>create new guest</a>
+      </td>
+      <td align="right">
+        <%- @deletePeriodLink(@id) %>
+      </td>
+    </tr>
+  </table>
 
   <table class='tablesorter' id="myTable<%= @id %>">
     <thead>

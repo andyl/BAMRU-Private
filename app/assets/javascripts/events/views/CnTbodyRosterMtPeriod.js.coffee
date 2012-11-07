@@ -27,9 +27,9 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     BB.hotKeys.enable("CnTbodyRoster")
 
   events:
-    'focus #memberField'      : 'onFocusSearch'
     'blur #memberField'       : 'onBlurSearch'
     'keyup #memberField'      : 'toggleGuestLink'
+    'focus #memberField'      : 'onFocusSearch'
     'click #createGuestLink'  : 'createGuest'
 
   onClose: ->
