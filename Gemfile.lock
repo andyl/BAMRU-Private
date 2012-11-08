@@ -240,8 +240,8 @@ GEM
       mime-types
     parslet (1.4.0)
       blankslate (~> 2.0)
-    passenger (3.0.18)
-      daemon_controller (>= 1.0.0)
+    passenger (3.0.12)
+      daemon_controller (>= 0.2.5)
       fastthread (>= 1.0.1)
       rack
       rake (>= 0.8.1)
@@ -466,7 +466,7 @@ DEPENDENCIES
   oauth
   paperclip (= 2.7.0)
   parslet
-  passenger
+  passenger (= 3.0.12)
   pg
   pngqr
   prawn

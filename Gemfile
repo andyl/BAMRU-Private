@@ -45,7 +45,7 @@ gem "valkyrie"
 
 gem "draper"
 gem "rack-offline"
-gem "passenger"
+gem "passenger", "3.0.12"
 
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
 gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
