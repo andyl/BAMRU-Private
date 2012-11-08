@@ -1,7 +1,0 @@
-<div data-role="listview" data-inset="true" data-theme="c" data-dividertheme="f">
-  <% @messages.each do |msg| %>
-    <li>
-      <%= raw link_to(raw(message_header(msg)), mobile1_message_path(msg)) %>
-    </li>
-  <% end %>
-</div>

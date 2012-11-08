@@ -1,0 +1,44 @@
+<table cellpadding=0 border=0 cellspacing=0 width=100% style='margin-bottom: 4px;'>
+  <tr>
+    <form id='controlForm'>
+      <td>
+        <select name='placeholder' id="typ-button" tabindex="1">
+          <option id='placeDisplay' value='placeholder'>Loading...</option>
+        </select>
+        <input id="select-button" type="button" value="Loading..." tabindex="2"/>
+        <div id='select-menu'>
+          <div class="eventLinks">
+            <table width=100%><tr>
+              <td><a id='checkAll' href='#'>check all</a> | <a id='clearAll' href="#">clear all</a></td>
+              <td align="right">[<a id='closeBox' href='#'>X</a>]</td>
+            </tr></table>
+          </div>
+          <table>
+            <%- @genAllRows() %>
+          </table>
+        </div>
+      </td>
+      <td align="right">
+        <select id='startSel' class='dateSel' name='start' tabindex=3>
+          <%- @eventRangeSelect(@defaultStart(), @defaultFinish()) %>
+        </select>
+        to
+        <select id='finishSel' class='dateSel' name='finish' tabindex=4>
+          <%- @eventRangeSelect(@defaultFinish(), @defaultStart()) %>
+        </select>
+      </td>
+    </form>
+  </tr>
+</table>
+<table cellpadding=0 border=0 cellspacing=0 width=100%>
+  <tr>
+    <td>
+      <input name="filter" id="filter-box" maxlength="12" size="12" type="text" placeholder="search..." tabindex=5>
+      <input id="filterResetButton" type="button" value="Reset" tabindex=6/>
+    </td>
+    <td align="right">
+      <input id="new-event-button" type="button" tabindex=7 value="Create New">
+    </td>
+  </tr>
+</table>
+

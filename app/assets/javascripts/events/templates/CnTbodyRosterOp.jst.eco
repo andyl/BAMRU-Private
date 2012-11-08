@@ -1,0 +1,21 @@
+<style>
+  .perioDiv {
+    margin-top:    10px;
+    margin-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border: 1px solid;
+  }
+  .perioDiv > table {
+    width: 100%;
+    background: #f4f4f4;
+    padding-left:  4px;
+    padidng-right: 4px;
+  }
+</style>
+
+<a href="#" id='newPeriod'>Add Period</a>
+
+<p></p>
+
+<div id='periods'></div>

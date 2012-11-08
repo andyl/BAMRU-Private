@@ -1,0 +1,26 @@
+<style>
+  #createGuestLink   { display: none; }
+  #myTableMeeting td { font-size: 8pt; }
+  #memberField       { margin-left: 100px; margin-right: 10px; }
+  .deleteParticipant { margin-left: 5px; margin-right: 5px;}
+</style>
+
+<table class='tablesorter' id="myTableMeeting">
+  <thead>
+  <tr>
+    <th width=40>Role</th>
+    <th>
+      Participant
+      <input size=18 id="memberField" name="newParticipant" placeholder="add participant..." />
+      <%- @guestLink() %>
+      <%- @rsvpControl() %>
+      <a href='#' id='createGuestLink'>create new guest</a>
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody id='participants<%=@id%>'>
+  </tbody>
+  </thead>
+</table>
+

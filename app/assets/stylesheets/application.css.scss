@@ -1,15 +1,19 @@
-/*
-*= require_self
-*= require_tree ./vendor
-*/
+//= require_self
+
+//= require jquery-ui
+
+//= require_tree ./vendor
+
+//= require events
 
 @import "bamru-net.css.scss";
 @import "layout.css.scss";
+@import "certs.css.scss";
 @import "certs.css.scss";
 @import "chat.css.scss";
 @import "distributions.css.scss";
 @import "members.css.scss";
 @import "photos.css.scss";
+@import "photos.css.scss";
 @import "unit_certs.css.scss";
-@import "tabs.css.scss";
 

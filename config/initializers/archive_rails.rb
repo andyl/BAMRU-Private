@@ -28,6 +28,7 @@ module Archive
   end
 end
 
-Mime::Type.register_alias "application/zip", :zip
+# commented this for Rails 3.2.8
+#Mime::Type.register_alias "application/zip", :zip
 ActionView::Template.register_template_handler(:archive, Archive::Rails::TemplateHandler)
 ActionView::Base.send(:include, Archive::Rails::ArchiveHelper)

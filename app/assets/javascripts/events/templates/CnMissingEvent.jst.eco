@@ -1,0 +1,4 @@
+<h3>Missing Event #<%= @options.eventId %></h3>
+
+<%= @options.missingEventMessage %>
+<p></p>

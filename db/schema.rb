@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120825154000) do
+ActiveRecord::Schema.define(:version => 20120830111000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -44,6 +44,21 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "browser_profiles", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "ip"
+    t.string   "browser_type"
+    t.string   "browser_version"
+    t.string   "user_agent"
+    t.string   "ostype"
+    t.boolean  "javascript"
+    t.boolean  "cookies"
+    t.integer  "screen_height"
+    t.integer  "screen_width"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "certs", :force => true do |t|
@@ -87,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.string   "data_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
+    t.string   "caption"
+    t.boolean  "published",           :default => false
   end
 
   create_table "distributions", :force => true do |t|
@@ -142,6 +160,46 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "event_links", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "event_id"
+    t.string   "site_url"
+    t.string   "caption"
+    t.boolean  "published",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "event_photos", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "event_id"
+    t.string   "caption"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "image_updated_at"
+    t.integer  "position"
+    t.boolean  "published",          :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "typ"
+    t.string   "title"
+    t.string   "leaders"
+    t.text     "description"
+    t.string   "location"
+    t.decimal  "lat",         :precision => 7, :scale => 4
+    t.decimal  "lon",         :precision => 7, :scale => 4
+    t.datetime "start"
+    t.datetime "finish"
+    t.boolean  "all_day",                                   :default => true
+    t.boolean  "published",                                 :default => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "inbound_mails", :force => true do |t|
@@ -234,6 +292,35 @@ ActiveRecord::Schema.define(:version => 20120825154000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "sent_at"
+  end
+
+  create_table "participants", :force => true do |t|
+    t.boolean  "ol",             :default => false
+    t.integer  "member_id"
+    t.integer  "period_id"
+    t.datetime "en_route_at"
+    t.datetime "return_home_at"
+    t.datetime "signed_in_at"
+    t.datetime "signed_out_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  create_table "period_pages", :force => true do |t|
+    t.integer  "period_id"
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "periods", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "position"
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer  "rsvp_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "phones", :force => true do |t|

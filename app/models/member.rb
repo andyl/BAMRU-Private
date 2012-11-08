@@ -39,6 +39,7 @@ class Member < ActiveRecord::Base
   has_many :backup_do_assignments,  :class_name => 'DoAssignment', :foreign_key => 'backup_id'
   has_many :notices, :through => :distributions, :source => :message
   has_many :chats
+  has_many :browser_profiles
 
   accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
   accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
@@ -546,5 +547,5 @@ end
 #  updated_at                 :datetime
 #  current_do                 :boolean         default(FALSE)
 #  last_sign_in_at            :datetime
+#  dl                         :string(255)
 #
-

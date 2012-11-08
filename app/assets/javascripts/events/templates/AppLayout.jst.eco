@@ -1,0 +1,24 @@
+<div id="sidebar" class="pane ui-layout-west">
+  <div id='sidebar-control'>
+  </div>
+  <div id='sidebar-list'>
+    <table class='tablesorter' id="myTable" style='display: none;'>
+      <thead>
+      <tr>
+        <th width=40>Type</th>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Start</th>
+      </tr>
+      </thead>
+      <tbody id='sidebar-tbody'>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="content" class="pane ui-layout-center">
+</div>
+
+<div id='hotKeyHelp'>
+</div>

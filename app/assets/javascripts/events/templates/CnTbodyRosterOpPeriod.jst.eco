@@ -1,0 +1,33 @@
+<div class='perioDiv'>
+  <table width=100%>
+    <tr>
+      <td>
+        (^) (-) Period <%= @id %>
+        <input style='margin-left: 50px;' size=18 class='memberField' id="memberField<%= @id %>" name="newParticipant" placeholder="add participant..." />
+        <a style='display: none;' href='#' class='createGuestLink' id='createGuestLink<%= @id %>'>create new guest</a>
+      </td>
+      <td align="right">
+        <%- @deletePeriodLink(@id) %>
+      </td>
+    </tr>
+  </table>
+
+  <table class='tablesorter' id="myTable<%= @id %>">
+    <thead>
+    <tr>
+      <th width=40>Role</th>
+      <th>Member</th>
+      <th>Leave</th>
+      <th>Return</th>
+      <th>signIn</th>
+      <th>signOut</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id='participants<%=@id%>'>
+    </tbody>
+    </thead>
+  </table>
+
+</div>

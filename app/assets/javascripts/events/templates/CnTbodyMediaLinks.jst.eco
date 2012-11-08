@@ -1,0 +1,35 @@
+<div id='link-header'>
+  <table width=100%>
+    <tr>
+      <td><b>Links</b></td>
+      <td align="right"><a href="#" id='addNewLink'>Add New Link</a></td>
+    </tr>
+  </table>
+</div>
+
+<div id='linkForm' style='display: none;'>
+  <form>
+    <input id="urlField" type=text name='site_url' size=40 placeholder='new url' tabindex="10" >
+    <input id="cancelLinkButton" type="button" value="Cancel" tabindex="14" /><br/>
+    <input id="capField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
+    <input id="createLinkButton" type="button" value="Create Link" tabindex="13" />
+    <input id="updateLinkButton" type="button" value="Update Link" tabindex="13" /><br/>
+  </form>
+</div>
+
+<div id='link-table'>
+  <table class='mediaTable tablesorter' width=100%>
+    <thead>
+      <tr>
+        <th>Site</th>
+        <th>Description</th>
+        <th>By</th>
+        <th>On</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @genLinkRows() %>
+    </tbody>
+  </table>
+</div>

@@ -1,9 +1,10 @@
+ENV["RAILS_ENV"] = 'test'
+
 require 'spork'
 require 'spork/ext/ruby-debug'
 require 'database_cleaner'
 
 Spork.prefork do
-  ENV["RAILS_ENV"] = 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rspec'

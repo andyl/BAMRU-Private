@@ -1,0 +1,5 @@
+   <td><%= @memberRole(@member_id) %></td>
+   <%- @memberCell(@member_id) %>
+   <td align="center"><%- @deleteParticipantLink(@id) %></td>
+
+

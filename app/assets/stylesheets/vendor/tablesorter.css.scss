@@ -31,6 +31,23 @@ table.tablesorter tbody td {
   background-color: #FFF;
   vertical-align: top;
 }
+
+table.tablesorter td.pubSubdEvent, .pubSubdEvent {
+  background-color: rgba(153, 16, 176, 0.71);
+}
+
+table.tablesorter td.newMember, .newMember {
+  background-color: #a0f08a;
+}
+
+table.tablesorter td.matchMember, .matchMember {
+  background-color: #fffaaa;
+}
+
+table.tablesorter td.activeEvent, .activeEvent {
+  background-color: rgba(255, 165, 0, 0.75);
+}
+
 table.tablesorter tbody tr.odd td {
   background-color:#F0F0F6;
 }
@@ -98,19 +115,19 @@ $gray_fh: $gray3;
   background: $gray_s;
   background: -webkit-gradient(linear, left top, left bottom, from($gray_s), to($gray_f));
   background: -moz-linear-gradient(top,  $gray_s,  $gray_f);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_s', endColorstr='$gray_f');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_s', endColorstr='$gray_f');
 }
 .xgray:hover {
   background: $gray_sh;
   background: -webkit-gradient(linear, left top, left bottom, from($gray_sh), to($gray_fh));
   background: -moz-linear-gradient(top,  $gray_sh,  $gray_fh);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_sh', endColorstr='$gray_fh');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_sh', endColorstr='$gray_fh');
 }
 .xgray:active {
   color: $gray_sh;
   background: -webkit-gradient(linear, left top, left bottom, from($gray_fh), to($gray_sh));
   background: -moz-linear-gradient(top,  $gray_fh,  $gray_sh);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_fh', endColorstr='$gray_sh');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$gray_fh', endColorstr='$gray_sh');
   color: black;
 }
 
@@ -132,18 +149,18 @@ $pink_fh: $pink2;
   background: $pink_s;
   background: -webkit-gradient(linear, left top, left bottom, from($pink_s), to($pink_f));
   background: -moz-linear-gradient(top,  $pink_s,  $pink_f);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_s', endColorstr='$pink_f');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_s', endColorstr='$pink_f');
 }
 .xpink:hover {
   background: $pink_sh;
   background: -webkit-gradient(linear, left top, left bottom, from($pink_sh), to($pink_fh));
   background: -moz-linear-gradient(top,  $pink_sh,  $pink_fh);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_sh', endColorstr='$pink_fh');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_sh', endColorstr='$pink_fh');
 }
 .xpink:active {
   color: $pink_sh;
   background: -webkit-gradient(linear, left top, left bottom, from($pink_fh), to($pink_sh));
   background: -moz-linear-gradient(top,  $pink_fh,  $pink_sh);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_fh', endColorstr='$pink_sh');
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$pink_fh', endColorstr='$pink_sh');
   color: black;
 }

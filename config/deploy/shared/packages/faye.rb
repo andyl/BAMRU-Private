@@ -9,7 +9,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       run <<-END
         cd #{release_path}
         if [ -f .rbenv-vars-private] ; then
-          cat .rbenv-vars-private | sed -e s/localhost:9292/#{vhost_names.first}:9292/g > /tmp/vars ;
+          cat .rbenv-vars-private | sed -e s/ekel:9292/#{vhost_names.first}:9292/g > /tmp/vars ;
           mv /tmp/vars .rbenv-vars-private ;
         fi
       END

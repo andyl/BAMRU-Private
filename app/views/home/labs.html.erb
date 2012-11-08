@@ -3,14 +3,29 @@
 These prototypes are for learning new software tools and techniques.  They are not feature-complete.<br/>
 Let Andy know if you spot problems or have ideas for improvement.
 <p></p>
+<h3 width=100% style='background: grey; padding: 3px; color: white;'>Events</h3>
+<table>
+  <tr>
+    <td width=500>
+      Coordination and reporting for BAMRU Events (meetings, trainings, operations).<p></p>
+      Note:<br/>
+      - Event data is re-generated periodically.  Edits will not be retained.<br/>
+      - This prototype works best on Chrome, second best on Firefox.  <b>IE9 will not work.</b>
+    </td>
+    <td>
+      <div style='margin-left: 40px;'>
+        <%= link_to events_url, '/events'  %>
+      </div>
+    </td>
+  </tr>
+</table>
+<p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Mobile</h3>
 <table>
   <tr>
-    <td>
-      BAMRU Mobile enables a DO/AHC to initiate a callout using a smartphone.<br/>
-      It is designed for Android, iPhone, iPad, iPod, Kindle Fire. (also works on Chrome/Firefox)<br/>
-      Features Include: Team Roster, Page Sending, Unit Message Log, Message Inbox<br/>
-      BAMRU Mobile is simple and fast, and works online or offline.
+    <td width=500>
+      BAMRU Mobile is a small and fast interface that runs in a mobile browser.<br/>
+      It is designed for Android, iPhone, iPad, iPod, and also works on Chrome/Firefox.<br/>
     </td>
     <td>
       <div style='margin-left: 40px;'>
@@ -21,14 +36,18 @@ Let Andy know if you spot problems or have ideas for improvement.
   </tr>
 </table>
 <p></p>
-Other Mobile Prototypes:<br/>
-Mobile 1 - Uses jQuery Mobile - no offline support - <%= link_to mobile1_url, mobile1_path %><br/>
-Mobile 4 - Experiments with mapping and geolocation - <%= link_to mobile4_url, mobile4_path %>
-
-<p></p>
 <h3 width=100% style='background: grey; padding: 3px; color: white;'>Messaging</h3>
-Experiments with chat and real-time message feeds.
-<p></p>
-<b><%= link_to "Chat1", '/chat1'  %></b> - simple chat client<br/>
-<b><%= link_to "Chat2", '/chat2'  %></b> - chat client using client-side mvc<br/>
-<b><%= link_to "Monitor", '/monitor'  %></b> - streaming performance stats and events
+<table>
+  <tr>
+    <td width=500>
+      Experiments with chat and real-time message feeds.<p></p>
+      The monitor shows a streaming activity log.
+    </td>
+    <td>
+      <div style='margin-left: 40px;'>
+        <%= link_to monitor_url, '/monitor'  %>
+      </div>
+    </td>
+  </tr>
+</table>
+

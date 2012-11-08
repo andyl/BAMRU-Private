@@ -1,10 +1,15 @@
 source "http://rubygems.org"
 
+ruby "1.9.3"
+
 gem "rails",          "3.1.3"
+
+gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
 
 gem "sqlite3"
 gem "rake"
 gem "faye",          "0.6.4"
+#gem "faye",          "0.8.6"
 gem "pngqr"
 gem "em-http-request"
 gem "thin"
@@ -15,11 +20,17 @@ gem "net-ssh", "2.2.2"
 gem "queue_classic"
 gem "exception_notification"
 
+gem "rack-pjax"
+
 gem "twilio-ruby"
+
+# gem "turbo-sprockets-rails3"
 
 gem "yaml_db"
 
 gem "pg"
+
+gem "acts_as_api"
 
 gem "aws-ses", :require => "aws/ses"
 
@@ -40,7 +51,6 @@ gem "passenger"
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
 gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
-gem "jquery-rails"
 gem "paperclip",    "2.7.0"
 gem "parslet"
 gem "dynamic_form"
@@ -54,12 +64,17 @@ gem "mime"
 gem "bcrypt-ruby", "~> 3.0.0"
 
 # Asset template engines
+# gem "jquery-rails"
+gem "jsgem-jquery",        "1.7.2.pre2"
+gem "jsgem-jquery-ui",     "1.9.1.pre2"
+gem "jsgem-jquery-layout", "1.3.0.pre2"
 gem "json"
 gem "sass"
 gem "coffee-script"
 gem "uglifier"
 gem "therubyracer", :require => "v8"
 gem "whenever",     :require => false
+gem "eco"
 
 # console tools
 gem "hirb"
@@ -69,6 +84,7 @@ gem "awesome_print", :require => "ap"
 gem "drx"
 
 group :development, :test do
+  gem "zeus"
   gem "jasminerice"
   gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem "csv-mapper"
@@ -88,7 +104,7 @@ group :development, :test do
   gem "launchy"
   gem "spork"
   gem "database_cleaner"
-  gem "factory_girl_rails"
+  # gem "factory_girl_rails"
 
   gem "vagrant", "1.0.3"
   gem "virtualbox"

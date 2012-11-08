@@ -101,16 +101,36 @@ def parent_repage_link(message)
     count == 0 ? "" : " (<span id=inbox_count>#{count}</span>)"
   end
 
+  #def signed_in_header_nav
+  #  roster = link_to_unless_current("Roster", members_path)
+  #  log    = link_to_unless_current("Log",    messages_path)
+  #  events = link_to_unless_current("Events", events_path)
+  #  photos = link_to_unless_current("Photos", unit_photos_path)
+  #  certs  = link_to_unless_current("Certs",  unit_certs_path)
+  #  avail  = link_to_unless_current("Availability", unit_avail_ops_path)
+  #  duty   = link_to_unless_current("DO", do_assignments_path)
+  #  report = link_to_unless_current("Reports", '/reports')
+  #  inbox  = link_to_unless_current(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
+  #  opts   = [roster, log, events, photos, certs, avail, duty, report, inbox]
+  #  opts.join(' | ')
+  #end
+
+  def header_nav_link(label, path)
+    "<span id='hn#{label}'>#{link_to_unless_current(label, path)}</span>"
+  end
+
   def signed_in_header_nav
-    roster = link_to_unless_current("Roster", members_path)
-    log    = link_to_unless_current("Log", messages_path)
-    photos = link_to_unless_current("Photos", unit_photos_path)
-    certs  = link_to_unless_current("Certs", unit_certs_path)
-    avail  = link_to_unless_current("Availability", unit_avail_ops_path)
-    duty   = link_to_unless_current("DO", do_assignments_path)
-    report = link_to_unless_current("Reports", '/reports')
-    inbox  = link_to_unless_current(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
-    opts   = [roster, log, photos, certs, avail, duty, report, inbox]
+    roster = header_nav_link("Roster", members_path)
+    log    = header_nav_link("Log",    messages_path)
+    events = header_nav_link("Events", events_path)
+    photos = header_nav_link("Photos", unit_photos_path)
+    certs  = header_nav_link("Certs",  unit_certs_path)
+    avail  = header_nav_link("Availability", unit_avail_ops_path)
+    duty   = header_nav_link("DO", do_assignments_path)
+    report = header_nav_link("Reports", '/reports')
+    inbox  = header_nav_link(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
+    opts   = [roster, log, events, photos, certs, avail, duty, report, inbox]
+    opts.delete_at(2) unless current_member.developer?
     opts.join(' | ')
   end
 
@@ -190,7 +210,7 @@ def parent_repage_link(message)
 
   def avail_dos_link_for_member(member, quarter)
     hash = {:member_id => member.id}.merge(quarter)
-    link_to member.last_name, member_avail_dos_path(hash)
+    link_to member.last_name, member_avail_dos_path(hash), :class => 'memlink'
   end
 
   def avail_dos_link_next_quarter(message)
@@ -257,7 +277,7 @@ def parent_repage_link(message)
 
   def display_member_row(member, quarter)
     memlink = avail_dos_link_for_member(member, quarter)
-    part1 = "<tr class='memrow'><td class='memlabel'><nobr>#{memlink}</nobr></td>"
+    part1 = "<tr class='memrow'><td id='mem#{member.id}' class='memlabel'><nobr><b class='memtag'>#{memlink}</b></nobr></td>"
     part2 = 13.times.map do |week|
       opts = quarter.merge({:member => member, :week => week+1})
       "<td id='#{cellid(opts)}' #{comment_helper(opts)} class='status#{selecthelper(opts)}'>#{get_status(member, quarter, week+1)}</td>"

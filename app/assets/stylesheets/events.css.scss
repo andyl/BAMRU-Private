@@ -1,0 +1,165 @@
+// ----- vendor styles -----
+
+//= require toastr
+//= require jquery-layout
+
+// ----- timepicker styles -----
+
+.ui-datepicker { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 8pt; }
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div { font-size: .95em; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+// ----- custom styles -----
+
+#select-button {
+  display: none;
+  padding: none;
+}
+
+#select-menu {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  padding: 5px;
+  border: 1px solid black;
+  background: #ececec;
+}
+
+#hotKeyHelp {
+  display: none;
+}
+
+.perioDiv, .perioDiv table {
+  font-size: 9pt;
+}
+
+//.eventFooterTable {
+//  background: blue;
+//}
+
+.keySet {
+  font-size: 6px;
+  font-color: green;
+}
+
+.keyMode {
+  font-color: yellow;
+}
+
+.keyCell {
+  width: 80px;
+  font-color: yellow;
+  text-align: right;
+}
+
+.evlink-table { font-size: 8pt; }
+
+.evlink:hover {
+  color: black;
+  background: lightgrey;
+  opacity: 1.0;
+}
+
+.evlink:visited {
+  color:   black;
+}
+
+.evlink:focus {
+  outline: none;
+  color: black;
+}
+
+.cksel {
+  margin-left:    1px;
+  vertical-align: -2px;
+}
+.ckpost {
+  margin-right: 5px;
+}
+.date_align {
+    margin-right: 16px;
+}
+
+.boxsizingBorder {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+}
+
+.padded4 {
+  padding-left:  4px;
+  padding-right: 4px;
+}
+
+table label {
+  vertical-align: bottom;
+  position: relative;
+  bottom: 3px;
+}
+
+.orow {
+  clear: both;
+  padding-left: 2px;
+}
+
+.ul, .ul td {
+  border-bottom: 1px solid lightgrey;
+}
+
+.leftcol {
+  display: block;
+  width: 41%;
+  float: left;
+}
+
+.rightcol {
+  position: relative;
+  display: block;
+  width: 58%;
+  margin-left: 42%;
+}
+
+.ui-state-default a:hover {
+  background-color: #d2d2d2;
+}
+
+.displayTable {
+  border: none;
+}
+
+.displayTable td {
+  padding-left:  4px;
+  padding-right: 4px;
+}
+
+.displayTable tr {
+  padding-right: 4px;
+}
+
+.formCheck {
+  position: relative;
+  vertical-align: bottom;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.eventLinks {
+  font-size: 8pt;
+  margin-bottom: 4px;
+  //margin-left: 65px;
+}
+
+.eventLinks a:hover {
+  color: white;
+}
+
+.eventLinks a {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
