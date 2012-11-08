@@ -28,11 +28,12 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     if @collection.length == 0
       opts =
         success: => @createPeriod()
-      @createPeriod(opts)
+      @createPeriod()
 
   # ----- methods -----
 
   createPeriod: (ev) ->
+    console.log "CREATING", ev
     ev?.preventDefault()
     opts =
       event_id: @model.get('id')

@@ -25,6 +25,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     'keyup .memberField'     : 'toggleGuestLink'
     'focus .memberField'     : 'onFocusSearch'
     'click .createGuestLink' : 'createGuest'
+    'click .rsvpLink'        : 'rsvpLink'
 
   onShow: ->
     @$el.css('font-size', '8pt')
@@ -37,6 +38,10 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   showGuestLink: ->
     @$el.find(@guestLink).show()
+
+  rsvpLink: (ev) ->
+    ev?.preventDefault()
+    alert("Link to RSVP: Under Construction")
 
   createGuest: (ev) ->
     ev?.preventDefault()

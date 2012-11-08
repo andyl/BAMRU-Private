@@ -4,7 +4,7 @@
       <td>
         (^) (-) Period <%= @id %>
         <input style='margin-left: 50px;' size=18 class='memberField' id="memberField<%= @id %>" name="newParticipant" placeholder="add participant..." />
-        <a style='display: none;' href='#' class='createGuestLink' id='createGuestLink<%= @id %>'>create new guest</a>
+        <%- @actionLink() %>
       </td>
       <td align="right">
         <%- @deletePeriodLink(@id) %>
