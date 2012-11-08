@@ -12,6 +12,8 @@
     <th>
       Participant
       <input size=18 id="memberField" name="newParticipant" placeholder="add participant..." />
+      <%- @guestLink() %>
+      <%- @rsvpControl() %>
       <a href='#' id='createGuestLink'>create new guest</a>
     </th>
     <th></th>
