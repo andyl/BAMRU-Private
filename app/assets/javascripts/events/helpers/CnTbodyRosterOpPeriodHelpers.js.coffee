@@ -8,6 +8,6 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     else
       @rsvpLink()
   guestLink: ->
-      "<a style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>create new guest</a>"
+      "<a style='margin-left: 20px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
   rsvpLink: ->
       "<input type='button' style='margin-left: 40px;' class='rsvpLink' value='link to rsvp'/>"
