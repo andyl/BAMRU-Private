@@ -9,7 +9,6 @@ gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
 gem "sqlite3"
 gem "rake"
 gem "faye",          "0.6.4"
-#gem "faye",          "0.8.6"
 gem "pngqr"
 gem "em-http-request"
 gem "thin"
