@@ -17,10 +17,7 @@
     <tr>
       <th width=40>Role</th>
       <th>Member</th>
-      <th>Leave</th>
-      <th>Return</th>
-      <th>signIn</th>
-      <th>signOut</th>
+      <%- @timeHeaders() %>
       <th>Updated</th>
       <th></th>
     </tr>

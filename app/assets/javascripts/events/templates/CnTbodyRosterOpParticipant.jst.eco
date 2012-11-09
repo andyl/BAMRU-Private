@@ -1,9 +1,6 @@
    <td><%= @memberRole(@member_id) %></td>
    <%- @memberCell(@member_id) %>
-   <td>10-24 12:00</td>
-   <td>10-24 12:00</td>
-   <td>10-24 12:00</td>
-   <td>10-24 12:00</td>
+   <%- @timeFields() %>
    <td>10-24 12:00</td>
    <td>H <%- @deleteParticipantLink(@id) %></td>
 

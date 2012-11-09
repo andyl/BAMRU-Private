@@ -12,12 +12,17 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @model      = options.model           # Period
     @collection = @model.participants     # Participants
     @collection.fetch() if @collection.url.search('undefined') == -1
-    @bindTo(@collection, 'add remove reset', @setSearchBox, this)
     @faye = new Faye.Client(faye_server)
     @subscription = @faye.subscribe("/periods/#{@model.id}/participants", (data) => @pubSubParticipants(data))
-    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     @memberField = "#memberField#{@model.id}"
     @guestLink   = "#createGuestLink#{@model.id}"
+    @bindTo(@collection, 'add remove reset', @setSearchBox, this)
+    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
+    @bindTo(BB.rosterState, 'change', @reRender, this)
+
+  reRender: ->
+    @render()
+    @onShow()
 
   events:
     'click .deletePeriod'    : 'deletePeriod'

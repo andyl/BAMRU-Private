@@ -4,6 +4,8 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
 
   template: 'events/templates/CnTbodyRosterOp'
 
+  templateHelpers: BB.Helpers.CnTbodyRosterOpHelpers
+
   regions:
     periods: '#periods'
 
@@ -12,12 +14,15 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
   initialize: (options) ->
     @model      = options.model     # Event
     @collection = @model.periods    # Periods
+    unless BB.rosterState?
+      BB.rosterState = new Backbone.Model()
+      BB.rosterState.set(state: 'transit')
 
   events:
-    'click #newPeriod' : 'createPeriod'
+    'click #newPeriod'   : 'createPeriod'
+    'click .stateButton' : 'toggleFields'
 
   onShow: ->
-    $('#typeRadio').buttonset()
     opts =
       success: => @afterFetch()
     @collection.fetch(opts)
@@ -34,7 +39,6 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
   # ----- methods -----
 
   createPeriod: (ev) ->
-    console.log "CREATING", ev
     ev?.preventDefault()
     opts =
       event_id: @model.get('id')
@@ -43,3 +47,12 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     opts =
       success: => @collection.add(period)
     period.save({}, opts)
+
+  toggleFields: (ev) ->
+    console.log "TOGGLING FIELDS"
+    currentState = BB.rosterState.get('state')
+    if currentState == 'transit'
+      BB.rosterState.set(state: "signin")
+    else
+      BB.rosterState.set(state: "transit")
+

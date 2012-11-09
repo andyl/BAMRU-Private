@@ -11,3 +11,8 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
       "<a style='margin-left: 20px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
   rsvpLink: ->
       "<input type='button' style='margin-left: 40px;' class='rsvpLink' value='link to rsvp'/>"
+  timeHeaders: ->
+    if BB.rosterState.get('state') == 'transit'
+      "<th>En-route at</th><th>Return at</th>"
+    else
+      "<th>Sign-In at</th><th>Sign-Out at</th>"
