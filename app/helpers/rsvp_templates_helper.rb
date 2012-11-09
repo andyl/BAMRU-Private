@@ -1,7 +1,7 @@
 module RsvpTemplatesHelper
 
   def col_widths
-    [85, 150, 150, 150, 75]
+    [75, 150, 150, 150, 75]
   end
 
   def span_wrap_header(text, col)
@@ -33,16 +33,15 @@ module RsvpTemplatesHelper
            span_wrap_row(template.yes_prompt, 2)  +
            span_wrap_row(template.no_prompt, 3)   +
            span_wrap_row(row_action(template), 4)
-    "<li id='template_#{template.id}'>#{handle}#{row}</li>"
+    "<li class='rsvpLi' id='template_#{template.id}'>#{handle}#{row}</li>"
   end
 
   def dump_table_rows
-    rows = @templates.map {|x| dump_table_row(x)}
+    rows = @templates.map {|x| dump_table_row(x)}.join('')
     "<div id='sortable_templates'>#{rows}</div>"
   end
   
   def template_output
-    "{dump_table_headers}{cert_dump(mem, type)}<div class=cert_divider></div>"
     "#{dump_table_headers}<br/>#{dump_table_rows}"
   end
 
