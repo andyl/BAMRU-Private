@@ -1,6 +1,6 @@
 <style>
   .perioDiv {
-    margin-top:    10px;
+    margin-top: 0px;
     margin-bottom: 10px;
     padding-right: 5px;
     padding-left: 5px;
@@ -11,10 +11,43 @@
     background: #f4f4f4;
     padding-left:  4px;
     padidng-right: 4px;
+    margin-top: 0;
+    margin-bottom: 5px;
   }
+
+  #typeSelect {
+    margin-left: 50px;
+  }
+
+  #xtable {
+    margin-top:    10px;
+    margin-bottom: 0;
+  }
+
+  .ui-button-text {
+    font-size: 8pt;
+    padding: 4px;
+  }
+
 </style>
 
-<a href="#" id='newPeriod'>Add Period</a>
+<table id='xtable' width=100%>
+  <tr>
+    <td>
+      <a href="#" id='newPeriod'>Add Period</a>
+    </td>
+    <td align="right">
+      <form id='typeSelect'>
+        <div id='typeRadio'>
+          <input type='radio' id='transit' name='transit'/>
+          <label for='transit'>transit times</label>
+          <input type='radio' id='signin' name='transit'/>
+          <label for='signin'>sign-in times</label>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>
 
 <p></p>
 

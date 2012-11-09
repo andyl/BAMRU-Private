@@ -17,6 +17,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     'click #newPeriod' : 'createPeriod'
 
   onShow: ->
+    $('#typeRadio').buttonset()
     opts =
       success: => @afterFetch()
     @collection.fetch(opts)

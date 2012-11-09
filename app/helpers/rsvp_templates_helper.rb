@@ -16,7 +16,7 @@ module RsvpTemplatesHelper
 
   def dump_table_headers
     table_headers = %w(Name Prompt Yes\ Prompt No\ Prompt Action)
-    hdr = table_headers.each_with_index.map {|x| span_wrap_header(x.first, x.last)}.join
+    hdr = table_headers.each_with_index.map {|item, index| span_wrap_header(item, index)}.join
     "<span style='display: inline-block; width:15px;'> </span>#{hdr}"
   end
 
