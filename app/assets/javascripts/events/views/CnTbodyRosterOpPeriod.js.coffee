@@ -34,7 +34,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   onShow: ->
     @$el.css('font-size', '8pt')
-    @$el.find('.tablesorter').tablesorter()
+#    @$el.find('.tablesorter').tablesorter()
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()

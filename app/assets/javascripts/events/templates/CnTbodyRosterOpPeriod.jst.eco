@@ -2,7 +2,7 @@
   <table width=100%>
     <tr>
       <td>
-        (^) Period <%= @id %>
+        Period <%= @id %>
         <input style='margin-left: 50px;' size=18 class='memberField' id="memberField<%= @id %>" name="newParticipant" placeholder="add participant..." />
         <%- @actionLink() %>
       </td>
