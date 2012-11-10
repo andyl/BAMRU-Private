@@ -1,6 +1,6 @@
 BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   deletePeriodLink: (periodId) ->
-    "[<a href='#' class='deletePeriod' data-id='#{periodId}'>X</a>]"
+    "<a href='#' class='deletePeriod' data-id='#{periodId}'>X</a>"
   actionLink: ->
     event = BB.Collections.events.get(@event_id)
     if event.get('typ') == "training"
