@@ -16,6 +16,6 @@
   <%- @linkUnlessCurrent("roster") %> |
   <%- @linkUnlessCurrent("journal") %> |
   <%- @linkUnlessCurrent("forum") %> |
-  <%- @linkUnlessCurrent("media") %> |
+  <%- @linkUnlessCurrent("resources") %> |
   <%- @linkUnlessCurrent("chronicle") %>
 </div>

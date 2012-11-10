@@ -34,8 +34,8 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when "roster"        then @genRoster       navOpt
       when "journal"       then @genJournal      navOpt
       when "forum"         then @genForum        navOpt
-      when "media"         then @genMedia        navOpt
-      when "chronicle"           then @genChronicle          navOpt
+      when "resources"     then @genResources    navOpt
+      when "chronicle"     then @genChronicle    navOpt
 
   # ----- methods -----
 
@@ -73,10 +73,10 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
     @tbody.show(new BB.Views.CnTbodyForum({model: @model}))
 
-  genMedia: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/media") unless navOption == "noNav"
+  genResources: (navOption = "NA") ->
+    @router.navigate("/events/#{@model.id}/resources") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
-    @tbody.show(new BB.Views.CnTbodyMedia({model: @model}))
+    @tbody.show(new BB.Views.CnTbodyResources({model: @model}))
 
   genChronicle: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/chronicle") unless navOption == "noNav"

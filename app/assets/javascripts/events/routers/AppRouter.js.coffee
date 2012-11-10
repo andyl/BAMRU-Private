@@ -1,23 +1,23 @@
 BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   routes:
-    'events'              : "index"
-    'events/'             : "index"
-    'events/new'          : "new"
-    'events/new/'         : "new"
-    'events/:id'          : "show"
-    'events/:id/'         : "show"
-    'events/:id/edit'     : "edit"
-    'events/:id/edit/'    : "edit"
-    'events/:id/roster'   : "roster"
-    'events/:id/roster/'  : "roster"
-    'events/:id/journal'  : "journal"
-    'events/:id/journal/' : "journal"
-    'events/:id/media'    : "media"
-    'events/:id/media/'   : "media"
-    'events/:id/summary'  : "summary"
-    'events/:id/summary/' : "summary"
-    'events/*path'        : "default"
+    'events'                : "index"
+    'events/'               : "index"
+    'events/new'            : "new"
+    'events/new/'           : "new"
+    'events/:id'            : "show"
+    'events/:id/'           : "show"
+    'events/:id/edit'       : "edit"
+    'events/:id/edit/'      : "edit"
+    'events/:id/roster'     : "roster"
+    'events/:id/roster/'    : "roster"
+    'events/:id/journal'    : "journal"
+    'events/:id/journal/'   : "journal"
+    'events/:id/resources'  : "resources"
+    'events/:id/resources/' : "resources"
+    'events/:id/summary'    : "summary"
+    'events/:id/summary/'   : "summary"
+    'events/*path'          : "default"
 
   initialize: ->
     # ----- state obj -----
@@ -66,9 +66,9 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering journal for #{id}"
     @_render {modelId: id, page: 'journal'}
 
-  media: (id) ->
-    console.log "rendering media for #{id}"
-    @_render {modelId: id, page: 'media'}
+  resources: (id) ->
+    console.log "rendering resources for #{id}"
+    @_render {modelId: id, page: 'resources'}
 
   summary: (id) ->
     console.log "rendering summary for #{id}"
@@ -89,7 +89,6 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     @appLayout.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
   _render: (opts) ->
-#    if @fEvents.get(opts.modelId)
     if BB.Collections.events.get(opts.modelId)
       @appLayout.showTabs(opts)
     else
