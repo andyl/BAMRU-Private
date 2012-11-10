@@ -49,7 +49,6 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     period.save({}, opts)
 
   toggleFields: (ev) ->
-    console.log "TOGGLING FIELDS"
     currentState = BB.rosterState.get('state')
     if currentState == 'transit'
       BB.rosterState.set(state: "signin")

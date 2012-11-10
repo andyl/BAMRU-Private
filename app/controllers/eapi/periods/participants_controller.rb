@@ -50,7 +50,7 @@ class Eapi::Periods::ParticipantsController < ApplicationController
   end
 
   def opts
-    {except: [:updated_at, :created_at]}
+    {except: [:created_at]}
   end
 
 end

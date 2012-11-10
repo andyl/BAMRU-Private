@@ -30,7 +30,6 @@ end
 # Table name: periods
 #
 #  id         :integer         not null, primary key
-#  title      :string(255)
 #  event_id   :integer
 #  position   :integer
 #  start      :datetime

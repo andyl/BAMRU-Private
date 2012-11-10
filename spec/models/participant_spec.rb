@@ -33,7 +33,7 @@ end
 # Table name: participants
 #
 #  id             :integer         not null, primary key
-#  role           :string(255)
+#  ol             :boolean         default(FALSE)
 #  member_id      :integer
 #  period_id      :integer
 #  en_route_at    :datetime

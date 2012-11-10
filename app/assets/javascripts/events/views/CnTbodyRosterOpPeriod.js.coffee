@@ -108,8 +108,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   createParticipant: (memberId) ->
     periodId = @model.get('id')
     opts =
-      period_id: periodId
-      member_id: memberId
+      period_id:  periodId
+      member_id:  memberId
+      updated_at: moment().strftime("%Y-%m-%d %H:%M")
       newMember: true
     participant = new BB.Models.Participant(opts)
     participant.urlRoot = "/eapi/periods/#{@model.get('id')}/participants"

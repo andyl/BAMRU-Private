@@ -15,4 +15,4 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     if BB.rosterState.get('state') == 'transit'
       "<th>En-route at</th><th>Return at</th>"
     else
-      "<th>Sign-In at</th><th>Sign-Out at</th>"
+      "<th>Sign-in at</th><th>Sign-out at</th>"
