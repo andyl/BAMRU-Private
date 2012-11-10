@@ -65,12 +65,12 @@ BB.Helpers.CnIndxHelpers =
   upcomingEventsTitle: ->
     start  = @upcomingStart.strftime("%b-%d")
     finish = @upcomingFinish.strftime("%b-%d")
-    "Upcoming (#{start} to #{finish}):"
+    "Upcoming events (#{start} to #{finish}):"
 
   recentEventsTitle: ->
     start  = @recentStart.strftime("%b-%d")
     finish = @recentFinish.strftime("%b-%d")
-    "Recent (#{finish} back to #{start}):"
+    "Recent events (#{finish} back to #{start}):"
 
   # ----- event display -----
 
