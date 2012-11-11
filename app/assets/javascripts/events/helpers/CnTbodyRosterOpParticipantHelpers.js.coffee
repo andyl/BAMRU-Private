@@ -1,10 +1,11 @@
 BB.Helpers.CnTbodyRosterOpParticipantHelpers =
   timeFields: ->
-    if BB.rosterState.get('state') == 'transit'
-      @transitTimeFields()
-    else
-      "<td>10-24 12:00</td><td>10-24 12:00</td>"
-      @checkinTimeFields()
+    displayState = BB.rosterState.get('state')
+    switch displayState
+      when 'none'    then ""
+      when 'transit' then @transitTimeFields()
+      when 'signin'  then @checkinTimeFields()
+      else ""
 
   transitTimeFields: ->
     partId     = @id

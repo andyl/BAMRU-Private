@@ -12,9 +12,5 @@
 </style>
 
 <div id='tmDiv'>
-  <%- @linkUnlessCurrent("overview") %> |
-  <%- @linkUnlessCurrent("roster") %> |
-  <%- @linkUnlessCurrent("forum") %> |
-  <%- @linkUnlessCurrent("resources") %> |
-  <%- @linkUnlessCurrent("reports") %>
+  <%- @linkMenu() %>
 </div>

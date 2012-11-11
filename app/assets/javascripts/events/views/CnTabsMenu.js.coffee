@@ -4,15 +4,15 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
 
   template: 'events/templates/CnTabsMenu'
   templateHelpers: BB.Helpers.CnTabsMenuHelpers
-  pages: ["overview", "roster", "forum", "resources", "reports"]
 
   # ----- initialization -----
 
   initialize: (page) ->
+    @pages = ["overview", "roster", "forum", "resources", "reports"]
     @curPage  = page
     @numPages = @pages.length
     @model = new Backbone.Model()
-    @model.set({page: page})
+    @model.set({page: page, pages: @pages})
     @bindTo(BB.vent, 'click:tMenu:Next', @nextMenu, this)
     @bindTo(BB.vent, 'click:tMenu:Prev', @prevMenu, this)
 

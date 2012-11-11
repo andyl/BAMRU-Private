@@ -6,3 +6,7 @@ BB.Helpers.CnTabsMenuHelpers =
       "<b>#{capPage}</b>"
     else
       "<a href='#' class='tmenuOpt' data-tgt='#{page}'>#{capPage}</a>"
+
+  linkMenu: ->
+    @pages.map((page) => @linkUnlessCurrent(page)).join(' | ')
+

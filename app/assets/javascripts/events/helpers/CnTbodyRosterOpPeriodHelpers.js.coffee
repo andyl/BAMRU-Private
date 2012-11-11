@@ -12,7 +12,9 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   rsvpLink: ->
       "<input type='button' style='margin-left: 40px;' class='rsvpLink' value='link to rsvp'/>"
   timeHeaders: ->
-    if BB.rosterState.get('state') == 'transit'
-      "<th>En-route at</th><th>Return at</th>"
-    else
-      "<th>Sign-in at</th><th>Sign-out at</th>"
+    displayState = BB.rosterState.get('state')
+    switch displayState
+      when "none"    then ""
+      when 'transit' then "<th>En-route at</th><th>Return at</th>"
+      when "signin"  then "<th>Sign-in at</th><th>Sign-out at</th>"
+      else ""
