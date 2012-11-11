@@ -1,23 +1,23 @@
 BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   routes:
-    'events'              : "index"
-    'events/'             : "index"
-    'events/new'          : "new"
-    'events/new/'         : "new"
-    'events/:id'          : "show"
-    'events/:id/'         : "show"
-    'events/:id/edit'     : "edit"
-    'events/:id/edit/'    : "edit"
-    'events/:id/roster'   : "roster"
-    'events/:id/roster/'  : "roster"
-    'events/:id/journal'  : "journal"
-    'events/:id/journal/' : "journal"
-    'events/:id/media'    : "media"
-    'events/:id/media/'   : "media"
-    'events/:id/summary'  : "summary"
-    'events/:id/summary/' : "summary"
-    'events/*path'        : "default"
+    'events'                : "index"
+    'events/'               : "index"
+    'events/new'            : "new"
+    'events/new/'           : "new"
+    'events/:id'            : "show"
+    'events/:id/'           : "show"
+    'events/:id/edit'       : "edit"
+    'events/:id/edit/'      : "edit"
+    'events/:id/roster'     : "roster"
+    'events/:id/roster/'    : "roster"
+    'events/:id/forum'      : "forum"
+    'events/:id/forum/'     : "forum"
+    'events/:id/resources'  : "resources"
+    'events/:id/resources/' : "resources"
+    'events/:id/reports'    : "reports"
+    'events/:id/reports/'   : "reports"
+    'events/*path'          : "default"
 
   initialize: ->
     # ----- state obj -----
@@ -62,17 +62,18 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering roster for #{id}"
     @_render {modelId: id, page: 'roster'}
 
-  journal: (id) ->
-    console.log "rendering journal for #{id}"
-    @_render {modelId: id, page: 'journal'}
+  forum: (id) ->
+    console.log "rendering forum for #{id}"
+    @_render {modelId: id, page: 'forum'}
 
-  media: (id) ->
-    console.log "rendering media for #{id}"
-    @_render {modelId: id, page: 'media'}
 
-  summary: (id) ->
-    console.log "rendering summary for #{id}"
-    @_render {modelId: id, page: 'summary'}
+  resources: (id) ->
+    console.log "rendering resources for #{id}"
+    @_render {modelId: id, page: 'resources'}
+
+  reports: (id) ->
+    console.log "rendering reports for #{id}"
+    @_render {modelId: id, page: 'reports'}
 
   default: ->
     console.log "rendering the default route"
@@ -89,7 +90,6 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     @appLayout.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
   _render: (opts) ->
-#    if @fEvents.get(opts.modelId)
     if BB.Collections.events.get(opts.modelId)
       @appLayout.showTabs(opts)
     else

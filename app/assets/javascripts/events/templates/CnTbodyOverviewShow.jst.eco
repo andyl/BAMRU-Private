@@ -23,3 +23,13 @@
     <td colspan=2>Description: <%= @description %></td>
   </tr>
 </table>
+
+<div style='background: #f4f4f4; margin-top: 40px; padding: 10px;'>
+   Event Timeline: Under Construction<p></p>
+   <ul>
+   <li>Written notes from DO & Members (calls from SMSO, etc.)</li>
+   <li>Auto-Generated Activity Log (add/remove member to roster, etc.)</li>
+   <li>Live-streaming for connected clients</li>
+   </ul>
+</div>
+

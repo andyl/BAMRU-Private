@@ -32,10 +32,9 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when "overview-show" then @genOverviewShow navOpt
       when "overview-edit" then @genOverviewEdit navOpt
       when "roster"        then @genRoster       navOpt
-      when "journal"       then @genJournal      navOpt
       when "forum"         then @genForum        navOpt
-      when "media"         then @genMedia        navOpt
-      when "chronicle"           then @genChronicle          navOpt
+      when "resources"     then @genResources    navOpt
+      when "reports"       then @genReports    navOpt
 
   # ----- methods -----
 
@@ -63,24 +62,19 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when 'operation'             then BB.Views.CnTbodyRosterOp
     @tbody.show(new view({model: @model}))
 
-  genJournal: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/journal") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu(@page))
-    @tbody.show(new BB.Views.CnTbodyJournal({model: @model}))
-
   genForum: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/forum") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
     @tbody.show(new BB.Views.CnTbodyForum({model: @model}))
 
-  genMedia: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/media") unless navOption == "noNav"
+  genResources: (navOption = "NA") ->
+    @router.navigate("/events/#{@model.id}/resources") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
-    @tbody.show(new BB.Views.CnTbodyMedia({model: @model}))
+    @tbody.show(new BB.Views.CnTbodyResources({model: @model}))
 
-  genChronicle: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/chronicle") unless navOption == "noNav"
+  genReports: (navOption = "NA") ->
+    @router.navigate("/events/#{@model.id}/reports") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
-    @tbody.show(new BB.Views.CnTbodyChronicle({model: @model}))
+    @tbody.show(new BB.Views.CnTbodyReports({model: @model}))
 
 
