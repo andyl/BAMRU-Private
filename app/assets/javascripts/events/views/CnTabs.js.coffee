@@ -73,7 +73,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @tbody.show(new BB.Views.CnTbodyResources({model: @model}))
 
   genReports: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/chronicle") unless navOption == "noNav"
+    @router.navigate("/events/#{@model.id}/reports") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page))
     @tbody.show(new BB.Views.CnTbodyReports({model: @model}))
 

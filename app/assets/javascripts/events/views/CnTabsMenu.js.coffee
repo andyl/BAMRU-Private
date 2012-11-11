@@ -4,7 +4,7 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
 
   template: 'events/templates/CnTabsMenu'
   templateHelpers: BB.Helpers.CnTabsMenuHelpers
-  pages: ["overview", "roster", "journal", "forum", "resources", "reports"]
+  pages: ["overview", "roster", "forum", "resources", "reports"]
 
   # ----- initialization -----
 

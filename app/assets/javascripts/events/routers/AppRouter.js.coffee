@@ -11,6 +11,8 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     'events/:id/edit/'      : "edit"
     'events/:id/roster'     : "roster"
     'events/:id/roster/'    : "roster"
+    'events/:id/forum'      : "forum"
+    'events/:id/forum/'     : "forum"
     'events/:id/resources'  : "resources"
     'events/:id/resources/' : "resources"
     'events/:id/reports'    : "reports"
@@ -59,6 +61,11 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
   roster: (id) ->
     console.log "rendering roster for #{id}"
     @_render {modelId: id, page: 'roster'}
+
+  forum: (id) ->
+    console.log "rendering forum for #{id}"
+    @_render {modelId: id, page: 'forum'}
+
 
   resources: (id) ->
     console.log "rendering resources for #{id}"
