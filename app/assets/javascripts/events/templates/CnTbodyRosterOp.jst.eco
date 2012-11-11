@@ -15,10 +15,6 @@
     margin-bottom: 5px;
   }
 
-  #typeSelect {
-    margin-left: 50px;
-  }
-
   #xtable {
     margin-top:    10px;
     margin-bottom: 5px;
@@ -37,12 +33,14 @@
       <a href="#" id='newPeriod'>Add Period</a>
     </td>
     <td align="right">
-      <form id='typeSelect'>
+      <form style='display: inline-block;' id='typeSelect'>
         <div id='typeRadio'>
           <input class='stateButton' type='radio' id='transit' name='g1' <%- @stateCheck('transit') %> />
           <label for='transit'>transit times</label>
-          <input class='stateButton' type='radio' id='signin' name='g1' <%- @stateCheck('signin') %> />
+          <input class='stateButton' type='radio' id='signin'  name='g1' <%- @stateCheck('signin') %> />
           <label for='signin'>sign-in times</label>
+          <input class='stateButton' type='radio' id='none'    name='g1' <%- @stateCheck('none') %> />
+          <label for='transit'>none</label>
         </div>
       </form>
     </td>

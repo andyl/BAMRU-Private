@@ -16,7 +16,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     @collection = @model.periods    # Periods
     unless BB.rosterState?
       BB.rosterState = new Backbone.Model()
-      BB.rosterState.set(state: 'transit')
+      BB.rosterState.set(state: 'none')
 
   events:
     'click #newPeriod'   : 'createPeriod'
@@ -49,9 +49,6 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     period.save({}, opts)
 
   toggleFields: (ev) ->
-    currentState = BB.rosterState.get('state')
-    if currentState == 'transit'
-      BB.rosterState.set(state: "signin")
-    else
-      BB.rosterState.set(state: "transit")
+    newState = @$el.find(".stateButton:checked").attr("id")
+    BB.rosterState.set(state: newState)
 
