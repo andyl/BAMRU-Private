@@ -14,8 +14,7 @@
 <div id='tmDiv'>
   <%- @linkUnlessCurrent("overview") %> |
   <%- @linkUnlessCurrent("roster") %> |
-  <%- @linkUnlessCurrent("journal") %> |
   <%- @linkUnlessCurrent("forum") %> |
   <%- @linkUnlessCurrent("resources") %> |
-  <%- @linkUnlessCurrent("chronicle") %>
+  <%- @linkUnlessCurrent("reports") %>
 </div>

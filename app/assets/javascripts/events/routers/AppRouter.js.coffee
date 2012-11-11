@@ -11,12 +11,10 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     'events/:id/edit/'      : "edit"
     'events/:id/roster'     : "roster"
     'events/:id/roster/'    : "roster"
-    'events/:id/journal'    : "journal"
-    'events/:id/journal/'   : "journal"
     'events/:id/resources'  : "resources"
     'events/:id/resources/' : "resources"
-    'events/:id/summary'    : "summary"
-    'events/:id/summary/'   : "summary"
+    'events/:id/reports'    : "reports"
+    'events/:id/reports/'   : "reports"
     'events/*path'          : "default"
 
   initialize: ->
@@ -62,17 +60,13 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering roster for #{id}"
     @_render {modelId: id, page: 'roster'}
 
-  journal: (id) ->
-    console.log "rendering journal for #{id}"
-    @_render {modelId: id, page: 'journal'}
-
   resources: (id) ->
     console.log "rendering resources for #{id}"
     @_render {modelId: id, page: 'resources'}
 
-  summary: (id) ->
-    console.log "rendering summary for #{id}"
-    @_render {modelId: id, page: 'summary'}
+  reports: (id) ->
+    console.log "rendering reports for #{id}"
+    @_render {modelId: id, page: 'reports'}
 
   default: ->
     console.log "rendering the default route"

@@ -1,8 +1,8 @@
-class BB.Views.CnTbodyJournal extends Backbone.Marionette.ItemView
+class BB.Views.CnTbodyReports extends Backbone.Marionette.ItemView
 
   # ----- configuration -----
 
-  template: 'events/templates/CnTbodyJournal'
+  template: 'events/templates/CnTbodyReports'
 
   # ----- initialization -----
 
