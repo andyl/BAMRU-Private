@@ -8,7 +8,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
   # ----- initialization -----
 
   initialize: ->
-    @bindTo(BB.Collections.events, 'remove',            @reRender,            this)
+    @bindTo(BB.Collections.events, 'remove',            @render,            this)
     @bindTo(BB.vent,     'cmd:ToggleCheckbox',          @toggleCheckbox,    this)
     @bindTo(BB.vent,     'cmd:ExclusiveCheckbox',       @exclusiveCheckbox, this)
     @bindTo(BB.vent,     'uiState:changed',             @updateControlBox,  this)
@@ -29,11 +29,6 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     'click #select-button'     : 'blurSelectMenu'
     'focus #typ-button'        : 'focusTypButton'
     'click #new-event-button'  : 'newEvent'
-
-  reRender: ->
-    console.log "RERENDERING"
-    @render()
-
 
   onShow: ->
     BB.hotKeys.enable("SidebarControl")

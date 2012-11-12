@@ -13,10 +13,8 @@ class BB.Views.CnIndx extends Backbone.Marionette.ItemView
   onShow: ->
     BB.vent.trigger("show:CnIndx")
 
-  event:
-    "click .eventLink": "clickEvent"
-
   clickEvent: (event) ->
     event?.preventDefault()
-    link = $(event.target).attr('href')
+    el = $(event.target)
+    link = el.attr('href') || el.parent('.eventRowLink').attr('href')
     BB.Routers.app.navigate(link, {trigger: true})
