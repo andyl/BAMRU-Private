@@ -68,7 +68,7 @@ class HomeController < ApplicationController
   end
 
   def browserstats
-    @profiles = BrowserProfile.all
+    @profiles = BrowserProfile.all :include => [:member]
   end
 
   def event_publishing

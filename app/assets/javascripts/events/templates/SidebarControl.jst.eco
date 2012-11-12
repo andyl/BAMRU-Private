@@ -19,13 +19,15 @@
         </div>
       </td>
       <td align="right">
-        <select id='startSel' class='dateSel' name='start' tabindex=3>
-          <%- @eventRangeSelect(@defaultStart(), @defaultFinish()) %>
-        </select>
-        to
-        <select id='finishSel' class='dateSel' name='finish' tabindex=4>
-          <%- @eventRangeSelect(@defaultFinish(), @defaultStart()) %>
-        </select>
+        <nobr>
+          <select id='startSel' class='dateSel' name='start' tabindex=3>
+            <%- @eventRangeSelect(@defaultStart(), @defaultFinish()) %>
+          </select>
+          to
+          <select id='finishSel' class='dateSel' name='finish' tabindex=4>
+            <%- @eventRangeSelect(@defaultFinish(), @defaultStart()) %>
+          </select>
+        </nobr>
       </td>
     </form>
   </tr>

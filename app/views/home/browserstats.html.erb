@@ -13,7 +13,7 @@ Linux:<%= BrowserProfile.os_linux.count %>
 Windows:<%= BrowserProfile.os_windows.count %>
 Mac:<%= BrowserProfile.os_mac.count %>
 Other:<%= BrowserProfile.os_other.count %> |
-IE:<%= BrowserProfile.browser_ie.count %>
+Explorer:<%= BrowserProfile.browser_explorer.count %>
 Chrome:<%= BrowserProfile.browser_chrome.count %>
 Firefox:<%= BrowserProfile.browser_firefox.count %>
 Other:<%= BrowserProfile.browser_other.count %>
@@ -23,14 +23,15 @@ Other:<%= BrowserProfile.browser_other.count %>
 
   <thead>
   <tr>
-    <th>MemberID</th>
-    <th>BrowserType</th>
-    <th>BrowserVersion</th>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Browser</th>
+    <th>Version</th>
     <th>OS</th>
-    <th>Javascript</th>
+    <th>JS</th>
     <th>Cookies</th>
-    <th>ScreenHeight</th>
-    <th>ScreenWidth</th>
+    <th>Height</th>
+    <th>Width</th>
     <th>Date</th>
   </tr>
   </thead>
@@ -39,13 +40,14 @@ Other:<%= BrowserProfile.browser_other.count %>
   <% @profiles.each do |prof| %>
       <tr>
         <td><%= prof.member_id %></td>
+        <td><%= prof.member.short_name %></td>
         <td><%= prof.browser_type %></td>
         <td><%= prof.browser_version %></td>
         <td><%= prof.ostype %></td>
         <td><%= prof.javascript %></td>
         <td><%= prof.cookies %></td>
-        <td><%= prof.screen_height %></td>
-        <td><%= prof.screen_width %></td>
+        <td><%= prof.screen_height_min %></td>
+        <td><%= prof.screen_width_max %></td>
         <td><%= prof.created_at.strftime("%Y-%m-%d") %></td>
       </tr>
   <% end %>

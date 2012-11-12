@@ -19,16 +19,24 @@ class BrowserProfile < ActiveRecord::Base
   scope :not_mac,     where('ostype != ? or ostype IS NULL', "Mac")
   scope :os_other,    not_linux.not_windows.not_mac
 
-  scope :browser_ie,      where(browser_type: "IE")
-  scope :not_ie,          where('browser_type != ? or browser_type IS NULL', "IE")
-  scope :browser_chrome,  where(browser_type: "Chrome")
-  scope :not_chrome,      where('browser_type != ? or browser_type IS NULL', "Chrome")
-  scope :browser_firefox, where(browser_type: "Firefox")
-  scope :not_firefox,     where('browser_type != ? or browser_type IS NULL', "Firefox")
-  scope :browser_other,   not_ie.not_chrome.not_firefox
+  scope :browser_explorer, where(browser_type: "Explorer")
+  scope :not_explorer,     where('browser_type != ? or browser_type IS NULL', "Explorer")
+  scope :browser_chrome,   where(browser_type: "Chrome")
+  scope :not_chrome,       where('browser_type != ? or browser_type IS NULL', "Chrome")
+  scope :browser_firefox,  where(browser_type: "Firefox")
+  scope :not_firefox,      where('browser_type != ? or browser_type IS NULL', "Firefox")
+  scope :browser_other,    not_explorer.not_chrome.not_firefox
 
 
   # ----- Local Methods-----
+
+  def screen_height_min
+    [self.screen_height, self.screen_width].min
+  end
+
+  def screen_width_max
+    [self.screen_height, self.screen_width].max
+  end
 
 end
 
