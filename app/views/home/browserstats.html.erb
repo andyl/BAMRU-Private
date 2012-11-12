@@ -1,5 +1,4 @@
 <%= javascript_include_tag 'jquery.tablesorter2' %>
-<%# javascript_include_tag 'jquery.tablesorter_filter' %>
 
 <script>
   $(document).ready(function() {
@@ -42,8 +41,8 @@ Other:<%= BrowserProfile.browser_other.count %>
         <td><%= prof.member_id %></td>
         <td><%= prof.member.short_name %></td>
         <td><%= prof.browser_type %></td>
-        <td><%= prof.browser_version %></td>
-        <td><%= prof.ostype %></td>
+        <td><%= format_unknown prof.browser_version %></td>
+        <td><%= format_unknown prof.ostype %></td>
         <td><%= prof.javascript %></td>
         <td><%= prof.cookies %></td>
         <td><%= prof.screen_height_min %></td>
