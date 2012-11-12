@@ -12,8 +12,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @model      = options.model           # Period
     @collection = @model.participants     # Participants
     @collection.fetch() if @collection.url.search('undefined') == -1
-    @faye = new Faye.Client(faye_server)
-    @subscription = @faye.subscribe("/periods/#{@model.id}/participants", (data) => @pubSubParticipants(data))
+    @pubSub = new BB.PubSub.Base(@collection)
     @memberField = "#memberField#{@model.id}"
     @guestLink   = "#createGuestLink#{@model.id}"
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
@@ -38,6 +37,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()
+
+  onClose: ->
+    @pubSub.close()
 
   # ----- guest links -----
 
@@ -116,6 +118,11 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     participant.urlRoot = "/eapi/periods/#{@model.get('id')}/participants"
     participant.save()
     @collection.add(participant)
+    @removeHighLight(participant)
+
+  removeHighLight: (model) ->
+    clearHighLight = => model.unset('newMember')
+    setTimeout(clearHighLight, 3000)
 
   # ----- delete period -----
 
@@ -123,35 +130,3 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     ev?.preventDefault()
     @model.destroy()
 
-  # ----- PubSub Participants -----
-
-  pubSubDestroyParticipant: (data) ->
-    participantId = data.participantid
-    participant = @collection.get(participantId)
-    partMem = BB.members.get(participant.get('member_id'))
-    userId   = data.userid
-    user     = BB.members.get(userId)
-    userName = user.fullName()
-    @collection.remove(participant)
-    toastr.info "#{partMem.shortName()} has been removed by #{userName}"
-
-  pubSubAddParticipant: (data) =>
-    data.params.pubSub = {action: data.action, userid: data.userid}
-    model = new BB.Models.Participant(data.params)
-    model.set(id: data.participantid)
-    @collection.add(model)
-
-  pubSubUpdateParticipant: (data) =>
-    modelId = data.eventid
-    delete(data.params.isActive)
-    data.params.pubSub = {action: data.action, userid: data.userid}
-    model = BB.Collections.events.get(modelId)
-    model.set(data.params)
-
-  pubSubParticipants: (data) ->
-    jsData = JSON.parse(data)
-    return if jsData["sessionid"] == sessionId
-    switch jsData.action
-      when "add"     then @pubSubAddParticipant(jsData)
-      when "update"  then @pubSubUpdateParticipant(jsData)
-      when "destroy" then @pubSubDestroyParticipant(jsData)

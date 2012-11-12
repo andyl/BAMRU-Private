@@ -1,4 +1,7 @@
+require_relative '../faye_module'
+
 class Eapi::Events::PeriodsController < ApplicationController
+  include Eapi::FayeModule
   respond_to :json
 
   def index
@@ -11,14 +14,19 @@ class Eapi::Events::PeriodsController < ApplicationController
   end
   
   def create
-    render :json => Period.create(params[:period])
+    new_period = Period.create(params[:period])
+    broadcast("add", new_period)
+    render :json => new_period
   end
   
   def update
-    respond_with Period.update(params[:id], params[:period])
+    updated_period = Period.update(params[:id], params[:period])
+    broadcast("update", updated_period)
+    respond_with updated_period
   end
   
   def destroy
+    broadcast("destroy")
     respond_with Period.destroy(params[:id])
   end
 

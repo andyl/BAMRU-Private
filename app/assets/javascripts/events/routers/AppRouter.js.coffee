@@ -29,8 +29,7 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     @fEvents = BB.Collections.filteredEvents
     @fEvents.filter(BB.UI.filterState.toJSON())
     # ----- faye -----
-    BB.faye = new Faye.Client(faye_server)
-    BB.faye.subscribe("/events", (data) -> BB.pubSubEvents(data))
+    BB.PubSub.events = new BB.PubSub.Events(BB.Collections.events)
     # ----- current member -----
     json_member_data = JSON.parse(_.string.unescapeHTML($('#json_member_data').text()))
     BB.currentMember = new BB.Models.Member(json_member_data)

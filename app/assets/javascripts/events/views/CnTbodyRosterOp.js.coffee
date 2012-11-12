@@ -14,6 +14,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
   initialize: (options) ->
     @model      = options.model     # Event
     @collection = @model.periods    # Periods
+    @pubSub     = new BB.PubSub.Base(@collection)
     unless BB.rosterState?
       BB.rosterState = new Backbone.Model()
       BB.rosterState.set(state: 'none')
@@ -27,6 +28,9 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
       success: => @afterFetch()
     @collection.fetch(opts)
     @periods.show(new BB.Views.CnTbodyRosterOpPeriods({model: @model}))
+
+  onClose: ->
+    @pubSub.close()
 
   # ----- initialization -----
 

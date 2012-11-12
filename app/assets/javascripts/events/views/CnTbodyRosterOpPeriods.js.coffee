@@ -9,6 +9,7 @@ class BB.Views.CnTbodyRosterOpPeriods extends Backbone.Marionette.CollectionView
   initialize: (options) ->
     @model      = options.model      # Event
     @collection = @model.periods     # Periods
+    @bindTo(@collection, 'change remove reset', @render, this)
 
   # ----- construction -----
 

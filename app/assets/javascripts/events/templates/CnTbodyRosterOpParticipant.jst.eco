@@ -2,6 +2,6 @@
    <%- @memberCell(@member_id) %>
    <%- @timeFields() %>
    <td><%= @updatedAt() %></td>
-   <td><%- @deleteParticipantLink(@id) %></td>
+   <td align="center"><%- @deleteParticipantLink(@id) %></td>
 
 
