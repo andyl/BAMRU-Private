@@ -14,7 +14,6 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @collection.fetch() if @collection.url.search('undefined') == -1
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
     @pubSub = new BB.PubSub.Base(@collection)
-    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
 
   onShow: ->
     @$el.css('font-size', '8pt')
@@ -23,6 +22,8 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @subview = new BB.Views.CnTbodyRosterMtParticipants(opts)
     @subview.render()
     @setSearchBox()
+    console.log "Enabling Keys for CnTbodyRoster"
+    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     BB.hotKeys.enable("CnTbodyRoster")
 
   events:
@@ -33,7 +34,6 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
 
   onClose: ->
     @pubSub.close()
-#    @subscription.cancel()
     BB.hotKeys.disable("CnTbodyRoster")
 
   # ----- methods -----
@@ -46,10 +46,10 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     alert("Create Guest: Under Construction")
 
   toggleAddParticipant: ->
-    if $('#memberField').is(':focus')
-      $('#memberField').blur().val('')
-    else
-      $('#memberField').focus().val('')
+    console.log "TOGGLING ADD PARTICIPANT"
+    el = @$el.find('#memberField')
+    el.val('')
+    if el.is(':focus') then el.blur() else el.focus()
 
   onFocusSearch: ->
     @collection.clearMatches()
