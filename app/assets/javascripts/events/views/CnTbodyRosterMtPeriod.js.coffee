@@ -22,7 +22,6 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @subview = new BB.Views.CnTbodyRosterMtParticipants(opts)
     @subview.render()
     @setSearchBox()
-    console.log "Enabling Keys for CnTbodyRoster"
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     BB.hotKeys.enable("CnTbodyRoster")
 
@@ -46,7 +45,6 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     alert("Create Guest: Under Construction")
 
   toggleAddParticipant: ->
-    console.log "TOGGLING ADD PARTICIPANT"
     el = @$el.find('#memberField')
     el.val('')
     if el.is(':focus') then el.blur() else el.focus()

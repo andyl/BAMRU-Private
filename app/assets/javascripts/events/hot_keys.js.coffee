@@ -26,12 +26,12 @@ class BB.HotKeys.KeySets
   remove: (keySetName) ->
     delete @keySets[keySetName]
   enable: (keySetName) ->
-    console.log "HK enable", keySetName, @keySets[keySetName] if @debug
+    console.log "HK enable", keySetName if @debug
     @keySets[keySetName].active = true
     @keySets[keySetName].bindKeys()
     BB.vent.trigger("hotkey:Change")
   disable: (keySetName) ->
-    console.log "HK disable", keySetName, @keySets if @debug
+    console.log "HK disable", keySetName if @debug
     @keySets[keySetName].active = false
     @rebindAllKeySets()
     BB.vent.trigger("hotkey:Change")
@@ -209,10 +209,10 @@ hotKeys.keySets["CnSharedForm"] = new BB.HotKeys.KeySet
 
 hotKeys.keySets["CnTbodyRoster"] = new BB.HotKeys.KeySet
   mode: "When Viewing a Roster"
-  help: "<b>alt+shift+p</b> toggle add participant"
+  help: "<b>alt+p</b> toggle add participant"
   keyMap:
     'toggle add particpant':
-      keys: "alt+shift+p"
+      keys: "alt+p"
       func: -> BB.vent.trigger "cmd:ToggleAddParticipant"
 
 hotKeys.keySets["SidebarList"] = new BB.HotKeys.KeySet

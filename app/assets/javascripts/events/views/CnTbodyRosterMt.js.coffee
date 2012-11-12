@@ -13,7 +13,6 @@ class BB.Views.CnTbodyRosterMt extends Backbone.Marionette.Layout
     @model      = options.model     # Event
     @collection = @model.periods    # Periods
 
-
   onShow: ->
     opts = 
       success: => @afterFetch()
@@ -32,7 +31,7 @@ class BB.Views.CnTbodyRosterMt extends Backbone.Marionette.Layout
   showPeriod: ->
     periodModel = @collection.first()
     periodView  = new BB.Views.CnTbodyRosterMtPeriod({model: periodModel})
-    @period.show(periodView)
+    @period.show(periodView) unless @period == undefined
 
   createPeriod: ->
     opts =
