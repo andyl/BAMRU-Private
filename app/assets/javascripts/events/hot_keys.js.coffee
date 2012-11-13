@@ -8,25 +8,33 @@ class BB.HotKeys.KeySet
     @help        = config.help   || "TBD"
     @keyMap      = config.keyMap || {}
     @displaySort = config.displaySort || 0
+  # ----- used to generate help text -----
   mapCount: -> Object.keys(@keyMap).length + 1
-  unbindKey: (key) =>
-    reference = "keydown.#{key}"
-    $(document).unbind(reference)
-    $('input').unbind(reference)
-    $('textarea').unbind(reference)
+  bindKeys:   -> @applyToAllKeys(@bindKey)
+  unbindKeys: -> @applyToAllKeys(@unbindKey)
+  # ----- private methods -----
+  alreadyBound: (key) ->
+    return false unless eventList = $(document).data('events').keydown
+    _.any(eventList, (ob) -> ob.data == key)
   bindKey: (key, keySet) =>
-    $(document).bind("keydown.#{key}",     key, => @executeKey(key, keySet))
+    return if @alreadyBound(key)
+    bindRef = "keydown.#{key}"
+    doBind  = (el) => $(el).bind(bindRef, key, => @executeKey(key, keySet))
+    doBind(document)
     unless keySet.disableOnForms
-      $('input').bind("keydown.#{key}",    key, => @executeKey(key, keySet))
-      $('textarea').bind("keydown.#{key}", key, => @executeKey(key, keySet))
+      doBind('input')
+      doBind('textarea')
+  unbindKey: (key) =>
+    bindRef = "keydown.#{key}"
+    $(document).unbind(bindRef)
+    $('input').unbind(bindRef)
+    $('textarea').unbind(bindRef)
   executeKey: (key, keySet) =>
-#    @unbindKey(key)
     keySet.func()
-#    setTimeout(@bindKey(key, keySet), 200)
-  bindKeys: ->
+  applyToAllKeys: (func) ->
     _.keys(@keyMap).map (label) =>
       _.map @keyMap[label].keys.split(', '), (key) =>
-        @bindKey(key, @keyMap[label])
+        func(key, @keyMap[label])
 
 class BB.HotKeys.KeySets
   debug: false
@@ -44,7 +52,7 @@ class BB.HotKeys.KeySets
   disable: (keySetName) ->
     console.log "HK disable", keySetName if @debug
     @keySets[keySetName].active = false
-    @rebindAllKeySets()
+    @keySets[keySetName].unbindKeys()
     BB.vent.trigger("hotkey:Change")
   rebindAllKeySets: ->
     $(document).unbind('keydown')
