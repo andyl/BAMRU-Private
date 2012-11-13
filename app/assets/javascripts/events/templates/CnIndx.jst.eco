@@ -26,6 +26,8 @@
 There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firstEventDate() %> to <%= @lastEventDate() %>.<br/>
 <span style='font-size: 8pt;'>
   (<%= @numMeetings() %> Meetings, <%= @numTrainings() %> Trainings, <%= @numOperations() %> Operations, <%= @numCommunity() %> Community Events, <%= @numSocial() %> Social Events)
+<p></p>
+Current date is <b><%= @currentTime() %></b>
 </span>
 
 

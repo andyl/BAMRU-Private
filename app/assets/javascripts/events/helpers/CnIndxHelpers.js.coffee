@@ -1,5 +1,7 @@
 BB.Helpers.CnIndxHelpers =
 
+  currentTime: -> moment().strftime("%a %Y-%b-%d @ %H:%M")
+
   reGenEventList: ->
     @eventList = BB.Collections.events.select (event) => @isInRange(event)
 
@@ -20,15 +22,17 @@ BB.Helpers.CnIndxHelpers =
   firstEvent: -> BB.Collections.events.sortBy((e) -> e.get('start'))[0]
   lastEvent:  -> BB.Collections.events.sortBy((e) -> e.get('start')).slice(-1)[0]
 
-  firstEventDate: -> moment(@firstEvent().get('start')).strftime("%b-%Y")
-  lastEventDate:  -> moment(@lastEvent().get('start')).strftime("%b-%Y")
+  firstEventDate: -> @toMoment(@firstEvent().get('start')).strftime("%b-%Y")
+  lastEventDate:  -> @toMoment(@lastEvent().get('start')).strftime("%b-%Y")
 
   upcomingStart:  moment()
   upcomingFinish: moment().add("weeks", 6)
   recentStart:    moment().subtract("weeks", 4)
   recentFinish:   moment()
 
-  eventDates: (event) -> [moment(event.get('start')), moment(event.get('finish'))]
+  toMoment: (date) -> moment(date, "YYYY-MM-DD HH:mm")
+
+  eventDates: (event) -> [@toMoment(event.get('start')), @toMoment(event.get('finish'))]
 
   isCurrent: (event) ->
     [eventStart, eventFinish] = @eventDates(event)
@@ -47,7 +51,7 @@ BB.Helpers.CnIndxHelpers =
     [eventStart, eventFinish] = @eventDates(event)
     @upcomingStart < eventStart < @upcomingFinish
 
-  isInRange: (event) -> @recentStart < moment(event.get('start')) < @upcomingFinish
+  isInRange: (event) -> @recentStart < @toMoment(event.get('start')) < @upcomingFinish
 
   sortByStart: (list) -> _.sortBy list, (event) -> event.get('start')
   currentEvents:  -> @sortByStart(_.select(@eventList, (event) => @isCurrent(event) ))
