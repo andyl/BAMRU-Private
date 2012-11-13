@@ -9,13 +9,24 @@ class BB.HotKeys.KeySet
     @keyMap      = config.keyMap || {}
     @displaySort = config.displaySort || 0
   mapCount: -> Object.keys(@keyMap).length + 1
+  unbindKey: (key) =>
+    reference = "keydown.#{key}"
+    $(document).unbind(reference)
+    $('input').unbind(reference)
+    $('textarea').unbind(reference)
+  bindKey: (key, keySet) =>
+    $(document).bind("keydown.#{key}",     key, => @executeKey(key, keySet))
+    unless keySet.disableOnForms
+      $('input').bind("keydown.#{key}",    key, => @executeKey(key, keySet))
+      $('textarea').bind("keydown.#{key}", key, => @executeKey(key, keySet))
+  executeKey: (key, keySet) =>
+#    @unbindKey(key)
+    keySet.func()
+#    setTimeout(@bindKey(key, keySet), 200)
   bindKeys: ->
     _.keys(@keyMap).map (label) =>
       _.map @keyMap[label].keys.split(', '), (key) =>
-        $(document).bind('keydown', key, @keyMap[label].func)
-        unless @keyMap[label].disableOnForms
-          $('input').bind('keydown', key, @keyMap[label].func)
-          $('textarea').bind('keydown', key, @keyMap[label].func)
+        @bindKey(key, @keyMap[label])
 
 class BB.HotKeys.KeySets
   debug: false

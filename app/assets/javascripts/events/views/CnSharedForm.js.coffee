@@ -31,7 +31,6 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     BB.hotKeys.disable("CnSharedForm")
     BB.hotKeys.enable("SidebarList")
     BB.hotKeys.enable("SidebarControl")
-    BB.hotKeys.enable("CnTabsMenu")
 
   # ----- methods -----
 
