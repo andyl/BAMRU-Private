@@ -17,6 +17,9 @@ class BB.HotKeys.KeySet
     return false unless eventList = $(document).data('events').keydown
     _.any(eventList, (ob) -> ob.data == key)
   bindKey: (key, keySet) =>
+    # note: this guard implies that you can't re-assign a key
+    # TODO: change this, to allow a key to be re-assigned
+    # simplest: just delete the bound key
     return if @alreadyBound(key)
     bindRef = "keydown.#{key}"
     doBind  = (el) => $(el).bind(bindRef, key, => @executeKey(key, keySet))

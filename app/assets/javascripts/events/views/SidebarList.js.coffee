@@ -33,13 +33,13 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   # ----- selecting active event -----
 
   setActive: (m) ->
-    @collection.setActive(m.get('id'))
+    BB.Collections.events.setActive(m.id)
 
   updateView: (model) ->
     BB.Collections.filteredEvents.filter(model.toJSON())
 
   clearActive: ->
-    @collection.clearActive()
+    BB.Collections.events.clearActive()
 
   # ----- up/down event navigation -----
 
