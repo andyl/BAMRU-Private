@@ -40,7 +40,7 @@ class BB.HotKeys.KeySet
         func(key, @keyMap[label])
 
 class BB.HotKeys.KeySets
-  debug: false
+  debug: true
   keySets: {}
   activeKeySets: -> _.select @keySets, (keySet) -> keySet.active
   add: (keySetName, keySetObj) ->

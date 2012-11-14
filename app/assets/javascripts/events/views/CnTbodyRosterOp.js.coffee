@@ -28,9 +28,11 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
       success: => @afterFetch()
     @collection.fetch(opts)
     @periods.show(new BB.Views.CnTbodyRosterOpPeriods({model: @model}))
+    BB.hotKeys.enable("CnTbodyRoster")
 
   onClose: ->
     @pubSub.close()
+    BB.hotKeys.disable("CnTbodyRoster")
 
   # ----- initialization -----
 

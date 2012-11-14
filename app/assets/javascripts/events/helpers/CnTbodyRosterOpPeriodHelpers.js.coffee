@@ -1,6 +1,9 @@
 BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   deletePeriodLink: (periodId) ->
     "<a href='#' class='deletePeriod' data-id='#{periodId}'>X</a>"
+
+  # ----- guestLink or RSVP link -----
+
   actionLink: ->
     event = BB.Collections.events.get(@event_id)
     if event.get('typ') == "training"
@@ -8,9 +11,18 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     else
       @rsvpLink()
   guestLink: ->
-      "<a style='margin-left: 20px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
+      "<a style='margin-right: 40px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
   rsvpLink: ->
-      "<input type='button' style='margin-left: 40px;' class='rsvpLink' value='link to rsvp'/>"
+      "<input style='margin-right: 40px;' type='button' class='rsvpLink' value='link to rsvp'/>"
+
+  # ----- add participants -----
+
+  memberField: ->
+    if @isActive
+      "<input style='margin-left: 80px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
+    else
+      "<a style='margin-left: 80px;' href='#' class='selectPeriod'>add participant</a>"
+
   timeHeaders: ->
     displayState = BB.rosterState.get('state')
     switch displayState

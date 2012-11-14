@@ -30,6 +30,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     'focus .memberField'     : 'onFocusSearch'
     'click .createGuestLink' : 'createGuest'
     'click .rsvpLink'        : 'rsvpLink'
+    'click .selectPeriod'    : 'selectPeriod'
 
   onShow: ->
     @$el.css('font-size', '8pt')
@@ -37,6 +38,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()
+    @setSearchBox()
 
   onClose: ->
     @pubSub.close()
@@ -129,4 +131,10 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   deletePeriod: (ev) ->
     ev?.preventDefault()
     @model.destroy()
+
+  # ----- misc -----
+
+  selectPeriod: (ev) ->
+    ev?.preventDefault()
+    BB.vent.trigger('cmd:SetActivePeriod', @model.id)
 

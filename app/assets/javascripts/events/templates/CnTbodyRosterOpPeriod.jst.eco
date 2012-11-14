@@ -3,10 +3,10 @@
     <tr>
       <td>
         Period <%= @position %>
-        <input style='margin-left: 50px;' size=18 class='memberField' id="memberField<%= @id %>" name="newParticipant" placeholder="add participant..." />
-        <%- @actionLink() %>
+        <%- @memberField() %>
       </td>
       <td align="right">
+        <%- @actionLink() %>
         <%- @deletePeriodLink(@id) %>
       </td>
     </tr>
