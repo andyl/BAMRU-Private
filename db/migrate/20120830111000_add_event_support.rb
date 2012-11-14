@@ -77,8 +77,6 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
-      #add_column :members, :dl, :string
-
     end
 
 end

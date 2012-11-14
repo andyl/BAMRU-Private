@@ -46,6 +46,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     ev?.preventDefault()
     opts =
       event_id: @model.get('id')
+      position: @collection.length + 1
     period = new BB.Models.Period(opts)
     period.urlRoot = "/eapi/events/#{@model.get('id')}/periods"
     opts =
