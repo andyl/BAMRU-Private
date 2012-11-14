@@ -21,6 +21,7 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
     $('#myTable').show()
     @setMyTable()
     BB.hotKeys.enable("SidebarList")
+    @openSidebar()
 
   onClose: ->
     BB.hotKeys.disable("SidebarList")
@@ -46,13 +47,17 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   nextRow: -> @altRow "next"
 
   prevRow: -> @altRow "prev"
-    
-  displayRow: (targetRow) ->
+
+  openSidebar: ->
+    BB.vent.trigger "key:OpenSidebar"
+
+  displayRow: (targetRow, direction = "none") ->
     targetId = $(targetRow).attr('id').split('_')[1]
     if targetId != activeModel?.get('id')
-      targetRow.scrollIntoView(false)
+      @scrollRow(targetRow, direction)
       @collection.setActive(targetId)
-      BB.Routers.app.navigate("/events/#{targetId}", {trigger: true}) # TODO: fix!!
+      BB.Routers.app.navigate("/events/#{targetId}", {trigger: true})
+      @openSidebar()
 
   altRow: (direction) ->
     firstRow =         => $(@$el.find("tr")[0])
@@ -68,7 +73,7 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
         if endOfTable(altRow) then activeRow[0] else altRow[0]
     else
       firstRow()[0]
-    @displayRow(targetRow)
+    @displayRow(targetRow, direction)
 
   topRow: ->
     firstRow = => $(@$el.find("tr")[0])
@@ -77,6 +82,72 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   bottomRow: ->
     bottomRow = => $(@$el.find("tr:last"))
     @displayRow(bottomRow()[0])
+    @pullToTop(bottomRow()[0])
+
+  tableLength:    => @$el.find("tr").length
+
+  # ----- scrolling -----
+
+  position:     (row) => @$el.find("tr").index(row)
+  inTopFive:    (row) => @position(row) < 2
+  inBottomFive: (row) => @position(row) > @tableLength() - 2
+  threeAbove:   (row) => $(@$el.find("tr")[@position(row) - 1])
+  threeBelow:   (row) => $(@$el.find("tr")[@position(row) + 1])
+
+  pullToBottom : (row) => row.scrollIntoView(false)
+  pullToTop    : (row) => row.scrollIntoView()
+
+  scrollRow: (targetRow, direction) ->
+    if @inTopFive(targetRow)
+      @pullToBottom(targetRow)
+      return
+    if @inBottomFive(targetRow)
+      @pullToTop(targetRow)
+      return
+    switch direction
+      when "none" then @pullToBottom(targetRow)
+      when "prev"
+        if @isIn(targetRow)
+          @doPrev(targetRow)
+        else
+          if @isAbove(targetRow)
+            @doAbovePrev(targetRow)
+          else
+            @doBelowPrev(targetRow)
+      when "next"
+        if @isIn(targetRow)
+          @doNext(targetRow)
+        else
+          if @isAbove(targetRow)
+            @doAboveNext(targetRow)
+          else
+            @doBelowNext(targetRow)
+
+  doAbovePrev: (targetRow) ->
+    @pullToTop(@threeAbove(targetRow)[0])
+  doBelowPrev: (targetRow) ->
+    @pullToBottom(@threeBelow(targetRow)[0])
+  doPrev: (targetRow) ->
+    aboveRow = @threeAbove(targetRow)
+    @pullToTop(aboveRow[0]) if @isAbove(aboveRow)
+
+  doAboveNext: (targetRow) ->
+    @pullToTop(@threeAbove(targetRow)[0])
+  doBelowNext: (targetRow) ->
+    @pullToBottom(@threeBelow(targetRow)[0])
+  doNext: (targetRow) ->
+    belowRow = @threeBelow(targetRow)
+    @pullToBottom(belowRow[0]) if @isBelow(belowRow)
+
+  _bottom: (el) -> $(el).offset().top + $(el).height()
+  _top: (el) -> $(el).offset().top
+
+  div: '.ui-layout-west'
+
+  isBelow: (element) -> @_bottom(@div) < @_bottom(element)
+  isAbove: (element) -> @_top(@div) > @_top(element)
+  isIn: (element) -> @_top(@div) < @_top(element) && @_bottom(@div) > @_bottom(element)
+  isOut: (element) -> ! @isIn(element)
 
   # ----- filtering -----
 

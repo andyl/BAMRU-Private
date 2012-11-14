@@ -19,6 +19,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
     @bindTo(BB.vent,     'click:CnTabsOverviewCancelClone', @cancelClone,   this)
     @bindTo(BB.vent,     'key:Home',                        @goHome,        this)
     @bindTo(BB.vent,     'key:ToggleSidebar',               @toggleSidebar, this)
+    @bindTo(BB.vent,     'key:OpenSidebar',                 @openSidebar, this)
     BB.Views.utilFooter.render().updateFooter()
     BB.hotKeys.enable("AppLayout")
 
@@ -42,6 +43,9 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
   
   toggleSidebar: ->
     @jsLayout.toggle('west')
+
+  openSidebar: ->
+    @jsLayout.open('west')
 
   goHome: ->
     @jsLayout.open('west')

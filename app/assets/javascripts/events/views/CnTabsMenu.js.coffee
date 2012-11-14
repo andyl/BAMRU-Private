@@ -39,14 +39,12 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
     curIdx = _.indexOf(@pages, @curPage)
     newIdx = if curIdx == @numPages-1 then 0 else curIdx + 1
     newPage = @pages[newIdx]
-    console.log "NEXT MENU", curIdx, newIdx, newPage
     BB.vent.trigger('click:tMenu', newPage)
 
   prevMenu: ->
     curIdx = _.indexOf(@pages, @curPage)
     newIdx = if curIdx == 0 then @numPages-1 else curIdx-1
     newPage = @pages[newIdx]
-    console.log "PREV MENU", curIdx, newIdx, newPage
     BB.vent.trigger('click:tMenu', newPage)
 
 
