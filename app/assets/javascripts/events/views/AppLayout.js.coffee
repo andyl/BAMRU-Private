@@ -88,13 +88,13 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
   setColumnHeight: ->
     window.tgtHeight = window.innerHeight - 184 - $('#debug_footer').height()
     $('#x_single_col').css('height', "#{tgtHeight}px")
-    $('#sidebar').height(tgtHeight - 14)
-    $('#content').height(tgtHeight - 38)
+    $('#sidebar').height(tgtHeight - 18)
+    $('#content').height(tgtHeight - 42)
     @updateSidebar()
     window.setTimeout(@updateSidebar, 250)
 
   updateSidebar: ->
-    $('#sidebar').height(tgtHeight - 14)
-    $('#content').height(tgtHeight - 14)
+    $('#sidebar').height(tgtHeight - 18)
+    $('#content').height(tgtHeight - 18)
 
 
