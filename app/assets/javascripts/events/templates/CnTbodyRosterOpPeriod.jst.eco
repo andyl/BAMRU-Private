@@ -2,7 +2,7 @@
   <table width=100%>
     <tr>
       <td>
-        Period <%= @position %>
+        <%- @titleField()  %>
         <%- @memberField() %>
       </td>
       <td align="right">

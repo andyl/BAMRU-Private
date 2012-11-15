@@ -239,16 +239,16 @@ hotKeys.keySets["CnTbodyRosterMt"] = new BB.HotKeys.KeySet
 
 hotKeys.keySets["CnTbodyRosterOp"] = new BB.HotKeys.KeySet
   mode: "When Viewing a Roster"
-  help: "<b>alt+p</b> toggle add participant, <b>shift+j</b> next period, <b>shift+k</b> prev period"
+  help: "<b>alt+p</b> toggle add participant, <b>alt+j</b> next period, <b>alt+k</b> prev period"
   keyMap:
     'toggle add particpant':
       keys: "alt+p"
       func: -> BB.vent.trigger "cmd:ToggleAddParticipant"
     'next period':
-      keys: "shift+j"
+      keys: "alt+j"
       func: -> BB.vent.trigger "cmd:NextPeriod"
     'prev period':
-      keys: "shift+k"
+      keys: "alt+k"
       func: -> BB.vent.trigger "cmd:PrevPeriod"
 
 hotKeys.keySets["SidebarList"] = new BB.HotKeys.KeySet
@@ -275,9 +275,11 @@ hotKeys.keySets["CnTabsMenu"] = new BB.HotKeys.KeySet
     'move left':
       keys: "h"
       func: -> BB.vent.trigger "click:tMenu:Prev"
+      disableOnForms: true
     'move right':
       keys: "l"
       func: -> BB.vent.trigger "click:tMenu:Next"
+      disableOnForms: true
 
 hotKeys.keySets["AppLayout"] = new BB.HotKeys.KeySet
   mode: "On Every Screen"

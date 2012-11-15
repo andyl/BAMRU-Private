@@ -18,6 +18,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     @bindTo(BB.rosterState, 'change', @reRender, this)
+    @bindTo(@model,         'change', @reRender, this)
 
   reRender: ->
     @render()
@@ -31,6 +32,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     'click .createGuestLink' : 'createGuest'
     'click .rsvpLink'        : 'rsvpLink'
     'click .selectPeriod'    : 'selectPeriod'
+    'click .addParticipant'  : 'addParticipant'
 
   onShow: ->
     @$el.css('font-size', '8pt')
@@ -40,6 +42,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()
     BB.hotKeys.rebindAllKeySets()
     setTimeout(@setSearchBox, 250)
+    @focusAddParticipant()
 
   onClose: ->
     @pubSub.close()
@@ -67,6 +70,11 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
       @collection.clearMatches()
 
   # ----- add participant box -----
+
+  focusAddParticipant: ->
+    if BB.highlightAddParticipant == @model.id
+      delete BB.highlightAddParticipant
+      $(@memberField).focus().val('')
 
   toggleAddParticipant: ->
     return unless @model.get('isActive')
@@ -138,5 +146,10 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   selectPeriod: (ev) ->
     ev?.preventDefault()
+    BB.vent.trigger('cmd:SetActivePeriod', @model.id)
+
+  addParticipant: (ev) ->
+    ev?.preventDefault()
+    BB.highlightAddParticipant = @model.id
     BB.vent.trigger('cmd:SetActivePeriod', @model.id)
 

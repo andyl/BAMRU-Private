@@ -21,7 +21,14 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     if @isActive
       "<input style='margin-left: 80px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
     else
-      "<a style='margin-left: 80px;' href='#' class='selectPeriod'>add participant</a>"
+      "<a style='margin-left: 80px;' href='#' class='addParticipant'>add participant</a>"
+
+  titleField: ->
+    string = "Period #{@position}"
+    if @isActive
+      string
+    else
+      "<a href='#' class='selectPeriod'>#{string}</a>"
 
   timeHeaders: ->
     displayState = BB.rosterState.get('state')

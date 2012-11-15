@@ -24,9 +24,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     'click .stateButton' : 'toggleFields'
 
   onShow: ->
-    opts =
-      success: => @afterFetch()
-    @collection.fetch(opts)
+    console.log "CnTbodyRosterOp onShow"
     @periods.show(new BB.Views.CnTbodyRosterOpPeriods({model: @model}))
     BB.hotKeys.enable("CnTbodyRosterOp")
 

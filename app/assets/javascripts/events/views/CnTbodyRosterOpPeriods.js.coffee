@@ -9,16 +9,14 @@ class BB.Views.CnTbodyRosterOpPeriods extends Backbone.Marionette.CollectionView
   initialize: (options) ->
     @model      = options.model      # Event
     @collection = @model.periods     # Periods
-    @bindTo(@collection, 'change remove reset', @render,     this)
+    @bindTo(@collection, 'remove reset',        @render,     this)
     @bindTo(BB.vent,     'cmd:SetActivePeriod', @setActive,  this)
     @bindTo(BB.vent,     'cmd:NextPeriod',      @nextPeriod, this)
     @bindTo(BB.vent,     'cmd:PrevPeriod',      @prevPeriod, this)
 
   onShow: ->
     tmpFunc = => @collection.initActive()
-    setTimeout(tmpFunc, 250)
-    setTimeout(tmpFunc, 1000)
-    setTimeout(tmpFunc, 5000)
+    setTimeout(tmpFunc, 500)
 
   # ----- construction -----
 
