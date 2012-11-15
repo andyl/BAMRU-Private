@@ -257,16 +257,20 @@ hotKeys.keySets["SidebarList"] = new BB.HotKeys.KeySet
   keyMap:
     'next event':
       keys: 'j'
-      func: -> BB.vent.trigger "key:nextRow"  
+      func: -> BB.vent.trigger "key:nextRow"
+      disableOnForms: true
     'prev event':
       keys: 'k'
       func: -> BB.vent.trigger "key:prevRow"
+      disableOnForms: true
     'move to top event':
       keys: 'g'
       func: -> BB.vent.trigger "key:topRow"
+      disableOnForms: true
     'move to bottom event':
       keys: 'shift+g'
       func: -> BB.vent.trigger "key:bottomRow"
+      disableOnForms: true
 
 hotKeys.keySets["CnTabsMenu"] = new BB.HotKeys.KeySet
   mode: "Event Tabs (Overview, Roster, ...)"
