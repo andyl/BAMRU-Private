@@ -40,7 +40,7 @@ class BB.HotKeys.KeySet
         func(key, @keyMap[label])
 
 class BB.HotKeys.KeySets
-  debug: true
+  debug: false
   keySets: {}
   activeKeySets: -> _.select @keySets, (keySet) -> keySet.active
   add: (keySetName, keySetObj) ->
@@ -95,7 +95,8 @@ class BB.HotKeys.HotKeyHelp
     _.sortBy col, (ele) -> sortScore(ele)
 
   display: ->
-    sortedKeySets = _.sortBy BB.hotKeys.keySets, (value, key) -> -1 * value.mapCount()
+    targetKeySets = _.select BB.hotKeys.keySets, (ele) -> ele.mode != "TBD"
+    sortedKeySets = _.sortBy targetKeySets, (value, key) -> -1 * value.mapCount()
     window.leftCol  = []
     window.rightCol = []
     sumLen = (arr) ->
@@ -229,22 +230,35 @@ hotKeys.keySets["CnSharedForm"] = new BB.HotKeys.KeySet
       keys: '#'
       func: -> BB.vent.trigger "cmd:EditEventCancel"
 
-hotKeys.keySets["CnTbodyRoster"] = new BB.HotKeys.KeySet
-  mode: "When Viewing a Roster"
+hotKeys.keySets["CnTbodyRosterMt"] = new BB.HotKeys.KeySet
   help: "<b>alt+p</b> toggle add participant"
   keyMap:
     'toggle add particpant':
       keys: "alt+p"
       func: -> BB.vent.trigger "cmd:ToggleAddParticipant"
 
+hotKeys.keySets["CnTbodyRosterOp"] = new BB.HotKeys.KeySet
+  mode: "When Viewing a Roster"
+  help: "<b>alt+p</b> toggle add participant, <b>shift+j</b> next period, <b>shift+k</b> prev period"
+  keyMap:
+    'toggle add particpant':
+      keys: "alt+p"
+      func: -> BB.vent.trigger "cmd:ToggleAddParticipant"
+    'next period':
+      keys: "shift+j"
+      func: -> BB.vent.trigger "cmd:NextPeriod"
+    'prev period':
+      keys: "shift+k"
+      func: -> BB.vent.trigger "cmd:PrevPeriod"
+
 hotKeys.keySets["SidebarList"] = new BB.HotKeys.KeySet
   mode: "Event List (Sidebar)"
-  help: "<b>j</b> move down, <b>k</b> move up"
+  help: "<b>j</b> next event, <b>k</b> prev event"
   keyMap:
-    'move down':
+    'next event':
       keys: 'j'
       func: -> BB.vent.trigger "key:nextRow"  
-    'move up':
+    'prev event':
       keys: 'k'
       func: -> BB.vent.trigger "key:prevRow"
     'move to top event':

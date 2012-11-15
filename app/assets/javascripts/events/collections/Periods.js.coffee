@@ -3,7 +3,7 @@ class BB.Collections.Periods extends Backbone.Collection
   model: BB.Models.Period
 
   initialize: ->
-    @on('remove', @resetPositions)
+    @bind('remove', @resetPositions)
 
   comparator: (period) -> period.get('position')
 

@@ -9,15 +9,16 @@ class BB.Views.CnTbodyRosterOpPeriods extends Backbone.Marionette.CollectionView
   initialize: (options) ->
     @model      = options.model      # Event
     @collection = @model.periods     # Periods
-    @bindTo(@collection, 'change remove reset', @render,    this)
-    @bindTo(BB.vent,     'cmd:SetActivePeriod', @setActive, this)
+    @bindTo(@collection, 'change remove reset', @render,     this)
+    @bindTo(BB.vent,     'cmd:SetActivePeriod', @setActive,  this)
+    @bindTo(BB.vent,     'cmd:NextPeriod',      @nextPeriod, this)
+    @bindTo(BB.vent,     'cmd:PrevPeriod',      @prevPeriod, this)
 
   onShow: ->
     tmpFunc = => @collection.initActive()
     setTimeout(tmpFunc, 250)
     setTimeout(tmpFunc, 1000)
     setTimeout(tmpFunc, 5000)
-
 
   # ----- construction -----
 
@@ -28,3 +29,19 @@ class BB.Views.CnTbodyRosterOpPeriods extends Backbone.Marionette.CollectionView
 
   setActive: (id) ->
     @collection.setActive(id)
+
+  nextPeriod: ->
+    return if @collection.length < 2
+    oldMdl = @collection.getActive()[0]
+    oldIdx = @collection.indexOf(oldMdl)
+    newIdx = if oldIdx == @collection.length-1 then 0 else oldIdx+1
+    newMdl = @collection.at(newIdx)
+    @collection.setActive(newMdl.id)
+
+  prevPeriod: ->
+    return if @collection.length < 2
+    oldMdl = @collection.getActive()[0]
+    oldIdx = @collection.indexOf(oldMdl)
+    newIdx = if oldIdx == 0 then @collection.length-1 else oldIdx-1
+    newMdl = @collection.at(newIdx)
+    @collection.setActive(newMdl.id)

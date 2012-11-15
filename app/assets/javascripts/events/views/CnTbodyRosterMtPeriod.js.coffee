@@ -23,7 +23,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @subview.render()
     @setSearchBox()
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
-    BB.hotKeys.enable("CnTbodyRoster")
+    BB.hotKeys.enable("CnTbodyRosterMt")
 
   events:
     'blur #memberField'       : 'onBlurSearch'
@@ -33,7 +33,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
 
   onClose: ->
     @pubSub.close()
-    BB.hotKeys.disable("CnTbodyRoster")
+    BB.hotKeys.disable("CnTbodyRosterMt")
 
   # ----- methods -----
 

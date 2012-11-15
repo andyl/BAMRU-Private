@@ -38,7 +38,8 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()
-    @setSearchBox()
+    BB.hotKeys.rebindAllKeySets()
+    setTimeout(@setSearchBox, 250)
 
   onClose: ->
     @pubSub.close()
@@ -68,6 +69,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   # ----- add participant box -----
 
   toggleAddParticipant: ->
+    return unless @model.get('isActive')
     if $(@memberField).is(':focus')
       $(@memberField).blur().val('')
     else
@@ -85,7 +87,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   # ----- auto complete -----
 
-  setSearchBox: ->
+  setSearchBox: =>
     @$el.find(@guestLink).hide()
     @collection.clearMatches()
     participantIDs = @collection.map (p) -> p.get('member_id')
