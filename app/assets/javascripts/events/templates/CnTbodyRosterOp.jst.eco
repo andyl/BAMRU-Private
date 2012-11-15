@@ -25,6 +25,10 @@
     padding: 4px;
   }
 
+  .createGuestLink {
+    display: none;
+  }
+
 </style>
 
 <table id='xtable' width=100%>

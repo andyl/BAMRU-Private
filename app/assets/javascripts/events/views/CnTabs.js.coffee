@@ -14,7 +14,6 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @router = BB.Routers.app
     @page   = options.page
     @model  = BB.Collections.events.get(options.modelId)
-    @model.periods.fetch()
     @model.eventLinks.fetch()
     @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
     @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
@@ -34,7 +33,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when "roster"        then @genRoster       navOpt
       when "forum"         then @genForum        navOpt
       when "resources"     then @genResources    navOpt
-      when "reports"       then @genReports    navOpt
+      when "reports"       then @genReports      navOpt
 
   # ----- methods -----
 

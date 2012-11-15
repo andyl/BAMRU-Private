@@ -14,6 +14,10 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
   initialize: (options) ->
     @model      = options.model     # Event
     @collection = @model.periods    # Periods
+    if @collection.length == 0
+      @collection.fetch
+        success: =>
+          @createPeriod() if @collection.length == 0
     @pubSub     = new BB.PubSub.Base(@collection)
     unless BB.rosterState?
       BB.rosterState = new Backbone.Model()
@@ -24,7 +28,6 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     'click .stateButton' : 'toggleFields'
 
   onShow: ->
-    console.log "CnTbodyRosterOp onShow"
     @periods.show(new BB.Views.CnTbodyRosterOpPeriods({model: @model}))
     BB.hotKeys.enable("CnTbodyRosterOp")
 
@@ -50,7 +53,9 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     period = new BB.Models.Period(opts)
     period.urlRoot = "/eapi/events/#{@model.get('id')}/periods"
     opts =
-      success: => @collection.add(period)
+      success: =>
+        @collection.add(period)
+        @collection.setActive(period.id)
     period.save({}, opts)
 
   toggleFields: (ev) ->

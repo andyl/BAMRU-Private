@@ -26,7 +26,7 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   titleField: ->
     string = "Period #{@position}"
     if @isActive
-      string
+      "<b>#{string}</b>"
     else
       "<a href='#' class='selectPeriod'>#{string}</a>"
 
