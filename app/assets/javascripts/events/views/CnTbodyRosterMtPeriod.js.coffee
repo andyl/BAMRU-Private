@@ -16,14 +16,15 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @pubSub = new BB.PubSub.Base(@collection)
 
   onShow: ->
+    BB.hotKeys.enable("CnTbodyRosterMt")
     @$el.css('font-size', '8pt')
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     @subview = new BB.Views.CnTbodyRosterMtParticipants(opts)
     @subview.render()
-    @setSearchBox()
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
-    BB.hotKeys.enable("CnTbodyRosterMt")
+    BB.hotKeys.rebindAllKeySets()
+    setTimeout(@setSearchBox, 250)
 
   events:
     'blur #memberField'       : 'onBlurSearch'
