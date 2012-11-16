@@ -1,6 +1,6 @@
 BB.Helpers.CnTbodyRosterOpParticipantHelpers =
   timeFields: ->
-    displayState = BB.rosterState.get('state')
+    displayState = BB.UI.rosterState.get('showTimes')
     switch displayState
       when 'none'    then ""
       when 'transit' then @transitTimeFields()

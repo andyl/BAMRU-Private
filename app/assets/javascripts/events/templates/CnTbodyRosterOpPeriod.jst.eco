@@ -2,6 +2,7 @@
   <table width=100%>
     <tr>
       <td>
+        <%- @minMax() %>
         <%- @titleField()  %>
         <%- @memberField() %>
       </td>
@@ -11,6 +12,8 @@
       </td>
     </tr>
   </table>
+
+  <% if @showTable(): %>
 
   <table class='tablesorter' id="myTable<%= @id %>">
     <thead>
@@ -26,5 +29,7 @@
     </tbody>
     </thead>
   </table>
+
+  <% end %>
 
 </div>

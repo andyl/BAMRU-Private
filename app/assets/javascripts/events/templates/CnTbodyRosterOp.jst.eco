@@ -34,7 +34,7 @@
 <table id='xtable' width=100%>
   <tr>
     <td>
-      <a href="#" id='newPeriod'>Add Period</a>
+      <a href="#" id='newPeriod'>New Period</a>
     </td>
     <td align="right">
       <form style='display: inline-block;' id='typeSelect'>

@@ -19,9 +19,10 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
         success: =>
           @createPeriod() if @collection.length == 0
     @pubSub = new BB.PubSub.Periods(@collection)
-    unless BB.rosterState?
-      BB.rosterState = new Backbone.Model()
-      BB.rosterState.set(state: 'none')
+    BB.UI.rosterState = new BB.Models.RosterState(@model.id)
+    @bindTo(BB.vent, 'cmd:AddNewPeriod',      @createPeriod, this)
+    @bindTo(BB.vent, 'cmd:DeletePeriod',      @deletePeriod, this)
+    @bindTo(BB.vent, 'cmd:TogglePeriodTimes', @togglePeriodTimes, this)
 
   events:
     'click #newPeriod'   : 'createPeriod'
@@ -45,6 +46,12 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
 
   # ----- methods -----
 
+  deletePeriod: (ev) ->
+    ev?.preventDefault()
+    model = @collection.getActive()[0]
+    model?.destroy()
+    @collection.initActive()
+
   createPeriod: (ev) ->
     ev?.preventDefault()
     opts =
@@ -61,5 +68,16 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
 
   toggleFields: (ev) ->
     newState = @$el.find(".stateButton:checked").attr("id")
-    BB.rosterState.set(state: newState)
+    BB.UI.rosterState.set(showTimes: newState)
+    BB.UI.rosterState.saveToLocalStorage()
+
+  togglePeriodTimes: (ev) ->
+    newState = switch BB.UI.rosterState.get('showTimes')
+      when "none"    then "transit"
+      when "transit" then "signin"
+      else "none"
+    BB.UI.rosterState.set({showTimes: newState}, {silent: true})
+    BB.UI.rosterState.saveToLocalStorage()
+    @render()
+    @onShow()
 

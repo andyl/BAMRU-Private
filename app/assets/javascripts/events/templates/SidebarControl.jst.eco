@@ -39,7 +39,7 @@
       <input id="filterResetButton" type="button" value="Reset" tabindex=6/>
     </td>
     <td align="right">
-      <input id="new-event-button" type="button" tabindex=7 value="Create New">
+      <input id="new-event-button" type="button" tabindex=7 value="New Event">
     </td>
   </tr>
 </table>

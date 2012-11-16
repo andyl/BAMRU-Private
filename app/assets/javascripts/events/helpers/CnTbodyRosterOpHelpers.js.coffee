@@ -1,6 +1,6 @@
 BB.Helpers.CnTbodyRosterOpHelpers =
   stateCheck: (input) ->
-    if BB.rosterState.get('state') == input then "checked" else ""
+    if BB.UI.rosterState.get('showTimes') == input then "checked" else ""
 
 
 

@@ -17,27 +17,31 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @memberField = "#memberField#{@model.id}"
     @guestLink   = "#createGuestLink#{@model.id}"
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
-    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
-    @bindTo(BB.rosterState, 'change', @reRender, this)
-    @bindTo(@model,         'change', @reRender, this)
+    @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,  this)
+    @bindTo(BB.vent, 'cmd:ToggleMinMax',          @toggleMinMax,          this)
+    @bindTo(BB.vent, 'cmd:MinOtherPeriods',       @minOtherPeriods,       this)
+    @bindTo(BB.UI.rosterState, 'change', @reRender, this)
+    @bindTo(@model,            'change', @reRender, this)
 
   reRender: ->
     @render()
     @onShow()
 
   events:
-    'click .deletePeriod'    : 'deletePeriod'
     'blur .memberField'      : 'onBlurSearch'
+    'click .deletePeriod'    : 'deletePeriod'
     'keyup .memberField'     : 'toggleGuestLink'
     'focus .memberField'     : 'onFocusSearch'
     'click .createGuestLink' : 'createGuest'
     'click .rsvpLink'        : 'rsvpLink'
     'click .selectPeriod'    : 'selectPeriod'
     'click .addParticipant'  : 'addParticipant'
+    'click .minWin'          : 'minWin'
+    'click .maxWin'          : 'maxWin'
 
   onShow: ->
     @$el.css('font-size', '8pt')
-#    @$el.find('.tablesorter').tablesorter()
+    #@$el.find('.tablesorter').tablesorter()
     @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
     new BB.Views.CnTbodyRosterOpParticipants(opts).render()
@@ -155,4 +159,37 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     ev?.preventDefault()
     BB.highlightAddParticipant = @model.id
     BB.vent.trigger('cmd:SetActivePeriod', @model.id)
+
+  # ----- window max/min -----
+
+  minWin: ->
+    modelId = "#{@model.id}"
+    obj = {}
+    obj[modelId] = 'min'
+    BB.UI.rosterState.set(obj)
+    BB.UI.rosterState.saveToLocalStorage()
+    
+  maxWin: ->
+    modelId = "#{@model.id}"
+    obj = {}
+    obj[modelId] = 'max'
+    BB.UI.rosterState.set(obj)
+    BB.UI.rosterState.saveToLocalStorage()
+
+  toggleMinMax: ->
+    return unless @model.get('isActive')
+    modelId = "#{@model.id}"
+    newVal  = if BB.UI.rosterState.get(modelId) == "min" then "max" else "min"
+    obj = {}
+    obj[modelId] = newVal
+    BB.UI.rosterState.set(obj)
+    BB.UI.rosterState.saveToLocalStorage()
+
+  minOtherPeriods: ->
+    modelId = "#{@model.id}"
+    newVal  = if @model.get('isActive') then "max" else "min"
+    obj = {}
+    obj[modelId] = newVal
+    BB.UI.rosterState.set(obj)
+    BB.UI.rosterState.saveToLocalStorage()
 

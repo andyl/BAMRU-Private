@@ -26,14 +26,24 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   titleField: ->
     string = "Period #{@position}"
     if @isActive
-      "<b>#{string}</b>"
+      "<b style='margin-left: 10px;'>#{string}</b>"
     else
-      "<a href='#' class='selectPeriod'>#{string}</a>"
+      "<a style='margin-left: 10px;' href='#' class='selectPeriod'>#{string}</a>"
 
   timeHeaders: ->
-    displayState = BB.rosterState.get('state')
+    displayState = BB.UI.rosterState.get('showTimes')
     switch displayState
       when "none"    then ""
       when 'transit' then "<th>En-route at</th><th>Return at</th>"
       when "signin"  then "<th>Sign-in at</th><th>Sign-out at</th>"
       else ""
+
+  minMax: ->
+    displayState = BB.UI.rosterState.get("#{@id}")
+    if displayState == "min"
+      "<a href='#' class='maxWin'>></a>"
+    else
+      "<a href='#' class='minWin'>v</a>"
+
+  showTable: ->
+    BB.UI.rosterState.get("#{@id}") != "min"

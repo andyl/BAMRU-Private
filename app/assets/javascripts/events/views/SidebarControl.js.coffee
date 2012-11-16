@@ -113,7 +113,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
 
   # ----- filter box -----
 
-  toggleFilterFocus: ->
+  togglerosterStateFilterFocus: ->
     toggle = ->
       if $('#filter-box').is(':focus')
         newVal = $('#filter-box').val().replace('/','')

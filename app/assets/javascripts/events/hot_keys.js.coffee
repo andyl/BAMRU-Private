@@ -250,6 +250,22 @@ hotKeys.keySets["CnTbodyRosterOp"] = new BB.HotKeys.KeySet
     'prev period':
       keys: "alt+k"
       func: -> BB.vent.trigger "cmd:PrevPeriod"
+    'maximize/minimize period':
+      keys: "alt+m"
+      func: -> BB.vent.trigger "cmd:ToggleMinMax"
+    'minimize other periods':
+      keys: "alt+o"
+      func: -> BB.vent.trigger "cmd:MinOtherPeriods"
+    'change time fields':
+      keys: "alt+t"
+      func: -> BB.vent.trigger "cmd:TogglePeriodTimes"
+    'create new period':
+      keys: "alt+n"
+      func: -> BB.vent.trigger "cmd:AddNewPeriod"
+    'delete period':
+      keys: "alt+d"
+      func: -> BB.vent.trigger "cmd:DeletePeriod"
+
 
 hotKeys.keySets["SidebarList"] = new BB.HotKeys.KeySet
   mode: "Event List (Sidebar)"
