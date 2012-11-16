@@ -10,13 +10,7 @@ class BB.Views.CnTbodyRosterOpParticipants extends Backbone.Marionette.Collectio
     @model      = options.model                    # Period
     @collection = options.collection               # Participants
     @$el        = $("#participants#{@model.id}")
-    @bindTo(@collection, 'change remove reset', @render, this)
+    @bindTo(@collection, 'change',    @render, this)
 
-  # ----- construction -----
 
-  appendHtml: (collectionView, itemView, index) ->
-    $(itemView.el).find("td").css('font-size', '8pt')
-    collectionView.$el.append(itemView.el)
-
-  # ----- methods -----
 

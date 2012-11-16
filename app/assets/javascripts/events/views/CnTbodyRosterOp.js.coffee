@@ -18,7 +18,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
       @collection.fetch
         success: =>
           @createPeriod() if @collection.length == 0
-    @pubSub     = new BB.PubSub.Base(@collection)
+    @pubSub = new BB.PubSub.Periods(@collection)
     unless BB.rosterState?
       BB.rosterState = new Backbone.Model()
       BB.rosterState.set(state: 'none')
@@ -56,6 +56,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
       success: =>
         @collection.add(period)
         @collection.setActive(period.id)
+        @collection.resetPositions()
     period.save({}, opts)
 
   toggleFields: (ev) ->

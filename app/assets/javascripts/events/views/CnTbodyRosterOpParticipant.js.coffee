@@ -24,6 +24,7 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
     @model.destroy()
 
   onRender: ->
+    @$el.find("td").css('font-size', '8pt')
     @$el.find("#enroute#{@model.id}, #return#{@model.id}").datetimepicker
       showMonthAfterYear: true
       changeMonth       : true,

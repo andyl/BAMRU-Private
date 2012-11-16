@@ -39,42 +39,50 @@ class BB.PubSub.Base
   # ----- event handlers -----
 
   add :(data) ->
+    return if @ignoreAdd(data)
     data.params.pubSub = {action: data.action, userid: data.userid}
     model = new @collection.model(data.params)
     model.set(id: data.modelid)
     @collection.add(model)
-    @afterAdd()
+    @afterAdd(data, model)
     @showMsg @_addMsg(model)
     @removeHighLight(model)
 
   update : (data) ->
+    return if @ignoreUpdate(data)
     modelId = data.modelid
     delete(data.params.isActive)
     data.params.pubSub = {action: data.action, userid: data.userid}
     model = @collection.get(modelId)
     model.set(data.params)
     @showMsg @_updateMsg(model)
+    @afterUpdate(data, model)
     @removeHighLight(model)
 
   destroy : (data) ->
+    return if @ignoreDestroy(data)
     modelId = data.modelid
     model   = @collection.get(modelId)
     @collection.remove(model)
     model.set(pubSub: {action: data.action, userid: data.userid})
-    @afterDestroy()
+    @afterDestroy(data, model)
     @showMsg @_destroyMsg(model)
 
   receive : (data) ->
-    jsData = JSON.parse(data)
-    return if jsData["sessionid"] == sessionId
-    switch jsData.action
-      when "add"     then @add(jsData)
-      when "update"  then @update(jsData)
-      when "destroy" then @destroy(jsData)
+    @jsData = JSON.parse(data)
+    return if @jsData["sessionid"] == sessionId
+    switch @jsData.action
+      when "add"     then @add(@jsData)
+      when "update"  then @update(@jsData)
+      when "destroy" then @destroy(@jsData)
 
   # ----- template methods: event handling -----
-  afterAdd:     -> "template method..."
-  afterDestroy: -> "template method..."
+  ignoreAdd:     (data) -> false
+  ignoreUpdate:  (data) -> false
+  ignoreDestroy: (data) -> false
+  afterAdd:      (data, model) -> "template method..."
+  afterUpdate:   (data, model) -> "template method..."
+  afterDestroy:  (data, model) -> "template method..."
 
   # ----- template methods: 'flash' notifications -----
   setMsgFields: (model) -> "template method..."
@@ -84,5 +92,12 @@ class BB.PubSub.Base
   destroyMsg:   -> "Item ##{@modelId} deleted by #{@userName}"
 
 class BB.PubSub.Events extends BB.PubSub.Base
-  afterAdd:     -> BB.Collections.filteredEvents.reFilter()
-  afterDestroy: -> BB.Collections.filteredEvents.reFilter()
+  afterAdd:     (data, model) -> BB.Collections.filteredEvents.reFilter()
+  afterDestroy: (data, model) -> BB.Collections.filteredEvents.reFilter()
+
+class BB.PubSub.Periods extends BB.PubSub.Base
+  ignoreUpdate: (data) -> true
+  afterAdd: (data, model) =>
+    @collection.resetPositions()
+
+class BB.PubSub.Participants extends BB.PubSub.Base

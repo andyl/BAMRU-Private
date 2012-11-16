@@ -9,8 +9,11 @@ class BB.Collections.Periods extends Backbone.Collection
 
   # ----- period positions -----
 
-  resetPositions: ->
-    @each (el, idx) -> el.save position: idx + 1
+  resetPositions: =>
+    @each (el, idx) ->
+      curPos = el.get('position')
+      newPos = idx + 1
+      el.save(position: newPos) unless curPos == newPos
 
   # ----- active period -----
 

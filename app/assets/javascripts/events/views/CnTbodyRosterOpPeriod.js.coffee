@@ -11,8 +11,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   initialize: (options) ->
     @model      = options.model           # Period
     @collection = @model.participants     # Participants
-    @collection.fetch() if @collection.url.search('undefined') == -1
-    @pubSub = new BB.PubSub.Base(@collection)
+    @collection.url = "/eapi/periods/#{@model.id}/participants"
+    @collection.fetch()
+    @pubSub = new BB.PubSub.Participants(@collection)
     @memberField = "#memberField#{@model.id}"
     @guestLink   = "#createGuestLink#{@model.id}"
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
@@ -127,10 +128,12 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
       updated_at: moment().strftime("%Y-%m-%d %H:%M")
       newMember: true
     participant = new BB.Models.Participant(opts)
-    participant.urlRoot = "/eapi/periods/#{@model.get('id')}/participants"
-    participant.save()
-    @collection.add(participant)
-    @removeHighLight(participant)
+    participant.urlRoot = "/eapi/periods/#{periodId}/participants"
+    opts =
+      success: =>
+        @collection.add(participant)
+        @removeHighLight(participant)
+    participant.save({}, opts)
 
   removeHighLight: (model) ->
     clearHighLight = => model.unset('newMember')
