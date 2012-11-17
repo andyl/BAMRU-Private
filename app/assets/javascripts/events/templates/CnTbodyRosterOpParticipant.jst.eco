@@ -1,4 +1,4 @@
-   <td><%= @memberRole(@member_id) %></td>
+   <td style='font-size: 8pt;'><%- @memberRoleOP(@member_id) %></td>
    <%- @memberCell(@member_id) %>
    <%- @timeFields() %>
    <td><%= @updatedAt() %></td>

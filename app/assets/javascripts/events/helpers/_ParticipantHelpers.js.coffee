@@ -2,9 +2,18 @@ BB.Helpers.ParticipantHelpers =
   deleteParticipantLink: (participantId) ->
     "<a href='#' class='deleteParticipant' data-id='#{participantId}'>X</a>"
 
-  memberRole: (memberId) ->
+  memberRoleMT: (memberId) ->
     member = BB.members.get(memberId)
     member.get('typ')
+
+  memberRoleOP: (memberId) ->
+    member = BB.members.get(memberId)
+    role   = member.get('typ')
+    if @ol
+      "<a class='unsetOL' href='#'>OL #{role}</a>"
+    else
+      "<a class='setOL' href='#'>#{role}</a>"
+
 
   memberLink: (memberId) ->
     member = BB.members.get(memberId)

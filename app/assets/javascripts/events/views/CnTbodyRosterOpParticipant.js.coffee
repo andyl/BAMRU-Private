@@ -16,12 +16,22 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
 
   events:
     'click .deleteParticipant' : 'deleteParticipant'
+    'click .unsetOL'           : 'unsetOL'
+    'click .setOL'             : 'setOL'
 
   # ----- methods -----
 
   deleteParticipant: (ev) ->
     ev?.preventDefault()
     @model.destroy()
+
+  unsetOL: (ev) ->
+    ev?.preventDefault()
+    @model.save({"ol" : false})
+
+  setOL: (ev) ->
+    ev?.preventDefault()
+    @model.save({"ol" : true})
 
   onRender: ->
     @$el.find("td").css('font-size', '8pt')
