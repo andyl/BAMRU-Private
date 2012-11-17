@@ -26,6 +26,7 @@ class BB.HotKeys.KeySet
     doBind(document)
     unless keySet.disableOnForms
       doBind('input')
+      doBind('select')
       doBind('textarea')
   unbindKey: (key) =>
     bindRef = "keydown.#{key}"
