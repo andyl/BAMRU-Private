@@ -12,7 +12,11 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
 
   initialize: (options) ->
     @model      = options.model       # Participant
-    @bindTo(@model, 'change', @render, this)
+    @bindTo(@model, 'change:ol', @reRender, this)
+
+  reRender: ->
+    BB.vent.trigger("OLParticipantChange")
+    @render()
 
   events:
     'click .deleteParticipant' : 'deleteParticipant'

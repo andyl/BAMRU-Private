@@ -10,10 +10,10 @@ class BB.Views.CnTbodyRosterOpParticipants extends Backbone.Marionette.Collectio
     @model      = options.model                    # Period
     @collection = options.collection               # Participants
     @$el        = $("#participants#{@model.id}")
-    @bindTo(@collection, 'change',    @reRender, this)
+    @bindTo(@collection, 'change', @render, this)
+    @bindTo(BB.vent,     'OLParticipantChange',  @collectionSort, this)
 
-  reRender: ->
+  collectionSort: ->
     @collection.sort()
-    @render()
 
 
