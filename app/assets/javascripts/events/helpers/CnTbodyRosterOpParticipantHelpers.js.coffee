@@ -4,32 +4,25 @@ BB.Helpers.CnTbodyRosterOpParticipantHelpers =
     switch displayState
       when 'none'    then ""
       when 'transit' then @transitTimeFields()
-      when 'signin'  then @checkinTimeFields()
+      when 'signin'  then @signinTimeFields()
       else ""
 
-  transitTimeFields: ->
-    partId     = @id
-    datePrep   = (date) ->
-      if date? then moment(date, "YYYY-MM-DD HH:mm").strftime("%Y-%m-%d %H:%M") else ""
-    inputTag   = (dString, dStyle) ->
-      "<input class='datePick' style='font-size: 8pt;' type='text' id='#{dStyle}#{partId}' value='#{dString}' size=14>"
-    enRouteStr = datePrep(@en_route_at)
-    returnStr  = datePrep(@return_home_at)
-    enRouteTag = inputTag(enRouteStr, 'enroute')
-    returnTag  = if enRouteStr == "" then "" else inputTag(returnStr, 'return')
-    "<td>#{enRouteTag}</td><td>#{returnTag}</td>"
+  transitTimeFields: -> @genTimeFields('transitPick', 'en_route_at', 'return_home_at')
 
-  checkinTimeFields: ->
+  signinTimeFields: -> @genTimeFields('signinPick', 'signed_in_at', 'signed_out_at')
+
+  genTimeFields: (typKlas, startTag, finishTag) ->
     partId     = @id
     datePrep   = (date) ->
-      if date? then moment(date, "YYYY-MM-DD HH:mm").strftime("%Y-%m-%d %H:%M") else ""
-    inputTag   = (dString, dStyle) ->
-      "<input class='datePick' style='font-size: 8pt;' type='text' id='#{dStyle}#{partId}' value='#{dString}' size=14>"
-    checkedInStr  = datePrep(@checked_in_at)
-    checkedOutStr = datePrep(@checked_out_at)
-    checkedInTag  = inputTag(checkedInStr, 'checkedIn')
-    checkedOutTag = if checkedInStr == "" then "" else inputTag(checkedOutStr, 'checkedOut')
-    "<td>#{checkedInTag}</td><td>#{checkedOutTag}</td>"
+      return "" if date == "" || date == null || date == undefined
+      moment(date, "YYYY-MM-DD HH:mm").strftime("%Y-%m-%d %H:%M")
+    htmlField  = (inVal, inTag) ->
+      "<input class='#{typKlas}' style='font-size: 8pt;' type='text' id='#{inTag}#{partId}' value='#{inVal}' size=14>"
+    startStr  = datePrep(@["#{startTag}"])
+    finishStr = datePrep(@["#{finishTag}"])
+    startHTML  = htmlField(startStr, startTag)
+    finishHTML = if startStr == "" then "" else htmlField(finishStr, finishTag)
+    "<td>#{startHTML}</td><td>#{finishHTML}</td>"
 
   updatedAt: ->
     moment(@updated_at, "YYYY-MM-DD HH:mm").strftime("%m-%d %H:%M")
