@@ -99,7 +99,8 @@ class Member < ActiveRecord::Base
   scope :active,                 where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order
   scope :registered,             where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order
   scope :registered_last_name,   where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name
-  scope :inactive,               where(:typ => ["R", "S", "A"]).standard_order
+  scope :inactive,               where("typ in ('R', 'S', 'A')").standard_order
+  scope :guests,                 where("typ in ('G')").standard_order
   scope :current_do,             where(:current_do => true)
 
   # ----- Class Methods ----
@@ -411,14 +412,16 @@ class Member < ActiveRecord::Base
 
   def role_val(role)
     case role
-      when "Bd" then -500
-      when "OL" then -250
-      when "TM" then -100
-      when "FM" then -50
-      when "T"  then -25
-      when "R"  then -10
-      when "S"  then -5
-      when "A"  then -1
+      when "Bd" then -2000
+      when "OL" then -1500
+      when "TM" then -1000
+      when "FM" then -500
+      when "T"  then -750
+      when "R"  then -500
+      when "S"  then -250
+      when "A"  then -100
+      when "G"  then -50
+      when "I"  then -25
       else 0
     end
   end
@@ -519,36 +522,6 @@ end
 
 
 
-# == Schema Information
-#
-# Table name: members
-#
-#  id                         :integer         not null, primary key
-#  title                      :string(255)
-#  first_name                 :string(255)
-#  last_name                  :string(255)
-#  user_name                  :string(255)
-#  typ                        :string(255)
-#  ham                        :string(255)
-#  v9                         :string(255)
-#  admin                      :boolean         default(FALSE)
-#  developer                  :boolean         default(FALSE)
-#  role_score                 :integer
-#  typ_score                  :integer
-#  password_digest            :string(255)
-#  sign_in_count              :integer         default(0)
-#  ip_address                 :string(255)
-#  remember_me_token          :string(255)
-#  forgot_password_token      :string(255)
-#  forgot_password_expires_at :datetime
-#  google_oauth_token         :string(255)
-#  remember_created_at        :time
-#  created_at                 :datetime
-#  updated_at                 :datetime
-#  current_do                 :boolean         default(FALSE)
-#  last_sign_in_at            :datetime
-#  dl                         :string(255)
-#
 # == Schema Information
 #
 # Table name: members
