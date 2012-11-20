@@ -37,6 +37,7 @@ Zn::Application.routes.draw do
 
   resources  :sessions
   resources  :members
+  resources  :guests
   resources  :messages
   resources  :inbound_mails
   resources  :unit_photos

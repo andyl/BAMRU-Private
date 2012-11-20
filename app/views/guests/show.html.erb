@@ -1,6 +1,6 @@
 <%= javascript_tag "var autoselectMemberNames = [#{@autoselect_member_names}];" %>
 
-<%= javascript_include_tag "members/all_mem_show" %>
+<%= javascript_include_tag "guests/all_guest_show" %>
 
 <%= csrf_meta_tag %>
 
@@ -8,7 +8,7 @@
   <div id=x_body>
     <div id=x_header>
       <table width=100%><tr>
-        <td align=left width=33%>Member Detail: <b><%= @guest.full_name %></b></td>
+        <td align=left width=33%>Guest Profile: <b><%= @guest.full_name %></b></td>
         <% if can? :manage, @guest %>
         <td align=center width=33%>
           <%= link_to("Edit", edit_member_path(@guest)) %>
