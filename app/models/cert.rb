@@ -15,14 +15,18 @@ class Cert < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to :member
-  has_attached_file :cert, :styles => {
-          :full => {
-                  :geometry => '2400x2400',
-                  :quality => 600,
-                  :format  => "jpg"
-          },
-          :thumb => "150x150",
-          :icon => "25x25"}
+  has_attached_file :cert,
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :url  => "/system/:attachment/:id/:style/:filename",
+                    :styles => {
+                      :full => {
+                        :geometry => '2400x2400',
+                        :quality => 600,
+                        :format  => "jpg"
+                      },
+                      :thumb => "150x150",
+                      :icon => "25x25"
+                    }
 
   # ----- Validations -----
 

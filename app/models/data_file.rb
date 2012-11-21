@@ -16,7 +16,9 @@ class DataFile < ActiveRecord::Base
   # ----- Associations -----
   belongs_to        :member
   belongs_to        :event
-  has_attached_file :data
+  has_attached_file :data,
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :url  => "/system/:attachment/:id/:style/:filename"
 
   # ----- Validations -----
   validates_uniqueness_of :data_file_name

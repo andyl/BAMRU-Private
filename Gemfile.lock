@@ -233,10 +233,11 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.5.5)
     oauth (0.4.7)
-    paperclip (2.7.0)
-      activerecord (>= 2.3.0)
-      activesupport (>= 2.3.2)
-      cocaine (>= 0.0.2)
+    paperclip (3.3.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
       mime-types
     parslet (1.4.0)
       blankslate (~> 2.0)
@@ -464,7 +465,7 @@ DEPENDENCIES
   net-ssh (= 2.2.2)
   nokogiri
   oauth
-  paperclip (= 2.7.0)
+  paperclip (= 3.3.1)
   parslet
   passenger (= 3.0.12)
   pg
