@@ -11,14 +11,13 @@
         <td align=left width=33%>Guest Profile: <b><%= @guest.full_name %></b></td>
         <% if can? :manage, @guest %>
         <td align=center width=33%>
-          <%= link_to("Edit", edit_member_path(@guest)) %>
-          <% if current_member != @guest %>
-            | <%= link_to("Delete", member_path(@guest), :confirm => "Are you sure?", :method => :delete) %> <% end %>
+          <%= link_to("All Guests", "/guests") %> |
+          <%= link_to("Edit", edit_guest_path(@guest)) %>
         </td>
         <% end %>
         <td align=right width=33%>
             <%= link_to('<', member_path(@guest.prev_member_id)) %>
-            <input size=14 id="autoselect" value="find member...">
+            <input size=14 id="autoselect" value="find guest...">
             <%= link_to('>', member_path(@guest.next_member_id)) %>
         </td>
       </tr></table>
@@ -48,8 +47,7 @@
       <% end %>
     </div>
     <div id=x_footer style='font-size: 10px;'>
-      <%= link_to "#{@guest.first_name}'s Availability", "/members/#{@guest.id}/avail_ops" %> |
-      <%= link_to "#{@guest.first_name}'s Inbox", "/members/#{@guest.id}/inbox" %>
+      <%= link_to("Delete Guest", member_path(@guest), :confirm => "Are you sure?", :method => :delete) %>
     </div>
   </div>
 </div>

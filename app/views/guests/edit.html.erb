@@ -1,8 +1,8 @@
 <%= javascript_tag "var autoselectMemberNames = [#{@autoselect_member_names}];" %>
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"       %>
-<%= javascript_tag "var MEMBER_ID = #{@guest.id};"                             %>
+<%= javascript_tag "var MEMBER_ID = #{@guest.id};"                              %>
 
-<%= javascript_include_tag "members/all_mem_edit" %>
+<%= javascript_include_tag "guests/all_guest_edit" %>
 
 <style>
   #sortable {list-style-type: none; margin: 0; padding: 0;}
@@ -10,179 +10,45 @@
 </style>
 
 <div id=x_container>
+
   <div id="x_wide_body">
-  <div id=x_header>
-    <table width=100%><tr>
-      <td align=left width=33%>Member Edit: <b><%= @guest_name %></b></td>
-      <% if current_member.admin? %>
-        <td align=center width=33%><%= link_to("Member Detail", member_path(@guest)) %></td>
-        <td align=right width=33%>
-          <%= link_to('<', edit_member_path(@guest.prev_member_id)) %>
-          <input size=14 id="autoselect" value="find member...">
-          <%= link_to('>', edit_member_path(@guest.next_member_id)) %>
-        </td>
-      <% else %>
-        <td align=right width=66%><%= link_to("Member Detail", member_path(@guest)) %></td>
-      <% end %>
-    </tr></table>
-  </div>
-  <div id=mem_left_col>
-    <%= raw edit_info_message if @guest.non_standard_records? %>
-    <p/>
-    <div style="text-align: center;"><a href="#" id="save_link">Save</a> | <%= link_to "Reset", edit_member_path(@guest)%></div>
-    <p/>
-    <%= form_for(@guest, :html => {:id => 'memberz_form'}) do |f| %>
-      <%= render "shared/error_messages", :target => @guest %>
-      <%= f.text_field :full_name, :size => 28 %><br/>
-      <% if (@guest != current_member) || current_member.admin? %>
-        <%= f.select :typ, %w(TM FM T R S A) %>
-        Bd: <%= f.check_box('bd') %>
-        OL: <%= f.check_box('ol') %>
-        <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>
-      <% end %>
-      <p></p><b>Phones</b> <span class=add_remove><%= raw link_to_add_fields("add", f, :phones, {:number => "new phone #..."})%></span>
-      <div id=sortable_phones>
-        <% @guest.phones.sort {|x,y| x.position <=> y.position}.each do |xphone| %>
-          <%= f.fields_for :phones, xphone do |phone| %>
-            <%= @xphone = xphone; render "phone_fields", :f => phone %>
-          <% end %>
+    <div id=x_header>
+      <table width=100%><tr>
+        <td align=left width=33%>Guest Edit: <b><%= @guest_name %></b></td>
+        <% if current_member.admin? %>
+          <td align=center width=33%><%= link_to("Guest Detail", guest_path(@guest)) %></td>
+          <td align=right width=33%>
+            <%= link_to('<', edit_guest_path(@guest.prev_member_id)) %>
+            <input size=14 id="autoselect" value="find guest...">
+            <%= link_to('>', edit_guest_path(@guest.next_member_id)) %>
+          </td>
+        <% else %>
+          <td align=right width=66%><%= link_to("Guest Detail", guest_path(@guest)) %></td>
         <% end %>
-      </div>
-      <p></p><b>eMails</b> <span class=add_remove><%= link_to_add_fields("add", f, :emails, {:address => "new email address..."}) %></span>
-      <div id=sortable_emails>
-        <% @guest.emails.sort {|x,y| x.position <=> y.position}.each do |xemail| %>
-          <%= f.fields_for :emails, xemail do |email| %>
-            <%= @xemail = xemail; render "email_fields", :f => email, :object => %w(a b c)%>
-          <% end %>
+      </tr></table>
+    </div>
+
+    <div id=mem_left_col>
+      <%= simple_form_for @guest, :url => "/guests/#{@guest.id}" do |gst| %>
+        <%= gst.input  :full_name %>
+        <%=  gst.simple_fields_for :phones do |phn| %>
+          <%= phn.input :number %>
         <% end %>
-      </div>
-      <p></p><b>Addresses</b> <span class=add_remove><%= link_to_add_fields("add", f, :addresses, {:full_address => "new address..."})%></span>
-      <div id=sortable_addresses>
-        <% @guest.addresses.sort {|x,y| x.position <=> y.position }.each do |xaddress| %>
-          <%= f.fields_for :addresses, xaddress do |address| %>
-            <%= @xadr = xaddress; render "address_fields", :f => address %>
-          <% end %>
+        <%=  gst.simple_fields_for :emails do |phn| %>
+          <%= phn.input :address %>
         <% end %>
-      </div>
-      <p></p><b>Emergency Phone Contacts</b> <span class=add_remove><%= link_to_add_fields("add", f, :emergency_contacts, {:name => "new contact name...", :number => "new phone #... "})%></span>
-      <div id=sortable_emergency_contacts>
-        <% @guest.emergency_contacts.sort {|x,y| x.position <=> y.position }.each do |xcontact| %>
-          <%= f.fields_for :emergency_contacts, xcontact do |contact| %>
-            <%= render "emergency_contact_fields", :f => contact %>
-          <% end %>
+        <%=  gst.simple_fields_for :addresses do |phn| %>
+          <%= phn.input :zip %>
         <% end %>
-      </div>
-      <p></p><b>Other Info</b> <span class=add_remove><%= link_to_add_fields("add", f, :other_infos, {:label => "new label...", :value => "new value..."})%></span>
-      <div id=sortable_other_infos>
-        <% @guest.other_infos.sort {|x,y| x.position <=> y.position }.each do |xinfo| %>
-          <%= f.fields_for :other_infos, xinfo do |record| %>
-            <%= render "other_info_fields", :f => record %>
-          <% end %>
-        <% end %>
-      </div>
-      <p></p><b>Password</b>
-      <div id=password>
-        <span class=plabel>Password: </span>
-        <%= f.password_field :password, :size => 13, 'autocomplete' => 'off' %><br/>
-        <span class=plabel>Confirmation: </span>
-        <%= f.password_field :password_confirmation, :size => 13 %>
-      </div>
-      <p></p><b>Ham, V9, Driver's License</b>
-      <div id=ham_v9>
-        <span class=hlabel>Ham: </span>
-        <%= f.text_field :ham, :size => 8 %><br/>
-        <span class=hlabel> V9: </span>
-        <%= f.text_field :v9, :size => 8 %><br/>
-        <span class=hlabel> DL: </span>
-        <%= f.text_field :dl, :size => 8 %><p/>
-      </div>
-      <p/>
-    <% end %>
-  </div>
-  <div id=mem_right_col style="text-align: center;">
-    <p/><%= (@guest.photos.count < 4) ? link_to("Add New Photo", new_member_photo_path(@guest)) : "Photos ( Max 4 )" %><p/>
-    <div id=sortable_photos>
-      <% @guest.photos.each do |pic| %>
-        <li style="list-style-type: none;" id=photos_<%= pic.id %>>
-          <span class='sort_handle span_handle'><img src="/images/handle.png" class=handle></span>
-          <div style="padding:5px;display:inline-block; width:100px;">
-            <%= image_tag pic.image.url(:thumb) %>
-          </div>
-          <%= link_to 'remove', member_photo_path(@guest, pic), :class => 'add', :confirm => 'Are you sure?',:method => :delete %>
-        </li>
+        <%= gst.button :submit %>
       <% end %>
     </div>
-  </div>
 
-  <div id=x_footer>
-    <table width=100%>
-      <tr>
-        <td style="font-size: 10px;"><span class='green_box'></span> pager alerts enabled</td>
-        <td style="font-size: 10px;"><span class='black_box'></span> pager alerts disabled</td>
-      </tr>
-    </table>
-  </div>
-  </div>
-  </div>
+    <div id=mem_right_col style="text-align: center;">
+    </div>
 
-<div id="blanket" style="display: none;"></div>
-<div id="email_popup"  style="display: none;">
-  <b>Paging/Alert Settings for <span id=email_adr></span></b><hr><p></p>
-  Enable this address for email alerts?
-  <input type="radio" class=radio_enable id='radio_yes' name="enable" value="yes"> Yes
-  <input type="radio" class=radio_enable id='radio_no' name="enable" value="no"> No
-  <p></p>
-  <a href="#" onclick="mem_save_email();">Change</a> |
-  <a href="#" onclick="mem_close_popup('#email_popup');">Cancel</a>
-</div>
-<div id="phone_popup"  style="display: none;">
-  <b>Paging/Alert Settings for <span id=phone_num></span></b></u><hr><p></p>
-  Enable this phone for SMS alerts?
-  <input type="radio" class=radio_enable id='radiop_yes' name="enable" value="yes"> Yes
-  <input type="radio" class=radio_enable id='radiop_no' name="enable" value="no"> No
-  <p></p>
-  SMS-Email Address:
-  <input type="text" id=sms_adr>
-  <span id="inval_msg" style="color: pink;">Invalid Address</span>
-  <p></p>
-  <a href="#" onclick="mem_save_phone();">Change</a> |
-  <a href="#" onclick="mem_close_popup('#phone_popup');">Cancel</a>
-  <br/><p></p>
-  <div style='padding: 10px; font-size: 10px; background-color: #d3d3d3;'>
-    You must enter an email address to receive SMS pages on this phone.
-    Most mobile carriers have an email/sms gateway with their service.
-    <p></p>
+    <div id=x_footer>
+    </div>
 
-    Here are some sample email addresses for various local carriers.
-    <style type='text/css'>
-      .help_font td {
-        font-size: 8pt;
-        padding:  3px;
-      }
-    </style>
-    <table class="help_font" border=1>
-      <tr>
-        <td>ATT Wireless</td>
-        <td><span class=ten_dig></span>@txt.att.net</td>
-      </tr>
-      <tr>
-        <td>ATT Enterprise Paging</td>
-        <td><span class=ten_dig></span>@page.att.net</td>
-      </tr>
-      <tr>
-        <td>Sprint PCS</td>
-        <td><span class=ten_dig></span>@messaging.sprintpcs.com</td>
-      </tr>
-      <tr>
-        <td>T-Mobile</td>
-        <td><span class=ten_dig></span>@tmomail.net</td>
-      </tr>
-      <tr>
-        <td>Verizon Wireless</td>
-        <td><span class=ten_dig></span>@vtext.com</td>
-      </tr>
-    </table>
-    Contact your carrier if you don't know your address.<br/>
-    For more info, check this <a href="http://en.wikipedia.org/wiki/List_of_SMS_gateways" target="_blank">list of SMS Gateways</a>.
   </div>
 </div>
