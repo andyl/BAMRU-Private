@@ -8,48 +8,48 @@
   <div id=x_body>
     <div id=x_header>
       <table width=100%><tr>
-        <td align=left width=33%>Member Detail: <b><%= @guest.full_name %></b></td>
-        <% if can? :manage, @guest %>
+        <td align=left width=33%>Member Detail: <b><%= @member.full_name %></b></td>
+        <% if can? :manage, @member %>
         <td align=center width=33%>
-          <%= link_to("Edit", edit_member_path(@guest)) %>
-          <% if current_member != @guest %>
-            | <%= link_to("Delete", member_path(@guest), :confirm => "Are you sure?", :method => :delete) %> <% end %>
+          <%= link_to("Edit", edit_member_path(@member)) %>
+          <% if current_member != @member %>
+            | <%= link_to("Delete", member_path(@member), :confirm => "Are you sure?", :method => :delete) %> <% end %>
         </td>
         <% end %>
         <td align=right width=33%>
-            <%= link_to('<', member_path(@guest.prev_member_id)) %>
+            <%= link_to('<', member_path(@member.prev_member_id)) %>
             <input size=14 id="autoselect" value="find member...">
-            <%= link_to('>', member_path(@guest.next_member_id)) %>
+            <%= link_to('>', member_path(@member.next_member_id)) %>
         </td>
       </tr></table>
     </div>
     <div id=mem_left_col>
-      <b><%= @guest.full_name %></b><br/>
-      <%= @guest.full_roles %><p></p>
-      <%= raw show_oot_label(@guest) %>
-      <%= raw @guest.all_assoc %><p></p>
-      <% unless @guest.ham.blank? %>
-        <b>Ham:</b> <%= @guest.ham %><br/>
+      <b><%= @member.full_name %></b><br/>
+      <%= @member.full_roles %><p></p>
+      <%= raw show_oot_label(@member) %>
+      <%= raw @member.all_assoc %><p></p>
+      <% unless @member.ham.blank? %>
+        <b>Ham:</b> <%= @member.ham %><br/>
       <% end %>
-      <% unless @guest.v9.blank? %>
-        <b>V9:</b> <%= @guest.v9 %><br/>
+      <% unless @member.v9.blank? %>
+        <b>V9:</b> <%= @member.v9 %><br/>
       <% end %>
-      <% unless @guest.dl.blank? %>
-        <b>DL:</b> <%= @guest.dl %><br/>
+      <% unless @member.dl.blank? %>
+        <b>DL:</b> <%= @member.dl %><br/>
       <% end %>
       <p></p>
     </div>
     <div id=mem_right_col style="text-align: center;">
-      <% unless @guest.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>
-      <% @guest.photos.each do |pic| %>
+      <% unless @member.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>
+      <% @member.photos.each do |pic| %>
         <a href='<%= pic.image.url %>' target='_blank'>
           <%= image_tag pic.image.url(:thumb) %>
         </a><br/>
       <% end %>
     </div>
     <div id=x_footer style='font-size: 10px;'>
-      <%= link_to "#{@guest.first_name}'s Availability", "/members/#{@guest.id}/avail_ops" %> |
-      <%= link_to "#{@guest.first_name}'s Inbox", "/members/#{@guest.id}/inbox" %>
+      <%= link_to "#{@member.first_name}'s Availability", "/members/#{@member.id}/avail_ops" %> |
+      <%= link_to "#{@member.first_name}'s Inbox", "/members/#{@member.id}/inbox" %>
     </div>
   </div>
 </div>
