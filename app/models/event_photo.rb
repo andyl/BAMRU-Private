@@ -3,7 +3,10 @@ class EventPhoto < ActiveRecord::Base
   # ----- Associations -----
   belongs_to   :event
 
-  has_attached_file :image, :styles => {:medium => "300x300", :small => "150x150", :thumb => "100x100"}
+  has_attached_file :image,
+                    :styles => {:medium => "300x300", :small => "150x150", :thumb => "100x100"},
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :url  => "/system/:attachment/:id/:style/:filename"
 
   before_post_process :cleanup_file_name
 
