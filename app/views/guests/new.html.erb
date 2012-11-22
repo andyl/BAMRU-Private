@@ -13,6 +13,7 @@
     <div id=mem_left_col>
       <%= simple_form_for @guest, :url => "/guests", :method => 'post' do |gst| %>
         <%= gst.input  :full_name %>
+        <%= gst.hidden_field :type, value: 'G' %>
         <%=  gst.simple_fields_for :phones do |phn| %>
           <%= phn.input :number %>
         <% end %>
