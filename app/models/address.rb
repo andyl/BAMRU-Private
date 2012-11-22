@@ -1,6 +1,9 @@
 class Address < ActiveRecord::Base
   
   # ----- Attributes -----
+  attr_accessor :is_guest
+
+  attr_accessible :is_guest
   attr_accessible :full_address
   attr_accessible :address1, :address2, :city, :state, :zip
   attr_accessible :typ, :position
@@ -9,12 +12,11 @@ class Address < ActiveRecord::Base
   belongs_to :member
   acts_as_list :scope => :member_id
 
-
   # ----- Callbacks -----
 
-
   # ----- Validations -----
-  validates_presence_of :address1, :city, :state, :zip
+  validates_presence_of :address1, :city, :state, :unless => :has_guest_attribute
+  validates_presence_of :zip
   validates_format_of   :zip, :with => /^\d\d\d\d\d(\-\d\d\d\d)?$/
 
   validate :check_full_address_errors
@@ -27,6 +29,10 @@ class Address < ActiveRecord::Base
     if errors.include?(:zip) || errors.include?(:state)
       errors.add(:full_address, "is invalid")
     end
+  end
+
+  def has_guest_attribute
+    is_guest
   end
 
   # ----- Scopes -----

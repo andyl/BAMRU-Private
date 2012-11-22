@@ -58,9 +58,9 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :chats
 
   # ----- Validations -----
-  validates_associated    :addresses # ,                        :on => [:create,  :update]
-  validates_associated    :phones, :emails #,                  :on => [:create,  :update]
-  validates_associated    :emergency_contacts, :other_infos #, :on => [:create,  :update]
+  validates_associated    :addresses,          :if => :not_guest
+  validates_associated    :phones,             :emails
+  validates_associated    :emergency_contacts, :other_infos
 
   validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :title,      :with => /^[A-Za-z\.]+$/, :allow_blank => true
@@ -79,6 +79,10 @@ class Member < ActiveRecord::Base
             errors.include?(:title)
       errors.add(:full_name, "has errors")
     end
+  end
+
+  def not_guest
+    typ != 'G' && typ != 'GX'
   end
 
   # ----- Callbacks -----
@@ -425,6 +429,7 @@ class Member < ActiveRecord::Base
       when "A"  then -100
       when "G"  then -50
       when "I"  then -25
+      when "GX" then -15
       else 0
     end
   end

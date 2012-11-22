@@ -27,15 +27,6 @@
       <%= @guest.full_roles %><p></p>
       <%= raw show_oot_label(@guest) %>
       <%= raw @guest.all_assoc %><p></p>
-      <% unless @guest.ham.blank? %>
-        <b>Ham:</b> <%= @guest.ham %><br/>
-      <% end %>
-      <% unless @guest.v9.blank? %>
-        <b>V9:</b> <%= @guest.v9 %><br/>
-      <% end %>
-      <% unless @guest.dl.blank? %>
-        <b>DL:</b> <%= @guest.dl %><br/>
-      <% end %>
       <p></p>
     </div>
     <div id=mem_right_col style="text-align: center;">

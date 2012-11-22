@@ -12,6 +12,9 @@ class GuestsController < ApplicationController
 
   def edit
     @guest = Member.find(params[:id])
+    @guest.addresses.first || @guest.addresses.build
+    @guest.phones.first    || @guest.phones.build
+    @guest.emails.first    || @guest.emails.build
     @autoselect_member_names = Member.autoselect_member_names('/edit')
     @guest.password = ""
     @guest_name = @guest.full_name

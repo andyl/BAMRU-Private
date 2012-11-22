@@ -16,11 +16,12 @@
         <%=  gst.simple_fields_for :phones do |phn| %>
           <%= phn.input :number %>
         <% end %>
-        <%=  gst.simple_fields_for :emails do |phn| %>
-          <%= phn.input :address %>
+        <%=  gst.simple_fields_for :emails do |ema| %>
+          <%= ema.input :address %>
         <% end %>
-        <%=  gst.simple_fields_for :addresses do |phn| %>
-          <%= phn.input :zip %>
+        <%=  gst.simple_fields_for :addresses do |adr| %>
+          <%= adr.input :zip %>
+          <%= adr.hidden_field :is_guest, value: true %>
         <% end %>
         <%= gst.button :submit %>
       <% end %>
