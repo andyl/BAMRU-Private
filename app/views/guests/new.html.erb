@@ -12,19 +12,8 @@
 
     <div id=mem_left_col>
       <%= simple_form_for @guest, :url => "/guests", :method => 'post' do |gst| %>
-        <%= gst.input  :full_name %>
-        <%= gst.hidden_field :type, value: 'G' %>
-        <%=  gst.simple_fields_for :phones do |phn| %>
-          <%= phn.input :number %>
-        <% end %>
-        <%=  gst.simple_fields_for :emails do |ema| %>
-          <%= ema.input :address %>
-        <% end %>
-        <%=  gst.simple_fields_for :addresses do |adr| %>
-          <%= adr.input :zip %>
-          <%= adr.hidden_field :is_guest, value: true %>
-        <% end %>
-        <%= gst.button :submit %>
+        <%= render :partial => 'guest_form', locals: { gst: gst} %>
+        <%= gst.button :submit, "Create New Guest" %>
       <% end %>
     </div>
 

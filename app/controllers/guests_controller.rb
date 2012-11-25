@@ -60,7 +60,8 @@ class GuestsController < ApplicationController
   end
   
   def destroy
-    respond_with Member.destroy(params[:id])
+    Member.destroy(params[:id])
+    redirect_to guests_path, :notice => "Guest was Deleted"
   end
 
 end
