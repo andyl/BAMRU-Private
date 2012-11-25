@@ -415,7 +415,7 @@ class Member < ActiveRecord::Base
       when "Bd" then -2000
       when "OL" then -1500
       when "TM" then -1000
-      when "FM" then -500
+      when "FM" then -800
       when "T"  then -750
       when "R"  then -500
       when "S"  then -250
