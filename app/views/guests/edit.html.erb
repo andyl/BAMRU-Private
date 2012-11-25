@@ -16,7 +16,10 @@
       <table width=100%><tr>
         <td align=left width=33%>Guest Edit: <b><%= @guest_name %></b></td>
         <% if current_member.admin? %>
-          <td align=center width=33%><%= link_to("Guest Detail", guest_path(@guest)) %></td>
+          <td align=center width=33%>
+            <%= link_to("All Guests", "/guests") %> |
+            <%= link_to("Guest Detail", guest_path(@guest)) %>
+          </td>
           <td align=right width=33%>
             <%= link_to('<', edit_guest_path(@guest.prev_member_id)) %>
             <input size=14 id="autoselect" value="find guest...">
@@ -31,6 +34,11 @@
     <div id=mem_left_col>
       <%= simple_form_for @guest, :url => "/guests/#{@guest.id}" do |gst| %>
         <%= render :partial => 'guest_form', locals: { gst: gst} %>
+        <% if current_member.admin? %>
+          <%= gst.input :typ, as: 'radio', collection: [["T", "Trainee"], ["G", "Guest"], ["GX", "Inactive"]], label: "Member Type", label_method: :last, value_method: :first %>
+        <% end %>
+        <br/>
+        <br/>
         <%= gst.button :submit, "Update Guest" %>
       <% end %>
     </div>

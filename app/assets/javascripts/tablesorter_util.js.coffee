@@ -7,7 +7,9 @@ window.RoleScore = class RoleScore
   get_t:       -> "t"
   score_one: (role = @to_lower()) ->
     switch role
+      when "gx" then -2
       when "a"  then -5
+      when "g"  then -8
       when "s"  then -10
       when "r"  then -25
       when "t"  then -50

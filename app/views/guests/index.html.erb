@@ -35,10 +35,10 @@
             <tr>
               <td><%= guest.typ %></td>
               <td><%= link_to guest.full_name, guest_path(guest) %></td>
-              <td>TBD</td>
-              <td>TBD</td>
+              <td><%= guest.events.meetings.count %></td>
+              <td><%= guest.events.trainings.count %></td>
               <td><%= guest.created_at.strftime("%Y-%m-%d") %></td>
-              <td>TBD</td>
+              <td><%= raw last_event_link(guest) %></td>
             </tr>
           <% end %>
           </tbody>
@@ -53,7 +53,7 @@
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
           <td width=33%>
-            <input type="checkbox" id=rsa_check> Show Inactive Guests
+            <input type="checkbox" id=gx_check> Show Inactive Guests
           </td>
           <td width=33%>
             Recruiting Officer: TBD

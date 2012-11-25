@@ -108,6 +108,7 @@ class Member < ActiveRecord::Base
   scope :registered_last_name,   where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name
   scope :inactive,               where("typ in ('R', 'S', 'A')").standard_order
   scope :guests,                 where("typ in ('G')").standard_order
+  scope :all_guests,             where("typ in ('G', 'GX')").standard_order
   scope :current_do,             where(:current_do => true)
 
   # ----- Class Methods ----

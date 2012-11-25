@@ -1,7 +1,11 @@
 class GuestsController < ApplicationController
 
   def index
-    @guests = Member.guests
+    @guests = if cookies['gx_show'] == 'true'
+                Member.all_guests
+              else
+                Member.guests
+              end
   end
   
   def show

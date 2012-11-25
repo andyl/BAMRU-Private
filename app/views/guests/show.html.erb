@@ -10,15 +10,15 @@
       <table width=100%><tr>
         <td align=left width=33%>Guest Profile: <b><%= @guest.full_name %></b></td>
         <% if can? :manage, @guest %>
-        <td align=center width=33%>
-          <%= link_to("All Guests", "/guests") %> |
-          <%= link_to("Edit", edit_guest_path(@guest)) %>
-        </td>
+          <td align=center width=33%>
+            <%= link_to("All Guests", "/guests") %> |
+            <%= link_to("Edit", edit_guest_path(@guest)) %>
+          </td>
         <% end %>
         <td align=right width=33%>
-            <%= link_to('<', member_path(@guest.prev_member_id)) %>
-            <input size=14 id="autoselect" value="find guest...">
-            <%= link_to('>', member_path(@guest.next_member_id)) %>
+          <%= link_to('<', member_path(@guest.prev_member_id)) %>
+          <input size=14 id="autoselect" value="find guest...">
+          <%= link_to('>', member_path(@guest.next_member_id)) %>
         </td>
       </tr></table>
     </div>
@@ -38,7 +38,9 @@
       <% end %>
     </div>
     <div id=x_footer style='font-size: 10px;'>
-      <%= link_to("Delete Guest", guest_path(@guest), :confirm => "Are you sure?", :method => :delete) %>
+      <% if current_member.admin? %>
+        <%= link_to("Delete Guest", guest_path(@guest), :confirm => "Are you sure?", :method => :delete) %>
+      <% end %>
     </div>
   </div>
 </div>

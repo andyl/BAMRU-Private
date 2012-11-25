@@ -8,3 +8,4 @@
 //= require cookie
 //= require tablesorter_util
 //= require guests/guests_table
+//= require guests/gx_filter

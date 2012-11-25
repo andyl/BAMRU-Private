@@ -25,15 +25,15 @@ sort_opts =
 filter_params =
   filterContainer:      "#filter-box"
   filterClearContainer: "#filter-clear-button"
-  filterColumns:        [0,1,2,3,4,5,6,7,8,9,10,11]
-  columns: ["role", "name", "med", "cpr", "ham", "tracking", "avy", "rigging", "ics", "search", "driver", "bkgrnd"]
+  filterColumns:        [0,1,4,5]
+  columns: ["role", "name", "created", "last"]
 
 save_cert_sort_to_cookie = (sort_spec) ->
   spec_string = JSON.stringify(sort_spec)
-  createCookie("cert_sort", spec_string)
+  createCookie("guest_sort", spec_string)
 
 read_cert_sort_from_cookie = ->
-  string = readCookie("cert_sort")
+  string = readCookie("guest_sort")
   if (string == null) then null else JSON.parse(string)
 
 $(document).ready ->
