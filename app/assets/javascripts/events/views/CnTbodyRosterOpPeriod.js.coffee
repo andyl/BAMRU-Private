@@ -100,7 +100,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     $.post('/eapi/members', data, success).error(error)
 
   # ----- rsvp link -----
-  
+
   rsvpLink: (ev) ->
     ev?.preventDefault()
     alert("Link to RSVP: Under Construction")
