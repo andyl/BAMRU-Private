@@ -17,8 +17,8 @@
   </div>
 </div>
 
-<div id="content" class="pane ui-layout-center">
-</div>
+<div id="content" class="pane ui-layout-center"></div>
 
-<div id='hotKeyHelp'>
-</div>
+<div id='hotKeyHelp'></div>
+
+<div id='guestForm'></div>

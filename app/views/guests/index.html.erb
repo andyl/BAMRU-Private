@@ -1,0 +1,72 @@
+<%= javascript_include_tag "guests/all_guests_indx" %>
+
+<div id=x_container>
+  <div id=x_wide_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=left><b>Guests</b></td>
+          <td align=center>
+            Search: <input name="filter" id="filter-box" value="" maxlength="15" size="15" type="text">
+            <input id="filter-clear-button" type="submit" value="Clear"/>
+          </td>
+          <td align=right>
+            <%= link_to("Create a Guest", new_guest_path()) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+      <% cache("guests_table-#{@fragment_type}") do %>
+        <table id="myTable" class="tablesorter">
+          <thead>
+          <tr>
+            <th width=40><span style='padding-right: 15px;'>Role</span></th>
+            <th>Name</th>
+            <th># Meetings</th>
+            <th># Trainings</th>
+            <th>Created At</th>
+            <th>Last Event At</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @guests.each do |guest| %>
+            <tr>
+              <td><%= guest.typ %></td>
+              <td><%= link_to guest.full_name, guest_path(guest) %></td>
+              <td><%= guest.events.meetings.count %></td>
+              <td><%= guest.events.trainings.count %></td>
+              <td><%= guest.created_at.strftime("%Y-%m-%d") %></td>
+              <td><%= raw last_event_link(guest) %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+    </div>
+    <div id=x_footer style="font-size: 10pt;">
+      <table width=100% style="font-size: 10pt;">
+        <tr>
+          <td width=33%>
+            <a href="#" id=clearsort>Clear Sort Settings</a>
+          </td>
+          <td width=33%>
+            <input type="checkbox" id=gx_check> Show Inactive Guests
+          </td>
+          <td width=33%>
+            Recruiting Officer: TBD
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="cert_blanket" style="display: none;"></div>
+<div id="cert_popup"  style="display: none;">
+  <span id="popname"></span> has entered the following comment:<p></p>
+  "<span id="popcomment"></span>"<p></p>
+  <a href="#" onclick="close_popup();">Close</a>
+</div>

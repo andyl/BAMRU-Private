@@ -54,7 +54,7 @@ def parent_repage_link(message)
       system "mkdir -p #{dir}"
       Pngqr.encode label, :file => path, :border => 5, :size => size
     end
-    "<img src='#{uri}'></img>"
+    "<img  style='height:59px;vertical-align:middle' src='#{uri}'></img>"
   end
 
   def broadcast(channel, &block)

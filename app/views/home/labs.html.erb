@@ -7,16 +7,25 @@ Let Andy know if you spot problems or have ideas for improvement.
 <table>
   <tr>
     <td width=500>
-      Time-tracking and coordination for BAMRU Events (meetings, trainings, operations).<p></p>
-      Note:<br/>
+      Time-tracking and coordination for BAMRU Events (meetings, trainings, operations).<br/>
       - Event data is re-generated periodically.  Edits will not be retained.<br/>
       - This prototype works on Chrome/Firefox, <b>but not IE.</b><br/>
-      - The final version will work on IE9+.
+      - The final version will work on IE7+
+      (using <a target="_blank" href="http://www.google.com/chromeframe">ChromeFrame</a>)
     </td>
-    <td>
-      <div style='margin-left: 40px;'>
-        <%= link_to events_url, '/events'  %>
-      </div>
+    <td  valign='middle' style='padding-left: 40px;'>
+      <%= link_to events_url, '/events'  %>
+    </td>
+  </tr>
+</table>
+<h3 width=100% style='background: grey; padding: 3px; color: white;'>Guests</h3>
+<table>
+  <tr>
+    <td width=500>
+      Search/browse/sort the BAMRU guest list.<p></p>
+    </td>
+    <td  valign='middle' style='padding-left: 40px;'>
+      <%= link_to guests_url, guests_path  %>
     </td>
   </tr>
 </table>
@@ -28,11 +37,9 @@ Let Andy know if you spot problems or have ideas for improvement.
       BAMRU Mobile is a small and fast interface that runs in a mobile browser.<br/>
       It is designed for Android, iPhone, iPad, iPod, and also works on Chrome/Firefox.<br/>
     </td>
-    <td>
-      <div style='margin-left: 40px;'>
-        <%= raw qr_tag(mobile_url) %><br/>
-        <%= link_to mobile_url, mobile_path %>
-      </div>
+    <td valign='middle' style='padding-left: 40px;'>
+      <span style="margin-right: 30px;"> <%= link_to mobile_url, mobile_path %></span>
+      <%= raw qr_tag(mobile_url) %>
     </td>
   </tr>
 </table>
@@ -41,13 +48,11 @@ Let Andy know if you spot problems or have ideas for improvement.
 <table>
   <tr>
     <td width=500>
-      Experiments with chat and real-time message feeds.<p></p>
+      Experiments with chat and real-time message feeds.<br/>
       The monitor shows a streaming activity log.
     </td>
-    <td>
-      <div style='margin-left: 40px;'>
-        <%= link_to monitor_url, '/monitor'  %>
-      </div>
+    <td  valign='middle' style='padding-left: 40px;'>
+      <%= link_to monitor_url, '/monitor'  %>
     </td>
   </tr>
 </table>

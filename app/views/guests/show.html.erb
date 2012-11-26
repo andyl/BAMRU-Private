@@ -1,0 +1,52 @@
+<%= javascript_tag "var autoselectMemberNames = [#{@autoselect_member_names}];" %>
+
+<%= javascript_include_tag "guests/all_guest_show" %>
+
+<%= csrf_meta_tag %>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%><tr>
+        <td align=left width=33%>Guest Profile: <b><%= @guest.full_name %></b></td>
+        <% if can? :manage, @guest %>
+          <td align=center width=33%>
+            <%= link_to("All Guests", "/guests") %> |
+            <%= link_to("Edit", edit_guest_path(@guest)) %>
+          </td>
+        <% end %>
+        <td align=right width=33%>
+          <%= link_to('<', member_path(@guest.prev_member_id)) %>
+          <input size=14 id="autoselect" value="find guest...">
+          <%= link_to('>', member_path(@guest.next_member_id)) %>
+        </td>
+      </tr></table>
+    </div>
+    <div id=mem_left_col>
+      <b><%= @guest.full_name %></b><br/>
+      <%= @guest.full_roles %><p></p>
+      <%= raw show_oot_label(@guest) %>
+      <%= raw @guest.all_assoc %><p></p>
+      <p></p>
+      <b>Meetings (<%= @meetings.count %>)</b><br/>
+      <%= raw show_events(@meetings) %>
+      <p></p>
+      <b>Trainings (<%= @trainings.count %>)</b><br/>
+      <%= raw show_events(@trainings) %>
+      <p></p>
+    </div>
+    <div id=mem_right_col style="text-align: center;">
+      <% unless @guest.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>
+      <% @guest.photos.each do |pic| %>
+        <a href='<%= pic.image.url %>' target='_blank'>
+          <%= image_tag pic.image.url(:thumb) %>
+        </a><br/>
+      <% end %>
+    </div>
+    <div id=x_footer style='font-size: 10px;'>
+      <% if current_member.admin? %>
+        <%= link_to("Delete Guest", guest_path(@guest), :confirm => "Are you sure?", :method => :delete) %>
+      <% end %>
+    </div>
+  </div>
+</div>

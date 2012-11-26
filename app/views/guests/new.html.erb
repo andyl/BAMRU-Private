@@ -1,0 +1,27 @@
+<%= javascript_include_tag "guests/all_guest_new" %>
+
+<div id=x_container>
+  <div id="x_wide_body">
+
+    <div id=x_header>
+      <table width=100%><tr>
+        <td align=left width=33%>Create New Guest:</td>
+        <td align=right width=66%><%= link_to("All Guests", "/guests") %></td>
+      </tr></table>
+    </div>
+
+    <div id=mem_left_col>
+      <%= simple_form_for @guest, :url => "/guests", :method => 'post' do |gst| %>
+        <%= render :partial => 'guest_form', locals: { gst: gst} %>
+        <%= gst.button :submit, "Create New Guest" %>
+      <% end %>
+    </div>
+
+    <div id=mem_right_col style="text-align: center;">
+    </div>
+
+    <div id=x_footer>
+    </div>
+
+  </div>
+</div>

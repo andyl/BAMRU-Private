@@ -35,6 +35,9 @@ class Member < ActiveRecord::Base
   has_many :messages
   has_many :distributions
   has_many :journals
+  has_many :participants
+  has_many :periods, :through => :participants
+  has_many :events, :through => :periods
   has_many :primary_do_assignments, :class_name => 'DoAssignment', :foreign_key => 'primary_id'
   has_many :backup_do_assignments,  :class_name => 'DoAssignment', :foreign_key => 'backup_id'
   has_many :notices, :through => :distributions, :source => :message
@@ -55,9 +58,9 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :chats
 
   # ----- Validations -----
-  validates_associated    :addresses # ,                        :on => [:create,  :update]
-  validates_associated    :phones, :emails #,                  :on => [:create,  :update]
-  validates_associated    :emergency_contacts, :other_infos #, :on => [:create,  :update]
+  validates_associated    :addresses,          :if => :not_guest
+  validates_associated    :phones,             :emails
+  validates_associated    :emergency_contacts, :other_infos
 
   validates_presence_of   :first_name, :last_name, :user_name
   validates_format_of     :title,      :with => /^[A-Za-z\.]+$/, :allow_blank => true
@@ -76,6 +79,10 @@ class Member < ActiveRecord::Base
             errors.include?(:title)
       errors.add(:full_name, "has errors")
     end
+  end
+
+  def not_guest
+    typ != 'G' && typ != 'GX'
   end
 
   # ----- Callbacks -----
@@ -101,6 +108,7 @@ class Member < ActiveRecord::Base
   scope :registered_last_name,   where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name
   scope :inactive,               where("typ in ('R', 'S', 'A')").standard_order
   scope :guests,                 where("typ in ('G')").standard_order
+  scope :all_guests,             where("typ in ('G', 'GX')").standard_order
   scope :current_do,             where(:current_do => true)
 
   # ----- Class Methods ----
@@ -210,10 +218,8 @@ class Member < ActiveRecord::Base
   end
 
   def full_roles
-    do_txt = current_do ? "DO " : ""
-    do_txt = ""
     arr = ([typ] + roles.map {|r| r.typ})
-    do_txt + arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
+    arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 
   def calc_typ_score
@@ -422,6 +428,7 @@ class Member < ActiveRecord::Base
       when "A"  then -100
       when "G"  then -50
       when "I"  then -25
+      when "GX" then -15
       else 0
     end
   end

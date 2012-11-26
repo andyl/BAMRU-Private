@@ -36,14 +36,45 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @pubSub.close()
     BB.hotKeys.disable("CnTbodyRosterMt")
 
-  # ----- methods -----
+  # ----- methods: guest creation -----
 
   showGuestLink: ->
     @$el.find('#createGuestLink').show()
 
   createGuest: (ev) ->
     ev?.preventDefault()
-    alert("Create Guest: Under Construction")
+    @createGuestForm()
+
+  createGuestForm: =>
+    $.get '/guests/new_form', @showGuestForm
+
+  showGuestForm: (data, status, xhr) =>
+    $('#guestForm').html(data)
+    opts =
+      minWidth:  600
+      modal:     true
+      title:     "Add New Guest to Roster"
+      resizable: false
+    $('#guestForm').dialog(opts)
+    $('#createGuestBtn').click (ev) =>
+      ev?.preventDefault()
+      @submitGuestForm()
+
+  hideGuestForm: ->
+    $('#guestForm').dialog("destroy")
+
+  submitGuestForm: =>
+    data = $('.simple_form').serializeObject()
+    success = (data) =>
+      member = new BB.Models.Member data
+      BB.members.add member
+      @createParticipant(member.id)
+      @hideGuestForm()
+    error = (data) =>
+      alert "ERROR: Try again", data
+    $.post('/eapi/members', data, success).error(error)
+
+  # ----- methods: misc -----
 
   toggleAddParticipant: ->
     el = @$el.find('#memberField')

@@ -57,14 +57,6 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   showGuestLink: ->
     @$el.find(@guestLink).show()
 
-  rsvpLink: (ev) ->
-    ev?.preventDefault()
-    alert("Link to RSVP: Under Construction")
-
-  createGuest: (ev) ->
-    ev?.preventDefault()
-    alert("Create Guest: Under Construction")
-
   toggleGuestLink: ->
     fieldVal = @$el.find(@memberField).val()
     if fieldVal.length > 1
@@ -73,6 +65,45 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     else
       @$el.find(@guestLink).hide()
       @collection.clearMatches()
+
+  createGuest: (ev) ->
+    ev?.preventDefault()
+    @createGuestForm()
+
+  createGuestForm: =>
+    $.get '/guests/new_form', @showGuestForm
+
+  showGuestForm: (data, status, xhr) =>
+    $('#guestForm').html(data)
+    opts =
+      minWidth:  600
+      modal:     true
+      title:     "Add New Guest to Roster"
+      resizable: false
+    $('#guestForm').dialog(opts)
+    $('#createGuestBtn').click (ev) =>
+      ev?.preventDefault()
+      @submitGuestForm()
+
+  hideGuestForm: ->
+    $('#guestForm').dialog("destroy")
+
+  submitGuestForm: =>
+    data = $('.simple_form').serializeObject()
+    success = (data) =>
+      member = new BB.Models.Member data
+      BB.members.add member
+      @createParticipant(member.id)
+      @hideGuestForm()
+    error = (data) =>
+      alert "ERROR: Try again", data
+    $.post('/eapi/members', data, success).error(error)
+
+  # ----- rsvp link -----
+
+  rsvpLink: (ev) ->
+    ev?.preventDefault()
+    alert("Link to RSVP: Under Construction")
 
   # ----- add participant box -----
 

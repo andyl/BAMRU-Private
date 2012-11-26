@@ -1,0 +1,15 @@
+<%= gst.input  :full_name, label: "Name" %>
+<%= gst.hidden_field :typ, value: 'G' %>
+<%=  gst.simple_fields_for :phones do |phn| %>
+  <%= phn.input :number, label: "Mobile Number" %>
+  <%= phn.hidden_field :typ, value: 'mobile' %>
+<% end %>
+<%=  gst.simple_fields_for :emails do |ema| %>
+  <%= ema.input :address, label: "eMail Address" %>
+  <%= ema.hidden_field :typ, value: 'personal' %>
+<% end %>
+<%=  gst.simple_fields_for :addresses do |adr| %>
+  <%= adr.input :zip, label: "Home Zip Code", required: false %>
+  <%= adr.hidden_field :typ, value: "home" %>
+  <%= adr.hidden_field :is_guest, value: true %>
+<% end %>

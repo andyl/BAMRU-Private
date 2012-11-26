@@ -17,7 +17,9 @@ BB.Helpers.ParticipantHelpers =
 
   memberLink: (memberId) ->
     member = BB.members.get(memberId)
-    "<a href='/members/#{memberId}'>#{member.fullName()}</a>"
+    typ  = member.get('typ')
+    path = if typ[0] == 'G' then 'guests' else 'members'
+    "<a href='/#{path}/#{memberId}'>#{member.fullName()}</a>"
 
   memberCell: (memberId) ->
     "<td#{@activeClass()}>#{@memberLink(memberId)}</td>"

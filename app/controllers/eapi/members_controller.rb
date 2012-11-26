@@ -10,7 +10,12 @@ class Eapi::MembersController < ApplicationController
   end
   
   def create
-    render :json => Member.create(params[:Member])
+    model = Member.create(params["member"])
+    if model.valid?
+      respond_with model, opts
+    else
+      render :json => {errors: model.errors.full_messages}, status: 422
+    end
   end
   
   def update

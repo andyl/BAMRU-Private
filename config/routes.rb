@@ -35,8 +35,11 @@ Zn::Application.routes.draw do
   get '/history/disable'
   get '/history/ignore'
 
+  get '/guests/new_form' => "guests#new_form"
+
   resources  :sessions
   resources  :members
+  resources  :guests
   resources  :messages
   resources  :inbound_mails
   resources  :unit_photos
@@ -48,6 +51,7 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
   resources  :unauth_rsvps
+
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
