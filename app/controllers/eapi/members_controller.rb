@@ -12,6 +12,7 @@ class Eapi::MembersController < ApplicationController
   def create
     model = Member.create(params["member"])
     if model.valid?
+      expire_fragment(/guests_index_table/)
       respond_with model, opts
     else
       render :json => {errors: model.errors.full_messages}, status: 422
