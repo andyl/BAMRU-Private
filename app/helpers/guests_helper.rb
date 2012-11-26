@@ -11,7 +11,7 @@ module GuestsHelper
   def show_event(event)
     label = "#{event.start.strftime("%Y-%m-%d")} <b>#{event.title}</b> @ #{event.location}"
     href  = "/events/#{event.id}/roster"
-    "<a href='#{href}'>#{label}</a>"
+    "<a href='#{href}'>#{label}</a><br/>"
   end
 
   def show_events(events)
