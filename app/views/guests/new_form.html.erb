@@ -1,0 +1,4 @@
+<%= simple_form_for @guest, :url => "/eapi/members", :method => 'post' do |gst| %>
+  <%= render :partial => 'guest_form', locals: { gst: gst} %>
+  <%= gst.button :submit, "Create New Guest", :id => "createGuestBtn" %>
+<% end %>

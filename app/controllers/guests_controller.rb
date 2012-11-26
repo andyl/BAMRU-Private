@@ -30,6 +30,14 @@ class GuestsController < ApplicationController
     @guest.phones.build
     @guest.emails.build
   end
+
+  def new_form
+    @guest = Member.new
+    @guest.addresses.build
+    @guest.phones.build
+    @guest.emails.build
+    render :layout => false
+  end
   
   def create
     @guest = Member.create(params["member"])
@@ -38,7 +46,7 @@ class GuestsController < ApplicationController
       expire_fragment(/unit_certs_table/)
       expire_fragment(/unit_avail_ops_table/)
       expire_fragment('unit_photos_table')
-      redirect_to guest_path(@guest), :notice => "Successful Update"
+      redirect_to guest_path(@guest), :notice => "Guest Created"
     else
       render "new"
     end

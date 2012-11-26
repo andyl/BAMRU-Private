@@ -15,12 +15,13 @@ class BB.Models.Member extends Backbone.Model
   reverseName: -> "#{@get('last_name')}. #{@get('first_name')}"
   typScore: ->
     switch @get('typ')
-      when 'TM' then -100
-      when 'FM' then -50
-      when 'T'  then -25
-      when 'A'  then -20
-      when 'S'  then -10
-      when 'G'  then -5
-      when 'I'  then 0
+      when 'TM' then -500
+      when 'FM' then -250
+      when 'T'  then -100
+      when 'R'  then -75
+      when 'A'  then -50
+      when 'S'  then -25
+      when 'G'  then -10
+      when 'GX' then -5
       else 0
 

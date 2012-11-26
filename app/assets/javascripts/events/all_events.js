@@ -26,6 +26,7 @@
 
 //= require events/hot_keys
 //= require events/pub_sub
+//= require events/serialize_object
 
 //= require_tree ./models
 //= require_tree ./collections
