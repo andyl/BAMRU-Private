@@ -23,7 +23,8 @@
           <thead>
           <tr>
             <th width=40><span style='padding-right: 15px;'>Role</span></th>
-            <th>Name</th>
+            <th></th>
+            <th>Guest</th>
             <th># Meetings</th>
             <th># Trainings</th>
             <th>Created At</th>
@@ -33,12 +34,13 @@
           <tbody>
           <% @guests.each do |guest| %>
             <tr>
-              <td><%= guest.typ %></td>
-              <td><%= link_to guest.full_name, guest_path(guest) %></td>
-              <td><%= guest.events.meetings.count %></td>
-              <td><%= guest.events.trainings.count %></td>
-              <td><%= guest.created_at.strftime("%Y-%m-%d") %></td>
-              <td><%= raw last_event_link(guest) %></td>
+              <td style='vertical-align:bottom;'><%= guest.typ %></td>
+              <td style='padding:0;margin:0;height:23px;width:30px;'><%= raw guest_icon(guest) %></td>
+              <td style='vertical-align:bottom;'><%= link_to guest.full_name, guest_path(guest) %></td>
+              <td style='vertical-align:bottom;'><%= guest.events.meetings.count %></td>
+              <td style='vertical-align:bottom;'><%= guest.events.trainings.count %></td>
+              <td style='vertical-align:bottom;'><%= guest.created_at.strftime("%Y-%m-%d") %></td>
+              <td style='vertical-align:bottom;'><%= raw last_event_link(guest) %></td>
             </tr>
           <% end %>
           </tbody>

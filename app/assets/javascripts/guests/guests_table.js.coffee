@@ -20,12 +20,13 @@ role_score_options =
 sort_opts =
   headers:
     0: {sorter: 'role_score'}    # sort col 0 using role_score options
-    1: {sorter: 'last_name'}     # sort col 3 using last_name options
+    1: {sorter:false}
+    2: {sorter: 'last_name'}     # sort col 3 using last_name options
 
 filter_params =
   filterContainer:      "#filter-box"
   filterClearContainer: "#filter-clear-button"
-  filterColumns:        [0,1,4,5]
+  filterColumns:        [0,2,5,6]
   columns: ["role", "name", "created", "last"]
 
 save_cert_sort_to_cookie = (sort_spec) ->

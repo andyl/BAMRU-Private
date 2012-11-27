@@ -2,9 +2,9 @@ class GuestsController < ApplicationController
 
   def index
     @guests = if cookies['gx_show'] == 'true'
-                Member.all_guests
+                Member.all_guests include: [:photos]
               else
-                Member.guests
+                Member.guests include: [:photos]
               end
   end
   
