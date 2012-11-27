@@ -9,7 +9,7 @@
   <thead>
   <tr>
     <th width=40>Role</th>
-    <th>
+    <th colspan=2>
       Participant
       <input size=18 id="memberField" name="newParticipant" placeholder="add participant..." />
       <a href='#' id='createGuestLink'>create new guest</a>

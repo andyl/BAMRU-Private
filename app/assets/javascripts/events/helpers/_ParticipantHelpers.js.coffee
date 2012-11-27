@@ -14,6 +14,11 @@ BB.Helpers.ParticipantHelpers =
     else
       "<a class='setOL' href='#'>#{role}</a>"
 
+  memberIcon: (memberId) ->
+    member = BB.members.get(memberId)
+    photoUrl = member.get('photo_icon')
+    return "" if photoUrl.length < 5
+    "<img style='height:23px;width:30px;display:block;margin:0;padding:0;' src='#{photoUrl}'/>"
 
   memberLink: (memberId) ->
     member = BB.members.get(memberId)
@@ -22,7 +27,7 @@ BB.Helpers.ParticipantHelpers =
     "<a href='/#{path}/#{memberId}'>#{member.fullName()}</a>"
 
   memberCell: (memberId) ->
-    "<td#{@activeClass()}>#{@memberLink(memberId)}</td>"
+    "<td style='vertical-align:bottom;' #{@activeClass()}>#{@memberLink(memberId)}</td>"
 
   activeClass: ->
     return " class='pubSubdEvent'"   if @pubSub?

@@ -16,8 +16,10 @@ class Address < ActiveRecord::Base
 
   # ----- Validations -----
   validates_presence_of :address1, :city, :state, :unless => :has_guest_attribute
-  validates_presence_of :zip
-  validates_format_of   :zip, :with => /^\d\d\d\d\d(\-\d\d\d\d)?$/
+  validates_presence_of :zip,                     :unless => :has_guest_attribute
+  validates_format_of   :zip,
+                        :with   => /^\d\d\d\d\d(\-\d\d\d\d)?$/,
+                        :unless => :has_guest_attribute
 
   validate :check_full_address_errors
 

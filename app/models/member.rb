@@ -19,6 +19,7 @@ class Member < ActiveRecord::Base
   attr_accessible :remember_me_token
   attr_accessible :forgot_password_token, :forgot_password_expires_at
   attr_accessible :bd, :ol, :admin
+  attr_accessible :photo_icon
 
   # ----- Associations -----
   has_many :addresses,          :order => 'position', :dependent => :destroy
@@ -44,7 +45,7 @@ class Member < ActiveRecord::Base
   has_many :chats
   has_many :browser_profiles
 
-  accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
+  accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :zip) }
   accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
   accepts_nested_attributes_for :emails,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,      :allow_destroy => true
@@ -58,7 +59,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :chats
 
   # ----- Validations -----
-  validates_associated    :addresses,          :if => :not_guest
+  validates_associated    :addresses,          :unless => :is_guest
   validates_associated    :phones,             :emails
   validates_associated    :emergency_contacts, :other_infos
 
@@ -81,8 +82,8 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def not_guest
-    typ != 'G' && typ != 'GX'
+  def is_guest
+    typ == 'G' || typ == 'GX'
   end
 
   # ----- Callbacks -----
@@ -400,6 +401,10 @@ class Member < ActiveRecord::Base
 
   def email_required?
     false
+  end
+
+  def photo_icon
+    photos.length == 0 ? "" : photos.first.image.url(:icon)
   end
 
   def all_related(item, message, separator = "<br/>")

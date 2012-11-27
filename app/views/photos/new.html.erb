@@ -2,7 +2,7 @@
   <div style="width: 400px; margin: auto;">
     <h2>New Photo</h2>
     Add a new photo for <%= @member.full_name %>.
-    (<%= link_to "back", edit_member_path(@member) %>)
+    (<%= link_to "back", @path %>)
     <p></p>
     <%= simple_form_for @photo, :url => member_photos_path(@member) do |pic| %>
       <%= pic.input :image, :label => "" %>

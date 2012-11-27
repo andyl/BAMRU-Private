@@ -44,6 +44,18 @@
     </div>
 
     <div id=mem_right_col style="text-align: center;">
+      <p/><%= (@guest.photos.count < 4) ? link_to("Add New Photo", new_member_photo_path(@guest)) : "Photos ( Max 4 )" %><p/>
+      <div id=sortable_photos>
+        <% @guest.photos.each do |pic| %>
+          <li style="list-style-type: none;" id=photos_<%= pic.id %>>
+            <span class='sort_handle span_handle'><img src="/images/handle.png" class=handle></span>
+            <div style="padding:5px;display:inline-block; width:100px;">
+              <%= image_tag pic.image.url(:thumb) %>
+            </div>
+            <%= link_to 'remove', member_photo_path(@guest, pic), :class => 'add', :confirm => 'Are you sure?',:method => :delete %>
+          </li>
+        <% end %>
+      </div>
     </div>
 
     <div id=x_footer>

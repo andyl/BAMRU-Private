@@ -6,7 +6,7 @@ class Eapi::MembersController < ApplicationController
   end
   
   def show
-    respond_with Member.find(params[:id])
+    respond_with Member.find(params[:id]), opts
   end
   
   def create
@@ -30,7 +30,7 @@ class Eapi::MembersController < ApplicationController
   private
 
   def opts
-    {only: [:id, :first_name, :last_name, :typ, :admin, :developer]}
+    {only: [:id, :first_name, :last_name, :typ, :admin, :developer], methods: :photo_icon}
   end
 
 end

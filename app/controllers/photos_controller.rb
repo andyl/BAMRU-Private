@@ -8,6 +8,7 @@ class PhotosController < ApplicationController
 
   def new
     @member = Member.where(:id => params['member_id']).first
+    @path = @member.is_guest ? edit_guest_path(@member) : edit_member_path(@member)
     @photo  = Photo.new
   end
 
@@ -17,7 +18,8 @@ class PhotosController < ApplicationController
     @member.save
     expire_fragment('unit_photos_table')
     SpriteGen.clear_sprite_icons
-    redirect_to edit_member_path(@member)
+    path = @member.is_guest ? edit_guest_path(@member) : edit_member_path(@member)
+    redirect_to path
   end
 
   def destroy
@@ -26,7 +28,8 @@ class PhotosController < ApplicationController
     @photo.destroy
     expire_fragment('unit_photos_table')
     SpriteGen.clear_sprite_icons
-    redirect_to edit_member_path @member
+    path = @member.is_guest ? edit_guest_path(@member) : edit_member_path(@member)
+    redirect_to path
   end
 
   def sort
