@@ -39,7 +39,7 @@ BB.Helpers.SidebarControlHelpers =
   checkBoxParams:
     "meeting":
       heading: "<b>M</b>eetings"
-      comment: "General Mtngs, BOD Retreats"
+      comment: "General Mtngs, BOD"
     "training":
       heading: "<b>T</b>rainings"
       comment: "Scheduled training"
@@ -48,7 +48,7 @@ BB.Helpers.SidebarControlHelpers =
       comment: "Live callouts"
     "community":
       heading: "<b>C</b>ommunity"
-      comment: "Support for SMSO, MRA, etc."
+      comment: "Support for SMSO/MRA/etc."
     "social":
       heading: "<b>S</b>ocial"
       comment: "Non-official, just for fun"
