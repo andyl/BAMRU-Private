@@ -25,7 +25,6 @@ class PhotosController < ApplicationController
       params[:photo][:image] = sio_data
       params.delete('photo-data')
     end
-    #debugger
     @member.photos.create(params[:photo])
     @member.save
     expire_fragment('unit_photos_table')
