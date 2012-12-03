@@ -45,7 +45,7 @@ class Member < ActiveRecord::Base
   has_many :chats
   has_many :browser_profiles
 
-  accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :zip) }
+  accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
   accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
   accepts_nested_attributes_for :emails,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :address) }
   accepts_nested_attributes_for :roles,      :allow_destroy => true
@@ -323,6 +323,7 @@ class Member < ActiveRecord::Base
   end
 
   def self.invalid_address?(params)
+    return false if params["is_guest"] == "true"
     tmp = params[:full_address]
     tmp && (tmp.empty? || tmp.include?('...'))
   end
