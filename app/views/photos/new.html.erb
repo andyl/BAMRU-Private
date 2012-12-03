@@ -1,14 +1,12 @@
-<div style="width: 600px; text-align: center; margin: auto;">
+<%= javascript_include_tag "photos/all_photos" %>
+
+<div style="width: 900px; text-align: center; margin: auto;">
   <h2>Create a New Profile Photo for <%= link_to @member.full_name, @path %></h2>
   <div style='border: 1px solid black;'>
     <table width=100%>
       <tr>
-        <td width=33%>
-          <div style='text-align: left; margin-left: 20px;'>
-            best photos:
-            <li>recognizable mug shot</li>
-            <li>width/height ratio of 4/3</li>
-          </div>
+        <td width=33% align="center">
+          upload a recognizable mug shot
         </td>
         <td width=33% align="center" style='background: lightgreen;'>
           like this
@@ -18,20 +16,52 @@
           not like this
           <img  style='display: inline-block; vertical-align: middle;' height=50 src='/samples/climber.jpg'/>
         </td>
-
       </tr>
     </table>
   </div>
   <p></p>
-  <div style='width: 400px; text-align: center; margin: auto;'>
-    <%= simple_form_for @photo, :url => member_photos_path(@member) do |pic| %>
-      <%= pic.input :image, :label => "" %>
-      <%= pic.button :submit %>
-    <% end %>
+  <div id='ieBrowser' style='display:none;'>
+    <b>Upload a Profile Image</b>
+    <p></p>
+    <form id="cropForm2" action="/members/<%=  @member.id %>/photos" method='post' enctype='multipart/form-data'>
+      <input  name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input name="photo[image]" id="cropSend2" type="file">
+      <input type='submit' value="Upload File" />
+    </form>
+    <p></p>
+    Note: On browsers like Chrome and Firefox, you can crop your photo so that
+    your picture will fix perfectly on our roster page.
   </div>
-  <p></p>
-  <div style="font-size: 7pt; background-color: lightgray; padding: 10px;">
-    After clicking 'Create Photo', this dialog box may remain open for several
-    minutes if you are uploading a large file.  Max file size is 3MB.
+  <div id='webkitBrowser' style='text-align: left; display: none;'>
+    <table width=100%>
+      <tr valign=top>
+        <td width=10%>
+          <b>1: Choose</b><p></p>
+          <input id='fileChooser' type='file' name='photo[image]' />
+        </td>
+        <td width=60% style='padding:0; margin:0;'>
+          <b>2: Crop</b><p></p>
+          <div id='imgHolder'></div>
+        </td>
+        <td width=30%>
+          <b>3: Upload</b><p></p>
+          <div id='imgPreviewDiv' style='width:120px; height: 90px;overflow:hidden;'>
+          </div>
+          <p></p>
+          <form id="cropForm" action="/members/<%=  @member.id %>/photos" method='post' enctype='multipart/form-data'>
+            <input  name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input name="photo-data" id="cropSend" type="hidden">
+            <input id='uploadBtn' type='submit' value="Upload Cropped Photo" style='display:none;'/>
+          </form>
+          <p></p>
+          <div id='coordDisp'></div>
+          <p></p>
+          <div id='uploadNotice' style='margin-top: 20px; background: #2cee64; padding: 10px; border: 1px solid black; display: none; text-align: center;'>
+            <b>Upload in progress!!</b>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
+  <div id='myCanvas'></div>
 </div>
