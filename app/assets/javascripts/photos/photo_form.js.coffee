@@ -44,13 +44,14 @@ submitCroppedImage = (ev) ->
   $('#cropForm').submit()
 
 initUpdate = ->
-  console.log "INIT UPDATE"
-  initCoords = 
+  initCoords =
     x: 10
     y: 10
     w: 240
     h: 180
   updatePreview(initCoords)
+  $('#loadingMsg').hide()
+  $('#imgHolder').show()
 
 updatePreview = (coords) ->
   window.coords = coords
@@ -99,6 +100,8 @@ displayCropThumb = (event) ->
   $('#imgPreviewDiv').append(prevImg)
 
 displaySelectedImage = (ev) ->
+  $('#loadingMsg').show()
+  $('#imgHolder').hide()
   ev?.preventDefault()
   file = fileChooser.files[0]
   reader = new FileReader()
@@ -108,7 +111,6 @@ displaySelectedImage = (ev) ->
     setTimeout(setupJcrop, 250)
   reader.readAsDataURL file
   $('#uploadBtn').show()
-
 
 $(document).ready ->
   if typeof window.FileReader is "undefined"
