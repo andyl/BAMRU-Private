@@ -14,6 +14,18 @@ class PhotosController < ApplicationController
 
   def create
     @member = Member.where(:id => params['member_id']).first
+    if data = params['photo-data']
+      img_hdr, img_data = data.split(',')
+      img_typ = img_hdr.split('/')[1].split(';')[0]
+      sio_data = StringIO.new(Base64.decode64(img_data))
+      sio_data.define_singleton_method(:content_type) do "image/#{img_typ}" end
+      sio_data.define_singleton_method(:original_filename) do "canvas.#{img_typ}" end
+      File.open("/tmp/upload.#{img_typ}", 'wb') {|f| f.write(Base64.decode64(img_data))}
+      params[:photo] = {}
+      params[:photo][:image] = sio_data
+      params.delete('photo-data')
+    end
+    #debugger
     @member.photos.create(params[:photo])
     @member.save
     expire_fragment('unit_photos_table')
