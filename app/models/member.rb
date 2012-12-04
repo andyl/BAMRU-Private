@@ -55,7 +55,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :avail_ops,  :allow_destroy => true, :reject_if => lambda {|p| p[:start_txt].try(:empty?) && p[:end_txt].try(:empty?)}
   accepts_nested_attributes_for :avail_dos,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :typ) }
   accepts_nested_attributes_for :emergency_contacts, :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
-  accepts_nested_attributes_for :other_infos,        :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, [:name, :number])}
+  accepts_nested_attributes_for :other_infos,        :allow_destroy => true
   accepts_nested_attributes_for :chats
 
   # ----- Validations -----
