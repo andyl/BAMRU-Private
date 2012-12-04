@@ -48,7 +48,7 @@ end
 #  image_updated_at   :integer
 #  position           :integer
 #  published          :boolean         default(FALSE)
-#  created_at         :datetime        not null
-#  updated_at         :datetime        not null
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
