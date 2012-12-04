@@ -11,8 +11,8 @@ class BB.Views.CnTbodyResourcesLinks extends Backbone.Marionette.ItemView
   # ----- initialization -----
 
   initialize: (options) ->
-    @model = options.model
-    @collection = @model.eventLinks
+    @model = options.model                            # Event
+    @collection = @model.eventLinks                   # EventPhotos
     @bindTo(@collection, 'reset',  @render, this)
 
   events:

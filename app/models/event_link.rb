@@ -18,9 +18,15 @@ class EventLink < ActiveRecord::Base
 
   # ----- Instance Methods-----
 
+  def site_domain
+    self.site_url.split('/')[2]
+  end
+
   def generate_backup
+    clean_domain = self.site_domain.gsub('.','_')
     kit = PDFKit.new(self.site_url)
-    filepath = "/tmp/backup#{id}.pdf"
+    timestamp = Time.now.strftime("%Y-%m-%d_%H-%M")
+    filepath = "/tmp/#{clean_domain}_#{timestamp}.pdf"
     kit.to_file(filepath)
     self.link_backup = File.new(filepath, 'r')
     self.save

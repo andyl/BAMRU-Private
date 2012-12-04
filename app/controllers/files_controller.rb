@@ -5,7 +5,7 @@ class FilesController < ApplicationController
 
 
   def index
-    @files = DataFile.all
+    @files = DataFile.all :include => [:member]
   end
   
   def new

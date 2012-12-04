@@ -16,10 +16,12 @@ class BB.Models.Event extends Backbone.Model
 
   initialize: ->
     @eventLinks     = new BB.Collections.EventLinks()
-    @periods     = new BB.Collections.Periods()
+    @eventPhotos    = new BB.Collections.EventPhotos()
+    @periods        = new BB.Collections.Periods()
     @updateCollectionUrls()
     @bind("change:id", @updateCollectionUrls)
 
   updateCollectionUrls: ->
-    @eventLinks.url = "/eapi/events/#{@.id}/event_links"
-    @periods.url = "/eapi/events/#{@.id}/periods"
+    @eventLinks.url  = "/eapi/events/#{@.id}/event_links"
+    @eventPhotos.url = "/eapi/events/#{@.id}/event_photos"
+    @periods.url     = "/eapi/events/#{@.id}/periods"
