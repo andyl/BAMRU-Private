@@ -60,6 +60,10 @@ class AddEventSupport < ActiveRecord::Migration
         t.string    :site_url
         t.string    :caption
         t.boolean   :published, :default => false
+        t.string    :link_backup_file_name
+        t.string    :link_backup_content_type
+        t.integer   :link_backup_file_size
+        t.integer   :link_backup_updated_at
         t.timestamps
       end
 

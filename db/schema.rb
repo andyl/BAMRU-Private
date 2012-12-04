@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.boolean  "cookies"
     t.integer  "screen_height"
     t.integer  "screen_width"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "certs", :force => true do |t|
@@ -167,9 +167,13 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "event_id"
     t.string   "site_url"
     t.string   "caption"
-    t.boolean  "published",  :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "published",                :default => false
+    t.string   "link_backup_file_name"
+    t.string   "link_backup_content_type"
+    t.integer  "link_backup_file_size"
+    t.integer  "link_backup_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_photos", :force => true do |t|
@@ -182,8 +186,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "image_updated_at"
     t.integer  "position"
     t.boolean  "published",          :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
@@ -198,8 +202,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "finish"
     t.boolean  "all_day",                                   :default => true
     t.boolean  "published",                                 :default => false
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "inbound_mails", :force => true do |t|
@@ -298,12 +302,13 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.boolean  "ol",             :default => false
     t.integer  "member_id"
     t.integer  "period_id"
+    t.string   "comment"
     t.datetime "en_route_at"
     t.datetime "return_home_at"
     t.datetime "signed_in_at"
     t.datetime "signed_out_at"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "period_pages", :force => true do |t|
@@ -319,8 +324,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "start"
     t.datetime "finish"
     t.integer  "rsvp_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "phones", :force => true do |t|

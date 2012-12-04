@@ -3,6 +3,10 @@ class EventLink < ActiveRecord::Base
   # ----- Associations -----
   belongs_to   :event
 
+  has_attached_file :link_backup,
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url  => "/system/:attachment/:id/:style/:filename"
+
   # ----- Callbacks -----
 
 

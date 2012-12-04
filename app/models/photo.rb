@@ -13,15 +13,9 @@ class Photo < ActiveRecord::Base
 
   # ----- Callbacks -----
 
-
-
   # ----- Validations -----
 
-
-
   # ----- Scopes -----
-
-
 
   # ----- Local Methods-----
   def export
