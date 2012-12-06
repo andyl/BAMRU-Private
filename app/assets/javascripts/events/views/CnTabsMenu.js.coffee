@@ -9,7 +9,8 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
 
   initialize: (page) ->
 #    @pages = ["overview", "roster", "forum", "resources", "reports"]
-    @pages = ["overview", "roster", "resources", "reports"]
+    @pages = ["overview", "roster", "reports"]
+    @pages = ["overview", "roster", "resources", "reports"] if BB.currentMember.isDeveloper()
     @curPage  = page
     @numPages = @pages.length
     @model = new Backbone.Model()

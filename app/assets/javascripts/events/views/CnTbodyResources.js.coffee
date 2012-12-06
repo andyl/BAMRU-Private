@@ -14,6 +14,9 @@ class BB.Views.CnTbodyResources extends Backbone.Marionette.Layout
 
   initialize: (options) ->
     @model = options.model          # Event
+    @model.eventLinks.fetch()
+    @model.eventPhotos.fetch()
+    @model.eventFiles.fetch()
 
   onShow: ->
     @links.show(new BB.Views.CnTbodyResourcesLinks({model:   @model}))
