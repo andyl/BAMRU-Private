@@ -12,7 +12,7 @@ BB.Helpers.CnTbodyResourcesPhotosHelpers =
     rowHtml = (link) ->
       """
       <tr>
-        <td><img src="#{link.get('icon_url')}"/></td>
+        <td><img style='display:block' src="#{link.get('icon_url')}"/></td>
         <td>#{link.get('caption')}</td>
         <td><nobr>#{authorLink(link)}</nobr></td>
         <td><nobr>#{link.get('updated_at')?.split('T')[0]}</nobr></td>
