@@ -24,7 +24,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @subview.render()
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     BB.hotKeys.rebindAllKeySets()
-    setTimeout(@setSearchBox, 250)
+    setTimeout(@setSearchBox, 500)
 
   events:
     'blur #memberField'       : 'onBlurSearch'
@@ -92,15 +92,16 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @collection.clearMatches()
 
   setSearchBox: ->
-    @$el.find('#createGuestLink').hide()
-    @collection.clearMatches()
-    participantIDs = @collection.map (p) -> p.get('member_id')
+    console.log "ELL", @$el
+    @$el?.find('#createGuestLink').hide()
+    @collection?.clearMatches()
+    participantIDs = @collection?.map (p) -> p.get('member_id')
     tgtList = _.select(BB.members.autoCompleteRoster(), (ele) -> ! _.contains(participantIDs, ele.memberId))
     autoOpts =
       source: tgtList
       minLength: 2
       select: (event, ui) => @autoCompleteAddParticipant(ui.item.memberId)
-    @$el.find('#memberField').autocomplete(autoOpts)
+    @$el?.find('#memberField').autocomplete(autoOpts)
 
   toggleGuestLink: ->
     fieldVal = @$el.find('#memberField').val()

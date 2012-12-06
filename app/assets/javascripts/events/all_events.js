@@ -1,6 +1,7 @@
 // note: underscore.js and underscore.string.js
 // are referenced in application.js...
 
+//= require jquery_form
 //= require jquery-layout
 //= require jquery-ui
 

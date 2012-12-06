@@ -15,6 +15,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @page   = options.page
     @model  = BB.Collections.events.get(options.modelId)
     @model.eventLinks.fetch()
+    @model.eventPhotos.fetch()
     @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
     @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
     @bindTo(BB.vent, 'click:tMenu',              @genNewPage,      this)

@@ -11,7 +11,8 @@ class Eapi::Events::EventPhotosController < ApplicationController
   end
   
   def create
-    render :json => EventPhoto.create(params[:event_photo])
+    event_photo = EventPhoto.create(params[:event_photo])
+    respond_with event_photo, opts
   end
   
   def update
@@ -25,7 +26,12 @@ class Eapi::Events::EventPhotosController < ApplicationController
   private
 
   def opts
-    {except: [:created_at]}
+    xopts = [:created_at, :position, :published,
+             :image_file_name,       :image_file_size,
+             :image_content_type,    :image_updated_at]
+    methods = [:original_url, :thumb_url, :icon_url]
+
+    {except: xopts, methods: methods}
   end
 
 end

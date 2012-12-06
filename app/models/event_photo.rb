@@ -4,7 +4,7 @@ class EventPhoto < ActiveRecord::Base
   belongs_to   :event
 
   has_attached_file :image,
-                    :styles => {:medium => "300x300", :small => "150x150", :thumb => "100x100"},
+                    :styles => {:medium => "300x300", :small => "150x150", :thumb => "100x100", :icon => "30x30"},
                     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
                     :url  => "/system/:attachment/:id/:style/:filename"
 
@@ -29,6 +29,18 @@ class EventPhoto < ActiveRecord::Base
 
   def cleanup_file_name
     self.image.instance_write(:file_name, "#{self.image_file_name.gsub(' ','_')}")
+  end
+
+  def original_url; self.image.url;     end
+  def medium_url;   image_url(:medium); end
+  def small_url;    image_url(:small);  end
+  def thumb_url;    image_url(:thumb);  end
+  def icon_url;     image_url(:icon);   end
+
+  private
+
+  def image_url(size)
+    self.image.url(size)
   end
 
 end

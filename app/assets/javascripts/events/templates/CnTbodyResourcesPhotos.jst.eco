@@ -8,12 +8,13 @@
 </div>
 
 <div id='photoForm' style='display: none;'>
-  <form>
-    <input id="urlField" type=text name='site_url' size=40 placeholder='new url' tabindex="10" >
+  <form id='myForm' data-remote='true' action='/eapi/events/<%= @id %>/event_photos' method="post" enctype='multipart/form-data'>
+    <input name='event_photo[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />
+    <input name='event_photo[event_id]'  value='<%= @id %>' type='hidden' />
+    <input id="photoField" type=file name='event_photo[image]' size=40 placeholder='new url' tabindex="10" >
     <input id="cancelPhotoButton" type="button" value="Cancel" tabindex="14" /><br/>
-    <input id="capField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
+    <input id="capField" type=text name='event_photo[caption]'  size=40 placeholder='description' tabindex="12" >
     <input id="createPhotoButton" type="button" value="Create Photo" tabindex="13" />
-    <input id="updatePhotoButton" type="button" value="Update Photo" tabindex="13" /><br/>
   </form>
 </div>
 
