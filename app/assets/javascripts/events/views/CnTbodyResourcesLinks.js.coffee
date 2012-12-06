@@ -6,13 +6,13 @@ class BB.Views.CnTbodyResourcesLinks extends Backbone.Marionette.ItemView
 
   templateHelpers: ->
     base = { eventLinks: @model.eventLinks }
-    _.extend(base, BB.Helpers.CnTbodyMediaLinksHelpers)
+    _.extend(base, BB.Helpers.CnTbodyResourcesLinksHelpers)
 
   # ----- initialization -----
 
   initialize: (options) ->
-    @model = options.model
-    @collection = @model.eventLinks
+    @model = options.model                            # Event
+    @collection = @model.eventLinks                   # EventLinks
     @bindTo(@collection, 'reset',  @render, this)
 
   events:

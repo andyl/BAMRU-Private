@@ -31,11 +31,12 @@ end
 #  ol             :boolean         default(FALSE)
 #  member_id      :integer
 #  period_id      :integer
+#  comment        :string(255)
 #  en_route_at    :datetime
 #  return_home_at :datetime
 #  signed_in_at   :datetime
 #  signed_out_at  :datetime
-#  created_at     :datetime        not null
-#  updated_at     :datetime        not null
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 

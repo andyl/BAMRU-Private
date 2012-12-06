@@ -6,19 +6,19 @@ class BB.Views.CnTbodyResources extends Backbone.Marionette.Layout
 
   regions:
     links:  '#links'
-    files:  '#files'
     photos: '#photos'
+    files:  '#files'
     maps:   '#maps'
 
   # ----- initialization -----
 
   initialize: (options) ->
-    @model = options.model
+    @model = options.model          # Event
 
   onShow: ->
     @links.show(new BB.Views.CnTbodyResourcesLinks({model:   @model}))
-    @files.show(new BB.Views.CnTbodyResourcesFiles({model:   @model}))
     @photos.show(new BB.Views.CnTbodyResourcesPhotos({model: @model}))
+    @files.show(new BB.Views.CnTbodyResourcesFiles({model:   @model}))
     @maps.show(new BB.Views.CnTbodyResourcesMaps({model: @model}))
 
   # ----- methods -----

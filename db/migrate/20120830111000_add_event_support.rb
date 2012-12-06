@@ -50,10 +50,6 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
-      add_column :data_files, :event_id,  :integer
-      add_column :data_files, :caption,   :string
-      add_column :data_files, :published, :boolean, :default => false
-
       create_table :event_links do |t|
         t.integer   :member_id
         t.integer   :event_id
@@ -64,8 +60,14 @@ class AddEventSupport < ActiveRecord::Migration
         t.string    :link_backup_content_type
         t.integer   :link_backup_file_size
         t.integer   :link_backup_updated_at
+        t.integer   :position
         t.timestamps
       end
+
+      add_column :data_files, :event_id,  :integer
+      add_column :data_files, :position,  :integer
+      add_column :data_files, :caption,   :string
+      add_column :data_files, :published, :boolean, :default => false
 
       create_table :browser_profiles do |t|
         t.integer :member_id

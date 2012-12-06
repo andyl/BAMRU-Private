@@ -51,6 +51,7 @@ Zn::Application.routes.draw do
   resources  :history
   resources  :rsvps
   resources  :unauth_rsvps
+  resources  :event_photos
 
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
@@ -94,8 +95,8 @@ Zn::Application.routes.draw do
   namespace "eapi" do
 
     resources :events do
-      resources :event_links, controller: 'events/event_links'
-      resources :event_photos
+      resources :event_links,  controller: 'events/event_links'
+      resources :event_photos, controller: 'events/event_photos'
       resources :data_files
       resources :periods, controller: 'events/periods'
     end

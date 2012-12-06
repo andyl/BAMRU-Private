@@ -1,1 +1,36 @@
-Photos: Under Construction
+<div id='photo-header'>
+  <table width=100%>
+    <tr>
+      <td><b>Photos</b></td>
+      <td align="right"><a href="#" id='addNewPhoto'>Add New Photo</a></td>
+    </tr>
+  </table>
+</div>
+
+<div id='photoForm' style='display: none;'>
+  <form id='myForm' data-remote='true' action='/eapi/events/<%= @id %>/event_photos' method="post" enctype='multipart/form-data'>
+    <input name='event_photo[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />
+    <input name='event_photo[event_id]'  value='<%= @id %>' type='hidden' />
+    <input id="photoField" type=file name='event_photo[image]' size=40 placeholder='new url' tabindex="10" >
+    <input id="cancelPhotoButton" type="button" value="Cancel" tabindex="14" /><br/>
+    <input id="capField" type=text name='event_photo[caption]'  size=40 placeholder='description' tabindex="12" >
+    <input id="createPhotoButton" type="button" value="Create Photo" tabindex="13" />
+  </form>
+</div>
+
+<div id='photo-table'>
+  <table class='mediaTable tablesorter' width=100%>
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>Description</th>
+        <th>By</th>
+        <th>On</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @genPhotoRows() %>
+    </tbody>
+  </table>
+</div>
