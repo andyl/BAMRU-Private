@@ -1,1 +1,36 @@
-Files: Under Construction
+<div id='file-header'>
+  <table width=100%>
+    <tr>
+      <td><b>Files</b></td>
+      <td align="right"><a href="#" id='addNewFile'>Add New File</a></td>
+    </tr>
+  </table>
+</div>
+
+<div id='fileForm' style='display: none;'>
+  <form id='myFileForm' data-remote='true' action='/eapi/events/<%= @id %>/event_files' method="post" enctype='multipart/form-data'>
+    <input name='event_file[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />
+    <input name='event_file[event_id]'  value='<%= @id %>' type='hidden' />
+    <input id="fileField" type=file name='event_file[data]' size=40 placeholder='new url' tabindex="10" >
+    <input id="cancelFileButton" type="button" value="Cancel" tabindex="14" /><br/>
+    <input id="capField" type=text name='event_file[caption]'  size=40 placeholder='description' tabindex="12" >
+    <input id="createFileButton" type="button" value="Create File" tabindex="13" />
+  </form>
+</div>
+
+<div id='file-table'>
+  <table class='mediaTable tablesorter' width=100%>
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>Description</th>
+        <th>By</th>
+        <th>On</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @genFileRows() %>
+    </tbody>
+  </table>
+</div>

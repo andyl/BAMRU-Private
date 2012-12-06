@@ -45,7 +45,6 @@ class BB.Views.CnTbodyResourcesPhotos extends Backbone.Marionette.ItemView
 
   createPhoto: (ev) ->
     ev?.preventDefault()
-    $('#photoForm').submit()
     opts =
       beforeSubmit: (arr, form, options) ->
         console.log "SUBMITTING", arr, form, options
@@ -61,15 +60,7 @@ class BB.Views.CnTbodyResourcesPhotos extends Backbone.Marionette.ItemView
       error: (xhr, status, msg) ->
         console.log "ERROR", xhr, status, msg
     $('#myForm').ajaxSubmit(opts)
-#    opts =
-#      member_id: BB.currentMember.get('id')
-#      event_id:  @model.get('id')
-#      site_url:  $('#urlField').val()
-#      caption:   $('#capField').val()
-#    result = photo.save()
-#    @collection.add(photo)
-#    @collection.fetch()
-#    @.render()
+
 
   deletePhoto: (ev) ->
     ev?.preventDefault()

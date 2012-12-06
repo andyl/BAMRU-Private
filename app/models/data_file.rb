@@ -12,6 +12,7 @@ class DataFile < ActiveRecord::Base
   attr_accessible :data_file_extension
   attr_accessible :data_content_type
   attr_accessible :data_updated_at
+  attr_accessible :event_id, :member_id, :caption
 
   # ----- Associations -----
   belongs_to        :member
