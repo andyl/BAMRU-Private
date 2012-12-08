@@ -3,12 +3,15 @@ class Period < ActiveRecord::Base
   # ----- Associations -----
 
   belongs_to   :event
-  has_many     :participants, :dependent => :destroy
+  has_many     :participants,  :dependent => :destroy
+  has_many     :event_reports, :dependent => :destroy
   has_many     :period_pages
   acts_as_list :scope => :position
 
 
   # ----- Callbacks -----
+
+  after_create :create_smso_aar_event_report
 
 
   # ----- Validations -----
@@ -20,6 +23,14 @@ class Period < ActiveRecord::Base
 
 
   # ----- Local Methods-----
+
+  def create_smso_aar_event_report
+    return if %w(meeting social).include? self.event.typ
+    if self.event_reports.smso_aars.all.empty?
+      opts = {typ: "smso_aar", event_id: self.event.id}
+      self.event_reports << EventReport.create(opts)
+    end
+  end
 
 
 end

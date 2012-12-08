@@ -53,7 +53,9 @@ Zn::Application.routes.draw do
   resources  :unauth_rsvps
   resources  :event_photos
   resources  :event_files
+  resources  :event_reports
   resources  :data_files
+
 
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"

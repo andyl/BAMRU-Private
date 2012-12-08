@@ -54,6 +54,7 @@ end
 #  link_backup_content_type :string(255)
 #  link_backup_file_size    :integer
 #  link_backup_updated_at   :integer
+#  position                 :integer
 #  created_at               :datetime
 #  updated_at               :datetime
 #

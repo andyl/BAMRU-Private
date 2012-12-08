@@ -70,6 +70,7 @@ end
 #  data_updated_at     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
+#  position            :integer
 #  event_id            :integer
 #  caption             :string(255)
 #  published           :boolean         default(FALSE)

@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.string   "data_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
     t.integer  "event_id"
     t.string   "caption"
     t.boolean  "published",           :default => false
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.string   "link_backup_content_type"
     t.integer  "link_backup_file_size"
     t.integer  "link_backup_updated_at"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -186,6 +188,19 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "image_updated_at"
     t.integer  "position"
     t.boolean  "published",          :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_reports", :force => true do |t|
+    t.string   "typ"
+    t.integer  "member_id"
+    t.integer  "event_id"
+    t.integer  "period_id"
+    t.string   "title"
+    t.text     "data"
+    t.integer  "position"
+    t.boolean  "published",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

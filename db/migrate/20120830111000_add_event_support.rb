@@ -64,8 +64,21 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
+      # drop this
+      create_table :event_reports do |t|
+        t.string    :typ
+        t.integer   :member_id
+        t.integer   :event_id
+        t.integer   :period_id
+        t.string    :title
+        t.text      :data
+        t.integer   :position
+        t.boolean   :published, :default => false
+        t.timestamps
+      end
+
+      add_column :data_files, :position,  :integer   # drop this
       add_column :data_files, :event_id,  :integer
-      add_column :data_files, :position,  :integer
       add_column :data_files, :caption,   :string
       add_column :data_files, :published, :boolean, :default => false
 

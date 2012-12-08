@@ -25,4 +25,3 @@ class BB.Views.CnTbodyResources extends Backbone.Marionette.Layout
     @maps.show(new BB.Views.CnTbodyResourcesMaps({model: @model}))
 
   # ----- methods -----
-

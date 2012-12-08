@@ -27,11 +27,12 @@ class Event < ActiveRecord::Base
 
   # ----- Associations -----
 
-  belongs_to :leader,       :class_name => 'Member'
-  has_many   :periods,      :dependent => :destroy
-  has_many   :event_links,  :dependent => :destroy
-  has_many   :event_photos, :dependent => :destroy
-  has_many   :data_files,   :dependent => :destroy
+  belongs_to :leader,        :class_name => 'Member'
+  has_many   :periods,       :dependent => :destroy
+  has_many   :event_links,   :dependent => :destroy
+  has_many   :event_photos,  :dependent => :destroy
+  has_many   :event_reports, :dependent => :destroy
+  has_many   :data_files,    :dependent => :destroy
 
   # ----- Callbacks -----
 
