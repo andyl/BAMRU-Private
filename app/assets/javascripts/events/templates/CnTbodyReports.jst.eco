@@ -1,9 +1,39 @@
-<div style='background: #f4f4f4; margin-top: 10px; padding: 10px;'>
-  Reports: Under Construction<p></p>
-  <ul>
-  <li>After-Action Report<br/>
-    <i>OL text plus time summaries - print, download or send to mailing list</i></li>
-  <li>Blog Post<br/><i>Blog text plus photos and links - publish to public blog</i></li>
-  <li>SMSO Time Reports<br/><i>Event summary plus time-tracking data - print or download</i></li>
-  </ul>
+<div id='report-header'>
+  <table width=100%>
+    <tr>
+      <td><b>Reports</b></td>
+      <td align="right"><a style='display: none;' href="#" id='addNewReport'>Add New Report</a></td>
+    </tr>
+  </table>
+</div>
+
+<div id='reportFormSmsoAar' class='editForm' style='display: none;'>
+  <form>
+    <b style='margin-right: 250px;'>Edit SMSO Report</b>
+    <input id="smsoCancel"   class='formCancel' type="button" value="Cancel" />
+    <input id="smsoUpdate"   type="button" value="Update" />
+    <p></p>
+    Signed By:<br/>
+    <input id="smsoSignedBy" type=text size=40 ><p></p>
+    Unit Leader:<br/>
+    <input id="smsoUnitLead" type=text size=40 ><p></p>
+    Major events, problems, injuries and/or comments:<br/>
+    <textarea id="smsoDescript" cols=64 rows=8></textarea>
+  </form>
+</div>
+
+<div id='report-table'>
+  <table class='mediaTable tablesorter' width=100%>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Title</th>
+        <th>Updated</th>
+        <th align="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @genReportsRows() %>
+    </tbody>
+  </table>
 </div>

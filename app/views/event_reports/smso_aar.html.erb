@@ -2,18 +2,8 @@
 <HTML>
 <HEAD>
   <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-  <TITLE>EVENT #:______________________</TITLE>
-  <META NAME="GENERATOR" CONTENT="LibreOffice 3.5  (Linux)">
-  <META NAME="AUTHOR" CONTENT="Gina Sheridan">
-  <META NAME="CREATED" CONTENT="20110525;10360000">
-  <META NAME="CHANGEDBY" CONTENT="SWDL">
-  <META NAME="CHANGED" CONTENT="20111106;20160000">
-  <META NAME="Info 1" CONTENT="">
-  <META NAME="Info 2" CONTENT="">
-  <META NAME="Info 3" CONTENT="">
-  <META NAME="Info 4" CONTENT="">
+  <TITLE><%= @event_report.title %> - <%= @event_report.event.title %></TITLE>
   <STYLE TYPE="text/css">
-  <!--
     @page { margin-right: 1in; margin-top: 0.88in; margin-bottom: 0.75in }
     @page:first { margin-top: 0.5in; margin-bottom: 0.75in }
     P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
@@ -36,1524 +26,179 @@
     TH P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
     TH P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
     TH P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
-  -->
+    .labelCell {font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
+    .valueCell {font-family: "Times New Roman, serif"; font-size:10pt;}
+    .checkCell {font-family: "Times New Roman, serif"; font-size: 10pt; width: 12px; text-align: center;}
+    .topTable { width: 700px; border-collapse: collapse;}
+    .stdTable { width: 700px; border-collapse: collapse;}
+    .stdTable tr { width: 700px; }
+    .stdTable tr, .topTable tr {vertical-align: top;}
+    .topTable td, .stdTable th { border: 1px solid black; padding: 4px;}
+    .stdTable td, .topTable th { border: 1px solid black; padding: 4px; border-top: none; }
+    .headerRow { background: lightgrey; font-size: 6pt; }
+    .cellLabel { font-size: 6pt; margin-bottom: 10px; }
+    @media all {
+      .pageBreak      { margin-top: 10px; margin-bottom: 10px;}
+      .pageBreakLabel { text-align: center; padding: 2px; width: 700px; font-size: 8pt; background: lightgrey;}
+    }
+    @media print {
+      .pageBreak      { page-break-before: always;}
+      .pageBreakLabel { display: none;}
+    }
   </STYLE>
 </HEAD>
 <BODY LANG="en-US" TEXT="#000000" DIR="LTR">
-<DIV TYPE=HEADER>
-    <IMG SRC="/smso_badge.png" NAME="graphics1" ALIGN=LEFT HSPACE=12 WIDTH=106 HEIGHT=102 BORDER=0 style='display:block;'>
-</DIV>
-<DL>
-  <DL>
-    <DD>
-    <TABLE WIDTH=548 CELLPADDING=7 CELLSPACING=1 STYLE="page-break-before: always">
-      <COL WIDTH=532>
-      <TR>
-        <TD WIDTH=532 VALIGN=TOP STYLE="border: none; padding: 0in">
-          <H1 CLASS="western" STYLE="margin-left: 0.25in">SAN MATEO COUNTY
-          SHERIFF’S EMERGENCY SERVICES</H1>
-        </TD>
-      </TR>
-      <TR>
-        <TD WIDTH=532 VALIGN=TOP BGCOLOR="#bfbfbf" STYLE="border: 1px double #000000; padding: 0in 0.08in">
-          <P ALIGN=CENTER STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=6 STYLE="font-size: 25pt"><B>EVENT
-          AFTER ACTION REPORT</B></FONT></FONT></P>
-        </TD>
-      </TR>
-      <tr>
-        <td align="center">
-          <FONT FACE="Swis721 BlkEx BT, Times New Roman, sans-serif">
-            <I>Please complete an after action report for all events.</I>
-          </FONT>
-        </td>
-      </tr>
-    </TABLE>
-  </DL>
-</DL>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"></P>
-<TABLE WIDTH=697 CELLPADDING=7 CELLSPACING=1>
-  <COLGROUP>
-    <COL WIDTH=8>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=51>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=27>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=4360>
-    <COL WIDTH=4360>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=4366>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=15>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=9>
-    <COL WIDTH=4360>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=27>
-    <COL WIDTH=9>
-    <COL WIDTH=39>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=51>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=9>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=15>
-    <COL WIDTH=9>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=9>
-    <COL WIDTH=3>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=4360>
-    <COL WIDTH=3>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=21>
-    <COL WIDTH=4366>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=4360>
-    <COL WIDTH=3>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=62>
-  </COLGROUP>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=2 WIDTH=74 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in; text-transform: uppercase">
-        <FONT FACE="Times New Roman, serif"><FONT SIZE=2><B>DATE:</B></FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=7 WIDTH=111 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in; text-transform: uppercase">
-        <FONT FACE="Times New Roman, serif"><FONT SIZE=2>september 16,
-        2011 to september 17, 2011</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=105 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in; text-transform: uppercase">
-        <FONT FACE="Times New Roman, serif"><FONT SIZE=2><B>EVENT NAME:</B></FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=13 WIDTH=344 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in; text-transform: uppercase">
-        <FONT FACE="Times New Roman, serif"><FONT SIZE=2><%= @event_report.event.title %> - Period <%= @event_report.period.position %></FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in">
-          <FONT FACE="Times New Roman, serif"><FONT SIZE=2><B>
-            LOCATION (CITY):
-          </B></FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=20 WIDTH=536 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in">
-          <FONT FACE="Times New Roman, serif">
-            <FONT SIZE=2 STYLE="font-size: 11pt">
-              <%=  @event_report.event.location %>
-            </FONT>
-          </FONT>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=3 WIDTH=116 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2><B>TYPE
-        OF EVENT:</B></FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=87 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>TRAFFIC</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=7 WIDTH=225 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>FAIR/COMMUNITY
-        EVENT</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=5 WIDTH=134 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>PATROL</FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD WIDTH=8 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=93 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>CEREMONIAL</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=87 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>MEETING</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=105 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>TRAINING</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=81 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>CALLOUT</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=5 WIDTH=134 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>ADMIN/MAINT.</FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD WIDTH=8 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=6 WIDTH=147 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>TRANSPORTATION</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=5 WIDTH=177 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>UNABLE
-        TO FULFILL</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=11 WIDTH=254 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>Other:</FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=4 WIDTH=122 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: none; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">UNIT</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=33 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">#
-        OF PEOPLE</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">#
-        OF HRS. EACH</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">TOTAL
-        HOURS</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=105 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">UNIT</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">#
-        OF PEOPLE</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=39 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">#
-        OF HRS. EACH</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=3 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">=</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=80 BGCOLOR="#bfbfbf" STYLE="border-top: 1px double #000000; border-bottom: 1px double #000000; border-left: none; border-right: 1px double #000000; padding-top: 0in; padding-bottom: 0in; padding-left: 0in; padding-right: 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 6pt">TOTAL
-        HOURS</FONT></FONT></P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>AIR
-        SQUAD:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=13 WIDTH=344 STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2><U>PAID
-        PERSONNEL</U></FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>BAMRU:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>13</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>23.5</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>305</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>CLIFF
-        RESCUE:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>DIVE/CLIFF:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>LAW
-        LIAISON:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>EXP.
-        POST 810:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>GROUP
-        LIAISON:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>EXP.
-        POST 830:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>HONOR
-        GUARD:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>MOUNTED
-        SAR:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>OES
-        DIST. COORD:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>RESERVES:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>BOMB
-        SQUAD:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>SCU
-         (COMM. UNIT):</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>MOTORCYCLES:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>SMCSAR:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>SWAT:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>STARS:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>OTHER:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=9 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B>=</B></FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=5 WIDTH=128 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>TECH.
-        RES:</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=27 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>X</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=33 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=9 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>=</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=39 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=129 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B>TOTAL
-        PEOPLE:</B></FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=51 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>13</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=57 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt"><B>HOURS:</B></FONT></FONT></P>
-      </TD>
-      <TD WIDTH=62 STYLE="border-top: 1px solid #000000; border-bottom: 1px double #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>305</FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=638 CELLPADDING=7 CELLSPACING=0>
-  <COL WIDTH=624>
-  <TR>
-    <TD WIDTH=624 VALIGN=TOP STYLE="border: none; padding: 0in">
-      <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><I><B>Please
-      explain any major events, problems, or injuries that occurred
-      and/or comments.</B></I></FONT></P>
-    </TD>
-  </TR>
-  <TR>
-    <TD WIDTH=624 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0in">
-      <P STYLE="margin-top: 0.06in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">In
-      September, BAMRU held a unit training focused on skills related to
-      extended search.  Team members reviewed ICS procedures and ran
-      scenarios Saturday and Sunday morning.  There was also a review of
-      interviewing technique.  </FONT></FONT>
-      </P>
-    </TD>
-  </TR>
-  <TR>
-    <TD WIDTH=624 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0in">
-      <P CLASS="western" STYLE="margin-top: 0.06in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 11pt">There
-      are two periods in this training Saturday and Sunday.  Saturday
-      focused on Search Management.</FONT></FONT></P>
-    </TD>
-  </TR>
-  <TR>
-    <TD WIDTH=624 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0in">
-      <P CLASS="western" STYLE="margin-top: 0.06in"><BR>
-      </P>
-    </TD>
-  </TR>
-</TABLE>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
-</P>
-<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
-</P>
-<TABLE WIDTH=726 CELLPADDING=7 CELLSPACING=1>
-  <COLGROUP>
-    <COL WIDTH=21>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=45>
-    <COL WIDTH=135>
-    <COL WIDTH=4366>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=99>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=75>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=15>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=4366>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=34>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=44>
-  </COLGROUP>
-  <COLGROUP>
-    <COL WIDTH=3>
-    <COL WIDTH=81>
-  </COLGROUP>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TH COLSPAN=2 WIDTH=81 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TH>
-      <TD WIDTH=135 STYLE="border: none; padding: 0in">
-        <P CLASS="western" ALIGN=RIGHT><FONT FACE="Times New Roman, serif">SUBMITTED
-        BY:</FONT></P>
-      </TD>
-      <TD COLSPAN=8 WIDTH=368 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0in">
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif">William
-        Gilmore</FONT></P>
-      </TD>
-      <TD WIDTH=81 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=2 WIDTH=81 HEIGHT=12 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=135 STYLE="border: none; padding: 0in">
-        <P CLASS="western" ALIGN=CENTER><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=8 WIDTH=368 STYLE="border: none; padding: 0in">
-        <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif">(PLEASE
-        PRINT YOUR NAME)</FONT></P>
-        <P CLASS="western" ALIGN=CENTER><BR>
-        </P>
-      </TD>
-      <TD WIDTH=81 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=2 WIDTH=81 HEIGHT=12 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=135 STYLE="border: none; padding: 0in">
-        <P CLASS="western" ALIGN=CENTER><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=8 WIDTH=368 STYLE="border: none; padding: 0in">
-        <P CLASS="western" ALIGN=CENTER><BR>
-        </P>
-      </TD>
-      <TD WIDTH=81 STYLE="border: none; padding: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD ROWSPAN=2 COLSPAN=4 WIDTH=243 STYLE="border-top: 1px double #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <H2 CLASS="western">PERSONNEL LOG</H2>
-      </TD>
-      <TD COLSPAN=3 WIDTH=218 VALIGN=TOP STYLE="border-top: 1px double #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">1.
-        INCIDENT NAME</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=105 VALIGN=TOP STYLE="border-top: 1px double #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">2.
-        DATE PREPARED</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=100 VALIGN=TOP STYLE="border-top: 1px double #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">3.
-        TIME PREPARED</FONT></FONT></P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=3 WIDTH=218 STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">Extended
-        Search Training – Period 1</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=105 STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">11/5/11</FONT></P>
-      </TD>
-      <TD COLSPAN=2 WIDTH=100 STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">1700</FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=3 WIDTH=230 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">4.
-        UNIT NAME/DESIGNATOR</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=5 WIDTH=242 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">5.
-        UNIT LEADER &amp; POSITION</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif"><FONT SIZE=1 STYLE="font-size: 8pt">6.
-        OPERATIONAL PERIOD</FONT></FONT></P>
-      </TD>
-    </TR>
-    <TR VALIGN=TOP>
-      <TD COLSPAN=3 WIDTH=230 HEIGHT=7 STYLE="border-top: none; border-bottom: 1.50pt solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD COLSPAN=5 WIDTH=242 STYLE="border-top: none; border-bottom: 1.50pt solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">John
-        Chang</FONT></P>
-      </TD>
-      <TD COLSPAN=4 WIDTH=207 STYLE="border-top: none; border-bottom: 1.50pt solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.04in"><FONT FACE="Times New Roman, serif">1</FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR VALIGN=TOP>
-      <TD WIDTH=21 HEIGHT=22 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><FONT SIZE=2>NAME
-        (PRINT)</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><FONT SIZE=2 STYLE="font-size: 9pt">ORGANIZATION</FONT></FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>DATE/TIME</FONT></FONT></P>
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><FONT SIZE=2>IN</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=2>DATE/TIME</FONT></FONT></P>
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><FONT SIZE=2>OUT</FONT></FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" ALIGN=CENTER><FONT FACE="Times New Roman, serif"><FONT SIZE=2>ASSIGNMENT</FONT></FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.07in; widows: 2; orphans: 2">
-        <FONT FACE="Times New Roman, serif">Cal Hoagland</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1630</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/17/11
-         1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Operations
-        Leader / Co-Training Leader</FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=2>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Bill
-        Parker</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1630</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Operations
-        Leader / Co-Training Leader</FONT></P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=3>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Kito
-        Berg-Taylor</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1745</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=4>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">Racheal
-        Farrand</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1800</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=5>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">Ethan
-        Frantz</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1745</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=6>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">Adam
-        Garcia</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/17/11
-         0645</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=30 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=7>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">William
-        Gilmore</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/17/11
-         0730</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=8>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Blake
-        Gleason</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1815</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=9>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Matt
-        Jacobs</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1800</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=10>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">Chris
-        Kantarjiev</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         2200</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=11>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">Tom Lass</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/17/11
-         0900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=12>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">John
-        Mandish</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         1745</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=13>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">Eszter
-        Tompos</FONT></P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">BAMRU</FONT></P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif">9/16/11
-         2200</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><FONT FACE="Times New Roman, serif">9/17/11 
-        1900</FONT></P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=14>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=15>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=16>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=17>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=14 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=18>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-  <TBODY>
-    <TR>
-      <TD WIDTH=21 HEIGHT=13 VALIGN=TOP STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px double #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <OL START=19>
-          <LI><P CLASS="western" STYLE="margin-top: 0.08in"></P>
-        </OL>
-      </TD>
-      <TD COLSPAN=3 WIDTH=207 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=99 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0in"><BR>
-        </P>
-      </TD>
-      <TD WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=75 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.08in; padding-right: 0in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-      <TD COLSPAN=3 WIDTH=159 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px double #000000; padding: 0in 0.08in">
-        <P CLASS="western" STYLE="margin-top: 0.08in"><BR>
-        </P>
-      </TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
-<DIV TYPE=FOOTER>
-  <P STYLE="margin-bottom: 0in"><BR>
-  </P>
-</DIV>
+<table width=700px; style='margin-bottom: 5px;'>
+  <tr>
+    <td><IMG SRC="/smso_badge.png" height=120 /></td>
+    <td align="center">
+      <H1 CLASS="western">SAN MATEO COUNTY SHERIFF’S EMERGENCY SERVICES</H1>
+      <div style="font-size: 20pt; margin-top: 10px; margin-bottom: 10px; padding: 5px; border: 1px solid black; background: #bfbfbf;">
+        EVENT AFTER ACTION REPORT
+      </div>
+      <i>Please complete an after action report for all events.</i>
+    </td>
+  </tr>
+</table>
+
+<table class='topTable'>
+  <tr>
+    <td class='labelCell' width=54>DATE:</td>
+    <td class='valueCell' width=175><%= event_date %></td>
+    <td class='labelCell' width=54>EVENT NAME:</td>
+    <td class='valueCell'><%= incident_name_with_period %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' width=130>LOCATION (CITY):</td>
+    <td class='valueCell'><%=  @event_report.event.location %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' colspan=2>TYPE OF EVENT:</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>TRAFFIC</td>
+    <td class='checkCell'><%= event_checkbox('community') %></td>
+    <td class='valueCell'>FAIR/COMMUNITY EVENT</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>PATROL</td>
+  </tr>
+  <tr>
+    <td class='checkCell'></td>
+    <td class='valueCell'>CEREMONIAL</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>MEETING</td>
+    <td class='checkCell'><%= event_checkbox('training') %></td>
+    <td class='valueCell'>TRAINING</td>
+    <td class='checkCell'><%= event_checkbox('operation') %></td>
+    <td class='valueCell'>CALLOUT</td>
+  </tr>
+  <tr>
+    <td class='checkCell'></td>
+    <td class='valueCell'>ADMIN/MAINT.</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>TRANSPORTATION</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>UNABLE TO FULFILL</td>
+    <td class='checkCell'></td>
+    <td class='valueCell' colspan=2>OTHER</td>
+  </tr>
+</table>
+<table class='stdTable'>
+  <tr class='headerRow'>
+    <td>UNIT</td>
+    <td># OF PEOPLE</td>
+    <td>X</td>
+    <td># OF HRS EACH</td>
+    <td>=</td>
+    <td>TOTAL HOURS</td>
+    <td>UNIT</td>
+    <td># OF PEOPLE</td>
+    <td>X</td>
+    <td># OF HRS EACH</td>
+    <td>=</td>
+    <td>TOTAL HOURS</td>
+  </tr>
+  <tr>
+    <%= unit_hours "air squad" %>
+    <td class='valueCell' colspan=6><u>PAID PERSONNEL</u></td>
+  </tr>
+  <tr>
+    <td class='valueCell'>BAMRU:</td>
+    <td class='valueCell'><%= num_participants %></td>
+    <td class='valueCell'>X</td>
+    <td class='valueCell'><%= average_hours %></td>
+    <td class='valueCell'>=</td>
+    <td class='valueCell'><%= total_hours %></td>
+    <%= unit_hours "cliff rescue" %>
+  </tr>
+  <%= multi_unit_hours %>
+  <tr>
+    <%= unit_hours "tech rescue" %>
+    <td class='labelCell'>TOTAL PEOPLE:</td>
+    <td class='valueCell' colspan=2><%= num_participants %></td>
+    <td class='labelCell' colspan=2>HOURS:</td>
+    <td class='valueCell'><%= total_hours %></td>
+  </tr>
+</table>
+
+<div style='width:700px;'>
+  <div style='padding: 20px'>
+    <div style='text-align: center; border-bottom: 1px solid black; font-weight: bold; font-style: italic;'>
+      Please explain any major events, problems, or injuries that occurred and/or comments.
+    </div>
+    <div style='padding: 10px; font-size: 12pt;'>
+      <%= @event_report.description %>
+    </div>
+  </div>
+</div>
+
+<table width='700px;'>
+  <tr>
+    <td align="center">SUBMITTED BY:</td>
+    <td style='text-align: center;'>
+      <div style='padding: 20px; border-bottom: 1px solid black;'><%= @event_report.signed_by %></div>
+      (PLEASE PRINT YOUR NAME)
+    </td>
+  </tr>
+</table>
+
+<div class='pageBreak'><div class='pageBreakLabel'> page break </div></div>
+
+<table class='topTable'>
+  <tr>
+    <td>
+      <h2 class='western'>PERSONNEL LOG</h2>
+    </td>
+    <td class='valueCell'><div class='cellLabel'>1. INCIDENT NAME</div><%= incident_name %></td>
+    <td class='valueCell'><div class='cellLabel'>2. DATE PREPARED</div><%= date_prepared %></td>
+    <td class='valueCell'><div class='cellLabel'>3. TIME PREPARED</div><%= time_prepared %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='valueCell'><div class='cellLabel'>4. UNIT NAME/DESIGNATOR</div>BAMRU</td>
+    <td class='valueCell'><div class='cellLabel'>5. UNIT LEADER & POSITION</div><%= @event_report.unit_leader %></td>
+    <td class='valueCell'><div class='cellLabel'>6. OPERATIONAL PERIOD</div><%= @event_report.period.position %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr class='headerRow'>
+    <td></td>
+    <td>NAME (PRINT)</td>
+    <td>ORGANIZATION</td>
+    <td>DATE/TIME IN</td>
+    <td>DATE/TIME OUT</td>
+    <td>ASSIGNMENT</td>
+  </tr>
+  <%= participant_rows %>
+</table>
+
 </BODY>
 </HTML>

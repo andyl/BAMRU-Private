@@ -2,7 +2,8 @@ source "http://rubygems.org"
 
 ruby "1.9.3"
 
-gem "rails",          "3.1.3"
+gem "rails",          "3.2.9"
+# gem "rails",          "3.1.3"
 
 gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
 
@@ -72,6 +73,7 @@ gem "json"
 gem "sass"
 gem "coffee-script"
 gem "uglifier"
+gem 'libv8', '~> 3.11.8'
 gem "therubyracer", :require => "v8"
 gem "whenever",     :require => false
 gem "eco"
