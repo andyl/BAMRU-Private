@@ -1,6 +1,6 @@
 class BB.Models.EventReport extends Backbone.Model
 
-  setData: (field, value) ->
+  setData: (field, value, opts = {}) ->
     dataObj = @get('data')
     dataObj[field] = value
-    @set({data: dataObj})
+    @set({data: dataObj}, opts)

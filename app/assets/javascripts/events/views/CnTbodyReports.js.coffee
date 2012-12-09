@@ -16,35 +16,34 @@ class BB.Views.CnTbodyReports extends Backbone.Marionette.ItemView
 
   events:
     'click .editReportSMSO'   : "editSMSO"
-    'click .formCancel'       : "editCancel"
+    'click .formCancel'       : "editReset"
     'click #smsoUpdate'       : "updateSMSO"
 
   # ----- methods -----
 
-  editCancel: (event) ->
+  editReset: (event) ->
     event?.preventDefault()
     @$el.find('.editForm').hide()
-    @$el.find('#report-table').show()
+    @$el.find('#report-table, #report-header').show()
 
   editSMSO: (event) ->
     event?.preventDefault()
-    report_id = $(event.target).data('id')
-    report = @model.eventReports.get(report_id)
+    reportId = $(event.target).data('id')
+    report = @model.eventReports.get(reportId)
+    @$el.find('#reportFormSmsoAar').data('reportId', reportId)
     @$el.find('#smsoSignedBy').val(report.get('data').signed_by)
     @$el.find('#smsoUnitLead').val(report.get('data').unit_leader)
     @$el.find('#smsoDescript').val(report.get('data').description)
     @$el.find('#reportFormSmsoAar').show()
-    @$el.find('#report-table').hide()
+    @$el.find('#report-table, #report-header').hide()
 
   updateSMSO: (event) ->
     event?.preventDefault()
-    params = Backbone.Syphon.serialize(this)
-    if params.finish != ""
-      if params.start > params.finish
-        [params.start, params.finish] = [params.finish, params.start]
-    params.title    = "TBA" if _.string.isBlank(params.title)
-    params.location = "TBA" if _.string.isBlank(params.location)
-    params.leaders  = "TBA" if _.string.isBlank(params.leaders)
-    @model.set params
-    @model.save()
-    BB.vent.trigger("click:CnTabsOverviewShow")
+    reportId = @$el.find('#reportFormSmsoAar').data('reportId')
+    report   = @model.eventReports.get(reportId)
+    params = {}
+    report.setData('unit_leader', @$el.find('#smsoUnitLead').val(), {silent: true})
+    report.setData('signed_by',   @$el.find('#smsoSignedBy').val(), {silent: true})
+    report.setData('description', @$el.find('#smsoDescript').val())
+    report.save()
+    @editReset()
