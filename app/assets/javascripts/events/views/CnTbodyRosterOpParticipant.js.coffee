@@ -65,8 +65,8 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
     frmFinish = @$el.find(finishTagId).val()
     mdlFinish = @model.get("#{finishTag}")
     return if mdlStart == frmStart && mdlFinish == frmFinish
-    retStart  = if frmStart <= frmFinish then frmFinish else frmStart
-    retFinish = if frmStart <= frmFinish then frmStart  else frmFinish
+    retStart  = if frmStart >= frmFinish then frmFinish else frmStart
+    retFinish = if frmStart >= frmFinish then frmStart  else frmFinish
     opts = {}
     opts["#{startTag}"]  = retStart
     opts["#{finishTag}"] = retFinish

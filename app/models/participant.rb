@@ -18,7 +18,14 @@ class Participant < ActiveRecord::Base
         signed_out_at:  self.signed_out_at.try(:strftime, "%Y-%m-%d %H:%M"),
         updated_at:     self.updated_at.try(:strftime, "%Y-%m-%d %H:%M"),
     }
-  end  
+  end
+
+  # ----- Instance Methods -----
+
+  def sign_in_minutes
+    return "TBD" unless self.signed_in_at && self.signed_out_at
+    ((self.signed_out_at - self.signed_in_at) / 60).round
+  end
   
 end
 

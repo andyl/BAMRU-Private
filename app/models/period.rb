@@ -27,7 +27,8 @@ class Period < ActiveRecord::Base
   def create_smso_aar_event_report
     return if %w(meeting social).include? self.event.typ
     if self.event_reports.smso_aars.all.empty?
-      opts = {typ: "smso_aar", event_id: self.event.id}
+
+      opts = {typ: "smso_aar", event_id: self.event.id, title: "Period #{self.position} AAR"}
       self.event_reports << EventReport.create(opts)
     end
   end

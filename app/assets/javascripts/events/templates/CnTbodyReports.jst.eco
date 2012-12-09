@@ -1,9 +1,34 @@
-<div style='background: #f4f4f4; margin-top: 10px; padding: 10px;'>
-  Reports: Under Construction<p></p>
-  <ul>
-  <li>After-Action Report<br/>
-    <i>OL text plus time summaries - print, download or send to mailing list</i></li>
-  <li>Blog Post<br/><i>Blog text plus photos and links - publish to public blog</i></li>
-  <li>SMSO Time Reports<br/><i>Event summary plus time-tracking data - print or download</i></li>
-  </ul>
+<div id='report-header'>
+  <table width=100%>
+    <tr>
+      <td><b>Reports</b></td>
+      <td align="right"><a href="#" id='addNewReport'>Add New Report</a></td>
+    </tr>
+  </table>
+</div>
+
+<div id='reportForm' style='display: none;'>
+  <form>
+    <input id="urlField" type=text name='site_url' size=40 placeholder='new url' tabindex="10" >
+    <input id="cancelReportButton" type="button" value="Cancel" tabindex="14" /><br/>
+    <input id="capField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
+    <input id="createReportButton" type="button" value="Create Report" tabindex="13" />
+    <input id="updateReportButton" type="button" value="Update Report" tabindex="13" /><br/>
+  </form>
+</div>
+
+<div id='report-table'>
+  <table class='mediaTable tablesorter' width=100%>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Title</th>
+        <th>Updated</th>
+        <th align="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @genReportsRows() %>
+    </tbody>
+  </table>
 </div>
