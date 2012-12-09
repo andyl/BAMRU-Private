@@ -29,6 +29,9 @@ class Period < ActiveRecord::Base
     if self.event_reports.smso_aars.all.empty?
 
       opts = {typ: "smso_aar", event_id: self.event.id, title: "Period #{self.position} AAR"}
+      opts[:unit_leader] = "John Chang"
+      opts[:signed_by]   = "Will Gillmore"
+      opts[:description] = self.event.description
       self.event_reports << EventReport.create(opts)
     end
   end

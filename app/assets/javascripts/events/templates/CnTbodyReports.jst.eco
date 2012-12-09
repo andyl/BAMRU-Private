@@ -2,18 +2,18 @@
   <table width=100%>
     <tr>
       <td><b>Reports</b></td>
-      <td align="right"><a href="#" id='addNewReport'>Add New Report</a></td>
+      <td align="right"><a style='display: none;' href="#" id='addNewReport'>Add New Report</a></td>
     </tr>
   </table>
 </div>
 
-<div id='reportForm' style='display: none;'>
+<div id='reportFormSmsoAar' class='editForm' style='display: none;'>
   <form>
-    <input id="urlField" type=text name='site_url' size=40 placeholder='new url' tabindex="10" >
-    <input id="cancelReportButton" type="button" value="Cancel" tabindex="14" /><br/>
-    <input id="capField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
-    <input id="createReportButton" type="button" value="Create Report" tabindex="13" />
-    <input id="updateReportButton" type="button" value="Update Report" tabindex="13" /><br/>
+    <input id="smsoSignedBy" type=text size=40 >
+    <input id="smsoUnitLead" type=text size=40 >
+    <input id="smsoDescript" type=text_area >
+    <input id="smsoCancel"   class='formCancel' type="button" value="Cancel" /><br/>
+    <input id="smsoUpdate"   type="button" value="Update" /><br/>
   </form>
 </div>
 

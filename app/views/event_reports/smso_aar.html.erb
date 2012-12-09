@@ -152,11 +152,7 @@
       Please explain any major events, problems, or injuries that occurred and/or comments.
     </div>
     <div style='padding: 10px; font-size: 12pt;'>
-      In September, BAMRU held a unit training focused on skills related to
-      extended search.  Team members reviewed ICS procedures and ran
-      scenarios Saturday and Sunday morning.  There was also a review of
-      interviewing technique.  There are two periods in this training Saturday and Sunday.  Saturday
-      focused on Search Management.
+      <%= @event_report.description %>
     </div>
   </div>
 </div>
@@ -165,7 +161,7 @@
   <tr>
     <td align="center">SUBMITTED BY:</td>
     <td style='text-align: center;'>
-      <div style='padding: 20px; border-bottom: 1px solid black;'>William Gilmore</div>
+      <div style='padding: 20px; border-bottom: 1px solid black;'><%= @event_report.signed_by %></div>
       (PLEASE PRINT YOUR NAME)
     </td>
   </tr>
@@ -187,7 +183,7 @@
 <table class='stdTable'>
   <tr>
     <td class='valueCell'><div class='cellLabel'>4. UNIT NAME/DESIGNATOR</div>BAMRU</td>
-    <td class='valueCell'><div class='cellLabel'>5. UNIT LEADER & POSITION</div>ASDF</td>
+    <td class='valueCell'><div class='cellLabel'>5. UNIT LEADER & POSITION</div><%= @event_report.unit_leader %></td>
     <td class='valueCell'><div class='cellLabel'>6. OPERATIONAL PERIOD</div><%= @event_report.period.position %></td>
   </tr>
 </table>

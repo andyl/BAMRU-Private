@@ -1,5 +1,13 @@
 class EventReport < ActiveRecord::Base
 
+  # ----- Attributes -----
+
+  store :data, accessors: [:unit_leader, :signed_by, :description]
+
+  attr_accessible :data, :typ, :member_id, :event_id, :period_id
+  attr_accessible :position, :published, :title
+  attr_accessible :unit_leader, :signed_by, :description
+
   # ----- Associations -----
   belongs_to   :event
   belongs_to   :period

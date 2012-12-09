@@ -88,7 +88,7 @@ module EventReportsHelper
     event = @event_report.event
     fdate = event.finish
     start = event.start.strftime("%B %d, %Y").upcase
-    finish = fdate ? fdate.strftime(" TO %B %d, %Y").update : ""
+    finish = fdate ? fdate.strftime(" TO %B %d, %Y").upcase : ""
     start + finish
   end
 
