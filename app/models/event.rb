@@ -24,7 +24,6 @@ class Event < ActiveRecord::Base
     }
   end
 
-
   # ----- Associations -----
 
   belongs_to :leader,        :class_name => 'Member'
@@ -35,15 +34,6 @@ class Event < ActiveRecord::Base
   has_many   :data_files,    :dependent => :destroy
 
   # ----- Callbacks -----
-
-  #before_validation :check_for_identical_start_finish
-  #before_validation :convert_tbd_to_tba
-  #before_validation :save_signature_into_digest_field
-  #before_validation :cleanup_lat_lon_fields
-  #before_save       :remove_quotes
-  #before_save       :truncate_coordinates
-  #after_destroy     :set_first_in_year_after_delete
-  #after_save        :set_first_in_year_after_save
 
   # ----- Validations -----
   validates_presence_of :typ, :title, :start
@@ -84,6 +74,11 @@ class Event < ActiveRecord::Base
   def self.between(start, finish) after(start).before(finish);       end
   def self.in_year(date)
     between(date.at_beginning_of_year, date.at_end_of_year)
+  end
+  def self.on_day(date)
+    start    = self.date_parse(date)
+    finish   = start + 1.day
+    between(start, finish)
   end
   
   # ----- Class Methods - Generic Date Methods -----
