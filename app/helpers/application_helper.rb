@@ -219,7 +219,7 @@ def parent_repage_link(message)
   end
 
   def avail_dos_link_current_quarter(hash)
-    link_to "Current Quarter", member_avail_dos_path(hash[:member_id])
+    link_to "Current Quarter", member_avail_dos_path(@current_member)
   end
 
   def edit_link_prev(hash)

@@ -1,4 +1,4 @@
-<script>var autoselectMemberNames = [ <%= Member.autoselect_member_names('/avail_dos') %> ];</script>
+<script>var autoselectMemberNames = [ <%= raw Member.autoselect_member_names('/avail_dos') %> ];</script>
 
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"  %>
 <%= javascript_tag "var MEMBER_ID = #{@member.id};" %>
@@ -13,7 +13,7 @@
       <table width=100%>
         <tr>
           <td width=40% align=left>
-            Member DO Availability: <b><%= link_to(@member.full_name, member_path(@member)) %></b>
+            Member DO Availability: <b><%# link_to(@member.full_name, member_path(@member)) %></b>
           </td>
           <% if current_member.admin? %>
             <td width=20% align=center>
@@ -74,11 +74,12 @@
         <p/>
         <table width=100%>
           <tr>
-            <td width=50%>Shortcut:
+            <td width=50%>
+              Shortcut:
               <select id=quickset>
-              <option value="*"></option>
-              <option value="available">Set all to Available</option>
-              <option value="unavailable">Set all to Unavailable</option>
+                <option value="*"></option>
+                <option value="available">Set all to Available</option>
+                <option value="unavailable">Set all to Unavailable</option>
               </select>
             </td>
             <td width=50%><%= mem.submit "Save" %></td>

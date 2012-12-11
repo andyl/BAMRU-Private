@@ -24,9 +24,7 @@ class QcMail
   end
 
   def self.render_mail(outbound_mail)
-    yaml_file = "/tmp/render_msg/#{outbound_mail.id}_#{outbound_mail.label}"
-    system "mkdir -p #{File.dirname(yaml_file)}"
-    return yaml_file if File.exists?(yaml_file)
+    Time.zone = "Pacific Time (US & Canada)"
     mailing    = nil
     message    = outbound_mail.distribution.message
     address    = outbound_mail.email_address
@@ -36,26 +34,13 @@ class QcMail
     opts       = Notifier.set_optz(message, address, full_label, dist)
     mailing    = render_email_message(opts, format) if outbound_mail.email
     mailing    = render_phone_message(opts, format) if outbound_mail.phone
-    unless mailing.nil?
-      File.open(yaml_file, 'w') {|f| f.puts mailing.to_yaml}
-    end
-    yaml_file
-  end
-
-  def self.send_mail(yaml_file)
-    require 'yaml'
-    Time.zone = "Pacific Time (US & Canada)"
-    mail_attributes = YAML.load_file(yaml_file)
-    mail = ActionMailer::Base.mail(mail_attributes)
-    mail.subject = mail_attributes["Subject"]
-    outbound_mail_id = yaml_file.split('/').last.split('_').first
-    puts "sending message #{outbound_mail_id} (#{mail.to.first})"
+    puts "sending message #{outbound_mail.id} (#{mailing.to.first})"
     smtp_settings = [:smtp, SMTP_SETTINGS]
-    mail.delivery_method(*smtp_settings) unless Rails.env.development?
+    mailing.delivery_method(*smtp_settings) unless Rails.env.development?
     case Rails.env
-      when "development" then mail.deliver
-      when "staging"     then mail.deliver if valid_staging_address?(mail.to)
-      when "production"  then mail.deliver
+      when "development" then mailing.deliver
+      when "staging"     then mailing.deliver if valid_staging_address?(mail.to)
+      when "production"  then mailing.deliver
     end
   end
 
@@ -64,8 +49,7 @@ class QcMail
     ActiveSupport::Notifications.instrument("page.send", {:text => "start #{Time.now.strftime("%H:%M:%S")}"})
     count = pending_count
     OutboundMail.pending.each do |outbound_mail|
-      yaml_file = render_mail(outbound_mail)
-      send_mail(yaml_file)
+      render_mail(outbound_mail)
       outbound_mail.update_attributes(:sent_at => Time.now)
       label = "#{outbound_mail.address}-#{outbound_mail.label}"
       ActiveSupport::Notifications.instrument("page.send", {:text => label})

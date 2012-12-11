@@ -56,8 +56,6 @@ Zn::Application.routes.draw do
   resources  :event_reports
   resources  :data_files
 
-
-
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
   get  '/do_planner'     => "do_planner#index"
