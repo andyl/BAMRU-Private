@@ -64,7 +64,6 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
-      # drop this
       create_table :event_reports do |t|
         t.string    :typ
         t.integer   :member_id
@@ -77,7 +76,7 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
-      add_column :data_files, :position,  :integer   # drop this
+      add_column :data_files, :position,  :integer 
       add_column :data_files, :event_id,  :integer
       add_column :data_files, :caption,   :string
       add_column :data_files, :published, :boolean, :default => false
@@ -87,7 +86,7 @@ class AddEventSupport < ActiveRecord::Migration
         t.string  :ip
         t.string  :browser_type
         t.string  :browser_version
-        t.string  :user_agent
+        t.text    :user_agent
         t.string  :ostype
         t.boolean :javascript
         t.boolean :cookies
