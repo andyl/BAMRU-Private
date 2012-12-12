@@ -1,7 +1,7 @@
 BB.Helpers.SidebarRowHelpers =
 
   eventLink: ->
-    shortTitle = _.string.truncate(@title, 13)
+    shortTitle = _.string.truncate(@title, 12)
     return shortTitle if @isActive
     linkTitle  = => "<a href='/events/#{@id}'>#{shortTitle}</a>"
     if @id then linkTitle() else shortTitle
@@ -12,7 +12,7 @@ BB.Helpers.SidebarRowHelpers =
 
   bId        : -> if @id then @id else "NA"
 
-  bLocation  : -> _.string.truncate(@location, 13)
+  bLocation  : -> _.string.truncate(@location, 12)
 
   bTyp       : -> @typ[0].toUpperCase()
 

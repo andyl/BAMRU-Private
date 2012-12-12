@@ -12,7 +12,10 @@ class BB.Views.CnTbodyReports extends Backbone.Marionette.ItemView
 
   initialize: (options) ->
     @model = options.model          # Event
-    @model.eventReports.fetch()
+    @collection = @model.eventReports
+    if @collection.length == 0
+      @collection.fetch
+        success: => @render()
 
   events:
     'click .editReportSMSO'   : "editSMSO"
