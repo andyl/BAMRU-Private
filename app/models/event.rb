@@ -132,7 +132,7 @@ class Event < ActiveRecord::Base
   end
 
   def csv_finish
-    finish.strftime("%Y-%m-%d")
+    finish.nil? ? "" : finish.strftime("%Y-%m-%d")
   end
 
   # ----- Local Methods - iCal Date Methods -----

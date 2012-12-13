@@ -17,8 +17,8 @@ class PublicController < ApplicationController
 
   def generate_csv(events, options = {})
     require 'csv'
-    labels = %w(kind title description leaders start     finish     location lat lon)
-    fields = %w(typ  title description leaders csv_start csv_finish location lat lon)
+    labels = %w(kind title leaders start     finish     location lat lon description)
+    fields = %w(typ  title leaders csv_start csv_finish location lat lon description)
     CSV.generate(options) do |csv|
       csv << labels
       events.each do |event|
