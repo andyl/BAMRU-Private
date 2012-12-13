@@ -75,6 +75,14 @@ class EventRows
   def load(default_opts = {})
     puts "Creating #{unmatched.length} unmatched events."
     unmatched.each { |row| EventRow.new(row).create(default_opts) }
+    puts "Merging #{matched.length} matched events."
+    matched.each do |row|
+      current = EventRow.new(row).fetch
+      latlon = row["lat"].blank? ? {} : {lat: row["lat"], lon: row["lon"]}
+      newdes = current.description + " >> " + row["description"]
+      opts = {description: newdes}.merge latlon
+      current.update_attributes opts
+    end
     self
   end
 

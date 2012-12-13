@@ -19,6 +19,7 @@ class AddEventSupport < ActiveRecord::Migration
       create_table :periods do |t|
         t.integer   :event_id
         t.integer   :position
+        t.string    :location
         t.datetime  :start
         t.datetime  :finish
         t.integer   :rsvp_id
@@ -76,7 +77,7 @@ class AddEventSupport < ActiveRecord::Migration
         t.timestamps
       end
 
-      add_column :data_files, :position,  :integer 
+      add_column :data_files, :position,  :integer
       add_column :data_files, :event_id,  :integer
       add_column :data_files, :caption,   :string
       add_column :data_files, :published, :boolean, :default => false
