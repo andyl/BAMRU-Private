@@ -8,9 +8,10 @@ BB.Helpers.CnSharedFormHelpers =
         <option #{selected('operation')} value='operation'>Operation</options>
         <option #{selected('training')}  value='training'>Training</options>
         <option #{selected('community')} value='community'>Community</options>
-        <option #{selected('social')}    value='social'>Social</options>
       </select>
     """
+
+  #<option #{selected('social')}    value='social'>Social</options>
 
   fAllDay: ->
     checked = if @all_day then 'checked' else ''

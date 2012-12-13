@@ -49,9 +49,9 @@ BB.Helpers.SidebarControlHelpers =
     "community":
       heading: "<b>C</b>ommunity"
       comment: "Support for SMSO/MRA/etc."
-    "social":
-      heading: "<b>S</b>ocial"
-      comment: "Non-official, just for fun"
+#    "social":
+#      heading: "<b>S</b>ocial"
+#      comment: "Non-official, just for fun"
 
   checkedVal: (name) ->
     if eval("this.#{name}") then " checked" else ""
