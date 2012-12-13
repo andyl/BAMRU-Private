@@ -1,9 +1,13 @@
+require 'csv'
+
 class Event < ActiveRecord::Base
 
   # ----- Attributes -----
 
   attr_accessible :title, :typ, :start, :finish, :location, :lat, :lon, :leaders
   attr_accessible :all_day, :published, :description
+
+  attr_accessor :dt_stamp
 
   # ----- API -----
 
@@ -62,6 +66,8 @@ class Event < ActiveRecord::Base
   end
 
   # ----- Scopes -----
+  scope :published,     where(published: true).order('start')
+  scope :unpublished,   where(published: false).order('start')
   scope :operations,    where(typ: "operation").order('start')
   scope :trainings,     where(typ: "training").order('start')
   scope :meetings,      where(typ: "meeting").order('start')
@@ -80,7 +86,10 @@ class Event < ActiveRecord::Base
     finish   = start + 1.day
     between(start, finish)
   end
-  
+
+  # ----- Class Methods - Output Formatting -----
+
+
   # ----- Class Methods - Generic Date Methods -----
 
   # Parse a date.  The date can either be a string in the format 'Jan-2001', or
@@ -115,6 +124,15 @@ class Event < ActiveRecord::Base
     xa = ((scope.first_year + 10.days).to_date .. (scope.last_year + 1.year).to_date).step(365).to_a.map{|x| x.to_time}
     xa << Event.date_parse(extra_date) unless extra_date.nil?
     xa.sort.map {|x| x.to_label }.uniq
+  end
+
+  # ----- Local Methods - CSV formatting Methods -----
+  def csv_start
+    start.strftime("%Y-%m-%d")
+  end
+
+  def csv_finish
+    finish.strftime("%Y-%m-%d")
   end
 
   # ----- Local Methods - iCal Date Methods -----

@@ -16,6 +16,8 @@ Zn::Application.routes.draw do
   get "home/browserstats"
   get "home/event_publishing"
 
+  get "public/calendar"
+
   get "preview/sms"
   get "preview/mail_txt"
   get "preview/mail_htm"
