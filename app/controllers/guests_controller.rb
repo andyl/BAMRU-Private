@@ -1,5 +1,7 @@
 class GuestsController < ApplicationController
 
+  before_filter :authenticate_member!
+
   def index
     @guests = if cookies['gx_show'] == 'true'
                 Member.all_guests include: [:photos]

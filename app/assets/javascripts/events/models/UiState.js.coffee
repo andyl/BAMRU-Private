@@ -21,7 +21,7 @@ class BB.Models.UiState extends Backbone.Model
       training   : true
       operation  : true
       community  : true
-      social     : true
+      #social     : true
     @clear silent: true
     @set opts
 

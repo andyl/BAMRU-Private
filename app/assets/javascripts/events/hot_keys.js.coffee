@@ -167,10 +167,10 @@ hotKeys.keySets["SidebarControl"] = new BB.HotKeys.KeySet
       keys: 'shift+c'
       func: -> BB.vent.trigger("cmd:ExclusiveCheckbox", "community")
       disableOnForms: true
-    "show only Social":
-      keys: 'shift+s'
-      func: -> BB.vent.trigger("cmd:ExclusiveCheckbox", "social")
-      disableOnForms: true
+#    "show only Social":
+#      keys: 'shift+s'
+#      func: -> BB.vent.trigger("cmd:ExclusiveCheckbox", "social")
+#      disableOnForms: true
     "toggle Meetings":
       keys: 'm'
       func: -> BB.vent.trigger("cmd:ToggleCheckbox", "meeting")
@@ -187,10 +187,10 @@ hotKeys.keySets["SidebarControl"] = new BB.HotKeys.KeySet
       keys: 'c'
       func: -> BB.vent.trigger("cmd:ToggleCheckbox", "community")
       disableOnForms: true
-    "toggle Social":
-      keys: 's'
-      func: -> BB.vent.trigger("cmd:ToggleCheckbox", "social")
-      disableOnForms: true
+#    "toggle Social":
+#      keys: 's'
+#      func: -> BB.vent.trigger("cmd:ToggleCheckbox", "social")
+#      disableOnForms: true
     'show all event types':
       keys: 'shift+a'
       func: -> BB.vent.trigger "cmd:SidebarControlCheckAll"
@@ -257,8 +257,8 @@ hotKeys.keySets["CnTbodyRosterOp"] = new BB.HotKeys.KeySet
     'minimize other periods':
       keys: "alt+o"
       func: -> BB.vent.trigger "cmd:MinOtherPeriods"
-    'change time fields':
-      keys: "alt+t"
+    'change in/out time fields':
+      keys: "alt+i"
       func: -> BB.vent.trigger "cmd:TogglePeriodTimes"
     'create new period':
       keys: "alt+n"

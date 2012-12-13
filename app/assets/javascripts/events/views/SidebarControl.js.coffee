@@ -82,7 +82,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
       training:   $('#training-id').is(':checked')
       operation:  $('#operation-id').is(':checked')
       community:  $('#community-id').is(':checked')
-      social:     $('#social-id').is(':checked')
+      #social:     $('#social-id').is(':checked')
     oldFilter = @model.toJSON()
     mergeFilter = _.extend(oldFilter, newFilter)
     @model.validSet mergeFilter
@@ -93,7 +93,8 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     eraseCookie("event_sort")
     $('#myTable').trigger('sorton', [[]])
 
-  allTypes: ["meeting", "training", "operation", "community", "social"]
+#  allTypes: ["meeting", "training", "operation", "community", "social"]
+  allTypes: ["meeting", "training", "operation", "community"]
   setAll: (val) -> reduceObj @allTypes, (acc, key) -> acc[key] = val; acc
   checkAll: (ev) ->
     ev?.preventDefault()
