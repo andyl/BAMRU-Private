@@ -257,8 +257,8 @@ hotKeys.keySets["CnTbodyRosterOp"] = new BB.HotKeys.KeySet
     'minimize other periods':
       keys: "alt+o"
       func: -> BB.vent.trigger "cmd:MinOtherPeriods"
-    'change time fields':
-      keys: "alt+t"
+    'change in/out time fields':
+      keys: "alt+i"
       func: -> BB.vent.trigger "cmd:TogglePeriodTimes"
     'create new period':
       keys: "alt+n"

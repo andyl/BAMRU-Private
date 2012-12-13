@@ -13,7 +13,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
   initialize: (options) ->
     @router = BB.Routers.app
     @page   = options.page
-    @model  = BB.Collections.events.get(options.modelId)
+    @model  = BB.Collections.events.get(options.modelId)           # Event
     @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
     @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
     @bindTo(BB.vent, 'click:tMenu',              @genNewPage,      this)
@@ -42,17 +42,17 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
 
   genOverviewShow: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu("overview"))
+    @tmenu.show(new BB.Views.CnTabsMenu("overview", @model))
     @tbody.show(new BB.Views.CnTbodyOverviewShow({model: @model}))
 
   genOverviewEdit: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/edit") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu("overview"))
+    @tmenu.show(new BB.Views.CnTabsMenu("overview", @model))
     @tbody.show(new BB.Views.CnTbodyOverviewEdit({model: @model}))
 
   genRoster: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/roster") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu(@page))
+    @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
     # create a period if it doesn't exist
     view = switch @model.get('typ')
       when 'meeting',  'social'    then BB.Views.CnTbodyRosterMt
@@ -62,15 +62,15 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
 
   genForum: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/forum") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu(@page))
+    @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
     @tbody.show(new BB.Views.CnTbodyForum({model: @model}))
 
   genResources: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/resources") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu(@page))
+    @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
     @tbody.show(new BB.Views.CnTbodyResources({model: @model}))
 
   genReports: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/reports") unless navOption == "noNav"
-    @tmenu.show(new BB.Views.CnTabsMenu(@page))
+    @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
     @tbody.show(new BB.Views.CnTbodyReports({model: @model}))

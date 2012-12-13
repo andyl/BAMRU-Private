@@ -1,7 +1,7 @@
 <div id='report-header'>
   <table width=100%>
     <tr>
-      <td><b>Reports</b></td>
+      <td><b>Event Reports</b></td>
       <td align="right"><a style='display: none;' href="#" id='addNewReport'>Add New Report</a></td>
     </tr>
   </table>
