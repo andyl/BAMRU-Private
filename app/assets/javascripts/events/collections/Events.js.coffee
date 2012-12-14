@@ -27,6 +27,9 @@ class BB.Collections.Events extends Backbone.Collection
   yearFilter: (year) ->
     @select (e) -> e.get('start').split('-')[0] == year
 
+  getPublished:   -> @select (m) -> m.get('published')
+  getUnpublished: -> @select (m) -> ! m.get('published')
+
   getMeetings:   => @getTyp('meeting')
   getTrainings:  => @getTyp('training')
   getOperations: => @getTyp('operation')

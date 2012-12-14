@@ -8,26 +8,45 @@
   .eventTable td {
     font-size: 8pt;
   }
+
+  .sepDiv {
+    height: 6px;
+  }
+
+  .hdrDiv {
+    font-size:     16px;
+    font-weight:   bold;
+    margin-bottom: 5px;
+  }
 </style>
 
-<h3>BAMRU Events</h3>
+<div class='hdrDiv'>BAMRU Events</div>
 
 <% @reGenEventList() %>
 
 <b><%= @currentEventsTitle() %></b><br/>
 <%- @eventsTable(@currentEvents()) %>
-<p></p>
+<div class='sepDiv'></div>
 <b><%= @upcomingEventsTitle() %></b><br/>
 <%- @eventsTable(@upcomingEvents()) %>
-<p></p>
+<div class='sepDiv'></div>
 <b><%= @recentEventsTitle() %></b><br/>
 <%- @eventsTable(@recentEvents()) %>
-<p></p>
+<div class='sepDiv'></div>
 There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firstEventDate() %> to <%= @lastEventDate() %>.<br/>
 <span style='font-size: 8pt;'>
   (<%= @numMeetings() %> Meetings, <%= @numTrainings() %> Trainings, <%= @numOperations() %> Operations, <%= @numCommunity() %> Community Events)
-<p></p>
-Current date is <b><%= @currentTime() %></b>
 </span>
-
-
+<div class='sepDiv'></div>
+<b><%- @numPublished() %></b> published(<b>+</b>) events, and <b><%- @numUnpublished() %></b> unpublished(<b>~</b>) events.<br/>
+<span style='font-size: 8pt;'>
+view published events on
+  <a href='#' target="_blank">Gmail</a>,
+  <a href='http://bamru.org/calendar2' target="_blank">Calendar Page</a>,
+  <a href="http://bamru.org/operations2" target="_blank">Operations Page</a>,
+  <a href="/public/calendar.csv" target="_blank">Raw CSV</a>
+<br/>
+<a href='/home/event_publishing' target="_blank">learn more about event publishing</a>
+</span>
+<div class='sepDiv'></div>
+Current date is <b><%= @currentTime() %></b>

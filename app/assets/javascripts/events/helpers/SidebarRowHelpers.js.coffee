@@ -14,7 +14,10 @@ BB.Helpers.SidebarRowHelpers =
 
   bLocation  : -> _.string.truncate(@location, 12)
 
-  bTyp       : -> @typ[0].toUpperCase()
+  bTyp       : ->
+    prefix = if @published then "+" else "~"
+    char   = @typ[0].toUpperCase()
+    "#{prefix} #{char}"
 
   activeClass: ->
     return " class='pubSubdEvent'" if @pubSub?

@@ -11,11 +11,13 @@ BB.Helpers.CnIndxHelpers =
     events = BB.Collections.events
     return events.length if type == "all"
     
-  numMeetings:   -> BB.Collections.events.getMeetings().length
-  numTrainings:  -> BB.Collections.events.getTrainings().length
-  numOperations: -> BB.Collections.events.getOperations().length
-  numCommunity:  -> BB.Collections.events.getCommunity().length
-  numSocial:     -> BB.Collections.events.getSocial().length
+  numMeetings:    -> BB.Collections.events.getMeetings().length
+  numTrainings:   -> BB.Collections.events.getTrainings().length
+  numOperations:  -> BB.Collections.events.getOperations().length
+  numCommunity:   -> BB.Collections.events.getCommunity().length
+  numSocial:      -> BB.Collections.events.getSocial().length
+  numPublished:   -> BB.Collections.events.getPublished().length
+  numUnpublished: -> BB.Collections.events.getUnpublished().length
 
   # ----- event selectors -----
 
