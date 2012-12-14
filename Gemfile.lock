@@ -171,6 +171,9 @@ GEM
     ffi (1.2.0)
     foreman (0.60.2)
       thor (>= 0.13.6)
+    gcal4ruby (0.5.5)
+      gdata4ruby (>= 0.1.5)
+    gdata4ruby (0.1.5)
     ghost (0.3.0)
     guard (1.5.4)
       listen (>= 0.4.2)
@@ -451,6 +454,7 @@ DEPENDENCIES
   fastercsv
   faye (= 0.6.4)
   foreman
+  gcal4ruby
   ghost
   guard
   guard-coffeescript

@@ -14,21 +14,24 @@ class Eapi::EventsController < ApplicationController
   
   def create
     new_event = Event.create(params[:event])
-    QC.enqueue('QcCalendar.csv_resync')
     broadcast("add", new_event)
+    QC.enqueue('QcCalendar.csv_resync')
+    QC.enqueue('QcGcal.create_event_id', new_event.id)
     render :json => new_event
   end
   
   def update
     updated_event = Event.update(params[:id], params[:event])
-    QC.enqueue('QcCalendar.csv_resync')
     broadcast("update", updated_event)
+    QC.enqueue('QcCalendar.csv_resync')
+    QC.enqueue('QcGcal.update_event_id', updated_event.id)
     respond_with updated_event
   end
   
   def destroy
     broadcast('destroy')
     QC.enqueue('QcCalendar.csv_resync')
+    QC.enqueue('QcGcal.delete_event', params[:id])
     respond_with Event.destroy(params[:id])
   end
 

@@ -87,6 +87,8 @@
     <orderEntry type="library" scope="PROVIDED" name="faye (v0.6.4, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.2.0, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="foreman (v0.60.2, ruby-1.9.3-p194) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gcal4ruby (v0.5.5, ruby-1.9.3-p194) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gdata4ruby (v0.1.5, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ghost (v0.3.0, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard (v1.5.4, ruby-1.9.3-p194) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-coffeescript (v1.2.1, ruby-1.9.3-p194) [gem]" level="application" />
