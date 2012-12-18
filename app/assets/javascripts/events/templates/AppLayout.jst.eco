@@ -2,7 +2,7 @@
   <div id='sidebar-control'>
   </div>
   <div id='sidebar-list'>
-    <table class='tablesorter' id="myTable" style='display: none;'>
+    <table class='tablesorter' id="myTable" style='display: none; margin-bottom: 4px;'>
       <thead>
       <tr>
         <th width=40>Type</th>
@@ -14,6 +14,11 @@
       <tbody id='sidebar-tbody'>
       </tbody>
     </table>
+    <div style='margin-top: 0; font-size: 8pt;'>
+      legend: <b>+</b> published,
+      <b>~</b> unpublished -
+      <a href="/home/event_publishing" target="_blank">learn more</a>
+    </div>
   </div>
 </div>
 

@@ -55,7 +55,6 @@ class BB.Views.CnTbodyResourcesPhotos extends Backbone.Marionette.ItemView
         photo = new BB.Models.EventPhoto(data)
         photo.urlRoot = "/eapi/events/#{@model.get('id')}/event_photos"
         @collection.add(photo)
-        window.zzz = @collection
         @render()
       error: (xhr, status, msg) ->
         console.log "ERROR", xhr, status, msg

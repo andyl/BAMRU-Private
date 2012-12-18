@@ -56,7 +56,6 @@ class BB.Views.CnTbodyResourcesFiles extends Backbone.Marionette.ItemView
         file = new BB.Models.EventFile(data)
         file.urlRoot = "/eapi/events/#{@model.get('id')}/event_files"
         @collection.add(file)
-        window.zzz = @collection
         @render()
       error: (xhr, status, msg) ->
         console.log "ERROR", xhr, status, msg

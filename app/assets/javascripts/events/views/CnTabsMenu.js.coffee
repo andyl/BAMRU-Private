@@ -13,7 +13,6 @@ class BB.Views.CnTabsMenu extends Backbone.Marionette.ItemView
     @pages = ["overview", "roster", "reports"]
 #    @pages = ["overview", "roster", "resources", "reports"] if BB.currentMember.isDeveloper()
     @pages = ["overview", "roster"] if @event.get('typ') == "meeting"
-    console.log "TTT", @
     @curPage  = page
     @numPages = @pages.length
     @model = new Backbone.Model()

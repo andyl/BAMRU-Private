@@ -170,19 +170,26 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   typ_score_options:
     id:     'typ_score'                             # the parser name
     is:     (type) -> false                         # disable standard parser
-    type:   'numeric'                               # either text or numeric
+    type:   'text'                                  # either text or numeric
     format: (type) ->                               # the sort key (typ score)
       return 0 unless type?
-      switch type.toUpperCase()[0]
-        when "M"  then -10
-        when "T"  then -20
-        when "O"  then -30
-        when "C"  then -40
-        when "S"  then -50
+      switch type.toUpperCase()
+        when "+ M"  then -10
+        when "~ M"  then -15
+        when "+ T"  then -20
+        when "~ T"  then -25
+        when "+ O"  then -30
+        when "~ O"  then -35
+        when "+ C"  then -40
+        when "~ C"  then -45
+        when "+ S"  then -50
+        when "~ S"  then -55
 
   sort_opts:
     headers:
       0: {sorter: 'typ_score'}    # sort col 0 using typ_score options
+    textExtraction:
+      0: (node) -> $(node).text()
 
   saveEventSortToCookie: (sort_spec) ->
     spec_string = JSON.stringify(sort_spec)

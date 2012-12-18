@@ -18,6 +18,7 @@ BB.Helpers.SidebarRowHelpers =
     prefix = if @published then "+" else "~"
     char   = @typ[0].toUpperCase()
     "#{prefix} #{char}"
+    "<span style='color: darkgrey'>#{prefix}</span> #{char}"
 
   activeClass: ->
     return " class='pubSubdEvent'" if @pubSub?

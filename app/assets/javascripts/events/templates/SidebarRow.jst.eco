@@ -1,4 +1,4 @@
-<td align="center"><%= @bTyp() %></td>
+<td align="center"><%- @bTyp() %></td>
 <%- @linkCell() %>
 <%- @locCell() %>
 <td><%- @bStart() %></td>
