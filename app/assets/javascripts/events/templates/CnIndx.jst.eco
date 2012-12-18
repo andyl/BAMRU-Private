@@ -41,7 +41,7 @@ There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firs
 <b><%- @numPublished() %></b> published(<b>+</b>) events, and <b><%- @numUnpublished() %></b> unpublished(<b>~</b>) events.<br/>
 <span style='font-size: 8pt;'>
 view published events on
-  <a href='#' target="_blank">Google Calendar</a>,
+  <a href='https://www.google.com/calendar/embed?src=bamru.staging%40gmail.com&ctz=America/Los_Angeles' target="_blank">Google Calendar</a>,
   BAMRU's <a href='http://bamru.org/calendar2' target="_blank">Calendar Page</a> or
   <a href="http://bamru.org/operations2" target="_blank">Operations Page</a>
 <br/>
