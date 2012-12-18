@@ -32,7 +32,7 @@
 
 <% cache('event_json_fragment') do %>
   <script id='json_event_data' type="text/json_data">
-    <%= @event_json %>
+    <%= Event.all.to_json except: [:created_at, :updated_at] %>
   </script>
 <% end %>
 
