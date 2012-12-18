@@ -15,6 +15,7 @@ Zn::Application.routes.draw do
   get "home/readstats"
   get "home/browserstats"
   get "home/event_publishing"
+  get "home/chrome_frame"
 
   get "public/calendar"
 

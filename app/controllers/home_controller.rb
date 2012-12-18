@@ -72,8 +72,9 @@ class HomeController < ApplicationController
   end
 
   def event_publishing
-
   end
 
+  def chrome_frame
+  end
 
 end

@@ -1,6 +1,29 @@
 module ApplicationHelper
 
 
+  def env_browser_agent
+    agent = request.env["HTTP_USER_AGENT"]
+    case agent
+      when /Kindle/      then "Kindle"
+      when /Android/     then "Android"
+      when /iPod/        then "iPod"
+      when /iPhone/      then "iPhone"
+      when /iPad/        then "iPad"
+      when /BlackBerry/  then "BlackBerry"
+      when /chromeframe/ then "Chromeframe"
+      when /MSIE/        then "IE"
+      when /Silk/        then "Silk"
+      when /Firefox/     then "Firefox"
+      when /Konqueror/   then "Konqueror"
+      when /Netscape/    then "Netscape"
+      when /Opera/       then "Opera"
+      when /Chrome/      then "Chrome"
+      when /Safari/      then "Safari"
+      else  "Unknown"
+    end
+  end
+
+
 
 def parent_repage_link(message)
    return "" unless message.parent

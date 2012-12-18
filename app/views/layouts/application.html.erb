@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <title><%= request.host.gsub('bamru','BAMRU')%></title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
   <%= stylesheet_link_tag :application %>
@@ -36,7 +37,14 @@
   <div id="footer">
     <table width=100% style='padding-left: 30px; padding-right: 30px;'>
       <tr>
-        <td align=center>Internal Use Only</td>
+        <td align=center>
+          Internal Use Only
+          <% if env_browser_agent == "IE" %>
+            <span style='margin-left: 100px;'>
+            <a href="/home/chrome_frame" target="_blank">Please Install ChromeFrame on your IE Browser</a>
+            </span>
+          <% end %>
+        </td>
       </tr>
     </table>
   </div>

@@ -55,6 +55,7 @@ class ApplicationController < ActionController::Base
       when /iPhone/      then "iPhone"
       when /iPad/        then "iPad"
       when /BlackBerry/  then "BlackBerry"
+      when /chromeframe/ then "Chromeframe"
       when /MSIE/        then "IE"
       when /Silk/        then "Silk"
       when /Firefox/     then "Firefox"
