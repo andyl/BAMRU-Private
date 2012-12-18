@@ -1,6 +1,5 @@
 module ApplicationHelper
 
-
   def env_browser_agent
     agent = request.env["HTTP_USER_AGENT"]
     case agent
@@ -23,28 +22,26 @@ module ApplicationHelper
     end
   end
 
+  def parent_repage_link(message)
+    return "" unless message.parent
+    label = "repage of ##{message.parent.id}"
+    " [#{link_to(label, message.parent)}]"
+  end
 
-
-def parent_repage_link(message)
-   return "" unless message.parent
-   label = "repage of ##{message.parent.id}"
-   " [#{link_to(label, message.parent)}]"
- end
-
-   def child_repage_link(message)
-     return "" if message.children.blank?
-     child_links = message.children.map do |msg|
-       link_to("##{msg.id}", msg)
-     end.join(", ")
-     <<-EOF
+  def child_repage_link(message)
+    return "" if message.children.blank?
+    child_links = message.children.map do |msg|
+      link_to("##{msg.id}", msg)
+    end.join(", ")
+    <<-EOF
          <tr>
            <td align=right><b>Follow-on Repages:</b></td>
            <td>
              #{child_links}
            </td>
          </tr>
-     EOF
-   end
+    EOF
+  end
 
   def rsvp_display_answer(dist, txt_case = :downcase)
     return "NA" unless dist.message.rsvp
@@ -278,7 +275,7 @@ def parent_repage_link(message)
     comment = label.comment.blank? ? "" : "*"
     ftext + comment
   end
-  
+
   def cellid(opts)
     "#{opts[:year]}-#{opts[:quarter]}-#{opts[:week]}-#{opts[:member].id}"
   end
@@ -311,7 +308,7 @@ def parent_repage_link(message)
 
   def display_date_range(quarter, week)
     "data-weekid='#{quarter[:year]}-#{quarter[:quarter]}-#{week}' " +
-    "data-week='#{start_day(quarter, week)} - #{end_day(quarter, week)}'"
+      "data-week='#{start_day(quarter, week)} - #{end_day(quarter, week)}'"
   end
 
   def start_day(quarter, week)
@@ -325,14 +322,14 @@ def parent_repage_link(message)
   def start_time(quarter, week)
     day = Time.parse("Jan #{quarter[:year]}") + (quarter[:quarter]-1).quarters + (week-1).weeks + 8.hours
     adj_factor = case day.wday
-      when 0 then 2
-      when 1 then 1
-      when 2 then 0
-      when 3 then 6
-      when 4 then 5
-      when 5 then 4
-      when 6 then 3
-    end
+                   when 0 then 2
+                   when 1 then 1
+                   when 2 then 0
+                   when 3 then 6
+                   when 4 then 5
+                   when 5 then 4
+                   when 6 then 3
+                 end
     day + adj_factor.days
   end
 

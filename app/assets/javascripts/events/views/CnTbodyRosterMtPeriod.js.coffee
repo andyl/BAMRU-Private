@@ -92,7 +92,6 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @collection.clearMatches()
 
   setSearchBox: ->
-    console.log "ELL", @$el
     @$el?.find('#createGuestLink').hide()
     @collection?.clearMatches()
     participantIDs = @collection?.map (p) -> p.get('member_id')
