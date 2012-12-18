@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
   before_filter :authenticate_member!
+  caches_action :index
 
   def index
     @session_id  = session["session_id"]
