@@ -78,7 +78,7 @@ class QcGcal
     return puts("can't create operation") if ar_event.typ == "operation"
     gcal_service = authenticate_and_return_gcal_service
     gcal_event   = Event.new(gcal_service)
-    puts "Creating gCal Event id:#{ar_event.id}"
+    puts "#{timestamp} - Creating gCal Event id:#{ar_event.id}"
     save_event_to_gcal(gcal_service, gcal_event, ar_event)
   end
 
@@ -95,7 +95,13 @@ class QcGcal
   def self.delete_event(id)
     gcal_service = authenticate_and_return_gcal_service
     gcal_events  = Event.find(gcal_service, "BE#{id}")
-    gcal_events.each {|ev| puts "Creating gCal Event id:#{id}" ; ev.delete }
+    gcal_events.each {|ev| puts "#{timestamp} - Deleting gCal Event id:#{id}" ; ev.delete }
+  end
+
+  private
+
+  def timestamp
+    Time.now.strftime("%m-%d %H:%M:%S")
   end
 
 end
