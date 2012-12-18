@@ -14,6 +14,7 @@ class Eapi::EventsController < ApplicationController
   
   def create
     new_event = Event.create(params[:event])
+    expire_fragment('event_json_fragment')
     broadcast("add", new_event)
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.create_event_id', new_event.id)
@@ -22,6 +23,7 @@ class Eapi::EventsController < ApplicationController
   
   def update
     updated_event = Event.update(params[:id], params[:event])
+    expire_fragment('event_json_fragment')
     broadcast("update", updated_event)
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.update_event_id', updated_event.id)
@@ -30,6 +32,7 @@ class Eapi::EventsController < ApplicationController
   
   def destroy
     broadcast('destroy')
+    expire_fragment('event_json_fragment')
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.delete_event', params[:id])
     respond_with Event.destroy(params[:id])

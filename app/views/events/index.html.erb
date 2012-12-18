@@ -30,9 +30,11 @@
   </div>
 </div>
 
-<script id='json_event_data' type="text/json_data">
-  <%= @event_json %>
-</script>
+<% cache('event_json_fragment') do %>
+  <script id='json_event_data' type="text/json_data">
+    <%= @event_json %>
+  </script>
+<% end %>
 
 <script id='json_member_data' type="text/json_data">
   <%= @member_json %>

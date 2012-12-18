@@ -152,21 +152,24 @@ class Event < ActiveRecord::Base
 
   # ----- Local Methods - gCal Date Methods -----
   def gcal_start
-    typ == "meeting" ? start.to_time.change(:hour => 19, :min => 30) : start.to_time
+    #typ == "meeting" ? start.to_time.change(:hour => 19, :min => 30) : start.to_time
+    start.to_time
   end
 
   def gcal_finish
-    if typ == "meeting"
-      start.to_time.change(:hour => 21, :min => 30)
+    #if typ == "meeting"
+    #  start.to_time.change(:hour => 21, :min => 30)
+    #else
+    if (finish.nil? || finish.blank?)
+      start.to_time
     else
-      (finish.nil? || finish.blank?) ?
-              start.to_time :
-              (finish + 1.day).to_time
+      #(finish + 1.day).to_time
+      finish.to_time
     end
   end
 
   def gcal_all_day?
-    typ == "meeting" ? false : true
+    all_day
   end
 
   def gcal_content
