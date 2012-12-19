@@ -20,6 +20,7 @@ class QcGcal
 
   def self.save_event_to_gcal(gcal_service, gcal_event, ar_event)
     return puts("CAN'T SAVE OPERATIONS") if ar_event.typ == "operation"
+    return puts("CAN'T SAVE UNPUBLISHED EVENT") if ar_event.published == false
     gcal_event.calendar    = gcal_service.calendars.first
     gcal_event.title       = ar_event.title
     gcal_event.start_time  = ar_event.gcal_start
@@ -77,6 +78,7 @@ class QcGcal
   def self.create_event(ar_event)
     timestamp = Time.now.strftime("%m-%d %H:%M:%S")
     return puts("can't create operation") if ar_event.typ == "operation"
+    return puts("can't create unpublished event") if ar_event.published == false
     gcal_service = authenticate_and_return_gcal_service
     gcal_event   = Event.new(gcal_service)
     puts "#{timestamp} - Creating gCal Event id:#{ar_event.id}"

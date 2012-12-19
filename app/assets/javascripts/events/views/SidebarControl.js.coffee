@@ -73,6 +73,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     fOpt = esc.eventRangeSelect(@model.get('finish'), @model.get('start'))
     $('#startSel').html(sOpt)
     $('#finishSel').html(fOpt)
+    $('.dateSel').blur()
 
   updateView: ->
     newFilter =
@@ -86,6 +87,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     oldFilter = @model.toJSON()
     mergeFilter = _.extend(oldFilter, newFilter)
     @model.validSet mergeFilter
+    $('.dateSel').blur()
     @model.stateChanged()
 
   reset: ->
