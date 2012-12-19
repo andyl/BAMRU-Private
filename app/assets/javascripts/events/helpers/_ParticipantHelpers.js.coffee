@@ -23,6 +23,8 @@ BB.Helpers.ParticipantHelpers =
   memberLink: (memberId) ->
     member = BB.members.get(memberId)
     typ  = member.get('typ')
+    console.log "TYP is", typ, member if typ == null
+    return "Unknown Member #{memberId}" if typ == null
     path = if typ[0] == 'G' then 'guests' else 'members'
     "<a href='/#{path}/#{memberId}'>#{member.fullName()}</a>"
 
