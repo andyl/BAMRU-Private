@@ -55,7 +55,7 @@ class QcGcal
     get_current_events_from_database.each do |ar_event|
       if ar_event.typ != "operation"
         puts "Adding #{ar_event.title} (#{ar_event.id})"
-        event = ::Event.new(service)
+        event = Event.new(service)
         save_event_to_gcal(service, event, ar_event)
       end
     end
