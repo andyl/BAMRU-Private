@@ -24,6 +24,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @subview.render()
     @bindTo(BB.vent, 'cmd:ToggleAddParticipant',  @toggleAddParticipant,    this)
     BB.hotKeys.rebindAllKeySets()
+    @setSearchBox()
 
   events:
     'blur #memberField'       : 'onBlurSearch'
