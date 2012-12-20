@@ -338,6 +338,16 @@ namespace :events do
     common_load("2011")
   end
 
+  desc "Preview CSV data from db/2012.csv"
+  task :prev_12 => [:environment] do
+    common_prev("2012")
+  end
+
+  desc "Load CSV data from db/2012.csv"
+  task :load_12 => [:environment] do
+    common_load("2012")
+  end
+
   desc "Load CSV data from BAMRU.org"
   task :load_org => [:environment] do
     rows = UrlSrc.new("http://bamru.org/calendar.csv").hash_data
