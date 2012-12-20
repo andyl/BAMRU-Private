@@ -29,3 +29,14 @@ class BB.Models.Event extends Backbone.Model
     @eventFiles.url   = "/eapi/events/#{@.id}/event_files"
     @eventReports.url = "/eapi/events/#{@.id}/event_reports"
     @periods.url      = "/eapi/events/#{@.id}/periods"
+
+  # ----- instance methods -----
+
+  rowPub:   -> if @get('published') then "+" else "~"
+  rowTyp:   -> @get('typ')[0].toUpperCase()
+  rowTitle: -> _.string.truncate(@get('title'), 12)
+  rowLoc:   -> _.string.truncate(@get('location'), 12)
+  rowStart: -> moment(@get('start'))?.strftime("%Y-%m-%d")
+
+  rowText: ->
+    "#{@rowPub()} #{@rowTyp()} #{@rowTitle()} #{@rowLoc()} #{@rowStart()}"

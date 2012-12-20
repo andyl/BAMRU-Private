@@ -41,7 +41,7 @@ BB.Helpers.CnIndxHelpers =
     if eventFinish
       eventStart < moment() < eventFinish
     else
-      moment().subtract('days', 3) < eventStart < moment()
+      moment().subtract('days', 1) < eventStart < moment()
 
   isRecent: (event) ->
     return false if @isCurrent(event)

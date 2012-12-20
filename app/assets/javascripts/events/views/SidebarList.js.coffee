@@ -149,22 +149,6 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
   isIn: (element) -> @_top(@div) < @_top(element) && @_bottom(@div) > @_bottom(element)
   isOut: (element) -> ! @isIn(element)
 
-  # ----- filtering -----
-
-  filterParams:
-    filterContainer:      "#filter-box"
-    filterColumns:        [0,1,2,3]
-    columns:              ["typ", "title", "location", "start"]
-
-  setupFilter: ->
-    $("#myTable").tablesorterFilter(@filterParams)
-    $("#filterClearButton").click ->
-      $("#filter-box").val('')
-      $("#filter-box").trigger("keyup")
-      $("#filter-box").blur()
-    $("#filter-box").keyup ->
-      setTimeout('', 750)
-
   # ----- sorting -----
 
   typ_score_options:
@@ -210,14 +194,10 @@ class BB.Views.SidebarList extends Backbone.Marionette.CollectionView
     sort_spec = @readEventSortFromCookie()
     $('#myTable').trigger('update')
     $('#myTable').trigger('sorton', [sort_spec]) unless sort_spec == null
-    $('#filter-box').val('')
-    $('#filter-box').blur()
 
   setMyTable: ->
     if $('#myTable tr').length > 1
       if $('#myTable th:first').css('background-image') == "none"
         @setupSorter()
-        @setupFilter()
       else
         @resetSorter()
-        @setupFilter()

@@ -49,6 +49,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
 
   goHome: ->
     @jsLayout.open('west')
+    BB.vent.trigger "key:topRow"
     BB.Routers.app.navigate("/events", {trigger: true})
 
   # ----- sidebar -----

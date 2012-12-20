@@ -38,7 +38,6 @@ class BB.Views.CnTbodyOverviewShow extends Backbone.Marionette.ItemView
   deleteEv: (event) ->
     event?.preventDefault()
     answer = confirm("Are you sure you want to delete this event?")
-    console.log "Answer", answer
     if answer == true
       @model.destroy()
       BB.Routers.app.navigate('/events', {trigger: true})

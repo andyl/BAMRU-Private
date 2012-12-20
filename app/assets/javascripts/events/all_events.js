@@ -9,7 +9,6 @@
 //= require jquery-ui-timepicker-addon-1_0_4
 
 //= require jquery.tablesorter2
-//= require jquery.tablesorter_filter
 //= require cookie
 
 //= require backbone-min-0_9_2

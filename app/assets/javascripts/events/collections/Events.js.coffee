@@ -8,10 +8,12 @@ class BB.Collections.Events extends Backbone.Collection
       training:  'B'
       operation: 'C'
       community: 'D'
-      social:    'E'
+#      social:    'E'
     typToken[model.get('typ')] + model.get('start')
 
   url: '/eapi/events'
+
+  # ----- for highlighting events when scrolling up/down -----
 
   clearActive: ->
     @each (m) -> m.unset('isActive') if m.get('isActive')
@@ -24,8 +26,7 @@ class BB.Collections.Events extends Backbone.Collection
   getActive: ->
     @select (m) -> m.get('isActive')
 
-  yearFilter: (year) ->
-    @select (e) -> e.get('start').split('-')[0] == year
+  # ----- selecting / counting -----
 
   getPublished:   -> @select (m) -> m.get('published')
   getUnpublished: -> @select (m) -> ! m.get('published')
@@ -35,27 +36,48 @@ class BB.Collections.Events extends Backbone.Collection
   getOperations: => @getTyp('operation')
   getCommunity:  => @getTyp('community')
   getSocial:     => @getTyp('social')
-  getTyp: (type) ->
-    @select (e) -> e.get('typ') == type
+  getTyp: (type) -> @select (e) -> e.get('typ') == type
 
+  # ----- filtering -----
+
+  yearFilter: (year) ->
+    @select (e) -> e.get('start').split('-')[0] == year
+
+  # filterObj contains:
+  # start:     a date string
+  # finish:    a date string
+  # meeting:   boolean
+  # training:  boolean
+  # operation: boolean
+  # community: boolean
+  # textQuery: string
   objFilter: (filterObj) ->
-    @select (e) ->
+    @select (event) ->
       dateProc = (s) -> s?.split('-').slice(0,2).join('-')
-      startDate = dateProc(e.get('start'))
-      finisDate = dateProc(e.get('finish')) || startDate
+      startDate = dateProc(event.get('start'))
+      finisDate = dateProc(event.get('finish')) || startDate
       modStart  = filterObj.start
       modFinish = filterObj.finish
+      # ----- match on date -----
       if startDate < mDate(modStart).strftime("%Y-%m")
         return false
       if finisDate > mDate(modFinish).strftime("%Y-%m")
         return false
-      eval("filterObj.#{e.get('typ')}")
+      # ----- match on textQuery -----
+      if filterObj.textQuery?
+        tq = filterObj.textQuery.toLowerCase()
+        return false if event.rowText().toLowerCase().indexOf(tq) == -1
+      # ----- match on meeting type -----
+      eval("filterObj.#{event.get('typ')}")
 
-
+# see these references:
+# http://jsfiddle.net/derickbailey/7tvzF/
+# https://groups.google.com/forum/#!msg/backbone-marionette/IC-aelkl9Ps/E7vsuF-NkdQJ
 BB.Collections.FilteredEvents = (original) ->
 
   filtered = new original.constructor
 
+  # saved copy of original filter - not in use - this should be removed...
   filtered.originalFilter = (criteria) ->
     items = if (criteria)
       original.yearFilter(criteria)
@@ -63,6 +85,7 @@ BB.Collections.FilteredEvents = (original) ->
       original.models
     filtered.reset(items)
 
+  # this is the main function
   filtered.filter = (filterObj) ->
     @filterObj = filterObj
     items = if (filterObj)
@@ -71,14 +94,15 @@ BB.Collections.FilteredEvents = (original) ->
       original.models
     filtered.reset(items)
 
-  filtered.reFilter = -> filtered.filter(@filterObj)
-
   filtered.selectYear = (year) ->
     items = if (year)
       original.yearFilter(year)
     else
       original.models
     filtered.reset(items)
+
+  # use after items are added/removed
+  filtered.reFilter = -> filtered.filter(@filterObj)
 
   original.on "reset", -> filtered.reset original.models
 

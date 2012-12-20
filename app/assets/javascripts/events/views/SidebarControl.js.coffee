@@ -24,6 +24,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     'click #filterResetButton' : 'reset'
     'blur #filter-box'         : 'filterBlur'
     'focus #filter-box'        : 'filterFocus'
+    'keyup #filter-box'        : 'filterKeyup'
     'click #closeBox'          : 'blurSelectMenu'
     'blur #select-button'      : 'blurSelectMenu'
     'click #select-button'     : 'blurSelectMenu'
@@ -52,9 +53,11 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     typeObj[type] = true
     @model.set(typeObj)
 
-  checkBoxTypes: -> _.omit(@model.toJSON(), ['start', 'finish', 'true'])
+  checkBoxTypes: -> _.omit(@model.toJSON(), ['start', 'finish', 'true', 'textQuery'])
   allChecked:    -> _.all(@checkBoxTypes(), (val, type) -> val)
 
+  # this is called when the UI state model (BB.UI.filterState) changes.
+  # it updates the display based on the settings of the UI state model.
   updateControlBox: ->
     # update checkboxes
     types = @checkBoxTypes()
@@ -74,6 +77,9 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     $('#startSel').html(sOpt)
     $('#finishSel').html(fOpt)
     $('.dateSel').blur()
+    # update textQuery
+    tq = @model.get('textQuery')
+    $('#filter-box').val(tq)
 
   updateView: ->
     newFilter =
@@ -116,19 +122,21 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
 
   # ----- filter box -----
 
-  toggleFilterFocus: ->
-    toggle = ->
+  toggleFilterFocus: =>
+    toggle = =>
       if $('#filter-box').is(':focus')
         newVal = $('#filter-box').val().replace('/','')
         $('#filter-box').val(newVal)
         $('#filter-box').blur()
       else
-        $('#filter-box').val('')
+        @model.set(textQuery: null)
         $('#filter-box').focus()
-    setTimeout(toggle, 100)
+    setTimeout(toggle, 10)
 
   filterBlur  : -> $('#filter-box').css('background', 'white')
   filterFocus : -> $('#filter-box').css('background', 'yellow')
+
+  filterKeyup : -> @model.set( textQuery: $('#filter-box').val())
 
   # ----- type checkbox -----
 
