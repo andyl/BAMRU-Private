@@ -53,7 +53,7 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
     typeObj[type] = true
     @model.set(typeObj)
 
-  checkBoxTypes: -> _.omit(@model.toJSON(), ['start', 'finish', 'true', 'textQuery'])
+  checkBoxTypes: -> _.omit(@model.toJSON(), ['start', 'finish', 'true', 'textQuery', 'social'])
   allChecked:    -> _.all(@checkBoxTypes(), (val, type) -> val)
 
   # this is called when the UI state model (BB.UI.filterState) changes.
@@ -106,18 +106,15 @@ class BB.Views.SidebarControl extends Backbone.Marionette.ItemView
   setAll: (val) -> reduceObj @allTypes, (acc, key) -> acc[key] = val; acc
   checkAll: (ev) ->
     ev?.preventDefault()
-    console.log "CheckALL"
     @model.set(@setAll(true), {silent: true})
     BB.vent.trigger("uiState:changed", @model)
     @model.saveStateToLocalStorage()
   clearAll: (ev) ->
     ev?.preventDefault()
-    console.log "ClearAll"
     @model.set(@setAll(false), {silent: true})
     BB.vent.trigger("uiState:changed", @model)
     @model.saveStateToLocalStorage()
   toggleAll: (ev) ->
-    console.log "Toggle"
     if @allChecked() then @clearAll() else @checkAll()
 
   # ----- filter box -----
