@@ -23,8 +23,7 @@ module MembersHelper
 
   def roster_oot_class(member)
     return "" unless member.avail_ops.busy_on?(Time.now)
-    " style='background-color: pink;'"
-    " class='oot_member'"
+    raw " style='background-color: pink;' class='oot_member'"
   end
 
   def roster_oot_label(member)
