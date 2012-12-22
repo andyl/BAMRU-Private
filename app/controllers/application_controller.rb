@@ -77,6 +77,14 @@ class ApplicationController < ActionController::Base
     %w(Android iPhone BlackBerry).include? device
   end
 
+  def device_name
+    devname = device
+    browsers = %w(Silk Firefox Konqueror Netscape Opera Chrome Safari Unknown)
+    return "phone"   if devname == "Android"
+    return "browser" if browsers.include? devname
+    devname
+  end
+
   private
 
   def current_member

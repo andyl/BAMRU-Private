@@ -1,0 +1,15 @@
+BAMRU General Meeting - December 24 @ Redwood City<p></p>
+
+<% if BB.device_name == "browser" : %>
+Please sign in.
+<% else : %>
+Please sign in, then pass this <%- BB.device_name %> around to let others sign in.
+<% end %>
+<p></p>
+
+<table width=100%>
+  <tr>
+    <td width=50%><a class='navLink' href="/meeting_signin/234/guest"  data-typ='first_time' data-id=234>Sign in as a first-time Guest</a></td>
+    <td width=50%><a class='navLink' href="/meeting_signin/234/member" data-typ='returning'  data-id=234>Sign in as a returning Attendee</a></td>
+  </tr>
+</table>

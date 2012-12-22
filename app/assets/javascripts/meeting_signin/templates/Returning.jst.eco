@@ -1,0 +1,17 @@
+<b>Returning Attendee Sign In</b><p></p>
+
+
+Enter your name: [________________________]
+<p></p>
+
+Welcome back member!
+<p></p>
+
+We don't have a profile photo for you!<p></p>
+
+<b>TAKE PHOTO</b>
+<p></p>
+
+<form>
+  <input type="file" accept="image/*;capture=camera" >
+</form>
