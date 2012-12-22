@@ -9,7 +9,8 @@ class BB.Views.AppEvent extends BB.Views.AppBase
     content  :  '#content'
 
   events:
-    'click .back' : 'clickHome'
+    'click .back'     : 'clickHome'
+    "click .navLink"  : "navClick"
 
   # ----- initialization -----
 
@@ -22,6 +23,12 @@ class BB.Views.AppEvent extends BB.Views.AppBase
   clickHome: (ev) ->
     ev.preventDefault()
     BB.Routers.app.navigate("/meeting_signin/234", {trigger: true})
+
+  navClick: (ev) ->
+    ev.preventDefault()
+    id = $(ev.target).data('id')
+    typ = $(ev.target).data('typ')
+    BB.Routers.app.navigate("/meeting_signin/#{id}/#{typ}", {trigger: true})
 
   # ----- tabs -----
 

@@ -8,30 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
     <% if @is_ipad %>
       <script src="/assets/mobile3/iscroll.js"></script>
     <% end %>
-    <script>
-//      window.myID = parseInt("<%= current_member.id %>");
-//      window.members = new M3_Members(<%= raw @mem_json %>);
-//      window.messages = new M3_Messages(<%= raw @msg_json %>);
-//      window.distributions = new M3_Distributions(<%= raw @dst_json %>);
-//      window.inbox = new M3_Distributions(distributions.inbox(myID))
-//      window.csrfToken = "<%= form_authenticity_token.to_s %>"
-      window.faye_server = "<%= FAYE_SERVER %>"
-      window.sessionId   = "<%= @session_id %>"
-    </script>
+
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "meeting_signin/all_meeting_signin" %>
     <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
 
-      <!--<script id='json_event_data' type="text/json_data">-->
-        <!--<%= Event.all.to_json except: [:created_at, :updated_at] %>-->
-      <!--</script>-->
-
-    <!--<script id='json_member_data' type="text/json_data">-->
-      <!--<%# @member_json %>-->
-    <!--</script>-->
+    <script>
+      BB.device_name = "<%= @device_name %>"
+      BB.myID = parseInt("<%= current_member.id %>");
+      BB.members  = new BB.Collections.Members(<%= raw @members_json %>);
+      BB.meetings = new BB.Collections.Events(<%= raw @meetings_json %>);
+      BB.faye_server = "<%= FAYE_SERVER %>"
+      BB.sessionId   = "<%= @session_id %>"
+    </script>
 
   </head>
 

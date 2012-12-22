@@ -15,11 +15,11 @@
 //= require toastr
 
 //= require meeting_signin/bbm_initialize
-//# require meeting_signin/pub_sub
-//# require meeting_signin/serialize_object
-//# require_tree ./models
-//# require_tree ./collections
+//= require meeting_signin/pub_sub
+//= require meeting_signin/serialize_object
+//= require_tree ./models
+//= require_tree ./collections
 //= require_tree ./templates
-//# require_tree ./helpers
+//= require_tree ./helpers
 //= require_tree ./views
 //= require meeting_signin/app_router

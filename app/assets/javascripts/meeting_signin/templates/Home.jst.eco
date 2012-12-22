@@ -1,6 +1,11 @@
 BAMRU General Meeting - December 24 @ Redwood City<p></p>
 
-Please sign in, the pass the device around to let others sign in.<p></p>
+<% if BB.device_name == "browser" : %>
+Please sign in.
+<% else : %>
+Please sign in, then pass this <%- BB.device_name %> around to let others sign in.
+<% end %>
+<p></p>
 
 <table width=100%>
   <tr>

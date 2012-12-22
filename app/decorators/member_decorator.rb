@@ -12,9 +12,23 @@ class MemberDecorator < ApplicationDecorator
     result.to_json
   end
 
+  def signin_json
+    member_fields = %w(id typ first_name last_name)
+    result = subset(model.attributes, member_fields)
+    result["photo"]               = "true"        if has_photo?
+    result.to_json
+  end
+
   def self.mobile_json(collection)
     result = collection.map do |m|
       MemberDecorator.new(m).mobile_json
+    end.join(',')
+    "[#{result}]"
+  end
+
+  def self.signin_json
+    result = Member.all(:include => [:photos]).map do |member|
+      MemberDecorator.new(member).signin_json
     end.join(',')
     "[#{result}]"
   end

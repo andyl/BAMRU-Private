@@ -39,7 +39,7 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   home: (id) ->
     console.log "rendering home for #{id}"
-    @appIndex.render().content.show(new BB.Views.Home)
+    @appEvent.render().content.show(new BB.Views.Home)
 
   first_time: (id) ->
     console.log "rendering first_time for #{id}"

@@ -6,3 +6,6 @@ class BB.Views.Roster extends Backbone.Marionette.ItemView
 
   # ----- initialization -----
 
+  onRender: ->
+    $('#footer').html('')
+

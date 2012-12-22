@@ -1,4 +1,5 @@
-BB.Helpers.CnTbodyResourcesPhotosHelpers =
+BB.Helpers.IndexHelpers =
+
   genPhotoRows: ->
     authorLink = (link) ->
       memId  = link.get('member_id')

@@ -11,5 +11,5 @@
 </div>
 
 <div id="footer" class=footer>
-  <a id='roster' href='/meeting_signin/234/roster'>Roster</a>
+  <a id='roster' class='navLink' href="/meeting_signin/234/roster"  data-typ='roster' data-id=234>Roster</a>
 </div>
