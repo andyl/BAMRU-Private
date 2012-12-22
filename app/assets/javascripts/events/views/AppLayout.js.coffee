@@ -13,7 +13,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
   # ----- initialization -----
 
   onRender: ->
-    @applyLayout()
+    @applyScaffold()
     @showSidebar()
     @bindTo(BB.vent,     'click:CnTabsOverviewClone',       @clone,         this)
     @bindTo(BB.vent,     'click:CnTabsOverviewCancelClone', @cancelClone,   this)
@@ -68,7 +68,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
 
   # ----- layout -----
 
-  applyLayout: ->
+  applyScaffold: ->
     layoutOptions =
       applyDefaultStyles: true
       west__resizable   : false

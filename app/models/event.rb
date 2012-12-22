@@ -87,6 +87,10 @@ class Event < ActiveRecord::Base
     between(start, finish)
   end
 
+  def self.current_meetings
+    meetings.between(Time.now - 1.day, Time.now + 3.days)
+  end
+
   # ----- Class Methods - Output Formatting -----
 
 

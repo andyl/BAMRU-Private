@@ -1,0 +1,14 @@
+Use this Meeting Sign-In app on an iPad or mobile phone with a front-facing camera.
+    <ol>
+      <li>lock your screen orientation in portrait mode (if you can)</li>
+      <li>know how to enable the front-pointing camera in your device</li>
+      <li>select your meeting from the list below, and get started!</li>
+    </ol>
+
+<b>Current Meetings:</b><br/>
+    <a class='clickNav' data-id="234" href='/meeting_signin/234'>Meeting One</a><br/>
+    <p></p>
+
+<b>Upcoming Meetings:</b><br/>
+    <a class='clickNav' data-id="236" href='/meeting_signin/236'>Meeting Three</a><br/>
+    <a class='clickNav' data-id="235" href='/meeting_signin/235'>Meeting Two</a><br/>

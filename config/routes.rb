@@ -87,7 +87,13 @@ Zn::Application.routes.draw do
   get "monitor/logout"  => "monitor/sessions#destroy", :as => "monitor_logout"
   namespace "monitor" do
     resources :sessions
-  end  
+  end
+  
+  get '/meeting_signin'                      => 'meeting_signin#index'
+  get '/meeting_signin/:event_id'            => 'meeting_signin#index'
+  get '/meeting_signin/:event_id/first_time' => 'meeting_signin#index'
+  get '/meeting_signin/:event_id/returning'  => 'meeting_signin#index'
+  get '/meeting_signin/:event_id/roster'     => 'meeting_signin#index'
 
   get '/events'                => 'events#index'
   get '/events/:id'            => 'events#index'
