@@ -10,7 +10,6 @@ This file has three jQuery functions:
 ootCount = ->
   $('.oot_member .rck:checked').length
 
-
 window.updateAddressCount = ->
   addr_count = $(".rck:checked").length
   label = if addr_count == 1 then "address" else "addresses"
