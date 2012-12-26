@@ -1,4 +1,4 @@
-class BB.Views.Returning extends Backbone.Marionette.ItemView
+class BB.Views.Returning extends BB.Views.Content
 
   # ----- configuration -----
 
@@ -6,3 +6,8 @@ class BB.Views.Returning extends Backbone.Marionette.ItemView
 
   # ----- initialization -----
 
+  onRender: ->
+    @setFooter   "returning"
+    @setHomeLink "returning"
+    @setLabel    "returning"
+    setTimeout(@initializePage, 1)

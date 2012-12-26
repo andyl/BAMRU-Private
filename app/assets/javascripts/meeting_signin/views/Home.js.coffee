@@ -1,4 +1,4 @@
-class BB.Views.Home extends Backbone.Marionette.ItemView
+class BB.Views.Home extends BB.Views.Content
 
   # ----- configuration -----
 
@@ -6,7 +6,7 @@ class BB.Views.Home extends Backbone.Marionette.ItemView
 
   # ----- initialization -----
 
-  initialize: ->
-    $('.bookend').html('')
-
-
+  onRender: ->
+    @setFooter "home"
+    @setLabel  "home"
+    setTimeout(@initializePage, 1)

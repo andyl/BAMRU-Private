@@ -15,43 +15,39 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   initialize: ->
     console.log "doing initialize"
-    # ----- event collection -----
-#    json_event_data = JSON.parse(_.string.unescapeHTML($('#json_event_data').text()))
-#    BB.Collections.events = new BB.Collections.Events(json_event_data)
-#    BB.Collections.filteredEvents = new BB.Collections.FilteredEvents(BB.Collections.events)
     # ----- faye -----
 #    BB.PubSub.events = new BB.PubSub.Events(BB.Collections.events)
     # ----- current member -----
 #    json_member_data = JSON.parse(_.string.unescapeHTML($('#json_member_data').text()))
 #    BB.currentMember = new BB.Models.Member(json_member_data)
-    # ----- create app layouts -----
-    BB.Views.appIndex = new BB.Views.AppIndex()
-    BB.Views.appEvent = new BB.Views.AppEvent()
-    @appEvent = BB.Views.appEvent
-    @appIndex = BB.Views.appIndex
+    # ----- create app layout -----
+    BB.Views.appBody = new BB.Views.AppBody()
+    @appBody = BB.Views.appBody
     # ----- all members -----
 #    BB.members = new BB.Collections.Members()
 #    BB.members.fetch()
 
   index: ->
     console.log "rendering index"
-    @appIndex.render().content.show(new BB.Views.Index)
+    @appBody.render().content.show(new BB.Views.Index)
 
   home: (id) ->
     console.log "rendering home for #{id}"
-    @appEvent.render().content.show(new BB.Views.Home)
+    view = new BB.Views.Home
+    view.render()
+    @appBody.render().content.show(view)
 
   first_time: (id) ->
     console.log "rendering first_time for #{id}"
-    @_render {modelId: id, page: 'first_time'}
+    @appBody.render().content.show(new BB.Views.FirstTime)
 
   returning: (id) ->
     console.log "rendering returning for #{id}"
-    @_render {modelId: id, page: 'returning'}
+    @appBody.render().content.show(new BB.Views.Returning)
 
   roster: (id) ->
     console.log "rendering roster for #{id}"
-    @_render {modelId: id, page: 'roster'}
+    @appBody.render().content.show(new BB.Views.Roster)
 
   default: ->
     console.log "rendering the default route"
@@ -65,12 +61,7 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
       
   _showMissingEvent: (id) ->
     msg = @_missingEventMsg(id)
-    @appEvent.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
+    @appBody.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
   _render: (opts) ->
-    @appEvent.render().showContent(opts)
-#    if BB.Collections.events.get(opts.modelId)
-#      @appEvent.showContent(opts)
-#    else
-#      @_showMissingEvent(opts.modelId)
-    
+    @appBody.render().showContent(opts)

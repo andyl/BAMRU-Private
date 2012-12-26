@@ -1,15 +1,10 @@
-DIRECTIONS<p></p>
-
-1. lock your screen orientation in portrait mode (if you can)  <br/>
-2. know how to enable the front-pointing camera in your device <br/>
-3. select your meeting from the list below, and get started!
-
 <p></p>
-
-<b>Current Meetings:</b><br/>
-    <a class='clickNav' data-id="234" href='/meeting_signin/234'>Meeting One</a><br/>
-    <p></p>
-
-<b>Upcoming Meetings:</b><br/>
-    <a class='clickNav' data-id="236" href='/meeting_signin/236'>Meeting Three</a><br/>
-    <a class='clickNav' data-id="235" href='/meeting_signin/235'>Meeting Two</a><br/>
+DIRECTIONS
+<p></p>
+1. lock the screen in portrait mode (if you can)<br/>
+2. enable the front-pointing camera (optional)<br/>
+3. select your meeting, and sign in!
+<p></p>
+<a class='clickHome nav center-text' data-id="234" href='/meeting_signin/234'>Meeting One</a>
+<a class='clickHome nav center-text' data-id="235" href='/meeting_signin/235'>Meeting Two</a>
+<a class='clickHome nav center-text' data-id="235" href='/meeting_signin/236'>Meeting Three</a>

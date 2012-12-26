@@ -3,7 +3,7 @@
   <head>
     <title>Meeting Sign In</title>
     <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
-    <link rel="stylesheet" href="/assets/mobile.css" type="text/css">
+    <link rel="stylesheet" href="/assets/mobile_signup.css" type="text/css">
     <link rel="stylesheet" href="/images/icons.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -18,20 +18,18 @@
     <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
 
     <script>
-      BB.device_name = "<%= @device_name %>"
+      BB.isPhone = <%= @is_phone %>;
       BB.myID = parseInt("<%= current_member.id %>");
       BB.members  = new BB.Collections.Members(<%= raw @members_json %>);
       BB.meetings = new BB.Collections.Events(<%= raw @meetings_json %>);
-      BB.faye_server = "<%= FAYE_SERVER %>"
       BB.sessionId   = "<%= @session_id %>"
+      BB.faye_server = "<%= FAYE_SERVER %>"
+      BB.device_name = "<%= @device_name %>"
     </script>
 
   </head>
 
-  <body>
-
-  <div id='app-layout'>
-  </div>
+  <body id="app-layout">
 
   </body>
 

@@ -1,16 +1,49 @@
-/* ----- page ----- */
+/* ----- nav buttons / base styles ----- */
 
-body {
-  text-align: center;
-  background: #b0acac;
+@mixin nav-base-style {
+  display: block;
+  margin: 0;
+  margin-top:   10px;
+  padding: 20px;
+  text-decoration: none;
+  background: white;
+  color: black;
+  text-align: left;
+}
+
+@mixin nav-nowrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin radius($position: "") {
+  border#{$position}-radius: 15px;
+  -moz#{$position}-border-radius: 15px;
+  -webkit#{$position}-border-radius: 15px;
+}
+
+/* ----- page layout ----- */
+
+html, body {
+  text-align:  center;
+  background:  #b0acac;
   font-family: arial, sans-serif;
+  margin:  0;
+  padding: 0;
+}
+
+.footer {
+  margin-top: 10px;
+  padding: 5px;
+  background: darkgray;
 }
 
 /* ----- header ----- */
 
 header {
-  /*position: absolute;*/
-  z-index: 2;
+
+  //z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -18,59 +51,54 @@ header {
   background: black;
   border-bottom: 2px solid;
   border-bottom-color: #ff0000;
+
+  #title {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    display: box;
+    box-orient: horizontal;
+    padding-top: 18px;
+    padding-bottom: 15px;
+  }
+
+  .bookend {
+    text-align: left;
+    width: 60px; }
+
+  #label {
+    color: white;
+    font-size: 14pt;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+  }
+
+  #backlink {
+    text-align: left; }
+
+  .back {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px; }
+
 }
 
-#title {
-  width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  display: box;
-  box-orient: horizontal;
-  padding-top: 18px;
-  padding-bottom: 15px;
-}
-
-#wrapper {
-  /*position: absolute;*/
-  /*z-index: 1;*/
-  /*top: 60px;*/
-  /*bottom: 0;*/
-  /*left: 0;*/
-  /*width: 100%;*/
-  /*overflow: auto;*/
-}
+/* ----- content ----- */
 
 .content {
   z-index: 1;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-.bookend {
-  text-align: left;
-  width: 60px; }
-
-#label {
-  color: white;
-  font-size: 14pt;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  }
-
-#backlink {
-  text-align: left; }
-
-.back {
-  text-decoration: none;
-  color: black;
-  border: 1px solid black;
-  background: white;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px; }
 
 /* ----- table styling ----- */
 
@@ -100,34 +128,6 @@ header {
 
 /* ----- nav links and dividers ----- */
 
-@mixin nav-base-style {
-  display: block;
-  margin-right: 10px;
-  margin-left:  10px;
-  margin-top:   10px;
-  padding: 20px;
-  text-decoration: none;
-  background: white;
-  color: black;
-  text-align: left;
-}
-
-@mixin nav-nowrap {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-@mixin radius($position: "") {
-  border#{$position}-radius: 15px;
-  -moz#{$position}-border-radius: 15px;
-  -webkit#{$position}-border-radius: 15px;
-}
-
-.photo_icon {
-  margin-right: 10px;
-}
-
 .nav {
   @include nav-base-style;
   @include nav-nowrap;
@@ -145,9 +145,10 @@ header {
   width: 100%;
 }
 
+/* ----- nav styling ----- */
+
 .l_header_nav {
   @include nav-base-style;
-
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
@@ -164,10 +165,6 @@ header {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;
-}
-
-.selected {
-  background: lightblue;
 }
 
 .lnav {
@@ -208,65 +205,7 @@ header {
   color: white;
 }
 
-/* ----- select buttons ----- */
-#buttons_nav {
-  text-align: center;
-  width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  display: box;
-  box-orient: horizontal;
-  padding-bottom: 25px;
-  padding-top: 10px;
-}
-
-#select_buttons {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-}
-
-#clear_buttons {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-}
-
-#select_buttons > label {
-  padding: 10px;
-  border: 1px solid black;
-}
-
-.sbx {
-  display: none;
-}
-
-.checked {
-  background: purple;
-}
-
-.unchecked {
-  background: white;
-}
-
-#clear_buttons > a {
-  padding: 10px;
-  border: 1px solid black;
-  background: white;
-}
-
-.send_btn {
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  padding: 10px;
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-/* ----- checkboxes ----- */
+/* ----- form elements ----- */
 
 .checklist > label {
   display: block;
@@ -284,6 +223,11 @@ textarea {
 
 }
 
+/* ----- one-off styling ----- */
+
+.photo_icon { margin-right: 10px;    }
+.selected   { background: lightblue; }
+
 /* ----- utility styles ----- */
 
 .data {
@@ -300,11 +244,6 @@ textarea {
   text-align: center;
 }
 
-.footer {
-  color: gray;
-  margin-top: 15px;
-}
-
 #state {
   float: left;
   margin-left: 15px;
@@ -314,4 +253,3 @@ textarea {
   float: right;
   margin-right: 15px;
 }
-

@@ -1,4 +1,4 @@
-class BB.Views.Roster extends Backbone.Marionette.ItemView
+class BB.Views.Roster extends BB.Views.Content
 
   # ----- configuration -----
 
@@ -7,5 +7,8 @@ class BB.Views.Roster extends Backbone.Marionette.ItemView
   # ----- initialization -----
 
   onRender: ->
-    $('#footer').html('')
+    @setFooter   'roster'
+    @setHomeLink 'roster'
+    @setLabel    'roster'
+    setTimeout(@initializePage, 1)
 

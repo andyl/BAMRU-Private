@@ -13,7 +13,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
   # ----- initialization -----
 
   onRender: ->
-    @applyScaffold()
+    @setPageHeight()
     @showSidebar()
     @bindTo(BB.vent,     'click:CnTabsOverviewClone',       @clone,         this)
     @bindTo(BB.vent,     'click:CnTabsOverviewCancelClone', @cancelClone,   this)
@@ -68,14 +68,14 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
 
   # ----- layout -----
 
-  applyScaffold: ->
+  setPageHeight: ->
     layoutOptions =
       applyDefaultStyles: true
       west__resizable   : false
       west__size        : 320
       center__onresize  : => @setContentWidth()
-    @setColumnHeight()
-    $(window).resize => @setColumnHeight()
+    @setHeight()
+    $(window).resize => @setHeight()
     @jsLayout = $('#x_single_col').layout(layoutOptions)
     @setContentWidth()
 
@@ -86,7 +86,7 @@ class BB.Views.AppLayout extends Backbone.Marionette.Layout
     else
       $(el).width(535)
 
-  setColumnHeight: ->
+  setHeight: ->
     window.tgtHeight = window.innerHeight - 184 - $('#debug_footer').height()
     $('#x_single_col').css('height', "#{tgtHeight}px")
     $('#sidebar').height(tgtHeight - 18)

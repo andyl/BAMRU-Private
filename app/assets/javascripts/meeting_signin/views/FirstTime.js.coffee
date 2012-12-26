@@ -1,4 +1,4 @@
-class BB.Views.FirstTime extends Backbone.Marionette.ItemView
+class BB.Views.FirstTime extends BB.Views.Content
 
   # ----- configuration -----
 
@@ -6,3 +6,8 @@ class BB.Views.FirstTime extends Backbone.Marionette.ItemView
 
   # ----- initialization -----
 
+  onRender: ->
+    @setFooter   "first_time"
+    @setHomeLink "first_time"
+    @setLabel    "first_time"
+    setTimeout(@initializePage, 1)
