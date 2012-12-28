@@ -19,7 +19,6 @@ class BB.Views.CnNewForm extends BB.Views.CnSharedForm
     @model.set params
     @model.save(null, success: yesFunc, error: noFunc)
 
-
   cancel: (event) ->
     event?.preventDefault()
     BB.vent.trigger("click:CnTabsOverviewCancelClone")

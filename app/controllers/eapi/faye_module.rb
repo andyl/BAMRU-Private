@@ -6,9 +6,9 @@ module Eapi::FayeModule
     msg = {
         action: action,
         params: params,
-        modelid: model.try(:id) || params[:id],
-        sessionid: session["session_id"],
-        userid: current_member.id
+        userid: current_member.id,
+        modelid:   model.try(:id) || params[:id],
+        sessionid: session["session_id"]
     }
     strip_model = ->(model) { model.split('/')[0..-2].join('/') }
     channel = action == "add" ? request.path : strip_model.call(request.path)

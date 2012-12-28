@@ -1,11 +1,8 @@
 <p></p>
-BAMRU General Meeting<br/>December 25 @ Redwood City
+<%- @homeTitle() %>
+<p></p>
+Please sign in, then let others<br/>use this <%= BB.device_name %> to sign in.
 <p></p>
 
-<% if BB.device_name != "browser" : %>
-Please sign in, then let others sign in.
-<p></p>
-<% end %>
-
-<a href="/meeting_signin/234/guest"  data-typ='first_time' data-id=234 class="navLink nav center-text">Sign in as a first-time Guest</a>
-<a href="/meeting_signin/234/member" data-typ='returning'  data-id=234 class="navLink nav center-text">Sign in as a returning Attendee</a>
+<a href="/meeting_signin/<%= @id %>/first_time"  data-typ='first_time' data-id="<%= @id %>" class="navLink nav center-text">Sign in as a first-time Guest</a>
+<a href="/meeting_signin/<%= @id %>/returning"   data-typ='returning'  data-id="<%= @id %>" class="navLink nav center-text">Sign in as a returning Attendee</a>

@@ -4,6 +4,8 @@ class Eapi::Events::PeriodsController < ApplicationController
   include Eapi::FayeModule
   respond_to :json
 
+  before_filter :authenticate_member!
+
   def index
     event = Event.find(params["event_id"])
     respond_with event.periods, opts

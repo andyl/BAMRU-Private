@@ -1,46 +1,6 @@
 <p></p>
-THIS IS THE Roster !!
+<%- @rosterTitle() %>
 <p></p>
 <table width=100% align=center>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
-  <tr><td>MEMBER</td></tr>
+  <%- @rosterShow() %>
 </table>

@@ -1,24 +1,18 @@
 BB.Helpers.IndexHelpers =
 
-  genPhotoRows: ->
-    authorLink = (link) ->
-      memId  = link.get('member_id')
-      member = BB.members.get(memId)
-      name   = member.shortName()
-      "<a href='/members/#{memId}'>#{name}</a>"
-    editLink = (link) ->
-      "<a href='#' class='editLink' data-id='#{link.get('id')}'>Edit</a>"
-    deleteLink = (link) ->
-      "<a href='#' class='deleteLink' data-id='#{link.get('id')}'>Delete</a>"
-    rowHtml = (link) ->
-      """
-      <tr>
-        <td><img style='display:block' src="#{link.get('icon_url')}"/></td>
-        <td>#{link.get('caption')}</td>
-        <td><nobr>#{authorLink(link)}</nobr></td>
-        <td><nobr>#{link.get('updated_at')?.split('T')[0]}</nobr></td>
-        <td align='center'><nobr>#{editLink(link)} | #{deleteLink(link)}</nobr></td>
-       </tr>
-       """
-    links = _.map @eventPhotos.models, (link) -> rowHtml(link)
-    links.join('\n')
+  meetingLabel: =>
+    if BB.meetings.length == 1
+      "CURRENT MEETING"
+    else
+      "CURRENT MEETINGS"
+
+  meetingButtons: =>
+    noMeetings = "<b>There are no current meetings.</b>"
+    return noMeetings if BB.meetings.length == 0
+    BB.meetings.map((meeting) =>
+      meetingId = meeting.get('id')
+      date      = moment(meeting.get('start')).strftime("%b %d")
+      label     = "#{meeting.get('title')} - #{date} @ #{meeting.get('location')}"
+      button    = (meeting) ->
+        "<a class='clickHome nav center-text' data-id='#{meetingId}' href='/meeting_signin/#{meetingId}'>#{label}</a>"
+      button(meeting)).join("\n")

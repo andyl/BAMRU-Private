@@ -11,6 +11,18 @@
   text-align: left;
 }
 
+@mixin nav-base2-style {
+  margin:  0;
+  display: block;
+  margin-top:    5px;
+  margin-bottom: 5px;
+  padding:    5px;
+  color:      black;
+  background: white;
+  text-align: center;
+  text-decoration: none;
+}
+
 @mixin nav-nowrap {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -21,6 +33,12 @@
   border#{$position}-radius: 15px;
   -moz#{$position}-border-radius: 15px;
   -webkit#{$position}-border-radius: 15px;
+}
+
+@mixin rounded($radius: "15px") {
+  border-radius:         #{$radius};
+  -moz-border-radius:    #{$radius};
+  -webkit-border-radius: #{$radius};
 }
 
 /* ----- page layout ----- */
@@ -81,7 +99,7 @@ header {
 
   .back {
     text-decoration: none;
-    color: black;
+    color:  black;
     border: 1px solid black;
     background: white;
     margin: 10px;
@@ -89,6 +107,17 @@ header {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px; }
+
+  .del {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    background: white;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px; }
 
 }
 
@@ -127,6 +156,12 @@ header {
 }
 
 /* ----- nav links and dividers ----- */
+
+.navz {
+  @include nav-base2-style;
+  @include rounded("5px");
+  border: 1px solid black;
+  }
 
 .nav {
   @include nav-base-style;

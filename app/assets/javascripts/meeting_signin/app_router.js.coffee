@@ -14,7 +14,6 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     'meeting_signin/*path'           : "default"
 
   initialize: ->
-    console.log "doing initialize"
     # ----- faye -----
 #    BB.PubSub.events = new BB.PubSub.Events(BB.Collections.events)
     # ----- current member -----
@@ -33,25 +32,24 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   home: (id) ->
     console.log "rendering home for #{id}"
-    view = new BB.Views.Home
-    view.render()
-    @appBody.render().content.show(view)
+#    @appBody.render().content.show(new BB.Views.Home(id))
+    @_render(id, new BB.Views.Home(id))
 
   first_time: (id) ->
     console.log "rendering first_time for #{id}"
-    @appBody.render().content.show(new BB.Views.FirstTime)
+    @_render(id, new BB.Views.FirstTime(id))
 
   returning: (id) ->
     console.log "rendering returning for #{id}"
-    @appBody.render().content.show(new BB.Views.Returning)
+    @_render(id, new BB.Views.Returning(id))
 
   roster: (id) ->
     console.log "rendering roster for #{id}"
-    @appBody.render().content.show(new BB.Views.Roster)
+    @_render(id, new BB.Views.Roster(id))
 
   default: ->
     console.log "rendering the default route"
-    $('#content').text("This is the default route")
+    @appBody.render().content.show(new BB.Views.Unrecognized)
 
   _missingEventMsg: (id) ->
     if BB.Collections.events.get(id)
@@ -63,5 +61,8 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     msg = @_missingEventMsg(id)
     @appBody.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
-  _render: (opts) ->
-    @appBody.render().showContent(opts)
+  _render: (id, view) ->
+    if BB.meetings.get(id)
+      @appBody.render().content.show(view)
+    else
+      @appBody.render().content.show(new BB.Views.Unrecognized("Unknown Meeting (ID ##{id})"))

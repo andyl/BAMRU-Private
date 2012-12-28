@@ -18,13 +18,15 @@
     <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
 
     <script>
+      BB.myID    = parseInt("<%= current_member.id %>");
       BB.isPhone = <%= @is_phone %>;
-      BB.myID = parseInt("<%= current_member.id %>");
-      BB.members  = new BB.Collections.Members(<%= raw @members_json %>);
-      BB.meetings = new BB.Collections.Events(<%= raw @meetings_json %>);
-      BB.sessionId   = "<%= @session_id %>"
-      BB.faye_server = "<%= FAYE_SERVER %>"
-      BB.device_name = "<%= @device_name %>"
+      BB.members = new BB.Collections.Members()
+      BB.members.fetch()
+      BB.meetingsJson = <%= raw @meetings_json %>;
+      BB.meetings     = new BB.Collections.Events();
+      BB.sessionId    = "<%= @session_id %>"
+      BB.faye_server  = "<%= FAYE_SERVER %>"
+      BB.device_name  = "<%= @device_name %>"
     </script>
 
   </head>

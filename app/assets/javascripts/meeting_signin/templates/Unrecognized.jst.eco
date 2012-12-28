@@ -1,0 +1,4 @@
+<p></p>
+<%- @message || "This page is unrecognized" %>
+<p></p>
+<a id='meetings' class='nav center-text' href='/meeting_signin'  data-typ='meetings'>View Current Meetings</a>

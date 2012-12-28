@@ -1,6 +1,8 @@
 class Eapi::Events::EventReportsController < ApplicationController
   respond_to :json
 
+  #before_filter :authenticate_member!
+
   def index
     event = Event.find(params["event_id"])
     respond_with event.event_reports, opts

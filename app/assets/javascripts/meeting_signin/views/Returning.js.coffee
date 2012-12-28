@@ -4,10 +4,13 @@ class BB.Views.Returning extends BB.Views.Content
 
   template: 'meeting_signin/templates/Returning'
 
+  initialize: (meetingId) ->
+    @meetingId = meetingId
+
   # ----- initialization -----
 
   onRender: ->
-    @setFooter   "returning"
-    @setHomeLink "returning"
+    @setFooter   "returning", @meetingId
+    @setHomeLink "returning", @meetingId
     @setLabel    "returning"
     setTimeout(@initializePage, 1)

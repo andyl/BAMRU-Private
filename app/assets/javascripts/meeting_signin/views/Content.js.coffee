@@ -9,7 +9,7 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
     @setPageHeight()
     @checkUrlBar()
   
-  # ----- page height / setting the footer at the bottom of the page -----
+  # ----- page height / setting the footer at the page bottom -----
 
   setPageHeight: =>
     @baseHeight = $('.wrapper').height()
@@ -23,11 +23,9 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
     wrapperHeight = $('.wrapper').height()
     footerHeight  = $('#footer').height()
     if (@baseHeight + footerHeight) < windowHeight
-      console.log "BBB", @baseHeight, footerHeight
       tgtHeight = windowHeight - (footerHeight * 2) - 1
       $('.wrapper').height(tgtHeight)
     else
-      console.log "HOHO"
       $('.wrapper').css('height', '100%')
     $('#footer').show()
 
@@ -37,17 +35,13 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
     bh = $('body').height()
     wh = $(window).height()
     spacerHeight = wh - bh + 55
-    console.log "hiding", wh, bh, spacerHeight
     if wh >= bh
-      console.log "setting"
       $('#spacer').show().height(spacerHeight)
     window.scrollTo(0,1)
 
   checkUrlBar: =>
-    console.log "checking"
     return unless BB.isPhone
     offset = window.pageYOffset;
-    console.log "CHECKING URL BAR", offset
     if offset < 100
       @hideUrlBar()
       @setHeight()
@@ -58,32 +52,32 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
     "<a id='meetings' class='navLink' href='/meeting_signin'  data-typ='meetings'>Meetings</a>"
 
   rosterLink: (meetingId) ->
-    "<a id='roster' class='navLink' href='/meeting_signin/#{meetingId}/roster' data-typ='roster' data-id=234>Roster</a>"
+    "<a id='roster' class='navLink' href='/meeting_signin/#{meetingId}/roster' data-typ='roster' data-id='#{meetingId}'>Roster</a>"
 
   footerMenu: (meetingId) ->
-    "#{@meetingLink()}<span style='margin-left: 60px;'> </span>#{@rosterLink(234)}"
+    "#{@meetingLink()}<span style='margin-left: 60px;'> </span>#{@rosterLink(meetingId)}"
 
-  footerHtml: (page) ->
+  footerHtml: (page, meetingId) ->
     switch page
-      when "home"        then @footerMenu(234)
-      when "first_time"  then @footerMenu(234)
-      when "returning"   then @footerMenu(234)
+      when "home"        then @footerMenu(meetingId)
+      when "first_time"  then @footerMenu(meetingId)
+      when "returning"   then @footerMenu(meetingId)
       when "roster"      then @meetingLink()
       else ""
 
-  setFooter: (page) ->
-    $('#footer').html(@footerHtml(page))
+  setFooter: (page, meetingId) ->
+    $('#footer').html(@footerHtml(page, meetingId))
     $('#footer').trigger('change')
 
   # ----- header rendering -----
 
   homeLink: (id) ->
-    "<a class='clickHome back' href='/meeting_signin/#{id}'>Home</a>"
+    "<a class='clickHome back' data-id='#{id}' href='/meeting_signin/#{id}'>Home</a>"
 
-  setHomeLink: (page) ->
+  setHomeLink: (page, meetingId) ->
     html = switch page
       when "first_time", "returning", "roster"
-        @homeLink(234)
+        @homeLink(meetingId)
       else ""
     $('#homeLink').html(html)
 
@@ -98,3 +92,48 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
       else "Meeting Sign Up"
     $('#label').text(text)
 
+
+
+  # --------------------------------
+  # ----- initialize the stuff -----
+  # --------------------------------
+
+#  template: 'events/templates/CnTbodyRosterMt'
+#
+#  regions:
+#    period: '#period'
+#
+#  # ----- initialization -----
+#
+#  initialize: (options) ->
+#    @model      = options.model     # Event
+#    @collection = @model.periods    # Periods
+#
+#  onShow: ->
+#    opts =
+#      success: => @afterFetch()
+#    @collection.fetch(opts)
+#
+#  # ----- methods -----
+#
+#  afterFetch: ->
+#    if @collection.length == 0
+#      opts =
+#        success: => @createPeriod()
+#      @createPeriod(opts)
+#    else
+#      @showPeriod()
+#
+#  showPeriod: ->
+#    periodModel = @collection.first()
+#    periodView  = new BB.Views.CnTbodyRosterMtPeriod({model: periodModel})
+#    @period.show(periodView) unless @period == undefined
+#
+#  createPeriod: ->
+#    opts =
+#      event_id: @model.get('id')
+#    period = new BB.Models.Period(opts)
+#    period.urlRoot = "/eapi/events/#{@model.get('id')}/periods"
+#    opts =
+#      success: => @collection.add(period); @showPeriod()
+#    period.save({}, opts)

@@ -1,10 +1,10 @@
 <p></p>
-DIRECTIONS
+<b>DIRECTIONS</b>
 <p></p>
 1. lock the screen in portrait mode (if you can)<br/>
 2. enable the front-pointing camera (optional)<br/>
 3. select your meeting, and sign in!
 <p></p>
-<a class='clickHome nav center-text' data-id="234" href='/meeting_signin/234'>Meeting One</a>
-<a class='clickHome nav center-text' data-id="235" href='/meeting_signin/235'>Meeting Two</a>
-<a class='clickHome nav center-text' data-id="235" href='/meeting_signin/236'>Meeting Three</a>
+<b><%- @meetingLabel() %></b>
+<p></p>
+<%- @meetingButtons() %>

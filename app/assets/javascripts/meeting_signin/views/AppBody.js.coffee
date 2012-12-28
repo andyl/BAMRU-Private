@@ -23,11 +23,12 @@ class BB.Views.AppBody extends Backbone.Marionette.Layout
 
   clickHome: (ev) ->
     ev.preventDefault()
-    BB.Routers.app.navigate("/meeting_signin/234", {trigger: true})
+    meetingId = $(ev.target).data("id")
+    BB.Routers.app.navigate("/meeting_signin/#{meetingId}", {trigger: true})
 
   navClick: (ev) ->
     ev.preventDefault()
-    id = $(ev.target).data('id')
+    id  = $(ev.target).data('id')
     typ = $(ev.target).data('typ')
     if typ == "meetings"
       BB.Routers.app.navigate("/meeting_signin", {trigger: true})
@@ -37,10 +38,11 @@ class BB.Views.AppBody extends Backbone.Marionette.Layout
   # ----- content region -----
 
   showContent: (opts) ->
-    console.log "SHOW", opts.page
     view = switch opts.page
       when "roster"      then new BB.Views.Roster
       when "first_time"  then new BB.Views.FirstTime
       when "returning"   then new BB.Views.Returning
       when "home"        then new BB.Views.Home
     @content.show(view)
+
+

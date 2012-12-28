@@ -1,6 +1,8 @@
 class Eapi::MembersController < ApplicationController
   respond_to :json
 
+  #before_filter :authenticate_member!
+
   def index
     respond_with Member.all, opts
   end
