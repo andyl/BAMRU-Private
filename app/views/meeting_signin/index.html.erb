@@ -20,10 +20,10 @@
     <script>
       BB.myID    = parseInt("<%= current_member.id %>");
       BB.isPhone = <%= @is_phone %>;
-      BB.members = new BB.Collections.Members()
-      BB.members.fetch()
       BB.meetingsJson = <%= raw @meetings_json %>;
       BB.meetings     = new BB.Collections.Events();
+      BB.membersJson  = <%= raw @members_json %>;
+      BB.members      = new BB.Collections.Members(BB.membersJson)
       BB.sessionId    = "<%= @session_id %>"
       BB.faye_server  = "<%= FAYE_SERVER %>"
       BB.device_name  = "<%= @device_name %>"

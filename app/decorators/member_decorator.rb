@@ -12,18 +12,18 @@ class MemberDecorator < ApplicationDecorator
     result.to_json
   end
 
-  def signin_json
-    member_fields = %w(id typ first_name last_name)
-    result = subset(model.attributes, member_fields)
-    result["photo"]               = "true"        if has_photo?
-    result.to_json
-  end
-
   def self.mobile_json(collection)
     result = collection.map do |m|
       MemberDecorator.new(m).mobile_json
     end.join(',')
     "[#{result}]"
+  end
+
+  def signin_json
+    member_fields = %w(id typ first_name last_name admin developer)
+    result = subset(model.attributes, member_fields)
+    result["photo_icon"] = model.photo_icon
+    result.to_json
   end
 
   def self.signin_json
