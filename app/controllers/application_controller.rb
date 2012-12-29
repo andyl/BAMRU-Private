@@ -106,10 +106,15 @@ class ApplicationController < ActionController::Base
     if member = authenticate_with_http_basic { |u,p| Member.find_by_user_name(u).authenticate(p) }
       session[:member_id] = member.id
     else
-      authenticate_member!
+      authenticate_api_member!
     end
   end
 
+  def authenticate_api_member!
+    unless member_signed_in?
+      render :text => "Access Denied", :status => :unauthorized
+    end
+  end
 
   def authenticate_member!
     unless member_signed_in?

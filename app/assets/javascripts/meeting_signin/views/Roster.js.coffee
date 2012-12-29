@@ -10,6 +10,9 @@ class BB.Views.Roster extends BB.Views.Content
     @setParticipants()
     @bindTo(BB.vent, 'rosterInit', @reRender, this)
 
+  events:
+    'click .navDelete' : 'removeParticipant'
+
   # ----- initialization -----
 
   onRender: ->
@@ -26,6 +29,18 @@ class BB.Views.Roster extends BB.Views.Content
 
   setParticipants: ->
     meeting      = BB.meetings.get(@meetingId)
-    participants = meeting.periods?.first()?.participants
+    period       = meeting.periods?.first()
+    participants = period?.participants
     @model = BB.meetings.get(@meetingId)
+    @model.set(period: period)
     @model.set(participants: participants)
+
+  removeParticipant: (ev) ->
+    ev.preventDefault()
+    period = @model.get('period')
+    participantId = $(ev.target).data('id')
+    participant = period.participants.get(participantId)
+    console.log "PART", participantId, period, participant
+    participant?.destroy()
+
+

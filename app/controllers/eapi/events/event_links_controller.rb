@@ -1,7 +1,7 @@
 class Eapi::Events::EventLinksController < ApplicationController
   respond_to :json
 
-  #before_filter :authenticate_member!
+  before_filter :authenticate_member_with_basic_auth!
 
   def index
     event = Event.find(params["event_id"])

@@ -4,6 +4,8 @@ class Eapi::Periods::ParticipantsController < ApplicationController
   include Eapi::FayeModule
   respond_to :json
 
+  before_filter :authenticate_member_with_basic_auth!
+
   def index
     period = Period.find(params["period_id"])
     respond_with period.participants, opts

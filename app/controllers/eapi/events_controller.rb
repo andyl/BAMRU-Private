@@ -4,7 +4,7 @@ class Eapi::EventsController < ApplicationController
   include Eapi::FayeModule
   respond_to :json
 
-  #before_filter :authenticate_member!
+  before_filter :authenticate_member_with_basic_auth!
 
   def index
     respond_with Event.all, opts

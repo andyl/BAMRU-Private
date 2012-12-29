@@ -107,18 +107,6 @@ header {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px; }
-
-  .del {
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    background: white;
-    margin: 8px;
-    padding: 8px;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px; }
-
 }
 
 /* ----- content ----- */
@@ -140,6 +128,13 @@ header {
   text-align: right;
 }
 
+.rosterTable tr:nth-child(odd)   { background-color: #9b9b9b;  }
+.rosterTable tr:nth-child(even)  { background-color: #ababab;  }
+.rosterTable td {
+  padding: 8px;
+}
+
+
 /* ----- content styling ----- */
 
 .page {
@@ -157,7 +152,7 @@ header {
 
 /* ----- nav links and dividers ----- */
 
-.navz {
+.navDelete {
   @include nav-base2-style;
   @include rounded("5px");
   border: 1px solid black;
@@ -255,7 +250,6 @@ textarea {
 }
 
 .textarea_wrapper {
-
 }
 
 /* ----- one-off styling ----- */

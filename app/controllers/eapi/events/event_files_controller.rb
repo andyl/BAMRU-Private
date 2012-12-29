@@ -1,7 +1,7 @@
 class Eapi::Events::EventFilesController < ApplicationController
   respond_to :json
 
-  #before_filter :authenticate_member!
+  before_filter :authenticate_member_with_basic_auth!
 
   def index
     event = Event.find(params["event_id"])
@@ -13,8 +13,6 @@ class Eapi::Events::EventFilesController < ApplicationController
   end
   
   def create
-    #puts params
-    #debugger
     event_file = DataFile.create(params[:event_file])
     respond_with event_file, opts
   end

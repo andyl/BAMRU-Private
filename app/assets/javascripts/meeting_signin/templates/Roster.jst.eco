@@ -1,6 +1,8 @@
 <p></p>
 <%- @rosterTitle() %>
 <p></p>
-<table width=100% align=center>
-  <%- @rosterShow() %>
-</table>
+<div style='text-align: center;'>
+  <table class='rosterTable' align=center>
+    <%- @rosterShow() %>
+  </table>
+</div>
