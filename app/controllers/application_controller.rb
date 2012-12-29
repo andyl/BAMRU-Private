@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_mobile_member!(redirect_url = mobile_login_url)
     unless member_signed_in?
-      session[:ref] = request.url
+      session[:tgt_path] = request.url
       redirect_to redirect_url, :alert => "You must first log in to access this page"
     end
   end

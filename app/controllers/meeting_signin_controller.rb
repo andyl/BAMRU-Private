@@ -1,6 +1,6 @@
 class MeetingSigninController < ApplicationController
 
-  before_filter :authenticate_member!
+  before_filter :authenticate_mobile_member!
 
   def index
     @is_phone      = phone_device?
