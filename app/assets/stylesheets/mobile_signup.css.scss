@@ -152,7 +152,14 @@ header {
 
 /* ----- nav links and dividers ----- */
 
-.navDelete {
+.xImg {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.mobileNav {
   @include nav-base2-style;
   @include rounded("5px");
   border: 1px solid black;

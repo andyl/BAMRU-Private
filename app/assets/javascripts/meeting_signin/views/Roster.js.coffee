@@ -12,6 +12,7 @@ class BB.Views.Roster extends BB.Views.Content
 
   events:
     'click .navDelete' : 'removeParticipant'
+    'click .imageShow' : 'imageShow'
 
   # ----- initialization -----
 
@@ -37,6 +38,18 @@ class BB.Views.Roster extends BB.Views.Content
 
   removeParticipant: (ev) ->
     ev.preventDefault()
+    alert "Under Construction"
+    return
+    period = @model.get('period')
+    participantId = $(ev.target).data('id')
+    participant = period.participants.get(participantId)
+    console.log "PART", participantId, period, participant
+    participant?.destroy()
+
+  imageShow: (ev) ->
+    ev.preventDefault()
+    alert "Under Construction"
+    return
     period = @model.get('period')
     participantId = $(ev.target).data('id')
     participant = period.participants.get(participantId)
