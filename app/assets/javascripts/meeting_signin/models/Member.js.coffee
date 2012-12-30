@@ -24,4 +24,5 @@ class BB.Models.Member extends Backbone.Model
       when 'G'  then -10
       when 'GX' then -5
       else 0
+  hasPhoto:    -> @get('photo_icon').length > 0
 

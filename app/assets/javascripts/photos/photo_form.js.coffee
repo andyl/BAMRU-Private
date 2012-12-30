@@ -5,8 +5,6 @@ table sorting on the unit_certs/index page.
 Table sorter plugin at: http://tablesorter.com
 ###
 
-
-
 # for debugging
 showCoords = (coords, d = {}) ->
   round = (input) -> Math.round(input)

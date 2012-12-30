@@ -3,7 +3,6 @@ class Mobile3::SessionsController < ApplicationController
   def new
     @page_name = "Login"
     @msg = ""
-    debugger
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
       ActiveSupport::Notifications.instrument("login.mobile3.cookie", {:member => member})
@@ -27,7 +26,6 @@ class Mobile3::SessionsController < ApplicationController
       end
       ActiveSupport::Notifications.instrument("login.mobile3.form", {:member => member})
       member_login(member)
-      debugger
       redirect_to session[:tgt_path] || mobile_path
     else
       ActiveSupport::Notifications.instrument("login.mobile3.invalid", {:text => params[:user_name]})
