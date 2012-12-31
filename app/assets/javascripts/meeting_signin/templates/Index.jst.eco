@@ -2,8 +2,7 @@
 <b>DIRECTIONS</b>
 <p></p>
 1. lock the screen in portrait mode (if you can)<br/>
-2. enable the front-pointing camera (optional)<br/>
-3. select your meeting, and sign in!
+2. select your meeting, and sign in!
 <p></p>
 <b><%- @meetingLabel() %></b>
 <p></p>

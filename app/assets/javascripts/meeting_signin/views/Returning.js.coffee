@@ -8,7 +8,13 @@ class BB.Views.Returning extends BB.Views.Content
     @meetingId    = meetingId
     @meeting      = BB.meetings.get(@meetingId)
     @period       = @meeting.periods.first()
-    @participants = @period.participants
+    if @period?
+      @participants = @period.participants
+    else
+      initFunc = =>
+        @period = @meeting.periods.first()
+        @participants = @period.participants
+      setTimeout(initFunc, 1000)
 
   # ----- initialization -----
 

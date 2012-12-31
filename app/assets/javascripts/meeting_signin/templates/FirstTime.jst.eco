@@ -1,12 +1,40 @@
 <p></p>
-Name: ____________<p></p>
-
-eMail: _____________<p></p>
-
-Cell: ______________<p></p>
-
-Zip: _______________<p></p>
+  <table align='center'>
+    <tr>
+      <td align="right">
+        Name:
+      </td>
+      <td>
+        <input id='name' placeholder="Enter your name...">
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        eMail:
+      </td>
+      <td>
+        <input id='email' placeholder="Enter your email...">
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Cell:
+      </td>
+      <td>
+        <input id='cell' placeholder="Your cell phone number...">
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        Zip:
+      </td>
+      <td>
+        <input id='zip' placeholder="Your home zip code...">
+      </td>
+    </tr>
+  </table>
 
 <p></p>
 
-Save | Reset
+<a id='saveGuest' class='nav center-text' href='#' data-id='<%=@meetingId%>'>Save</a>
+<a class='clickHome nav center-text' href='/meeting_signin/<%=@meetingId%>' data-id='<%=@meetingId%>'>Cancel</a>
