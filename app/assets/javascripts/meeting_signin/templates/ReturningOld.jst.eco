@@ -1,0 +1,38 @@
+<p></p>
+<input id='autoComp' placeholder="Enter your name...">
+
+<div id='welcomeText' style='display: none;'></div>
+
+<div id='xDisp' align=center>
+  <table width=100%>
+    <tr valign=top>
+      <td align="center">
+        <div id='loadingMsg' style='width:200px; background: yellow; border: 2px solid black; padding: 10px; display: none;'><b>loading...</b></div>
+        <div id='imgHolder'></div>
+      </td>
+      <td align="center">
+        <div id='imgPreviewDiv' style='width:120px; height: 90px;overflow:hidden;'>
+        </div>
+        <div class='xResize' style='display: none;'>
+        <a href='#' id='cropShrink'>Shrink</a><br/>
+        <a href='#' id='cropGrow'>Grow</a>
+        </div>
+        <p></p>
+        <form id="cropForm" action="/members/<%#  @member.id %>/photos" method='post' enctype='multipart/form-data'>
+          <input  name="authenticity_token" value="<%# form_authenticity_token %>" type="hidden">
+          <input name="photo-data" id="cropSend" type="hidden">
+          <input id='uploadBtn' type='submit' value="Upload Cropped Photo" style='display:none;'/>
+        </form>
+        <p></p>
+        <div id='coordDisp'></div>
+        <p></p>
+        <div id='uploadNotice' style='margin-top: 20px; background: #2cee64; padding: 10px; border: 1px solid black; display: none; text-align: center;'>
+          <b>Upload in progress!!</b>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div id='photoButtons'></div>
+</div>
+
+<input style='visibility: hidden;' id='takePhoto' type="file" name='file[photo]' accept="image/*;capture=camera" >

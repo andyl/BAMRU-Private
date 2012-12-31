@@ -7,21 +7,6 @@ Cell: ______________<p></p>
 
 Zip: _______________<p></p>
 
-Photo: [TAKE PHOTO]
-
 <p></p>
-
-<form>
-<input type="file" accept="image/*;capture=camera" >
-<!-- <input type="submit"/> -->
-</form>
-
-<p></p>
-
-Original | Cropped<p></p>
-
-
-
-
 
 Save | Reset

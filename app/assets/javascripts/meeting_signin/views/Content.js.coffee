@@ -62,6 +62,7 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
       when "home"        then @footerMenu(meetingId)
       when "first_time"  then @footerMenu(meetingId)
       when "returning"   then @footerMenu(meetingId)
+      when "photo"       then @footerMenu(meetingId)
       when "roster"      then @meetingLink()
       else ""
 
@@ -89,51 +90,7 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
       when "first_time"    then "First Time Guest"
       when "returning"     then "Returning Attendee"
       when "roster"        then "Roster"
+      when "photo"         then "Photo"
       else "Meeting Sign Up"
     $('#label').text(text)
 
-
-
-  # --------------------------------
-  # ----- initialize the stuff -----
-  # --------------------------------
-
-#  template: 'events/templates/CnTbodyRosterMt'
-#
-#  regions:
-#    period: '#period'
-#
-#  # ----- initialization -----
-#
-#  initialize: (options) ->
-#    @model      = options.model     # Event
-#    @collection = @model.periods    # Periods
-#
-#  onShow: ->
-#    opts =
-#      success: => @afterFetch()
-#    @collection.fetch(opts)
-#
-#  # ----- methods -----
-#
-#  afterFetch: ->
-#    if @collection.length == 0
-#      opts =
-#        success: => @createPeriod()
-#      @createPeriod(opts)
-#    else
-#      @showPeriod()
-#
-#  showPeriod: ->
-#    periodModel = @collection.first()
-#    periodView  = new BB.Views.CnTbodyRosterMtPeriod({model: periodModel})
-#    @period.show(periodView) unless @period == undefined
-#
-#  createPeriod: ->
-#    opts =
-#      event_id: @model.get('id')
-#    period = new BB.Models.Period(opts)
-#    period.urlRoot = "/eapi/events/#{@model.get('id')}/periods"
-#    opts =
-#      success: => @collection.add(period); @showPeriod()
-#    period.save({}, opts)

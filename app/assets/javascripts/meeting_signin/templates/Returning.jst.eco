@@ -1,33 +1,5 @@
 <p></p>
 <input id='autoComp' placeholder="Enter your name...">
-<span id='welcomeText' style='display: none;'></span>
-<input style='visibility: hidden;' id='takePhoto' type="file" name='file[photo]' accept="image/*;capture=camera" >
-<a onclick="$('#takePhoto').trigger('click');" href='#'>click</a>
-<div id='xDisp'>
-  <table width=100%>
-    <tr valign=top>
-      <td width=70% style='padding:0; margin:0;'>
-        <b>Crop</b><p></p>
-        <div id='loadingMsg' style='width:200px; background: yellow; border: 2px solid black; padding: 10px; display: none;'><b>loading...</b></div>
-        <div id='imgHolder'></div>
-      </td>
-      <td width=30%>
-        <b>Upload</b><p></p>
-        <div id='imgPreviewDiv' style='width:120px; height: 90px;overflow:hidden;'>
-        </div>
-        <p></p>
-        <form id="cropForm" action="/members/<%#  @member.id %>/photos" method='post' enctype='multipart/form-data'>
-          <input  name="authenticity_token" value="<%# form_authenticity_token %>" type="hidden">
-          <input name="photo-data" id="cropSend" type="hidden">
-          <input id='uploadBtn' type='submit' value="Upload Cropped Photo" style='display:none;'/>
-        </form>
-        <p></p>
-        <div id='coordDisp'></div>
-        <p></p>
-        <div id='uploadNotice' style='margin-top: 20px; background: #2cee64; padding: 10px; border: 1px solid black; display: none; text-align: center;'>
-          <b>Upload in progress!!</b>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+<div id='welcomeText' style='display: none;'></div>
+<div id='photoLink'   style='display: none;'></div>
+<div id='homeButton'  style='display: none;'></div>

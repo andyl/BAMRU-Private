@@ -4,6 +4,7 @@
 //= require jquery
 //= require jquery_form
 //= require jquery-ui
+//= require jcrop
 
 //= require underscore-min-1_4_2
 

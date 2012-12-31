@@ -1,17 +1,19 @@
 BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   routes:
-    'meeting_signin'                 : "index"
-    'meeting_signin/'                : "index"
-    'meeting_signin/:id'             : "home"
-    'meeting_signin/:id/'            : "home"
-    'meeting_signin/:id/first_time'  : "first_time"
-    'meeting_signin/:id/first_time/' : "first_time"
-    'meeting_signin/:id/returning'   : "returning"
-    'meeting_signin/:id/returning/'  : "returning"
-    'meeting_signin/:id/roster'      : "roster"
-    'meeting_signin/:id/roster/'     : "roster"
-    'meeting_signin/*path'           : "default"
+    'meeting_signin'                      : "index"
+    'meeting_signin/'                     : "index"
+    'meeting_signin/:id'                  : "home"
+    'meeting_signin/:id/'                 : "home"
+    'meeting_signin/:id/first_time'       : "first_time"
+    'meeting_signin/:id/first_time/'      : "first_time"
+    'meeting_signin/:id/returning'        : "returning"
+    'meeting_signin/:id/returning/'       : "returning"
+    'meeting_signin/:id/roster'           : "roster"
+    'meeting_signin/:id/roster/'          : "roster"
+    'meeting_signin/:mtgId/photo/:memId'  : "photo"
+    'meeting_signin/:mtgId/photo/:memId/' : "photo"
+    'meeting_signin/*path'                : "default"
 
   initialize: ->
     # ----- faye -----
@@ -46,6 +48,10 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
   roster: (id) ->
     console.log "rendering roster for #{id}"
     @_render(id, new BB.Views.Roster(id))
+
+  photo: (meetingId, memberId) ->
+    console.log "rendering photo for #{meetingId} and member #{memberId}"
+    @_render(meetingId, new BB.Views.Photo(meetingId, memberId))
 
   default: ->
     console.log "rendering the default route"

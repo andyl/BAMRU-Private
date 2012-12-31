@@ -94,6 +94,7 @@ Zn::Application.routes.draw do
   get '/meeting_signin/:event_id'            => 'meeting_signin#index'
   get '/meeting_signin/:event_id/'           => 'meeting_signin#index'
   get '/meeting_signin/:event_id/:glob'      => 'meeting_signin#index'
+  get '/meeting_signin/:event_id/:g1/:g2'    => 'meeting_signin#index'
 
   match "/msign"                        => redirect("/meeting_signin")
   match "/meeting:glob"                 => redirect("/meeting_signin")
