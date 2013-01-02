@@ -17,7 +17,6 @@ class BB.Views.Roster extends BB.Views.Content
   # ----- initialization -----
 
   onRender: ->
-    @setFooter   'roster', @meetingId
     @setHomeLink 'roster', @meetingId
     @setLabel    'roster'
     setTimeout(@initializePage, 1)

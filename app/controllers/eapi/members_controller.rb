@@ -13,6 +13,7 @@ class Eapi::MembersController < ApplicationController
   
   def create
     model = Member.create(params["member"])
+    debugger
     if model.valid?
       expire_fragment(/guests_index_table/)
       respond_with model, opts

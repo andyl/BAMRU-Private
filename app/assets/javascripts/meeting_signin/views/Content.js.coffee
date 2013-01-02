@@ -60,10 +60,6 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
   footerHtml: (page, meetingId) ->
     switch page
       when "home"        then @footerMenu(meetingId)
-      when "first_time"  then @footerMenu(meetingId)
-      when "returning"   then @footerMenu(meetingId)
-      when "photo"       then @footerMenu(meetingId)
-      when "roster"      then @meetingLink()
       else ""
 
   setFooter: (page, meetingId) ->

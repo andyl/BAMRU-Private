@@ -42,6 +42,7 @@ class GuestsController < ApplicationController
   end
   
   def create
+    debugger
     @guest = Member.create(params["member"])
     if @guest.valid?
       expire_fragment(/guest_index_table/)

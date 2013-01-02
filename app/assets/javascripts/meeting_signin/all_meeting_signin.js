@@ -19,6 +19,7 @@
 //= require meeting_signin/bbm_initialize
 //= require meeting_signin/pub_sub
 //= require meeting_signin/serialize_object
+//= require meeting_signin/guest_opts
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./templates

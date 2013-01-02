@@ -16,7 +16,6 @@ class BB.Views.FirstTime extends BB.Views.Content
   # ----- initialization -----
 
   onRender: =>
-    @setFooter   "first_time", @meetingId
     @setHomeLink "first_time", @meetingId
     @setLabel    "first_time"
     setTimeout(@initializePage, 1)
@@ -25,4 +24,13 @@ class BB.Views.FirstTime extends BB.Views.Content
 
   saveGuest: (ev) ->
     ev?.preventDefault()
-    alert "Under Construction"
+    guestOpts = new BB.GuestOpts
+    guestOpts.setName($('#name').val())
+    guestOpts.setEmail($('#email').val())
+    guestOpts.setPhone($('#cell').val())
+    guestOpts.setZip($('#zip').val())
+    guestOpts.createGuest()
+
+
+
+

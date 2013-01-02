@@ -19,7 +19,6 @@ class BB.Views.Returning extends BB.Views.Content
   # ----- initialization -----
 
   onRender: ->
-    @setFooter   "returning", @meetingId
     @setHomeLink "returning", @meetingId
     @setLabel    "returning"
     setTimeout(@initializePage, 1)

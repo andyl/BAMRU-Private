@@ -96,10 +96,10 @@ Zn::Application.routes.draw do
   get '/meeting_signin/:event_id/:glob'      => 'meeting_signin#index'
   get '/meeting_signin/:event_id/:g1/:g2'    => 'meeting_signin#index'
 
-  match "/msign"                        => redirect("/meeting_signin")
-  match "/meeting:glob"                 => redirect("/meeting_signin")
-  match "/meeting:glob/:event_id"       => redirect("/meeting_signin/%{event_id}")
-  match "/meeting:glob/:event_id/:path" => redirect("/meeting_signin/%{event_id}/%{path}")
+  get "/msign"                        => redirect("/meeting_signin")
+  get "/meeting:glob"                 => redirect("/meeting_signin")
+  get "/meeting:glob/:event_id"       => redirect("/meeting_signin/%{event_id}")
+  get "/meeting:glob/:event_id/:path" => redirect("/meeting_signin/%{event_id}/%{path}")
 
   get '/events'                => 'events#index'
   get '/events/:id'            => 'events#index'
@@ -152,19 +152,19 @@ Zn::Application.routes.draw do
 
   end
 
-  match '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
-  match '/members/:member_id/certs/sort'  => "certs#sort",          :as => :sort_member_certs
-  match '/rsvp_templates/sort'            => "rsvp_templates#sort", :as => :sort_rsvp_templates
+  post '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
+  post '/members/:member_id/certs/sort'  => "certs#sort",          :as => :sort_member_certs
+  post '/rsvp_templates/sort'            => "rsvp_templates#sort", :as => :sort_rsvp_templates
 
-  match '/reports'                 => "reports#index"
-  match '/reports/gdocs/uploading' => "reports#gdocs_uploading"
-  match '/reports/gdocs/auth'      => "reports#gdocs_auth"
-  match '/reports/gdocs/request'   => "reports#gdocs_request"
-  match '/reports/gdocs/show'      => "reports#gdocs_show"
-  match '/reports/gdocs/:title'    => "reports#gdocs_show"
-  match '/reports/:title'          => "reports#show"
+  get '/reports'                 => "reports#index"
+  get '/reports/gdocs/uploading' => "reports#gdocs_uploading"
+  get '/reports/gdocs/auth'      => "reports#gdocs_auth"
+  get '/reports/gdocs/request'   => "reports#gdocs_request"
+  get '/reports/gdocs/show'      => "reports#gdocs_show"
+  get '/reports/gdocs/:title'    => "reports#gdocs_show"
+  get '/reports/:title'          => "reports#show"
 
-  match '/icon/:label.gif'         => "icon#show"
+  get '/icon/:label.gif'         => "icon#show"
 
   root :to => 'home#index'
 
