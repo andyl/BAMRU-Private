@@ -11,8 +11,9 @@ class BB.Views.Roster extends BB.Views.Content
     @bindTo(BB.vent, 'rosterInit', @reRender, this)
 
   events:
-    'click .navDelete' : 'removeParticipant'
-    'click .imageShow' : 'imageShow'
+    'click .navDelete'  : 'removeParticipant'
+    'click .imageShow'  : 'imageShow'
+    'click #imageClose' : 'imageClose'
 
   # ----- initialization -----
 
@@ -47,12 +48,21 @@ class BB.Views.Roster extends BB.Views.Content
 
   imageShow: (ev) ->
     ev.preventDefault()
-    alert "Under Construction"
-    return
-    period = @model.get('period')
-    participantId = $(ev.target).data('id')
-    participant = period.participants.get(participantId)
-    console.log "PART", participantId, period, participant
-    participant?.destroy()
+    iconEl  = $(ev.target)[0]
+    iconUrl = $(iconEl).attr('src')
+    displayUrl = iconUrl.replace('icon', 'roster')
+    memberId = $(iconEl).data('memid')
+    member   = BB.members.get(memberId)
+    $('#memberName').html("#{member.fullName()}<br/>#{member.get('typ')}")
+    $('#photoSpot').html("<img src='#{displayUrl}'/>")
+    $('#rosterBody').hide()
+    $('#photoShow').show()
+
+  imageClose: (ev) ->
+    ev?.preventDefault()
+    $('#photoShow').hide()
+    $('#rosterBody').show()
+
+
 
 

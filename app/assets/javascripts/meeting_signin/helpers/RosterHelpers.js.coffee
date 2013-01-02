@@ -15,6 +15,7 @@ BB.Helpers.RosterHelpers =
       name = "#{member.get('first_name')} #{member.get('last_name')}"
       typ  = member.get('typ')
       url  = member.get('photo_icon')
-      photo = if url.length == 0 then "" else "<a href='#' class='mobileNav imageShow'><img class='xImg' src='#{url}' /></a>"
+      img   = "<img data-memid='#{participant.get('member_id')}' class='xImg' src='#{url}' />"
+      photo = if url.length == 0 then "" else "<a href='#' class='mobileNav imageShow'>#{img}</a>"
       dlink = "<a href='#' data-id='#{pid}' class='mobileNav navDelete'>X</a>"
       "<tr><td>#{photo}</td><td>#{typ}</td><td>#{name}</td><td>#{dlink}</td></tr>").join('')
