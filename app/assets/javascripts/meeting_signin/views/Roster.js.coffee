@@ -38,19 +38,22 @@ class BB.Views.Roster extends BB.Views.Content
 
   removeParticipant: (ev) ->
     ev.preventDefault()
-    alert "Under Construction"
-    return
     period = @model.get('period')
     participantId = $(ev.target).data('id')
     participant = period.participants.get(participantId)
+    member      = BB.members.get(participant.get('member_id'))
+    result = confirm("Are you sure you want to remove #{member.fullName()}?")
+    return unless result == true
     console.log "PART", participantId, period, participant
     participant?.destroy()
+    @render()
+
 
   imageShow: (ev) ->
     ev.preventDefault()
     iconEl  = $(ev.target)[0]
     iconUrl = $(iconEl).attr('src')
-    displayUrl = iconUrl.replace('icon', 'roster')
+    displayUrl = iconUrl.replace('icon', 'medium')
     memberId = $(iconEl).data('memid')
     member   = BB.members.get(memberId)
     $('#memberName').html("#{member.fullName()}<br/>#{member.get('typ')}")
