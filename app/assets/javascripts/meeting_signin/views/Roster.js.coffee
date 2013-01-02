@@ -51,7 +51,7 @@ class BB.Views.Roster extends BB.Views.Content
     ev.preventDefault()
     iconEl  = $(ev.target)[0]
     iconUrl = $(iconEl).attr('src')
-    displayUrl = iconUrl.replace('icon', 'medium')
+    displayUrl = iconUrl.replace('icon', 'roster')
     memberId = $(iconEl).data('memid')
     member   = BB.members.get(memberId)
     $('#memberName').html("#{member.fullName()}<br/>#{member.get('typ')}")

@@ -15,7 +15,7 @@
         eMail:
       </td>
       <td>
-        <input id='email' placeholder="Enter your email...">
+        <input id='email' placeholder="Enter your email..." type='email'>
       </td>
     </tr>
     <tr>
@@ -23,7 +23,7 @@
         Cell:
       </td>
       <td>
-        <input id='cell' placeholder="Your cell phone number...">
+        <input id='cell' placeholder="Your cell phone number..." type='tel'>
       </td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
         Zip:
       </td>
       <td>
-        <input id='zip' placeholder="Your home zip code...">
+        <input id='zip' placeholder="Your home zip code..." type='tel'>
       </td>
     </tr>
   </table>
