@@ -3,6 +3,8 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
   routes:
     'meeting_signin'                      : "index"
     'meeting_signin/'                     : "index"
+    'meeting_signin/autosign'             : "autosign"
+    'meeting_signin/autosign/'            : "autosign"
     'meeting_signin/:id'                  : "home"
     'meeting_signin/:id/'                 : "home"
     'meeting_signin/:id/first_time'       : "first_time"
@@ -18,19 +20,20 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
   initialize: ->
     # ----- faye -----
 #    BB.PubSub.events = new BB.PubSub.Events(BB.Collections.events)
-    # ----- current member -----
-#    json_member_data = JSON.parse(_.string.unescapeHTML($('#json_member_data').text()))
-#    BB.currentMember = new BB.Models.Member(json_member_data)
     # ----- create app layout -----
     BB.Views.appBody = new BB.Views.AppBody()
     @appBody = BB.Views.appBody
-    # ----- all members -----
-#    BB.members = new BB.Collections.Members()
-#    BB.members.fetch()
 
   index: ->
     console.log "rendering index"
     @appBody.render().content.show(new BB.Views.Index)
+
+  autosign: ->
+    console.log "doing autosign"
+    if BB.meetings.length == 1
+      @appBody.render().content.show(new BB.Views.Autosign)
+    else
+      @index()
 
   home: (id) ->
     console.log "rendering home for #{id}"

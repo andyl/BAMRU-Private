@@ -91,6 +91,8 @@ Zn::Application.routes.draw do
   
   get '/meeting_signin'                      => 'meeting_signin#index'
   get '/meeting_signin/'                     => 'meeting_signin#index'
+  get '/meeting_signin/autosign'             => 'meeting_signin#index'
+  get '/meeting_signin/autosign/'            => 'meeting_signin#index'
   get '/meeting_signin/:event_id'            => 'meeting_signin#index'
   get '/meeting_signin/:event_id/'           => 'meeting_signin#index'
   get '/meeting_signin/:event_id/:glob'      => 'meeting_signin#index'

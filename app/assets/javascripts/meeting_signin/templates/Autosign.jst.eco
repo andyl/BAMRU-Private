@@ -1,0 +1,10 @@
+<p></p>
+<b>Welcome <%= @userName() %>!</b>
+<p></p>
+<%- @homeTitle() %>
+<p></p>
+<b>You are signed in!</b>
+<p></p>
+Please let others use this <%= BB.device_name %> to sign in.
+<p></p>
+<%- @meetingButtons() %>

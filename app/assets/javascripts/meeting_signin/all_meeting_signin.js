@@ -24,5 +24,8 @@
 //= require_tree ./collections
 //= require_tree ./templates
 //= require_tree ./helpers
+
+//= require meeting_signin/views/Content
 //= require_tree ./views
+
 //= require meeting_signin/app_router

@@ -77,7 +77,7 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
       initFunc = =>
         @period = @meeting.periods.first()
         @participants = @period.participants
-      setTimeout(initFunc, 1000)
+      setTimeout(initFunc, 500)
 
   addParticipant: (memberId) ->
     member = BB.members.get(memberId)

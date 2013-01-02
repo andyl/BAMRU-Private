@@ -17,7 +17,6 @@ class Mobile3Controller < ApplicationController
     txt    = unread == 0 ? "" : " (#{unread})"
     @inbox_label = "My Inbox#{txt}"
     @device   = device
-
     render :layout => false
   end
 
