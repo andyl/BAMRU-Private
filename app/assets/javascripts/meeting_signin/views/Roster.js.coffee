@@ -64,4 +64,5 @@ class BB.Views.Roster extends BB.Views.Content
   imageClose: (ev) ->
     ev?.preventDefault()
     $('#photoShow').hide()
+    $('#loadingMsg').show()
     $('#rosterBody').show()
