@@ -8,9 +8,10 @@
     </table>
   </div>
 </div>
-<div id='photoShow' style='display: none;'>
+<div id='photoShow' style='text-align: center; display: none;'>
   <b><div id='memberName'></div></b>
   <p></p>
+  <div style='padding:4px;' id='loadingMsg'>loading...</div>
   <div id='photoSpot'></div>
   <p></p>
   <a id='imageClose' class='nav center-text' href='#'>Close</a>
