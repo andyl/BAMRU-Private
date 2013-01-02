@@ -105,7 +105,7 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
 
   setLabel: (page) ->
     text = switch page
-      when "index", "home" then "BAMRU Meeting Sign In"
+      when "index", "home" then "Meeting Sign In"
       when "first_time"    then "First Time Guest"
       when "returning"     then "Returning Attendee"
       when "roster"        then "Roster"

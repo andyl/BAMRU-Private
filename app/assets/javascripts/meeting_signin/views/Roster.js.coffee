@@ -44,10 +44,8 @@ class BB.Views.Roster extends BB.Views.Content
     member      = BB.members.get(participant.get('member_id'))
     result = confirm("Are you sure you want to remove #{member.fullName()}?")
     return unless result == true
-    console.log "PART", participantId, period, participant
     participant?.destroy()
     @render()
-
 
   imageShow: (ev) ->
     ev.preventDefault()

@@ -39,12 +39,9 @@ class BB.Views.Photo extends BB.Views.Content
     @$el.find('#autoComp').autocomplete(autoOpts)
 
   autoCompleteAddParticipant: (memberId) ->
-    console.log "MEMBERID Has been added!!", memberId
     member = BB.members.get(memberId)
     oldParticipant = @participants.select (member) -> member.get('member_id') == memberId
-    console.log "OLD", oldParticipant
     if oldParticipant.length == 0
-      console.log "ADDING NEW PART"
       participant = new BB.Models.Participant({member_id: memberId, period_id: @period.get('id')})
       participant.urlRoot = "/eapi/periods/#{@period.get('id')}/participants"
       participant.save()
@@ -90,7 +87,6 @@ class BB.Views.Photo extends BB.Views.Content
 #    $('#uploadBtn').show()
 
   displayCropSource: (event) ->
-    console.log "DCS"
     baseImg = new Image()
     baseImg.id  = "cropImg"
     baseImg.src = event.target.result
@@ -155,7 +151,6 @@ class BB.Views.Photo extends BB.Views.Content
     $('.xResize').show()
 
   updatePreview: (coords) ->
-    console.log "UPD", coords
     window.coords = coords
     if parseInt(coords.w) > 0
       rx = 120 / coords.w

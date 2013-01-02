@@ -25,7 +25,6 @@ class BB.Views.FirstTime extends BB.Views.Content
   completeFunc: (ev, xhr) =>
     switch xhr.status
       when 201
-        console.log "create", xhr
         newMember = new BB.Models.Member(JSON.parse(xhr.responseText))
         BB.members.add(newMember)
         @addParticipant(newMember.get('id'))
@@ -34,9 +33,7 @@ class BB.Views.FirstTime extends BB.Views.Content
         $('#successMsg').text('You have been added!').show()
       when 200
         $('#errorMsg').hide()
-        console.log "SUCCESS"
       else
-        console.log "FAIL", xhr
         errors   = JSON.parse(xhr.responseText).errors
         errorMsg = "#{errors?.join(', ')}. <u>Please try again.</u><br/>"
         $('#errorMsg').html(errorMsg).css('color', 'red').css('font-size' : '8pt')
