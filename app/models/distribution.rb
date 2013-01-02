@@ -18,17 +18,17 @@ class Distribution < ActiveRecord::Base
 
 
   # ----- Scopes -----
-  scope :sent,      where(:read => [true, false])
-  scope :bounced,   where(:bounced => true)
-  scope :read,      where(:read => true)
-  scope :unread,    where(:read => false)
+  scope :sent,      -> { where(:read => [true, false]) }
+  scope :bounced,   -> { where(:bounced => true)       }
+  scope :read,      -> { where(:read => true)          }
+  scope :unread,    -> { where(:read => false)         }
 
   scope :response_less_than, lambda {|seconds| where('response_seconds < ?', seconds)}
   scope :response_greater_than, lambda {|seconds| where('response_seconds > ?', seconds)}
 
-  scope :rsvp_yes,     where(:rsvp_answer => "Yes")
-  scope :rsvp_no,      where(:rsvp_answer => "No")
-  scope :rsvp_pending, where(:rsvp_answer => nil)
+  scope :rsvp_yes,     -> { where(:rsvp_answer => "Yes") }
+  scope :rsvp_no,      -> { where(:rsvp_answer => "No")  }
+  scope :rsvp_pending, -> { where(:rsvp_answer => nil)   }
 
   # ----- Local Methods-----
   def has_open_bounce?

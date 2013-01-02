@@ -66,13 +66,13 @@ class Event < ActiveRecord::Base
   end
 
   # ----- Scopes -----
-  scope :published,     where(published: true).order('start')
-  scope :unpublished,   where(published: false).order('start')
-  scope :operations,    where(typ: "operation").order('start')
-  scope :trainings,     where(typ: "training").order('start')
-  scope :meetings,      where(typ: "meeting").order('start')
-  scope :communities,   where(typ: "community").order('start')
-  scope :socials,       where(typ: "social").order('start')
+  scope :published,     -> { where(published: true).order('start')     }
+  scope :unpublished,   -> { where(published: false).order('start')    }
+  scope :operations,    -> { where(typ: "operation").order('start')    }
+  scope :trainings,     -> { where(typ: "training").order('start')     }
+  scope :meetings,      -> { where(typ: "meeting").order('start')      }
+  scope :communities,   -> { where(typ: "community").order('start')    }
+  scope :socials,       -> { where(typ: "social").order('start')       }
 
   def self.kind(typ)    where(:typ => typ).order('start');           end
   def self.after(date)  where('start >= ?', self.date_parse(date));  end

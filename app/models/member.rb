@@ -94,23 +94,23 @@ class Member < ActiveRecord::Base
   before_validation :set_remember_me_token,    :if => :password_digest_changed?
 
   # ----- Scopes -----
-  scope :order_by_last_name,     order("last_name ASC")
-  scope :order_by_do_role_score, order(['current_do DESC', :role_score, :last_name])
-  scope :order_by_role_score,    order([:role_score, :last_name])
-  scope :order_by_do_typ_score,  order(['current_do DESC', :typ_score, :last_name])
-  scope :order_by_typ_score,     order([:typ_score, :last_name])
-  scope :standard_order,         order_by_role_score
-  scope :roles_order,            order_by_role_score
-  scope :typ_order,              order_by_typ_score
-  scope :with_photos,            where("id     IN (SELECT member_id from photos)")
-  scope :without_photos,         where("id NOT IN (SELECT member_id from photos)")
-  scope :active,                 where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order
-  scope :registered,             where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order
-  scope :registered_last_name,   where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name
-  scope :inactive,               where("typ in ('R', 'S', 'A')").standard_order
-  scope :guests,                 where("typ in ('G')").standard_order
-  scope :all_guests,             where("typ in ('G', 'GX')").standard_order
-  scope :current_do,             where(:current_do => true)
+  scope :order_by_last_name,     -> { order("last_name ASC")                                                }
+  scope :order_by_do_role_score, -> { order(['current_do DESC', :role_score, :last_name])                   }
+  scope :order_by_role_score,    -> { order([:role_score, :last_name])                                      }
+  scope :order_by_do_typ_score,  -> { order(['current_do DESC', :typ_score, :last_name])                    }
+  scope :order_by_typ_score,     -> { order([:typ_score, :last_name])                                       }
+  scope :standard_order,         -> { order_by_role_score                                                   }
+  scope :roles_order,            -> { order_by_role_score                                                   }
+  scope :typ_order,              -> { order_by_typ_score                                                    }
+  scope :with_photos,            -> { where("id     IN (SELECT member_id from photos)")                     }
+  scope :without_photos,         -> { where("id NOT IN (SELECT member_id from photos)")                     }
+  scope :active,                 -> { where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order  }
+  scope :registered,             -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order       }
+  scope :registered_last_name,   -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name   }
+  scope :inactive,               -> { where("typ in ('R', 'S', 'A')").standard_order                        }
+  scope :guests,                 -> { where("typ in ('G')").standard_order                                  }
+  scope :all_guests,             -> { where("typ in ('G', 'GX')").standard_order                            }
+  scope :current_do,             -> { where(:current_do => true)                                            }
 
   # ----- Class Methods ----
   def self.set_do

@@ -36,35 +36,35 @@ class Cert < ActiveRecord::Base
   before_save       :clear_notice_timestamps, :unless => :timestamps_changed?
 
   # ----- Scopes -----
-  scope :medical,    where(:typ => "medical")
-  scope :cpr,        where(:typ => "cpr")
-  scope :ham,        where(:typ => "ham")
-  scope :tracking,   where(:typ => "tracking")
-  scope :avalanche,  where(:typ => "avalanche")
-  scope :rigging,    where(:typ => "rigging")
-  scope :ics,        where(:typ => "ics")
-  scope :overhead,   where(:typ => "overhead")
-  scope :driver,     where(:typ => "driver")
-  scope :background, where(:typ => "background")
+  scope :medical,    -> { where(:typ => "medical")        }
+  scope :cpr,        -> { where(:typ => "cpr")            }
+  scope :ham,        -> { where(:typ => "ham")            }
+  scope :tracking,   -> { where(:typ => "tracking")       }
+  scope :avalanche,  -> { where(:typ => "avalanche")      }
+  scope :rigging,    -> { where(:typ => "rigging")        }
+  scope :ics,        -> { where(:typ => "ics")            }
+  scope :overhead,   -> { where(:typ => "overhead")       }
+  scope :driver,     -> { where(:typ => "driver")         }
+  scope :background, -> { where(:typ => "background")     }
 
-  scope :with_pdfs, where("cert_file like ?", "%pdf")
-  scope :with_jpgs, where("cert_file like ?", "%jpg")
-  scope :with_docs, where("cert_file <> ''")
+  scope :with_pdfs, -> { where("cert_file like ?", "%pdf") }
+  scope :with_jpgs, -> { where("cert_file like ?", "%jpg") }
+  scope :with_docs, -> { where("cert_file <> ''")          }
 
-  scope :ninety_day, where("expiration <= ? AND expiration > ?", Date.today + 90, Date.today + 30)
-  scope :thirty_day, where("expiration <= ? AND expiration > ?", Date.today + 30, Date.today)
-  scope :expired,    where("expiration <= ?", Date.today)
+  scope :ninety_day, -> { where("expiration <= ? AND expiration > ?", Date.today + 90, Date.today + 30)  }
+  scope :thirty_day, -> { where("expiration <= ? AND expiration > ?", Date.today + 30, Date.today)       }
+  scope :expired,    -> { where("expiration <= ?", Date.today)                                           }
 
-  scope :ninety_day_notified, ninety_day.where("ninety_day_notice_sent_at != ''")
-  scope :thirty_day_notified, thirty_day.where("thirty_day_notice_sent_at != ''")
-  scope :expired_notified,    expired.where("expired_notice_sent_at != ''")
+  scope :ninety_day_notified, -> { ninety_day.where("ninety_day_notice_sent_at != ''")  }
+  scope :thirty_day_notified, -> { thirty_day.where("thirty_day_notice_sent_at != ''")  }
+  scope :expired_notified,    -> { expired.where("expired_notice_sent_at != ''")        }
 
-  scope :ninety_day_not_notified, ninety_day.where(:ninety_day_notice_sent_at => nil)
-  scope :thirty_day_not_notified, thirty_day.where(:thirty_day_notice_sent_at => nil)
-  scope :expired_not_notified,    expired.where(:expired_notice_sent_at => nil)
+  scope :ninety_day_not_notified, -> { ninety_day.where(:ninety_day_notice_sent_at => nil) }
+  scope :thirty_day_not_notified, -> { thirty_day.where(:thirty_day_notice_sent_at => nil) }
+  scope :expired_not_notified,    -> { expired.where(:expired_notice_sent_at => nil)       }
 
-  scope :pending_and_expired,   where("expiration <= ?", Date.today + 90)
-  scope :pending,               pending_and_expired - expired
+  scope :pending_and_expired,   -> { where("expiration <= ?", Date.today + 90)    }
+  scope :pending,               -> { pending_and_expired - expired                }
 
   def self.oldest
     order("expiration ASC").last

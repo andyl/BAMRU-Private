@@ -12,17 +12,16 @@ class DoAssignment < ActiveRecord::Base
   before_save :set_start_and_finish
   before_save :sync_name_and_primary
 
-
   # ----- Validations -----
 
   # ----- Scopes -----
-  scope :last_wk, where('start < ?', Time.now - 1.week).where('finish > ?', Time.now - 1.week)
-  scope :current, where('start < ?', Time.now).where('finish > ?', Time.now)
-  scope :this_wk, where('start < ?', Time.now).where('finish > ?', Time.now)
-  scope :next_wk, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
-  scope :pending, where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week)
-  scope :has_backup,  where("backup_id <> NULL")
-  scope :non_current, where('start > ? OR finish < ?', x = Time.now, x)
+  scope :last_wk, -> { where('start < ?', Time.now - 1.week).where('finish > ?', Time.now - 1.week) }
+  scope :current, -> { where('start < ?', Time.now).where('finish > ?', Time.now)                   }
+  scope :this_wk, -> { where('start < ?', Time.now).where('finish > ?', Time.now)                   }
+  scope :next_wk, -> { where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week) }
+  scope :pending, -> { where('start < ?', Time.now + 1.week).where('finish > ?', Time.now + 1.week) }
+  scope :has_backup,  -> { where("backup_id <> NULL")                         }
+  scope :non_current, -> { where('start > ? OR finish < ?', x = Time.now, x)  }
 
   # ----- Class Methods -----
   def self.find_or_new(hash)

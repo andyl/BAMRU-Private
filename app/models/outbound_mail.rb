@@ -15,10 +15,10 @@ class OutboundMail < ActiveRecord::Base
 
   # ----- Scopes -----
 
-  scope :bounced, where(:bounced => true)
-  scope :emails, where('email_id is not null')
-  scope :phones, where('phone_id is not null')
-  scope :pending, where(:sent_at => nil)
+  scope :bounced, -> { where(:bounced => true)         }
+  scope :emails,  -> { where('email_id is not null')   }
+  scope :phones,  -> { where('phone_id is not null')   }
+  scope :pending, -> { where(:sent_at => nil)          }
 
   # ----- Local Methods-----
   def has_open_bounce?

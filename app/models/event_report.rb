@@ -21,11 +21,11 @@ class EventReport < ActiveRecord::Base
 
   # ----- Scopes -----
 
-  scope :smso_aars,       where(typ: "smso_aar")
-  scope :internal_aars,   where(typ: "internal_aar")
-  scope :blog_posts,      where(typ: "blog_post")
-  scope :contact_list,    where(typ: "contact_list")
-  scope :training_packet, where(typ: "training_packet")
+  scope :smso_aars,       -> { where(typ: "smso_aar")          }
+  scope :internal_aars,   -> { where(typ: "internal_aar")      }
+  scope :blog_posts,      -> { where(typ: "blog_post")         }
+  scope :contact_list,    -> { where(typ: "contact_list")      }
+  scope :training_packet, -> { where(typ: "training_packet")   }
 
   # ----- Local Methods-----
 

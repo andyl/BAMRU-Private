@@ -10,13 +10,9 @@ class Role < ActiveRecord::Base
 
   # ----- Validations -----
 
-
-
   # ----- Scopes -----
-  scope :bd, where(:typ => "Bd")
-  scope :ol, where(:typ => "OL")
-
-
+  scope :bd, -> { where(:typ => "Bd")  }
+  scope :ol, -> { where(:typ => "OL")  }
 
   # ----- Local Methods-----
   def export

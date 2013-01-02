@@ -18,8 +18,8 @@ class AvailOp < ActiveRecord::Base
   validates_presence_of :end_on
 
   # ----- Scopes -----
-  scope :current, where("start_on < ?", Time.now).where("end_on > ?", Time.now)
-  scope :older_than_this_month, where("end_on < ?", Time.now.beginning_of_month)
+  scope :current, -> { where("start_on < ?", Time.now).where("end_on > ?", Time.now)  }
+  scope :older_than_this_month, -> { where("end_on < ?", Time.now.beginning_of_month) }
 
 
   # ----- Attr Accessors -----
