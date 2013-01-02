@@ -53,11 +53,11 @@ class BB.Views.Roster extends BB.Views.Content
     ev.preventDefault()
     iconEl  = $(ev.target)[0]
     iconUrl = $(iconEl).attr('src')
-    displayUrl = iconUrl.replace('icon', 'medium')
+    displayUrl = iconUrl.replace('icon', 'roster')
     memberId = $(iconEl).data('memid')
     member   = BB.members.get(memberId)
     $('#memberName').html("#{member.fullName()}<br/>#{member.get('typ')}")
-    $('#photoSpot').html("<img src='#{displayUrl}'/>")
+    $('#photoSpot').html("<img style='padding:4px; background:white' src='#{displayUrl}'/>")
     $('#rosterBody').hide()
     $('#photoShow').show()
 
@@ -65,7 +65,3 @@ class BB.Views.Roster extends BB.Views.Content
     ev?.preventDefault()
     $('#photoShow').hide()
     $('#rosterBody').show()
-
-
-
-
