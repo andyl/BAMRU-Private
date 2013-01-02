@@ -5,16 +5,8 @@ class BB.Views.Returning extends BB.Views.Content
   template: 'meeting_signin/templates/Returning'
 
   initialize: (meetingId) ->
-    @meetingId    = meetingId
-    @meeting      = BB.meetings.get(@meetingId)
-    @period       = @meeting.periods.first()
-    if @period?
-      @participants = @period.participants
-    else
-      initFunc = =>
-        @period = @meeting.periods.first()
-        @participants = @period.participants
-      setTimeout(initFunc, 1000)
+    @meetingId = meetingId
+    @setupMeetingAndPeriod(meetingId)
 
   # ----- initialization -----
 
@@ -34,14 +26,8 @@ class BB.Views.Returning extends BB.Views.Content
     @$el.find('#autoComp').autocomplete(autoOpts)
     $('#autoComp').focus()
 
-  autoCompleteAddParticipant: (memberId) ->
-    member = BB.members.get(memberId)
-    oldParticipant = @participants.select (member) -> member.get('member_id') == memberId
-    if oldParticipant.length == 0
-      participant = new BB.Models.Participant({member_id: memberId, period_id: @period.get('id')})
-      participant.urlRoot = "/eapi/periods/#{@period.get('id')}/participants"
-      participant.save()
-      @participants.add(participant)
+  autoCompleteAddParticipant: (memberId) =>
+    member = @addParticipant(memberId)
     $('#autoComp').hide()
     $('#welcomeText').html(@welcomeText(member)).show()
     #$('#photoLink').html(photoLink).show() unless member.hasPhoto()
@@ -52,7 +38,7 @@ class BB.Views.Returning extends BB.Views.Content
   # ----- text blocks... -----
 
   welcomeText: (member) -> """
-    <b>Welcome #{member.get('first_name')}!</b>
+    <b>Welcome #{member.fullName()}!</b>
     <p></p>
     You are signed in.
     <p></p>

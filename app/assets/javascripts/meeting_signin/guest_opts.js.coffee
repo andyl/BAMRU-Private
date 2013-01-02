@@ -1,7 +1,6 @@
 class BB.GuestOpts
   constructor: ->
     attr = $("meta[name=\"csrf-token\"]").attr("content")
-    console.log "INIT", attr
     @setToken(attr)
   baseOpts:
     "authenticity_token" : ""
@@ -26,12 +25,12 @@ class BB.GuestOpts
   setPhone: (phone)   -> @baseOpts.member.  phones_attributes["0"].number = phone
   setEmail: (address) -> @baseOpts.member.  emails_attributes["0"].address = address
   setZip:   (zip)     -> @baseOpts.member.  addresses_attributes["0"].zip = zip
-  createGuest: ->
+  createGuest: (callBack) ->
+    $(document).ajaxComplete (ev, xhr) -> callBack(ev, xhr)
     $.ajax
       type:    'POST'
       url:     '/eapi/members'
       data:    @baseOpts
-      success: -> alert "IT WORKED"
       beforeSend: (xhr) ->
         token = $("meta[name=\"csrf-token\"]").attr("content")
         xhr.setRequestHeader "X-CSRF-Token", token  if token

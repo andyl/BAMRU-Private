@@ -66,6 +66,29 @@ class BB.Views.Content extends Backbone.Marionette.ItemView
     $('#footer').html(@footerHtml(page, meetingId))
     $('#footer').trigger('change')
 
+  # ----- meeting / period initialize -----
+
+  setupMeetingAndPeriod: (meetingId) ->
+    @meeting      = BB.meetings.get(meetingId)
+    @period       = @meeting.periods.first()
+    if @period?
+      @participants = @period.participants
+    else
+      initFunc = =>
+        @period = @meeting.periods.first()
+        @participants = @period.participants
+      setTimeout(initFunc, 1000)
+
+  addParticipant: (memberId) ->
+    member = BB.members.get(memberId)
+    oldParticipant = @participants.select (member) -> member.get('member_id') == memberId
+    if oldParticipant.length == 0
+      participant = new BB.Models.Participant({member_id: memberId, period_id: @period.get('id')})
+      participant.urlRoot = "/eapi/periods/#{@period.get('id')}/participants"
+      participant.save()
+      @participants.add(participant)
+    member
+
   # ----- header rendering -----
 
   homeLink: (id) ->

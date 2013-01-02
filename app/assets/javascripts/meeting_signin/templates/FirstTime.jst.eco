@@ -1,4 +1,6 @@
 <p></p>
+<div id='errorMsg'></div>
+<div id='inputForm'>
   <table align='center'>
     <tr>
       <td align="right">
@@ -33,8 +35,8 @@
       </td>
     </tr>
   </table>
-
-<p></p>
-
-<a id='saveGuest' class='nav center-text' href='#' data-id='<%=@meetingId%>'>Save</a>
-<a class='clickHome nav center-text' href='/meeting_signin/<%=@meetingId%>' data-id='<%=@meetingId%>'>Cancel</a>
+  <p></p>
+  <a id='saveGuest' class='nav center-text' href='#' data-id='<%=@meetingId%>'>Save</a>
+</div>
+<div id='successMsg'></div>
+<a class='clickHome nav center-text' href='/meeting_signin/<%=@meetingId%>' data-id='<%=@meetingId%>'>Return Home</a>
