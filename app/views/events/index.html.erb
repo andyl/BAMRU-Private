@@ -34,7 +34,7 @@
   </div>
 
   <%= javascript_include_tag "events/all_events" %>
-  <%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
+  <%# javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
   <script>
     window.faye_server = "<%= FAYE_SERVER %>"
     window.sessionId   = "<%= @session_id %>"

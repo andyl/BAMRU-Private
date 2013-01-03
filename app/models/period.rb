@@ -30,7 +30,7 @@ class Period < ActiveRecord::Base
 
       opts = {typ: "smso_aar", event_id: self.event.id, title: "Period #{self.position} AAR"}
       opts[:unit_leader] = "John Chang"
-      opts[:signed_by]   = "Will Gillmore"
+      opts[:signed_by]   = "Eszter Tompos"
       opts[:description] = self.event.description
       self.event_reports << EventReport.create(opts)
     end
@@ -53,4 +53,3 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
-
