@@ -104,8 +104,8 @@ class Member < ActiveRecord::Base
   scope :typ_order,              -> { order_by_typ_score                                                    }
   scope :with_photos,            -> { where("id     IN (SELECT member_id from photos)")                     }
   scope :without_photos,         -> { where("id NOT IN (SELECT member_id from photos)")                     }
-  scope :active,                 -> { where("typ in ('T', 'FM', 'TM') OR current_do = 't'").standard_order  }
-  scope :registered,             -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").standard_order       }
+  scope :active,                 -> { where("typ in ('T', 'FM', 'TM')")                                     }
+  scope :registered,             -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')")                      }
   scope :registered_last_name,   -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name   }
   scope :inactive,               -> { where("typ in ('R', 'S', 'A')").standard_order                        }
   scope :guests,                 where("typ in ('G')").standard_order

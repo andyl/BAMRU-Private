@@ -46,7 +46,6 @@ gem "ghost"
 gem "valkyrie"
 
 gem "draper"
-gem "rack-offline"
 gem "passenger", "3.0.12"
 
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
