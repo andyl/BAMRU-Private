@@ -1,4 +1,4 @@
-#= require mobile3/views/common_view
+#= require mobile/views/common_view
 
 message_index_template = '''
 <a class="nav" href="#messages/<%= id %>">

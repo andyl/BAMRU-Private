@@ -1,6 +1,6 @@
 class @M3_Distributions extends Backbone.Collection
   model: M3_Distribution
-  url:   "/api/mobile3/distributions"
+  url:   "/api/mobile/distributions"
   comparator: (dist) ->
     dist.get('id') * -1
   unreadCount: ->

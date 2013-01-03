@@ -1,4 +1,4 @@
-#= require mobile3/models/common_model
+#= require mobile/models/common_model
 
 class @M3_Member extends M3_CommonModel
   hasPhone:     -> @hasAttr('phones_attributes')

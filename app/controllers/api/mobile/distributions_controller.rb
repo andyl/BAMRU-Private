@@ -1,4 +1,4 @@
-class Api::Mobile3::DistributionsController < ApplicationController
+class Api::Mobile::DistributionsController < ApplicationController
 
   respond_to :json
 

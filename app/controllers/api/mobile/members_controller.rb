@@ -1,4 +1,4 @@
-class Api::Mobile3::MembersController < ApplicationController
+class Api::Mobile::MembersController < ApplicationController
 
   respond_to :json
 

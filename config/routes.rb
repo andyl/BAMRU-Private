@@ -72,13 +72,13 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get "mobile"   => "mobile3#index"
-  get "mobile3"  => "mobile3#index"
-  post "mobile3/send_page" => "mobile3#send_page"
-  get "mobile/login"    => "mobile3/sessions#new"
-  get "mobile3/login"   => "mobile3/sessions#new",     :as => "mobile_login"
-  get "mobile3/logout"  => "mobile3/sessions#destroy", :as => "mobile_logout"
-  namespace "mobile3" do
+  get  "mobile"   => "mobile#index"
+  get  "mobile"   => "mobile#index"
+  post "mobile/send_page" => "mobile#send_page"
+  get  "mobile/login"     => "mobile/sessions#new"
+  get  "mobile/login"     => "mobile/sessions#new",     :as => "mobile_login"
+  get  "mobile/logout"    => "mobile/sessions#destroy", :as => "mobile_logout"
+  namespace "mobile" do
     resources :sessions
   end
 
@@ -144,8 +144,8 @@ Zn::Application.routes.draw do
       get  "reminders/cert_expiration"    => "reminders#cert_expiration"
     end
 
-    get  "mobile3" => "mobile3#index"
-    namespace "mobile3" do
+    get  "mobile" => "mobile#index"
+    namespace "mobile" do
       resources :members
       resources :messages
       get      "do"

@@ -63,7 +63,7 @@ describe "M3_Members", ->
 
 describe "M3 Server Fetch", ->
   beforeEach ->
-    @url    = "/api/mobile3/members"
+    @url    = "/api/mobile/members"
     @server = sinon.fakeServer.create()
     @server.respondWith "GET", @url, [
       200

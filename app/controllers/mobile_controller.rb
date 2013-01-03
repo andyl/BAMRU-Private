@@ -1,10 +1,10 @@
-class Mobile3Controller < ApplicationController
+class MobileController < ApplicationController
 
   before_filter { authenticate_mobile_member! '/mobile/login' }
   
   def index
     SpriteGen.generate_sprite_icons
-    ActiveSupport::Notifications.instrument("service.mobile3", {:member => current_member})
+    ActiveSupport::Notifications.instrument("service.mobile", {:member => current_member})
     @is_ipad  = ipad_device?
     @is_phone = phone_device?
     @sensor   = phone_device? ? "true" : "false"
@@ -21,7 +21,7 @@ class Mobile3Controller < ApplicationController
   end
 
   def send_page
-    ActiveSupport::Notifications.instrument("service.mobile3.send_page", {:member => current_member})
+    ActiveSupport::Notifications.instrument("service.mobile.send_page", {:member => current_member})
     np = params[:message]
     np[:author_id] = current_member.id
     if params[:targets].blank?
@@ -41,7 +41,7 @@ class Mobile3Controller < ApplicationController
     end
     m.create_all_outbound_mails
     call_rake('ops:email:pending:send')
-    redirect_to "/mobile3#messages"
+    redirect_to "/mobile#messages"
   end
 
 end

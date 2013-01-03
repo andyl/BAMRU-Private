@@ -1,13 +1,13 @@
-class Mobile3::SessionsController < ApplicationController
+class Mobile::SessionsController < ApplicationController
 
   def new
     @page_name = "Login"
     @msg = ""
     if member = Member.find_by_remember_me_token(cookies[:remember_me_token])
       session[:member_id] = member.id
-      ActiveSupport::Notifications.instrument("login.mobile3.cookie", {:member => member})
+      ActiveSupport::Notifications.instrument("login.mobile.cookie", {:member => member})
       cookies[:logged_in] = {:value => "true", :expires => Time.now + 360000}
-      redirect_to mobile3_path, :notice => "Welcome back #{member.first_name}"
+      redirect_to mobile_path, :notice => "Welcome back #{member.first_name}"
       return
     end
     render :layout => false
@@ -24,22 +24,22 @@ class Mobile3::SessionsController < ApplicationController
         cookies[:logged_in] = nil
         cookies[:remember_me_token] = nil
       end
-      ActiveSupport::Notifications.instrument("login.mobile3.form", {:member => member})
+      ActiveSupport::Notifications.instrument("login.mobile.form", {:member => member})
       member_login(member)
       redirect_to session[:tgt_path] || mobile_path
     else
-      ActiveSupport::Notifications.instrument("login.mobile3.invalid", {:text => params[:user_name]})
+      ActiveSupport::Notifications.instrument("login.mobile.invalid", {:text => params[:user_name]})
       @msg = "<p style='color: red;'>Bad username or password<p/>"
       render :new, :layout => false
     end
   end
 
   def destroy
-    ActiveSupport::Notifications.instrument("logout.mobile3", {:member => current_member})
+    ActiveSupport::Notifications.instrument("logout.mobile", {:member => current_member})
     session[:member_id] = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil
-    redirect_to '/mobile3/login', :notice => "Logged out!"
+    redirect_to '/mobile/login', :notice => "Logged out!"
   end
 
 end
