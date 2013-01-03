@@ -150,7 +150,6 @@ module ApplicationHelper
     report = header_nav_link("Reports", '/reports')
     inbox  = header_nav_link(raw("Inbox#{inbox_string}"), member_inbox_index_path(current_member))
     opts   = [roster, log, events, photos, certs, avail, duty, report, inbox]
-    opts.delete_at(2) unless current_member.developer?
     opts.join(' | ')
   end
 
