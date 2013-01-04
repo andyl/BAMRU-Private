@@ -13,7 +13,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @collection = @model.participants     # Participants
     @collection.url = "/eapi/periods/#{@model.id}/participants"
     @collection.fetch()
-    @pubSub = new BB.PubSub.Participants(@collection)
+#    @pubSub = new BB.PubSub.Participants(@collection)
     @memberField = "#memberField#{@model.id}"
     @guestLink   = "#createGuestLink#{@model.id}"
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
@@ -50,7 +50,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @focusAddParticipant()
 
   onClose: ->
-    @pubSub.close()
+#    @pubSub.close()
 
   # ----- guest links -----
 

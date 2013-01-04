@@ -13,7 +13,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @collection = @model.participants     # Participants
     @collection.fetch() if @collection.url.search('undefined') == -1
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
-    @pubSub = new BB.PubSub.Base(@collection)
+#    @pubSub = new BB.PubSub.Base(@collection)
 
   onShow: ->
     BB.hotKeys.enable("CnTbodyRosterMt")
@@ -33,7 +33,7 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     'click #createGuestLink'  : 'createGuest'
 
   onClose: ->
-    @pubSub.close()
+#    @pubSub.close()
     BB.hotKeys.disable("CnTbodyRosterMt")
 
   # ----- methods: guest creation -----

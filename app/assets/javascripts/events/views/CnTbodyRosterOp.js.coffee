@@ -18,7 +18,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
       @collection.fetch
         success: =>
           @createPeriod() if @collection.length == 0
-    @pubSub = new BB.PubSub.Periods(@collection)
+#    @pubSub = new BB.PubSub.Periods(@collection)
     BB.UI.rosterState = new BB.Models.RosterState(@model.id)
     @bindTo(BB.vent, 'cmd:AddNewPeriod',      @createPeriod, this)
     @bindTo(BB.vent, 'cmd:DeletePeriod',      @deletePeriod, this)
@@ -33,7 +33,7 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     BB.hotKeys.enable("CnTbodyRosterOp")
 
   onClose: ->
-    @pubSub.close()
+#    @pubSub.close()
     BB.hotKeys.disable("CnTbodyRosterOp")
 
   # ----- initialization -----
