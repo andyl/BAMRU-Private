@@ -5,11 +5,12 @@
 //= require backbone-marionette-0_10_2
 
 //= require mobile/bbm_initialize
+
 //# require mobile/pub_sub
 //# require mobile/serialize_object
 //# require mobile/guest_opts
 
-//= require ./mobile
+//# require ./mobile
 
 //= require_tree ./models
 //= require_tree ./collections
