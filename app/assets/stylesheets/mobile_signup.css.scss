@@ -1,58 +1,9 @@
 //= require jquery-ui
 //= require jcrop
 
-/* ----- nav buttons / base styles ----- */
-
-@mixin nav-base-style {
-  display: block;
-  margin: 0;
-  margin-top:   10px;
-  padding: 20px;
-  text-decoration: none;
-  background: white;
-  color: black;
-  text-align: left;
-}
-
-@mixin nav-base2-style {
-  margin:  0;
-  display: block;
-  margin-top:    5px;
-  margin-bottom: 5px;
-  padding:    5px;
-  color:      black;
-  background: white;
-  text-align: center;
-  text-decoration: none;
-}
-
-@mixin nav-nowrap {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-@mixin radius($position: "") {
-  border#{$position}-radius: 15px;
-  -moz#{$position}-border-radius: 15px;
-  -webkit#{$position}-border-radius: 15px;
-}
-
-@mixin rounded($radius: "15px") {
-  border-radius:         #{$radius};
-  -moz-border-radius:    #{$radius};
-  -webkit-border-radius: #{$radius};
-}
+@import 'mobile_base.css.scss';
 
 /* ----- page layout ----- */
-
-html, body {
-  text-align:  center;
-  background:  #b0acac;
-  font-family: arial, sans-serif;
-  margin:  0;
-  padding: 0;
-}
 
 .footer {
   margin-top: 10px;

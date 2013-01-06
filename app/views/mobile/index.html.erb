@@ -3,7 +3,7 @@
 <head>
   <title>BAMRU Mobile</title>
   <link href='<%= raw favicon_file %>' rel='shortcut icon' type='image/vnd.microsoft.icon'/>
-  <link rel="stylesheet" href="/assets/mobile.css" type="text/css">
+  <link rel="stylesheet" href="/assets/mobile_ui.css" type="text/css">
   <link rel="stylesheet" href="/images/icons.css" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,169 +13,17 @@
     <script src="/assets/mobile/iscroll.js"></script>
   <% end %>
   <script>
-    window.myID          =  parseInt("<%= current_member.id %>");
-    window.members       = new M3_Members(<%= raw @mem_json %>);
-    window.messages      = new M3_Messages(<%= raw @msg_json %>);
-    window.distributions = new M3_Distributions(<%= raw @dst_json %>);
-    window.inbox         = new M3_Distributions(distributions.inbox(myID))
-    window.csrfToken     = "<%= form_authenticity_token.to_s %>"
+    BB.myID                      =  parseInt("<%= current_member.id %>");
+    BB.Collections.members       = new BB.Collections.Members(<%= raw @mem_json %>);
+    BB.Collections.messages      = new BB.Collections.Messages(<%= raw @msg_json %>);
+    BB.Collections.distributions = new BB.Collections.Distributions(<%= raw @dst_json %>);
+    BB.Collections.inbox         = new BB.Collections.Distributions(BB.Collections.distributions.inbox(BB.myID))
+    BB.csrfToken = "<%= form_authenticity_token.to_s %>"
   </script>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-
-<header>
-  <div id=title>
-    <div class=bookend><a class='back' href='#home'>Home</a></div>
-    <div id="label">Text Here</div>
-    <div class=bookend> </div>
-  </div>
-</header>
-
-<div id='wrapper'>
-  <div id='content'>
-
-    <div id='home' class='page'>
-      <a class='nav' href="#members"    >Members</a>
-      <a class='nav' href="#status"     >Status Lines</a>
-      <a class='nav' href="#page_select">Send Page</a>
-      <a class='nav' href="#messages"   >Unit Message Log</a>
-      <a class='nav myinbox' href="#inbox"><%= @inbox_label %></a>
-      <a class='nav' href="#profile"  >My Profile</a>
-      <div class=footer>
-        <div id=state></div>
-        <div id=update>updated <%= Time.now.strftime("%b-%d %H:%M:%S") %></div>
-      </div>
-    </div>
-
-    <div id='members' class='page'>
-      MEMBERS
-    </div>
-
-    <div id='member' class='page'>
-      MEMBER
-    </div>
-
-    <div id='duty' class='page'>
-      DUTY OFFICER
-    </div>
-
-    <div id='status' class='page'>
-      <div class='center'>
-        <b style='margin-bottom: 5px;'>BAMRU</b><br/>
-        <% if @is_phone %>
-          <a class='nav' href='tel:650-858-4618' style='text-align: center;'>Status Line: 650-858-4618</a>
-          <a class='nav' href='tel:800-888-6423' style='text-align: center;'>Vmail: 800-888-6423 x8584618</a>
-        <% else %>
-          Status Line: 650-858-4618<br/>
-          Vmail: 800-888-6423 x8584618
-        <% end %>
-        <p></p>
-        <b style='margin-bottom: 5px;'>SMSO</b><br/>
-        <% if @is_phone %>
-          <a class='nav' href='tel:650-599-2162' style='text-align: center;'>Status Line: 650-599-2162</a>
-          <a class='nav' href='tel:650-363-4000' style='text-align: center;'>Switchboard: 650-363-4000</a>
-          <a class='nav' href='tel:650-363-4911' style='text-align: center;'>24-Hr Comms: 650-363-4911</a>
-        <% else %>
-          Status Line: 650-599-2162<br/>
-          Switchboard: 650-363-4000<br/>
-          24-Hr Comms: 650-363-4911
-        <% end %>
-      </div>
-    </div>
-
-    <form action='/mobile_old/send_page' method='POST'>
-      <input name='authenticity_token' type='hidden' value="<%= form_authenticity_token %>"/>
-      <div id='page_select' class='page'>
-
-        <div class="navbox" style='margin-bottom: 15px;'>
-          <a href="#page_select" class="l_header_nav selected">Select<span class=select_count></span></a></li>
-          <a href="#page_send" class="r_header_nav">Compose</a></li>
-        </div>
-
-        <div id="buttons_nav">
-
-          <div id='select_buttons'>
-            <label class='TMx unchecked'><input class='sbx' type="checkbox" id="tm_ck"/>TM</label>
-            <label class='FMx unchecked'><input class='sbx' type="checkbox" id="fm_ck"/>FM</label>
-            <label class='Tx unchecked'><input class='sbx' type="checkbox" id="t_ck"/>T</label>
-          </div>
-
-          <div id='clear_buttons'>
-            <a href="#" class="clear_all zbx"><del>All</del></a>
-            <a href="#" class="clear_oot zbx"><del>Unavail</del></a>
-          </div>
-
-        </div>
-
-        <div class='checklist'>
-          <% @members.each do |mem| -%>
-            <label for="checkbox-<%= mem.id %>">
-            <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="rck <%=mem.full_roles %> <%= mem.current_status %>" />
-            <%= "#{mem.typ} - #{mem.full_name_do}" %>
-            </label>
-          <% end %>
-        </div>
-
-      </div>
-
-      <div id='page_send' class='page'>
-
-        <div class="navbox" style='margin-bottom: 15px;'>
-          <a href="#page_select" class="l_header_nav">Select<span class=select_count></span></a></li>
-          <a href="#page_send" class="r_header_nav selected">Compose</a></li>
-        </div>
-
-        <div style='text-align: center;'>
-          <b>Message Text <span id='chars_remaining'></span></b>
-        </div>
-        <div class='textarea_wrapper'>
-          <textarea rows=3 name="message[text]" id="textarea" style='padding: 0px; border: 0px;'></textarea>
-        </div>
-        <div style='text-align: center; margin-top: 10px; margin-bottom: 0px; padding-bottom: 0px;'>
-          <b>RSVP</b>
-        </div>
-        <%= raw rsvp_mobile_select %>
-        <p></p>
-        <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
-        <button class="send_btn" id=pgr_submit type="submit">Send</button>
-        <div class="send_btn" id=pgr_text>Please Select Member(s) & Add Message Text</div>
-      </div>
-
-    </form>
-
-    <div id='messages' class='page'>
-      MESSAGES
-    </div>
-
-    <div id='message' class='page'>
-      MESSAGE
-    </div>
-
-    <div id='inbox' class='page'>
-      INBOX
-    </div>
-
-    <div id='offline' class='page'>
-      Currently your internet connection is Offline.<p></p>
-      Must be Online to use this function.
-    </div>
-
-    <div id='profile' class='page'>
-      <table class="mobile_table">
-        <tr><td>Username</td>    <td><%= current_member.short_name %></td> </tr>
-        <tr><td>Device</td>      <td><%= @device %></td>                   </tr>
-        <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
-      </table>
-      <a class="nav" href="#" id="logout">Log Out</a>
-    </div>
-
-    <div id='default' class='page'>
-      PAGE NOT FOUND
-    </div>
-  </div>
-</div>
 
 </body>
 

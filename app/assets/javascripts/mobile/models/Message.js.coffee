@@ -1,6 +1,6 @@
-#= require mobile/models/common_model
+#= require mobile/models/BaseModel
 
-class @M3_Message extends M3_CommonModel
+class BB.Models.Message extends BB.Models.BaseModel
   unitRoster: ->
     return @get('unitRoster') if @has('unitRoster')
     return members unless members == undefined

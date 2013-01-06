@@ -1,3 +1,7 @@
+# ----- Setup Deferred with Zepto -----
+
+Deferred.installInto(Zepto)
+
 # ----- Use JST Templates -----
 
 Backbone.Marionette.Renderer.render = (template, data) -> JST[template](data)

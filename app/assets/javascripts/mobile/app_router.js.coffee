@@ -1,19 +1,22 @@
 BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   routes :
-    "mobile/members"      : "members"
-    "mobile/members/:id"  : "member"
-    "mobile/status"       : "status"
-    "mobile/test"         : "test"
-    "mobile/page_select"  : "page_select"
-    "mobile/page_send"    : "page_send"
-    "mobile/messages"     : "messages"
-    "mobile/messages/:id" : "message"
-    "mobile/inbox"        : "inbox"
-    "mobile/profile"      : "profile"
-    "mobile/location"     : "location"
-    "mobile/home"         : "home"
-    "mobile/"             : "home"
+    "mobile"               : "index"
+    "mobile/"              : "index"
+    "mobile/members"       : "members"
+    "mobile/members/:id"   : "member"
+    "mobile/status"        : "status"
+    "mobile/page"          : "page"
+    "mobile/page_select"   : "page_select"
+    "mobile/page_send"     : "page_send"
+    "mobile/messages"      : "messages"
+    "mobile/messages/:id"  : "message"
+    "mobile/inbox"         : "inbox"
+    "mobile/profile"       : "profile"
+    "mobile/location"      : "location"
+    "mobile/events"        : "events"
+    "mobile/events/:id"    : "event"
+    'meeting_signin/*path' : "default"
 
   initialize: ->
     # ----- faye -----
@@ -21,55 +24,56 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     # ----- create app layout -----
     BB.Views.appBody = new BB.Views.AppBody()
     @appBody = BB.Views.appBody
+    @appBody.render()
 
   index: ->
     console.log "rendering index"
-    @appBody.render().content.show(new BB.Views.Index)
+    @appBody.content.show(new BB.Views.Index)
 
   autosign: ->
     console.log "doing autosign"
-    if BB.meetings.length == 1
-      @appBody.render().content.show(new BB.Views.Autosign)
-    else
-      @index()
+#    if BB.meetings.length == 1
+#      @appBody.render().content.show(new BB.Views.Autosign)
+#    else
+#      @index()
 
   home: (id) ->
     console.log "rendering home for #{id}"
 #    @appBody.render().content.show(new BB.Views.Home(id))
-    @_render(id, new BB.Views.Home(id))
+#    @_render(id, new BB.Views.Home(id))
 
   first_time: (id) ->
     console.log "rendering first_time for #{id}"
-    @_render(id, new BB.Views.FirstTime(id))
+#    @_render(id, new BB.Views.FirstTime(id))
 
   returning: (id) ->
     console.log "rendering returning for #{id}"
-    @_render(id, new BB.Views.Returning(id))
+#    @_render(id, new BB.Views.Returning(id))
 
   roster: (id) ->
     console.log "rendering roster for #{id}"
-    @_render(id, new BB.Views.Roster(id))
+#    @_render(id, new BB.Views.Roster(id))
 
   photo: (meetingId, memberId) ->
     console.log "rendering photo for #{meetingId} and member #{memberId}"
-    @_render(meetingId, new BB.Views.Photo(meetingId, memberId))
+#    @_render(meetingId, new BB.Views.Photo(meetingId, memberId))
 
   default: ->
     console.log "rendering the default route"
-    @appBody.render().content.show(new BB.Views.Unrecognized)
+#    @appBody.render().content.show(new BB.Views.Unrecognized)
 
-  _missingEventMsg: (id) ->
-    if BB.Collections.events.get(id)
-      "Event is in the datbase but not in the filtered list."
-    else
-      "Event is not in the database."
+#  _missingEventMsg: (id) ->
+#    if BB.Collections.events.get(id)
+#      "Event is in the datbase but not in the filtered list."
+#    else
+#      "Event is not in the database."
       
-  _showMissingEvent: (id) ->
-    msg = @_missingEventMsg(id)
-    @appBody.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
+#  _showMissingEvent: (id) ->
+#    msg = @_missingEventMsg(id)
+#    @appBody.content.show(new BB.Views.CnMissingEvent({eventId: id, missingEventMessage: msg}))
     
-  _render: (id, view) ->
-    if BB.meetings.get(id)
-      @appBody.render().content.show(view)
-    else
-      @appBody.render().content.show(new BB.Views.Unrecognized("Unknown Meeting (ID ##{id})"))
+#  _render: (id, view) ->
+#    if BB.meetings.get(id)
+#      @appBody.render().content.show(view)
+#    else
+#      @appBody.render().content.show(new BB.Views.Unrecognized("Unknown Meeting (ID ##{id})"))
