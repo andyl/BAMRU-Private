@@ -3,7 +3,6 @@ source "http://rubygems.org"
 ruby "1.9.3"
 
 gem "rails",          "3.2.10"
-# gem "rails",          "3.1.3"
 
 gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
 
@@ -21,11 +20,7 @@ gem "net-ssh", "2.2.2"
 gem "queue_classic"
 gem "exception_notification"
 
-#gem "rack-pjax"
-
 gem "twilio-ruby"
-
-# gem "turbo-sprockets-rails3"
 
 gem "yaml_db"
 

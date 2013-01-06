@@ -156,19 +156,15 @@ class Event < ActiveRecord::Base
 
   # ----- Local Methods - gCal Date Methods -----
   def gcal_start
-    #typ == "meeting" ? start.to_time.change(:hour => 19, :min => 30) : start.to_time
     start.to_time
   end
 
   def gcal_finish
-    #if typ == "meeting"
-    #  start.to_time.change(:hour => 21, :min => 30)
-    #else
     if (finish.nil? || finish.blank?)
       start.to_time
     else
-      #(finish + 1.day).to_time
-      finish.to_time
+      gcal_adjustment = all_day? ? 1.day : 0
+      finish.to_time + gcal_adjustment
     end
   end
 
@@ -184,14 +180,19 @@ class Event < ActiveRecord::Base
     body + break_str + sig
   end
 
+  def gcal_location_with_coords
+    return location if lat.blank?
+    "#{lat},#{lon} ( #{location} )"
+  end
+
   def gcal_location
     rwc = "455 County Center Room 101, Redwood City, CA 94063"
     cav = "17930 Lake Chabot Road, Castro Valley, CA 94546"
-    return location unless typ == "meeting"
+    return gcal_location_with_coords unless typ == "meeting"
     case location.strip.chomp
       when "Redwood City"  then rwc
       when "Castro Valley" then cav
-      else location
+      else gcal_location_with_coords
     end
   end
 
