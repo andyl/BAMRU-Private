@@ -37,6 +37,7 @@ class Mobile::SessionsController < ApplicationController
   def destroy
     ActiveSupport::Notifications.instrument("logout.mobile", {:member => current_member})
     session[:member_id] = nil
+    session[:tgt_path]  = nil
     cookies[:logged_in] = nil
     cookies[:remember_me_token] = nil
     redirect_to '/mobile/login', :notice => "Logged out!"

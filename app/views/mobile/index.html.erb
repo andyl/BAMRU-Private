@@ -15,9 +15,9 @@
   <script>
     BB.myID                      =  parseInt("<%= current_member.id %>");
     BB.Collections.members       = new BB.Collections.Members(<%= raw @mem_json %>);
-    BB.Collections.messages      = new BB.Collections.Messages(<%= raw @msg_json %>);
-    BB.Collections.distributions = new BB.Collections.Distributions(<%= raw @dst_json %>);
-    BB.Collections.inbox         = new BB.Collections.Distributions(BB.Collections.distributions.inbox(BB.myID))
+//    BB.Collections.messages      = new BB.Collections.Messages(<%= raw @msg_json %>);
+//    BB.Collections.distributions = new BB.Collections.Distributions(<%= raw @dst_json %>);
+//    BB.Collections.inbox         = new BB.Collections.Distributions(BB.Collections.distributions.inbox(BB.myID))
     BB.csrfToken = "<%= form_authenticity_token.to_s %>"
   </script>
   <%= csrf_meta_tags %>

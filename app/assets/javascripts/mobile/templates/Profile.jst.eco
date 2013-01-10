@@ -1,8 +1,8 @@
 <div id='profile' class='page'>
   <table class="mobile_table">
     <tr><td>Username</td>    <td><%= BB.Collections.members.get(BB.myID).shortName() %></td> </tr>
-    <tr><td>Device</td>      <td><%# @device %></td>                   </tr>
-    <tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>
+    <!--<tr><td>Device</td>      <td><%# @device %></td>                   </tr>-->
+    <!--<tr><td>Screen Size</td> <td id="xsize">TBD</td>                   </tr>-->
   </table>
   <a class="nav" href="#" id="logout">Log Out</a>
 </div>
