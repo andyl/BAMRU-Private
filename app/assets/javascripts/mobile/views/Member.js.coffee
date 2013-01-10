@@ -36,7 +36,7 @@ class BB.Models.Member extends Backbone.Marionette.ItemView
     @divider("Phones") + display.join('')
   photo_helper: ->
     return "" unless @model.hasPhoto()
-    "<img src='/assets/s.gif' class='#{@model.attributes.last_name.toLowerCase()} photo_icon'></img>"
+    "<img src='/assets/s.gif' class='#{@model.attributes.last_name.toLowerCase()} photo_icon' />"
   email_helper: ->
     return "" unless @model.hasEmail()
     display = _(@model.attributes.emails_attributes).map (email) ->
