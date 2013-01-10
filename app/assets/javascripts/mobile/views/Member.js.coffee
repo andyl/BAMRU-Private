@@ -1,9 +1,12 @@
 main_template = '''
+  <p></p>
+  <div style='text-align: left;'>
   <%= this.photo_helper() %>
   <b><%= first_name %> <%= last_name %></b> - <%= full_roles %>
   <%= this.phone_helper() %>
   <%= this.email_helper() %>
   <%= this.emergency_helper() %>
+  </div>
 '''
 
 class BB.Views.Member extends Backbone.Marionette.ItemView
@@ -62,4 +65,5 @@ class BB.Views.Member extends Backbone.Marionette.ItemView
     @divider("Emergency Contacts") + display.join('')
   render: =>
     $(@el).html(@main_template(@model.toJSON()))
+    $('.clickHome').show()
     @
