@@ -7,14 +7,20 @@ main_template = '''
 '''
 
 class BB.Models.Member extends Backbone.Marionette.ItemView
-  initialize: ->
+  initialize: (memberId) ->
+    @model = BB.Collections.members.get(memberId)
     @main_template  = _.template(main_template)
+
   tagName: "div"
+
   className: "member_detail"
+
   header: (id) ->
     "<div class='header' id='#{id}'>"
+
   divider: (label) ->
     "<div class='divider'>#{label}</div>"
+
   phone_helper: ->
     return "" unless @model.hasPhone()
     display = _(@model.attributes.phones_attributes).map (phone) ->
