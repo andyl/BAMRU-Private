@@ -6,7 +6,7 @@ main_template = '''
   <%= this.emergency_helper() %>
 '''
 
-class @M3_MemberShowView extends Backbone.View
+class BB.Models.Member extends Backbone.Marionette.ItemView
   initialize: ->
     @main_template  = _.template(main_template)
   tagName: "div"

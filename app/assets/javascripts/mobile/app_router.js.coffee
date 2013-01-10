@@ -28,19 +28,16 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
 
   index: ->
     console.log "rendering index"
+    $('.clickHome').hide()
     @appBody.content.show(new BB.Views.Index)
 
-  autosign: ->
-    console.log "doing autosign"
-#    if BB.meetings.length == 1
-#      @appBody.render().content.show(new BB.Views.Autosign)
-#    else
-#      @index()
+  members: ->
+    console.log "rendering members"
+    @appBody.content.show(new BB.Views.Members)
 
-  home: (id) ->
-    console.log "rendering home for #{id}"
-#    @appBody.render().content.show(new BB.Views.Home(id))
-#    @_render(id, new BB.Views.Home(id))
+  member: (id) ->
+    console.log "rendering member for #{id}"
+    @appBody.content.show(new BB.Views.Member(id))
 
   first_time: (id) ->
     console.log "rendering first_time for #{id}"

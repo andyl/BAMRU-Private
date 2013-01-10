@@ -72,12 +72,13 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get  "mobile"   => "mobile#index"
-  get  "mobile"   => "mobile#index"
-  post "mobile/send_page" => "mobile#send_page"
-  get  "mobile/login"     => "mobile/sessions#new"
-  get  "mobile/login"     => "mobile/sessions#new",     :as => "mobile_login"
-  get  "mobile/logout"    => "mobile/sessions#destroy", :as => "mobile_logout"
+  get  "mobile"             => "mobile#index"
+  get  "mobile/members"     => "mobile#index"
+  get  "mobile/members/:id" => "mobile#index"
+  post "mobile/send_page"   => "mobile#send_page"
+  get  "mobile/login"       => "mobile/sessions#new"
+  get  "mobile/login"       => "mobile/sessions#new",     :as => "mobile_login"
+  get  "mobile/logout"      => "mobile/sessions#destroy", :as => "mobile_logout"
   namespace "mobile" do
     resources :sessions
   end

@@ -2,7 +2,7 @@
 
   <header>
     <div id=title>
-      <div class=bookend id='homeLink'></div>
+      <div class=bookend id='homeLink'><a style='display: none;' href="/mobile" class='back clickHome'>Home</a></div>
       <div id="label">BAMRU Mobile</div>
       <div class=bookend></div>
     </div>
