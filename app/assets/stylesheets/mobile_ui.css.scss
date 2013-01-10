@@ -1,38 +1,17 @@
-//= require jquery-ui
-//= require jcrop
-
 @import 'mobile_base.css.scss';
 
 /* ----- footer ----- */
 
 .footer {
-  margin-top: 10px;
-  padding: 5px;
-  background: darkgray;
-}
-
-/* ----- table styling ----- */
-
-.rosterTable tr:nth-child(odd)   { background-color: #9b9b9b;  }
-.rosterTable tr:nth-child(even)  { background-color: #ababab;  }
-.rosterTable td {
-  padding: 8px;
+  color: gray;
+  margin-top: 15px;
 }
 
 /* ----- nav links and dividers ----- */
 
-.xImg {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  display: block;
+.photo_icon {
+  margin-right: 10px;
 }
-
-.mobileNav {
-  @include nav-base2-style;
-  @include rounded("5px");
-  border: 1px solid black;
-  }
 
 .nav {
   @include nav-base-style;
@@ -51,10 +30,9 @@
   width: 100%;
 }
 
-/* ----- nav styling ----- */
-
 .l_header_nav {
   @include nav-base-style;
+
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
@@ -71,6 +49,10 @@
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   box-flex: 1;
+}
+
+.selected {
+  background: lightblue;
 }
 
 .lnav {
@@ -111,22 +93,63 @@
   color: white;
 }
 
-/* ----- form elements ----- */
-
-.checklist > label {
-  display: block;
-  background: white;
-  border: 1px solid black;
-  padding: 10px;
-  margin-bottom: 1px;
-}
-
-textarea {
+/* ----- select buttons ----- */
+#buttons_nav {
+  text-align: center;
   width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  display: box;
+  box-orient: horizontal;
+  padding-bottom: 25px;
+  padding-top: 10px;
 }
 
-/* ----- one-off styling ----- */
+#select_buttons {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
 
-.photo_icon { margin-right: 10px;    }
-.selected   { background: lightblue; }
+#clear_buttons {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+
+#select_buttons > label {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.sbx {
+  display: none;
+}
+
+.checked {
+  background: purple;
+}
+
+.unchecked {
+  background: white;
+}
+
+#clear_buttons > a {
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.send_btn {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* ----- form elements ----- */
 

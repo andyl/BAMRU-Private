@@ -1,6 +1,6 @@
-#= require mobile/models/common_model
+#= require mobile/models/BaseModel
 
-class @M3_Member extends M3_CommonModel
+class BB.Models.Member extends BB.Models.BaseModel
   hasPhone:     -> @hasAttr('phones_attributes')
   hasEmail:     -> @hasAttr('emails_attributes')
   hasPhoto:     -> @hasAttr('photo')

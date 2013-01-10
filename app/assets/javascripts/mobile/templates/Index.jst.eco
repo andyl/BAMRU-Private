@@ -1,0 +1,11 @@
+<p></p>
+<a class='nav clickNav' href="/mobile/members" >Members</a>
+<!--<a class='nav clickNav' href="/mobile/events"  >Events</a>-->
+<!--<a class='nav clickNav' href="/mobile/page"    >Send Page</a>-->
+<!--<a class='nav clickNav' href="/mobile/messages">Unit Message Log</a>-->
+<a class='nav clickNav' href="/mobile/status"  >Status Lines</a>
+<!--<a class='nav clickNav' href="/mobile/inbox"   >My Inbox</a>-->
+<a class='nav clickNav' href="/mobile/profile" >My Profile</a>
+<div class='footer center-text'>
+  <!--updated TBD <%# Time.now.strftime("%b-%d %H:%M:%S") %>-->
+</div>

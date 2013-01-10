@@ -1,10 +1,12 @@
-#= require mobile/models/common_model
+#= require mobile/models/BaseModel
 
-class @M3_Distribution extends M3_CommonModel
+class BB.Models.Distribution extends BB.Models.BaseModel
+
   unitRoster: ->
     return @get('unitRoster') if @has('unitRoster')
     return members unless members == undefined
     null
+
   member: ->
     return null if @unitRoster() == null
     @unitRoster().get(@get('member_id'))

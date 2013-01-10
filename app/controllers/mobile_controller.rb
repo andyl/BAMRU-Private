@@ -12,10 +12,7 @@ class MobileController < ApplicationController
     @mem_json = MemberDecorator.mobile_json(Member.active.order_by_last_name.all)
     @msg_json = MessageDecorator.mobile_json
     @dst_json = DistributionDecorator.mobile_json(current_member.id)
-    @dists = current_member.distributions.limit(15).order("id DESC")
-    unread = @dists.unread.count
-    txt    = unread == 0 ? "" : " (#{unread})"
-    @inbox_label = "My Inbox#{txt}"
+    @dists    = current_member.distributions.limit(15).order("id DESC")
     @device   = device
     render :layout => false
   end

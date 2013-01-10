@@ -1,0 +1,23 @@
+<div id='status'>
+  <div class='center'>
+    <b style='margin-bottom: 5px;'>BAMRU</b><br/>
+    <% if window.isPhone() : %>
+    <a class='nav' href='tel:650-858-4618' style='text-align: center;'>Status Line: 650-858-4618</a>
+    <a class='nav' href='tel:800-888-6423' style='text-align: center;'>Vmail: 800-888-6423 x8584618</a>
+    <% else :%>
+    Status Line: 650-858-4618<br/>
+    Vmail: 800-888-6423 x8584618
+    <% end %>
+    <p></p>
+    <b style='margin-bottom: 5px;'>SMSO</b><br/>
+    <% if window.isPhone() : %>
+    <a class='nav' href='tel:650-599-2162' style='text-align: center;'>Status Line: 650-599-2162</a>
+    <a class='nav' href='tel:650-363-4000' style='text-align: center;'>Switchboard: 650-363-4000</a>
+    <a class='nav' href='tel:650-363-4911' style='text-align: center;'>24-Hr Comms: 650-363-4911</a>
+    <% else :%>
+    Status Line: 650-599-2162<br/>
+    Switchboard: 650-363-4000<br/>
+    24-Hr Comms: 650-363-4911
+    <% end %>
+  </div>
+</div>

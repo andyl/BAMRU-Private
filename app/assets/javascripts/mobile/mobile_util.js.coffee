@@ -1,9 +1,3 @@
-#= require_self
-#= require_tree ./models
-#= require_tree ./collections
-#= require_tree ./views
-#= require_tree ./routers
-
 window.createCookie = (name, value, days) ->
   if days
     date = new Date()
@@ -29,15 +23,15 @@ window.eraseCookie = (name) ->
   createCookie name, "", -1
 
 # this code resets the logged in state
-#window.applicationCache.addEventListener "downloading", ->
-#  console.log window.localStorage.getItem("logged_in")
-#  window.localStorage.setItem("logged_in", 'true')
-#  window.localStorage.setItem("super", 'true')
-#  window.localStorage.setItem("duper", 'true')
-#  window.sessionStorage.setItem("logged_in", 'true')
-#  window.sessionStorage.setItem("super", 'true')
-#  window.sessionStorage.setItem("duper", 'true')
-#  console.log "DOWNLOADING..."
+window.applicationCache.addEventListener "downloading", ->
+  console.log window.localStorage.getItem("logged_in")
+  window.localStorage.setItem("logged_in", 'true')
+  window.localStorage.setItem("super", 'true')
+  window.localStorage.setItem("duper", 'true')
+  window.sessionStorage.setItem("logged_in", 'true')
+  window.sessionStorage.setItem("super", 'true')
+  window.sessionStorage.setItem("duper", 'true')
+  console.log "DOWNLOADING..."
 
 # this code is to skip the 'double reload' issue with the application manifest
 window.addEventListener "load", (e) ->
@@ -99,12 +93,6 @@ window.browserDevice = ->
 window.desktopOrIpadDevice = ->
   window.browserDevice() || window.iScrollDevice()
 
-$(document).ready ->
-  window.App = new M3_BaseRoute()
-  Backbone.history.start()
-  document.body.addEventListener "offline", -> setState()
-  document.body.addEventListener "online",  -> setState()
-
 window.myScroll = undefined
 
 window.scrollSetup = ->
@@ -130,7 +118,7 @@ window.wrapperProps =
 
 window.headerProps =
   'position': 'absolute'
-  
+
 window.configurePage = ->
   if window.desktopOrIpadDevice()
     document.documentElement.style.overflow = 'hidden'
@@ -144,27 +132,28 @@ window.scrollStop = ->
     window.hideUrlBar()
   window.scrollActive = false
 
-$(document).ready ->
-  window.configurePage()
-  setTimeout('scrollSetup()', 100)
-  setTimeout('hideUrlBar()', 1000)
-  if window.touchDevice()
-    $(document).bind('touchmove', -> noDefault(e))
-  window.scrollActive = false
-  $(window).bind 'swipeDown', ->
-    return if scrollActive
-    scrollActive = true
-    setInterval("scrollStop()", 2000)
-
-$(document).ready ->
-  $('#logout').click ->
-    window.localStorage.setItem("logged_in", 'false')
-    window.location = "/mobile/logout"
-
 window.getSize = ->
   "#{$(window).height()}H x #{$(window).width()}W"
 
-$(document).ready ->
-  $("#xsize").text(getSize())
-  $(window).resize ->
-    $("#xsize").text(getSize())
+#$(document).ready ->
+#  window.App = new M3_BaseRoute()
+#  Backbone.history.start()
+#  document.body.addEventListener "offline", -> setState()
+#  document.body.addEventListener "online",  -> setState()
+
+#$(document).ready ->
+#  window.configurePage()
+#  setTimeout('scrollSetup()', 100)
+#  setTimeout('hideUrlBar()', 1000)
+#  if window.touchDevice()
+#    $(document).bind('touchmove', -> noDefault(e))
+#  window.scrollActive = false
+#  $(window).bind 'swipeDown', ->
+#    return if scrollActive
+#    scrollActive = true
+#    setInterval("scrollStop()", 2000)
+
+#$(document).ready ->
+#  $("#xsize").text(getSize())
+#  $(window).resize ->
+#    $("#xsize").text(getSize())

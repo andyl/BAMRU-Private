@@ -1,20 +1,30 @@
 main_template = '''
+  <p></p>
+  <div style='text-align: left;'>
   <%= this.photo_helper() %>
   <b><%= first_name %> <%= last_name %></b> - <%= full_roles %>
   <%= this.phone_helper() %>
   <%= this.email_helper() %>
   <%= this.emergency_helper() %>
+  </div>
 '''
 
-class @M3_StatusLineView extends Backbone.View
-  initialize: ->
+class BB.Views.Member extends Backbone.Marionette.ItemView
+  initialize: (memberId) ->
+    console.log "INIT", memberId
+    @model = BB.Collections.members.get(memberId)
     @main_template  = _.template(main_template)
+
   tagName: "div"
+
   className: "member_detail"
+
   header: (id) ->
     "<div class='header' id='#{id}'>"
+
   divider: (label) ->
     "<div class='divider'>#{label}</div>"
+
   phone_helper: ->
     return "" unless @model.hasPhone()
     display = _(@model.attributes.phones_attributes).map (phone) ->
@@ -30,7 +40,7 @@ class @M3_StatusLineView extends Backbone.View
     @divider("Phones") + display.join('')
   photo_helper: ->
     return "" unless @model.hasPhoto()
-    "<img src='/assets/s.gif' class='#{@model.attributes.last_name.toLowerCase()} photo_icon'></img>"
+    "<img src='/assets/s.gif' class='#{@model.attributes.last_name.toLowerCase()} photo_icon' />"
   email_helper: ->
     return "" unless @model.hasEmail()
     display = _(@model.attributes.emails_attributes).map (email) ->
@@ -55,4 +65,5 @@ class @M3_StatusLineView extends Backbone.View
     @divider("Emergency Contacts") + display.join('')
   render: =>
     $(@el).html(@main_template(@model.toJSON()))
+    $('.clickHome').show()
     @
