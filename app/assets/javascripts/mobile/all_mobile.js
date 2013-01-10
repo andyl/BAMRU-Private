@@ -5,6 +5,7 @@
 //= require backbone-min-0_9_2
 //= require backbone-marionette-0_10_2
 
+//= require mobile/mobile_util
 //= require mobile/bbm_initialize
 
 //# require mobile/pub_sub

@@ -6,8 +6,9 @@ main_template = '''
   <%= this.emergency_helper() %>
 '''
 
-class BB.Models.Member extends Backbone.Marionette.ItemView
+class BB.Views.Member extends Backbone.Marionette.ItemView
   initialize: (memberId) ->
+    console.log "INIT", memberId
     @model = BB.Collections.members.get(memberId)
     @main_template  = _.template(main_template)
 

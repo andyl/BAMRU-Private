@@ -19,8 +19,6 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     'meeting_signin/*path' : "default"
 
   initialize: ->
-    # ----- faye -----
-#    BB.PubSub.events = new BB.PubSub.Events(BB.Collections.events)
     # ----- create app layout -----
     BB.Views.appBody = new BB.Views.AppBody()
     @appBody = BB.Views.appBody
@@ -39,21 +37,9 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering member for #{id}"
     @appBody.content.show(new BB.Views.Member(id))
 
-  first_time: (id) ->
-    console.log "rendering first_time for #{id}"
-#    @_render(id, new BB.Views.FirstTime(id))
-
-  returning: (id) ->
-    console.log "rendering returning for #{id}"
-#    @_render(id, new BB.Views.Returning(id))
-
-  roster: (id) ->
-    console.log "rendering roster for #{id}"
-#    @_render(id, new BB.Views.Roster(id))
-
-  photo: (meetingId, memberId) ->
-    console.log "rendering photo for #{meetingId} and member #{memberId}"
-#    @_render(meetingId, new BB.Views.Photo(meetingId, memberId))
+  status: ->
+    console.log "rendering status"
+    @appBody.content.show(new BB.Views.Status)
 
   default: ->
     console.log "rendering the default route"
