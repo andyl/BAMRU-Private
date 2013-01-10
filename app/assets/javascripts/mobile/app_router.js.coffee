@@ -41,6 +41,10 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering status"
     @appBody.content.show(new BB.Views.Status)
 
+  profile: ->
+    console.log "rendering profile"
+    @appBody.content.show(new BB.Views.Profile)
+
   default: ->
     console.log "rendering the default route"
 #    @appBody.render().content.show(new BB.Views.Unrecognized)
