@@ -4,6 +4,15 @@ class Participant < ActiveRecord::Base
   belongs_to   :period
   belongs_to   :member
 
+  # ----- Callbacks -----
+
+  after_create :set_sign_in_times
+
+  # ----- Scopes -----
+
+  # see http://railscasts.com/episodes/215-advanced-queries-in-rails-3
+  scope :registered, -> { joins(:member).merge(Member.registered) }
+
   # ----- API -----
 
   def as_json(options = {})
@@ -25,6 +34,12 @@ class Participant < ActiveRecord::Base
   def sign_in_minutes
     return "TBD" unless self.signed_in_at && self.signed_out_at
     ((self.signed_out_at - self.signed_in_at) / 60).round
+  end
+
+  def set_sign_in_times
+    event = self.period.event
+    return unless event.typ == "meeting"
+    self.update_attributes signed_in_at: event.start, signed_out_at: event.finish
   end
   
 end

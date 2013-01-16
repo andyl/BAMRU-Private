@@ -5,16 +5,28 @@ module EventReportsHelper
   end
 
   def incident_name_with_period
-    "#{incident_name} - Period #{@event_report.period.position}"
+    if @event_report.event.typ == "meeting"
+      incident_name
+    else
+      "#{incident_name} - Period #{@event_report.period.position}"
+    end
+  end
+
+  def adjusted_participants
+    if @event_report.event.typ == "meeting"
+      @event_report.period.participants.registered
+    else
+      @event_report.period.participants
+    end
   end
 
   def num_participants
-    @event_report.period.participants.count
+    adjusted_participants.count
   end
 
 
   def total_hours
-    participant_minutes = @event_report.period.participants.map {|par| par.sign_in_minutes}
+    participant_minutes = adjusted_participants.map {|par| par.sign_in_minutes}
     return "TBD" if participant_minutes.include?("TBD")
     (participant_minutes.sum/60).round
   end
@@ -115,7 +127,7 @@ module EventReportsHelper
   end
 
   def participant_rows
-    participant_list = @event_report.period.participants
+    participant_list = adjusted_participants
     return if participant_list.empty?
     rows = participant_list.each_with_index.map do |participant, idx|
       participant_row(participant, idx)

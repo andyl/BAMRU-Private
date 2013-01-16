@@ -39,6 +39,8 @@ class Event < ActiveRecord::Base
 
   # ----- Callbacks -----
 
+  after_save :update_participant_sign_in_times
+
   # ----- Validations -----
   validates_presence_of :typ, :title, :start
   validates_format_of   :typ, :with => /^(training)|(operation)|(meeting)|(social)|(community)$/
@@ -128,6 +130,17 @@ class Event < ActiveRecord::Base
     xa = ((scope.first_year + 10.days).to_date .. (scope.last_year + 1.year).to_date).step(365).to_a.map{|x| x.to_time}
     xa << Event.date_parse(extra_date) unless extra_date.nil?
     xa.sort.map {|x| x.to_label }.uniq
+  end
+
+  # ----- Local Methods -----
+
+  def update_participant_sign_in_times
+    return unless self.typ == "meeting"
+    self.periods.each do |period|
+      period.participants.each do |participant|
+        participant.set_sign_in_times
+      end
+    end
   end
 
   # ----- Local Methods - CSV formatting Methods -----
