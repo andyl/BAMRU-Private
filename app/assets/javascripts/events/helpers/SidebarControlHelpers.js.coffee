@@ -16,7 +16,8 @@ BB.Helpers.SidebarControlHelpers =
   lastYear : ->
     window.lastEvent = BB.Collections.events.max (event) ->
       event.get('start')?.split('-')[0]
-    eval(lastEvent.get('start').split('-')[0])
+    result = eval(lastEvent.get('start').split('-')[0])
+    result + 1
 
   dateRange: (defaultDate, knockoutDate) ->
     range = (year for year in [@firstYear()..@lastYear()])
