@@ -46,7 +46,14 @@
     </script>
   <% end %>
 
+  <% cache('event_members_fragment') do %>
+    <script id='json_members_data' type="text/json_data">
+      <%= Member.all.to_json({only: [:id, :first_name, :last_name, :typ, :admin, :developer], methods: :photo_icon}) %>
+    </script>
+  <% end %>
+
   <script id='json_member_data' type="text/json_data">
     <%= @member_json %>
   </script>
+
 <% end %>

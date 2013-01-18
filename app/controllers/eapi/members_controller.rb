@@ -15,6 +15,7 @@ class Eapi::MembersController < ApplicationController
     model = Member.create(params["member"])
     if model.valid?
       expire_fragment(/guests_index_table/)
+      expire_fragment(/event_members_fragment/)
       respond_with model, opts
     else
       render :json => {errors: model.errors.full_messages}, status: 422
@@ -22,10 +23,14 @@ class Eapi::MembersController < ApplicationController
   end
   
   def update
+    expire_fragment(/guests_index_table/)
+    expire_fragment(/event_members_fragment/)
     respond_with Member.update(params[:id], params[:Member])
   end
   
   def destroy
+    expire_fragment(/guests_index_table/)
+    expire_fragment(/event_members_fragment/)
     respond_with Member.destroy(params[:id])
   end
 

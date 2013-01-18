@@ -42,10 +42,10 @@ class GuestsController < ApplicationController
   end
   
   def create
-    debugger
     @guest = Member.create(params["member"])
     if @guest.valid?
       expire_fragment(/guest_index_table/)
+      expire_fragment(/event_members_fragment/)
       redirect_to guest_path(@guest), :notice => "Guest Created"
     else
       render "new"
@@ -62,6 +62,7 @@ class GuestsController < ApplicationController
     x = @guest.update_attributes(m_params)
     if x
       expire_fragment(/guests_index_table/)
+      expire_fragment(/event_members_fragment/)
       redirect_to guest_path(@guest), :notice => "Successful Update"
     else
       render "edit"
@@ -70,6 +71,7 @@ class GuestsController < ApplicationController
   
   def destroy
     expire_fragment(/guest_index_table/)
+    expire_fragment(/event_members_fragment/)
     Member.destroy(params[:id])
     redirect_to guests_path, :notice => "Guest was Deleted"
   end

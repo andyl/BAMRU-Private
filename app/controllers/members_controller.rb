@@ -38,10 +38,11 @@ class MembersController < ApplicationController
   def create
     authorize! :manage, Member
     if @member = Member.create(params["member"])
-      expire_fragment(/member_index_table/)
       expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_photos_table/)
+      expire_fragment(/member_index_table/)
       expire_fragment(/unit_avail_ops_table/)
-      expire_fragment('unit_photos_table')
+      expire_fragment(/event_members_fragment/)
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
       render "new"
@@ -56,12 +57,13 @@ class MembersController < ApplicationController
     if m_params["password"].blank? && m_params["password_confirmation"].blank?
       m_params.delete("password"); m_params.delete("password_confirmation")
     end
-    x = @member.update_attributes(m_params)
-    if x
-      expire_fragment(/member_index_table/)
+    result = @member.update_attributes(m_params)
+    if result
       expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_photos_table/)
+      expire_fragment(/member_index_table/)
       expire_fragment(/unit_avail_ops_table/)
-      expire_fragment('unit_photos_table')
+      expire_fragment(/event_members_fragment/)
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -72,10 +74,11 @@ class MembersController < ApplicationController
     @member = Member.where(:id => params[:id]).first
     authorize! :manage, @member
     if @member.destroy
-      expire_fragment(/member_index_table/)
       expire_fragment(/unit_certs_table/)
+      expire_fragment(/unit_photos_table/)
+      expire_fragment(/member_index_table/)
       expire_fragment(/unit_avail_ops_table/)
-      expire_fragment('unit_photos_table')
+      expire_fragment(/event_members_fragment/)
       redirect_to '/members', :notice => "Member was Deleted"
     else
       render "show"

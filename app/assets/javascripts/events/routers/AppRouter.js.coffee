@@ -38,8 +38,9 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     @appLayout = BB.Views.app
     @appLayout.render()
     # ----- all members -----
-    BB.members = new BB.Collections.Members()
-    BB.members.fetch()
+    json_members_data = JSON.parse(_.string.unescapeHTML($('#json_members_data').text()))
+    BB.members = new BB.Collections.Members(json_members_data)
+#    BB.members.fetch()
 
   index: ->
     console.log "rendering index"

@@ -27,7 +27,8 @@ class PhotosController < ApplicationController
     end
     @member.photos.create(params[:photo])
     @member.save
-    expire_fragment('unit_photos_table')
+    expire_fragment(/unit_photos_table/)
+    expire_fragment(/guests_index_table/)
     SpriteGen.clear_sprite_icons
     path = @member.is_guest ? edit_guest_path(@member) : edit_member_path(@member)
     redirect_to path
@@ -37,7 +38,8 @@ class PhotosController < ApplicationController
     @member = Member.where(:id => params['member_id']).first
     @photo = Photo.where(:id => params['id']).first
     @photo.destroy
-    expire_fragment('unit_photos_table')
+    expire_fragment(/unit_photos_table/)
+    expire_fragment(/guests_index_table/)
     SpriteGen.clear_sprite_icons
     path = @member.is_guest ? edit_guest_path(@member) : edit_member_path(@member)
     redirect_to path
@@ -47,7 +49,8 @@ class PhotosController < ApplicationController
     params[:photos].each_with_index do |id, index|
       Photo.update_all(['position=?', index+1], ['id=?', id])
     end
-    expire_fragment('unit_photos_table')
+    expire_fragment(/unit_photos_table/)
+    expire_fragment(/guests_index_table/)
     SpriteGen.clear_sprite_icons
     render :nothing => true
   end
