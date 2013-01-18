@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.string   "ip"
     t.string   "browser_type"
     t.string   "browser_version"
-    t.string   "user_agent"
+    t.text     "user_agent"
     t.string   "ostype"
     t.boolean  "javascript"
     t.boolean  "cookies"

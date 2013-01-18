@@ -17,7 +17,7 @@ gem "ancestry"
 gem "haml-rails"
 gem "net-ssh", "2.2.2"
 
-gem "queue_classic"
+gem "queue_classic", "2.1.1"
 gem "exception_notification"
 
 gem "twilio-ruby"

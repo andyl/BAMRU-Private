@@ -25,13 +25,14 @@ class Period < ActiveRecord::Base
   # ----- Local Methods-----
 
   def create_smso_aar_event_report
-    return if %w(meeting social).include? self.event.typ
+    return if %w(social).include? self.event.typ
     if self.event_reports.smso_aars.all.empty?
-
-      opts = {typ: "smso_aar", event_id: self.event.id, title: "Period #{self.position} AAR"}
+      title = self.event.typ == "meeting" ? "Meeting AAR" : "Period #{self.position} AAR"
+      opts = {typ: "smso_aar", event_id: self.event.id, title: title}
       opts[:unit_leader] = "John Chang"
       opts[:signed_by]   = "Eszter Tompos"
       opts[:description] = self.event.description
+      puts "CREATING EVENT REPORT FOR PERIOD ##{self.id}"
       self.event_reports << EventReport.create(opts)
     end
   end

@@ -458,7 +458,7 @@ DEPENDENCIES
   pg
   pngqr
   prawn
-  queue_classic
+  queue_classic (= 2.1.1)
   rabl
   rails (= 3.2.11)
   rake

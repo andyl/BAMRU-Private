@@ -11,7 +11,7 @@ class BB.Views.CnTbodyReports extends Backbone.Marionette.ItemView
   # ----- initialization -----
 
   initialize: (options) ->
-    @model = options.model          # Event
+    @model = options.model               # Event
     @collection = @model.eventReports
     if @collection.length == 0
       @collection.fetch
