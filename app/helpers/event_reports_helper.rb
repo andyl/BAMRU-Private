@@ -101,6 +101,7 @@ module EventReportsHelper
     fdate = event.finish
     start = event.start.strftime("%B %d, %Y").upcase
     finish = fdate ? fdate.strftime(" TO %B %d, %Y").upcase : ""
+    finish = "" if finish == " TO #{start}"
     start + finish
   end
 
