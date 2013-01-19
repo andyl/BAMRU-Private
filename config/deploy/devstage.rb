@@ -1,4 +1,4 @@
-puts ' DEVSTAGE '.center(70, '-')
+puts ' Target Environment: DEVSTAGE '.center(70, '-')
 
 set :user,      "deploy"
 set :proxy,     "devstage"

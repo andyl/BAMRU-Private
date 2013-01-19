@@ -48,7 +48,7 @@ end
 # ----- Backups -----
 
 every 1.week, :at => '3:10 am' do
-  nq "rake ops:backup:system"
+  nq "rake ops:backup:sysdir"
 end
 
 every 1.day, :at => '4:10 am' do

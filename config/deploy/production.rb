@@ -1,4 +1,4 @@
-puts ' PRODUCTION '.center(70, '-')
+puts ' Target Environment: PRODUCTION '.center(70, '-')
 
 set :user,      "deploy"
 set :proxy,     "bamru1"

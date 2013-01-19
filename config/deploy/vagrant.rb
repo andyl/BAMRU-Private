@@ -1,4 +1,4 @@
-puts ' VAGRANT '.center(70, '-')
+puts ' Target Environment: VAGRANT '.center(70, '-')
 
 set :user,      "vagrant"
 set :proxy,     "vagrant"

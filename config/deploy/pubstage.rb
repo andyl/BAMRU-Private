@@ -1,4 +1,4 @@
-puts ' PUBSTAGE '.center(70, '-')
+puts ' Target Environment: PUBSTAGE '.center(70, '-')
 
 set :user,      "deploy"
 set :proxy,     "bamru1"
