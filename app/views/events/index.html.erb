@@ -42,13 +42,13 @@
 
   <% cache('event_json_fragment') do %>
     <script id='json_event_data' type="text/json_data">
-      <%= Event.all.to_json except: [:created_at, :updated_at] %>
+      <%= @events.all.to_json except: [:created_at, :updated_at] %>
     </script>
   <% end %>
 
   <% cache('event_members_fragment') do %>
     <script id='json_members_data' type="text/json_data">
-      <%= Member.all.to_json({only: [:id, :first_name, :last_name, :typ, :admin, :developer], methods: :photo_icon}) %>
+      <%= @members.all.to_json({only: [:id, :first_name, :last_name, :typ, :admin, :developer], methods: :photo_icon}) %>
     </script>
   <% end %>
 
