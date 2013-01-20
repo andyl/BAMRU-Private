@@ -39,7 +39,11 @@ BB.Helpers.CnIndxHelpers =
   isCurrent: (event) ->
     [eventStart, eventFinish] = @eventDates(event)
     if eventFinish
-      eventStart < moment() < eventFinish
+      finish = if event.get('all_day')
+        eventFinish.add('days', 1)
+      else
+        eventFinish
+      eventStart < moment() < finish
     else
       moment().subtract('days', 1) < eventStart < moment()
 
