@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
 
-  before_filter :authenticate_member_with_basic_auth!
+  before_filter :authenticate_member!
+  #before_filter :authenticate_member_with_basic_auth!
   before_filter :gdocs_oauth_setup, :except => [:index, :show]
 
   def report_list
@@ -11,6 +12,7 @@ class ReportsController < ApplicationController
       ["Roster",  "CSV Report (SMSO)", 'BAMRU-roster-smso.csv',     "CSV formatted for SMSO"],
       ["Roster",  "VCF Report",        'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
       ["Roster",  "BAMRU Full",        'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
+      ["Roster",  "BAMRU Field",       'BAMRU-field.pdf',           "One page roster with basic contact info"],
       ["Misc",    "BAMRU Names",       'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
       ["Paging",  "Response Times",    'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
       ["Certs",   "Cert Full Export",  'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
@@ -23,7 +25,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @members = Member.registered_last_name
+    @members = Member.active.order_by_last_name
     args = {:layout => nil}
     render params[:title] + '.' + params[:format], args
   end

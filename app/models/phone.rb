@@ -23,6 +23,8 @@ class Phone < ActiveRecord::Base
                             where("typ <> 'Other'") }
 
   scope :mobile,     -> { where(:typ => 'Mobile').order("position ASC") }
+  scope :home,       -> { where(:typ => 'Home').order("position ASC") }
+  scope :work,       -> { where(:typ => 'Work').order("position ASC") }
 
   # ----- Local Methods-----
   def export

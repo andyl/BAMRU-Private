@@ -20,7 +20,12 @@ class Email < ActiveRecord::Base
   scope :non_standard, -> { where("typ <> 'Work'").
                            where("typ <> 'Home'").
                            where("typ <> 'Personal'").
-                           where("typ <> 'Other'")       }
+                           where("typ <> 'Other'") }
+
+  scope :personal, -> { where(:typ => 'Personal').order("position ASC") }
+  scope :home,     -> { where(:typ => 'Home').order("position ASC") }
+  scope :work,     -> { where(:typ => 'Work').order("position ASC") }
+
 
   # ----- Local Methods-----
   def export

@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
 
-  #before_filter :authenticate_member!
-  before_filter :authenticate_member_with_basic_auth!
-
-  #curl -u user_name:pass http://bamru.net/reports
+  before_filter :authenticate_member!
+  # before_filter :authenticate_member_with_basic_auth!
+  # test with curl -u user_name:pass http://bamru.net/reports -I
 
   def index
     @session_id  = session["session_id"]

@@ -4,21 +4,59 @@
 # - add county numbers
 # - indicate if the email addresses are pagable
 
+def phone_for(member, type)
+  eval "member.phones.#{type}.first.try(:number)"
+end
 
-pdf.start_new_page(:layout=>:landscape, :top_margin => 30)
+def email_for(member, type)
+  eval "member.emails.#{type}.first.try(:address)"
+end
 
-pdf.text "BAMRU Field Roster", :size=>9
+def gen_array
 
-fields     = %w(role_name mobile_phone home_phone work_phone home_address personal_email home_email work_email ham v9)
-hdr_fields = %w(Name Mobile Home Work Home\ Address Personal Home Work Ham V9)
+  hdr_fields = %w(# Last First Role Mobile Home Work Personal\ eMail Work\ eMail)
+  idx = 0
+  data = @members.map do |m|
+    [ idx += 1,
+      m.last_name,
+      m.first_name,
+      m.typ,
+      phone_for(m, "mobile"),
+      phone_for(m, "home"),
+      phone_for(m, "work"),
+      email_for(m, "personal"),
+      email_for(m, "work"),
+    ]
+  end
 
-data = gen_array(fields, m_active_array)
+  [hdr_fields] + data
 
-pdf.table data, :headers => hdr_fields, 
-                :font_size=>6, 
-                :padding=>2,
-                :row_colors => ["ffffff", "eeeeee"]
+end
 
-pdf.move_down 2
-pdf.text "updated #{@update} - BAMRU Confidential", :size=>6
 
+prawn_document(:border_width => 0, :page_layout => :portrait, :top_margin => 30, :bottom_margin => 30) do |pdf|
+
+  pdf.text "BAMRU Field Roster / Active Members / Updated #{Time.now.strftime("%Y-%m-%d %H:%M")} / BAMRU Confidential", :size=>9
+
+  data = gen_array
+
+  table_opts = {
+    :header     => true,
+    :row_colors => ["ffffff", "eeeeee"]
+  }
+
+  pdf.move_down 2
+
+  pdf.font_size 7
+
+  pdf.table data, table_opts do
+    cells.padding_top    = 1
+    cells.padding_bottom = 1
+    cells.padding_left   = 5
+    cells.padding_right  = 5
+    cells.borders = [:left, :right]
+    row(0).style(:borders => [:top, :left, :right], :font_style => :bold, :background_color => 'cccccc', )
+    row(-1).style(:borders => [:bottom, :left, :right])
+  end
+
+end
