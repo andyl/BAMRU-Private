@@ -25,6 +25,7 @@ class Email < ActiveRecord::Base
   scope :personal, -> { where(:typ => 'Personal').order("position ASC") }
   scope :home,     -> { where(:typ => 'Home').order("position ASC") }
   scope :work,     -> { where(:typ => 'Work').order("position ASC") }
+  scope :other,    -> { where(:typ => 'Other').order("position ASC") }
 
 
   # ----- Local Methods-----

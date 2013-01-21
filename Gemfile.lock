@@ -457,7 +457,7 @@ DEPENDENCIES
   pdfkit
   pg
   pngqr
-  prawn
+  prawn (~> 0.12.0)
   queue_classic (= 2.1.1)
   rabl
   rails (= 3.2.11)

@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
       ["Roster",  "VCF Report",        'BAMRU-roster.vcf',          "VCARD for importing into Gmail & Outlook"],
       ["Roster",  "BAMRU Full",        'BAMRU-full.pdf',            "BAMRU roster with full contact info"],
       ["Roster",  "BAMRU Field",       'BAMRU-field.pdf',           "One page roster with basic contact info"],
+      ["Roster",  "BAMRU Wallet",      'BAMRU-wallet.pdf',          "A credit-card sized roster for your wallet"],
       ["Misc",    "BAMRU Names",       'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
       ["Paging",  "Response Times",    'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
       ["Certs",   "Cert Full Export",  'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
