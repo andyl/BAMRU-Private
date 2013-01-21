@@ -29,7 +29,7 @@ namespace :ops do
     opt.tgt_dir       = [opt.base_dir, opt.app, opt.host, dataset, opt.time_stamp].join('/')
     opt.targets       = backup_params[dataset][:targets]
     opt.copies        = backup_params[dataset][:copies]
-    opt.backup_cp_cmd = Proc.new {|data_path| "cp -r #{data_path} #{opt.tgt_dir}"}
+    opt.backup_cp_cmd = Proc.new {|data_path| "cp -rL #{data_path} #{opt.tgt_dir}"}
     opt
   end
 
