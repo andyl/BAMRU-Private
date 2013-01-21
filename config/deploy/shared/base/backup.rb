@@ -23,6 +23,13 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     namespace :download do
 
+        desc "Download all backups"
+        task :all do
+          sysdir
+          db
+          puts "All backups downloaded."
+        end
+
         desc "Download system backups"
         task :sysdir do
           puts "Download system directory backups - this might take awhile. (#{Time.now.strftime('%H:%M:%S')})"
