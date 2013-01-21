@@ -21,6 +21,28 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     end
 
+    namespace :download do
+
+        desc "Download system backups"
+        task :sysdir do
+          puts "Download system directory backups - this might take awhile. (#{Time.now.strftime('%H:%M:%S')})"
+          cmd = "rsync #{user}@#{proxy}:.backup/bnet/bamru1/system/* ~/.backup/bnet/bamru1/system"
+          puts cmd
+          system cmd
+          puts "Downloading finished. (#{Time.now.strftime('%H:%M:%S')})"
+        end
+
+        desc "Download db backups"
+        task :db do
+          puts "Download database backups. (#{Time.now.strftime('%H:%M:%S')})"
+          cmd = "rsync #{user}@#{proxy}:.backup/bnet/bamru1/db/* ~/.backup/bnet/bamru1/db"
+          puts cmd
+          system cmd
+          puts "Downloading finished. (#{Time.now.strftime('%H:%M:%S')})"
+        end
+
+    end
+
   end
 
 end
