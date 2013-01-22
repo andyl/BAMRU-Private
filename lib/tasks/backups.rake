@@ -108,6 +108,13 @@ namespace :ops do
 
   end
 
+  # restore just copies the data files into place
+  # to do a full restore of the database:
+  # rake ops:restore:all
+  # rake db:drop
+  # rake db:create
+  # rake db:load
+  #
   namespace :restore do
 
     desc "Restore all Targets"
