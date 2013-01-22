@@ -11,7 +11,10 @@
 log
 log/*
 db/data.yml
+db/data.yml.*
+db/structure.*
 db/test.*
+db/schema.*
 db/*.sqlite3
 public/images/icon*
 public/images/icons/*
@@ -31,6 +34,7 @@ public/assets
 public/assets/*
 public/assets/**/*
 public/system
+public/system.*
 public/system/*
 public/system/**/*
 public/qrcodes
