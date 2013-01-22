@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <td align="right">Start: </td>
-      <td><input id='start' size='15' name='start' value='<%= @fStart() %>'>
+      <td><input id='start' size='15' name='start' value='<%= @fStart() %>'></td>
       <td align="right"><nobr>End: <input id='finish' size=15 name='finish' value='<%= @fFinish() %>'></nobr></td>
       <td><%- @fAllDay() %></td>
     </tr>
