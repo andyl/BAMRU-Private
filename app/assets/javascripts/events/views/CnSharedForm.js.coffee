@@ -24,7 +24,8 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     BB.hotKeys.disable("SidebarControl")
     BB.hotKeys.disable("CnTabsMenu")
     BB.hotKeys.enable("CnSharedForm")
-    if @model.get('all_day') then @setDatePicker() else @setDateTimePicker()
+    if @model.get('all_day') then @disableTimeFields() else @enableTimeFields()
+    @setDatePicker()
     setTimeout(@setFocus, 250)
 
   onClose: ->
@@ -37,49 +38,46 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
   setFocus: -> $('#titleField').focus()
 
   setDatePicker: ->
-    @$el.find("#start, #finish").datetimepicker("destroy")
-    @$el.find("#start, #finish").datepicker
+    @$el.find("#startDate, #finishDate").datepicker
       changeMonth       : true,
       changeYear        : true,
       dateFormat        : "yy-mm-dd"
       showMonthAfterYear: true
 
-  setDateTimePicker: ->
-    @$el.find("#start, #finish").datepicker("destroy")
-    @$el.find("#start, #finish").datetimepicker
-      changeMonth       : true,
-      changeYear        : true,
-      dateFormat        : "yy-mm-dd"
-      showMonthAfterYear: true
-      stepMinute        : 15
-      showButtonPanel   : false
-  formatFieldsForDateOnly: ->
-    start = @$el.find("#start").val().split(' ')[0]
-    finish = @$el.find("#finish").val().split(' ')[0]
-    [finish, start] = [start, finish] if start > finish
-    finish = "" if start == finish
-    @$el.find("#start").val(start)
-    @$el.find("#finish").val(finish)
-
-  formatFieldsForDateTime: ->
+  setTimeFields: ->
     eventTyp = $('#typSelect').val()
     [startTime, finishTime] = ["09:00", "17:00"]
     [startTime, finishTime] = ["19:30", "21:30"] if eventTyp == "meeting"
-    start = @$el.find("#start").val().split(' ')[0]
-    finish = @$el.find("#finish").val().split(' ')[0]
-    finish = start if finish == ""
-    [finish, start] = [start, finish] if start > finish
-    @$el.find("#start").val("#{start} #{startTime}")
-    @$el.find("#finish").val("#{finish} #{finishTime}")
+    start  = @$el.find("#startTime")
+    start.val(startTime) if start.val() == ""
+    finish = @$el.find("#finishTime")
+    finish.val(finishTime) if finish.val() == ""
 
+  setDateFields: ->
+    dateChk = @$el.find("#ckAllDay").is(':checked')
+    start   = @$el.find("#startDate")
+    finish  = @$el.find("#finishDate")
+    if dateChk
+      if start.val() == finish.val()
+        finish.val("")
+    else
+      finish.val(start.val()) if finish.val() == ""
+
+  enableTimeFields: ->
+    @setTimeFields()
+    @setDateFields()
+    $('.timeField').show()
+
+  disableTimeFields: ->
+    @setDateFields()
+    $('.timeField').val('')
+    $('.timeField').hide()
 
   toggleAllDay: ->
     if @$el.find("#ckAllDay").is(':checked')
-      @setDatePicker()
-      @formatFieldsForDateOnly()
+      @disableTimeFields()
     else
-      @setDateTimePicker()
-      @formatFieldsForDateTime()
+      @enableTimeFields()
 
   cancel: (event) ->
     event?.preventDefault()

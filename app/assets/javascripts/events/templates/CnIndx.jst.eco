@@ -20,7 +20,17 @@
   }
 </style>
 
-<div class='hdrDiv'>BAMRU Events</div>
+<table width=100%>
+  <tr>
+    <td>
+<span class='hdrDiv'>BAMRU Events</span>
+    </td>
+    <td align=right style='font-size: 8pt; padding-right: 25px;'>
+      current date: <%= @currentTime() %>
+    </td>
+  </tr>
+
+</table>
 
 <% @reGenEventList() %>
 
@@ -45,5 +55,4 @@ There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firs
   <a href="/public/calendar.csv" target="_blank">CSV</a> -
 <a href='/home/event_publishing' target="_blank">learn more</a>
 </span>
-<div class='sepDiv'></div>
-Current date is <b><%= @currentTime() %></b>
+<p></p>

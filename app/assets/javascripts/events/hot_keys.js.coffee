@@ -219,13 +219,13 @@ hotKeys.keySets["CnTbodyOverviewShow"] = new BB.HotKeys.KeySet
 
 hotKeys.keySets["CnSharedForm"] = new BB.HotKeys.KeySet
   mode: "When Editing an Event"
-  help: "<b>&</b> save, <b>#</b> cancel"
+  help: "<b>alt+shift+s</b> save, <b>alt+shift+c</b> cancel"
   keyMap:
     'save':
-      keys: "&"
+      keys: "alt+shift+s"
       func: -> BB.vent.trigger "cmd:EditEventSave"
     'cancel':
-      keys: '#'
+      keys: "alt+shift+c"
       func: -> BB.vent.trigger "cmd:EditEventCancel"
 
 hotKeys.keySets["CnTbodyRosterMt"] = new BB.HotKeys.KeySet

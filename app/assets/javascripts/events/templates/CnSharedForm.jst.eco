@@ -25,21 +25,29 @@
       <td>use "TBA" if unknown</td>
     </tr>
     <tr>
+      <td align="right">Ldrs: </td>
+      <td colspan=2><input size='40' name='leaders' value='<%= @fLeaders() %>'></td>
+      <td>use "TBA" if unknown</td>
+    </tr>
+    <tr>
       <td align="right">Start: </td>
-      <td><input id='start' size='15' name='start' value='<%= @fStart() %>'></td>
-      <td align="right"><nobr>End: <input id='finish' size=15 name='finish' value='<%= @fFinish() %>'></nobr></td>
+      <td>
+        <input id='startDate' style='width: 75px;' name='startDate' value='<%= @startDate %>'>
+        <input class='timeField' id='startTime' name='startTime' style='width: 40px;' value='<%= @startTime %>'>
+      </td>
+      <td>
+        <nobr>
+          End: <input id='finishDate' style='width: 75px;' name='finishDate' value='<%= @finishDate %>'>
+          <input id='finishTime' class='timeField' name='finishTime' style='width: 40px;' value='<%= @finishTime %>'>
+        </nobr>
+      </td>
       <td><%- @fAllDay() %></td>
     </tr>
     <tr>
       <td align="right">Lat: </td>
-      <td><input size='15' id='lat' name='lat' value='<%= @lat %>'></td>
-      <td align="right"><nobr>Lon: <input class='ff' id='lon' size=15 name='lon' value='<%= @lon %>'></nobr></td>
+      <td><input size='8' id='lat' style='width: 75px;' name='lat' value='<%= @lat %>'></td>
+      <td><nobr>Lon: <input class='ff' id='lon' size='8' style='width: 75px;' name='lon' value='<%= @lon %>'></nobr></td>
       <td><button id='geoButton' type='button'>Use GeoPicker</button></td>
-    </tr>
-    <tr>
-      <td align="right">Ldrs: </td>
-      <td colspan=2><input size='40' name='leaders' value='<%= @fLeaders() %>'></td>
-      <td>use "TBA" if unknown</td>
     </tr>
     <tr>
       <td align="right">Desc: </td>
