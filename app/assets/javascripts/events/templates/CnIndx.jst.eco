@@ -26,7 +26,7 @@
 <span class='hdrDiv'>BAMRU Events</span>
     </td>
     <td align=right style='font-size: 8pt; padding-right: 25px;'>
-      current date: <%= @currentTime() %>
+      <%= @currentTime() %>
     </td>
   </tr>
 
