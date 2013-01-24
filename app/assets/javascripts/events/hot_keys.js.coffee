@@ -219,14 +219,16 @@ hotKeys.keySets["CnTbodyOverviewShow"] = new BB.HotKeys.KeySet
 
 hotKeys.keySets["CnSharedForm"] = new BB.HotKeys.KeySet
   mode: "When Editing an Event"
-  help: "<b>&</b> save, <b>#</b> cancel"
+  help: "<b>alt+shift+s</b> save, <b>alt+shift+c</b> cancel"
   keyMap:
     'save':
-      keys: "&"
-      func: -> BB.vent.trigger "cmd:EditEventSave"
+      keys: "alt+shift+s"
+      func: -> console.log "JJJ"; BB.vent.trigger "cmd:EditEventSave"
+      disableOnForms: false
     'cancel':
-      keys: '#'
-      func: -> BB.vent.trigger "cmd:EditEventCancel"
+      keys: "alt+shift+c"
+      func: -> console.log "KKK"; BB.vent.trigger "cmd:EditEventCancel"
+      disableOnForms: false
 
 hotKeys.keySets["CnTbodyRosterMt"] = new BB.HotKeys.KeySet
   help: "<b>alt+p</b> toggle add participant"
