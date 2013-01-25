@@ -4,6 +4,7 @@ BB.Helpers.CnIndxHelpers =
 
   reGenEventList: ->
     @eventList = BB.Collections.events.select (event) => @isInRange(event)
+    window.eee = @eventList
 
   events: -> BB.Collections.events
 
@@ -27,10 +28,10 @@ BB.Helpers.CnIndxHelpers =
   firstEventDate: -> @toMoment(@firstEvent().get('start')).strftime("%b-%Y")
   lastEventDate:  -> @toMoment(@lastEvent().get('start')).strftime("%b-%Y")
 
-  upcomingStart:  moment().add('days', 1)
+  upcomingStart:  moment()
   upcomingFinish: moment().add("weeks", 6)
   recentStart:    moment().subtract("weeks", 4)
-  recentFinish:   moment().subtract('days', 1)
+  recentFinish:   moment()
 
   toMoment: (date) -> moment(date, "YYYY-MM-DD HH:mm")
 
