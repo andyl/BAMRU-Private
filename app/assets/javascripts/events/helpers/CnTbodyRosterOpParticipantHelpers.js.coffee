@@ -20,8 +20,14 @@ BB.Helpers.CnTbodyRosterOpParticipantHelpers =
       "<input class='#{typKlas}' style='font-size: 8pt;' type='text' id='#{inTag}#{partId}' value='#{inVal}' size=14>"
     startStr  = datePrep(@["#{startTag}"])
     finishStr = datePrep(@["#{finishTag}"])
-    startHTML  = htmlField(startStr, startTag)
-    finishHTML = if startStr == "" then "" else htmlField(finishStr, finishTag)
+    startNow  = " <a class='startNow'  data-id='#{partId}' href='#'>N</a>"
+    finishNow = " <a class='finishNow' data-id='#{partId}' href='#'>N</a>"
+    startAll =  " <a class='startAll'  data-id='#{partId}' href='#'>$</a>"
+    finishAll = " <a class='finishAll' data-id='#{partId}' href='#'>$</a>"
+    startCMD   = if typKlas == 'transitPick' then startNow else startAll
+    finishCMD  = if typKlas == 'transitPick' then finishNow else finishAll
+    startHTML  = htmlField(startStr, startTag) + startCMD
+    finishHTML = if startStr == "" then "" else htmlField(finishStr, finishTag) + finishCMD
     "<td>#{startHTML}</td><td>#{finishHTML}</td>"
 
   updatedAt: ->
