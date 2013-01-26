@@ -10,11 +10,11 @@ class BB.GuestOpts
       "phones_attributes" :
         "0" :
           "number" : ""
-          "typ"    : "mobile"
+          "typ"    : "Mobile"
       "emails_attributes" :
         "0" :
           "address" : ""
-          "typ"     : "personal"
+          "typ"     : "Personal"
       "addresses_attributes" :
         "0" :
           "zip" : ""
