@@ -38,8 +38,8 @@ def gen_array
       participant.member.full_name,
       phone_for(participant),
       email_for(participant),
-      participant.en_route_at.strftime("%b-%d %H:%M"),
-      participant.return_home_at.strftime("%b-%d %H:%M")
+      participant.en_route_at.try(:strftime, "%b-%d %H:%M"),
+      participant.return_home_at.try(:strftime, "%b-%d %H:%M")
     ]
   end
 
