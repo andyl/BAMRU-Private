@@ -6,7 +6,6 @@ class ReportsController < ApplicationController
 
   def report_list
     [
-      #["Callout", "Callout Journal",  'BAMRU-callout_journal.xls', "Callout Journal for use by the AHC [runs slow]"],
       ["Roster",  "Map List",          'BAMRU-roster.html',         "HTML Roster with Gmap links"],
       ["Roster",  "CSV Report",        'BAMRU-roster.csv',          "For importing into Excel"],
       ["Roster",  "CSV Report (SMSO)", 'BAMRU-roster-smso.csv',     "CSV formatted for SMSO"],
@@ -26,7 +25,8 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @members = Member.active.order_by_last_name
+    @members   = Member.active.order_by_last_name
+    @period_id = params[:period_id]
     args = {:layout => nil}
     render params[:title] + '.' + params[:format], args
   end

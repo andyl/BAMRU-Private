@@ -4,6 +4,7 @@
       <td>
         <%- @minMax() %>
         <%- @titleField()  %>
+        <%- @pdfField()    %>
         <%- @memberField() %>
       </td>
       <td align="right">

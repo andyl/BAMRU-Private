@@ -21,7 +21,7 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     if @isActive
       "<input style='margin-left: 80px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
     else
-      "<a style='margin-left: 80px;' href='#' class='addParticipant'>add participant</a>"
+      "<a style='margin-left: 60px;' href='#' class='addParticipant'>add participant</a>"
 
   titleField: ->
     string = "Period #{@position}"
@@ -29,6 +29,9 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
       "<b style='margin-left: 10px;'>#{string}</b>"
     else
       "<a style='margin-left: 10px;' href='#' class='selectPeriod'>#{string}</a>"
+
+  pdfField: ->
+    "<a style='font-size: 7pt; margin-left: 20px;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>"
 
   timeHeaders: ->
     displayState = BB.UI.rosterState.get('showTimes')

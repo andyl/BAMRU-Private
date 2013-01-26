@@ -6,7 +6,6 @@ def str_truncate(string, length)
   new_str
 end
 
-
 def mem_label(member)
   ol_label = member.ol ? "OL " : ""
   str_truncate "#{ol_label}#{member.typ} #{member.full_name}", 26

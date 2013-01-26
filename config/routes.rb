@@ -56,8 +56,8 @@ Zn::Application.routes.draw do
   resources  :unauth_rsvps
   resources  :event_photos
   resources  :event_files
-  resources  :event_reports
   resources  :data_files
+  resources  :event_reports
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
@@ -161,13 +161,14 @@ Zn::Application.routes.draw do
   post '/members/:member_id/certs/sort'  => "certs#sort",          :as => :sort_member_certs
   post '/rsvp_templates/sort'            => "rsvp_templates#sort", :as => :sort_rsvp_templates
 
-  get '/reports'                 => "reports#index"
-  get '/reports/gdocs/uploading' => "reports#gdocs_uploading"
-  get '/reports/gdocs/auth'      => "reports#gdocs_auth"
-  get '/reports/gdocs/request'   => "reports#gdocs_request"
-  get '/reports/gdocs/show'      => "reports#gdocs_show"
-  get '/reports/gdocs/:title'    => "reports#gdocs_show"
-  get '/reports/:title'          => "reports#show"
+  get '/reports'                    => "reports#index"
+  get '/reports/gdocs/uploading'    => "reports#gdocs_uploading"
+  get '/reports/gdocs/auth'         => "reports#gdocs_auth"
+  get '/reports/gdocs/request'      => "reports#gdocs_request"
+  get '/reports/gdocs/show'         => "reports#gdocs_show"
+  get '/reports/gdocs/:title'       => "reports#gdocs_show"
+  get '/reports/:title'             => "reports#show"
+  get '/reports/:period_id/:title'  => "reports#show"
 
   get '/icon/:label.gif'         => "icon#show"
 

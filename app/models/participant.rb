@@ -41,6 +41,14 @@ class Participant < ActiveRecord::Base
     return unless event.typ == "meeting"
     self.update_attributes signed_in_at: event.start, signed_out_at: event.finish
   end
+
+  def sort_key
+    ols = ol ? 5000 : 0
+    tys = -1 * self.member.typ_score
+    score = ols + tys
+    kscore = 10000 - score
+    "#{kscore.to_s.rjust(5,'0')} #{self.member.last_name}"
+  end
   
 end
 
