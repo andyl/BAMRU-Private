@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag "chat.css" %>
+<%= javascript_include_tag "#{FAYE_SERVER}/faye.js" %>
+<%= javascript_include_tag "chats.js" %>
+
+<div id="chat_label" style="text-align: center;"> </div>
+
+<ul id="mobile_chat">
+  <%= render @chats %>
+</ul>
+
+<div id="mobile_form">
+  <%= form_for Chat.new, :url => chat1_path, :remote => true do |f| %>
+    <%= f.text_field :text %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>

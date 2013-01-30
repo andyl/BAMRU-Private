@@ -1,0 +1,5 @@
+
+$(document).ready ->
+  window.faye = new Faye.Client("<%= FAYE_SERVER %>")
+  window.faye.subscribe "/chats/bnew", (data) ->
+    updateChatDisplay(data)

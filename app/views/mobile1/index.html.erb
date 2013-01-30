@@ -1,0 +1,10 @@
+<%= javascript_include_tag "mobile1_inbox_label" %>
+
+<div data-role="listview" data-inset="true" data-theme="c">
+  <li><%= link_to "Roster", mobile1_members_path %></li>
+  <li><%= link_to "DO: #{@do.last_name}", mobile1_member_path(@do) %></li>
+  <li><%= link_to "Status Line", mobile1_status_path %></li>
+  <li><%= link_to "Send Page", mobile1_paging_path %></li>
+  <li><%= link_to "Unit Message Log", mobile1_messages_path %></li>
+  <li><%= link_to raw("<span id='inbox-label'>#{@inbox_label}</span>"), mobile1_inbox_path %></li>
+</div>

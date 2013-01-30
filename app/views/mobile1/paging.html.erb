@@ -1,0 +1,45 @@
+<%= javascript_include_tag "mobile1/mobile_paging" %>
+<%= javascript_tag "var PREVIEW_OPTS = {name: '#{current_member.last_name}'};" %>
+
+<form action='/mobile1/send_page' method='POST'>
+
+  <div id="select">
+
+    <%= raw select_layout -%>
+
+    <div  data-role="fieldcontain" style='margin-top:-15px !important;'>
+      <fieldset data-role="controlgroup">
+
+        <% @members.each do |mem| -%>
+          <input type="checkbox" name="targets[checkbox-<%= mem.id %>]" id="checkbox-<%= mem.id %>" class="custom rck <%=mem.full_roles %> <%= mem.current_status %>" />
+          <label for="checkbox-<%= mem.id %>"><%= "#{mem.typ} - #{mem.full_name_do}" %></label>
+        <% end %>
+
+      </fieldset>
+    </div>
+
+  </div>
+
+  <style>
+    .ui-select {
+      width: 100% !important;
+    }
+  </style>
+
+  <div id="send">
+    <div style='text-align: center;'>
+      <b>Message Text <span id='chars_remaining'></span></b>
+    </div>
+    <div class='ui-select' style="padding-right: 40px;">
+      <textarea rows=3 name="message[text]" id="textarea" style='width:100%; padding: 0px; border: 0px;'></textarea>
+    </div>
+    <div style='text-align: center; margin-top: 10px; margin-bottom: 0px; padding-bottom: 0px;'>
+      <b>RSVP</b>
+    </div>
+    <%= raw rsvp_mobile_select %>
+    <p></p>
+    <input type=hidden name='message[ip_address]' value='<%= @client_ip %>' />
+    <button id=pgr_submit class='ui-btn-hidden' type="submit">Send to 0 members</button>
+  </div>
+
+</form>

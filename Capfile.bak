@@ -1,0 +1,12 @@
+PRIMARY      = "bamru.net"
+#BACKUP       = "backup.bamru.net"
+APPDIR       = "BAMRU-Private"
+
+set :application, "BAMRU-Private"
+
+load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+
+Dir['vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
+Dir['lib/shared/recipes/*.rb'].each { |p| load p }
+
+
