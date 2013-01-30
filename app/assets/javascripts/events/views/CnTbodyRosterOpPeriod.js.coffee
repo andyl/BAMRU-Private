@@ -4,7 +4,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   template: 'events/templates/CnTbodyRosterOpPeriod'
 
-  templateHelpers: -> BB.Helpers.CnTbodyRosterOpPeriodHelpers
+  templateHelpers: ->
+    base = { participants: @model.participants }
+    _.extend(base, BB.Helpers.CnTbodyRosterOpPeriodHelpers)
 
   # ----- initialization -----
 
@@ -132,6 +134,13 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   # ----- auto complete -----
 
   setSearchBox: =>
+    console.log "JJJJ", @collection
+    if @collection.length > 0
+      console.log "KKK", @model.id
+      @$el.find("#pdfLink#{@model.id}").show()
+    else
+      console.log "MMM"
+      @$el.find("#pdfLink#{@model.id}").hide()
     @$el.find(@guestLink).hide()
     @collection.clearMatches()
     participantIDs = @collection.map (p) -> p.get('member_id')

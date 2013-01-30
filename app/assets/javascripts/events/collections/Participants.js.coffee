@@ -2,6 +2,15 @@ class BB.Collections.Participants extends Backbone.Collection
 
   model: BB.Models.Participant
 
+  numMembers: -> 0
+  numTM:      -> 0
+  numFM:      -> 0
+  numT:       -> 0
+  numR:       -> 0
+  numS:       -> 0
+  numA:       -> 0
+  numG:       -> 0
+
   comparator: (par1, par2) ->
     typScore = (arr) -> arr[0]
     lastName = (arr) -> arr[1]
