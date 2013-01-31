@@ -1,0 +1,5 @@
+# run this to install support software
+# assumes Ubuntu 12.04
+
+sudo apt-get install libqt4-dev -y -q
+sudo apt-get install libpq-dev  -y -q

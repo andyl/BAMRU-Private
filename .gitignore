@@ -24,7 +24,6 @@ coverage
 coverage/*
 .path*
 .tag*
-.bundle
 log/*.log
 tmp/
 db/seed
