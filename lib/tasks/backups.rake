@@ -99,8 +99,8 @@ namespace :ops do
     # ----- restore each target -----
     restore_opts.targets.each do |path|
       prevent_overwrite_cmd = "mv #{path} #{path}.#{restore_opts.time_stamp}"
-      puts prevent_overwrite_cmd if File.exist? path
-      system prevent_overwrite_cmd
+      puts prevent_overwrite_cmd    if File.exist? path
+      system prevent_overwrite_cmd  if File.exist? path
       restore_cmd = restore_opts.restore_cp_cmd.call(path)
       puts restore_cmd
       system restore_cmd

@@ -1,7 +1,7 @@
 env_settings = <<-EOF
 APP_NAME
-GOOGLE_CONSUMER_KEY
-GOOGLE_CONSUMER_SECRET
+GOOGLE_DOCS_CONSUMER_KEY
+GOOGLE_DOCS_CONSUMER_SECRET
 FAYE_TOKEN
 FAYE_SERVER
 GMAIL_STAGING_SMTP_SRVR
@@ -14,26 +14,26 @@ GCAL_STAGING_USER
 GCAL_STAGING_PASS
 GCAL_PRODUCTION_USER
 GCAL_PRODUCTION_PASS
-VALID_EMAILS
+STAGING_VALID_EMAILS
 SYSTEM_USER
 SYSTEM_PASS
 POSTGRES_PASS
-ALERT_EMAILS
+EXCEPTION_ALERT_EMAILS
 SES_SMTP_SRVR
 SES_SMTP_USER
 SES_SMTP_PASS
 MANDRILL_SMTP_SRVR
 MANDRILL_SMTP_USER
 MANDRILL_SMTP_PASS
-TWILIO_SID
-TWILIO_TKN
-EXCEPTION_ALERT_EMAILS
 EOF
 
 env_settings.each_line do |val|
   constant = val.chomp.strip
-  eval "#{constant} = ENV['#{constant}']"
-  abort "ERROR: Missing Environment Value (#{constant})" if constant.nil?
+  tmp = nil
+  eval "tmp = ENV['#{constant}']"
+  #puts "#{constant.ljust(35, '-')} #{tmp}"
+  abort "ERROR: Missing Environment Value (#{constant})" if tmp.nil?
+  eval "#{constant} = tmp"
 end
 
 GMAIL_SRVR = "smtp.gmail.com"

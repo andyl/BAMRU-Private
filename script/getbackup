@@ -1,0 +1,17 @@
+echo ----- generate backup
+cap backup:generate:all
+
+echo ----- download backup
+cap backup:download:all
+
+echo ----- restore backup
+zeus rake ops:restore:all
+
+echo ----- drop the old database
+zeus rake db:drop
+
+echo ----- create a new database
+zeus rake db:create
+
+echo ----- load the backup
+zeus rake db:load
