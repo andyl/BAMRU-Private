@@ -34,16 +34,16 @@ class Member < ActiveRecord::Base
   has_many :avail_ops,          :order => 'start_on', :dependent => :destroy
   has_many :avail_dos,          :dependent => :destroy
   has_many :messages
-  has_many :distributions
+  has_many :distributions,      :dependent => :destroy
   has_many :journals
-  has_many :participants
+  has_many :participants,       :dependent => :destroy
   has_many :periods, :through => :participants
   has_many :events, :through => :periods
   has_many :primary_do_assignments, :class_name => 'DoAssignment', :foreign_key => 'primary_id'
   has_many :backup_do_assignments,  :class_name => 'DoAssignment', :foreign_key => 'backup_id'
   has_many :notices, :through => :distributions, :source => :message
   has_many :chats
-  has_many :browser_profiles
+  has_many :browser_profiles,   :dependent => :destroy
 
   accepts_nested_attributes_for :addresses,  :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_address?(p) }
   accepts_nested_attributes_for :phones,     :allow_destroy => true, :reject_if => lambda {|p| Member.invalid_params?(p, :number) }
