@@ -103,7 +103,7 @@ group :development, :test do
   gem "database_cleaner"
   # gem "factory_girl_rails"
 
-  gem "vagrant", "1.0.3"
+  gem "vagrant", "1.0.6"
   gem "virtualbox"
   gem "vagrant-snap"
 
