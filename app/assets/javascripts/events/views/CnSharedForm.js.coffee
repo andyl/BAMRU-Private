@@ -23,16 +23,13 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
 
   onStartDate: ->
     unless @$el.find("#ckAllDay").is(':checked')
-      console.log "STRTING", @originalStartDate, @originalFinishDate
       if @originalStartDate == @originalFinishDate
-        console.log "CHNGING", @originalStartDate, @originalFinishDate
         @$el.find('#finishDate').val(@$el.find('#startDate').val()).effect('highlight')
     @setOriginalDates()
 
   setOriginalDates: ->
     @originalStartDate  = @$el.find('#startDate').val()
     @originalFinishDate = @$el.find('#finishDate').val()
-    console.log "SETTING", @originalStartDate, @originalFinishDate
 
   onShow: ->
     BB.hotKeys.disable("SidebarList")
