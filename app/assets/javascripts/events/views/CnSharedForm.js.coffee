@@ -18,6 +18,21 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     'click #CnTabsOverviewForm-save'   : "save"
     'click #geoButton'                 : "geoPicker"
     'click #ckAllDay'                  : "toggleAllDay"
+    'change #startDate'                : "onStartDate"
+    'change #finishDate'               : "setOriginalDates"
+
+  onStartDate: ->
+    unless @$el.find("#ckAllDay").is(':checked')
+      console.log "STRTING", @originalStartDate, @originalFinishDate
+      if @originalStartDate == @originalFinishDate
+        console.log "CHNGING", @originalStartDate, @originalFinishDate
+        @$el.find('#finishDate').val(@$el.find('#startDate').val()).effect('highlight')
+    @setOriginalDates()
+
+  setOriginalDates: ->
+    @originalStartDate  = @$el.find('#startDate').val()
+    @originalFinishDate = @$el.find('#finishDate').val()
+    console.log "SETTING", @originalStartDate, @originalFinishDate
 
   onShow: ->
     BB.hotKeys.disable("SidebarList")
@@ -43,6 +58,7 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
       changeYear        : true,
       dateFormat        : "yy-mm-dd"
       showMonthAfterYear: true
+    @setOriginalDates()
 
   setTimeFields: ->
     eventTyp = $('#typSelect').val()
@@ -78,6 +94,7 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
       @disableTimeFields()
     else
       @enableTimeFields()
+    @setOriginalDates()
 
   cancel: (event) ->
     event?.preventDefault()
