@@ -35,7 +35,6 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     <div style='display: inline-block; padding-left: 30px;'> </div>
     <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
     "
-    ""
 
   timeHeaders: ->
     displayState = BB.UI.rosterState.get('showTimes')
