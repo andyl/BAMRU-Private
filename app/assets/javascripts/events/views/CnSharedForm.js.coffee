@@ -22,10 +22,16 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     'change #finishDate'               : "setOriginalDates"
 
   onStartDate: ->
+    @setDefaultFinishDate()
     unless @$el.find("#ckAllDay").is(':checked')
       if @originalStartDate == @originalFinishDate
         @$el.find('#finishDate').val(@$el.find('#startDate').val()).effect('highlight')
     @setOriginalDates()
+
+  setDefaultFinishDate: ->
+    startDate  = @$el.find("#startDate").val()
+    finishDate = moment(startDate, "YYYY-MM-DD").add('days',1).strftime("YYYY-MM-DD")
+    @$el.find("#finishDate").datepicker("option", "defaultDate", finishDate)
 
   setOriginalDates: ->
     @originalStartDate  = @$el.find('#startDate').val()
@@ -38,6 +44,7 @@ class BB.Views.CnSharedForm extends Backbone.Marionette.ItemView
     BB.hotKeys.enable("CnSharedForm")
     if @model.get('all_day') then @disableTimeFields() else @enableTimeFields()
     @setDatePicker()
+    @setDefaultFinishDate()
     setTimeout(@setFocus, 250)
 
   onClose: ->
