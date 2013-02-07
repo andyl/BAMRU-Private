@@ -36,6 +36,11 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
     "
 
+  participantLink: ->
+    numParts = @participants.length
+    console.log "NP", numParts
+    if numParts > 0 then " (#{numParts})" else ""
+
   timeHeaders: ->
     displayState = BB.UI.rosterState.get('showTimes')
     switch displayState
