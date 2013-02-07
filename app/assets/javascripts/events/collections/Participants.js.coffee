@@ -2,14 +2,19 @@ class BB.Collections.Participants extends Backbone.Collection
 
   model: BB.Models.Participant
 
-  numMembers: -> 0
-  numTM:      -> 0
-  numFM:      -> 0
-  numT:       -> 0
-  numR:       -> 0
-  numS:       -> 0
-  numA:       -> 0
-  numG:       -> 0
+  numMembers: -> @.length
+  numTM:      -> @memTyp("TM").length
+  numFM:      -> @memTyp("FM").length
+  numT:       -> @memTyp("T").length
+  numR:       -> @memTyp("R").length
+  numS:       -> @memTyp("S").length
+  numA:       -> @memTyp("A").length
+  numG:       -> @memTyp("G").length
+
+  memTyp: (string) ->
+    @select (participant) ->
+      member = BB.members.get(participant.get('member_id'))
+      member.get('typ') == string
 
   comparator: (par1, par2) ->
     typScore = (arr) -> arr[0]

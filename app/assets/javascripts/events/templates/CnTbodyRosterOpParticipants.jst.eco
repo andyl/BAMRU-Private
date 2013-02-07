@@ -1,14 +1,8 @@
-<style>
-  .tablesorter th {
-    font-size:  8pt;
-  }
-</style>
-
-<table class='tablesorter' id="myTable<%= @id %>">
+<table class='tablesorter' id="myTable<%= @id %>" style='margin-bottom: 0; padding-bottom: 0;'>
   <thead>
   <tr>
     <th width=40>Role</th>
-    <th>Member <%- @participantLink() %></th>
+    <th>Members <%- @participantCount() %></th>
     <%- @timeHeaders() %>
     <th>Updated</th>
     <th></th>
@@ -18,3 +12,4 @@
   </tbody>
   </thead>
 </table>
+<%- @memberStats() %>

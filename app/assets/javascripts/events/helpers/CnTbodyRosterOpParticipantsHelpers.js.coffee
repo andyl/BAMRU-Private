@@ -1,9 +1,14 @@
 BB.Helpers.CnTbodyRosterOpParticipantsHelpers =
 
-  participantLink: ->
-    numParts = @participants.length
-    console.log "NP", numParts, @participants
+  participantCount: ->
+    numParts = @participants.numMembers()
     if numParts > 0 then " (#{numParts})" else ""
+
+  memberStats: ->
+    vals1 = "TM FM T R S A G".split(' ').map((typ) => [typ, @participants.memTyp(typ).length])
+    vals2 = _.filter(vals1, (pair) -> pair[1] != 0)
+    vals3 = vals2.map((pair) -> pair.join(':')).join(' ')
+    "<div style='font-size: 7pt'>#{vals3}</div>"
 
   timeHeaders: ->
     displayState = BB.UI.rosterState.get('showTimes')
