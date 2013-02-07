@@ -17,4 +17,3 @@ end
 
 # Initialize the rails application
 Zn::Application.initialize!
-

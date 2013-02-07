@@ -134,12 +134,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
   # ----- auto complete -----
 
   setSearchBox: =>
-    console.log "JJJJ", @collection
     if @collection.length > 0
-      console.log "KKK", @model.id
       @$el.find("#pdfLink#{@model.id}").show()
     else
-      console.log "MMM"
       @$el.find("#pdfLink#{@model.id}").hide()
     @$el.find(@guestLink).hide()
     @collection.clearMatches()
