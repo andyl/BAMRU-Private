@@ -16,20 +16,9 @@
 
   <% if @showTable(): %>
 
-  <table class='tablesorter' id="myTable<%= @id %>">
-    <thead>
-    <tr>
-      <th width=40>Role</th>
-      <th>Member</th>
-      <%- @timeHeaders() %>
-      <th>Updated</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody id='participants<%=@id%>'>
-    </tbody>
-    </thead>
-  </table>
+  <div id="zparticipants<%=@id%>">
+
+  </div>
 
   <% end %>
 

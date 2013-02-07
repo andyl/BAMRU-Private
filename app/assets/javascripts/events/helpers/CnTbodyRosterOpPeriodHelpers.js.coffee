@@ -36,14 +36,6 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
     "
 
-  timeHeaders: ->
-    displayState = BB.UI.rosterState.get('showTimes')
-    switch displayState
-      when "none"    then ""
-      when 'transit' then "<th>En-route at</th><th>Return at</th>"
-      when "signin"  then "<th>Sign-in at</th><th>Sign-out at</th>"
-      else ""
-
   minMax: ->
     displayState = BB.UI.rosterState.get("#{@id}")
     if displayState == "min"
