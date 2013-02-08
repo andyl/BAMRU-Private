@@ -5,7 +5,7 @@ class Period < ActiveRecord::Base
   belongs_to   :event
   has_many     :participants,  :dependent => :destroy
   has_many     :event_reports, :dependent => :destroy
-  has_many     :period_pages
+  has_many     :messages
   acts_as_list :scope => :position
 
 

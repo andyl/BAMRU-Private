@@ -9,6 +9,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :author,         :class_name => 'Member'
   has_one    :rsvp,           :dependent  => :destroy
+  has_one    :period
   has_many   :distributions,  :dependent  => :destroy
   has_many   :outbound_mails, :through    => :distributions
   has_many   :recipients,     :through    => :distributions, :source => :member
