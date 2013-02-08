@@ -1,4 +1,4 @@
-BB.Helpers.CnTbodyRosterOpParticipantsHelpers =
+BB.Helpers.CnTbodyRosterMtPeriodHelpers =
 
   memberStats: ->
     numParts = @participants.numMembers()
@@ -8,11 +8,3 @@ BB.Helpers.CnTbodyRosterOpParticipantsHelpers =
       vals3 = vals2.map((pair) -> pair.join(':')).join(' ')
       partWord = if numParts > 1 then "participants" else "participant"
       "<div style='font-size: 7pt; padding-left: 8px;'>#{numParts} #{partWord} (#{vals3})</div>"
-
-  timeHeaders: ->
-    displayState = BB.UI.rosterState.get('showTimes')
-    switch displayState
-      when "none"    then ""
-      when 'transit' then "<th>En-route at</th><th>Return at</th>"
-      when "signin"  then "<th>Sign-in at</th><th>Sign-out at</th>"
-      else ""

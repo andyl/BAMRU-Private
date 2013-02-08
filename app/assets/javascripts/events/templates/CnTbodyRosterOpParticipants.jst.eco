@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th width=40>Role</th>
-    <th>Members <%- @participantCount() %></th>
+    <th>Member</th>
     <%- @timeHeaders() %>
     <th>Updated</th>
     <th></th>

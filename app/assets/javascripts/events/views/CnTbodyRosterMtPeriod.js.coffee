@@ -4,7 +4,9 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
 
   template: 'events/templates/CnTbodyRosterMtPeriod'
 
-  templateHelpers: -> BB.Helpers.CnTbodyRosterMtPeriodHelpers
+  templateHelpers: ->
+    base = {participants: @collection}
+    _.extend(base, BB.Helpers.CnTbodyRosterMtPeriodHelpers)
 
   # ----- initialization -----
 
@@ -13,7 +15,12 @@ class BB.Views.CnTbodyRosterMtPeriod extends Backbone.Marionette.ItemView
     @collection = @model.participants     # Participants
     @collection.fetch() if @collection.url.search('undefined') == -1
     @bindTo(@collection, 'add remove reset', @setSearchBox, this)
+    @bindTo(@collection, 'add remove reset', @reRender, this)
 #    @pubSub = new BB.PubSub.Base(@collection)
+
+  reRender: ->
+    @render()
+    @onShow()
 
   onShow: ->
     BB.hotKeys.enable("CnTbodyRosterMt")

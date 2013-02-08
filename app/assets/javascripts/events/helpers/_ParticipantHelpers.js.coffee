@@ -4,11 +4,11 @@ BB.Helpers.ParticipantHelpers =
 
   memberRoleMT: (memberId) ->
     member = BB.members.get(memberId)
-    member.get('typ')
+    member?.get('typ')
 
   memberRoleOP: (memberId) ->
     member = BB.members.get(memberId)
-    role   = member.get('typ')
+    role   = member?.get('typ') || ""
     if @ol
       "<a class='unsetOL' href='#'>OL #{role}</a>"
     else
@@ -16,15 +16,15 @@ BB.Helpers.ParticipantHelpers =
 
   memberIcon: (memberId) ->
     member = BB.members.get(memberId)
-    photoUrl = member.get('photo_icon')
-    return "" if photoUrl.length < 5
+    photoUrl = member?.get('photo_icon')
+    return "" unless photoUrl? && photoUrl.length > 5
     "<img style='height:23px;width:30px;display:block;margin:0;padding:0;' src='#{photoUrl}'/>"
 
   memberLink: (memberId) ->
     member = BB.members.get(memberId)
-    typ  = member.get('typ')
+    typ  = member?.get('typ')
     console.log "TYP is", typ, member if typ == null
-    return "Unknown Member #{memberId}" if typ == null
+    return "Unknown Member #{memberId}" unless typ? && typ != null
     path = if typ[0] == 'G' then 'guests' else 'members'
     "<a href='/#{path}/#{memberId}'>#{member.fullName()}</a>"
 

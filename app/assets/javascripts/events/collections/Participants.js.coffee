@@ -13,8 +13,8 @@ class BB.Collections.Participants extends Backbone.Collection
 
   memTyp: (string) ->
     @select (participant) ->
-      member = BB.members.get(participant.get('member_id'))
-      member.get('typ') == string
+      member = BB.members?.get(participant?.get('member_id'))
+      member?.get('typ') == string
 
   comparator: (par1, par2) ->
     typScore = (arr) -> arr[0]

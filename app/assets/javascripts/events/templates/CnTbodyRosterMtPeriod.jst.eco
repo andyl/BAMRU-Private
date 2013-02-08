@@ -5,7 +5,7 @@
   .deleteParticipant { margin-left: 5px; margin-right: 5px;}
 </style>
 
-<table class='tablesorter' id="myTableMeeting">
+<table class='tablesorter' id="myTableMeeting" style='margin-bottom: 0; padding-bottom: 0;'>
   <thead>
   <tr>
     <th width=40>Role</th>
@@ -21,4 +21,5 @@
   </tbody>
   </thead>
 </table>
+<%- @memberStats() %>
 
