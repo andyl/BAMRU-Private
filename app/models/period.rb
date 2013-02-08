@@ -11,7 +11,8 @@ class Period < ActiveRecord::Base
 
   # ----- Callbacks -----
 
-  after_create :create_smso_aar_event_report
+  after_create   :create_smso_aar_event_report
+  before_destroy :remove_all_message_references
 
 
   # ----- Validations -----
@@ -32,11 +33,15 @@ class Period < ActiveRecord::Base
       opts[:unit_leader] = "John Chang"
       opts[:signed_by]   = "Eszter Tompos"
       opts[:description] = self.event.description
-      puts "CREATING EVENT REPORT FOR PERIOD ##{self.id}"
       self.event_reports << EventReport.create(opts)
     end
   end
 
+  def remove_all_message_references
+    Message.where(period_id: self.id).each do |message|
+      message.update_attributes(period_id: nil, period_msg_typ: nil)
+    end
+  end
 
 end
 
