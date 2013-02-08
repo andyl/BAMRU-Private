@@ -8,7 +8,8 @@ describe Period do
 
   describe "Object Attributes" do
     before(:each) { @obj = Period.new }
-    specify { @obj.should respond_to(:title)            }
+    specify { @obj.should respond_to(:position)            }
+    specify { @obj.should respond_to(:start)               }
   end
 
   describe "Associations" do

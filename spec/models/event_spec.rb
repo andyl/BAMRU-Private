@@ -15,7 +15,7 @@ describe Event do
     specify { @obj.should respond_to(:lon)            }
     specify { @obj.should respond_to(:start)          }
     specify { @obj.should respond_to(:finish)         }
-    specify { @obj.should respond_to(:public)         }
+    #specify { @obj.should respond_to(:public)         }
   end
 
   describe "Associations" do
@@ -36,7 +36,7 @@ describe Event do
       it { should validate_presence_of(:start)   }
     end
     it "handles valid event types" do
-      %w(meeting training operation special).each do |typ|
+      %w(meeting training operation community).each do |typ|
         @obj = Event.new(valid_params.merge({typ: typ}))
         @obj.should be_valid
       end

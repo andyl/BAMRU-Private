@@ -10,36 +10,36 @@ describe Message do
     specify { @obj.should respond_to :recipients       }
   end
 
-  describe "#generate" do
-    before(:each) do
-      @mem1 = FactoryGirl.create(:member_with_phone_and_email)
-      @mem2 = FactoryGirl.create(:member_with_phone_and_email)
-      @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
-      @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
-      @rsvp = ""
-    end
-    it "generates a valid message object", slow: true do
-      msg = Message.generate(@mesg, @dist, @rsvp)
-      msg.should be_a Message
-      msg.should be_valid
-      msg.rsvp.should be_false
-      author = msg.author
-      author.phones.length.should == 3
-      author.emails.length.should == 3
-      dists = msg.distributions.all
-      dists.length.should == 2
-      dists.first.email.should == true
-      dists.first.phone.should == true
-      dists.first.outbound_mails.length.should == 6
-    end
-    it "generates a valid message object with rsvp", slow: true do
-      rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
-      msg = Message.generate(@mesg, @dist, rsvp)
-      msg.should be_a Message
-      msg.should be_valid
-      msg.rsvp.should be_true
-    end
-  end
+  #describe "#generate" do
+  #  before(:each) do
+  #    @mem1 = FactoryGirl.create(:member_with_phone_and_email)
+  #    @mem2 = FactoryGirl.create(:member_with_phone_and_email)
+  #    @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
+  #    @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
+  #    @rsvp = ""
+  #  end
+  #  it "generates a valid message object", slow: true do
+  #    msg = Message.generate(@mesg, @dist, @rsvp)
+  #    msg.should be_a Message
+  #    msg.should be_valid
+  #    msg.rsvp.should be_false
+  #    author = msg.author
+  #    author.phones.length.should == 3
+  #    author.emails.length.should == 3
+  #    dists = msg.distributions.all
+  #    dists.length.should == 2
+  #    dists.first.email.should == true
+  #    dists.first.phone.should == true
+  #    dists.first.outbound_mails.length.should == 6
+  #  end
+  #  it "generates a valid message object with rsvp", slow: true do
+  #    rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
+  #    msg = Message.generate(@mesg, @dist, rsvp)
+  #    msg.should be_a Message
+  #    msg.should be_valid
+  #    msg.rsvp.should be_true
+  #  end
+  #end
 
   describe "ancestry" do
 
@@ -82,25 +82,25 @@ describe Message do
       #it "can't have a linked RSVP if the parent has no RSVP"
     end
 
-    context "using linked RSVPs", slow: true do
-      before(:each) do
-        @mem1 = FactoryGirl.create(:member_with_phone_and_email)
-        @mem2 = FactoryGirl.create(:member_with_phone_and_email)
-        @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
-        @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
-        @rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
-        @msg1 = Message.generate(@mesg, @dist, @rsvp)
-        new_params = {:parent => @msg1, :linked_rsvp_id => @msg1.id}
-        @msg2 = Message.generate(@mesg.merge(new_params), @dist, {})
-      end
-      it "has the same RSVP prompt" do
-        @msg1.rsvp.prompt.should == @msg2.rsvp.prompt
-      end
-      it "assigns the same linked_rsvp_id to parent and child" do
-        @msg1.reload; @msg2.reload
-        @msg1.linked_rsvp_id.should == @msg2.linked_rsvp_id
-      end
-    end
+    #context "using linked RSVPs", slow: true do
+    #  before(:each) do
+    #    @mem1 = FactoryGirl.create(:member_with_phone_and_email)
+    #    @mem2 = FactoryGirl.create(:member_with_phone_and_email)
+    #    @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
+    #    @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
+    #    @rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
+    #    @msg1 = Message.generate(@mesg, @dist, @rsvp)
+    #    new_params = {:parent => @msg1, :linked_rsvp_id => @msg1.id}
+    #    @msg2 = Message.generate(@mesg.merge(new_params), @dist, {})
+    #  end
+    #  it "has the same RSVP prompt" do
+    #    @msg1.rsvp.prompt.should == @msg2.rsvp.prompt
+    #  end
+    #  it "assigns the same linked_rsvp_id to parent and child" do
+    #    @msg1.reload; @msg2.reload
+    #    @msg1.linked_rsvp_id.should == @msg2.linked_rsvp_id
+    #  end
+    #end
 
   end
 end
