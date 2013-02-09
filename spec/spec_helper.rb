@@ -1,11 +1,11 @@
 ENV["RAILS_ENV"] = 'test'
 
-require 'database_cleaner'
-
 require File.expand_path("../../config/environment", __FILE__)
+require 'launchy'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'database_cleaner'
 
 # if this is commented out, Capybara will use the default selenium driver
 # Sep 23 2011 webkit 0.6.0 isn't compatible with spork - generates errors
@@ -32,8 +32,6 @@ def basic_auth(user)
   Member.find_or_create_by_user_name(user)
   ActionController::HttpAuthentication::Basic.encode_credentials user, "welcome"
 end
-
-require 'launchy'
 
 def login(member)
   visit login_path
