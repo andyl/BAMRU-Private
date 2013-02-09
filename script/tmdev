@@ -14,7 +14,7 @@ create_new_session()
   tmux split-window -t $APP:1.1 -h
   tmux send-keys -t $APP:1.1 'cls ; foreman start -f Procfile.dev'  C-m
   tmux send-keys -t $APP:1.2 'cls ; sleep 10 ; zeus server' C-m
-  tmux send-keys -t $APP:1.3 'cls ; zeus start' C-m
+  tmux send-keys -t $APP:1.3 'cls ; env RUBYLIB=/home/aleak/lcl/bin/rubymine/rb/testing/patch/common:/home/aleak/lcl/bin/rubymine/rb/testing/patch/bdd zeus start' C-m
 
   tmux resize-pane -t $APP:1.3 -R 25
   tmux resize-pane -t $APP:1.2 -U 3

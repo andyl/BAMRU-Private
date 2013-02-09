@@ -1,6 +1,6 @@
 --colour
 --debug
 --fail-fast
---drb
 -I /home/aleak/lr/BAMRU-Private/spec
 --format progress
+spec/models/address_spec.rb

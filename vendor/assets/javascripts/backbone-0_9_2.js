@@ -58,12 +58,12 @@
   };
 
   // Turn on `emulateHTTP` to support legacy HTTP servers. Setting this option
-  // will fake `"PUT"` and `"DELETE"` requests via the `_method` parameter and
+  // will fake `"PUT"` and `"DELETE"` features via the `_method` parameter and
   // set a `X-Http-Method-Override` header.
   Backbone.emulateHTTP = false;
 
   // Turn on `emulateJSON` to support legacy servers that can't deal with direct
-  // `application/json` requests ... will encode the body as
+  // `application/json` features ... will encode the body as
   // `application/x-www-form-urlencoded` instead and will send the model in a
   // form param named `model`.
   Backbone.emulateJSON = false;
@@ -1306,12 +1306,12 @@
   // * Send up the models as XML instead of JSON.
   // * Persist models via WebSockets instead of Ajax.
   //
-  // Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` requests
+  // Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` features
   // as `POST`, with a `_method` parameter containing the true HTTP method,
-  // as well as all requests with the body as `application/x-www-form-urlencoded`
+  // as well as all features with the body as `application/x-www-form-urlencoded`
   // instead of `application/json` with the model in a param named `model`.
   // Useful when interfacing with server-side languages like **PHP** that make
-  // it difficult to read the body of `PUT` requests.
+  // it difficult to read the body of `PUT` features.
   Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
 
