@@ -8,8 +8,10 @@
 - app/**/*.erb
 - lib/**/*.rb
 :app_exclude_pattern: []
-:test_pattern: 
-:test_files: 
+:test_pattern: fea
+:test_files: spec/features/wiki/wiki_spec.rb spec/features/mobile/members_spec.rb
+  spec/features/members_spec.rb spec/features/members_edit_spec.rb spec/features/home_spec.rb
+  spec/features/data_files_spec.rb spec/features/certs_spec.rb
 :test_line: 
 :command_args: 
 :command: zeus rspec -O spec/spec.opts

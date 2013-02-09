@@ -151,6 +151,11 @@ GEM
       actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
     fastercsv (1.5.5)
@@ -422,6 +427,7 @@ DEPENDENCIES
   eco
   em-http-request
   exception_notification
+  factory_girl_rails
   faker
   fastercsv
   faye (= 0.6.8)
@@ -464,6 +470,7 @@ DEPENDENCIES
   rspec-rails
   ruby-gmail
   sass
+  selenium-webdriver
   shoulda-matchers
   simple_form
   simplecov

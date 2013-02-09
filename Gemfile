@@ -81,44 +81,54 @@ gem "awesome_print", :require => "ap"
 gem "drx"
 
 group :development, :test do
-  gem "zeus"
+
+  # ----- misc -----
+  gem "zeus"        # fast environment launch
+  gem "debugger", :require => "ruby-debug"
+
+  # ----- capistrano -----
+  gem "capistrano"
+  gem "capistrano_colors"
+
+  # ----- javascript unit tests -----
   gem "jasminerice"
-  gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem "csv-mapper"
   gem "rb-inotify"
   gem "guard"
-  gem "capistrano"
-  gem "capistrano_colors"
   gem "guard-coffeescript"
   gem "faker"
   gem "simplecov"
+
+  # ----- rspec -----
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "rspec-on-rails-matchers"
+  gem "database_cleaner"
+  gem "factory_girl_rails"
+
+  # ----- capybara -----
   gem "capybara"
   gem "capybara-webkit"
+  gem "selenium-webdriver"
   gem "launchy"
-  gem "database_cleaner"
-  # gem "selenium-webdriver"
-  # gem "factory_girl_rails"
 
+  # ----- vagrant -----
   gem "vagrant", "1.0.6"
   gem "virtualbox"
   gem "vagrant-snap"
 
-  gem "debugger", :require => "ruby-debug"
+  # ----- email testing -----
+  gem "letter_opener"
+  gem "bullet"
 
-  # to get the debugger working on RubyMine
-  # run this on the command line:
+  # ----- add DB fields too models & specs -----
+  gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
 
+  # ----- RubyMine Support -----
+  # run this to get the debugger working on RubyMine
   # > curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
   # > gem install linecache19-0.5.13.gem
   # > gem install --pre ruby-debug-base19x
-
   # gem "ruby-debug-base19x", "~> 0.11.30.pre10"
-
-  gem "letter_opener"
-
-  gem "bullet"
 
 end
