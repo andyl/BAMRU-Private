@@ -2,78 +2,86 @@ source "http://rubygems.org"
 
 ruby "1.9.3"
 
-gem "rails",        "3.2.11"
+# ----- rails -----
+gem "rails",        "3.2.12"
+gem "rake",         "10.0.3"
 
-gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
+# ----- web servers -----
+gem "thin"                  # required by faye
+gem "passenger", "3.0.12"   # production server
 
-gem "sqlite3"
-gem "rake"
-gem "faye",         "0.6.8"
-gem "pngqr"
-gem "em-http-request"
-gem "thin"
-gem "gcal4ruby"
-gem "ancestry"
-gem "haml-rails"
-gem "net-ssh", "2.2.2"
-
-gem "queue_classic", "2.1.1"
-gem "exception_notification"
-
+# ----- 3rd party services -----
+gem "ruby-gmail", :require => "gmail"
 gem "twilio-ruby"
+gem "gcal4ruby"
+# gem "aws-ses", :require => "aws/ses"
 
+# ----- database -----
+gem "sqlite3"
+gem "valkyrie"
 gem "yaml_db"
-
 gem "pg"
 
-gem "acts_as_api"
+# ----- services and protocols -----
+gem "faye",    "0.6.8" # messaging-pub/sub infrastructure
+gem "net-ssh", "2.2.2"
 
-gem "aws-ses", :require => "aws/ses"
+# ----- process management -----
+gem "foreman"                     # init/upstart - see `Procfile`
+gem "whenever", :require => false # cron jobs - see `schedule.rb`
+gem "queue_classic", "2.1.1"      # background job queue
 
-gem "fastercsv"
-gem "nokogiri"
-gem "simple_form"
-gem "rabl"
+# ----- asset management -----
 gem "sprite-factory"
 gem "rmagick"
+gem "paperclip",    "3.3.1"
+gem "sass"
 
-gem "ghost"
-gem "valkyrie"
-
+# ----- view utilities -----
 gem "draper"
-gem "passenger", "3.0.12"
+gem "rabl"
+gem "simple_form"
+gem "dynamic_form"
+gem "pngqr"  # generate QR codes
+gem "haml-rails"
 
+# ----- misc -----
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
+gem "acts_as_api"
+gem "ancestry"
+gem "bcrypt-ruby", "~> 3.0.0"
+gem "cancan"
+gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
+gem "em-http-request"
+gem "exception_notification"
+gem "fastercsv"
+gem "json"
+gem "mime"
+gem "nokogiri"
+gem "oauth"
+gem "parslet"
+
+# ----- mail -----
+gem "mail"
 gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
-gem "paperclip",    "3.3.1"
-gem "parslet"
-gem "dynamic_form"
-gem "cancan"
-gem "mail"
-gem "prawn", "~> 0.12.0"
-gem "pdfkit"
-gem "foreman"
-gem "oauth"
-gem "ruby-gmail", :require => "gmail"
-gem "mime"
-gem "bcrypt-ruby", "~> 3.0.0"
+# ----- pdf generation -----
+gem "prawn", "~> 0.12.0" # for PDF reports
+gem "pdfkit"             # PDF screenshots of a URL 
 
-# Asset template engines
-# gem "jquery-rails"
-gem "jsgem-jquery",        "1.7.2.pre2"
-gem "jsgem-jquery-ui",     "1.9.1.pre2"
-gem "jsgem-jquery-layout", "1.3.0.pre2"
-gem "json"
-gem "sass"
+# ----- javascript processing -----
 gem "coffee-script"
 gem "uglifier"
 gem "libv8", '~> 3.11.8'
 gem "therubyracer", :require => "v8"
-gem "whenever",     :require => false
 gem "eco"
 
-# console tools
+# ----- javascript libraries -----
+gem "jsgem-jquery",        "1.7.2.pre2"
+gem "jsgem-jquery-ui",     "1.9.1.pre2"
+gem "jsgem-jquery-layout", "1.3.0.pre2"
+
+# ----- console tools -----
 gem "hirb"
 gem "wirble"
 gem "interactive_editor"
@@ -113,9 +121,10 @@ group :development, :test do
   gem "launchy"
 
   # ----- vagrant -----
-  gem "vagrant", "1.0.6"
-  gem "virtualbox"
-  gem "vagrant-snap"
+  gem "vagrant", "1.0.6"  # generate test machines
+  gem "virtualbox"        # VM engine
+  gem "vagrant-snap"      # generates VM snapshots
+  gem "ghost"             # manages /etc/hosts for testing
 
   # ----- email testing -----
   gem "letter_opener"
