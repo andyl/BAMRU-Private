@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# should be called from tmux_console
+
+export APP="bnet_serv"
+
+create_new_session()
+{
+
+  cd /home/aleak/lr/BAMRU-Private
+
+  tmux new-session -s $APP -n serv -d
+
+  # tmux send-keys -t $APP:1 'cls ; cd /home/aleak/lr/BAMRU-Private ; zeus server'  C-m
+  tmux send-keys -t $APP:1 'echo "HELLO WORLD"'  C-m
+
+}
+
