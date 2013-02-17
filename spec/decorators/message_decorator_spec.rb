@@ -30,7 +30,7 @@ describe MessageDecorator do
     specify { @obj.mobile_json.should_not be_nil }
     specify { @obj.mobile_json.should be_a(String) }
   end
-  
+
   describe "self.mobile_json" do
     before(:each) do
       create_valid_messages(3)
