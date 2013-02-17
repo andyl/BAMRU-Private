@@ -59,3 +59,18 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+
+# == Schema Information
+#
+# Table name: periods
+#
+#  id         :integer         not null, primary key
+#  event_id   :integer
+#  position   :integer
+#  start      :datetime
+#  finish     :datetime
+#  rsvp_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

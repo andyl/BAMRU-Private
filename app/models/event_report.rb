@@ -43,6 +43,7 @@ end
 # Table name: event_reports
 #
 #  id         :integer         not null, primary key
+#  typ        :string(255)
 #  member_id  :integer
 #  event_id   :integer
 #  period_id  :integer

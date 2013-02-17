@@ -49,7 +49,7 @@ end
 #  ip              :string(255)
 #  browser_type    :string(255)
 #  browser_version :string(255)
-#  user_agent      :string(255)
+#  user_agent      :text
 #  ostype          :string(255)
 #  javascript      :boolean
 #  cookies         :boolean

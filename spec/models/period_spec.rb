@@ -14,8 +14,9 @@ describe Period do
 
   describe "Associations" do
     before(:each) { @obj = Period.new(valid_params)  }
-    specify { @obj.should respond_to(:event)        }
-    specify { @obj.should respond_to(:participants) }
+    specify { @obj.should respond_to(:event)         }
+    specify { @obj.should respond_to(:participants)  }
+    specify { @obj.should respond_to(:message)       }
   end
 
   describe "Instance Methods" do
