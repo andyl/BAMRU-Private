@@ -137,7 +137,7 @@ Contributions are encouraged!
 
 ## License
 
-Copyright (c) 2011-2012 Andy Leak 
+Copyright (c) 2011-2013 Andy Leak
 
 Permitted Use
 

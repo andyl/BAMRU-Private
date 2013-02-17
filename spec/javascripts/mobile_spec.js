@@ -11,4 +11,4 @@
 
 //= require_tree ./chat2
 //= require_tree ./mobile1
-//= require_tree ./mobile
+//= require_tree ./mobile3

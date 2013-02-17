@@ -8,9 +8,9 @@ describe Participant do
 
   describe "Object Attributes" do
     before(:each) { @obj = Participant.new }
-    specify { @obj.should respond_to(:role)              }
-    specify { @obj.should respond_to(:start)             }
-    specify { @obj.should respond_to(:finish)            }
+    specify { @obj.should respond_to(:ol)                       }
+    specify { @obj.should respond_to(:signed_in_at)             }
+    specify { @obj.should respond_to(:signed_out_at)            }
   end
 
   describe "Associations" do

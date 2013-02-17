@@ -1,6 +1,5 @@
---colour
---debug
---fail-fast
---drb
 -I /home/aleak/lr/BAMRU-Private/spec
+--debug
+--colour
+--fail-fast
 --format progress

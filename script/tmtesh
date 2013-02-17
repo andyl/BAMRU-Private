@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# should be called from tmux_console
+
+export APP="bnet_tesh"
+
+create_new_session()
+{
+
+  cd /home/aleak/lr/BAMRU-Private
+
+  tmux new-session -s $APP -n tesh -d
+
+  tmux send-keys -t $APP:1 'cls ; cd /home/aleak/lr/BAMRU-Private ; tesh'  C-m
+
+}
+

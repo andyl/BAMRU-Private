@@ -687,7 +687,7 @@ var sinon = (function (buster) {
         defaultConfig: {
             injectIntoThis: true,
             injectInto: null,
-            properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+            properties: ["spy", "stub", "mock", "clock", "server", "features"],
             useFakeTimers: true,
             useFakeServer: true
         },
@@ -2933,7 +2933,7 @@ sinon.xhr = { XMLHttpRequest: this.XMLHttpRequest };
     }
 
     // filtering to enable a white-list version of Sinon FakeXhr,
-    // where whitelisted requests are passed through to real XHR
+    // where whitelisted features are passed through to real XHR
     function each(collection, callback) {
         if (!collection) return;
         for (var i = 0, l = collection.length; i < l; i += 1) {
@@ -3335,8 +3335,8 @@ if (typeof module == "object" && typeof require == "function") {
 /*jslint eqeqeq: false, onevar: false, regexp: false, plusplus: false*/
 /*global module, require, window*/
 /**
- * The Sinon "server" mimics a web server that receives requests from
- * sinon.FakeXMLHttpRequest and provides an API to respond to those requests,
+ * The Sinon "server" mimics a web server that receives features from
+ * sinon.FakeXMLHttpRequest and provides an API to respond to those features,
  * both synchronously and asynchronously. To respond synchronuously, canned
  * answers have to be provided upfront.
  *
@@ -3793,7 +3793,7 @@ if (typeof module == "object" && typeof require == "function") {
     test.config = {
         injectIntoThis: true,
         injectInto: null,
-        properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+        properties: ["spy", "stub", "mock", "clock", "server", "features"],
         useFakeTimers: true,
         useFakeServer: true
     };
