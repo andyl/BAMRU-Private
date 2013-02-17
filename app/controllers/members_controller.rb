@@ -4,8 +4,7 @@ class MembersController < ApplicationController
   cache_sweeper :member_cache_sweeper, :only => [:create, :update, :destroy]
 
   def index
-    xx = TestService.new
-    debugger
+    #xx = TestService.new
     @client_ip = request.remote_ip
     @message = Message.new
     @fragment_type = cookies['rsa_show'] == 'true' ? "all" : "active"
