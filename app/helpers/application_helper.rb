@@ -49,7 +49,7 @@ module ApplicationHelper
   end
 
   def pending_member_list(message)
-    message.distributions.rsvp_pending.map {|d| d.member.last_name}.sort
+    message.distributions.rsvp_pending.map {|d| d.member.try(:last_name) || ""}.sort
   end
 
   def rsvp_display_link(dist)
