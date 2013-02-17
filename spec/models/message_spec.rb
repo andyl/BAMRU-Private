@@ -2,44 +2,63 @@ require 'spec_helper'
 
 describe Message do
 
+
+  describe "Object Attributes" do
+    before(:all) { @obj = Message.new }
+    specify { @obj.should respond_to(:text)            }
+    specify { @obj.should respond_to(:period_msg_typ)  }
+  end
+
   describe "associations" do
     before(:all) { @obj = Message.new }
     specify { @obj.should respond_to :author           }
     specify { @obj.should respond_to :rsvp             }
     specify { @obj.should respond_to :outbound_mails   }
     specify { @obj.should respond_to :recipients       }
+    specify { @obj.should respond_to :period           }
   end
 
-  #describe "#generate" do
-  #  before(:each) do
-  #    @mem1 = FactoryGirl.create(:member_with_phone_and_email)
-  #    @mem2 = FactoryGirl.create(:member_with_phone_and_email)
-  #    @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
-  #    @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
-  #    @rsvp = ""
-  #  end
-  #  it "generates a valid message object", slow: true do
-  #    msg = Message.generate(@mesg, @dist, @rsvp)
-  #    msg.should be_a Message
-  #    msg.should be_valid
-  #    msg.rsvp.should be_false
-  #    author = msg.author
-  #    author.phones.length.should == 3
-  #    author.emails.length.should == 3
-  #    dists = msg.distributions.all
-  #    dists.length.should == 2
-  #    dists.first.email.should == true
-  #    dists.first.phone.should == true
-  #    dists.first.outbound_mails.length.should == 6
-  #  end
-  #  it "generates a valid message object with rsvp", slow: true do
-  #    rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
-  #    msg = Message.generate(@mesg, @dist, rsvp)
-  #    msg.should be_a Message
-  #    msg.should be_valid
-  #    msg.rsvp.should be_true
-  #  end
-  #end
+  describe "Validations" do
+    context "self-contained" do
+      it { should validate_format_of(:period_msg_typ).with("all")     }
+      it { should validate_format_of(:period_msg_typ).with("leave")   }
+      it { should validate_format_of(:period_msg_typ).with("return")  }
+      it { should validate_format_of(:period_msg_typ).with("invite")  }
+      
+      it { should_not validate_format_of(:period_msg_typ).with("invalid") }
+    end
+  end
+
+  describe "#generate" do
+    before(:each) do
+      @mem1 = FactoryGirl.create(:member_with_phone_and_email)
+      @mem2 = FactoryGirl.create(:member_with_phone_and_email)
+      @mesg = {"author_id" => "#{@mem1.id}", "ip_address" => "4.4.4.4", "text" => "zomg"}
+      @dist = {"#{@mem1.id}_email" => "on", "#{@mem1.id}_phone" => "on", "#{@mem2.id}_phone" => "on"}
+      @rsvp = ""
+    end
+    it "generates a valid message object", slow: true do
+      msg = Message.generate(@mesg, @dist, @rsvp)
+      msg.should be_a Message
+      msg.should be_valid
+      msg.rsvp.should be_false
+      author = msg.author
+      author.phones.length.should == 3
+      author.emails.length.should == 3
+      dists = msg.distributions.all
+      dists.length.should == 2
+      dists.first.email.should == true
+      dists.first.phone.should == true
+      dists.first.outbound_mails.length.should == 6
+    end
+    it "generates a valid message object with rsvp", slow: true do
+      rsvp = '{"prompt":"HI", "yes_prompt":"yes", "no_prompt":"NO"}'
+      msg = Message.generate(@mesg, @dist, rsvp)
+      msg.should be_a Message
+      msg.should be_valid
+      msg.rsvp.should be_true
+    end
+  end
 
   describe "ancestry" do
 

@@ -111,6 +111,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "rspec-on-rails-matchers"
+
+  # ----- test helpers -----
   gem "database_cleaner"
   gem "factory_girl_rails"
 

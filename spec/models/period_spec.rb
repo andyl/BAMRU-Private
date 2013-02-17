@@ -16,7 +16,7 @@ describe Period do
     before(:each) { @obj = Period.new(valid_params)  }
     specify { @obj.should respond_to(:event)         }
     specify { @obj.should respond_to(:participants)  }
-    specify { @obj.should respond_to(:message)       }
+    specify { @obj.should respond_to(:messages)      }
   end
 
   describe "Instance Methods" do
