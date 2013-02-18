@@ -17,6 +17,7 @@
   </table>
 
   <div style="line-height: 10px; margin-bottom: 0;">
+    <%= raw @page_gen.form_fields %>
     <textarea id="message_area" name="message[text]" rows="4" style="width: 290px; padding-bottom: 0; margin-bottom: 0;"><%= @page_gen.default_message %></textarea>
 
     <table width=100% style='font-size: 8pt; margin-bottom: 0; padding-bottom: 0;'>

@@ -32,12 +32,16 @@ class PageGenSvc
     end
   end
 
-  def default_rsvp
-    ""
-  end
-
   def should_check?(member)
     selected_members.include? member.id
+  end
+
+  def form_fields
+    return "" unless @period && @format
+    ""
+    v1 = "<input type='hidden' value='#{@period}' name='message[period_id]'/>"
+    v2 = "<input type='hidden' value='#{@format}' name='message[period_format]'/>"
+    v1 + v2
   end
 
   private

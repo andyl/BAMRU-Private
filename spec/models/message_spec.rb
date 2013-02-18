@@ -5,8 +5,8 @@ describe Message do
 
   describe "Object Attributes" do
     before(:all) { @obj = Message.new }
-    specify { @obj.should respond_to(:text)            }
-    specify { @obj.should respond_to(:period_msg_typ)  }
+    specify { @obj.should respond_to(:text)           }
+    specify { @obj.should respond_to(:period_format)  }
   end
 
   describe "associations" do
@@ -20,12 +20,12 @@ describe Message do
 
   describe "Validations" do
     context "self-contained" do
-      it { should validate_format_of(:period_msg_typ).with("all")     }
-      it { should validate_format_of(:period_msg_typ).with("leave")   }
-      it { should validate_format_of(:period_msg_typ).with("return")  }
-      it { should validate_format_of(:period_msg_typ).with("invite")  }
+      it { should validate_format_of(:period_format).with("all")     }
+      it { should validate_format_of(:period_format).with("leave")   }
+      it { should validate_format_of(:period_format).with("return")  }
+      it { should validate_format_of(:period_format).with("invite")  }
 
-      it { should_not validate_format_of(:period_msg_typ).with("invalid") }
+      it { should_not validate_format_of(:period_format).with("invalid") }
     end
   end
 

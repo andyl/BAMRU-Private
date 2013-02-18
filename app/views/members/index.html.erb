@@ -24,11 +24,11 @@
             <input id="filter-clear-button" type="button" value="Clear"/>
           </td>
         </tr></table>
-        <% cache("member_index_table-#{@fragment_type}") do %>
+        <%# cache("member_index_table-#{@fragment_type}") do %>
 
           <%= render :partial => 'member_table' %>
 
-        <% end %>
+        <%# end %>
       </div>
       <div id=x_right_col>
         <table width=100%>

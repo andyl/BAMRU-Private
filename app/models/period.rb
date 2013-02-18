@@ -39,26 +39,11 @@ class Period < ActiveRecord::Base
 
   def remove_all_message_references
     Message.where(period_id: self.id).each do |message|
-      message.update_attributes(period_id: nil, period_msg_typ: nil)
+      message.update_attributes(period_id: nil, period_format: nil)
     end
   end
 
 end
-
-
-# == Schema Information
-#
-# Table name: periods
-#
-#  id         :integer         not null, primary key
-#  event_id   :integer
-#  position   :integer
-#  start      :datetime
-#  finish     :datetime
-#  rsvp_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
 
 # == Schema Information
 #
