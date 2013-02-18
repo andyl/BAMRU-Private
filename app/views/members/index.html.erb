@@ -1,5 +1,6 @@
 <%= javascript_include_tag "members/all_mem_indx"                       %>
 <%= javascript_tag "var PREVIEW_OPTS = #{generate_preview_options};"    %>
+<%= javascript_tag "var PAGE_FORMAT  = '#{@page_gen.format}';"          %>
 
 <div id=x_container>
   <div id=x_body>
@@ -74,15 +75,17 @@
     <div id=x_footer style="font-size: 10pt;">
       <table width=100% style="font-size: 10pt;">
         <tr>
-          <td width=33%>
+          <td>
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
-          <td width=33%>
+          <td>
             <input type="checkbox" id=rsa_check> Show R, S, A Members
           </td>
-            <td width=33%>
+          <% if current_member.developer? %>
+            <td>
               <%= link_to "Edit RSVP Templates", '/rsvp_templates' %>
             </td>
+          <% end %>
         </tr>
       </table>
 

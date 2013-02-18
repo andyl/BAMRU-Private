@@ -137,11 +137,22 @@ setDisplay = (select) ->
   $('#rsvp_display').show()
   updateTextBoxCount()
 
+setRSVP = (label) ->
+  $('#rsvp_select').val(label)
+  setDisplay('#rsvp_select')
+
+initRSVP = ->
+  switch PAGE_FORMAT
+    when "invite"   then setRSVP('Available?')
+    when "leave"    then setRSVP('Left?')
+    when "return"   then setRSVP('Returned?')
+    else
+      $('#rsvp_display').hide()
+      $('#blank_select').attr('selected', 'selected')
+
 $(document).ready ->
-  $('#rsvp_display').hide()
-  $('#blank_select').attr('selected', 'selected')
-  $('#rsvp_select').change ->
-    setDisplay(this)
+  initRSVP()
+  $('#rsvp_select').change -> setDisplay(this)
 
 # ----- 6) preview -----
 

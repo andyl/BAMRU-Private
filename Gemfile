@@ -91,7 +91,7 @@ gem "drx"
 group :development, :test do
 
   # ----- misc -----
-  gem "zeus"        # fast environment launch
+  gem "zeus"        # environment pre-loader
   gem "debugger", :require => "ruby-debug"
 
   # ----- capistrano -----

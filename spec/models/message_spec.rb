@@ -24,7 +24,7 @@ describe Message do
       it { should validate_format_of(:period_msg_typ).with("leave")   }
       it { should validate_format_of(:period_msg_typ).with("return")  }
       it { should validate_format_of(:period_msg_typ).with("invite")  }
-      
+
       it { should_not validate_format_of(:period_msg_typ).with("invalid") }
     end
   end

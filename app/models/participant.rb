@@ -11,7 +11,21 @@ class Participant < ActiveRecord::Base
   # ----- Scopes -----
 
   # see http://railscasts.com/episodes/215-advanced-queries-in-rails-3
+  # aka 'non-guests'...
   scope :registered, -> { joins(:member).merge(Member.registered) }
+
+  # for transit status...
+  scope :has_not_left, -> { where('en_route_at is NULL')             }
+  scope :has_left,     -> { where('en_route_at is not NULL')         }
+  scope :is_en_route,  -> { has_left.where('return_home_at is NULL') }
+  scope :has_returned, -> { where('return_home_at is not NULL')      }
+
+  # returns an array of member_id's
+  # e.g. Period.find(342).participants.mem_ids
+  # e.g. Period.find(342).participants.has_returned.mem_ids
+  def self.mem_ids
+    pluck(:member_id)
+  end
 
   # ----- API -----
 

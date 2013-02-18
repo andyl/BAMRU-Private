@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TestService do
+describe TstService do
 
   describe "Test Item" do
     it "should work" do

@@ -1,4 +1,4 @@
-class TestService
+class TstService
 
   def initialize
     @myJoe = Member.first

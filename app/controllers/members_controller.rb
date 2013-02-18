@@ -4,7 +4,6 @@ class MembersController < ApplicationController
   cache_sweeper :member_cache_sweeper, :only => [:create, :update, :destroy]
 
   def index
-    #xx = TestService.new
     @client_ip = request.remote_ip
     @message = Message.new
     @fragment_type = cookies['rsa_show'] == 'true' ? "all" : "active"
@@ -15,6 +14,7 @@ class MembersController < ApplicationController
         @members = Member.order_by_role_score.active.includes(:roles)
       end
     end
+    @page_gen = PageGenSvc.new(@message, @members, params)
   end
 
   def show
