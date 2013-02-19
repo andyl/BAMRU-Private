@@ -1,8 +1,8 @@
 echo ----- drop the old database
-rake db:drop
+zeus rake db:drop
 
 echo ----- create a new database
-rake db:create
+zeus rake db:create
 
 echo ----- load the backup
-rake db:load
+zeus rake db:load

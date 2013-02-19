@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830111000) do
+ActiveRecord::Schema.define(:version => 20130201000000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.boolean  "cookies"
     t.integer  "screen_height"
     t.integer  "screen_width"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "certs", :force => true do |t|
@@ -174,8 +174,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "link_backup_file_size"
     t.integer  "link_backup_updated_at"
     t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "event_photos", :force => true do |t|
@@ -188,8 +188,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.integer  "image_updated_at"
     t.integer  "position"
     t.boolean  "published",          :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "event_reports", :force => true do |t|
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.text     "data"
     t.integer  "position"
     t.boolean  "published",  :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -217,8 +217,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "finish"
     t.boolean  "all_day",                                   :default => true
     t.boolean  "published",                                 :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "inbound_mails", :force => true do |t|
@@ -281,10 +281,10 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format"
-    t.integer  "period_id"
-    t.string   "period_format"
     t.integer  "linked_rsvp_id"
     t.string   "ancestry"
+    t.integer  "period_id"
+    t.string   "period_format"
   end
 
   add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
@@ -324,15 +324,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "return_home_at"
     t.datetime "signed_in_at"
     t.datetime "signed_out_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "period_pages", :force => true do |t|
-    t.integer  "period_id"
-    t.integer  "page_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "periods", :force => true do |t|
@@ -341,8 +334,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "start"
     t.datetime "finish"
     t.integer  "rsvp_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "phones", :force => true do |t|
