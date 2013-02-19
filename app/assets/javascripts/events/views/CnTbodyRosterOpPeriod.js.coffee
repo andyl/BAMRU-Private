@@ -26,7 +26,6 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     @bindTo(@model,            'change', @reRender, this)
 
   reRender: ->
-    console.log "RERENDERING"
     @render()
     @onShow()
 
