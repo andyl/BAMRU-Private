@@ -20,6 +20,10 @@ class Participant < ActiveRecord::Base
   scope :is_en_route,  -> { has_left.where('return_home_at is NULL') }
   scope :has_returned, -> { where('return_home_at is not NULL')      }
 
+  def self.by_mem_id(id)
+    where(member_id: id)
+  end
+
   # returns an array of member_id's
   # e.g. Period.find(342).participants.mem_ids
   # e.g. Period.find(342).participants.has_returned.mem_ids

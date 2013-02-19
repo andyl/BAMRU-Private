@@ -41,8 +41,9 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
 
   initRosterState: ->
     rs = BB.UI.rosterState = new BB.Models.RosterState(@model.id)
-    sv = rs.setView(@params.view)
-    sp = rs.setPeriod(@params.period)
+    sv = rs.setView(@params?.view)
+    sp = rs.setPeriod(@params?.period)
+    @params = {}
     if sv || sp
       rs.saveToLocalStorage()
 
