@@ -5,13 +5,13 @@ echo ----- download backup
 cap backup:download:all
 
 echo ----- restore backup
-zeus rake ops:restore:all
+spring rake ops:restore:all
 
 echo ----- drop the old database
-zeus rake db:drop
+spring rake db:drop
 
 echo ----- create a new database
-zeus rake db:create
+spring rake db:create
 
 echo ----- load the backup
-zeus rake db:load
+spring rake db:load
