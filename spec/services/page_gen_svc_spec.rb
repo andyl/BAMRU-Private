@@ -12,12 +12,19 @@ describe PageGenSvc do
   describe "Instance Methods" do
     before(:all) { @obj = PageGenSvc.new }
     specify { @obj.should respond_to(:selected_members) }
-    specify { @obj.should respond_to(:default_rsvp) }
     specify { @obj.should respond_to(:default_message)  }
   end
 
   describe "#default_message" do
-    before(:each) { @obj = PageGenSvc.new }
+    before(:each) do
+      @obj = PageGenSvc.new
+      @evn = double()
+      @per = double()
+      @evn.stub(:title).and_return("HI")
+      @per.stub(:position).and_return(1)
+      @obj.stub(:current_event).and_return(@evn)
+      @obj.stub(:current_period).and_return(@per)
+    end
     it "works with no format" do
       @obj.default_message.should == ""
     end
