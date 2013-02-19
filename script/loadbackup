@@ -1,0 +1,8 @@
+echo ----- drop the old database
+rake db:drop
+
+echo ----- create a new database
+rake db:create
+
+echo ----- load the backup
+rake db:load

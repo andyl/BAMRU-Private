@@ -91,7 +91,8 @@ gem "drx"
 group :development, :test do
 
   # ----- misc -----
-  gem "spring"        # environment pre-loader
+  gem "zeus"    # environment pre-loader
+  gem "spring"  # environment pre-loader
   gem "debugger", :require => "ruby-debug"
 
   # ----- capistrano -----

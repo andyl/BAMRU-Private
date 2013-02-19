@@ -281,6 +281,8 @@ ActiveRecord::Schema.define(:version => 20120830111000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format"
+    t.integer  "period_id"
+    t.string   "period_format"
     t.integer  "linked_rsvp_id"
     t.string   "ancestry"
   end

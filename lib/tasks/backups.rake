@@ -68,7 +68,7 @@ namespace :ops do
     end
 
     desc "Backup Database"
-    task :db => "db:data:dump" do
+    task :db => ["db:data:dump", "db:schema:dump"] do
       backup("db")
     end
 

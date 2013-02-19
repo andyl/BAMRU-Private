@@ -7,11 +7,3 @@ cap backup:download:all
 echo ----- restore backup
 spring rake ops:restore:all
 
-echo ----- drop the old database
-spring rake db:drop
-
-echo ----- create a new database
-spring rake db:create
-
-echo ----- load the backup
-spring rake db:load
