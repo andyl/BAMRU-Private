@@ -12,4 +12,4 @@
 :test_files: 
 :test_line: 
 :command_args: 
-:command: zeus rspec -O spec/spec.opts
+:command: spring rspec -O spec/spec.opts

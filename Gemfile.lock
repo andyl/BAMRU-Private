@@ -335,6 +335,7 @@ GEM
     simplecov-html (0.7.1)
     slop (3.3.3)
     spoon (0.0.1)
+    spring (0.0.6)
     sprite-factory (1.5.1)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -390,8 +391,6 @@ GEM
     xpath (1.0.0)
       nokogiri (~> 1.3)
     yaml_db (0.2.3)
-    zeus (0.13.2)
-      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -467,6 +466,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   simplecov
+  spring
   sprite-factory
   sqlite3
   therubyracer
@@ -480,4 +480,3 @@ DEPENDENCIES
   whenever
   wirble
   yaml_db
-  zeus
