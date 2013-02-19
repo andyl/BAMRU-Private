@@ -7,10 +7,17 @@
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=left><b>Unit Roster / Paging</b></td>
-          <td align=right>
-            <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
-          </td>
+          <% unless @page_gen.activated? %>
+            <td align=left><b>Unit Roster / Paging</b></td>
+            <td align=right>
+              <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
+            </td>
+          <% else %>
+              <td align=left><b>BAMRU Paging</b></td>
+              <td align=right>
+                <%= raw @page_gen.header_nav %>
+              </td>
+          <% end %>
         </tr>
       </table>
     </div>

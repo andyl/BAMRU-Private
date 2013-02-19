@@ -24,6 +24,7 @@ class BB.Views.CnTbodyRosterOpParticipants extends Backbone.Marionette.Composite
     @$el.find('.tablesorter th').css('font-size', '8pt')
 
   collectionSort: ->
+    console.log "COLSORT"
     @collection.sort()
     @render()
 

@@ -44,6 +44,24 @@ class PageGenSvc
     v1 + v2
   end
 
+  def activated?
+    @period && @format
+  end
+
+  def header_nav
+    label, view = case @format
+              when "all"     then ["Information Message", "none"]
+              when "invite"  then ["Invite", "none"]
+              when "leave"   then ["Departure Query", "transit"]
+              when "return"  then ["Return Query", "transit"]
+                else "Page"
+            end
+    path = "/events/#{current_event.id}/roster?view=#{view}&period=#{current_period.id}"
+    text = "#{current_event.title}/OP#{current_period.position}"
+    xlink = "<a href='#{path}'>#{text}</a>"
+    "#{label} for #{xlink}"
+  end
+
   private
   
   def current_period
@@ -63,3 +81,4 @@ class PageGenSvc
   end
 
 end
+

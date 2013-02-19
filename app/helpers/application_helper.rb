@@ -28,6 +28,23 @@ module ApplicationHelper
     " [#{link_to(label, message.parent)}]"
   end
 
+  def related_event_link(message)
+    return "" if message.period_id.blank?
+    period = Period.find(message.period_id)
+    event  = period.event
+    label, view = case message.period_format
+                    when "all"     then ["Information Message", "none"]
+                    when "invite"  then ["Invite", "none"]
+                    when "leave"   then ["Departure Query", "transit"]
+                    when "return"  then ["Return Query", "transit"]
+                    else "Page"
+                  end
+    path = "/events/#{event.id}/roster?view=#{view}&period=#{period.id}"
+    text = "#{event.title}/OP#{period.position}"
+    link = "<a href='#{path}'>#{text}</a>"
+    "#{label} for #{link}"
+  end
+
   def child_repage_link(message)
     return "" if message.children.blank?
     child_links = message.children.map do |msg|

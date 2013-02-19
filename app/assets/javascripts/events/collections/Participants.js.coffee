@@ -11,6 +11,18 @@ class BB.Collections.Participants extends Backbone.Collection
   numA:       -> @memTyp("A").length
   numG:       -> @memTyp("G").length
 
+  numPendingDeparture: ->
+    list = @select (participant) ->
+      ! participant.get('en_route_at')?
+    console.log "NUMPENDEP", list.length
+    list.length
+
+  numPendingReturn: ->
+    list = @select (participant) ->
+      participant.get('en_route_at')? && ! participant.get('return_home_at')?
+    console.log "NUMPENRET", list.length
+    list.length
+
   memTyp: (string) ->
     @select (participant) ->
       member = BB.members?.get(participant?.get('member_id'))

@@ -23,7 +23,7 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
 
   memberField: ->
     if @isActive()
-      "<input style='margin-left: 80px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
+      "<input style='margin-left: 60px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
     else
       "<a style='margin-left: 60px;' href='#' class='addParticipant'>add participant</a>"
 
@@ -36,9 +36,10 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
 
   pdfField: ->
     "
-    <div style='display: inline-block; padding-left: 30px;'> </div>
+    <div style='display: inline-block; padding-left: 20px;'> </div>
     <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
-    "
+    <a style='padding-left: 5px; font-size: 7pt;' href='/members?format=invite&period=#{@id}' target='_blank'>invite></a>
+        "
 
   minMax: ->
     displayState = BB.UI.rosterState.get("#{@id}")

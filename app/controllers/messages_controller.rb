@@ -23,7 +23,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    debugger
     mesg_params = params[:message]
     dist_params = params[:history]
     rsvp_params = params[:rsvps]

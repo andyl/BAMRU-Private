@@ -13,6 +13,27 @@ BB.Helpers.CnTbodyRosterOpParticipantsHelpers =
     displayState = BB.UI.rosterState.get('showTimes')
     switch displayState
       when "none"    then ""
-      when 'transit' then "<th>En-route at</th><th>Return at</th>"
+      when 'transit' then "<th>En-route at #{@departureQueryLink()}</th><th>Return at  #{@returnQueryLink()}</th>"
       when "signin"  then "<th>Sign-in at</th><th>Sign-out at</th>"
       else ""
+
+  departureQueryLink: ->
+    if @participants.numPendingDeparture() > 0
+      path = "/members?format=leave&period=#{@id}"
+      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
+    else
+      ""
+
+  returnQueryLink: ->
+    if @participants.numPendingReturn() > 0
+      path = "/members?format=return&period=#{@id}"
+      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
+    else
+      ""
+
+  infoLink: ->
+    if @participants.length > 0
+      path = "/members?format=all&period=#{@id}"
+      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>info></a>"
+    else
+      ""
