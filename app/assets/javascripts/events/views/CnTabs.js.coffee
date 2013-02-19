@@ -13,6 +13,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
   initialize: (options) ->
     @router = BB.Routers.app
     @page   = options.page
+    @params = options.params
     @model  = BB.Collections.events.get(options.modelId)           # Event
     @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
     @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
@@ -58,7 +59,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when 'meeting',  'social'    then BB.Views.CnTbodyRosterMt
       when 'training', 'community' then BB.Views.CnTbodyRosterOp
       when 'operation'             then BB.Views.CnTbodyRosterOp
-    @tbody.show(new view({model: @model}))
+    @tbody.show(new view({model: @model, params: @params}))
 
   genForum: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/forum") unless navOption == "noNav"

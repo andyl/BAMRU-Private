@@ -21,6 +21,7 @@ class Message < ActiveRecord::Base
 
   # ----- Validations -----
 
+  validates_format_of :period_format, :with => /^(all|leave|return|invite)$/, :allow_blank => true
 
   # ----- Scopes -----
 

@@ -47,7 +47,8 @@ module MembersHelper
     if list.blank?
       "<td></td>"
     else
-      "<td align=center class=checkbox><input class='sms_ck rck #{member.full_roles}' name='history[#{member.id}_phone]' type='checkbox'></td>"
+      check_val = @page_gen.should_check?(member) ? "checked" : ""
+      "<td align=center class=checkbox><input class='sms_ck rck #{member.full_roles}' name='history[#{member.id}_phone]' type='checkbox' #{check_val}></td>"
     end
   end
 
@@ -56,7 +57,8 @@ module MembersHelper
     if list.blank?
       "<td></td>"
     else
-      "<td align=center class=checkbox><input class='mail_ck rck #{member.full_roles}' name='history[#{member.id}_email]' type='checkbox'></td>"
+      check_val = @page_gen.should_check?(member) ? "checked" : ""
+      "<td align=center class=checkbox><input class='mail_ck rck #{member.full_roles}' name='history[#{member.id}_email]' type='checkbox' #{check_val}></td>"
     end
   end
 

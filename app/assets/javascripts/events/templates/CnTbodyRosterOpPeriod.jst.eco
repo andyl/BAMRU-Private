@@ -1,10 +1,15 @@
 <div class='perioDiv'>
   <table width=100%>
     <tr>
-      <td>
+      <td width=115>
         <%- @minMax() %>
         <%- @titleField()  %>
         <%- @pdfField()    %>
+      </td>
+      <td width=25 align=left>
+        <%- @inviteField() %>
+      </td>
+      <td align=left>
         <%- @memberField() %>
       </td>
       <td align="right">

@@ -43,10 +43,9 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   onShow: ->
     @$el.css('font-size', '8pt')
-    #@$el.find('.tablesorter').tablesorter()
-#    @$el.find('.tablesorter td, .tablesorter th').css('font-size', '8pt')
     opts = {model: @model, collection: @collection}
-    new BB.Views.CnTbodyRosterOpParticipants(opts).render()
+    unless BB.UI.rosterState.get(@model.id) == "min"
+      new BB.Views.CnTbodyRosterOpParticipants(opts).render()
     BB.hotKeys.rebindAllKeySets()
     setTimeout(@setSearchBox, 250)
     @focusAddParticipant()
@@ -109,13 +108,16 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   # ----- add participant box -----
 
+  isActive: ->
+    BB.UI.rosterState.get('active') == @model.id
+
   focusAddParticipant: ->
     if BB.highlightAddParticipant == @model.id
       delete BB.highlightAddParticipant
       $(@memberField).focus().val('')
 
   toggleAddParticipant: ->
-    return unless @model.get('isActive')
+    return unless @isActive()
     if $(@memberField).is(':focus')
       $(@memberField).blur().val('')
     else
@@ -190,12 +192,12 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   selectPeriod: (ev) ->
     ev?.preventDefault()
-    BB.vent.trigger('cmd:SetActivePeriod', @model.id)
+    BB.UI.rosterState.setPeriod(@model.id)
 
   addParticipant: (ev) ->
     ev?.preventDefault()
     BB.highlightAddParticipant = @model.id
-    BB.vent.trigger('cmd:SetActivePeriod', @model.id)
+    BB.UI.rosterState.setPeriod(@model.id)
 
   # ----- window max/min -----
 
@@ -214,7 +216,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
     BB.UI.rosterState.saveToLocalStorage()
 
   toggleMinMax: ->
-    return unless @model.get('isActive')
+    return unless @isActive()
     modelId = "#{@model.id}"
     newVal  = if BB.UI.rosterState.get(modelId) == "min" then "max" else "min"
     obj = {}
@@ -224,7 +226,7 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   minOtherPeriods: ->
     modelId = "#{@model.id}"
-    newVal  = if @model.get('isActive') then "max" else "min"
+    newVal  = if @isActive() then "max" else "min"
     obj = {}
     obj[modelId] = newVal
     BB.UI.rosterState.set(obj)

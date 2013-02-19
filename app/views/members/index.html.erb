@@ -1,15 +1,23 @@
 <%= javascript_include_tag "members/all_mem_indx"                       %>
 <%= javascript_tag "var PREVIEW_OPTS = #{generate_preview_options};"    %>
+<%= javascript_tag "var PAGE_FORMAT  = '#{@page_gen.format}';"          %>
 
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
       <table width=100%>
         <tr>
-          <td align=left><b>Unit Roster / Paging</b></td>
-          <td align=right>
-            <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
-          </td>
+          <% unless @page_gen.activated? %>
+            <td align=left><b>Unit Roster / Paging</b></td>
+            <td align=right>
+              <%= link_to("Edit My Contact Info", edit_member_path(current_member)) %>
+            </td>
+          <% else %>
+              <td align=left><b>BAMRU Paging</b></td>
+              <td align=right>
+                <%= raw @page_gen.header_nav %>
+              </td>
+          <% end %>
         </tr>
       </table>
     </div>
@@ -23,11 +31,11 @@
             <input id="filter-clear-button" type="button" value="Clear"/>
           </td>
         </tr></table>
-        <% cache("member_index_table-#{@fragment_type}") do %>
+        <%# cache("member_index_table-#{@fragment_type}") do %>
 
           <%= render :partial => 'member_table' %>
 
-        <% end %>
+        <%# end %>
       </div>
       <div id=x_right_col>
         <table width=100%>
@@ -74,15 +82,17 @@
     <div id=x_footer style="font-size: 10pt;">
       <table width=100% style="font-size: 10pt;">
         <tr>
-          <td width=33%>
+          <td>
             <a href="#" id=clearsort>Clear Sort Settings</a>
           </td>
-          <td width=33%>
+          <td>
             <input type="checkbox" id=rsa_check> Show R, S, A Members
           </td>
-            <td width=33%>
+          <% if current_member.developer? %>
+            <td>
               <%= link_to "Edit RSVP Templates", '/rsvp_templates' %>
             </td>
+          <% end %>
         </tr>
       </table>
 

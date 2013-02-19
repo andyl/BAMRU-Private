@@ -61,7 +61,7 @@ class Distribution < ActiveRecord::Base
   # For this distribution and each linked distribution:
   # - mark the distribution as read
   # - update the RSVP answer
-  # - generates a Journal entry
+  # - generate a Journal entry
   #
   # @param admin_member [Member] Member who updates the record
   # @param target_member [Member] Target member
@@ -74,6 +74,20 @@ class Distribution < ActiveRecord::Base
       dist.mark_as_read(admin_member, target_member, "Marked as read")
       dist.update_attributes rsvp_answer: answer
       Journal.add_entry(dist.id, admin_member, "Set RSVP to #{answer}")
+      perform_event_action(target_member, dist.message, answer)
+    end
+  end
+
+  # support RSVP actions
+  def perform_event_action(member, message, answer)
+    return if answer != "Yes"
+    return unless message.period_id && message.period_format
+    period = Period.find(message.period_id)
+    return unless period
+    case message.period_format
+      when "invite" then period.add_participant(member)
+      when "leave"  then period.set_departure_time(member)
+      when "return" then period.set_return_time(member)
     end
   end
 

@@ -25,6 +25,27 @@ class Period < ActiveRecord::Base
 
   # ----- Local Methods-----
 
+  # ----- support RSVP actions
+
+  def add_participant(member)
+    return unless self.participants.by_mem_id(member.id).blank?
+    self.participants.create(member_id: member.id)
+  end
+
+  def set_departure_time(member)
+    return unless participant = self.participants.by_mem_id(member.id).first
+    return if participant.en_route_at
+    participant.update_attributes en_route_at: Time.now
+  end
+
+  def set_return_time(member)
+    return unless participant = self.participants.by_mem_id(member.id).first
+    return if participant.return_home_at
+    participant.update_attributes return_home_at: Time.now
+  end
+
+  # ----- reporting
+
   def create_smso_aar_event_report
     return if %w(social).include? self.event.typ
     if self.event_reports.smso_aars.all.empty?
@@ -39,26 +60,11 @@ class Period < ActiveRecord::Base
 
   def remove_all_message_references
     Message.where(period_id: self.id).each do |message|
-      message.update_attributes(period_id: nil, period_msg_typ: nil)
+      message.update_attributes(period_id: nil, period_format: nil)
     end
   end
 
 end
-
-
-# == Schema Information
-#
-# Table name: periods
-#
-#  id         :integer         not null, primary key
-#  event_id   :integer
-#  position   :integer
-#  start      :datetime
-#  finish     :datetime
-#  rsvp_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
 
 # == Schema Information
 #

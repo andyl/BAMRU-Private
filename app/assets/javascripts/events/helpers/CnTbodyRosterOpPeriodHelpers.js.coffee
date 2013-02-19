@@ -17,23 +17,33 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
 
   # ----- add participants -----
 
+  isActive: ->
+    pId = BB.UI.rosterState.get('active')
+    pId == @id
+
   memberField: ->
-    if @isActive
-      "<input style='margin-left: 80px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
+    if @isActive()
+      "<input style='margin-left: 60px;' size=18 class='memberField' id='memberField#{@id}' name='newParticipant' placeholder='add participant...' />"
     else
       "<a style='margin-left: 60px;' href='#' class='addParticipant'>add participant</a>"
 
   titleField: ->
     string = "Period #{@position}"
-    if @isActive
+    if @isActive()
       "<b style='margin-left: 10px;'>#{string}</b>"
     else
       "<a style='margin-left: 10px;' href='#' class='selectPeriod'>#{string}</a>"
 
   pdfField: ->
     "
-    <div style='display: inline-block; padding-left: 30px;'> </div>
+    <div style='display: inline-block; padding-left: 20px;'> </div>
     <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
+    <div style='display: inline-block; padding-right: 5px;'> </div>
+    "
+
+  inviteField: ->
+    "
+    <a style='font-size: 7pt;' href='/members?format=invite&period=#{@id}' target='_blank'>invite></a>
     "
 
   minMax: ->

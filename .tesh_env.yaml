@@ -8,8 +8,8 @@
 - app/**/*.erb
 - lib/**/*.rb
 :app_exclude_pattern: []
-:test_pattern: spemodperiod
-:test_files: spec/models/period_spec.rb
-:test_line: 
+:test_pattern: page_gen
+:test_files: spec/services/page_gen_svc_spec.rb
+:test_line: ':5'
 :command_args: 
 :command: zeus rspec -O spec/spec.opts

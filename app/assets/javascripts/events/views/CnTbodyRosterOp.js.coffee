@@ -13,13 +13,14 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
 
   initialize: (options) ->
     @model      = options.model     # Event
+    @params     = options.params    # Optional URL Query-String
     @collection = @model.periods    # Periods
     if @collection.length == 0
       @collection.fetch
         success: =>
           @createPeriod() if @collection.length == 0
 #    @pubSub = new BB.PubSub.Periods(@collection)
-    BB.UI.rosterState = new BB.Models.RosterState(@model.id)
+    @initRosterState()
     @bindTo(BB.vent, 'cmd:AddNewPeriod',      @createPeriod, this)
     @bindTo(BB.vent, 'cmd:DeletePeriod',      @deletePeriod, this)
     @bindTo(BB.vent, 'cmd:TogglePeriodTimes', @togglePeriodTimes, this)
@@ -37,6 +38,14 @@ class BB.Views.CnTbodyRosterOp extends Backbone.Marionette.Layout
     BB.hotKeys.disable("CnTbodyRosterOp")
 
   # ----- initialization -----
+
+  initRosterState: ->
+    rs = BB.UI.rosterState = new BB.Models.RosterState(@model.id)
+    sv = rs.setView(@params?.view)
+    sp = rs.setPeriod(@params?.period)
+    @params = {}
+    if sv || sp
+      rs.saveToLocalStorage()
 
   afterFetch: ->
     if @collection.length == 0

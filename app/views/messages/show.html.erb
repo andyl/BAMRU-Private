@@ -38,6 +38,12 @@
           <td align=right><b>Message Text:</b></td>
           <td><%= @message.text_with_rsvp %></td>
         </tr>
+        <% unless @message.period_id.nil? %>
+            <tr>
+              <td align=right><b>Related Event:</b></td>
+              <td><%= raw related_event_link(@message) %></td>
+            </tr>
+        <% end %>
         <tr>
           <td align=right><b>Transmission:</b></td>
           <td>

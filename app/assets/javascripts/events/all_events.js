@@ -13,6 +13,7 @@
 
 //= require backbone-min-0_9_2
 //= require backbone-marionette-0_10_2
+//= require backbone.queryparams
 //= require backbone-syphon-min-0_3_0
 //= require moment-min-1_7_0
 //= require moment-strftime-min
