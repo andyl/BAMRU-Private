@@ -58,14 +58,13 @@ BB.Routers.AppRouter = Backbone.Marionette.AppRouter.extend
     console.log "rendering edit for #{id}"
     @_render {modelId: id, page: 'overview-edit'}
 
-  roster: (id) ->
-    console.log "rendering roster for #{id}"
-    @_render {modelId: id, page: 'roster'}
+  roster: (id, params={}) ->
+    console.log "rendering roster for #{id}, params", params
+    @_render {modelId: id, page: 'roster', params: params}
 
   forum: (id) ->
     console.log "rendering forum for #{id}"
     @_render {modelId: id, page: 'forum'}
-
 
   resources: (id) ->
     console.log "rendering resources for #{id}"

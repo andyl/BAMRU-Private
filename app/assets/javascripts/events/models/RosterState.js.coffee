@@ -28,6 +28,23 @@ class BB.Models.RosterState extends Backbone.Model
 
   saveToLocalStorage: -> @saveStateToLocalStorage()
 
+  setView: (label) ->
+    if _.contains("none transit signin".split(' '), label)
+      @set(showTimes: label)
+      return true
+    false
+
+  setPeriod: (period) ->
+    return false unless @attributes[period]?
+    keys = Object.keys(@attributes)
+    return false unless _.contains(keys, "#{period}")
+    _.each(Object.keys(@attributes), (att) => @attributes[att] = "min" if @attributes[att] == "max" )
+    opts = {}
+    opts[period] = "max"
+    opts.active  = parseInt(period)
+    @set(opts)
+    true
+
   # ----- class method -----
 
   @cleanup: =>

@@ -18,14 +18,15 @@ class BB.Collections.Periods extends Backbone.Collection
   # ----- active period -----
 
   initActive:  ->
-    @setActive(@last()?.id) if @getActive().length == 0
+    @setActive(@last()?.id) unless @getActive()?
 
-  clearActive: -> @each (m) -> m.unset('isActive') if m.get('isActive')
+  clearActive: ->
+    BB.UI.rosterState.unset('active')
 
-  getActive:   -> @select (m) -> m.get('isActive')
+  getActive:   ->
+    @get(BB.UI.rosterState.get('active'))
 
   setActive: (modelId) ->
-    @clearActive()
-    lclModel = @get(modelId)
-    lclModel?.set({isActive: true})
+    BB.UI.rosterState.set(active: modelId)
+
 
