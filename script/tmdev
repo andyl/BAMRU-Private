@@ -13,7 +13,7 @@ create_new_session()
 
   tmux split-window -t $APP:1 -v
   tmux send-keys -t $APP:1.1 'cls ; cd /home/aleak/lr/BAMRU-Private ; foreman start -f Procfile.dev'  C-m
-  # tmux send-keys -t $APP:1.2 'cls ; cd /home/aleak/lr/BAMRU-Private ; env RUBYLIB=/home/aleak/lcl/bin/rubymine/rb/testing/patch/common:/home/aleak/lcl/bin/rubymine/rb/testing/patch/bdd zeus start' C-m
+  tmux send-keys -t $APP:1.2 'cls ; cd /home/aleak/lr/BAMRU-Private ; zeus start' C-m
 
 }
 
