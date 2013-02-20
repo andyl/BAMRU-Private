@@ -1,19 +1,21 @@
 <div class='perioDiv'>
   <table width=100%>
     <tr>
-      <td width=115>
+      <td width=110>
         <%- @minMax() %>
         <%- @titleField()  %>
         <%- @pdfField()    %>
       </td>
-      <td width=25 align=left>
+      <td width=100 align=left>
         <%- @inviteField() %>
+        <div style='display:inline-block; width: 5px;'></div>
+        <%- @broadcastField() %>
       </td>
       <td align=left>
         <%- @memberField() %>
       </td>
       <td align="right">
-        <%- @actionLink() %>
+        <%# @actionLink() %>
         <%- @deletePeriodLink(@id) %>
       </td>
     </tr>

@@ -28,8 +28,8 @@ describe PageGenSvc do
     it "works with no format" do
       @obj.default_message.should == ""
     end
-    it "works with (all|invite|leave|return)" do
-      %w(all invite leave return).each do |format|
+    it "works with (info|broadcast|invite|leave|return)" do
+      %w(info broadcast invite leave return).each do |format|
         @obj.format = format
         @obj.default_message.length.should > 2
       end

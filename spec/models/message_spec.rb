@@ -20,10 +20,11 @@ describe Message do
 
   describe "Validations" do
     context "self-contained" do
-      it { should validate_format_of(:period_format).with("all")     }
-      it { should validate_format_of(:period_format).with("leave")   }
-      it { should validate_format_of(:period_format).with("return")  }
-      it { should validate_format_of(:period_format).with("invite")  }
+      it { should validate_format_of(:period_format).with("info")       }
+      it { should validate_format_of(:period_format).with("leave")      }
+      it { should validate_format_of(:period_format).with("return")     }
+      it { should validate_format_of(:period_format).with("invite")     }
+      it { should validate_format_of(:period_format).with("broadcast")  }
 
       it { should_not validate_format_of(:period_format).with("invalid") }
     end

@@ -20,20 +20,20 @@ BB.Helpers.CnTbodyRosterOpParticipantsHelpers =
   departureQueryLink: ->
     if @participants.numPendingDeparture() > 0
       path = "/members?format=leave&period=#{@id}"
-      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
+      "<a style='font-weight:normal; padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
     else
       ""
 
   returnQueryLink: ->
     if @participants.numPendingReturn() > 0
       path = "/members?format=return&period=#{@id}"
-      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
+      "<a style='font-weight:normal; padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>query></a>"
     else
       ""
 
   infoLink: ->
     if @participants.length > 0
-      path = "/members?format=all&period=#{@id}"
-      "<a style='padding-left:5px;font-size:7pt;' href='#{path}' target=_blank>info></a>"
+      path = "/members?format=info&period=#{@id}"
+      "<a style='font-weight:normal; padding-left:5px; font-size:7pt;' href='#{path}' target=_blank>info></a>"
     else
       ""

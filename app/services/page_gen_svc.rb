@@ -14,20 +14,22 @@ class PageGenSvc
   def selected_members
     return [] if @period.nil?
     @selected_members ||= case @format
-      when "all"    then current_period.participants.mem_ids
-      when "invite" then Member.pluck(:id)
-      when "leave"  then current_period.participants.has_not_left.mem_ids
-      when "return" then current_period.participants.is_en_route.mem_ids
+      when "info"      then current_period.participants.mem_ids
+      when "invite"    then Member.pluck(:id)
+      when "broadcast" then Member.pluck(:id)
+      when "leave"     then current_period.participants.has_not_left.mem_ids
+      when "return"    then current_period.participants.is_en_route.mem_ids
         else []
     end
   end
 
   def default_message
     case @format
-      when "all"    then "re:#{current_event.title}/OP#{current_period.position} - "
-      when "invite" then "Immediate Callout - #{current_event.title}/OP#{current_period.position}"
-      when "leave"  then "re:#{current_event.title}/OP#{current_period.position} - your transit status"
-      when "return" then "re:#{current_event.title}/OP#{current_period.position} - your transit status"
+      when "info"      then "re:#{current_event.title}/OP#{current_period.position} - "
+      when "broadcast" then "re:#{current_event.title}/OP#{current_period.position} - "
+      when "invite"    then "Immediate Callout - #{current_event.title}/OP#{current_period.position}"
+      when "leave"     then "re:#{current_event.title}/OP#{current_period.position} - transit status"
+      when "return"    then "re:#{current_event.title}/OP#{current_period.position} - transit status"
         else ""
     end
   end
@@ -50,11 +52,12 @@ class PageGenSvc
 
   def header_nav
     label, view = case @format
-              when "all"     then ["Information Message", "none"]
-              when "invite"  then ["Invite", "none"]
-              when "leave"   then ["Departure Query", "transit"]
-              when "return"  then ["Return Query", "transit"]
-                else "Page"
+              when "info"      then ["Information Message", "none"]
+              when "invite"    then ["Unit-Wide Invite", "none"]
+              when "broadcast" then ["Unit-Wide Broadcast", "none"]
+              when "leave"     then ["Departure Query", "transit"]
+              when "return"    then ["Return Query", "transit"]
+                else ["Page", "none"]
             end
     path = "/events/#{current_event.id}/roster?view=#{view}&period=#{current_period.id}"
     text = "#{current_event.title}/OP#{current_period.position}"
@@ -74,7 +77,7 @@ class PageGenSvc
 
   def process_params(params)
     return unless params && params["period"] && params["format"]
-    return unless %w(all leave return invite).include? params["format"]
+    return unless %w(info broadcast leave return invite).include? params["format"]
 
     @period = params["period"].to_i
     @format = params["format"]
