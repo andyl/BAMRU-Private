@@ -39,7 +39,7 @@ Other:<%= BrowserProfile.browser_other.count %>
   <% @profiles.each do |prof| %>
       <tr>
         <td><%= prof.member_id %></td>
-        <td><%= prof.member.short_name %></td>
+        <td><%= prof.member.try(:short_name) %></td>
         <td><%= prof.browser_type %></td>
         <td><%= format_unknown prof.browser_version %></td>
         <td><%= format_unknown prof.ostype %></td>
