@@ -186,7 +186,8 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   deletePeriod: (ev) ->
     ev?.preventDefault()
-    @model.destroy()
+    if confirm "Delete Period #{@model.get('position')} - are you sure?"
+      @model.destroy()
 
   # ----- misc -----
 
