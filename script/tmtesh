@@ -10,7 +10,7 @@ create_new_session()
 
   tmux new-session -s $APP -n tesh -d
 
-  tmux send-keys -t $APP:1 'cls ; cd /home/aleak/lr/BAMRU-Private ; tesh'  C-m
+  tmux send-keys -t $APP:1 'cls ; cd /home/aleak/lr/BAMRU-Private ; ptesh'  C-m
 
 }
 
