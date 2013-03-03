@@ -2,18 +2,19 @@ require 'spec_helper'
 
 describe InboundMailSvc do
 
-  #describe "Object Attributes" do
-  #  before(:all) { @obj = PageGenSvc.new }
-  #  specify { @obj.should respond_to(:message) }
-  #  specify { @obj.should respond_to(:members) }
-  #  specify { @obj.should respond_to(:params)  }
-  #end
+  describe "Object Attributes" do
+    before(:all) { @obj = InboundMailSvc.new }
+    #specify { @obj.should respond_to(:message) }
+    #specify { @obj.should respond_to(:members) }
+    #specify { @obj.should respond_to(:params)  }
+  end
 
-  #describe "Instance Methods" do
-  #  before(:all) { @obj = PageGenSvc.new }
-  #  specify { @obj.should respond_to(:selected_members) }
-  #  specify { @obj.should respond_to(:default_message)  }
-  #end
+  describe "Instance Methods" do
+    before(:all) { @obj = InboundMailSvc.new }
+    specify { @obj.should respond_to(:load_inbound)      }
+    specify { @obj.should respond_to(:create_from_mail)  }
+    specify { @obj.should respond_to(:create_from_opts)  }
+  end
 
   def gen_mail(arg = {})
     standard_args = {
@@ -73,31 +74,6 @@ describe InboundMailSvc do
   #      @obj.default_message.length.should > 2
   #    end
   #  end
-  #end
-
-  #describe "#should_check" do
-  #
-  #  before(:each) do
-  #    @mem = double()
-  #    @mem.stub(:id) { 22 }
-  #    @obj = PageGenSvc.new
-  #    @obj.period = 44
-  #  end
-  #
-  #  context "when the target member is a selected_member" do
-  #    it "returns false" do
-  #      @obj.selected_members = [22]
-  #      @obj.should_check?(@mem).should be_true
-  #    end
-  #  end
-  #
-  #  context "when the target member is not a selected member" do
-  #    it "returns true" do
-  #      @obj.selected_members = []
-  #      @obj.should_check?(@mem).should_not be_true
-  #    end
-  #  end
-  #
   #end
 
 end

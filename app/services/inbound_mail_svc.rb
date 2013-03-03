@@ -1,7 +1,7 @@
 class InboundMailSvc
 
-  attr_reader   :message, :members, :params
-  attr_accessor :period, :format, :selected_members
+  #attr_reader   :message, :members, :params
+  #attr_accessor :period, :format, :selected_members
 
   # TODO:
   # On Invalid / Non-recognized email:
@@ -22,7 +22,13 @@ class InboundMailSvc
     Dir.glob(dir + '/*').each do |file|
       count += 1
       opts   = YAML.load(File.read(file))
-      InboundMail.create_from_opts(opts)
+      begin
+        create_from_opts(opts)
+      rescue Exception
+        Notifier.email_issue_notice.deliver
+        exception_dir = "#{File.dirname(file)}/exception"
+        system "mkdir -p #{exception_dir} ; cp #{file} #{exception_dir}"
+      end
       system "rm #{file}"
     end
     count
@@ -84,10 +90,6 @@ class InboundMailSvc
     end
     InboundMail.create!(opts)
   end
-
-
-
-
 
 end
 

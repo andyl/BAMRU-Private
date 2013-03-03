@@ -121,4 +121,17 @@ class Notifier < ActionMailer::Base
       )
     end
 
+    # ----- email_issue_notice -----
+
+    def email_issue_notice(opts = {})
+      Time.zone     = "Pacific Time (US & Canada)"
+      @opts = opts
+      mail(
+          :to       => 'andy@r210.com',
+          :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
+          :reply_to => "#{GMAIL_USER}@gmail.com",
+          :subject  => "BAMRU Email Issue Notice"
+      )
+    end
+
 end
