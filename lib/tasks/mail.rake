@@ -25,10 +25,6 @@ end
 
 def get_all_emails_from_gmail
   Time.zone = "Pacific Time (US & Canada)"
-  puts "*" * 80
-  puts GMAIL_USER
-  puts GMAIL_PASS
-  puts "*" * 80
   gm = Gmail.new(GMAIL_USER, GMAIL_PASS)
   gm.inbox.emails.each do |email|
     puts "Caching mail #{email.uid}"
@@ -60,7 +56,7 @@ end
 def load_all_emails_into_database
   cmd = curl_get("api/rake/messages/load_inbound")
   puts "Loading emails into database..."
-  #system cmd
+  system cmd
 end
 
 # ----- Rake Tasks -----
