@@ -31,7 +31,9 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
 
   deleteParticipant: (ev) ->
     ev?.preventDefault()
-    @model.destroy()
+    answer = confirm("Are you sure you want to remove this participant?")
+    if answer == true
+      @model.destroy()
 
   unsetOL: (ev) ->
     ev?.preventDefault()
