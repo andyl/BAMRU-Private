@@ -130,7 +130,7 @@ class Notifier < ActionMailer::Base
           :to       => 'andy@r210.com',
           :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
           :reply_to => "#{GMAIL_USER}@gmail.com",
-          :subject  => "BAMRU Inbound Exception"
+          :subject  => "[BAMRU] Inbound Exception (#{@opts[:from]} - #{Time.now.strftime("%b %d - %H:%M:%S")}}"
       )
     end
 
@@ -141,7 +141,7 @@ class Notifier < ActionMailer::Base
           :to       => 'andy@r210.com',
           :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
           :reply_to => "#{GMAIL_USER}@gmail.com",
-          :subject  => "BAMRU Inbound Unmatched"
+          :subject  => "[BAMRU] Inbound Unmatched (#{@opts[:from]} - #{Time.now.strftime("%b %d - %H:%M:%S")}}"
       )
     end
 
@@ -152,7 +152,7 @@ class Notifier < ActionMailer::Base
           :to       => 'andy@r210.com',
           :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
           :reply_to => "#{GMAIL_USER}@gmail.com",
-          :subject  => "BAMRU Inbound Unrecognized RSVP Response"
+          :subject  => "[BAMRU] Unrecognized RSVP (#{@opts[:from]} - #{Time.now.strftime("%b %d - %H:%M:%S")}}"
       )
     end
 

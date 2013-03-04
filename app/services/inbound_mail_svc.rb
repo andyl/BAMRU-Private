@@ -1,17 +1,5 @@
 class InboundMailSvc
 
-  #attr_reader   :message, :members, :params
-  #attr_accessor :period, :format, :selected_members
-
-  # TODO:
-  # On Invalid / Non-recognized email:
-  # - save email into tmp directory
-  # - send alert email to Andy
-  # On Unrecognized RSVP match:
-  # - reply with message to sender (CC Andy)
-  # On Bad / Invalid Match:
-  # - send alert email to Andy
-
   def initialize(tmp_dir = "/tmp/inbound_mails")
     @tmp_dir = tmp_dir
   end
@@ -26,7 +14,8 @@ class InboundMailSvc
       begin
         create_from_opts(opts)
       rescue Exception
-        Notifier.inbound_exception_notice.deliver
+        puts "Inbound Mail Exception (from #{opts[:from]})"
+        Notifier.inbound_exception_notice(opts).deliver
         exception_dir = "#{File.dirname(file)}/exception"
         system "mkdir -p #{exception_dir} ; cp #{file} #{exception_dir}"
       end
@@ -73,7 +62,7 @@ class InboundMailSvc
     end
     if outbound.nil?
       puts "Unmatched Inbound Mail (from #{opts[:from]})"
-      Notifier.inbound_unmatched_notice.deliver
+      Notifier.inbound_unmatched_notice(opts).deliver
     else
       opts[:outbound_mail_id] = outbound.id
       if opts[:bounced]
@@ -90,7 +79,7 @@ class InboundMailSvc
         unless outbound.distribution.message.rsvp.blank?
           if answer.blank?
             puts "Unrecognized RSVP response (from #{opts[:from]})"
-            Notifier.inbound_unrecognized_rsvp_notice.deliver
+            Notifier.inbound_unrecognized_rsvp_notice(opts).deliver
           end
         end
 
