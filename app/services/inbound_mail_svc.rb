@@ -59,11 +59,12 @@ class InboundMailSvc
     if outbound.nil?
       select_hash = {:address => opts[:from].downcase}
       puts "Inbound Uncertain Match (from #{opts[:from]})"
-      Notifier.inbound_uncertain_match_notice(opts).deliver
       outbound = OutboundMail.where(select_hash).order('created_at ASC').last
+      opts[:outbound_match] = outbound.id
+      Notifier.inbound_uncertain_match_notice(opts).deliver unless outbound.nil?
     end
     if outbound.nil?
-      puts "Unmatched Inbound Mail (from #{opts[:from]})"
+      puts "Inbound Unmatched Mail (from #{opts[:from]})"
       Notifier.inbound_unmatched_notice(opts).deliver
     else
       opts[:outbound_mail_id] = outbound.id
@@ -80,7 +81,7 @@ class InboundMailSvc
 
         unless outbound.distribution.message.rsvp.blank?
           if answer.blank?
-            puts "Unrecognized RSVP response (from #{opts[:from]})"
+            puts "Inbound Unrecognized RSVP response (from #{opts[:from]})"
             Notifier.inbound_unrecognized_rsvp_notice(opts).deliver
           end
         end
