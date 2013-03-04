@@ -58,6 +58,8 @@ class InboundMailSvc
     end
     if outbound.nil?
       select_hash = {:address => opts[:from].downcase}
+      puts "Inbound Uncertain Match (from #{opts[:from]})"
+      Notifier.inbound_uncertain_match_notice(opts).deliver
       outbound = OutboundMail.where(select_hash).order('created_at ASC').last
     end
     if outbound.nil?
