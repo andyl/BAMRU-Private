@@ -2,7 +2,7 @@
 <table>
   <% @opts.keys.each do |key| %>
       <tr>
-        <td><%= key %></td>
+        <td align=right><b><%= key %>:</b> </td>
         <td><%= @opts[key] %></td>
       </tr>
   <% end %>
