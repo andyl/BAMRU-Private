@@ -4,6 +4,7 @@ end
 
 def response_display(message, seconds)
   total = message.distributions.count
+  return "0%" if total == 0
   window  = message.distributions.response_less_than(seconds).count
   percent = ((window * 100) / total).to_i
   "#{percent}% (#{window} of #{total})"
@@ -17,7 +18,6 @@ def msg_table
             x.text_with_rsvp,
             x.created_at.strftime("%y-%m-%d %H:%M:%S"),
             x.distributions.count,
-            x.distributions.bounced.count,
             x.distributions.read.count,
             response_display(x, 60 * 15),
             response_display(x, 60 * 60),
@@ -27,7 +27,7 @@ def msg_table
 end
 
 def z_headers
-  %w(ID From Message\ Text Sent\ at Sent Bounced Read 15m\ Response 60m\ Response 120m\ Response)
+  %w(ID From Message\ Text Sent\ at Sent Read 15m\ Response 60m\ Response 120m\ Response)
 end
 
 def gen_array
