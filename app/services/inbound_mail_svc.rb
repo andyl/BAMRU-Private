@@ -86,8 +86,8 @@ class InboundMailSvc
         member = outbound.distribution.member
         answer = opts[:rsvp_answer]
 
-        if outbound.distribution.message.rsvp
-          Notifier.inbound_unrecognized_rsvp_notice.deliver if answer.nil?
+        if outbound.distribution.message.rsvp.blank?
+          Notifier.inbound_unrecognized_rsvp_notice.deliver if answer.blank?
         end
 
         label = "Marked as read (reply to #{opts[:label]})"
