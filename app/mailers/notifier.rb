@@ -121,16 +121,38 @@ class Notifier < ActionMailer::Base
       )
     end
 
-    # ----- email_issue_notice -----
+    # ----- Inbound Email Issue Notifications -----
 
-    def email_issue_notice(opts = {})
+    def inbound_exception_notice(opts = {})
       Time.zone     = "Pacific Time (US & Canada)"
       @opts = opts
       mail(
           :to       => 'andy@r210.com',
           :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
           :reply_to => "#{GMAIL_USER}@gmail.com",
-          :subject  => "BAMRU Email Issue Notice"
+          :subject  => "BAMRU Inbound Exception"
+      )
+    end
+
+    def inbound_unmatched_notice(opts = {})
+      Time.zone     = "Pacific Time (US & Canada)"
+      @opts = opts
+      mail(
+          :to       => 'andy@r210.com',
+          :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
+          :reply_to => "#{GMAIL_USER}@gmail.com",
+          :subject  => "BAMRU Inbound Unmatched"
+      )
+    end
+
+    def inbound_unrecognized_rsvp_notice(opts = {})
+      Time.zone     = "Pacific Time (US & Canada)"
+      @opts = opts
+      mail(
+          :to       => 'andy@r210.com',
+          :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
+          :reply_to => "#{GMAIL_USER}@gmail.com",
+          :subject  => "BAMRU Inbound Unrecognized RSVP Response"
       )
     end
 

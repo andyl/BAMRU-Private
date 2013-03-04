@@ -14,7 +14,8 @@ class InboundMail < ActiveRecord::Base
 
 
   # ----- Scopes -----
-  scope :bounced, -> { where(:bounced => true) }
+  scope :bounced,   -> { where(:bounced => true) }
+  scope :unmatched, -> { where('outbound_mail_id is NULL')}
 
 
   # ----- Local Methods-----

@@ -19,13 +19,14 @@ class InboundMailSvc
   def load_inbound
     dir = Rails.root.to_s + @tmp_dir
     count = 0
-    Dir.glob(dir + '/*').each do |file|
+    file_list = Dir.glob(dir + '/*').select { |f| File.file?(f) }
+    file_list.each do |file|
       count += 1
       opts   = YAML.load(File.read(file))
       begin
         create_from_opts(opts)
       rescue Exception
-        Notifier.email_issue_notice.deliver
+        Notifier.inbound_exception_notice.deliver
         exception_dir = "#{File.dirname(file)}/exception"
         system "mkdir -p #{exception_dir} ; cp #{file} #{exception_dir}"
       end
@@ -70,7 +71,9 @@ class InboundMailSvc
       select_hash = {:address => opts[:from].downcase}
       outbound = OutboundMail.where(select_hash).order('created_at ASC').last
     end
-    unless outbound.nil?
+    if outbound.nil?
+      Notifier.inbound_unmatched_notice.deliver
+    else
       opts[:outbound_mail_id] = outbound.id
       if opts[:bounced]
         outbound.distribution.bounced = true
@@ -82,6 +85,10 @@ class InboundMailSvc
 
         member = outbound.distribution.member
         answer = opts[:rsvp_answer]
+
+        if outbound.distribution.message.rsvp
+          Notifier.inbound_unrecognized_rsvp_notice.deliver if answer.nil?
+        end
 
         label = "Marked as read (reply to #{opts[:label]})"
         outbound.distribution.mark_as_read(member, member, label)
