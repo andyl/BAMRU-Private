@@ -72,6 +72,7 @@ class InboundMailSvc
       outbound = OutboundMail.where(select_hash).order('created_at ASC').last
     end
     if outbound.nil?
+      puts "Unmatched Inbound Mail (from #{opts[:from]})"
       Notifier.inbound_unmatched_notice.deliver
     else
       opts[:outbound_mail_id] = outbound.id
@@ -86,8 +87,11 @@ class InboundMailSvc
         member = outbound.distribution.member
         answer = opts[:rsvp_answer]
 
-        if outbound.distribution.message.rsvp.blank?
-          Notifier.inbound_unrecognized_rsvp_notice.deliver if answer.blank?
+        unless outbound.distribution.message.rsvp.blank?
+          if answer.blank?
+            puts "Unrecognized RSVP response (from #{opts[:from]})"
+            Notifier.inbound_unrecognized_rsvp_notice.deliver
+          end
         end
 
         label = "Marked as read (reply to #{opts[:label]})"
