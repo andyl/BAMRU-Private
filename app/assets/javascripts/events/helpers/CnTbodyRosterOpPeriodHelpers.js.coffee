@@ -1,6 +1,7 @@
 BB.Helpers.CnTbodyRosterOpPeriodHelpers =
   deletePeriodLink: (periodId) ->
-    "<a href='#' class='deletePeriod' data-id='#{periodId}'>X</a>"
+    ttip = "data-ttip='Delete period'"
+    "<a href='#' #{ttip} class='deletePeriod' data-id='#{periodId}'>X</a>"
 
   # ----- guestLink or RSVP link -----
 
@@ -11,9 +12,9 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
     else
       @rsvpLink()
   guestLink: ->
-      "<a style='margin-right: 40px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
+    "<a style='margin-right: 40px;' style='display: none;' href='#' class='createGuestLink' id='createGuestLink#{@id}'>add new guest</a>"
   rsvpLink: ->
-      "<input style='margin-right: 40px;' type='button' class='rsvpLink' value='link to rsvp'/>"
+    "<input style='margin-right: 40px;' type='button' class='rsvpLink' value='link to rsvp'/>"
 
   # ----- add participants -----
 
@@ -35,28 +36,36 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
       "<a style='margin-left: 10px;' href='#' class='selectPeriod'>#{string}</a>"
 
   pdfField: ->
+    ttip = "data-ttip='Generate printable roster'"
+    href = "href='/reports/#{@id}/DO-field.pdf'"
     "
     <div style='display: inline-block; padding-left: 15px;'> </div>
-    <a id='pdfLink#{@id}' style='display: none; font-size: 7pt;' href='/reports/#{@id}/DO-field.pdf' target='_blank'>pdf</a>
+    <a id='pdfLink#{@id}' #{ttip} #{href} style='display: none; font-size: 7pt;' target='_blank'>pdf</a>
     <div style='display: inline-block; padding-right: 5px;'> </div>
     "
 
   inviteField: ->
+    ttip = "data-ttip='Create unit-wide RSVP'"
+    href = "href='/members?format=invite&period=#{@id}'"
     "
-    <a style='font-size: 7pt;' href='/members?format=invite&period=#{@id}' target='_blank'>invite></a>
+    <a style='font-size: 7pt;' #{ttip} #{href} target='_blank'>invite></a>
     "
 
   broadcastField: ->
+    ttip = "data-ttip='Create unit-wide message'"
+    href = "href='/members?format=broadcast&period=#{@id}'"
     "
-    <a style='font-size: 7pt;' href='/members?format=broadcast&period=#{@id}' target='_blank'>broadcast></a>
+    <a style='font-size: 7pt;' #{ttip} #{href} target='_blank'>broadcast></a>
     "
 
   minMax: ->
     displayState = BB.UI.rosterState.get("#{@id}")
     if displayState == "min"
-      "<a href='#' class='maxWin'>></a>"
+      ttip="data-ttip='Maximize'"
+      "<a href='#' #{ttip} class='maxWin'>></a>"
     else
-      "<a href='#' class='minWin'>v</a>"
+      ttip="data-ttip='Minimize'"
+      "<a href='#' #{ttip} class='minWin'>v</a>"
 
   showTable: ->
     BB.UI.rosterState.get("#{@id}") != "min"

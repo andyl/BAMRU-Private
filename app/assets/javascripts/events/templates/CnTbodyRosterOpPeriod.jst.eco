@@ -7,9 +7,9 @@
         <%- @pdfField()    %>
       </td>
       <td width=100 align=left>
-        <%- @inviteField() %>
-        <div style='display:inline-block; width: 5px;'></div>
         <%- @broadcastField() %>
+        <div style='display:inline-block; width: 5px;'></div>
+        <%- @inviteField() %>
       </td>
       <td align=left>
         <%- @memberField() %>

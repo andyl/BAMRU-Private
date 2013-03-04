@@ -18,6 +18,9 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
     @render()
     BB.vent.trigger("OLParticipantChange")
 
+  onRender: ->
+    @$el.find('[data-ttip]').tipsy(title: 'data-ttip', gravity: 's')
+
   events:
     'click .deleteParticipant' : 'deleteParticipant'
     'click .unsetOL'           : 'unsetOL'
@@ -30,34 +33,41 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
   # ----- methods -----
 
   deleteParticipant: (ev) ->
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     answer = confirm("Are you sure you want to remove this participant?")
     if answer == true
       @model.destroy()
 
   unsetOL: (ev) ->
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
+    @$el.find('[data-ttip]').tipsy("hide")
     @model.save({"ol" : false})
 
   setOL: (ev) ->
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     @model.save({"ol" : true})
 
   # ----- start / finish tags -----
 
   startNow: (ev) ->
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     textInput = "#en_route_at#{@model.id}"
     @$el.find(textInput).val(moment().strftime("%Y-%m-%d %H:%M"))
     @handleDateFields("en_route_at", "return_home_at")
 
   finishNow: (ev) ->
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     textInput = "#return_home_at#{@model.id}"
     @$el.find(textInput).val(moment().strftime("%Y-%m-%d %H:%M"))
     @handleDateFields("en_route_at", "return_home_at")
 
   startAll: (ev) =>
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     common_date = @model.get('signed_in_at') || ""
     msg = "Set all Sign-in times to '#{common_date}'?"
@@ -68,6 +78,7 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
         model.save({signed_in_at: start, signed_out_at: finish})
 
   finishAll: (ev) =>
+    $(ev.target).tipsy("hide")
     ev?.preventDefault()
     common_date = @model.get('signed_out_at') || ""
     msg = "Set all Sign-out times to '#{common_date}'?"

@@ -20,10 +20,10 @@ BB.Helpers.CnTbodyRosterOpParticipantHelpers =
       "<input class='#{typKlas}' style='font-size: 8pt;' type='text' id='#{inTag}#{partId}' value='#{inVal}' size=14>"
     startStr  = datePrep(@["#{startTag}"])
     finishStr = datePrep(@["#{finishTag}"])
-    startNow  = " <a class='startNow'  data-id='#{partId}' href='#'>N</a>"
-    finishNow = " <a class='finishNow' data-id='#{partId}' href='#'>N</a>"
-    startAll =  " <a class='startAll'  data-id='#{partId}' href='#'>$</a>"
-    finishAll = " <a class='finishAll' data-id='#{partId}' href='#'>$</a>"
+    startNow  = " <a class='startNow'  data-ttip='Set to NOW'  data-id='#{partId}' href='#'>N</a>"
+    finishNow = " <a class='finishNow' data-ttip='Set to NOW' data-id='#{partId}' href='#'>N</a>"
+    startAll =  " <a class='startAll'  data-ttip='Set all Sign-in times'  data-id='#{partId}' href='#'>$</a>"
+    finishAll = " <a class='finishAll' data-ttip='Set all Sign-out times' data-id='#{partId}' href='#'>$</a>"
     startCMD   = if typKlas == 'transitPick' then startNow else startAll
     finishCMD  = if typKlas == 'transitPick' then finishNow else finishAll
     startHTML  = htmlField(startStr, startTag) + startCMD

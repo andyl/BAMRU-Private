@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th width=40>Role</th>
-    <th>Member <%- @infoLink() %></th>
+    <th>Name <%- @infoLink() %></th>
     <%- @timeHeaders() %>
     <th>Updated</th>
     <th></th>

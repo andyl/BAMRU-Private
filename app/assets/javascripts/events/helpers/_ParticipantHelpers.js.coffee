@@ -1,6 +1,7 @@
 BB.Helpers.ParticipantHelpers =
   deleteParticipantLink: (participantId) ->
-    "<a href='#' class='deleteParticipant' data-id='#{participantId}'>X</a>"
+    ttip = "data-ttip='Remove participant'"
+    "<a href='#' #{ttip} class='deleteParticipant' data-id='#{participantId}'>X</a>"
 
   memberRoleMT: (memberId) ->
     member = BB.members.get(memberId)
@@ -10,9 +11,11 @@ BB.Helpers.ParticipantHelpers =
     member = BB.members.get(memberId)
     role   = member?.get('typ') || ""
     if @ol
-      "<a class='unsetOL' href='#'>OL #{role}</a>"
+      ttip = "data-ttip='Unset OL'"
+      "<a class='unsetOL' #{ttip} href='#'>OL #{role}</a>"
     else
-      "<a class='setOL' href='#'>#{role}</a>"
+      ttip = "data-ttip='Set OL'"
+      "<a class='setOL' #{ttip} href='#'>#{role}</a>"
 
   memberIcon: (memberId) ->
     member = BB.members.get(memberId)
@@ -26,7 +29,7 @@ BB.Helpers.ParticipantHelpers =
     console.log "TYP is", typ, member if typ == null
     return "Unknown Member #{memberId}" unless typ? && typ != null
     path = if typ[0] == 'G' then 'guests' else 'members'
-    "<a href='/#{path}/#{memberId}'>#{member.fullName()}</a>"
+    "<a data-ttip='View contact info' href='/#{path}/#{memberId}' target='_blank'>#{member.fullName()}</a>"
 
   memberCell: (memberId) ->
     "<td style='vertical-align:bottom;' #{@activeClass()}>#{@memberLink(memberId)}</td>"

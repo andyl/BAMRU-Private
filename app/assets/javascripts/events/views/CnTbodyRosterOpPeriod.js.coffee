@@ -48,10 +48,19 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
       new BB.Views.CnTbodyRosterOpParticipants(opts).render()
     BB.hotKeys.rebindAllKeySets()
     setTimeout(@setSearchBox, 250)
+    @setupToolTips()
     @focusAddParticipant()
 
   onClose: ->
 #    @pubSub.close()
+
+  # ----- tool tips -----
+
+  setupToolTips: ->
+    tipsyOptions =
+      title: 'data-ttip'
+      gravity: 's'
+    $('[data-ttip]').tipsy(tipsyOptions)
 
   # ----- guest links -----
 
@@ -202,14 +211,16 @@ class BB.Views.CnTbodyRosterOpPeriod extends Backbone.Marionette.ItemView
 
   # ----- window max/min -----
 
-  minWin: ->
+  minWin: (ev) ->
+    $(ev.target).tipsy("hide")
     modelId = "#{@model.id}"
     obj = {}
     obj[modelId] = 'min'
     BB.UI.rosterState.set(obj)
     BB.UI.rosterState.saveToLocalStorage()
     
-  maxWin: ->
+  maxWin: (ev) ->
+    $(ev.target).tipsy("hide")
     modelId = "#{@model.id}"
     obj = {}
     obj[modelId] = 'max'

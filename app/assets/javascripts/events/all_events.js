@@ -8,6 +8,8 @@
 //= require jquery-hotkeys-0_8
 //= require jquery-ui-timepicker-addon-1_0_4
 
+//= require jquery_tipsy
+
 //= require jquery.tablesorter2
 //= require cookie
 

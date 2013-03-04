@@ -22,9 +22,9 @@ class BB.Views.CnTbodyRosterOpParticipants extends Backbone.Marionette.Composite
 
   onRender: ->
     @$el.find('.tablesorter th').css('font-size', '8pt')
+    @$el.find('[data-ttip]').tipsy(title: 'data-ttip', gravity: 's')
 
   collectionSort: ->
-    console.log "COLSORT"
     @collection.sort()
     @render()
 
