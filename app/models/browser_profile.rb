@@ -44,7 +44,7 @@ end
 #
 # Table name: browser_profiles
 #
-#  id              :integer         not null, primary key
+#  id              :integer          not null, primary key
 #  member_id       :integer
 #  ip              :string(255)
 #  browser_type    :string(255)
@@ -55,7 +55,7 @@ end
 #  cookies         :boolean
 #  screen_height   :integer
 #  screen_width    :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 

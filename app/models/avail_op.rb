@@ -71,7 +71,7 @@ end
 #
 # Table name: avail_ops
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  start_on   :date
 #  end_on     :date

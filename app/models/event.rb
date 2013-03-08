@@ -335,12 +335,11 @@ class Event < ActiveRecord::Base
   
 end
 
-
 # == Schema Information
 #
 # Table name: events
 #
-#  id          :integer         not null, primary key
+#  id          :integer          not null, primary key
 #  typ         :string(255)
 #  title       :string(255)
 #  leaders     :string(255)
@@ -350,9 +349,9 @@ end
 #  lon         :decimal(7, 4)
 #  start       :datetime
 #  finish      :datetime
-#  all_day     :boolean         default(TRUE)
-#  published   :boolean         default(FALSE)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  all_day     :boolean          default(TRUE)
+#  published   :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 

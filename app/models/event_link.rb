@@ -39,23 +39,22 @@ class EventLink < ActiveRecord::Base
 
 end
 
-
 # == Schema Information
 #
 # Table name: event_links
 #
-#  id                       :integer         not null, primary key
+#  id                       :integer          not null, primary key
 #  member_id                :integer
 #  event_id                 :integer
 #  site_url                 :string(255)
 #  caption                  :string(255)
-#  published                :boolean         default(FALSE)
+#  published                :boolean          default(FALSE)
 #  link_backup_file_name    :string(255)
 #  link_backup_content_type :string(255)
 #  link_backup_file_size    :integer
 #  link_backup_updated_at   :integer
 #  position                 :integer
-#  created_at               :datetime
-#  updated_at               :datetime
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
 #
 

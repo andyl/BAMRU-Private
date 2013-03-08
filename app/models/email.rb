@@ -71,7 +71,7 @@ end
 #
 # Table name: emails
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  typ        :string(255)
 #  pagable    :string(255)

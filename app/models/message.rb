@@ -112,7 +112,7 @@ end
 #
 # Table name: messages
 #
-#  id             :integer         not null, primary key
+#  id             :integer          not null, primary key
 #  author_id      :integer
 #  ip_address     :string(255)
 #  text           :text
@@ -121,5 +121,7 @@ end
 #  format         :string(255)
 #  linked_rsvp_id :integer
 #  ancestry       :string(255)
+#  period_id      :integer
+#  period_format  :string(255)
 #
 

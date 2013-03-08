@@ -39,13 +39,11 @@ class Journal < ActiveRecord::Base
 
 end
 
-
-
 # == Schema Information
 #
 # Table name: journals
 #
-#  id              :integer         not null, primary key
+#  id              :integer          not null, primary key
 #  member_id       :integer
 #  distribution_id :integer
 #  action          :string(255)

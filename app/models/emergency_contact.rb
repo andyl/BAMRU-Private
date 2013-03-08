@@ -35,7 +35,7 @@ end
 #
 # Table name: emergency_contacts
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  name       :string(255)
 #  number     :string(255)

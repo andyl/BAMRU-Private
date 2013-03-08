@@ -45,12 +45,11 @@ class EventPhoto < ActiveRecord::Base
 
 end
 
-
 # == Schema Information
 #
 # Table name: event_photos
 #
-#  id                 :integer         not null, primary key
+#  id                 :integer          not null, primary key
 #  member_id          :integer
 #  event_id           :integer
 #  caption            :string(255)
@@ -59,8 +58,8 @@ end
 #  image_file_size    :integer
 #  image_updated_at   :integer
 #  position           :integer
-#  published          :boolean         default(FALSE)
-#  created_at         :datetime
-#  updated_at         :datetime
+#  published          :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 

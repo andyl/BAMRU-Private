@@ -42,7 +42,7 @@ end
 #
 # Table name: event_reports
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  typ        :string(255)
 #  member_id  :integer
 #  event_id   :integer
@@ -50,8 +50,8 @@ end
 #  title      :string(255)
 #  data       :text
 #  position   :integer
-#  published  :boolean         default(FALSE)
-#  created_at :datetime
-#  updated_at :datetime
+#  published  :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 

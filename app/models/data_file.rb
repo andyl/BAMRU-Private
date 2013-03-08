@@ -60,9 +60,9 @@ end
 #
 # Table name: data_files
 #
-#  id                  :integer         not null, primary key
+#  id                  :integer          not null, primary key
 #  member_id           :integer
-#  download_count      :integer         default(0)
+#  download_count      :integer          default(0)
 #  data_file_extension :string(255)
 #  data_file_name      :string(255)
 #  data_file_size      :string(255)
@@ -73,6 +73,6 @@ end
 #  position            :integer
 #  event_id            :integer
 #  caption             :string(255)
-#  published           :boolean         default(FALSE)
+#  published           :boolean          default(FALSE)
 #
 

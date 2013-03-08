@@ -28,7 +28,7 @@ end
 #
 # Table name: roles
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  typ        :string(255)
 #  created_at :datetime

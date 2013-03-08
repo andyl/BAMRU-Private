@@ -52,7 +52,7 @@ end
 #
 # Table name: avail_dos
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  year       :integer
 #  quarter    :integer

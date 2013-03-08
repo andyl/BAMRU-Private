@@ -34,7 +34,7 @@ end
 #
 # Table name: other_infos
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  label      :string(255)
 #  value      :string(255)

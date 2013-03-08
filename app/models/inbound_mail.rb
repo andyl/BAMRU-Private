@@ -73,7 +73,7 @@ end
 #
 # Table name: inbound_mails
 #
-#  id               :integer         not null, primary key
+#  id               :integer          not null, primary key
 #  outbound_mail_id :integer
 #  from             :string(255)
 #  to               :string(255)
@@ -83,9 +83,9 @@ end
 #  body             :text
 #  rsvp_answer      :string(255)
 #  send_time        :datetime
-#  bounced          :boolean         default(FALSE)
+#  bounced          :boolean          default(FALSE)
 #  created_at       :datetime
 #  updated_at       :datetime
-#  ignore_bounce    :boolean         default(FALSE)
+#  ignore_bounce    :boolean          default(FALSE)
 #
 

@@ -104,14 +104,14 @@ end
 #
 # Table name: outbound_mails
 #
-#  id              :integer         not null, primary key
+#  id              :integer          not null, primary key
 #  distribution_id :integer
 #  email_id        :integer
 #  phone_id        :integer
 #  address         :string(255)
 #  label           :string(255)
-#  read            :boolean         default(FALSE)
-#  bounced         :boolean         default(FALSE)
+#  read            :boolean          default(FALSE)
+#  bounced         :boolean          default(FALSE)
 #  created_at      :datetime
 #  updated_at      :datetime
 #  sent_at         :datetime

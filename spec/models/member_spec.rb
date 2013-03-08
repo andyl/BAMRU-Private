@@ -325,7 +325,7 @@ end
 #
 # Table name: members
 #
-#  id                         :integer         not null, primary key
+#  id                         :integer          not null, primary key
 #  title                      :string(255)
 #  first_name                 :string(255)
 #  last_name                  :string(255)
@@ -333,12 +333,12 @@ end
 #  typ                        :string(255)
 #  ham                        :string(255)
 #  v9                         :string(255)
-#  admin                      :boolean         default(FALSE)
-#  developer                  :boolean         default(FALSE)
+#  admin                      :boolean          default(FALSE)
+#  developer                  :boolean          default(FALSE)
 #  role_score                 :integer
 #  typ_score                  :integer
 #  password_digest            :string(255)
-#  sign_in_count              :integer         default(0)
+#  sign_in_count              :integer          default(0)
 #  ip_address                 :string(255)
 #  remember_me_token          :string(255)
 #  forgot_password_token      :string(255)
@@ -347,7 +347,7 @@ end
 #  remember_created_at        :time
 #  created_at                 :datetime
 #  updated_at                 :datetime
-#  current_do                 :boolean         default(FALSE)
+#  current_do                 :boolean          default(FALSE)
 #  last_sign_in_at            :datetime
 #  dl                         :string(255)
 #

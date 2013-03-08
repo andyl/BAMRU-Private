@@ -65,12 +65,11 @@ class Phone < ActiveRecord::Base
 
 end
 
-
 # == Schema Information
 #
 # Table name: phones
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  typ        :string(255)
 #  number     :string(255)

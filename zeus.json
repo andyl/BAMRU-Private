@@ -1,5 +1,5 @@
 {
-  "command": "ruby -rubygems -rzeus/rails -eZeus.go",
+  "command": "ruby -rubygems -r./custom_plan -eZeus.go",
 
   "plan": {
     "boot": {
@@ -9,11 +9,10 @@
           "runner": ["r"],
           "console": ["c"],
           "server": ["s"],
-          "generate": ["g"],
           "dbconsole": []
         },
         "test_environment": {
-          "test_helper": {"test": ["rspec", "testrb"]}
+          "test_helper": {"test": ["rspec"]}
         }
       }
     }

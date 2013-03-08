@@ -34,7 +34,7 @@ end
 #
 # Table name: photos
 #
-#  id                 :integer         not null, primary key
+#  id                 :integer          not null, primary key
 #  member_id          :integer
 #  image_file_name    :string(255)
 #  image_content_type :string(255)

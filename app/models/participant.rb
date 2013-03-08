@@ -70,13 +70,12 @@ class Participant < ActiveRecord::Base
   
 end
 
-
 # == Schema Information
 #
 # Table name: participants
 #
-#  id             :integer         not null, primary key
-#  ol             :boolean         default(FALSE)
+#  id             :integer          not null, primary key
+#  ol             :boolean          default(FALSE)
 #  member_id      :integer
 #  period_id      :integer
 #  comment        :string(255)
@@ -84,7 +83,7 @@ end
 #  return_home_at :datetime
 #  signed_in_at   :datetime
 #  signed_out_at  :datetime
-#  created_at     :datetime
-#  updated_at     :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 

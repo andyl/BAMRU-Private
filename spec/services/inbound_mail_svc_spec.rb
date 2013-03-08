@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe InboundMailSvc do
 
-  describe "Object Attributes" do
-    before(:all) { @obj = InboundMailSvc.new }
-    #specify { @obj.should respond_to(:message) }
-    #specify { @obj.should respond_to(:members) }
-    #specify { @obj.should respond_to(:params)  }
-  end
+  #describe "Object Attributes" do
+  #  before(:all) { @obj = InboundMailSvc.new }
+  #  specify { @obj.should respond_to(:message) }
+  #  specify { @obj.should respond_to(:members) }
+  #  specify { @obj.should respond_to(:params)  }
+  #end
 
   describe "Instance Methods" do
     before(:all) { @obj = InboundMailSvc.new }

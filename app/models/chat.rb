@@ -25,7 +25,7 @@ end
 #
 # Table name: chats
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  member_id  :integer
 #  client     :string(255)
 #  lat        :string(255)

@@ -12,18 +12,14 @@ gem "passenger", "3.0.12"   # production server
 
 # ----- 3rd party services -----
 gem "ruby-gmail", :require => "gmail"
-gem "twilio-ruby"
 gem "gcal4ruby"
-# gem "aws-ses", :require => "aws/ses"
 
 # ----- database -----
-gem "sqlite3"
-gem "valkyrie"
 gem "yaml_db"
 gem "pg"
 
 # ----- services and protocols -----
-gem "faye",    "0.6.8" # messaging-pub/sub infrastructure
+gem "faye",    "0.6.8"         # messaging-pub/sub infrastructure
 gem "net-ssh", "2.2.2"
 
 # ----- process management -----
@@ -33,48 +29,46 @@ gem "queue_classic", "2.1.1"      # background job queue
 
 # ----- asset management -----
 gem "sprite-factory"
+gem "paperclip",      "3.3.1"
 gem "rmagick"
-gem "paperclip",    "3.3.1"
 gem "sass"
 
 # ----- view utilities -----
-gem "draper"
 gem "rabl"
+gem "pngqr"          # generate QR codes
 gem "simple_form"
 gem "dynamic_form"
-gem "pngqr"  # generate QR codes
-gem "haml-rails"
+gem "draper", "0.18.0"
 
 # ----- misc -----
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
-gem "acts_as_api"
-gem "ancestry"
-gem "bcrypt-ruby", "~> 3.0.0"
-gem "cancan"
-gem "cocaine",      :git => 'http://github.com/thoughtbot/cocaine.git'
-gem "em-http-request"
-gem "exception_notification"
-gem "fastercsv"
-gem "json"
 gem "mime"
+gem "cancan"         # access control
+gem "cocaine"        # ???
+gem "parslet"        # address parsing
+gem "ancestry"       # ???
 gem "nokogiri"
-gem "oauth"
-gem "parslet"
+gem "fastercsv"
+gem "acts_as_api"
+gem "rb-readline"
+gem "em-http-request"
+gem "json", "~> 1.5.1"
+gem "exception_notification"
+gem "bcrypt-ruby", "~> 3.0.0"
 
 # ----- mail -----
 gem "mail"
-gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
 
 # ----- pdf generation -----
-gem "prawn", "~> 0.12.0" # for PDF reports
-gem "pdfkit"             # PDF screenshots of a URL 
+gem "prawn", "~> 0.12.0"   # for PDF reports
+gem "pdfkit"               # PDF screenshots of a URL 
 
 # ----- javascript processing -----
-gem "coffee-script"
+gem "eco"
 gem "uglifier"
+gem "coffee-script"
 gem "libv8", '~> 3.11.8'
 gem "therubyracer", :require => "v8"
-gem "eco"
 
 # ----- javascript libraries -----
 gem "jsgem-jquery",        "1.7.2.pre2"
@@ -86,13 +80,11 @@ gem "hirb"
 gem "wirble"
 gem "interactive_editor"
 gem "awesome_print", :require => "ap"
-gem "drx"
 
 group :development, :test do
 
   # ----- misc -----
-  gem "zeus"    # environment pre-loader
-  gem "spring"  # environment pre-loader
+  gem "zeus", "0.13.3.rc2"    # environment pre-loader
   gem "debugger", :require => "ruby-debug"
 
   # ----- capistrano -----
@@ -102,10 +94,10 @@ group :development, :test do
   # ----- javascript unit tests -----
   gem "jasminerice"
   gem "csv-mapper"
-  gem "rb-inotify"
-  gem "guard"
-  gem "guard-coffeescript"
   gem "faker"
+  gem "guard"
+  gem "rb-inotify"
+  gem "guard-coffeescript"
   gem "simplecov"
 
   # ----- rspec -----
@@ -118,23 +110,26 @@ group :development, :test do
   gem "factory_girl_rails"
 
   # ----- capybara -----
+  gem "launchy"
   gem "capybara"
   gem "capybara-webkit"
   gem "selenium-webdriver"
-  gem "launchy"
 
   # ----- vagrant -----
-  gem "vagrant", "1.0.6"  # generate test machines
+  gem "ghost"             # manages /etc/hosts for testing
   gem "virtualbox"        # VM engine
   gem "vagrant-snap"      # generates VM snapshots
-  gem "ghost"             # manages /etc/hosts for testing
+  gem "vagrant", "1.0.6"  # generate test machines
 
-  # ----- email testing -----
-  gem "letter_opener"
-  gem "bullet"
+  # ----- mail testing -----
+  gem "letter_opener"       # opens email in a local browser
+  gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
+
+  # ----- misc -----
+  gem "bullet"            # generates alert on N+1 queries
 
   # ----- add DB fields too models & specs -----
-  gem "annotate", :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
+  gem "annotate"
 
   # ----- RubyMine Support -----
   # run this to get the debugger working on RubyMine
