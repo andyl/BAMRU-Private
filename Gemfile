@@ -92,13 +92,14 @@ group :development, :test do
   gem "capistrano_colors"
 
   # ----- javascript unit tests -----
-  gem "jasminerice"
-  gem "csv-mapper"
   gem "faker"
   gem "guard"
-  gem "rb-inotify"
-  gem "guard-coffeescript"
   gem "simplecov"
+  gem "csv-mapper"
+  gem "rb-inotify"
+  gem "jasminerice"
+  gem "guard-coffeescript"
+  gem "coffee-rails-source-maps"
 
   # ----- rspec -----
   gem "rspec-rails"
@@ -115,11 +116,8 @@ group :development, :test do
   gem "capybara-webkit"
   gem "selenium-webdriver"
 
-  # ----- vagrant -----
+  # ----- vagrant support -----
   gem "ghost"             # manages /etc/hosts for testing
-  gem "virtualbox"        # VM engine
-  gem "vagrant-snap"      # generates VM snapshots
-  gem "vagrant", "1.0.6"  # generate test machines
 
   # ----- mail testing -----
   gem "letter_opener"       # opens email in a local browser

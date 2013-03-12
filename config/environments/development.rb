@@ -13,9 +13,9 @@ Zn::Application.configure do
   config.whiny_nils = true
 
   #config.assets.compile  = false
-  config.assets.debug    = false
+  config.assets.debug    = true
   config.assets.compress = false
-  config.serve_static_assets = true
+  #config.serve_static_assets = true
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true

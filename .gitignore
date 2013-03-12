@@ -36,8 +36,8 @@ public/system
 public/system.*
 public/system/*
 public/system/**/*
-public/qrcodes
-public/qrcodes/*
+public/qrcodes/
+public/source_maps/
 public/javascripts/compiled
 public/javascripts/compiled/*
 public/javascripts/compiled/**/*
