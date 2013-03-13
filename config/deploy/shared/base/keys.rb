@@ -1,7 +1,8 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
   # ----- keys -----
-  after 'deploy:update_code',  'keys:upload'
+  # after 'deploy:update_code',  'keys:upload'
+  before 'deploy:assets:precompile',  'keys:upload'
 
   namespace :keys do
 
