@@ -14,14 +14,12 @@ Zn::Application.configure do
   config.assets.compress = true
   config.assets.compile  = false
   config.assets.digest   = true
-
-  # Compress both stylesheets and JavaScripts
-  config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
+  config.assets.initialize_on_precompile = false
 
   # Specifies the header that your server uses for sending files
   # (comment out if your front-end server doesn't support this)
-  config.action_dispatch.x_sendfile_header = "X-Sendfile" # Use 'X-Accel-Redirect' for nginx
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # Use 'X-Accel-Redirect' for nginx
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -39,7 +37,15 @@ Zn::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( all_events.js )
+  config.assets.precompile += %w(bb_debug.js events/all_events.js messages/all_messages_indx.js)
+  config.assets.precompile += %w(history/all_history.js messages/all_messages_show.js members/all_mem_indx.js)
+  config.assets.precompile += %w(unit_certs/all_unit_certs.js unit_avail_ops/all_unit_avail_ops.js)
+  config.assets.precompile += %w(do_planner.js avail_dos/all_avail_dos.js reports/all_reports.js)
+  config.assets.precompile += %w(inbox/all_inbox_indx.js guests/all_guests_indx.js)
+  config.assets.precompile += %w(mobile.css monitor.css mobile/all_mobile.js)
+  config.assets.precompile += %w(files/all_files.js members/all_mem_show.js members/all_mem_edit.js)
+  config.assets.precompile += %w(avail_ops/all_avail_ops.js certs/all_certs_indx.js)
+  config.assets.precompile += %w(guests/all_guest_show.js certs/all_certs_edit.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

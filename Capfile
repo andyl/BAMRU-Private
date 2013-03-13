@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
+load 'deploy/assets'
 require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 
 # ===== App Config =====

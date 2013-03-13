@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
 ruby "1.9.3"
-# ruby "2.0.0"
 
 # ----- rails -----
 gem "rails",        "3.2.12"
@@ -33,7 +32,6 @@ gem "queue_classic", "2.1.1"      # background job queue
 gem "sprite-factory"
 gem "paperclip",      "3.3.1"
 gem "rmagick"
-gem "sass"
 
 # ----- view utilities -----
 gem "rabl"
@@ -67,10 +65,6 @@ gem "pdfkit"               # PDF screenshots of a URL
 
 # ----- javascript processing -----
 gem "eco"
-gem "uglifier"
-gem "coffee-script"
-gem "libv8", '~> 3.11.8'
-gem "therubyracer", :require => "v8"
 
 # ----- javascript libraries -----
 gem "jsgem-jquery",        "1.7.2.pre2"
@@ -82,6 +76,15 @@ gem "hirb"
 gem "wirble"
 gem "interactive_editor"
 gem "awesome_print", :require => "ap"
+
+group :assets do
+  gem "sass"
+  gem "sass-rails"
+  gem "coffee-script"
+  gem "uglifier"
+  gem "libv8", '~> 3.11.8'
+  gem "therubyracer", :require => "v8"
+end
 
 group :development, :test do
 
