@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance(:must_exist).load do
   
-  after "deploy:update", "railsenv:update"
+  before "keys:update", "railsenv:update"
 
   namespace :railsenv do
 
