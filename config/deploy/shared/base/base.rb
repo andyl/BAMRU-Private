@@ -15,7 +15,8 @@ Capistrano::Configuration.instance(:must_exist).load do
   # ---------------------------------------------------------------------------------
   # see http://henriksjokvist.net/archive/2012/2/deploying-with-rbenv-and-capistrano/
   require "bundler/capistrano"
-  set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
+  set :bundle_flags, "--deployment --quiet --binstubs"
+  #set :bundle_flags, "--deployment --quiet --binstubs --shebang ruby-local-exec"
 
   # also see http://ryan.mcgeary.org/2011/02/09/vendor-everything-still-applies/
 
