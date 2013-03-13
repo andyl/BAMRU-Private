@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 ruby "1.9.3"
+# ruby "2.0.0"
 
 # ----- rails -----
 gem "rails",        "3.2.12"
@@ -84,7 +85,7 @@ gem "awesome_print", :require => "ap"
 group :development, :test do
 
   # ----- misc -----
-  gem "zeus", "0.13.3.rc2"    # environment pre-loader
+  gem "zeus", "0.13.3"    # environment pre-loader
   gem "debugger", :require => "ruby-debug"
 
   # ----- capistrano -----

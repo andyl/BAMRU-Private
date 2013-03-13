@@ -8,8 +8,11 @@
 - app/**/*.erb
 - lib/**/*.rb
 :app_exclude_pattern: []
-:test_pattern: 
-:test_files: 
+:test_pattern: mod
+:test_files: spec/models/phone_spec.rb spec/models/period_spec.rb spec/models/participant_spec.rb
+  spec/models/message_spec.rb spec/models/member_spec.rb spec/models/journal_spec.rb
+  spec/models/inbound_mail_spec.rb spec/models/event_spec.rb spec/models/distribution_spec.rb
+  spec/models/avail_ops_spec.rb spec/models/address_spec.rb
 :test_line: 
 :command_args: 
 :command: zeus rspec -O spec/spec.opts
