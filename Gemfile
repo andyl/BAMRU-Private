@@ -77,6 +77,9 @@ gem "wirble"
 gem "interactive_editor"
 gem "awesome_print", :require => "ap"
 
+# ----- vagrant support -----
+gem "ghost"             # manages /etc/hosts for testing
+
 group :assets do
   # gem "sass"
   # gem "coffee-script"
@@ -90,6 +93,7 @@ group :assets do
 
   gem "uglifier", ">= 1.0.3"
   gem "therubyracer", :platforms => :ruby
+
 end
 
 group :development, :test do
@@ -126,9 +130,6 @@ group :development, :test do
   gem "capybara"
   gem "capybara-webkit"
   gem "selenium-webdriver"
-
-  # ----- vagrant support -----
-  gem "ghost"             # manages /etc/hosts for testing
 
   # ----- mail testing -----
   gem "letter_opener"       # opens email in a local browser
