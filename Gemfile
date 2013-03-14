@@ -81,10 +81,6 @@ gem "awesome_print", :require => "ap"
 gem "ghost"             # manages /etc/hosts for testing
 
 group :assets do
-  # gem "coffee-script"
-  # gem "libv8", '~> 3.11.8'
-  # gem "therubyracer", :require => "v8"
-
   gem "sass"
   gem "sass-rails",   "~> 3.2.3"
   gem "coffee-rails", "~> 3.2.1"
@@ -93,7 +89,6 @@ group :assets do
 
   gem "uglifier", ">= 1.0.3"
   gem "therubyracer", :platforms => :ruby
-
 end
 
 group :development, :test do
