@@ -55,8 +55,8 @@ class Participant < ActiveRecord::Base
   end
 
   def set_sign_in_times
-    event = self.period.event
-    return unless event.typ == "meeting"
+    event = self.period.try(:event)
+    return unless event.try(:typ) == "meeting"
     self.update_attributes signed_in_at: event.start, signed_out_at: event.finish
   end
 
