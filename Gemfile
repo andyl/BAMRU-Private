@@ -81,11 +81,11 @@ gem "awesome_print", :require => "ap"
 gem "ghost"             # manages /etc/hosts for testing
 
 group :assets do
-  # gem "sass"
   # gem "coffee-script"
   # gem "libv8", '~> 3.11.8'
   # gem "therubyracer", :require => "v8"
 
+  gem "sass"
   gem "sass-rails",   "~> 3.2.3"
   gem "coffee-rails", "~> 3.2.1"
 

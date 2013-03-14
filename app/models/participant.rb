@@ -1,5 +1,8 @@
 class Participant < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :ol, :member_id, :period_id, :comment, :en_route_at, :return_home_at, :signed_in_at, :signed_out_at
+
   # ----- Associations -----
   belongs_to   :period
   belongs_to   :member

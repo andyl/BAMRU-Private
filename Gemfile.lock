@@ -428,6 +428,7 @@ DEPENDENCIES
   rspec-on-rails-matchers
   rspec-rails
   ruby-gmail
+  sass
   sass-rails (~> 3.2.3)
   selenium-webdriver
   shoulda-matchers
