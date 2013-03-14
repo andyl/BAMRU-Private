@@ -48,6 +48,7 @@ Zn::Application.configure do
   config.assets.precompile += %w(guests/all_guest_show.js certs/all_certs_edit.js)
   config.assets.precompile += %w(sessions/all_sessions.js mobile_ui.css)
   config.assets.precompile += %w(meeting_signin/all_meeting_signin.js tipsy.css mobile_signup.css)
+  config.assets.precompile += %w(guests/all_guest_edit.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
