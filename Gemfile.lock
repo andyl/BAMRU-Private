@@ -338,6 +338,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
+    turbo-sprockets-rails3 (0.3.6)
+      railties (> 3.2.8, < 4.0.0)
+      sprockets (>= 2.0.0)
     tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -375,8 +378,8 @@ DEPENDENCIES
   capybara
   capybara-webkit
   cocaine
+  coffee-rails (~> 3.2.1)
   coffee-rails-source-maps
-  coffee-script
   csv-mapper
   database_cleaner
   debugger
@@ -403,7 +406,6 @@ DEPENDENCIES
   json (~> 1.5.1)
   launchy
   letter_opener
-  libv8 (~> 3.11.8)
   mail
   mail_view!
   mime
@@ -427,7 +429,7 @@ DEPENDENCIES
   rspec-rails
   ruby-gmail
   sass
-  sass-rails
+  sass-rails (~> 3.2.3)
   selenium-webdriver
   shoulda-matchers
   simple_form
@@ -435,7 +437,8 @@ DEPENDENCIES
   sprite-factory
   therubyracer
   thin
-  uglifier
+  turbo-sprockets-rails3
+  uglifier (>= 1.0.3)
   unicorn
   whenever
   wirble

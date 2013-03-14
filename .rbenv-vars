@@ -1,7 +1,7 @@
 APP_NAME=bnet
 
 # default environment - automatically changed during deployment
-RAILS_ENV=development
+RAILS_ENV=production
 
 # queue_classic variables
 QC_DATABASE_URL=postgres://bnet:${POSTGRES_PASS}@localhost/bnet_${RAILS_ENV}

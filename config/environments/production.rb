@@ -46,6 +46,7 @@ Zn::Application.configure do
   config.assets.precompile += %w(files/all_files.js members/all_mem_show.js members/all_mem_edit.js)
   config.assets.precompile += %w(avail_ops/all_avail_ops.js certs/all_certs_indx.js)
   config.assets.precompile += %w(guests/all_guest_show.js certs/all_certs_edit.js)
+  config.assets.precompile += %w(sessions/all_sessions.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

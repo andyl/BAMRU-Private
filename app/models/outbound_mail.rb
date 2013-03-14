@@ -1,5 +1,10 @@
 class OutboundMail < ActiveRecord::Base
 
+  # ----- Attributes -----
+
+  attr_accessible :distribution_id, :email_id, :phone_id, :address, :label, :read, :bounced
+
+
   # ----- Associations -----
 
   belongs_to :distribution

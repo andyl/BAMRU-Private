@@ -1,5 +1,8 @@
 class Phone < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :typ, :member_id, :number, :pagable, :sms_email, :position
+
   # ----- Associations -----
   belongs_to :member
   has_many   :outbound_mails

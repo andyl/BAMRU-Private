@@ -1,5 +1,9 @@
 class Journal < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :action, :member_id, :distribution_id
+
+
   # ----- Associations -----
 
   belongs_to :member

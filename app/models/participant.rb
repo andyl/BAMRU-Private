@@ -1,5 +1,8 @@
 class Participant < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :ol, :member_id, :period_id, :comment, :en_route_at, :return_home_at, :signed_in_at, :signed_out_at
+
   # ----- Associations -----
   belongs_to   :period
   belongs_to   :member
@@ -55,8 +58,8 @@ class Participant < ActiveRecord::Base
   end
 
   def set_sign_in_times
-    event = self.period.event
-    return unless event.typ == "meeting"
+    event = self.period.try(:event)
+    return unless event.try(:typ) == "meeting"
     self.update_attributes signed_in_at: event.start, signed_out_at: event.finish
   end
 

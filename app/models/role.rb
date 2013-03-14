@@ -1,5 +1,8 @@
 class Role < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :typ, :member_id
+
   # ----- Associations -----
 
 
