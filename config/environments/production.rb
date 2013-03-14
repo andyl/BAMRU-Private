@@ -37,19 +37,10 @@ Zn::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w(bb_debug.js events/all_events.js messages/all_messages_indx.js)
-  config.assets.precompile += %w(history/all_history.js messages/all_messages_show.js members/all_mem_indx.js)
-  config.assets.precompile += %w(unit_certs/all_unit_certs.js unit_avail_ops/all_unit_avail_ops.js)
-  config.assets.precompile += %w(do_planner.js avail_dos/all_avail_dos.js reports/all_reports.js)
-  config.assets.precompile += %w(inbox/all_inbox_indx.js guests/all_guests_indx.js)
-  config.assets.precompile += %w(mobile.css monitor.css mobile/all_mobile.js)
-  config.assets.precompile += %w(files/all_files.js members/all_mem_show.js members/all_mem_edit.js)
-  config.assets.precompile += %w(avail_ops/all_avail_ops.js certs/all_certs_indx.js)
-  config.assets.precompile += %w(guests/all_guest_show.js certs/all_certs_edit.js)
-  config.assets.precompile += %w(sessions/all_sessions.js mobile_ui.css)
-  config.assets.precompile += %w(meeting_signin/all_meeting_signin.js tipsy.css mobile_signup.css)
-  config.assets.precompile += %w(guests/all_guest_edit.js do_assignments.js)
-  config.assets.precompile += %w(jquery-ui.min.js photos/all_photos.js)
+  js_prefix = "app/assets/javascripts/"
+  config.assets.precompile += Dir.glob("#{js_prefix}*/all_*.js").map {|x| x.gsub(js_prefix, "")}
+  config.assets.precompile += Dir.glob("#{js_prefix}*.js.coffee").map {|x| x.gsub(js_prefix, "").gsub(".coffee", "")}
+  config.assets.precompile += %w(mobile.css monitor.css mobile_ui.css tipsy.css mobile_signup.css)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
