@@ -17,10 +17,13 @@ server {
   location @503 {
     rewrite ^(.*)$ /system/maintenance.html break;
   }
-  location ^~ /assets/ {
+  location ~ ^/assets/ {
     gzip_static on;
     expires max;
     add_header Cache-Control public;
+
+    add_header ETag "";
+    break;
   }
   location / {
     proxy_pass http://127.0.0.1:<%= web_port %>;
