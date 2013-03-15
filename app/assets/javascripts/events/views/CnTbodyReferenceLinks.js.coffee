@@ -1,12 +1,12 @@
-class BB.Views.CnTbodyResourcesLinks extends Backbone.Marionette.ItemView
+class BB.Views.CnTbodyReferenceLinks extends Backbone.Marionette.ItemView
 
   # ----- configuration -----
 
-  template: 'events/templates/CnTbodyResourcesLinks'
+  template: 'events/templates/CnTbodyReferenceLinks'
 
   templateHelpers: ->
     base = { eventLinks: @model.eventLinks }
-    _.extend(base, BB.Helpers.CnTbodyResourcesLinksHelpers)
+    _.extend(base, BB.Helpers.CnTbodyReferenceLinksHelpers)
 
   # ----- initialization -----
 

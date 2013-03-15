@@ -45,4 +45,3 @@
 //= require_tree ./views
 
 //= require events/routers/AppRouter
-

@@ -1,12 +1,12 @@
-class BB.Views.CnTbodyResourcesFiles extends Backbone.Marionette.ItemView
+class BB.Views.CnTbodyReferenceFiles extends Backbone.Marionette.ItemView
 
   # ----- configuration -----
 
-  template: 'events/templates/CnTbodyResourcesFiles'
+  template: 'events/templates/CnTbodyReferenceFiles'
 
   templateHelpers: ->
     base = { eventFiles: @model.eventFiles }
-    _.extend(base, BB.Helpers.CnTbodyResourcesFilesHelpers)
+    _.extend(base, BB.Helpers.CnTbodyReferenceFilesHelpers)
 
   # ----- initialization -----
 

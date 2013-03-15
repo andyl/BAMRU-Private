@@ -111,7 +111,7 @@ Zn::Application.routes.draw do
   get '/events/:id/edit'       => 'events#index'
   get '/events/:id/roster'     => 'events#index'
   get '/events/:id/forum'      => 'events#index'
-  get '/events/:id/resources'  => 'events#index'
+  get '/events/:id/reference'  => 'events#index'
   get '/events/:id/reports'    => 'events#index'
 
   namespace "eapi" do

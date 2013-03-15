@@ -32,7 +32,7 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
       when "overview-edit" then @genOverviewEdit navOpt
       when "roster"        then @genRoster       navOpt
       when "forum"         then @genForum        navOpt
-      when "resources"     then @genResources    navOpt
+      when "reference"     then @genReference    navOpt
       when "reports"       then @genReports      navOpt
 
   # ----- methods -----
@@ -66,10 +66,10 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
     @tbody.show(new BB.Views.CnTbodyForum({model: @model}))
 
-  genResources: (navOption = "NA") ->
-    @router.navigate("/events/#{@model.id}/resources") unless navOption == "noNav"
+  genReference: (navOption = "NA") ->
+    @router.navigate("/events/#{@model.id}/reference") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu(@page, @model))
-    @tbody.show(new BB.Views.CnTbodyResources({model: @model}))
+    @tbody.show(new BB.Views.CnTbodyReference({model: @model}))
 
   genReports: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/reports") unless navOption == "noNav"

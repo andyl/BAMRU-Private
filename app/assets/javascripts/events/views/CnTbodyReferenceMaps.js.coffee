@@ -1,7 +1,7 @@
-class BB.Views.CnTbodyResourcesMaps extends Backbone.Marionette.ItemView
+class BB.Views.CnTbodyReferenceMaps extends Backbone.Marionette.ItemView
   # ----- configuration -----
 
-  template: 'events/templates/CnTbodyResourcesMaps'
+  template: 'events/templates/CnTbodyReferenceMaps'
 
   # ----- initialization -----
 

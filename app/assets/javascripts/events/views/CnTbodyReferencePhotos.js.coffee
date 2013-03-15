@@ -1,12 +1,12 @@
-class BB.Views.CnTbodyResourcesPhotos extends Backbone.Marionette.ItemView
+class BB.Views.CnTbodyReferencePhotos extends Backbone.Marionette.ItemView
 
   # ----- configuration -----
 
-  template: 'events/templates/CnTbodyResourcesPhotos'
+  template: 'events/templates/CnTbodyReferencePhotos'
 
   templateHelpers: ->
     base = { eventPhotos: @model.eventPhotos }
-    _.extend(base, BB.Helpers.CnTbodyResourcesPhotosHelpers)
+    _.extend(base, BB.Helpers.CnTbodyReferencePhotosHelpers)
 
   # ----- initialization -----
 

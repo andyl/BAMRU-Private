@@ -1,4 +1,4 @@
-BB.Helpers.CnTbodyResourcesLinksHelpers =
+BB.Helpers.CnTbodyReferenceLinksHelpers =
   genLinkRows: ->
     authorLink = (link) ->
       memId  = link.get('member_id')

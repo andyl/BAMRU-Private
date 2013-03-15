@@ -1,5 +1,5 @@
-BB.Helpers.CnTbodyResourcesFilesHelpers =
-  genFileRows: ->
+BB.Helpers.CnTbodyReferencePhotosHelpers =
+  genPhotoRows: ->
     authorLink = (link) ->
       memId  = link.get('member_id')
       member = BB.members.get(memId)
@@ -12,12 +12,12 @@ BB.Helpers.CnTbodyResourcesFilesHelpers =
     rowHtml = (link) ->
       """
       <tr>
-        <td><a href="/files/#{link.get('data_file_name')}" target="_blank">#{link.get('data_file_name')}</a></td>
+        <td><img style='display:block' src="#{link.get('icon_url')}"/></td>
         <td>#{link.get('caption')}</td>
         <td><nobr>#{authorLink(link)}</nobr></td>
         <td><nobr>#{link.get('updated_at')?.split('T')[0]}</nobr></td>
         <td align='center'><nobr>#{editLink(link)} | #{deleteLink(link)}</nobr></td>
        </tr>
        """
-    links = _.map @eventFiles.models, (link) -> rowHtml(link)
+    links = _.map @eventPhotos.models, (link) -> rowHtml(link)
     links.join('\n')
