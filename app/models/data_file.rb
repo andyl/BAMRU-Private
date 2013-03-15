@@ -17,9 +17,12 @@ class DataFile < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to        :member
+  has_many          :event_files
+  has_many          :events, :through => :event_files
   has_attached_file :data,
                     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
                     :url  => "/system/:attachment/:id/:style/:filename"
+
 
   # ----- Validations -----
   validates_uniqueness_of :data_file_name
@@ -111,9 +114,6 @@ end
 #  data_updated_at     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
-#  position            :integer
-#  event_id            :integer
-#  caption             :string(255)
 #  published           :boolean          default(FALSE)
 #
 

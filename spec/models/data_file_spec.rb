@@ -15,13 +15,25 @@ describe DataFile do
     before(:each) { @obj = DataFile.new                 }
     specify { @obj.should respond_to(:member_id)        }
     specify { @obj.should respond_to(:download_count)   }
-    specify { @obj.should respond_to(:position)         }
     specify { @obj.should respond_to(:published)        }
   end
 
   describe "Basic Object Creation" do
     it "should create a DataFile object in the database" do
       new_test_file[1].should be_valid
+      DataFile.count.should == 1
+    end
+  end
+
+  describe "Associations" do
+    before(:each) { @obj = DataFile.new              }
+    specify { @obj.should respond_to(:event_files)   }
+    specify { @obj.should respond_to(:events)        }
+  end
+
+  describe "Validations" do
+    context "basic" do
+      #it { should validate_uniqueness_of(:data_file_name) }
     end
   end
 
@@ -110,54 +122,22 @@ describe DataFile do
     end
   end
 
-  #describe "Associations" do
-  #  before(:each) { @obj = Event.new(valid_params)  }
-  #  specify { @obj.should respond_to(:leaders)      }
-  #  specify { @obj.should respond_to(:periods)      }
-  #end
-
-  #describe "Instance Methods" do
-  #  #before(:each) { @obj = Event.new }
-  #  #specify { @obj.should respond_to(:non_standard_typ?) }
-  #end
-
-  #describe "Validations" do
-  #  context "basic" do
-  #    it { should validate_presence_of(:typ)     }
-  #    it { should validate_presence_of(:title)   }
-  #    it { should validate_presence_of(:start)   }
-  #  end
-  #  it "handles valid event types" do
-  #    %w(meeting training operation community).each do |typ|
-  #      @obj = Event.new(valid_params.merge({typ: typ}))
-  #      @obj.should be_valid
-  #    end
-  #  end
-  #  it "handles invalid event types" do
-  #    @obj = Event.new(:typ => "unknown")
-  #    @obj.should_not be_valid
-  #  end
-  #end
-
 end
 
 # == Schema Information
 #
-# Table name: events
+# Table name: data_files
 #
-#  id          :integer          not null, primary key
-#  typ         :string(255)
-#  title       :string(255)
-#  leaders     :string(255)
-#  description :text
-#  location    :string(255)
-#  lat         :decimal(7, 4)
-#  lon         :decimal(7, 4)
-#  start       :datetime
-#  finish      :datetime
-#  all_day     :boolean          default(TRUE)
-#  published   :boolean          default(FALSE)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                  :integer          not null, primary key
+#  member_id           :integer
+#  download_count      :integer          default(0)
+#  data_file_extension :string(255)
+#  data_file_name      :string(255)
+#  data_file_size      :string(255)
+#  data_content_type   :string(255)
+#  data_updated_at     :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  published           :boolean          default(FALSE)
 #
 

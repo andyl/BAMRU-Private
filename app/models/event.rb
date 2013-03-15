@@ -35,11 +35,14 @@ class Event < ActiveRecord::Base
   has_many   :event_links,   :dependent => :destroy
   has_many   :event_photos,  :dependent => :destroy
   has_many   :event_reports, :dependent => :destroy
-  has_many   :data_files,    :dependent => :destroy
+
+  has_many   :event_files,   :dependent => :destroy
+  has_many   :data_files,    :through => :event_files
 
   # ----- Callbacks -----
 
-  after_save :update_participant_sign_in_times
+  after_save     :update_sign_in_times
+  before_destroy :delete_hanging_reference_items
 
   # ----- Validations -----
   validates_presence_of :typ, :title, :start
@@ -132,9 +135,13 @@ class Event < ActiveRecord::Base
     xa.sort.map {|x| x.to_label }.uniq
   end
 
-  # ----- Local Methods -----
+  # ----- Instance Methods -----
 
-  def update_participant_sign_in_times
+  def delete_hanging_reference_items
+    "TBD"
+  end
+
+  def update_sign_in_times
     return unless self.typ == "meeting"
     self.periods.each do |period|
       period.participants.each do |participant|
