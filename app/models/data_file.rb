@@ -33,8 +33,12 @@ class DataFile < ActiveRecord::Base
 
   # ----- Scopes -----
 
-  def self.with_filename(filename)
-    where(data_file_name: File.basename(filename))
+  def self.with_filename(filename, objid = nil)
+    if objid.nil?
+      where(data_file_name: File.basename(filename))
+    else
+      where(data_file_name: File.basename(filename)).where('id != ?', objid)
+    end
   end
 
   def self.with_filename_like(filename)
@@ -67,11 +71,11 @@ class DataFile < ActiveRecord::Base
     self.data_file_extension = File.extname(self.data_file_name).downcase.gsub('.','')
   end
 
-  private
-
   def duplicate_filename?
-    DataFile.with_filename(self.data_file_name).count > 0
+    DataFile.with_filename(self.data_file_name, self.id).count > 0
   end
+
+  private
 
   def increment_filename
     base = File.basename(self.data_file_name, '.*')

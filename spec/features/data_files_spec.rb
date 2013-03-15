@@ -21,14 +21,14 @@ describe "DataFiles", :capybara => true do
       click_button("Create Data file")
       DataFile.count.should == 1
       page.should have_content("BAMRU Files")
-      page.should have_content("asdf")
+      page.should have_content("asdf.txt")
     end
   end
 
   describe "file" do
     before(:each) do
       filename = "/tmp/asdf.txt"
-      system "date > #{filename}"
+      File.open(filename, 'w') {|f| f.puts "HI"}
       visit new_file_path
       attach_file("File", filename)
       click_button("Create Data file")
@@ -36,18 +36,20 @@ describe "DataFiles", :capybara => true do
     end
 
     it "shows the uploaded file" do
-      page.should have_content("asdf")
+      DataFile.count.should == 1
+      page.should have_content("asdf.txt")
       page.should have_content("TXT")
     end
 
     it "handles duplicate file names'" do
+      DataFile.count.should == 1
       filename = "/tmp/asdf.txt"
       visit new_file_path
       attach_file("File", filename)
       click_button("Create Data file")
+      DataFile.count.should == 2
       current_path.should == files_path
-      page.save_and_open_page
-      page.should have_content("asdf_")
+      page.should have_content("asdf_1.txt")
     end
   end
 

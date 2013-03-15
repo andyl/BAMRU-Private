@@ -87,9 +87,24 @@ describe DataFile do
     end
   end
 
+  describe "#duplicate_filename?" do
+    it "returns true with duplicates" do
+      path, _ = new_test_file
+      new_obj = DataFile.new(data: File.new(path))
+      new_obj.duplicate_filename?.should be_true
+    end
+    it "returns false without duplicates" do
+      path1, _ = new_test_file
+      path2 = "/tmp/asdf.txt"
+      File.open(path2, 'w') {|f| f.puts "HI"}
+      new_obj = DataFile.new(data: File.new(path2))
+      new_obj.duplicate_filename?.should_not be_true
+    end
+  end
+
   describe "Incrementing Filenames" do
     it "increments duplicate filenames" do
-      new_test_file
+      new_test_file[1].data_file_name.should == "test.txt"
       new_test_file[1].data_file_name.should == "test_1.txt"
       new_test_file[1].data_file_name.should == "test_2.txt"
     end
