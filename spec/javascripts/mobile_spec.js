@@ -7,7 +7,7 @@
 //= require jasmine-jquery-1_3_1
 //= require sinon-1_2_0
 
-//= require mobile/application
+//= require mobile/all_mobile
 
 //= require_tree ./chat2
 //= require_tree ./mobile1
