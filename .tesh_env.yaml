@@ -8,8 +8,8 @@
 - app/**/*.erb
 - lib/**/*.rb
 :app_exclude_pattern: []
-:test_pattern: mod/eventpho
-:test_files: spec/models/event_photo_spec.rb
+:test_pattern: eventfilesvc
+:test_files: spec/services/event_file_svc_spec.rb
 :test_line: 
 :command_args: 
 :command: zeus rspec -O spec/spec.opts

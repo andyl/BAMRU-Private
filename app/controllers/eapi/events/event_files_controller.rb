@@ -13,8 +13,9 @@ class Eapi::Events::EventFilesController < ApplicationController
   end
   
   def create
-    event_file = DataFile.create(params[:event_file])
-    respond_with event_file, opts
+    event_file = EventFileSvc.new(params[:event_file])
+    #respond_with event_file, opts
+    respond_with event_file
   end
   
   def update
