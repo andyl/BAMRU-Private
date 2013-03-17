@@ -71,6 +71,13 @@ describe EventFileSvc do
           @obj.data_file.should be_a DataFile
         end
 
+        it "returns the correct filename data" do
+          @obj.save
+          @obj.data_file_name.should == TESTFILE.split('/').last
+          @obj.data_url.should include TESTFILE.split('/').last
+          @obj.updated_at.should_not be_nil
+        end
+
       end
 
       describe "#update_attributes" do
@@ -142,8 +149,16 @@ describe EventFileSvc do
           tst_obj.id.should      == @obj.id
           tst_obj.should be_an EventFileSvc
         end
-      end
 
+        it "returns the correct filename data" do
+          @obj.save
+          tst_obj = EventFileSvc.find(@obj.id)
+          tst_obj.data_file_name.should == TESTFILE.split('/').last
+          tst_obj.data_url.should include TESTFILE.split('/').last
+          tst_obj.updated_at.should_not be_nil
+        end
+
+      end
 
       describe ".find_by_event" do
 
@@ -160,6 +175,14 @@ describe EventFileSvc do
           res = EventFileSvc.find_by_event(@event.id)
           res.length.should == 1
           res.first.should be_an EventFileSvc
+        end
+
+        it "returns valid attributes" do
+          @obj.save
+          res = EventFileSvc.find_by_event(@event.id).first
+          res.data_file_name.should == TESTFILE.split('/').last
+          res.data_url.should include TESTFILE.split('/').last
+          res.updated_at.should_not be_nil
         end
 
       end

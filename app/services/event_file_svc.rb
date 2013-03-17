@@ -8,10 +8,11 @@
 
 class EventFileSvc < ModestModel::Base
 
-  attributes :id                          # EventFile attributes
-  attributes :member_id, :data, :caption  # DataFile attributes
-  attributes :event_id                    # Event attributes
-  attributes :filepath                    # test helper...
+  # DataFile attributes
+  attributes :member_id, :data, :data_url, :caption, :data_file_name, :updated_at
+  attributes :id                                           # EventFile attributes
+  attributes :event_id                                     # Event attributes
+  attributes :filepath                                     # test helper...
 
   # ----- validations -----
 
@@ -88,6 +89,9 @@ class EventFileSvc < ModestModel::Base
   def create
     ef = create_event_file_object
     self.id = ef.id
+    self.data_file_name = data_file.data_file_name
+    self.updated_at     = data_file.updated_at
+    self.data_url       = data_file.data.url
   end
 
   def create_event_file_object
@@ -119,9 +123,12 @@ class EventFileSvc < ModestModel::Base
 
   def self.service_params(event_file_obj)
     {
-      "id"        => event_file_obj.id,
-      "caption"   => event_file_obj.data_file.caption,
-      "member_id" => event_file_obj.data_file.member_id
+      "id"              => event_file_obj.id,
+      "caption"         => event_file_obj.data_file.caption,
+      "member_id"       => event_file_obj.data_file.member_id,
+      "data_url"        => event_file_obj.data_file.data.url,
+      "data_file_name"  => event_file_obj.data_file.data_file_name,
+      "updated_at"      => event_file_obj.data_file.updated_at
     }
   end
 

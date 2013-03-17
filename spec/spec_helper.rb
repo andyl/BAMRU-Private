@@ -35,6 +35,10 @@ def basic_auth(user)
   ActionController::HttpAuthentication::Basic.encode_credentials user, "welcome"
 end
 
+def http_login(user, pw = "welcome")
+  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user,pw)
+end
+
 def login(member)
   visit login_path
   fill_in "user_name", :with => member.user_name

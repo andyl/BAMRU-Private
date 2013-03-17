@@ -5,8 +5,8 @@ class Eapi::Events::EventFilesController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> http://server/eapi/events/<event_id>/event_files.json
   def index
-    event = Event.find(params["event_id"])
-    respond_with event.data_files, opts
+    files = EventFileSvc.find_by_event(params["event_id"])
+    respond_with files, opts
   end
   
   def show
@@ -15,9 +15,8 @@ class Eapi::Events::EventFilesController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> -X POST http://server/eapi/events/<event_id>/event_files.json
   def create
-    event_file = EventFileSvc.new(params[:event_file])
-    #respond_with event_file, opts
-    respond_with event_file, opts
+    event_file = EventFileSvc.create(params[:event_file])
+    respond_with event_file
   end
 
   # curl -u <first>_<last>:<pwd> -X PUT http://server/eapi/events/<event_id>/event_files/<id>.json -d
@@ -33,10 +32,7 @@ class Eapi::Events::EventFilesController < ApplicationController
   private
 
   def opts
-    xopts = [:created_at, :position, :published, :data_content_type,
-             :data_file_size, :data_file_extension,
-             :download_count, :data_file_content_type,
-             :data_updated_at]
+    xopts = [:created_at]
 
     {except: xopts}
   end
