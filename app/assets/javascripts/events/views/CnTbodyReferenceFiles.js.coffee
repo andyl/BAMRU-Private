@@ -16,35 +16,33 @@ class BB.Views.CnTbodyReferenceFiles extends Backbone.Marionette.ItemView
     @bindTo(@collection, 'reset',  @render, this)
 
   events:
-    'click #addNewFile'       : 'showNewFileForm'
-    'click #cancelFileButton' : 'hideNewFileForm'
-    'click #createFileButton' : 'createFile'
-    'click .editFile'         : 'editFile'
-    'click .deleteFile'       : 'deleteFile'
-    'click #updateFileButton' : 'updateFile'
+    'click #addNewFile'         : 'showNewFileForm'
+    'click #cancelCreateButton' : 'hideNewFileForm'
+    'click #createFileButton'   : 'createFile'
+    'click .editFile'           : 'showUpdateFileForm'
+    'click #cancelUpdateButton' : 'hideUpdateFileForm'
+    'click .deleteFile'         : 'deleteFile'
+    'click #updateFileButton'   : 'updateFile'
 
   onShow: ->
-    console.log "doing it", $('#myForm')
-
+#    console.log "doing it FILE", $('#myForm')
 
   # ----- methods -----
 
   showNewFileForm: (ev) ->
     ev?.preventDefault()
-    @$el.find('#urlField, #capField').attr('value','')
+    @$el.find('#capCreateField').attr('value','')
     @$el.find('#createFileButton').show()
-    @$el.find('#updateFileButton').hide()
-    @$el.find('#fileForm').show()
-    @$el.find('#urlField').focus()
+    @$el.find('#fileCreateForm').show()
+    @$el.find('#fileUpdateForm').hide()
     @$el.find('#addNewFile').hide()
 
   hideNewFileForm: (ev) ->
     ev?.preventDefault()
-    @$el.find('#fileForm').hide()
+    @$el.find('#fileCreateForm').hide()
     @$el.find('#addNewFile').show()
 
   createFile: (ev) ->
-    console.log "CREATING FILE!!"
     ev?.preventDefault()
     fileOpts =
       beforeSubmit: (arr, form, options) ->
@@ -59,33 +57,35 @@ class BB.Views.CnTbodyReferenceFiles extends Backbone.Marionette.ItemView
         @render()
       error: (xhr, status, msg) ->
         console.log "ERROR", xhr, status, msg
-    $('#myFileForm').ajaxSubmit(fileOpts)
+    $('#myFileCreateForm').ajaxSubmit(fileOpts)
 
-  deleteFile: (ev) ->
-    ev?.preventDefault()
-    fileId = $(ev.target).data('id')
-    file = @collection.get(fileId).destroy()
-    @.render()
-
-  editFile: (ev) ->
+  showUpdateFileForm: (ev) ->
     ev?.preventDefault()
     fileId = $(ev.target).data('id')
     file   = @collection.get(fileId)
-    @$el.find('#urlField').attr('value', file.get('site_url'))
-    @$el.find('#capField').attr('value', file.get('caption'))
-    @$el.find('#createFileButton').hide()
-    @$el.find('#updateFileButton').show()
+    @$el.find('#capUpdateField').attr('value', file.get('caption')).focus()
     @$el.find('#updateFileButton').data('fileId', file.get('id'))
-    @$el.find('#fileForm').show()
-    @$el.find('#urlField').focus()
     @$el.find('#addNewFile').hide()
+    @$el.find('#fileCreateForm').hide()
+    @$el.find('#fileUpdateForm').show()
+
+  hideUpdateFileForm: (ev) ->
+    ev?.preventDefault()
+    @$el.find('#addNewFile').show()
+    @$el.find('#fileUpdateForm').hide()
 
   updateFile: (ev) ->
     ev?.preventDefault()
     fileId = $(ev.target).data('fileId')
     file   = @collection.get(fileId)
     opts =
-      site_url: $('#urlField').val()
-      caption:  $('#capField').val()
+      caption:  $('#capUpdateField').val()
     file.save(opts)
     @.render()
+
+  deleteFile: (ev) ->
+    ev?.preventDefault()
+    if confirm("Are you sure you want to remove this file?")
+      fileId = $(ev.target).data('id')
+      file = @collection.get(fileId).destroy()
+      @.render()

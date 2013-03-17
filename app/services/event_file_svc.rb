@@ -8,11 +8,24 @@
 
 class EventFileSvc < ModestModel::Base
 
-  # DataFile attributes
-  attributes :member_id, :data, :data_url, :caption, :data_file_name, :updated_at
-  attributes :id                                           # EventFile attributes
-  attributes :event_id                                     # Event attributes
-  attributes :filepath                                     # test helper...
+  def self.cfg_params(event_file_object)
+      ef = event_file_object
+      df = event_file_object.data_file
+      {
+        "id"             => ef.id,
+        "caption"        => df.caption,
+        "member_id"      => df.member_id,
+        "data_url"       => df.data.url,
+        "data_file_name" => df.data_file_name,
+        "updated_at"     => [ef.updated_at, df.updated_at].max
+      }
+  end
+
+  attributes :member_id, :data, :data_url, :caption   # DataFile attributes
+  attributes :data_file_name, :updated_at             # DataFile attributes
+  attributes :id                                      # EventFile attributes
+  attributes :event_id                                # Event attributes
+  attributes :filepath                                # test helper...
 
   # ----- validations -----
 
@@ -87,11 +100,7 @@ class EventFileSvc < ModestModel::Base
   # ----- private instance methods -----
 
   def create
-    ef = create_event_file_object
-    self.id = ef.id
-    self.data_file_name = data_file.data_file_name
-    self.updated_at     = data_file.updated_at
-    self.data_url       = data_file.data.url
+    assign_attributes self.class.cfg_params(create_event_file_object)
   end
 
   def create_event_file_object
@@ -121,19 +130,8 @@ class EventFileSvc < ModestModel::Base
 
   # ----- private class methods -----
 
-  def self.service_params(event_file_obj)
-    {
-      "id"              => event_file_obj.id,
-      "caption"         => event_file_obj.data_file.caption,
-      "member_id"       => event_file_obj.data_file.member_id,
-      "data_url"        => event_file_obj.data_file.data.url,
-      "data_file_name"  => event_file_obj.data_file.data_file_name,
-      "updated_at"      => event_file_obj.data_file.updated_at
-    }
-  end
-
   def self.service_object(event_file_obj)
-    new(service_params(event_file_obj))
+    new(cfg_params(event_file_obj))
   end
 
 end

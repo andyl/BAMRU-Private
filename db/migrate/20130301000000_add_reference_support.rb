@@ -5,6 +5,7 @@ class AddReferenceSupport < ActiveRecord::Migration
       create_table :event_files do |t|
         t.integer :event_id
         t.integer :data_file_id
+        t.timestamps
       end
 
       # renaming to make this operation reversible...

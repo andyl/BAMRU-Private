@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe EventFileSvc do
 
-  TESTFILE = "/tmp/testfile.txt"
+  TSTFILE = "/tmp/testfile.txt"
 
   before(:all) do
-    File.open(TESTFILE, 'w') {|f| f.puts "HI"}
+    File.open(TSTFILE, 'w') {|f| f.puts "HI"}
   end
 
   describe "basic object creation" do
@@ -14,7 +14,7 @@ describe EventFileSvc do
       {
         "member_id" => 1,
         "event_id"  => 1,
-        "filepath"  => TESTFILE,
+        "filepath"  => TSTFILE,
         "caption"   => "fast params"
       }
     end
@@ -33,7 +33,7 @@ describe EventFileSvc do
       {
         "member_id" => @member.id,
         "event_id"  => @event.id,
-        "filepath"  => TESTFILE,
+        "filepath"  => TSTFILE,
         "caption"   => "valid params"
       }
     end
@@ -73,8 +73,8 @@ describe EventFileSvc do
 
         it "returns the correct filename data" do
           @obj.save
-          @obj.data_file_name.should == TESTFILE.split('/').last
-          @obj.data_url.should include TESTFILE.split('/').last
+          @obj.data_file_name.should == TSTFILE.split('/').last
+          @obj.data_url.should include TSTFILE.split('/').last
           @obj.updated_at.should_not be_nil
         end
 
@@ -153,8 +153,8 @@ describe EventFileSvc do
         it "returns the correct filename data" do
           @obj.save
           tst_obj = EventFileSvc.find(@obj.id)
-          tst_obj.data_file_name.should == TESTFILE.split('/').last
-          tst_obj.data_url.should include TESTFILE.split('/').last
+          tst_obj.data_file_name.should == TSTFILE.split('/').last
+          tst_obj.data_url.should include TSTFILE.split('/').last
           tst_obj.updated_at.should_not be_nil
         end
 
@@ -180,8 +180,8 @@ describe EventFileSvc do
         it "returns valid attributes" do
           @obj.save
           res = EventFileSvc.find_by_event(@event.id).first
-          res.data_file_name.should == TESTFILE.split('/').last
-          res.data_url.should include TESTFILE.split('/').last
+          res.data_file_name.should == TSTFILE.split('/').last
+          res.data_url.should include TSTFILE.split('/').last
           res.updated_at.should_not be_nil
         end
 

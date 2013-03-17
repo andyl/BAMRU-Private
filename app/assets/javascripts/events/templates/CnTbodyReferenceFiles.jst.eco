@@ -7,14 +7,36 @@
   </table>
 </div>
 
-<div id='fileForm' style='display: none;'>
-  <form id='myFileForm' data-remote='true' action='/eapi/events/<%= @id %>/event_files' method="post" enctype='multipart/form-data'>
+<div id='fileCreateForm' style='display: none;'>
+  <form id='myFileCreateForm' data-remote='true' action='/eapi/events/<%= @id %>/event_files' method="post" enctype='multipart/form-data'>
     <input name='event_file[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />
     <input name='event_file[event_id]'  value='<%= @id %>' type='hidden' />
-    <input id="fileField" type=file name='event_file[data]' size=40 placeholder='new url' tabindex="10" >
-    <input id="cancelFileButton" type="button" value="Cancel" tabindex="14" /><br/>
-    <input id="capField" type=text name='event_file[caption]'  size=40 placeholder='description' tabindex="12" >
-    <input id="createFileButton" type="button" value="Create File" tabindex="13" />
+    <table>
+      <tr>
+        <td>
+          <input id="fileCreateField" type=file name='event_file[data]' size=40 placeholder='new url' tabindex="10" >
+        </td>
+        <td>
+          <input id="cancelCreateButton" type="button" value="Cancel" tabindex="14" /><br/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="capCreateField" type=text name='event_file[caption]'  size=40 placeholder='description' tabindex="12" >
+        </td>
+        <td>
+          <input id="createFileButton" type="button" value="Create File" tabindex="13" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div id='fileUpdateForm' style='display: none;'>
+  <form id='myFileForm' data-remote='true' action='/eapi/events/<%= @id %>/event_files' method="post" enctype='multipart/form-data'>
+    <input id="capUpdateField" type=text name='event_file[caption]'  size=40 placeholder='description' tabindex="12" >
+    <input id="updateFileButton" type="button" value="Update" tabindex="13" />
+    <input id="cancelUpdateButton" type="button" value="Cancel" tabindex="14" /><br/>
   </form>
 </div>
 

@@ -21,12 +21,14 @@ class Eapi::Events::EventFilesController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> -X PUT http://server/eapi/events/<event_id>/event_files/<id>.json -d
   def update
-    respond_with DataFile.update(params[:id], params[:event_file])
+    svc = EventFileSvc.find(params[:id])
+    respond_with svc.update_attributes({caption: params["caption"]})
   end
 
   # curl -u <first>_<last>:<pwd> -X DELETE http://server/eapi/events/<event_id>/event_files/<id>.json
   def destroy
-    respond_with DataFile.destroy(params[:id])
+    svc = EventFileSvc.find(params[:id])
+    respond_with svc.destroy
   end
 
   private

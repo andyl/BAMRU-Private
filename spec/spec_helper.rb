@@ -1,7 +1,5 @@
 ENV["RAILS_ENV"] = 'test'
 
-puts "WHAT WHAT"
-
 require File.expand_path("../../config/environment", __FILE__)
 require 'launchy'
 require 'rspec/rails'

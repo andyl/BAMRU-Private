@@ -34,7 +34,6 @@ describe "/eapi/events/<event_id>/event_files" do
     it "workss" do
       get "/eapi/events/#{@event.id}/event_files.json", nil, auth_hash
       response.header["Content-Type"].should include "application/json"
-      puts response.body
       response.status.should == 200
     end
 

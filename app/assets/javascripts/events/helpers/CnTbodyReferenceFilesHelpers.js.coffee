@@ -1,23 +1,23 @@
 BB.Helpers.CnTbodyReferenceFilesHelpers =
   genFileRows: ->
-    authorLink = (link) ->
-      memId  = link.get('member_id')
+    authorLink = (file) ->
+      memId  = file.get('member_id')
       member = BB.members.get(memId)
       name   = member.shortName()
       "<a href='/members/#{memId}'>#{name}</a>"
-    editLink = (link) ->
-      "<a href='#' class='editLink' data-id='#{link.get('id')}'>Edit</a>"
-    deleteLink = (link) ->
-      "<a href='#' class='deleteLink' data-id='#{link.get('id')}'>Delete</a>"
-    rowHtml = (link) ->
+    editLink = (file) ->
+      "<a href='#' class='editFile' data-id='#{file.get('id')}'>Edit</a>"
+    deleteLink = (file) ->
+      "<a href='#' class='deleteFile' data-id='#{file.get('id')}'>Delete</a>"
+    rowHtml = (file) ->
       """
       <tr>
-        <td><a href="/files/#{link.get('data_file_name')}" target="_blank">#{link.get('data_file_name')}</a></td>
-        <td>#{link.get('caption')}</td>
-        <td><nobr>#{authorLink(link)}</nobr></td>
-        <td><nobr>#{link.get('updated_at')?.split('T')[0]}</nobr></td>
-        <td align='center'><nobr>#{editLink(link)} | #{deleteLink(link)}</nobr></td>
+        <td><a href="/files/#{file.get('data_file_name')}" target="_blank">#{file.get('data_file_name')}</a></td>
+        <td>#{file.get('caption')}</td>
+        <td><nobr>#{authorLink(file)}</nobr></td>
+        <td><nobr>#{file.get('updated_at')?.split('T')[0]}</nobr></td>
+        <td align='center'><nobr>#{editLink(file)} | #{deleteLink(file)}</nobr></td>
        </tr>
        """
-    links = _.map @eventFiles.models, (link) -> rowHtml(link)
-    links.join('\n')
+    files = _.map @eventFiles.models, (file) -> rowHtml(file)
+    files.join('\n')

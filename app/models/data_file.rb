@@ -18,7 +18,7 @@ class DataFile < ActiveRecord::Base
 
   # ----- Associations -----
   belongs_to        :member
-  has_many          :event_files
+  has_many          :event_files, :dependent => :destroy
   has_many          :events, :through => :event_files
   has_attached_file :data,
                     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
