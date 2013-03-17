@@ -14,6 +14,7 @@ class DataFile < ActiveRecord::Base
   attr_accessible :data_updated_at
   attr_accessible :download_count
   attr_accessible :member_id
+  attr_accessible :caption
 
   # ----- Associations -----
   belongs_to        :member

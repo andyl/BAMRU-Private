@@ -16,8 +16,8 @@ gem "ruby-gmail", :require => "gmail"
 gem "gcal4ruby"
 
 # ----- database -----
-gem "yaml_db"
-gem "pg"
+gem "yaml_db"   # for backup and restore
+gem "pg"        # postgresql support
 
 # ----- services and protocols -----
 gem "faye",    "0.6.8"         # messaging-pub/sub infrastructure
@@ -33,10 +33,14 @@ gem "sprite-factory"
 gem "paperclip",      "3.3.1"
 gem "rmagick"
 
+# ----- Model Utilities -----
+gem "active_attr"   # streamlined ActiveModel support
+gem "modest_model"
+
 # ----- view utilities -----
-gem "rabl"
-gem "pngqr"          # generate QR codes
-gem "simple_form"
+gem "rabl"              # serialization
+gem "pngqr"             # generate QR codes
+gem "simple_form"       # form generation
 gem "dynamic_form"
 gem "draper", "0.18.0"
 
@@ -48,12 +52,12 @@ gem "cocaine"        # ???
 gem "parslet"        # address parsing
 gem "ancestry"       # ???
 gem "nokogiri"
-gem "fastercsv"
+gem "fastercsv"      # csv parsing
 gem "acts_as_api"
 gem "rb-readline"
 gem "em-http-request"
 gem "json", "~> 1.5.1"
-gem "exception_notification"
+gem "exception_notification"  # sends alert emails on 500 errors
 gem "bcrypt-ruby", "~> 3.0.0"
 
 # ----- mail -----

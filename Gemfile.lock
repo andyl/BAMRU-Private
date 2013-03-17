@@ -29,6 +29,9 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_attr (0.7.0)
+      activemodel (>= 3.0.2, < 4.1)
+      activesupport (>= 3.0.2, < 4.1)
     activemodel (3.2.12)
       activesupport (= 3.2.12)
       builder (~> 3.0.0)
@@ -200,6 +203,8 @@ GEM
     mime-types (1.21)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
+    modest_model (0.1.1)
+      activemodel (~> 3)
     multi_json (1.6.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -366,6 +371,7 @@ PLATFORMS
 
 DEPENDENCIES
   aalf!
+  active_attr
   acts_as_api
   ancestry
   annotate
@@ -409,6 +415,7 @@ DEPENDENCIES
   mail
   mail_view!
   mime
+  modest_model
   net-ssh (= 2.2.2)
   nokogiri
   paperclip (= 3.3.1)

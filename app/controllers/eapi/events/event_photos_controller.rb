@@ -3,6 +3,7 @@ class Eapi::Events::EventPhotosController < ApplicationController
 
   before_filter :authenticate_member_with_basic_auth!
 
+  # curl -u <first>_<last>:<pwd> http://server/eapi/events/<event_id>/event_photos.json
   def index
     event = Event.find(params["event_id"])
     respond_with event.event_photos, opts

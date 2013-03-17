@@ -10,11 +10,10 @@ describe EventFile do
     before(:each) { @obj = EventFile.new }
     specify { @obj.should respond_to(:event_id)             }
     specify { @obj.should respond_to(:data_file_id)         }
-    specify { @obj.should respond_to(:caption)              }
   end
 
   describe "Associations" do
-    before(:each) { @obj = EventFile.new(valid_params) }
+    before(:each) { @obj = EventFile.new               }
     specify { @obj.should respond_to(:event)           }
     specify { @obj.should respond_to(:data_file)       }
   end
