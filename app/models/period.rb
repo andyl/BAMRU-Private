@@ -8,20 +8,14 @@ class Period < ActiveRecord::Base
   has_many     :messages
   acts_as_list :scope => :position
 
-
   # ----- Callbacks -----
 
-  after_create   :create_smso_aar_event_report
+  after_create   :create_smso_aar, :create_internal_aar
   before_destroy :remove_all_message_references
-
 
   # ----- Validations -----
 
-
-
   # ----- Scopes -----
-
-
 
   # ----- Local Methods-----
 
@@ -44,16 +38,29 @@ class Period < ActiveRecord::Base
     participant.update_attributes return_home_at: Time.now
   end
 
-  # ----- reporting
+  # ----- reporting -----
 
-  def create_smso_aar_event_report
+  def create_smso_aar
     return if %w(social).include? self.event.typ
     if self.event_reports.smso_aars.all.empty?
-      title = self.event.typ == "meeting" ? "Meeting AAR" : "Period #{self.position} AAR"
+      title = self.event.typ == "meeting" ? "SMSO AAR - BAMRU Meeting " : "SMSO AAR - Period #{self.position}"
       opts = {typ: "smso_aar", event_id: self.event.id, title: title}
       opts[:unit_leader] = "John Chang"
       opts[:signed_by]   = "Eszter Tompos"
       opts[:description] = self.event.description
+      self.event_reports << EventReport.create(opts)
+    end
+  end
+
+  def create_internal_aar
+    return if %w(social).include? self.event.typ
+    return if self.event.typ == "meeting"
+    if self.event_reports.internal_aars.all.empty?
+      title = "Internal AAR - Period #{self.position}"
+      opts = {typ: "internal_aar", event_id: self.event.id, title: title}
+      opts[:unit_leader] = "John Chang"
+      opts[:signed_by]   = "TBD"
+      opts[:description] = "TBD"
       self.event_reports << EventReport.create(opts)
     end
   end

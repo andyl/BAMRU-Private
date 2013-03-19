@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+  <TITLE><%= @event_report.title %> - <%= @event_report.event.title %></TITLE>
+  <STYLE TYPE="text/css">
+    @page { margin-right: 1in; margin-top: 0.88in; margin-bottom: 0.75in }
+    @page:first { margin-top: 0.5in; margin-bottom: 0.75in }
+    P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    H1 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 0; orphans: 0 }
+    H1.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+    H1.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    H1.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+    H2 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    H2.western { font-family: "Times New Roman", serif; font-size: 20pt; so-language: en-US }
+    H2.cjk { font-family: "Times New Roman", serif; font-size: 20pt }
+    H2.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+    TD P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    TD P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    TD P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    TD P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    TH P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    TH P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    TH P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    TH P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    .labelCell {font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
+    .valueCell {font-family: "Times New Roman, serif"; font-size:10pt;}
+    .checkCell {font-family: "Times New Roman, serif"; font-size: 10pt; width: 12px; text-align: center;}
+    .topTable { width: 700px; border-collapse: collapse;}
+    .stdTable { width: 700px; border-collapse: collapse;}
+    .stdTable tr { width: 700px; }
+    .stdTable tr, .topTable tr {vertical-align: top;}
+    .topTable td, .stdTable th { border: 1px solid black; padding: 4px;}
+    .stdTable td, .topTable th { border: 1px solid black; padding: 4px; border-top: none; }
+    .headerRow { background: lightgrey; font-size: 6pt; }
+    .cellLabel { font-size: 6pt; margin-bottom: 10px; }
+    @media all {
+      .pageBreak      { margin-top: 10px; margin-bottom: 10px;}
+      .pageBreakLabel { text-align: center; padding: 2px; width: 700px; font-size: 8pt; background: lightgrey;}
+    }
+    @media print {
+      .pageBreak      { page-break-before: always;}
+      .pageBreakLabel { display: none;}
+    }
+  </STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<table width=700px; style='margin-bottom: 5px;'>
+  <tr>
+    <td><IMG SRC="/Logo_bamru.gif" height=120 /></td>
+    <td align="center">
+      <H1 CLASS="western">BAY AREA MOUNTAIN RESCUE UNIT</H1>
+      <div style="font-size: 20pt; margin-top: 10px; margin-bottom: 10px; padding: 5px; border: 1px solid black; background: #bfbfbf;">
+        INTERNAL AFTER ACTION REPORT
+      </div>
+      <i>CONFIDENTIAL - BAMRU Members Only</i>
+    </td>
+  </tr>
+</table>
+
+<table class='topTable'>
+  <tr>
+    <td class='labelCell' width=54>DATE:</td>
+    <td class='valueCell' width=175><%= event_date %></td>
+    <td class='labelCell' width=54>EVENT NAME:</td>
+    <td class='valueCell'><%= incident_name_with_period %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' width=130>LOCATION (CITY):</td>
+    <td class='valueCell'><%=  @event_report.event.location %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' colspan=2>TYPE OF EVENT:</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>TRAFFIC</td>
+    <td class='checkCell'><%= event_checkbox('community') %></td>
+    <td class='valueCell'>FAIR/COMMUNITY EVENT</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>PATROL</td>
+  </tr>
+  <tr>
+    <td class='checkCell'></td>
+    <td class='valueCell'>CEREMONIAL</td>
+    <td class='checkCell'><%= event_checkbox('meeting') %></td>
+    <td class='valueCell'>MEETING</td>
+    <td class='checkCell'><%= event_checkbox('training') %></td>
+    <td class='valueCell'>TRAINING</td>
+    <td class='checkCell'><%= event_checkbox('operation') %></td>
+    <td class='valueCell'>CALLOUT</td>
+  </tr>
+  <tr>
+    <td class='checkCell'></td>
+    <td class='valueCell'>ADMIN/MAINT.</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>TRANSPORTATION</td>
+    <td class='checkCell'></td>
+    <td class='valueCell'>UNABLE TO FULFILL</td>
+    <td class='checkCell'></td>
+    <td class='valueCell' colspan=2>OTHER</td>
+  </tr>
+</table>
+<table class='stdTable'>
+  <tr class='headerRow'>
+    <td>UNIT</td>
+    <td># OF PEOPLE</td>
+    <td>X</td>
+    <td># OF HRS EACH</td>
+    <td>=</td>
+    <td>TOTAL HOURS</td>
+    <td>UNIT</td>
+    <td># OF PEOPLE</td>
+    <td>X</td>
+    <td># OF HRS EACH</td>
+    <td>=</td>
+    <td>TOTAL HOURS</td>
+  </tr>
+  <tr>
+    <%= unit_hours "air squad" %>
+    <td class='valueCell' colspan=6><u>PAID PERSONNEL</u></td>
+  </tr>
+  <tr>
+    <td class='valueCell'>BAMRU:</td>
+    <td class='valueCell'><%= num_participants %></td>
+    <td class='valueCell'>X</td>
+    <td class='valueCell'><%= average_hours %></td>
+    <td class='valueCell'>=</td>
+    <td class='valueCell'><%= total_hours %></td>
+    <%= unit_hours "cliff rescue" %>
+  </tr>
+  <%= multi_unit_hours %>
+  <tr>
+    <%= unit_hours "tech rescue" %>
+    <td class='labelCell'>TOTAL PEOPLE:</td>
+    <td class='valueCell' colspan=2><%= num_participants %></td>
+    <td class='labelCell' colspan=2>HOURS:</td>
+    <td class='valueCell'><%= total_hours %></td>
+  </tr>
+</table>
+
+<div style='width:700px;'>
+  <div style='padding: 20px'>
+    <div style='text-align: center; border-bottom: 1px solid black; font-weight: bold; font-style: italic;'>
+      Please explain any major events, problems, or injuries that occurred and/or comments.
+    </div>
+    <div style='padding: 10px; font-size: 12pt;'>
+      <%= @event_report.description %>
+    </div>
+  </div>
+</div>
+
+<table width='700px;'>
+  <tr>
+    <td align="center">SUBMITTED BY:</td>
+    <td style='text-align: center;'>
+      <div style='padding: 20px; border-bottom: 1px solid black;'><%= @event_report.signed_by %></div>
+      (PLEASE PRINT YOUR NAME)
+    </td>
+  </tr>
+</table>
+
+<div class='pageBreak'><div class='pageBreakLabel'> page break </div></div>
+
+<table class='topTable'>
+  <tr>
+    <td>
+      <h2 class='western'>PERSONNEL LOG</h2>
+    </td>
+    <td class='valueCell'><div class='cellLabel'>1. INCIDENT NAME</div><%= incident_name %></td>
+    <td class='valueCell'><div class='cellLabel'>2. DATE PREPARED</div><%= date_prepared %></td>
+    <td class='valueCell'><div class='cellLabel'>3. TIME PREPARED</div><%= time_prepared %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='valueCell'><div class='cellLabel'>4. UNIT NAME/DESIGNATOR</div>BAMRU</td>
+    <td class='valueCell'><div class='cellLabel'>5. UNIT LEADER & POSITION</div><%= @event_report.unit_leader %></td>
+    <td class='valueCell'><div class='cellLabel'>6. OPERATIONAL PERIOD</div><%= @event_report.period.position %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr class='headerRow'>
+    <td></td>
+    <td>NAME (PRINT)</td>
+    <td>ORGANIZATION</td>
+    <td>DATE/TIME IN</td>
+    <td>DATE/TIME OUT</td>
+    <td>ASSIGNMENT</td>
+  </tr>
+  <%= participant_rows %>
+</table>
+
+</BODY>
+</HTML>

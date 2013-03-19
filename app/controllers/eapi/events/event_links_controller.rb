@@ -4,24 +4,28 @@ class Eapi::Events::EventLinksController < ApplicationController
   before_filter :authenticate_member_with_basic_auth!
 
   def index
-    event = Event.find(params["event_id"])
-    respond_with event.event_links, opts
+    photos = EventLinkSvc.find_by_event(params["event_id"])
+    respond_with photos, opts
   end
   
   def show
-    respond_with EventLink.find(params[:id])
+    respond_with DataLink.find(params[:id])
   end
   
   def create
-    render :json => EventLink.create(params[:event_link])
+    params.delete_if { |key,_| ! %w(member_id event_id site_url caption).include? key }
+    event_link = EventLinkSvc.create(params)
+    respond_with event_link
   end
   
   def update
-    respond_with EventLink.update(params[:id], params[:event_link])
+    svc = EventLinkSvc.find(params[:id])
+    respond_with svc.update_attributes({site_url: params["site_url"], caption: params["caption"]})
   end
   
   def destroy
-    respond_with EventLink.destroy(params[:id])
+    svc = EventLinkSvc.find(params[:id])
+    respond_with svc.destroy
   end
 
   private

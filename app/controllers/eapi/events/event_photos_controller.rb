@@ -5,25 +5,27 @@ class Eapi::Events::EventPhotosController < ApplicationController
 
   # curl -u <first>_<last>:<pwd> http://server/eapi/events/<event_id>/event_photos.json
   def index
-    event = Event.find(params["event_id"])
-    respond_with event.event_photos, opts
+    photos = EventPhotoSvc.find_by_event(params["event_id"])
+    respond_with photos, opts
   end
   
   def show
-    respond_with EventPhoto.find(params[:id])
+    respond_with DataPhoto.find(params[:id])
   end
   
   def create
-    event_photo = EventPhoto.create(params[:event_photo])
-    respond_with event_photo, opts
+    event_photo = EventPhotoSvc.create(params[:event_photo])
+    respond_with event_photo
   end
   
   def update
-    respond_with EventPhoto.update(params[:id], params[:event_photo])
+    svc = EventPhotoSvc.find(params[:id])
+    respond_with svc.update_attributes({caption: params["caption"]})
   end
   
-  def destroy
-    respond_with EventPhoto.destroy(params[:id])
+  def destroy    svc = EventPhotoSvc.find(params[:id])
+    respond_with svc.destroy
+
   end
 
   private

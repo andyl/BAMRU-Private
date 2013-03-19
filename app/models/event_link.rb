@@ -1,41 +1,27 @@
 class EventLink < ActiveRecord::Base
 
+  # ----- Attributes -----
+  attr_accessible :event_id, :data_link_id
+
   # ----- Associations -----
   belongs_to   :event
-
-  has_attached_file :link_backup,
-    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-    :url  => "/system/:attachment/:id/:style/:filename"
+  belongs_to   :data_link
 
   # ----- Callbacks -----
 
-
-  # ----- Validations -----
-
-
   # ----- Scopes -----
 
+  # see http://railscasts.com/episodes/215-advanced-queries-in-rails-3
+  # aka 'non-guests'...
+  #scope :registered, -> { joins(:member).merge(Member.registered) }
 
-  # ----- Instance Methods-----
+  # for transit status...
+  #scope :has_not_left, -> { where('en_route_at is NULL')             }
+  #scope :has_left,     -> { where('en_route_at is not NULL')         }
+  #scope :is_en_route,  -> { has_left.where('return_home_at is NULL') }
+  #scope :has_returned, -> { where('return_home_at is not NULL')      }
 
-  def site_domain
-    self.site_url.split('/')[2]
-  end
-
-  def generate_backup
-    clean_domain = self.site_domain.gsub('.','_')
-    kit = PDFKit.new(self.site_url)
-    timestamp = Time.now.strftime("%Y-%m-%d_%H-%M")
-    filepath = "/tmp/#{clean_domain}_#{timestamp}.pdf"
-    kit.to_file(filepath)
-    self.link_backup = File.new(filepath, 'r')
-    self.save
-  end
-
-  def backup_url
-    self.link_backup.url
-  end
-
+  # ----- Instance Methods -----
 
 end
 
@@ -43,18 +29,10 @@ end
 #
 # Table name: event_links
 #
-#  id                       :integer          not null, primary key
-#  member_id                :integer
-#  event_id                 :integer
-#  site_url                 :string(255)
-#  caption                  :string(255)
-#  published                :boolean          default(FALSE)
-#  link_backup_file_name    :string(255)
-#  link_backup_content_type :string(255)
-#  link_backup_file_size    :integer
-#  link_backup_updated_at   :integer
-#  position                 :integer
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
+#  id           :integer          not null, primary key
+#  event_id     :integer
+#  data_link_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 

@@ -33,6 +33,7 @@ end
 #  id           :integer          not null, primary key
 #  event_id     :integer
 #  data_file_id :integer
-#  caption      :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 

@@ -32,12 +32,16 @@ class Event < ActiveRecord::Base
 
   belongs_to :leader,        :class_name => 'Member'
   has_many   :periods,       :dependent => :destroy
-  has_many   :event_links,   :dependent => :destroy
-  has_many   :event_photos,  :dependent => :destroy
   has_many   :event_reports, :dependent => :destroy
 
+  has_many   :event_photos,  :dependent => :destroy
+  has_many   :data_photos,   :through   => :event_photos
+
   has_many   :event_files,   :dependent => :destroy
-  has_many   :data_files,    :through => :event_files
+  has_many   :data_files,    :through   => :event_files
+
+  has_many   :event_links,   :dependent => :destroy
+  has_many   :data_links,    :through   => :event_links
 
   # ----- Callbacks -----
 

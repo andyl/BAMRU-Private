@@ -19,7 +19,7 @@ class DataFile < ActiveRecord::Base
   # ----- Associations -----
   belongs_to        :member
   has_many          :event_files, :dependent => :destroy
-  has_many          :events, :through => :event_files
+  has_many          :events,      :through => :event_files
   has_attached_file :data,
                     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
                     :url  => "/system/:attachment/:id/:style/:filename"
@@ -115,6 +115,9 @@ end
 #  data_updated_at     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
+#  killme1             :integer
+#  killme2             :integer
+#  caption             :string(255)
 #  published           :boolean          default(FALSE)
 #
 

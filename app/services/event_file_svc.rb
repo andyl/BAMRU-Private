@@ -108,7 +108,6 @@ class EventFileSvc < ModestModel::Base
     opts = {
         data_file_id: df_obj.id,
         event_id:     self.event_id,
-        caption:      self.caption
     }
     EventFile.create opts
   end

@@ -60,6 +60,8 @@ Zn::Application.routes.draw do
   resources  :event_reports
 
   resources :event_file_svcs
+  resources :event_photo_svcs
+  resources :event_link_svcs
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 

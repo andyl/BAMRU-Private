@@ -47,10 +47,11 @@ class BB.Views.CnTbodyReferenceFiles extends Backbone.Marionette.ItemView
     fileOpts =
       beforeSubmit: (arr, form, options) ->
         console.log "SUBMITTING", arr, form, options
-      beforeSend: (xhr) ->
-        console.log "SEND", xhr
-      success: (data, status) =>
+      beforeSend: (xhr) =>
+        @$el.find("#fileLoadingMsg").show()
         @hideNewFileForm()
+      success: (data, status) =>
+        @$el.find("#fileLoadingMsg").hide()
         file = new BB.Models.EventFile(data)
         file.urlRoot = "/eapi/events/#{@model.get('id')}/event_files"
         @collection.add(file)

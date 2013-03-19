@@ -7,6 +7,10 @@
   </table>
 </div>
 
+<div id="fileLoadingMsg" style='display: none; padding: 5px; font-weight: bold; background:  lightgreen;'>
+  LOADING...
+</div>
+
 <div id='fileCreateForm' style='display: none;'>
   <form id='myFileCreateForm' data-remote='true' action='/eapi/events/<%= @id %>/event_files' method="post" enctype='multipart/form-data'>
     <input name='event_file[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />

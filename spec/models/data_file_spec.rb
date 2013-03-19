@@ -138,6 +138,9 @@ end
 #  data_updated_at     :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
+#  killme1             :integer
+#  killme2             :integer
+#  caption             :string(255)
 #  published           :boolean          default(FALSE)
 #
 
