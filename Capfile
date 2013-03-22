@@ -60,6 +60,7 @@ namespace :deploy do
       find_servers_for_task(current_task).each do |server|
         run_locally "rsync -vr public/assets #{user}@#{server.host}:#{shared_path}/"
       end
+      run "cd #{current_release} ; cp public/assets/manifest.yml ."
     end
   end
 end
