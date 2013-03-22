@@ -84,7 +84,13 @@ gem "awesome_print", :require => "ap"
 # ----- vagrant support -----
 gem "ghost"             # manages /etc/hosts for testing
 
-group :assets do
+#group :assets do
+#
+#end
+
+group :development, :test do
+
+  # ----- assets -----
   gem "sass"
   gem "sass-rails",   "~> 3.2.3"
   gem "coffee-rails", "~> 3.2.1"
@@ -93,9 +99,6 @@ group :assets do
 
   gem "uglifier", ">= 1.0.3"
   gem "therubyracer", :platforms => :ruby
-end
-
-group :development, :test do
 
   # ----- misc -----
   gem "zeus", "0.13.3"    # environment pre-loader
