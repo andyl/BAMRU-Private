@@ -8,6 +8,7 @@
 .sass-cache/*
 .sass-cache/**/*
 .rbenv-vars-*
+.test-env.yaml
 log
 log/*
 db/data.yml
