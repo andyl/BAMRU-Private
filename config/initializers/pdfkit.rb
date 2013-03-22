@@ -1,5 +1,5 @@
 PDFKit.configure do |config|
-  config.wkhtmltopdf = 'xvfb-run wkhtmltopdf'
+  config.wkhtmltopdf = Rails.root.join('script', 'wkhtmltopdf').to_s
   # config.default_options = {
   #   :page_size => 'Legal',
   #   :print_media_type => true
