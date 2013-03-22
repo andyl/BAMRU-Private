@@ -48,7 +48,7 @@
       </tr>
     </table>
   </div>
-  <% unless Rails.env.production? %>
+  <% if Rails.env.development? %>
     <div id="debug_footer" style='text-align: center;'>
       <div class="debug"><%= raw debug_footer_text %></div>
     </div>
