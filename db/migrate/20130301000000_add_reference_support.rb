@@ -7,6 +7,7 @@ class AddReferenceSupport < ActiveRecord::Migration
       create_table :event_files do |t|
         t.integer :event_id
         t.integer :data_file_id
+        t.text    :keyval
         t.timestamps
       end
 
@@ -21,6 +22,7 @@ class AddReferenceSupport < ActiveRecord::Migration
       create_table :event_photos do |t|
         t.integer :event_id
         t.integer :data_photo_id
+        t.text    :keyval
         t.timestamps
       end
 
@@ -43,6 +45,7 @@ class AddReferenceSupport < ActiveRecord::Migration
       create_table :event_links do |t|
         t.integer :event_id
         t.integer :data_link_id
+        t.text    :keyval
         t.timestamps
       end
 

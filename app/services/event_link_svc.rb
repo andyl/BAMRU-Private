@@ -17,6 +17,7 @@ class EventLinkSvc < ModestModel::Base
         "member_id"       => dl.member_id,
         "site_url"        => dl.site_url,
         "backup_url"      => dl.backup_url,
+        "periods"         => el.periods,
         "updated_at"      => [el.updated_at, dl.updated_at].max
       }
   end
@@ -24,7 +25,7 @@ class EventLinkSvc < ModestModel::Base
   attributes :member_id, :caption     # DataLink attributes
   attributes :updated_at              # DataLink attributes
   attributes :site_url, :backup_url   # DataLink attributes
-  attributes :id                      # EventLink attributes
+  attributes :id, :periods            # EventLink attributes
   attributes :event_id                # Event attributes
 
   # ----- validations -----
@@ -37,7 +38,8 @@ class EventLinkSvc < ModestModel::Base
     if new_record?
       create
     else
-      image_file.update_attributes(caption: self.caption)
+      data_link.update_attributes(caption: self.caption)
+      event_link.update_attributes(periods: self.periods)
     end
   end
 
@@ -108,6 +110,7 @@ class EventLinkSvc < ModestModel::Base
     opts = {
         data_link_id: dp_obj.id,
         event_id:     self.event_id,
+        periods:      self.periods,
     }
     EventLink.create opts
   end

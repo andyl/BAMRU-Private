@@ -8,8 +8,9 @@
 - app/**/*.erb
 - lib/**/*.rb
 :app_exclude_pattern: []
-:test_pattern: 
-:test_files: 
+:test_pattern: link
+:test_files: spec/services/event_link_svc_spec.rb spec/requests/eapi/events/event_links_request_spec.rb
+  spec/models/event_link_spec.rb spec/models/data_link_spec.rb spec/controllers/eapi/events/event_links_controller_spec.rb
 :test_line: 
 :command_args: 
 :command: zeus rspec -O spec/spec.opts

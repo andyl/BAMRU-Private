@@ -1,6 +1,9 @@
 class EventPhoto < ActiveRecord::Base
 
   # ----- Attributes -----
+
+  store :keyval, accessors: [:periods]
+
   attr_accessible :event_id, :data_photo_id
 
   # ----- Associations -----

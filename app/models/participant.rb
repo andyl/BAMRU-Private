@@ -57,6 +57,12 @@ class Participant < ActiveRecord::Base
     ((self.signed_out_at - self.signed_in_at) / 60).round
   end
 
+  def sign_in_hours
+    mins = sign_in_minutes
+    return mins if mins == "TBD"
+    (mins / 60).round(1)
+  end
+
   def set_sign_in_times
     event = self.period.try(:event)
     return unless event.try(:typ) == "meeting"

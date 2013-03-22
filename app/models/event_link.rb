@@ -1,6 +1,9 @@
 class EventLink < ActiveRecord::Base
 
   # ----- Attributes -----
+
+  store :keyval, accessors: [:periods]
+
   attr_accessible :event_id, :data_link_id
 
   # ----- Associations -----

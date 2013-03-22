@@ -9,7 +9,8 @@ describe EventLinkSvc do
         "member_id" => 1,
         "event_id"  => 1,
         "site_url"  => "http://news.ycombinator.com",
-        "caption"   => "fast params"
+        "caption"   => "fast params",
+        "periods"   => []
       }
     end
 
@@ -28,7 +29,8 @@ describe EventLinkSvc do
         "member_id" => @member.id,
         "event_id"  => @event.id,
         "site_url"  => "http://news.ycombinator.com",
-        "caption"   => "valid params"
+        "caption"   => "valid params",
+        "periods"   => [1,3]
       }
     end
 
@@ -115,6 +117,8 @@ describe EventLinkSvc do
       end
 
     end
+
+    describe ""
 
     describe "class methods" do
 

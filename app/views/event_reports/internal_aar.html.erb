@@ -26,7 +26,7 @@
     TH P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
     TH P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
     TH P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
-    .labelCell {font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
+    .labelCell {text-align: right; font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
     .valueCell {font-family: "Times New Roman, serif"; font-size:10pt;}
     .checkCell {font-family: "Times New Roman, serif"; font-size: 10pt; width: 12px; text-align: center;}
     .topTable { width: 700px; border-collapse: collapse;}
@@ -50,7 +50,7 @@
 <BODY LANG="en-US" TEXT="#000000" DIR="LTR">
 <table width=700px; style='margin-bottom: 5px;'>
   <tr>
-    <td><IMG SRC="/Logo_bamru.gif" height=120 /></td>
+    <td><IMG SRC="/Logo_bamru.gif" height=95 /></td>
     <td align="center">
       <H1 CLASS="western">BAY AREA MOUNTAIN RESCUE UNIT</H1>
       <div style="font-size: 20pt; margin-top: 10px; margin-bottom: 10px; padding: 5px; border: 1px solid black; background: #bfbfbf;">
@@ -63,107 +63,49 @@
 
 <table class='topTable'>
   <tr>
-    <td class='labelCell' width=54>DATE:</td>
-    <td class='valueCell' width=175><%= event_date %></td>
-    <td class='labelCell' width=54>EVENT NAME:</td>
+    <td class='labelCell' width=105>EVENT DATE</td>
+    <td class='valueCell' width=190><%= event_date("%b %d, %Y") %></td>
+    <td class='labelCell' width=105>EVENT NAME</td>
     <td class='valueCell'><%= incident_name_with_period %></td>
   </tr>
 </table>
 
 <table class='stdTable'>
   <tr>
-    <td class='labelCell' width=130>LOCATION (CITY):</td>
-    <td class='valueCell'><%=  @event_report.event.location %></td>
+    <td class='labelCell' width=105>LOCATION</td>
+    <td class='valueCell' width=190><%=  @event_report.event.location %></td>
+    <td class='labelCell' width=105>EVENT TYPE</td>
+    <td class='valueCell'><%=  event_label %></td>
   </tr>
 </table>
 
 <table class='stdTable'>
   <tr>
-    <td class='labelCell' colspan=2>TYPE OF EVENT:</td>
-    <td class='checkCell'></td>
-    <td class='valueCell'>TRAFFIC</td>
-    <td class='checkCell'><%= event_checkbox('community') %></td>
-    <td class='valueCell'>FAIR/COMMUNITY EVENT</td>
-    <td class='checkCell'></td>
-    <td class='valueCell'>PATROL</td>
-  </tr>
-  <tr>
-    <td class='checkCell'></td>
-    <td class='valueCell'>CEREMONIAL</td>
-    <td class='checkCell'><%= event_checkbox('meeting') %></td>
-    <td class='valueCell'>MEETING</td>
-    <td class='checkCell'><%= event_checkbox('training') %></td>
-    <td class='valueCell'>TRAINING</td>
-    <td class='checkCell'><%= event_checkbox('operation') %></td>
-    <td class='valueCell'>CALLOUT</td>
-  </tr>
-  <tr>
-    <td class='checkCell'></td>
-    <td class='valueCell'>ADMIN/MAINT.</td>
-    <td class='checkCell'></td>
-    <td class='valueCell'>TRANSPORTATION</td>
-    <td class='checkCell'></td>
-    <td class='valueCell'>UNABLE TO FULFILL</td>
-    <td class='checkCell'></td>
-    <td class='valueCell' colspan=2>OTHER</td>
+    <td class='labelCell' width=105>EVENT URL</td>
+    <td class='valueCell' width=190> http://<%=  request.host_with_port %>/events/<%=  @event_report.event.id %></td>
+    <td class='labelCell' width=105>REPORT URL</td>
+    <td class='valueCell'> http://<%=  request.host_with_port %>/events_reports/<%= @event_report.id %></td>
   </tr>
 </table>
+
 <table class='stdTable'>
-  <tr class='headerRow'>
-    <td>UNIT</td>
-    <td># OF PEOPLE</td>
-    <td>X</td>
-    <td># OF HRS EACH</td>
-    <td>=</td>
-    <td>TOTAL HOURS</td>
-    <td>UNIT</td>
-    <td># OF PEOPLE</td>
-    <td>X</td>
-    <td># OF HRS EACH</td>
-    <td>=</td>
-    <td>TOTAL HOURS</td>
-  </tr>
   <tr>
-    <%= unit_hours "air squad" %>
-    <td class='valueCell' colspan=6><u>PAID PERSONNEL</u></td>
-  </tr>
-  <tr>
-    <td class='valueCell'>BAMRU:</td>
-    <td class='valueCell'><%= num_participants %></td>
-    <td class='valueCell'>X</td>
-    <td class='valueCell'><%= average_hours %></td>
-    <td class='valueCell'>=</td>
-    <td class='valueCell'><%= total_hours %></td>
-    <%= unit_hours "cliff rescue" %>
-  </tr>
-  <%= multi_unit_hours %>
-  <tr>
-    <%= unit_hours "tech rescue" %>
-    <td class='labelCell'>TOTAL PEOPLE:</td>
-    <td class='valueCell' colspan=2><%= num_participants %></td>
-    <td class='labelCell' colspan=2>HOURS:</td>
-    <td class='valueCell'><%= total_hours %></td>
+    <td class='labelCell' width=105>DESCRIPTION</td>
+    <td class='valueCell'><%=  @event_report.event.description %></td>
   </tr>
 </table>
 
-<div style='width:700px;'>
-  <div style='padding: 20px'>
-    <div style='text-align: center; border-bottom: 1px solid black; font-weight: bold; font-style: italic;'>
-      Please explain any major events, problems, or injuries that occurred and/or comments.
-    </div>
-    <div style='padding: 10px; font-size: 12pt;'>
-      <%= @event_report.description %>
-    </div>
-  </div>
-</div>
-
-<table width='700px;'>
+<table class='stdTable'>
   <tr>
-    <td align="center">SUBMITTED BY:</td>
-    <td style='text-align: center;'>
-      <div style='padding: 20px; border-bottom: 1px solid black;'><%= @event_report.signed_by %></div>
-      (PLEASE PRINT YOUR NAME)
-    </td>
+    <td class='labelCell' width=105>PARTICIPANTS</td>
+    <td class='valueCell'><%= raw participant_list  %></td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' width=105>REPORT</td>
+    <td class='valueCell'><%=  raw @event_report.description.gsub("\n\n", "<p></p>") %></td>
   </tr>
 </table>
 
@@ -171,34 +113,47 @@
 
 <table class='topTable'>
   <tr>
-    <td>
-      <h2 class='western'>PERSONNEL LOG</h2>
-    </td>
-    <td class='valueCell'><div class='cellLabel'>1. INCIDENT NAME</div><%= incident_name %></td>
-    <td class='valueCell'><div class='cellLabel'>2. DATE PREPARED</div><%= date_prepared %></td>
-    <td class='valueCell'><div class='cellLabel'>3. TIME PREPARED</div><%= time_prepared %></td>
+    <td class='labelCell' width=105>HOURS</td>
+    <td class='valueCell'><%= raw internal_aar_hours %></td>
   </tr>
 </table>
 
+<% if @event_report.data["show_photos"] %>
 <table class='stdTable'>
   <tr>
-    <td class='valueCell'><div class='cellLabel'>4. UNIT NAME/DESIGNATOR</div>BAMRU</td>
-    <td class='valueCell'><div class='cellLabel'>5. UNIT LEADER & POSITION</div><%= @event_report.unit_leader %></td>
-    <td class='valueCell'><div class='cellLabel'>6. OPERATIONAL PERIOD</div><%= @event_report.period.position %></td>
+    <td class='labelCell' width=105>PHOTOS</td>
+    <td class='valueCell'>
+      <%= raw photo_gallery %>
+    </td>
   </tr>
 </table>
+<% end %>
 
+<% if @event_report.data["show_links"] %>
 <table class='stdTable'>
-  <tr class='headerRow'>
-    <td></td>
-    <td>NAME (PRINT)</td>
-    <td>ORGANIZATION</td>
-    <td>DATE/TIME IN</td>
-    <td>DATE/TIME OUT</td>
-    <td>ASSIGNMENT</td>
+  <tr>
+    <td class='labelCell' width=105>LINKS</td>
+    <td class='valueCell'>
+      <%= raw link_gallery %>
+    </td>
   </tr>
-  <%= participant_rows %>
 </table>
+<% end %>
+
+<% if @event_report.data["show_files"] %>
+<table class='stdTable'>
+  <tr>
+    <td class='labelCell' width=105>FILES</td>
+    <td class='valueCell'>
+      <%= raw file_gallery %>
+    </td>
+  </tr>
+</table>
+<% end %>
+
+<div style='margin-top: 15px;'>
+SUBMITTED BY: <%= @event_report.signed_by %>
+</div>
 
 </BODY>
 </HTML>

@@ -31,8 +31,8 @@ class EventReport < ActiveRecord::Base
 
   def template
     case self.typ
-      when "smso_aar" then "smso_aar.html"
-      when "smso_aar" then "internal_aar.html"
+      when "smso_aar"     then "smso_aar.html"
+      when "internal_aar" then "internal_aar.html"
       else "unknown.html"
     end
   end

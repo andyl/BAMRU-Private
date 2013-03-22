@@ -12,17 +12,19 @@ BB.Helpers.CnTbodyReportsHelpers =
     editReport = (link) ->
       linkClass = switch link.get('typ')
         when 'smso_aar' then "editReportSMSO"
+        when 'internal_aar' then "editReportInternal"
         else "editReport"
       "<a href='#' class='#{linkClass}' data-id='#{link.get('id')}'>Edit</a>"
     reportTyp = (link) ->
       typ = link.get('typ')
       switch typ
-        when "smso_aar" then "SMSO AAR"
+        when "smso_aar"     then "SMSO AAR"
+        when "internal_aar" then "Internal AAR"
         else "UNKNOWN"
     deleteReport = (link) ->
       "<a href='#' class='deleteReport' data-id='#{link.get('id')}'>Delete</a>"
     reportActions = (link) ->
-      if link.get('typ') == "smso_aar"
+      if _.include(["smso_aar", "internal_aar"], link.get('typ'))
         "#{editReport(link)}"
       else
         "#{editReport(link)} | #{deleteReport(link)}"

@@ -24,7 +24,6 @@ class DataFile < ActiveRecord::Base
                     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
                     :url  => "/system/:attachment/:id/:style/:filename"
 
-
   # ----- Validations -----
   validates_uniqueness_of :data_file_name
   validates_format_of     :data_file_name,      :with => /^[^ ]+$/

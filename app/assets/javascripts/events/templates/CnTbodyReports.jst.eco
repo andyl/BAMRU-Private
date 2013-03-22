@@ -9,7 +9,7 @@
 
 <div id='reportFormSmsoAar' class='editForm' style='display: none;'>
   <form>
-    <b style='margin-right: 250px;'>Edit SMSO Report</b>
+    <b style='margin-right: 250px;'>Edit SMSO AAR</b>
     <input id="smsoCancel"   class='formCancel' type="button" value="Cancel" />
     <input id="smsoUpdate"   type="button" value="Update" />
     <p></p>
@@ -19,6 +19,27 @@
     <input id="smsoUnitLead" type=text size=40 ><p></p>
     Major events, problems, injuries and/or comments:<br/>
     <textarea id="smsoDescript" cols=64 rows=8></textarea>
+  </form>
+</div>
+
+<div id='reportFormInternalAar' class='editForm' style='display: none;'>
+  <form>
+    <b style='margin-right: 250px;'>Edit Internal AAR</b>
+    <input id="internalCancel"   class='formCancel' type="button" value="Cancel" />
+    <input id="internalUpdate"   type="button" value="Update" />
+    <p></p>
+    Report Text:<br/>
+    <textarea id="internalDescript" cols=60 rows=8></textarea><p></p>
+    Show:
+        Files
+        <input id="showFiles" type="checkbox">
+        Photos
+        <input id="showPhotos" type="checkbox">
+        Links
+        <input id="showLinks"  type="checkbox">
+    <p></p>
+    Signed By:
+    <input id="internalSignedBy" type=text size=40 ><p></p>
   </form>
 </div>
 
