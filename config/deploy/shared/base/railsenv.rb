@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance(:must_exist).load do
   
-  before "keys:update", "railsenv:update"
+  before "keys:upload", "railsenv:update"
 
   namespace :railsenv do
 
