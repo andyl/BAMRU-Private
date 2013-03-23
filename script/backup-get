@@ -5,5 +5,5 @@ echo ----- download backup
 cap backup:download:all
 
 echo ----- restore backup
-spring rake ops:restore:all
+zeus rake ops:restore:all
 
