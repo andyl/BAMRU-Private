@@ -37,7 +37,7 @@ BB.Helpers.CnTbodyRosterOpPeriodHelpers =
 
   pdfField: ->
     ttip = "data-ttip='Generate printable roster'"
-    href = "href='/reports/#{@id}/DO-field.pdf'"
+    href = "href='/preports/#{@id}/DO-field.pdf'"
     "
     <div style='display: inline-block; padding-left: 15px;'> </div>
     <a id='pdfLink#{@id}' #{ttip} #{href} style='display: none; font-size: 7pt;' target='_blank'>pdf</a>

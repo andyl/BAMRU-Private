@@ -16,6 +16,8 @@ filter_params =
   columns:              ["category", "name", "type", "desc"]
 
 $(document).ready ->
-  $("#myTable").tablesorter(headers)
-  $("#myTable").tablesorterFilter(filter_params)
-  $("#filter-box").focus()
+  $("#myTable1").tablesorter(headers)
+  $("#myTable2").tablesorter(headers)
+#  $("#myTable").tablesorterFilter(filter_params)
+#  $("#filter-box").focus()
+
