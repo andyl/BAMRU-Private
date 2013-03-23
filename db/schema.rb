@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201000000) do
+ActiveRecord::Schema.define(:version => 20130301000000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -102,10 +102,37 @@ ActiveRecord::Schema.define(:version => 20130201000000) do
     t.string   "data_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
-    t.integer  "event_id"
+    t.integer  "killme1"
+    t.integer  "killme2"
     t.string   "caption"
     t.boolean  "published",           :default => false
+  end
+
+  create_table "data_links", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "site_url"
+    t.string   "caption"
+    t.boolean  "published",                :default => false
+    t.string   "link_backup_file_name"
+    t.string   "link_backup_content_type"
+    t.integer  "link_backup_file_size"
+    t.integer  "link_backup_updated_at"
+    t.integer  "position"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  create_table "data_photos", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "caption"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "image_updated_at"
+    t.integer  "position"
+    t.boolean  "published",          :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "distributions", :force => true do |t|
@@ -163,33 +190,28 @@ ActiveRecord::Schema.define(:version => 20130201000000) do
     t.datetime "updated_at"
   end
 
-  create_table "event_links", :force => true do |t|
-    t.integer  "member_id"
+  create_table "event_files", :force => true do |t|
     t.integer  "event_id"
-    t.string   "site_url"
-    t.string   "caption"
-    t.boolean  "published",                :default => false
-    t.string   "link_backup_file_name"
-    t.string   "link_backup_content_type"
-    t.integer  "link_backup_file_size"
-    t.integer  "link_backup_updated_at"
-    t.integer  "position"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.integer  "data_file_id"
+    t.text     "keyval"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "event_links", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "data_link_id"
+    t.text     "keyval"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "event_photos", :force => true do |t|
-    t.integer  "member_id"
     t.integer  "event_id"
-    t.string   "caption"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.integer  "image_updated_at"
-    t.integer  "position"
-    t.boolean  "published",          :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.integer  "data_photo_id"
+    t.text     "keyval"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "event_reports", :force => true do |t|
