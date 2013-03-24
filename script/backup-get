@@ -1,6 +1,7 @@
 function zrake {
   ZCMD="zeus"
   [ -z `which zeus` ] && ZCMD=""
+  echo "$ZCMD rake $1"
   $ZCMD rake $1
 }
 
