@@ -48,10 +48,11 @@ class BB.Views.CnTbodyReferenceLinks extends Backbone.Marionette.ItemView
       caption:   @$el.find('#capCreateField').val()
     link = new BB.Models.EventLink(opts)
     link.urlRoot = "/eapi/events/#{@model.get('id')}/event_links"
-    result = link.save()
+    opts =
+      success: => @collection.fetch()
+    result = link.save({}, opts)
     @collection.add(link)
     @.render()
-    @collection.fetch()
 
   showUpdateLinkForm: (ev) ->
     ev?.preventDefault()
