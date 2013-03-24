@@ -14,7 +14,7 @@ class EventLinkSvc < ModestModel::Base
       {
         "id"              => el.id,
         "caption"         => dl.try(:caption),
-        "member_id"       => dl.member_id,
+        "member_id"       => dl.try(:member_id),
         "site_url"        => dl.site_url,
         "backup_url"      => dl.backup_url,
         "periods"         => el.periods,
