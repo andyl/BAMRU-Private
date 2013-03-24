@@ -114,7 +114,13 @@ class EventLinkSvc < ModestModel::Base
 
   def create_data_link_object
     dl = DataLink.create(site_url: self.site_url, member_id: self.member_id, caption: self.caption)
+    puts '*' * 80
+    puts "DATALINK", dl
+    puts '*' * 80
     dl.generate_backup
+    puts '*' * 80
+    puts "BACKUP", dl
+    puts '*' * 80
     dl
   end
 
