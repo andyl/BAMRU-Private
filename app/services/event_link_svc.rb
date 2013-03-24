@@ -21,7 +21,8 @@ class EventLinkSvc < ModestModel::Base
       "member_id"       => dl.try(:member_id),
       "site_url"        => dl.try(:site_url),
       "backup_url"      => dl.try(:backup_url),
-      "updated_at"      => [el.updated_at, dl.try(:updated_at)].max
+      "updated_at"      => el.updated_at
+      #"updated_at"      => [el.updated_at, dl.try(:updated_at)].max
     }
   end
 
