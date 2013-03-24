@@ -9,16 +9,20 @@
 class EventLinkSvc < ModestModel::Base
 
   def self.cfg_params(event_link_object)
-      el = event_link_object
-      dl = event_link_object.data_link
-      {
-        "id"              => el.id,
-        "caption"         => dl.try(:caption),
-        "member_id"       => dl.try(:member_id),
-        "site_url"        => dl.try(:site_url),
-        "backup_url"      => dl.try(:backup_url),
-        "updated_at"      => [el.updated_at, dl.try(:updated_at)].max
-      }
+    puts '-' * 80
+    puts "EVLINK", event_link_object, event_link_object.data_link_id, event_link_object.data_link
+    puts '-' * 80
+    STDOUT.flush
+    el = event_link_object
+    dl = event_link_object.data_link
+    {
+      "id"              => el.id,
+      "caption"         => dl.try(:caption),
+      "member_id"       => dl.try(:member_id),
+      "site_url"        => dl.try(:site_url),
+      "backup_url"      => dl.try(:backup_url),
+      "updated_at"      => [el.updated_at, dl.try(:updated_at)].max
+    }
   end
 
   attributes :member_id, :caption     # DataLink attributes
@@ -104,9 +108,9 @@ class EventLinkSvc < ModestModel::Base
   end
 
   def create_event_link_object
-    dp_obj = create_data_link_object
+    dl_obj = create_data_link_object
     opts = {
-        data_link_id: dp_obj.id,
+        data_link_id: dl_obj.id,
         event_id:     self.event_id,
     }
     EventLink.create opts
