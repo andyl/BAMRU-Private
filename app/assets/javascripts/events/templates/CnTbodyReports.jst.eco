@@ -28,18 +28,17 @@
     <input id="internalCancel"   class='formCancel' type="button" value="Cancel" />
     <input id="internalUpdate"   type="button" value="Update" />
     <p></p>
-    Report Text:<br/>
-    <textarea id="internalDescript" cols=60 rows=8></textarea><p></p>
-    Show:
-        Files
-        <input id="showFiles" type="checkbox">
-        Photos
-        <input id="showPhotos" type="checkbox">
-        Links
-        <input id="showLinks"  type="checkbox">
-    <p></p>
     Signed By:
-    <input id="internalSignedBy" type=text size=40 ><p></p>
+    <input id="internalSignedBy" type=text size=30 >
+    <span style='margin-left: 20px;'>Files</span>
+    <input id="showFiles" type="checkbox">
+    Photos
+    <input id="showPhotos" type="checkbox">
+    Links
+    <input id="showLinks"  type="checkbox">
+    <p></p>
+    Report Text:<br/>
+    <textarea id="internalDescript" cols=62 rows=12></textarea>
   </form>
 </div>
 
