@@ -50,8 +50,8 @@ class BB.Views.CnTbodyReferenceLinks extends Backbone.Marionette.ItemView
     link.urlRoot = "/eapi/events/#{@model.get('id')}/event_links"
     result = link.save()
     @collection.add(link)
-    @collection.fetch()
     @.render()
+    @collection.fetch()
 
   showUpdateLinkForm: (ev) ->
     ev?.preventDefault()
