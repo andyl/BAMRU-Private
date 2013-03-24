@@ -15,9 +15,9 @@ class EventLinkSvc < ModestModel::Base
         "id"              => el.id,
         "caption"         => dl.try(:caption),
         "member_id"       => dl.try(:member_id),
-        "site_url"        => dl.site_url,
-        "backup_url"      => dl.backup_url,
-        "updated_at"      => [el.updated_at, dl.updated_at].max
+        "site_url"        => dl.try(:site_url),
+        "backup_url"      => dl.try(:backup_url),
+        "updated_at"      => [el.updated_at, dl.try(:updated_at)].max
       }
   end
 
@@ -115,11 +115,11 @@ class EventLinkSvc < ModestModel::Base
   def create_data_link_object
     dl = DataLink.create(site_url: self.site_url, member_id: self.member_id, caption: self.caption)
     puts '*' * 80
-    puts "DATALINK", dl
+    puts "DATALINK", dl, dl.site_url
     puts '*' * 80
     dl.generate_backup
     puts '*' * 80
-    puts "BACKUP", dl
+    puts "BACKUP", dl, dl.site_url, dl.backup_url
     puts '*' * 80
     dl
   end
