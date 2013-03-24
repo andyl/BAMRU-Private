@@ -117,10 +117,12 @@ class EventLinkSvc < ModestModel::Base
     puts '*' * 80
     puts "DATALINK", dl, dl.site_url
     puts '*' * 80
+    STDOUT.flush
     dl.generate_backup
     puts '*' * 80
     puts "BACKUP", dl, dl.site_url, dl.backup_url
     puts '*' * 80
+    STDOUT.flush
     dl
   end
 
