@@ -2,6 +2,8 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   after 'deploy:update', 'foreman:export'
   after 'deploy:update', 'foreman:restart'
+  after 'deploy:rollback', 'foreman:export'
+  after 'deploy:rollback', 'foreman:restart'
 
   namespace :foreman do
     desc "Export the Procfile to Ubuntu's upstart scripts"
