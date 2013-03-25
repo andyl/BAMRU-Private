@@ -29,7 +29,7 @@
     <input id="internalUpdate"   type="button" value="Update" />
     <p></p>
     Signed By:
-    <input id="internalSignedBy" type=text size=30 >
+    <input id="internalSignedBy" type=text size=20 >
     <span style='margin-left: 20px;'>Files</span>
     <input id="showFiles" type="checkbox">
     Photos
