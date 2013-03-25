@@ -12,8 +12,8 @@ set :web_port,    8500
 
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
-# set :default_stage, "vagrant"
-set :default_stage, "production"
+set :default_stage, "vagrant"
+# set :default_stage, "production"
 require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
@@ -56,10 +56,11 @@ namespace :deploy do
   namespace :assets do
     desc "Precompile assets on local machine then upload them to the server."
     task :precompile, roles: :web, except: {no_release: true} do
-      run_locally "rake assets:precompile"
+      run_locally "rake assets:precompile:primary RAILS_ENV=production"
       find_servers_for_task(current_task).each do |server|
         run_locally "rsync -vr public/assets #{user}@#{server.host}:#{shared_path}/"
       end
+      run "cd #{current_release} ; cp public/assets/manifest.yml ./assets_manifest.yml"
     end
   end
 end

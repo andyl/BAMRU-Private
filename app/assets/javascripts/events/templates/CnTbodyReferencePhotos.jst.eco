@@ -7,16 +7,42 @@
   </table>
 </div>
 
-<div id='photoForm' style='display: none;'>
-  <form id='myForm' data-remote='true' action='/eapi/events/<%= @id %>/event_photos' method="post" enctype='multipart/form-data'>
+<div id="photoLoadingMsg" style='display: none; padding: 5px; font-weight: bold; background:  lightgreen;'>
+  LOADING...
+</div>
+
+<div id='photoCreateForm' style='display: none;'>
+  <form id='myPhotoCreateForm' data-remote='true' action='/eapi/events/<%= @id %>/event_photos' method="post" enctype='multipart/form-data'>
     <input name='event_photo[member_id]' value="<%= BB.currentMember.get('id') %>" type='hidden' />
     <input name='event_photo[event_id]'  value='<%= @id %>' type='hidden' />
-    <input id="photoField" type=file name='event_photo[image]' size=40 placeholder='new url' tabindex="10" >
-    <input id="cancelPhotoButton" type="button" value="Cancel" tabindex="14" /><br/>
-    <input id="capField" type=text name='event_photo[caption]'  size=40 placeholder='description' tabindex="12" >
-    <input id="createPhotoButton" type="button" value="Create Photo" tabindex="13" />
+    <table>
+      <tr>
+        <td>
+          <input id="photoCreateField" type=file name='event_photo[image]' size=40 tabindex="10" >
+        </td>
+        <td>
+          <input id="cancelCreatePhotoButton" type="button" value="Cancel" tabindex="14" /><br/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="capCreateField" type=text name='event_photo[caption]'  size=40 placeholder='description' tabindex="12" >
+        </td>
+        <td>
+          <input id="createPhotoButton" type="button" value="Create Photo" tabindex="13" />
+        </td>
+      </tr>
+    </table>
   </form>
 </div>
+
+<div id='photoUpdateForm' style='display: none;'>
+  <form id='myPhotoForm' data-remote='true' action='/eapi/events/<%= @id %>/event_photos' method="post" enctype='multipart/form-data'>
+    <input id="capUpdateField" type=text name='event_photo[caption]'  size=40 placeholder='description' tabindex="12" >
+    <input id="updatePhotoButton" type="button" value="Update" tabindex="13" />
+    <input id="cancelUpdateButton" type="button" value="Cancel" tabindex="14" /><br/>
+  </form>
+</div>    
 
 <div id='photo-table'>
   <table class='mediaTable tablesorter' width=100%>

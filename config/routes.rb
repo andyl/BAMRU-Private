@@ -166,13 +166,14 @@ Zn::Application.routes.draw do
   post '/rsvp_templates/sort'            => "rsvp_templates#sort", :as => :sort_rsvp_templates
 
   get '/reports'                    => "reports#index"
-  get '/reports/gdocs/uploading'    => "reports#gdocs_uploading"
-  get '/reports/gdocs/auth'         => "reports#gdocs_auth"
-  get '/reports/gdocs/request'      => "reports#gdocs_request"
-  get '/reports/gdocs/show'         => "reports#gdocs_show"
-  get '/reports/gdocs/:title'       => "reports#gdocs_show"
-  get '/reports/:title'             => "reports#show"
-  get '/reports/:period_id/:title'  => "reports#show"
+  #get '/reports/gdocs/uploading'    => "reports#gdocs_uploading"
+  #get '/reports/gdocs/auth'         => "reports#gdocs_auth"
+  #get '/reports/gdocs/request'      => "reports#gdocs_request"
+  #get '/reports/gdocs/show'         => "reports#gdocs_show"
+  #get '/reports/gdocs/:title'       => "reports#gdocs_show"
+  get '/reports/:title'             => "reports#show_current_report"
+  get '/preports/:period_id/:title' => "reports#show_cperiod_report"
+  get '/hreports/:title'            => "reports#show_historical_report"
 
   get '/icon/:label.gif'         => "icon#show"
 

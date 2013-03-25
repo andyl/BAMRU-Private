@@ -9,23 +9,27 @@
 class EventLinkSvc < ModestModel::Base
 
   def self.cfg_params(event_link_object)
-      el = event_link_object
-      dl = event_link_object.data_link
-      {
-        "id"              => el.id,
-        "caption"         => dl.try(:caption),
-        "member_id"       => dl.member_id,
-        "site_url"        => dl.site_url,
-        "backup_url"      => dl.backup_url,
-        "periods"         => el.periods,
-        "updated_at"      => [el.updated_at, dl.updated_at].max
-      }
+    puts '-' * 80
+    puts "EVLINK", event_link_object, event_link_object.data_link_id, event_link_object.data_link
+    puts '-' * 80
+    STDOUT.flush
+    el = event_link_object
+    dl = event_link_object.data_link
+    {
+      "id"              => el.id,
+      "caption"         => dl.try(:caption),
+      "member_id"       => dl.try(:member_id),
+      "site_url"        => dl.try(:site_url),
+      "backup_url"      => dl.try(:backup_url),
+      "updated_at"      => el.updated_at
+      #"updated_at"      => [el.updated_at, dl.try(:updated_at)].max
+    }
   end
 
   attributes :member_id, :caption     # DataLink attributes
   attributes :updated_at              # DataLink attributes
   attributes :site_url, :backup_url   # DataLink attributes
-  attributes :id, :periods            # EventLink attributes
+  attributes :id                      # EventLink attributes
   attributes :event_id                # Event attributes
 
   # ----- validations -----
@@ -39,7 +43,6 @@ class EventLinkSvc < ModestModel::Base
       create
     else
       data_link.update_attributes(caption: self.caption)
-      event_link.update_attributes(periods: self.periods)
     end
   end
 
@@ -106,18 +109,25 @@ class EventLinkSvc < ModestModel::Base
   end
 
   def create_event_link_object
-    dp_obj = create_data_link_object
+    dl_obj = create_data_link_object
     opts = {
-        data_link_id: dp_obj.id,
+        data_link_id: dl_obj.id,
         event_id:     self.event_id,
-        periods:      self.periods,
     }
     EventLink.create opts
   end
 
   def create_data_link_object
     dl = DataLink.create(site_url: self.site_url, member_id: self.member_id, caption: self.caption)
+    puts '*' * 80
+    puts "DATALINK", dl, dl.site_url
+    puts '*' * 80
+    STDOUT.flush
     dl.generate_backup
+    puts '*' * 80
+    puts "BACKUP", dl, dl.site_url, dl.backup_url
+    puts '*' * 80
+    STDOUT.flush
     dl
   end
 

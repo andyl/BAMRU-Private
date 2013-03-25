@@ -7,13 +7,20 @@
   </table>
 </div>
 
-<div id='linkForm' style='display: none;'>
+<div id='linkCreateForm' style='display: none;'>
   <form>
     <input id="urlField" type=text name='site_url' size=40 placeholder='new url' tabindex="10" >
-    <input id="cancelLinkButton" type="button" value="Cancel" tabindex="14" /><br/>
-    <input id="capField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
+    <input id="cancelCreateLinkButton" type="button" value="Cancel" tabindex="14" /><br/>
+    <input id="capCreateField" type=text name='caption'  size=40 placeholder='description' tabindex="12" >
     <input id="createLinkButton" type="button" value="Create Link" tabindex="13" />
-    <input id="updateLinkButton" type="button" value="Update Link" tabindex="13" /><br/>
+  </form>
+</div>
+
+<div id='linkUpdateForm' style='display: none;'>
+  <form id='myLinkForm' data-remote='true' action='/eapi/events/<%= @id %>/event_links' method="post" enctype='multipart/form-data'>
+    <input id="capUpdateField" type=text name='event_link[caption]'  size=40 placeholder='description' tabindex="12" >
+    <input id="updateLinkButton" type="button" value="Update" tabindex="13" />
+    <input id="cancelUpdateButton" type="button" value="Cancel" tabindex="14" /><br/>
   </form>
 </div>
 

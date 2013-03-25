@@ -1,21 +1,35 @@
 <%= javascript_include_tag "reports/all_reports" %>
 
+<style>
+  table.tablesorter {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  table.zfont tbody td, table.zfont tbody th, table.tablesorter thead tr th {
+    font-size: 10px;
+  }
+</style>
+
 <div id=x_container>
   <div id=x_body>
     <div id=x_header>
       <table width=100%>
         <tr>
           <td align=left><b>Unit Reports</b></td>
+          <%#
           <td align=right>
             Search: <input name="filter" id="filter-box" value="" maxlength="20" size="20" type="text">
             <input id="filter-clear-button" type="submit" value="Clear"/>
           </td>
+          %>
         </tr>
       </table>
     </div>
+
     <div id=x_single_col>
 
-      <table id="myTable" class="tablesorter">
+      <div width=100% style='text-align: center;'>Current Reports</div>
+      <table id="myTable1" class="tablesorter zfont">
         <thead>
         <tr>
           <th width=65>Category</th>
@@ -26,7 +40,7 @@
         </tr>
         </thead>
         <tbody>
-          <% @report_list.each do |report| %>
+          <% @current_report_list.each do |report| %>
             <tr>
               <td><%= report[0] %></td>
               <td><%= report[1] %></td>
@@ -37,6 +51,32 @@
           <% end %>
         </tbody>
       </table>
+
+      <% if current_member.developer? %>
+      <div width=100% style='text-align: center;'>Historical Reports</div>
+      <table id="myTable2" class="tablesorter zfont">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @historical_report_list.each do |report| %>
+            <tr>
+              <td><%= report[0] %></td>
+              <td><%= report[1] %></td>
+              <td>TBD</td>
+              <td>TBD</td>
+              <td><a href="/hreports/<%= report[0] %>.html" target='_blank'>HTML</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
 
     </div>
     <div id=x_footer> </div>

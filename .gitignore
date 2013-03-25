@@ -9,6 +9,7 @@
 .sass-cache/**/*
 .rbenv-vars-*
 .test-env.yaml
+.vagrant
 log
 log/*
 db/data.yml

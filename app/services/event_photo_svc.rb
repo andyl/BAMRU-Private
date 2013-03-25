@@ -40,7 +40,7 @@ class EventPhotoSvc < ModestModel::Base
     if new_record?
       create
     else
-      image_file.update_attributes(caption: self.caption)
+      data_photo.update_attributes(caption: self.caption)
     end
   end
 

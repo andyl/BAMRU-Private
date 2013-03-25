@@ -1,8 +1,15 @@
+function zrake {
+  ZCMD="zeus"
+  [ -z `which zeus` ] && ZCMD=""
+  echo "$ZCMD rake $1"
+  $ZCMD rake $1
+}
+
 echo ----- drop the old database
-zeus rake db:drop
+ zrake db:drop
 
 echo ----- create a new database
-zeus rake db:create
+zrake db:create
 
 echo ----- load the backup
-zeus rake db:load
+zrake db:load

@@ -16,40 +16,66 @@ class BB.Views.CnTbodyReferenceLinks extends Backbone.Marionette.ItemView
     @bindTo(@collection, 'reset',  @render, this)
 
   events:
-    'click #addNewLink'       : 'showNewLinkForm'
-    'click #cancelLinkButton' : 'hideNewLinkForm'
-    'click #createLinkButton' : 'createLink'
-    'click .editLink'         : 'editLink'
-    'click .deleteLink'       : 'deleteLink'
-    'click #updateLinkButton' : 'updateLink'
+    'click #addNewLink'             : 'showNewLinkForm'
+    'click #cancelCreateLinkButton' : 'hideNewLinkForm'
+    'click #createLinkButton'       : 'createLink'
+    'click .editLink'                : 'showUpdateLinkForm'
+    'click #cancelUpdateButton'       : 'hideUpdateLinkForm'    
+    'click .deleteLink'             : 'deleteLink'
+    'click #updateLinkButton'       : 'updateLink'
 
   # ----- methods -----
 
   showNewLinkForm: (ev) ->
     ev?.preventDefault()
-    @$el.find('#urlField, #capField').attr('value','')
+    @$el.find('#capCreateField').attr('value','')
     @$el.find('#createLinkButton').show()
-    @$el.find('#updateLinkButton').hide()
-    @$el.find('#linkForm').show()
+    @$el.find('#linkCreateForm').show()
     @$el.find('#urlField').focus()
     @$el.find('#addNewLink').hide()
 
   hideNewLinkForm: (ev) ->
     ev?.preventDefault()
-    @$el.find('#linkForm').hide()
+    @$el.find('#linkCreateForm').hide()
     @$el.find('#addNewLink').show()
 
   createLink: (ev) ->
+    ev?.preventDefault()
     opts =
       member_id: BB.currentMember.get('id')
       event_id:  @model.get('id')
-      site_url:  $('#urlField').val()
-      caption:   $('#capField').val()
+      site_url:  @$el.find('#urlField').val()
+      caption:   @$el.find('#capCreateField').val()
     link = new BB.Models.EventLink(opts)
     link.urlRoot = "/eapi/events/#{@model.get('id')}/event_links"
-    result = link.save()
+    opts =
+      success: => @collection.fetch()
+    link.save({}, opts)
     @collection.add(link)
-    @collection.fetch()
+    @.render()
+
+  showUpdateLinkForm: (ev) ->
+    ev?.preventDefault()
+    linkId = $(ev.target).data('id')
+    link   = @collection.get(linkId)
+    @$el.find('#capUpdateField').attr('value', link.get('caption')).focus()
+    @$el.find('#updateLinkButton').data('linkId', link.get('id'))
+    @$el.find('#addNewLink').hide()
+    @$el.find('#linkCreateForm').hide()
+    @$el.find('#linkUpdateForm').show()
+
+  hideUpdateLinkForm: (ev) ->
+    ev?.preventDefault()
+    @$el.find('#addNewLink').show()
+    @$el.find('#linkUpdateForm').hide()    
+
+  updateLink: (ev) ->
+    ev?.preventDefault()
+    linkId = $(ev.target).data('linkId')
+    link   = @collection.get(linkId)
+    opts =
+      caption:  $('#capUpdateField').val()
+    link.save(opts)
     @.render()
 
   deleteLink: (ev) ->
@@ -57,26 +83,4 @@ class BB.Views.CnTbodyReferenceLinks extends Backbone.Marionette.ItemView
     linkId = $(ev.target).data('id')
     link = @collection.get(linkId).destroy()
     @.render()
-    
-  editLink: (ev) ->
-    ev?.preventDefault()
-    linkId = $(ev.target).data('id')
-    link   = @collection.get(linkId)
-    @$el.find('#urlField').attr('value', link.get('site_url'))
-    @$el.find('#capField').attr('value', link.get('caption'))
-    @$el.find('#createLinkButton').hide()
-    @$el.find('#updateLinkButton').show()
-    @$el.find('#updateLinkButton').data('linkId', link.get('id'))
-    @$el.find('#linkForm').show()
-    @$el.find('#urlField').focus()
-    @$el.find('#addNewLink').hide()
 
-  updateLink: (ev) ->
-    ev?.preventDefault()
-    linkId = $(ev.target).data('linkId')
-    link   = @collection.get(linkId)
-    opts =
-      site_url: $('#urlField').val()
-      caption:  $('#capField').val()
-    link.save(opts)
-    @.render()
