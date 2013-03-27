@@ -78,12 +78,15 @@
             <td valign="top" bgcolor="white">
               <table width=100%>
                 <tr>
-                  <td width=16% align=center><b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b></td>
-                  <td width=16% align=center><b><a target='_blank' href="/home/wiki">Wiki</a></b></td>
-                  <td width=16% align=center><b><%= link_to "Guests", '/guests'    %></b></td>
-                  <td width=16% align=center><b><%= link_to "Mobile", '/mobile'    %></b></td>
-                  <td width=16% align=center><b><%= link_to "Files",  '/files'     %></b></td>
-                  <td width=16% align=center><b><%= link_to "Labs",   '/home/labs' %></b></td>
+                  <td align=center>
+                    <b><a target='_blank' href="http://health.groups.yahoo.com/group/BAMRU">Forum</a></b> |
+                    <b><a target='_blank' href="/home/wiki">Wiki</a> </b> |
+                    <b><%= link_to "Guests",     '/guests'         %></b> |
+                    <b><%= link_to "Mobile",     '/mobile'         %></b> |
+                    <b><%= link_to "Files",      '/files'          %></b> |
+                    <b><%= link_to "Labs",       '/home/labs'      %></b> |
+                    <b><%= link_to "ChangeLog",  '/home/changelog' %></b> |
+                    <b><%= link_to "Roadmap",    '/home/roadmap'   %></b>
                 </tr>
               </table>
             </td>
