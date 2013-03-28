@@ -1,0 +1,105 @@
+<div id=x_container>
+  <div id=x_wide_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=33% align=left><b>BAMRU Unit Registry</b></td>
+          <td width=33% align=center></td>
+          <td width=33% align=right>
+            <% if current_member.developer? %>
+              <a href="/registry/roles">Roles</a>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+      <p></p>
+      <table class='tablesorter'>
+        <thead>
+        <tr>
+          <th>
+            Category
+          </th>
+          <th>
+            Ranks
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        </thead>
+        <tr>
+          <td width=120><a href="/registry/members">Member</a></td>
+          <td width=160>
+            TM-<%= Member.role_count("TM") %> : Technical Member<br/>
+            FM-<%= Member.role_count("FM") %> : Field Member<br/>
+            T-<%= Member.role_count("T") %> : Trainee<br/>
+            R-<%= Member.role_count("R") %> : Reserve<br/>
+            S-<%= Member.role_count("S") %> : Support<br/>
+            A-<%= Member.role_count("A") %> : Associate
+          </td>
+          <td>
+            <b>Members</b> can log into BAMRU.net and receive regular communications from BAMRU.<p></p>
+            There are <%= Member.active.count %> Active Members (TM, FM, T).  Active Members are paged for every callout.<p></p>
+            There are <%= Member.inactive.count %> Standby Members (R, S, A).  Standby Members are paged only in special circumstances.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/registry/member_alums">Member Alum</a><br/></td>
+          <td>MA-<%= Member.role_count("MA") %> : Member Alum</td>
+          <td>
+            <b>Member Alums</b> are formar Members who are no longer active with BAMRU.  Member Alumns can log into
+            BAMRU.net, and may receive periodic communications from BAMRU.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/registry/member_ncs">Member NoContact</a></td>
+          <td>MN-<%= Member.role_count("MN") %> : Member NoContact</td>
+          <td>
+            <b>Member NoContact</b> is for former BAMRU members who are no longer in contact with BAMRU.
+            The break in contact may have been initiated by the Member or by BAMRU.  Member NC's can not log into
+            BAMRU.net.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/registry/guests">Guest</a></td>
+          <td>G-<%= Member.role_count("G") %> : Guest</td>
+          <td>
+            <b>Guests</b> are prospective BAMRU members who are actively exploring the possibility of joining BAMRU
+            as a Member.  Guests receive regular communication from BAMRU.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/registry/guest_alums">Guest Alum</a></td>
+          <td>GA-<%= Member.role_count("GA") %> : Guest Alum</td>
+          <td>
+            <b>Guest Alums</b> are former guests who are not actively exploring the possibility of joining BAMRU
+            as a Member. Guest Alums receive periodic communication from BAMRU.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="/registry/guest_ncs">Guest NoContact</a></td>
+          <td>GN-<%= Member.role_count("GN") %> : Guest NoContact</td>
+          <td>
+            The <b>Guest No Contact</b> category is for former BAMRU guests who are no longer in contact with BAMRU.
+            The break in contact may have been initiated by the Guest or by BAMRU.
+          </td>
+        </tr>
+      </table>
+      <p></p>
+
+    </div>
+    <div id=x_footer style="font-size: 10pt;">
+      <table width=100% style="font-size: 10pt;">
+        <tr>
+          <td>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

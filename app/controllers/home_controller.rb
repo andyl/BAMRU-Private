@@ -77,4 +77,16 @@ class HomeController < ApplicationController
   def chrome_frame
   end
 
+  def changelog
+    @tgt_file   = Rails.root.to_s + "/CHANGELOG.md"
+    @partial    = Kramdown::Document.new(File.read(@tgt_file)).to_html
+    @updated_at = File.mtime(@tgt_file).strftime("%Y-%m-%d %H:%M")
+  end
+
+  def roadmap
+    @tgt_file   = Rails.root.to_s + "/ROADMAP.md"
+    @partial    = Kramdown::Document.new(File.read(@tgt_file)).to_html
+    @updated_at = File.mtime(@tgt_file).strftime("%Y-%m-%d %H:%M")
+  end
+
 end

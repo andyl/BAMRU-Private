@@ -186,6 +186,7 @@ GEM
     jsgem-jquery-ui (1.9.1.pre2)
     json (1.5.5)
     kgio (2.8.0)
+    kramdown (1.0.1)
     launchy (2.2.0)
       addressable (~> 2.3)
     letter_opener (1.1.0)
@@ -410,6 +411,7 @@ DEPENDENCIES
   jsgem-jquery-layout (= 1.3.0.pre2)
   jsgem-jquery-ui (= 1.9.1.pre2)
   json (~> 1.5.1)
+  kramdown
   launchy
   letter_opener
   mail

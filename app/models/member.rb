@@ -83,7 +83,7 @@ class Member < ActiveRecord::Base
   end
 
   def is_guest
-    typ == 'G' || typ == 'GX'
+    typ == 'G' || typ == 'GA' || typ == "GN"
   end
 
   # ----- Callbacks -----
@@ -108,9 +108,20 @@ class Member < ActiveRecord::Base
   scope :registered,             -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')")                      }
   scope :registered_last_name,   -> { where("typ in ('T', 'FM', 'TM', 'R', 'S', 'A')").order_by_last_name   }
   scope :inactive,               -> { where("typ in ('R', 'S', 'A')").standard_order                        }
+  scope :member_alums,           where("typ in ('MA')").standard_order
+  scope :member_no_contact,      -> { where("typ in ('MN')").standard_order                                 }
   scope :guests,                 where("typ in ('G')").standard_order
-  scope :all_guests,             where("typ in ('G', 'GX')").standard_order
-  scope :current_do,             -> { where(:current_do => true)                                            }
+  scope :guest_alums,            -> { where("typ in ('GA')").standard_order                                 }
+  scope :guest_no_contact,       -> { where("typ in ('GN')").standard_order                                 }
+  scope :current_do,             -> { where(:current_do => true)   }
+
+  def self.by_role(role)
+    where(:typ => role)
+  end
+
+  def self.role_count(role)
+    by_role(role).count
+  end
 
   # ----- Class Methods ----
   def self.set_do
@@ -424,17 +435,19 @@ class Member < ActiveRecord::Base
 
   def role_val(role)
     case role
-      when "Bd" then -2000
-      when "OL" then -1500
-      when "TM" then -1000
-      when "FM" then -800
-      when "T"  then -750
-      when "R"  then -500
-      when "S"  then -250
-      when "A"  then -100
-      when "G"  then -50
-      when "I"  then -25
-      when "GX" then -15
+      when "Bd"  then -2000   # board of directors
+      when "OL"  then -1500   # operations leader
+      when "TM"  then -1000   # technical member
+      when "FM"  then -800    # field member
+      when "T"   then -750    # trainee
+      when "R"   then -500    # reserve
+      when "S"   then -250    # support
+      when "A"   then -100    # associate
+      when "G"   then -50     # guest
+      when "MA" then -25      # member alum
+      when "GA" then -15      # guest alum
+      when "MN" then -10      # member no-contact
+      when "GN" then -5       # guest no-contact
       else 0
     end
   end

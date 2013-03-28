@@ -1,0 +1,37 @@
+<%= javascript_include_tag "guests/all_registry" %>
+
+<div id=x_container>
+  <div id=x_wide_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td width=33% align=left><b>Registry: Member Alumni</b></td>
+          <td width=33% align=center><a href="/registry">Unit Registry</a></td>
+          <td width=33% align=right>
+            Search: <input name="filter" id="filter-box" value="" maxlength="15" size="15" type="text">
+            <input id="filter-clear-button" type="submit" value="Clear"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=x_single_col>
+
+          <%= render :partial => 'registry_table' %>
+
+    </div>
+    <div id=x_footer style="font-size: 10pt;">
+      <table width=100% style="font-size: 10pt;">
+        <tr>
+          <td align=left style='font-size: 8pt;'>
+            Member Alumni (MA) are former members who are no longer active with the unit.<br/>
+            Member Alumni can log onto BAMRU.net, and may receive communication
+            from BAMRU periodically.
+          </td>
+          <td width=20% align=right>
+            <a href="#" id=clearsort>Clear Sort Settings</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

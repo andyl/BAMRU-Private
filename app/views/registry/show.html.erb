@@ -1,0 +1,95 @@
+<%= javascript_include_tag "registry/all_registry_show" %>
+<%= javascript_tag "var autoselectMemberNames = [];" %>
+
+
+<%= csrf_meta_tag %>
+
+<style>
+  .xhide, .xshow { font-size:  8pt; }
+  .xhide { display: none; }
+  .simple_form label.radio {width: auto; background:  lightblue; }
+  .vertical_align {display: block;}
+</style>
+
+<div id=x_container>
+  <div id=x_body>
+    <div id=x_header>
+      <table width=100%>
+        <tr>
+          <td align=left width=33%><%= raw show_label(@member) %></td>
+          <td align=center width=33%>
+            <% if can? :manage, @member %>
+                <%= raw registry_edit(@member) %>
+            <% end %>
+          </td>
+          <td align=right width=33%>
+            <%= raw registry_link(@member) %><br/><a href="/registry">Unit Registry</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id=mem_left_col>
+      <b><%= @member.full_name %></b><br/>
+      <div id="roleTag">
+        <%= @member.full_roles %>
+        <% if can? :manage, @member %>
+            <span id="updateLink" style='font-size: 8pt;'>(<a href="#">change</a>)</span>
+        <% end %>
+        <p></p>
+      </div>
+      <div id="updateForm" style='padding: 20px; margin-bottom: 10px; background-color: #fafad2; display: none;'>
+        Assign <%=   @member.first_name %> to a different role:<br/>
+        <%= raw member_typ_form(@member) %>
+      </div>
+
+      <%= raw show_oot_label(@member) %>
+      <%= raw @member.all_assoc %><p></p>
+      <p></p>
+      <b>Meetings (<%= @meetings.count %>)</b>
+      <span class='xhide' id='mDspH'>(<a href="#" data-tgt='mDsp'>hide</a>)</span>
+      <span class='xshow' id='mDspS'>(<a href="#" data-tgt='mDsp'>show</a>)</span>
+      <br/>
+      <div id="mDsp" class='xblok' style='display: none;'>
+        <%= raw show_events(@meetings) %>
+      </div>
+      <p></p>
+      <b>Trainings (<%= @trainings.count %>)</b>
+      <span class='xhide' id='tDspH'>(<a href="#" data-tgt='tDsp'>hide</a>)</span>
+      <span class='xshow' id='tDspS'>(<a href="#" data-tgt='tDsp'>show</a>)</span>
+      <br/>
+      <div id="tDsp" class='xblok' style='display: none;'>
+        <%= raw show_events(@trainings) %>
+      </div>
+      <p></p>
+      <b>Operations (<%= @operations.count %>)</b>
+      <span class='xhide' id='oDspH'>(<a href="#" data-tgt='oDsp'>hide</a>)</span>
+      <span class='xshow' id='oDspS'>(<a href="#" data-tgt='oDsp'>show</a>)</span>
+      <br/>
+      <div id="oDsp" class='xblok' style='display: none;'>
+        <%= raw show_events(@operations) %>
+      </div>
+      <p></p>
+      <b>Community (<%= @community.count %>)</b>
+      <span class='xhide' id='cDspH'>(<a href="#" data-tgt='cDsp'>hide</a>)</span>
+      <span class='xshow' id='cDspS'>(<a href="#" data-tgt='cDsp'>show</a>)</span>
+      <br/>
+      <div id="cDsp" class='xblok' style='display: none;'>
+        <%= raw show_events(@community) %>
+      </div>
+      <p></p>
+    </div>
+    <div id=mem_right_col style="text-align: center;">
+      <% unless @member.photos.length > 0 %><br/><p></p><b>Photos:</b><br/>TBD<% end %>
+      <% @member.photos.each do |pic| %>
+          <a href='<%= pic.image.url %>' target='_blank'>
+            <%= image_tag pic.image.url(:thumb) %>
+          </a><br/>
+      <% end %>
+    </div>
+    <div id=x_footer style='font-size: 10px;'>
+      <% if current_member.developer? %>
+          <%# link_to("Delete Guest", guest_path(@member), :confirm => "Are you sure?", :method => :delete) %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -35,7 +35,7 @@
       <%= render "shared/error_messages", :target => @member %>
       <%= f.text_field :full_name, :size => 28 %><br/>
       <% if (@member != current_member) || current_member.admin? %>
-        <%= f.select :typ, %w(TM FM T R S A) %>
+        <%= f.select :typ, %w(TM FM T R S A MA MN) %>
         Bd: <%= f.check_box('bd') %>
         OL: <%= f.check_box('ol') %>
         <span style="margin-left: 100px;">SysAdmin: <%= f.check_box('admin') %></span>

@@ -41,8 +41,9 @@ gem "modest_model"
 gem "rabl"              # serialization
 gem "pngqr"             # generate QR codes
 gem "simple_form"       # form generation
-gem "dynamic_form"
-gem "draper", "0.18.0"
+gem "kramdown"          # rendering markdown
+gem "dynamic_form"      # error message helpers
+gem "draper", "0.18.0"  # view decorators
 
 # ----- misc -----
 gem "aalf",      :git => "http://github.com/andyl/aalf.git"
