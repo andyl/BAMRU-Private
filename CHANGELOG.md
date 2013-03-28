@@ -1,5 +1,9 @@
 # BAMRU.net Change Log
 
+## 29 Mar 2013
+
+* Added Registry, with new roles for Alumni Members and Guests
+
 ## 24 Mar 2013
 
 * Added Event Reference materials (files, photos, links)
