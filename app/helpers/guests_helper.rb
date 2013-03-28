@@ -5,13 +5,13 @@ module GuestsHelper
     return "" if last_event.blank?
     label = last_event.start.strftime("%Y-%m-%d")
     target = "/events/#{last_event.id}/roster"
-    "<a href='#{target}'>#{label}</a>"
+    "<a href='#{target}' target='_blank'>#{label}</a>"
   end
 
   def show_event(event)
     label = "#{event.start.strftime("%Y-%m-%d")} <b>#{event.title}</b> @ #{event.location}"
     href  = "/events/#{event.id}/roster"
-    "<a href='#{href}'>#{label}</a><br/>"
+    "<a href='#{href}' target='_blank'>#{label}</a><br/>"
   end
 
   def show_events(events)

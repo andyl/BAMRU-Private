@@ -35,13 +35,17 @@
       <%= simple_form_for @guest, :url => "/guests/#{@guest.id}" do |gst| %>
         <%= render :partial => 'guest_form', locals: { gst: gst} %>
         <% if current_member.admin? %>
-          <%= gst.input :typ, as: 'radio', collection: [["T", "Trainee"], ["G", "Guest"], ["GX", "Inactive"]], label: "Member Type", label_method: :last, value_method: :first %>
+          <%= gst.input :typ, as: 'radio', collection: [["T", "Trainee"], ["G", "Guest"], ["GA", "Guest Alum"], ["GN", "Guest NoContact"]], label: "Member Type", label_method: :last, value_method: :first %>
         <% end %>
         <br/>
         <br/>
         <%= gst.button :submit, "Update Guest" %>
       <% end %>
     </div>
+
+    <style>
+      .simple_form label.radio {width: auto;}
+    </style>
 
     <div id=mem_right_col style="text-align: center;">
       <p/><%= (@guest.photos.count < 4) ? link_to("Add New Photo", new_member_photo_path(@guest)) : "Photos ( Max 4 )" %><p/>

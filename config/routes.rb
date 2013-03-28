@@ -19,6 +19,18 @@ Zn::Application.routes.draw do
   get "home/changelog"
   get "home/roadmap"
 
+  get  'registry' => "registry#index"
+  get  'registry/roles'
+  get  'registry/members'
+  get  'registry/member_alums'
+  get  'registry/member_ncs'
+  get  'registry/guests'
+  get  'registry/guest_alums'
+  get  'registry/guest_ncs'
+  get  'registry/show/:id'   => "registry#show"
+  get  'registry/edit/:id'   => "registry#edit"
+  post 'registry/update/:id' => "registry#update"
+
   get "public/calendar"
 
   get "preview/sms"
