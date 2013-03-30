@@ -123,6 +123,10 @@ class Member < ActiveRecord::Base
     by_role(role).count
   end
 
+  def self.by_last_name(last_name)
+    where(last_name: last_name).all.try(:first)
+  end
+
   # ----- Class Methods ----
   def self.set_do
     where(:current_do => true).all.each {|mem| mem.current_do = false ; mem.save}

@@ -8,7 +8,7 @@ describe "Certs", :capybara => true do
   end
 
   describe "GET /unit_certs" do
-    it "renders the page" do
+    it "renders the page", slow: true do
       visit unit_certs_path
       current_path.should == unit_certs_path
       page.should have_content('welcome Asdf')

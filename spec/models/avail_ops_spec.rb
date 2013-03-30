@@ -19,7 +19,7 @@ describe AvailOp do
     specify { @obj.should respond_to(:cleanup_dates)   }
   end
 
-  describe "validations" do
+  describe "validations", slow: true do
     before(:each) { @obj = AvailOp.new }
     specify { @obj.should validate_presence_of(:start_on)          }
     specify { @obj.should validate_presence_of(:end_on)            }

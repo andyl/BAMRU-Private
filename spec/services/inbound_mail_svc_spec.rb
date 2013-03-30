@@ -31,7 +31,7 @@ describe InboundMailSvc do
     InboundMailSvc.new.create_from_mail(Mail.new(tgt_args))
   end
 
-  describe "#gen_mail" do
+  describe "#gen_mail", slow: true do
     specify { gen_mail.should_not be_nil              }
     specify { gen_mail.class.should == InboundMail    }
     it "handles attribute over-ride" do
@@ -41,7 +41,7 @@ describe InboundMailSvc do
     end
   end
 
-  describe ".create_from_mail" do
+  describe ".create_from_mail", slow: true do
     specify { gen_mail("yes this is great").rsvp_answer.should   == "Yes"}
     specify { gen_mail("y this is great").rsvp_answer.should     == "Yes"}
     specify { gen_mail("this yes is great").rsvp_answer.should   == "Yes"}

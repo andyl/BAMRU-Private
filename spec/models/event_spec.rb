@@ -30,7 +30,7 @@ describe Event do
   end
 
   describe "Validations" do
-    context "basic" do
+    context "basic", slow: true do
       it { should validate_presence_of(:typ)     }
       it { should validate_presence_of(:title)   }
       it { should validate_presence_of(:start)   }
@@ -41,7 +41,7 @@ describe Event do
         @obj.should be_valid
       end
     end
-    it "handles invalid event types" do
+    it "handles invalid event types", slow: true do
       @obj = Event.new(:typ => "unknown")
       @obj.should_not be_valid
     end
@@ -54,7 +54,7 @@ describe Event do
         @obj = Event.new(valid_params.merge({lat: 31.22}))
         @obj.should_not be_valid
       end
-      it "is not valid with just lon filled" do
+      it "is not valid with just lon filled", slow: true do
         @obj = Event.new(valid_params.merge({lon: 31.22}))
         @obj.should_not be_valid
       end

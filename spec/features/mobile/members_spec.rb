@@ -6,7 +6,7 @@ describe "Members", :js => true, :capybara => true do
 #    #  get mobile1_path
 #    #  response.status.should be(302)
 #    #end
-    it "logs the user in" do
+    it "logs the user in", slow: true do
       user_name = "asdf_zxcv"
       Member.create!(:user_name => user_name)
       Member.count.should == 1

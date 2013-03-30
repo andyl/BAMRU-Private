@@ -9,7 +9,7 @@ describe TstService do
     end
     it "should really really work" do
       "what"
-      true
+      1.should == 1
     end
     it "should really super really work" do
       "what"

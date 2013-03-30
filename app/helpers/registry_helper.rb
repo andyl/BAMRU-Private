@@ -22,7 +22,7 @@ module RegistryHelper
   def render_fields(member, coll)
     coll.map do |row|
       chk = row[0].downcase == member.typ.downcase ? "checked='checked'" : ""
-      <<-EOF
+     <<-EOF
         <label>
           <input #{chk} name="member[typ]" type="radio" value="#{row[0]}">
           #{row[1]}

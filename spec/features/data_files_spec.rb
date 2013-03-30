@@ -8,12 +8,12 @@ describe "DataFiles", :capybara => true do
   end
 
   describe "files/new" do
-    it "renders the page" do
+    it "renders the page", slow: true do
       visit new_file_path
       current_path.should == new_file_path
       page.should have_content('Upload File')
     end
-    it "loads a file" do
+    it "loads a file", slow: true do
       filename = "/tmp/asdf.txt"
       system "date > #{filename}"
       visit new_file_path
@@ -35,13 +35,13 @@ describe "DataFiles", :capybara => true do
       visit (files_path)
     end
 
-    it "shows the uploaded file" do
+    it "shows the uploaded file", slow: true do
       DataFile.count.should == 1
       page.should have_content("asdf.txt")
       page.should have_content("TXT")
     end
 
-    it "handles duplicate file names'" do
+    it "handles duplicate file names'", slow: true do
       DataFile.count.should == 1
       filename = "/tmp/asdf.txt"
       visit new_file_path

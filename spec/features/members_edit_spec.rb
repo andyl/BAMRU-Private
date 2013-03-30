@@ -11,7 +11,7 @@ describe "Members/Edit", :capybara => true do
       visit edit_member_path(@member)
     end
 
-    it "renders the edit page" do
+    it "renders the edit page", slow: true do
       current_path.should == edit_member_path(@member)
     end
 

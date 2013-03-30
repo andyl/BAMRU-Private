@@ -10,7 +10,6 @@ describe EventLinkSvc do
         "event_id"  => 1,
         "site_url"  => "http://news.ycombinator.com",
         "caption"   => "fast params",
-        "periods"   => []
       }
     end
 
@@ -18,7 +17,6 @@ describe EventLinkSvc do
 
     specify { @obj.should be_valid            }
     specify { @obj.should_not be_nil          }
-    specify { @obj.new_record?.should be_true }
 
   end
 
@@ -30,7 +28,6 @@ describe EventLinkSvc do
         "event_id"  => @event.id,
         "site_url"  => "http://news.ycombinator.com",
         "caption"   => "valid params",
-        "periods"   => [1,3]
       }
     end
 
@@ -49,9 +46,7 @@ describe EventLinkSvc do
           EventLink.count.should == 0
           DataLink.count.should  == 0
           @obj.should be_valid
-          @obj.new_record?.should be_true
           @obj.save
-          @obj.new_record?.should_not be_true
           EventLink.count.should == 1
           DataLink.count.should  == 1
         end
@@ -80,7 +75,6 @@ describe EventLinkSvc do
         it "updates records..." do
           newcap = "HELLO THERE"
           @obj.update_attributes({'caption' => newcap})
-          @obj.new_record?.should_not be_true
           @obj.caption.should == newcap
           @obj.data_link.caption.should == newcap
         end
@@ -141,6 +135,7 @@ describe EventLinkSvc do
 
         it "returns one record" do
           @obj.save
+          @obj.id.should be_an Integer
           tst_obj = EventLinkSvc.find(@obj.id)
           tst_obj.caption.should == @obj.caption
           tst_obj.id.should      == @obj.id
