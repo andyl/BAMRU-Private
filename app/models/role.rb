@@ -35,17 +35,24 @@ class Role < ActiveRecord::Base
     by_typ(role).try(:first).try(:member)
   end
 
-  def self.assign_roles
-    names = [
+  def self.role_assignments
+    [
       %w(UL  Chang),
       %w(XO  Frantz),
       %w(OO  Barbour),
       %w(SEC Tompos),
       %w(TO  Kantarjiev),
       %w(RO  Farrand),
-      %w(TRS Hoagland)
+      %w(TRS Hoagland),
+      %w(REG Allen),
+      %w(WEB Leak)
     ]
-    names.each {|x| assign_role x.first, Member.by_last_name(x.last)}
+  end
+
+  def self.assign_roles
+    role_assignments.each do |x|
+      assign_role x.first, Member.by_last_name(x.last)
+    end
   end
 
   # ----- Local Methods-----
