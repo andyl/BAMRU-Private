@@ -20,6 +20,7 @@ Zn::Application.routes.draw do
   get "home/roadmap"
 
   get  'registry' => "registry#index"
+  get  'registry/alerts'
   get  'registry/roles'
   get  'registry/members'
   get  'registry/member_alums'
@@ -28,7 +29,6 @@ Zn::Application.routes.draw do
   get  'registry/guest_alums'
   get  'registry/guest_ncs'
   get  'registry/show/:id'   => "registry#show"
-  get  'registry/edit/:id'   => "registry#edit"
   post 'registry/update/:id' => "registry#update"
 
   get "public/calendar"

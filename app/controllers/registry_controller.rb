@@ -8,6 +8,9 @@ class RegistryController < ApplicationController
   def roles
   end
 
+  def alerts
+  end
+
   def members
     @label   = "Member"
     @members = Member.registered.standard_order

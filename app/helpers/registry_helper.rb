@@ -90,5 +90,26 @@ module RegistryHelper
     end
   end
 
+  def alert_rows
+    ev = %w(CreateGuest UpdateGuestRole CreateMember UpdateMemberRole CreateEvent UpdateEvent DeleteEvent)
+    ev.map do |x|
+      <<-EOF
+      <tr>
+        <td>#{x} </td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+        <td align=center>X</td>
+      </tr>
+      EOF
+    end.join
+
+  end
+
 end
 
