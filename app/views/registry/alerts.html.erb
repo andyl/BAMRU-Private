@@ -1,3 +1,31 @@
+<%= javascript_include_tag "registry/all_registry_alerts"   %>
+<%# stylesheet_link_tag "tipsy.css" %>
+
+<style>
+    #dodata th {
+        width: 30px;
+    }
+    .alertCell:hover, .mouseover_hdr, .mouseover_hdr a {
+        border-color: blue;
+        color: blue;
+        background: lightblue;
+        border-width: 1px;
+        cursor: pointer;
+    }
+
+    .green, .green_label  { background: #b8edab; }
+    .blue,  .blue_label   { background: #f9ffad; }
+    .pink,  .pink_label   { background: #ffdfe4; }
+    .padded { padding-left: 3px; padding-right: 3px;}
+
+    .memtag {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+
+</style>
+
 
 <div id=x_header>
   <table width=100%>
@@ -38,7 +66,7 @@
   <table width=100% style="font-size: 10pt;">
     <tr>
       <td align=center>
-        Note: Email Generation is still UNDER CONSTRUCTION
+        NOTE: Email Generation is still UNDER CONSTRUCTION
       </td>
     </tr>
   </table>
