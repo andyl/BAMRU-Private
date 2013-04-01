@@ -167,4 +167,17 @@ class Notifier < ActionMailer::Base
       )
     end
 
+    # ----- Event Alerts -----
+
+  def event_alert(opts = {})
+    Time.zone     = "Pacific Time (US & Canada)"
+    @opts = opts
+    mail(
+      :to       => 'andy@r210.com',
+      :from     => "BAMRU.net <#{GMAIL_USER}@gmail.com>",
+      :reply_to => "#{GMAIL_USER}@gmail.com",
+      :subject  => "[BAMRU.net] CHANGE ALERT (#{Time.now.strftime("%b %d - %H:%M:%S")})"
+    )
+  end
+
 end

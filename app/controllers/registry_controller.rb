@@ -62,7 +62,7 @@ class RegistryController < ApplicationController
       expire_fragment(/guests_index_table/)
       expire_fragment(/event_members_fragment/)
       lbl = @member.is_guest ? "Guest" : "Member"
-      ActiveSupport::Notifications.instrument("alert.Update#{lbl}Role", {:member => current_member, :tgt => @guest})
+      ActiveSupport::Notifications.instrument("alert.Update#{lbl}Role", {:member => current_member, :tgt => @member})
       "Successful Update"
     else
       "Unsuccessful Update"

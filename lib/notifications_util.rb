@@ -24,3 +24,19 @@ def prep_data(args)
   data[:text]   = args[4][:text] if args[4][:text]
   data
 end
+
+def send_alerts(args)
+  return unless args[0].split('.').first == "alert"
+  data = {}
+  data[:event]  = args[0].split('.')[1]
+  data[:time]   = args[1].strftime("%m-%d %H:%M:%S")
+  data[:member] = args[4][:member].full_name
+  tgt = args[4][:tgt]
+  lbl = if tgt.is_a? Event
+          "#{tgt.typ} | #{tgt.title}"
+        else
+          "#{tgt.try(:full_name)} | Role: #{tgt.try(:typ)}"
+        end
+  data[:tgt]    = lbl
+  Notifier.event_alert(data).deliver
+end
