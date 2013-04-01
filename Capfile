@@ -48,6 +48,8 @@ namespace :sysdir do
   task :symlink do
     run "rm -rf #{release_path}/public/system"
     run "ln -s #{shared_path}/system #{release_path}/public/system"
+    run "rm -rf #{release_path}/wiki"
+    run "ln -s #{shared_path}/wiki #{release_path}/wiki"
   end
 
 end

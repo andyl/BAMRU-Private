@@ -20,6 +20,8 @@ db/schema.*
 db/*.sqlite3
 public/images/icon*
 public/images/icons/*
+wiki
+wiki/*
 doc
 doc/*
 coverage
