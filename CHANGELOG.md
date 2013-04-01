@@ -3,6 +3,7 @@
 ## 29 Mar 2013
 
 * Added Registry, with new roles for Alumni Members and Guests
+* Added Registry Alerts
 
 ## 24 Mar 2013
 
