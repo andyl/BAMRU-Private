@@ -117,7 +117,7 @@ module RegistryHelper
   def alert_body_rows
     event_list.map do |event|
       cells = role_list.map do |role|
-        "<td align=center>#{subscription_cell(event, role)}</td>"
+        "<td class='alertCell' align=center id='#{role}-#{event}'>#{subscription_cell(event, role)}</td>"
       end.join
       "<tr><td>#{event}</td>#{cells}</tr>"
     end.join
