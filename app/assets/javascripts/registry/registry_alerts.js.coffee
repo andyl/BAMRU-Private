@@ -1,5 +1,3 @@
-
-
 updateDatabaseUsingAjax = (tgt_cell) ->
   tgt = $(tgt_cell)
   tgt_id  = tgt.attr('id') 
