@@ -193,7 +193,7 @@ class Member < ActiveRecord::Base
       end
     end
     if val == "0" || val == false
-      role = roles.bd.first
+      role = roles.bds.first
       role.destroy unless role.blank?
     end
   end

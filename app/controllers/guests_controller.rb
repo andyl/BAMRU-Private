@@ -46,6 +46,7 @@ class GuestsController < ApplicationController
     if @guest.valid?
       expire_fragment(/guest_index_table/)
       expire_fragment(/event_members_fragment/)
+      ActiveSupport::Notifications.instrument("alert.CreateGuest", {:member => current_member, :tgt => @guest})
       redirect_to guest_path(@guest), :notice => "Guest Created"
     else
       render "new"
@@ -63,6 +64,9 @@ class GuestsController < ApplicationController
     if x
       expire_fragment(/guests_index_table/)
       expire_fragment(/event_members_fragment/)
+      if @guest.previous_changes.keys.include? "typ"
+        ActiveSupport::Notifications.instrument("alert.UpdateGuestRole", {:member => current_member, :tgt => @guest})
+      end
       redirect_to guest_path(@guest), :notice => "Successful Update"
     else
       render "edit"

@@ -16,6 +16,7 @@ class Eapi::MembersController < ApplicationController
     if model.valid?
       expire_fragment(/guests_index_table/)
       expire_fragment(/event_members_fragment/)
+      ActiveSupport::Notifications.instrument("alert.CreateMember", {:member => current_member, :tgt => model})
       respond_with model, opts
     else
       render :json => {errors: model.errors.full_messages}, status: 422

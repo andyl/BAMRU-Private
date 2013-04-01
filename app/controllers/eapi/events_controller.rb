@@ -18,6 +18,7 @@ class Eapi::EventsController < ApplicationController
     new_event = Event.create(params[:event])
     expire_fragment('event_json_fragment')
     broadcast("add", new_event)
+    ActiveSupport::Notifications.instrument("alert.CreateEvent", {:member => current_member, :tgt => new_event})
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.create_event_id', new_event.id)
     render :json => new_event
@@ -27,6 +28,7 @@ class Eapi::EventsController < ApplicationController
     updated_event = Event.update(params[:id], params[:event])
     expire_fragment('event_json_fragment')
     broadcast("update", updated_event)
+    ActiveSupport::Notifications.instrument("alert.UpdateEvent", {:member => current_member, :tgt => updated_event})
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.update_event_id', updated_event.id)
     respond_with updated_event
@@ -35,6 +37,7 @@ class Eapi::EventsController < ApplicationController
   def destroy
     broadcast('destroy')
     expire_fragment('event_json_fragment')
+    ActiveSupport::Notifications.instrument("alert.DeleteEvent", {:member => current_member, :tgt => Event.find(params[:id])})
     QC.enqueue('QcCalendar.csv_resync')
     QC.enqueue('QcGcal.delete_event', params[:id])
     respond_with Event.destroy(params[:id])

@@ -44,6 +44,7 @@ class MembersController < ApplicationController
       expire_fragment(/member_index_table/)
       expire_fragment(/unit_avail_ops_table/)
       expire_fragment(/event_members_fragment/)
+      ActiveSupport::Notifications.instrument("alert.CreateMember", {:member => current_member, :tgt => @member})
       redirect_to edit_member_path(@member), :notice => "Please add Contact Info !!"
     else
       render "new"
@@ -65,6 +66,9 @@ class MembersController < ApplicationController
       expire_fragment(/member_index_table/)
       expire_fragment(/unit_avail_ops_table/)
       expire_fragment(/event_members_fragment/)
+      if @member.previous_changes.keys.include? "typ"
+        ActiveSupport::Notifications.instrument("alert.UpdateMemberRole", {:member => current_member, :tgt => @member})
+      end
       redirect_to member_path(@member), :notice => "Successful Update"
     else
       render "edit"
