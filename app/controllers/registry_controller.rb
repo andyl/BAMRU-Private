@@ -61,6 +61,8 @@ class RegistryController < ApplicationController
     notice_msg = if @member.update_attributes(m_params)
       expire_fragment(/guests_index_table/)
       expire_fragment(/event_members_fragment/)
+      lbl = @member.is_guest ? "Guest" : "Member"
+      ActiveSupport::Notifications.instrument("alert.Update#{lbl}Role", {:member => current_member, :tgt => @guest})
       "Successful Update"
     else
       "Unsuccessful Update"
