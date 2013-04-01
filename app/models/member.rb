@@ -235,6 +235,7 @@ class Member < ActiveRecord::Base
 
   def full_roles
     arr = ([typ] + roles.map {|r| r.typ})
+    arr.delete_if {|x| %w(UL TRS TO XO WEB SEC REG RO OO).include? x}
     arr.sort{|x,y| role_val(x) <=> role_val(y)}.join(' ')
   end
 

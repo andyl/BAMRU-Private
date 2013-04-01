@@ -90,25 +90,37 @@ module RegistryHelper
     end
   end
 
-  def alert_rows
-    ev = %w(CreateGuest UpdateGuestRole CreateMember UpdateMemberRole CreateEvent UpdateEvent DeleteEvent)
-    ev.map do |x|
-      <<-EOF
-      <tr>
-        <td>#{x} </td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-        <td align=center>X</td>
-      </tr>
-      EOF
-    end.join
+  # ----- this is for registry#alerts -----
 
+  def role_list
+    %w(UL XO OO SEC TO RO TRS REG WEB)
+  end
+
+  def alert_header_row
+    cells = role_list.map {|role| alert_header_cell(role)}.join
+    "<tr><th>Event</th>#{cells}</tr>"
+  end
+
+  def alert_header_cell(role)
+    "<th width=80 align='center'>#{role}<br/><span style='font-size: 7pt;'>#{srole(role)}</span></th>"
+  end
+
+  def event_list
+    %w(CreateGuest UpdateGuestRole CreateMember UpdateMemberRole CreateEvent UpdateEvent DeleteEvent)
+  end
+
+  def subscription_cell(event, role)
+    notifier = AlertSubscription.for(event, role)
+    notifier ? "X" : "-"
+  end
+
+  def alert_body_rows
+    event_list.map do |event|
+      cells = role_list.map do |role|
+        "<td align=center>#{subscription_cell(event, role)}</td>"
+      end.join
+      "<tr><td>#{event}</td>#{cells}</tr>"
+    end.join
   end
 
 end

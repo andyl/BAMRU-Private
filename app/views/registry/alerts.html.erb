@@ -2,7 +2,7 @@
 <div id=x_header>
   <table width=100%>
     <tr>
-      <td width=33% align=left><b>BAMRU Member Registry</b></td>
+      <td width=33% align=left><b>BAMRU Registry</b></td>
       <td width=33% align=center></td>
       <td width=33% align=right>
         <a href="/registry">Members</a> |
@@ -28,19 +28,8 @@
     </tr>
   </table>
   <table class='tablesorter' style='margin-top: 0;'>
-    <tr>
-      <th>Event</th>
-      <th width=80 align='center'>UL <br/><span style='font-size: 7pt;'><%= raw srole "UL"  %></span></th>
-      <th width=80 align='center'>XO <br/><span style='font-size: 7pt;'><%= raw srole "XO"  %></span></th>
-      <th width=80 align='center'>OO <br/><span style='font-size: 7pt;'><%= raw srole "OO"  %></span></th>
-      <th width=80 align='center'>SEC<br/><span style='font-size: 7pt;'><%= raw srole "SEC" %></span></th>
-      <th width=80 align='center'>TO <br/><span style='font-size: 7pt;'><%= raw srole "TO"  %></span></th>
-      <th width=80 align='center'>RO <br/><span style='font-size: 7pt;'><%= raw srole "RO"  %></span></th>
-      <th width=80 align='center'>TRS<br/><span style='font-size: 7pt;'><%= raw srole "TRS" %></span></th>
-      <th width=80 align='center'>REG<br/><span style='font-size: 7pt;'><%= raw srole "REG" %></span></th>
-      <th width=80 align='center'>WEB<br/><span style='font-size: 7pt;'><%= raw srole "WEB" %></span></th>
-    </tr>
-    <%= raw alert_rows %>
+    <%= raw alert_header_row %>
+    <%= raw alert_body_rows  %>
   </table>
   <p></p>
 
@@ -49,6 +38,7 @@
   <table width=100% style="font-size: 10pt;">
     <tr>
       <td align=center>
+        Note: Email Generation is still UNDER CONSTRUCTION
       </td>
     </tr>
   </table>

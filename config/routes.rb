@@ -38,6 +38,9 @@ Zn::Application.routes.draw do
   get "preview/mail_htm"
   get "preview/init_opts"
 
+  get 'subscription/set/:event/:role' => "subscription#set"
+  get 'subscription/del/:event/:role' => "subscription#del"
+
   get "login"  => "sessions#new",     :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
 
