@@ -9,7 +9,8 @@ gem "rake",         "10.0.3"
 # ----- web servers -----
 gem "thin"                  # required by faye
 gem "passenger", "3.0.12"   # production server
-gem "gollum"                # wiki server
+# gem "gollum"                # wiki server
+gem "gollum-lib"
 
 # ----- 3rd party services -----
 gem "ruby-gmail", :require => "gmail"
