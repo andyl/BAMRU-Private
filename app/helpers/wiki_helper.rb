@@ -1,13 +1,12 @@
 module WikiHelper
 
   def wiki_nav
-    #return "" if request.url == new_wiki_path
-    #return link_to new_wiki_path, "New" if request.url == edit_wiki_path
-    #new = link_to_unless_current new_wiki_path, "New"
-    #edit = link_to_unless_current "/wiki/1/edit", "Edit"
-    #delete = link_to delete_wiki_path, "Delete"
-    #"#{new} | #{"edit"} | #{delete}"
-    "WIKI NAV"
+    return "" if request.url == '/wiki/new'
+    return link_to("New", new_wiki_path) if request.url.include? '/edit'
+    new  = link_to_unless_current("New", new_wiki_path)
+    edit = link_to_unless_current("Edit", "/wiki/1/edit")
+    delete = link_to("Delete", '/wiki/1/delete')
+    "#{new} | #{edit} | #{delete}"
   end
 
 end
