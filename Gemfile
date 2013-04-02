@@ -9,7 +9,11 @@ gem "rake",         "10.0.3"
 # ----- web servers -----
 gem "thin"                  # required by faye
 gem "passenger", "3.0.12"   # production server
-# gem "gollum"                # wiki server
+
+# ----- wiki -----
+gem "wikicloth"
+gem "github-markdown"   # github markdown
+gem "kramdown"          # rendering markdown
 gem "gollum-lib"
 
 # ----- 3rd party services -----
@@ -42,7 +46,6 @@ gem "modest_model"
 gem "rabl"              # serialization
 gem "pngqr"             # generate QR codes
 gem "simple_form"       # form generation
-gem "kramdown"          # rendering markdown
 gem "dynamic_form"      # error message helpers
 gem "draper", "0.18.0"  # view decorators
 

@@ -27,7 +27,7 @@ class WikiController < ApplicationController
 
   def show
     url_path = params['id']
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s)
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
     @pages = @wiki.pages
     @page = @pages.select {|x| x.url_path == url_path}.try(:first)
   end
