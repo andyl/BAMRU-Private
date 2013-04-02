@@ -1,12 +1,13 @@
-require 'gollum/frontend/app'
+#require 'gollum/frontend/app'
 
 Zn::Application.routes.draw do
 
-  Precious::App.set(:gollum_path, Rails.root.join('wiki').to_s)
-  Precious::App.set(:default_markup, :markdown)
-  Precious::App.set(:wiki_options, {universal_toc: false})
-  mount Precious::App, at: 'wikidemo'
+  #Precious::App.set(:gollum_path, Rails.root.join('wiki').to_s)
+  #Precious::App.set(:default_markup, :markdown)
+  #Precious::App.set(:wiki_options, {universal_toc: false})
+  #mount Precious::App, at: 'wikidemo'
   resources :wiki
+  get "wiki/*id" => "wiki#show"
 
   get "home/admin"
   get "home/index"

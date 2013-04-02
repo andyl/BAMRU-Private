@@ -1,13 +1,15 @@
+require 'gollum-lib'
+
 class WikiController < ApplicationController
 
   before_filter :authenticate_member!
 
   def index
-    #@files = DataFile.all :include => [:member]
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s)
+    @pages = @wiki.pages.sort {|a,b| a.url_path <=> b.url_path}
   end
   
   def new
-    #@file = DataFile.new()
   end
 
   def create
@@ -24,16 +26,10 @@ class WikiController < ApplicationController
   end
 
   def show
-    #filename = "#{params['id']}.#{params['format']}"
-    #@file = DataFile.where(:data_file_name => filename).first
-    #unless @file.nil?
-    #  @file.download_count += 1
-    #  @file.save
-    #  expire_fragment('files_table')
-    #  render :text => File.read(@file.data.path), :content_type => @file.data_content_type
-    #else
-    #  redirect_to files_path, :alert => "File was not found (#{filename})"
-    #end
+    url_path = params['id']
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @pages = @wiki.pages
+    @page = @pages.select {|x| x.url_path == url_path}.try(:first)
   end
 
   def edit
