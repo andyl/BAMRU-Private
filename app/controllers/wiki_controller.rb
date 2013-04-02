@@ -6,10 +6,24 @@ class WikiController < ApplicationController
 
   def index
     @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s)
-    @pages = @wiki.pages.sort {|a,b| a.url_path <=> b.url_path}
+    @dir   = params[:dir]
+    @path  = get_path(@wiki, @dir)
+    @dirs  = get_dirs(@wiki, @dir)
+    @pages = get_pages(@wiki, @dir)
   end
   
   def new
+    @dir = params[:dir]
+  end
+
+  def show
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @dir = params['dir']
+    page = params['page']
+    @path  = get_path(@wiki, @dir, page)
+    @dirs  = get_dirs(@wiki, @dir)
+    @pages = get_pages(@wiki, @dir)
+    @page = @pages.select {|x| x.name == page}.try(:first)
   end
 
   def create
@@ -25,14 +39,11 @@ class WikiController < ApplicationController
     #end
   end
 
-  def show
-    url_path = params['id']
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
-    @pages = @wiki.pages
-    @page = @pages.select {|x| x.url_path == url_path}.try(:first)
+  def edit
+
   end
 
-  def edit
+  def rename
 
   end
 
@@ -45,5 +56,33 @@ class WikiController < ApplicationController
     #@file.destroy
     #redirect_to files_path, :notice => "File was Deleted"
   end
+
+  private
+
+  def get_path(wiki, dir = nil, page = nil)
+    [wiki, dir, page].delete_if {|x| x.nil?}
+  end
+
+  def get_dirs(wiki, dir)
+    return [] unless dir.blank?
+    wiki.pages.map do |x|
+      pu = x.url_path
+      if pu.include? '/'
+        pu.split('/')[0]
+      else
+        ""
+      end
+    end.delete_if {|x| x.blank?}.uniq.sort
+  end
+
+  def get_pages(wiki, dir)
+    if dir.blank?
+      "BLANK"
+      wiki.pages.select {|x| ! x.url_path.include? '/'}
+    else
+      wiki.pages.select {|x| x.url_path.include? "#{dir}/"}
+    end
+  end
+
 
 end
