@@ -7,6 +7,7 @@ Zn::Application.routes.draw do
   #Precious::App.set(:wiki_options, {universal_toc: false})
   #mount Precious::App, at: 'wikidemo'
   resources :wiki
+  get "wiki/*id" => "wiki#show"
 
   get "home/admin"
   get "home/index"

@@ -6,7 +6,7 @@ class WikiController < ApplicationController
 
   def index
     @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s)
-    @pages = @wiki.pages
+    @pages = @wiki.pages.sort {|a,b| a.url_path <=> b.url_path}
   end
   
   def new
