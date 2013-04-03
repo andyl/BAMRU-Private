@@ -4,8 +4,8 @@ class Eapi::Events::EventLinksController < ApplicationController
   before_filter :authenticate_member_with_basic_auth!
 
   def index
-    photos = EventLinkSvc.find_by_event(params["event_id"])
-    respond_with photos, opts
+    event_links = EventLinkSvc.find_by_event(params["event_id"])
+    respond_with event_links, opts
   end
   
   def show

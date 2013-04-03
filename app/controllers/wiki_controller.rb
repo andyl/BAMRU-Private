@@ -40,7 +40,13 @@ class WikiController < ApplicationController
   end
 
   def edit
-
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @dir = params['dir']
+    page = params['page']
+    @path  = get_path(@wiki, @dir, page)
+    @dirs  = get_dirs(@wiki, @dir)
+    @pages = get_pages(@wiki, @dir)
+    @page = @pages.select {|x| x.name == page}.try(:first)
   end
 
   def rename

@@ -22,14 +22,28 @@ module WikiHelper
     "<b>Pages</b><br/>#{page_list}<p></p>"
   end
 
-  def wiki_nav
-    #return "" if request.url == '/wiki/new'
-    #return link_to("New", new_wiki_path) if request.url.include? '/edit'
-    #new  = link_to_unless_current("New", new_wiki_path)
-    #edit = link_to_unless_current("Edit", "/wiki/1/edit")
-    #delete = link_to("Delete", '/wiki/1/delete')
-    #"#{new} | #{edit} | #{delete}"
-    "New | Edit | Rename | Delete TBD"
+  def wiki_index_nav
+    "New"
+  end
+
+  def wiki_show_nav
+    edit = "<a href='/wiki/#{@page.url_path}/edit'>Edit</a>"
+    "New | #{edit} | Rename | Delete"
+  end
+
+  # NEED:
+  # - CSRF TOKEN
+  # - CSRF Hidden Field
+  # - Pull-Down Menu
+  # - Controller to Digest Everything
+  def wiki_edit_nav
+    <<-EOF
+    <form action="/wiki/#{@page.url_path}" method='post'>
+      <input name="_method" type='hidden' value='put'>
+      <input name='authenticity_token' type='hidden' value='#{form_authenticity_token}'>
+      Comment: <input />
+      Save | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
+    EOF
   end
 
 end

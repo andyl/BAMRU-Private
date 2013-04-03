@@ -1,1 +1,7 @@
-<%= render :partial => 'foundation', :locals => {:content => "<div style='width: 100%; text-align: center'>CONTENT TBD</div>"} %>
+<%=
+    render :partial => 'foundation',
+           :locals  => {
+                   :nav     => wiki_index_nav,
+                   :content => "<div style='width: 100%; text-align: center'>CONTENT TBD</div>"
+           }
+%>

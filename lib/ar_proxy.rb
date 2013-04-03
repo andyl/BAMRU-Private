@@ -11,7 +11,8 @@ class ArProxy < ModestModel::Base
   def self.proxy_attributes(opts)
     # create setters for proxy objects
     opts.keys.each do |key|
-      attr_accessor "#{key.to_s[1..-1]}".to_sym
+      sym = "#{key.to_s[1..-1]}".to_sym
+      attr_accessor sym
     end
     # setup data methods
     opts.each do |proxy_obj, attrs|
@@ -22,6 +23,10 @@ class ArProxy < ModestModel::Base
         def_delegator proxy_obj, attr_getter, attr_getter
       end
     end
+  end
+
+  def as_json(_opts = {})
+    attributes
   end
 
   def update_attributes(attributes)

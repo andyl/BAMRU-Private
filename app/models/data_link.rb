@@ -1,5 +1,7 @@
 class DataLink < ActiveRecord::Base
 
+  attr_accessible :member_id, :site_url
+
   # ----- Associations -----
   has_many  :event_links, :dependent => :destroy
   has_many  :events,      :through   => :event_links

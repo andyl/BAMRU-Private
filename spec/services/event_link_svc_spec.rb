@@ -110,6 +110,10 @@ describe EventLinkSvc do
 
       end
 
+      describe "#to_json" do
+
+      end
+
     end
 
     describe ""

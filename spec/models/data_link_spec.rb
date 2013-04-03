@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DataLink do
 
   def valid_params
-    {}
+    {member_id: 1, site_url: 'http://bamru.org', event_id: 1}
   end
 
   describe "Object Attributes" do
@@ -16,7 +16,7 @@ describe DataLink do
   end
 
   describe "Associations" do
-    before(:each) { @obj = DataLink.new                }
+    before(:each) { @obj = DataLink.new(valid_params)  }
     specify { @obj.should respond_to(:events)          }
     specify { @obj.should respond_to(:event_links)     }
   end
