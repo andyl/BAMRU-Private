@@ -23,7 +23,7 @@ class WikiController < ApplicationController
     @path  = get_path(@wiki, @dir, page)
     @dirs  = get_dirs(@wiki, @dir)
     @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.name == page}.try(:first)
+    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
   end
 
   def create
@@ -46,7 +46,7 @@ class WikiController < ApplicationController
     @path  = get_path(@wiki, @dir, page)
     @dirs  = get_dirs(@wiki, @dir)
     @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.name == page}.try(:first)
+    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
   end
 
   def rename
@@ -54,7 +54,16 @@ class WikiController < ApplicationController
   end
 
   def update
-    
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @dir = params['dir']
+    page = params['page']
+    @pages = get_pages(@wiki, @dir)
+    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    commit = {message: "HELLO THERE",
+              name:    current_member.full_name,
+              email:   current_member.emails.first.address }
+    @wiki.update_page(@page, @page.name, @page.format, params["textt"], commit)
+    redirect_to "/wiki/#{@page.url_path}/show", :notice => "Successful Update"
   end
 
   def destroy

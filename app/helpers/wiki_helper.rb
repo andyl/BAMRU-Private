@@ -27,7 +27,7 @@ module WikiHelper
   end
 
   def wiki_show_nav
-    edit = "<a href='/wiki/#{@page.url_path}/edit'>Edit</a>"
+    edit = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
     "New | #{edit} | Rename | Delete"
   end
 
@@ -42,7 +42,7 @@ module WikiHelper
       <input name="_method" type='hidden' value='put'>
       <input name='authenticity_token' type='hidden' value='#{form_authenticity_token}'>
       Comment: <input />
-      Save | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
+      <input type='submit' value='Save'/> | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
     EOF
   end
 
