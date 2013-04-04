@@ -209,6 +209,7 @@ class Member < ActiveRecord::Base
       end
     end
     if val == "0" || val == false
+      return if roles.blank?
       role = roles.ol.first
       role.destroy unless role.blank?
     end
