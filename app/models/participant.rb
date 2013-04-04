@@ -52,15 +52,45 @@ class Participant < ActiveRecord::Base
 
   # ----- Instance Methods -----
 
-  def sign_in_minutes
-    return "TBD" unless self.signed_in_at && self.signed_out_at
-    ((self.signed_out_at - self.signed_in_at) / 60).round
+  def transit_minutes
+    return 0 unless self.en_route_at && self.return_home_at
+    ((self.en_route_at - self.return_home_at) / 60).round.abs
   end
 
-  def sign_in_hours
-    mins = sign_in_minutes
-    return mins if mins == "TBD"
-    (mins / 60).round(1)
+  def signin_minutes
+    return 0 unless self.signed_in_at && self.signed_out_at
+    ((self.signed_out_at - self.signed_in_at) / 60).round.abs
+  end
+
+  def total_minutes
+    tm = transit_minutes
+    sm = signin_minutes
+    return "TBD" if tm == 0 && sm == 0
+    [tm, sm].max
+  end
+
+  def start_at
+    if transit_minutes.abs > signin_minutes.abs
+      self.en_route_at
+    else
+      self.signed_in_at
+    end
+  end
+
+  def finish_at
+    if transit_minutes.abs > signin_minutes.abs
+      self.return_home_at
+    else
+      self.signed_out_at
+    end
+
+  end
+
+  def total_hours
+    tm = total_minutes
+    return "TBD" if tm == "TBD"
+    return "TBD" if tm.nil?
+    (tm.to_f / 60).round(1)
   end
 
   def set_sign_in_times

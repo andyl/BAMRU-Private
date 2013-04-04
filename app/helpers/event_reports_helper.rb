@@ -27,7 +27,7 @@ module EventReportsHelper
   def internal_aar_hours
     return "TBD" if adjusted_participants.length == 0
     adjusted_participants.map do |par|
-      "#{par.member.last_name} (#{(par.sign_in_hours)} hours)"
+      "#{par.member.last_name} (#{(par.total_hours)} hours)"
     end.join(", ")
   end
 
@@ -36,7 +36,7 @@ module EventReportsHelper
   end
 
   def total_hours
-    participant_minutes = adjusted_participants.map {|par| par.sign_in_minutes}
+    participant_minutes = adjusted_participants.map {|par| par.total_minutes}
     return "TBD" if participant_minutes.include?("TBD")
     (participant_minutes.sum/60).round
   end
@@ -121,11 +121,11 @@ module EventReportsHelper
   end
 
   def time_in(participant)
-    formatted_time(participant.signed_in_at)
+    formatted_time(participant.start_at)
   end
 
   def time_out(participant)
-    formatted_time(participant.signed_out_at)
+    formatted_time(participant.finish_at)
   end
 
   def formatted_time(time)
