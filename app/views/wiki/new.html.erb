@@ -1,23 +1,10 @@
-<div id=x_container>
-  <div id=x_wide_body>
-    <div id=x_header>
-      <table width=100%>
-        <tr>
-          <td align=left><b>BAMRU Wiki</b></td>
-          <td align=right>
-            <%# raw wiki_nav %>
-            WIKI NAV
-          </td>
-        </tr>
-      </table>
-    </div>
+<%= csrf_meta_tag %>
 
-    <div id=x_single_col>
+<%=
+    render :partial => 'foundation',
+           :locals => {
+                   :nav     => wiki_new_nav,
+                   :content => wiki_new_content
+           }
+%>
 
-      WIKI NEW
-
-    </div>
-    <div id=x_footer> </div>
-
-  </div>
-</div>
