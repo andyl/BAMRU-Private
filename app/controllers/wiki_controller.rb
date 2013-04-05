@@ -17,13 +17,7 @@ class WikiController < ApplicationController
   end
 
   def show
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
-    @dir = params['dir']
-    page = params['page']
-    @path  = get_path(@wiki, @dir, page)
-    @dirs  = get_dirs(@wiki, @dir)
-    @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    setenv
   end
 
   def create
@@ -40,17 +34,11 @@ class WikiController < ApplicationController
   end
 
   def edit
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
-    @dir = params['dir']
-    page = params['page']
-    @path  = get_path(@wiki, @dir, page)
-    @dirs  = get_dirs(@wiki, @dir)
-    @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    setenv
   end
 
   def rename
-
+    setenv
   end
 
   def update
@@ -62,17 +50,37 @@ class WikiController < ApplicationController
     commit = {message: "HELLO THERE",
               name:    current_member.full_name,
               email:   current_member.emails.first.address }
-    @wiki.update_page(@page, @page.name, @page.format, params["textt"], commit)
+    @wiki.update_page(@page, @page.name, @page.format, params["text_area"], commit)
     redirect_to "/wiki/#{@page.url_path}/show", :notice => "Successful Update"
   end
 
+  def reproc
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @dir = params['dir']
+    page = params['page']
+    @pages = get_pages(@wiki, @dir)
+    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    commit = {message: "HELLO THERE",
+              name:    current_member.full_name,
+              email:   current_member.emails.first.address }
+    @wiki.rename_page(@page, params['newpage'], commit)
+    redirect_to "/wiki/#{params['newpage']}/show", :notice => "Successful Update"
+  end
+
   def destroy
-    #@file = DataFile.where(:id => params['id']).first
-    #@file.destroy
-    #redirect_to files_path, :notice => "File was Deleted"
   end
 
   private
+
+  def setenv
+    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
+    @dir = params['dir']
+    page = params['page']
+    @path  = get_path(@wiki, @dir, page)
+    @dirs  = get_dirs(@wiki, @dir)
+    @pages = get_pages(@wiki, @dir)
+    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+  end
 
   def get_path(wiki, dir = nil, page = nil)
     [wiki, dir, page].delete_if {|x| x.nil?}

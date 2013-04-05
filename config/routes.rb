@@ -10,6 +10,8 @@ Zn::Application.routes.draw do
   get "wiki/:page/rename"       => "wiki#rename"
   get "wiki/:page/show"         => "wiki#show"
   get "wiki/:dir/:page/show"    => "wiki#show"
+  put "wiki/:dir/:page/rename"  => "wiki#reproc"
+  put "wiki/:page/rename"       => "wiki#reproc"
   put "wiki/:dir/:page"         => "wiki#update"
   put "wiki/:page"              => "wiki#update"
 

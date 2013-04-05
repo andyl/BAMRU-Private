@@ -27,15 +27,11 @@ module WikiHelper
   end
 
   def wiki_show_nav
-    edit = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
-    "New | #{edit} | Rename | Delete"
+    edit   = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
+    rename = "<a href='/wiki/#{@page.try(:url_path)}/rename'>Rename</a>"
+    "New | #{edit} | #{rename} | Delete"
   end
 
-  # NEED:
-  # - CSRF TOKEN
-  # - CSRF Hidden Field
-  # - Pull-Down Menu
-  # - Controller to Digest Everything
   def wiki_edit_nav
     <<-EOF
     <form action="/wiki/#{@page.url_path}" method='post'>
@@ -43,6 +39,23 @@ module WikiHelper
       <input name='authenticity_token' type='hidden' value='#{form_authenticity_token}'>
       Comment: <input />
       <input type='submit' value='Save'/> | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
+    EOF
+  end
+
+  def wiki_rename_nav
+    <<-EOF
+    <form action="/wiki/#{@page.url_path}/rename" method='post'>
+      <input name="_method" type='hidden' value='put'>
+      <input name='authenticity_token' type='hidden' value='#{form_authenticity_token}'>
+      <input type='submit' value='Save'/> | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
+    EOF
+  end
+
+  def wiki_rename_content
+    <<-EOF
+      Current page name: #{@page.url_path}<p></p>
+      New page name: <input name='newpage' value='#{@page.url_path}'/>
+      </form>
     EOF
   end
 
