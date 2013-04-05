@@ -5,11 +5,7 @@ class WikiController < ApplicationController
   before_filter :authenticate_member!
 
   def index
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s)
-    @dir   = params[:dir]
-    @path  = get_path(@wiki, @dir)
-    @dirs  = get_dirs(@wiki, @dir)
-    @pages = get_pages(@wiki, @dir)
+    setenv
   end
   
   def new
@@ -21,16 +17,7 @@ class WikiController < ApplicationController
   end
 
   def create
-    #@member = current_member
-    #@file    = DataFile.create(params[:data_file])
-    #@member.data_files << @file
-    #if @member.save
-    #  redirect_to files_path, :notice => "File saved (#{@file.data_file_name})"
-    #else
-    #  string = @file.errors.full_messages.join(', ')
-    #  flash.now.alert = "Error: #{string}"
-    #  render "new"
-    #end
+
   end
 
   def edit
@@ -42,11 +29,7 @@ class WikiController < ApplicationController
   end
 
   def update
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
-    @dir = params['dir']
-    page = params['page']
-    @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    setenv
     commit = {message: "HELLO THERE",
               name:    current_member.full_name,
               email:   current_member.emails.first.address }
@@ -55,11 +38,7 @@ class WikiController < ApplicationController
   end
 
   def reproc
-    @wiki  = Gollum::Wiki.new(Rails.root.join('wiki').to_s, :base_path => "../wiki")
-    @dir = params['dir']
-    page = params['page']
-    @pages = get_pages(@wiki, @dir)
-    @page = @pages.select {|x| x.url_path.split('/').last == page}.try(:first)
+    setenv
     commit = {message: "HELLO THERE",
               name:    current_member.full_name,
               email:   current_member.emails.first.address }
