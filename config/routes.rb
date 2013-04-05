@@ -2,6 +2,7 @@ Zn::Application.routes.draw do
 
   get "wiki/new"                => "wiki#new"
   get "wiki/:dir/new"           => "wiki#new"
+  get "wiki/:dir/:page/new"     => "wiki#new"
   get "wiki"                    => "wiki#index"
   get "wiki/:dir"               => "wiki#index"
   get "wiki/:dir/:page/edit"    => "wiki#edit"
@@ -14,6 +15,9 @@ Zn::Application.routes.draw do
   put "wiki/:page/rename"       => "wiki#reproc"
   put "wiki/:dir/:page"         => "wiki#update"
   put "wiki/:page"              => "wiki#update"
+  get "wiki/:page/delete"       => "wiki#destroy"
+  get "wiki/:dir/:page/delete"  => "wiki#destroy"
+  post "wiki"                   => "wiki#create"
 
   get "home/admin"
   get "home/index"
