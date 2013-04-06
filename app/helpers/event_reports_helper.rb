@@ -31,8 +31,16 @@ module EventReportsHelper
     end.join(", ")
   end
 
+  def participant_role(participant)
+    return "-OL" if participant.ol
+    return "-AHC" if participant.ahc
+    ""
+  end
+
   def participant_list
-    adjusted_participants.map {|par| par.member.last_name}.join(', ')
+    adjusted_participants.map do |par|
+      "#{par.member.last_name}#{participant_role(par)}"
+    end.join(', ')
   end
 
   def total_hours
@@ -110,14 +118,18 @@ module EventReportsHelper
     raw output
   end
 
-
   def assignment(participant)
-    return "" unless participant.ol
-    case @event_report.event.typ
-      when "training"  then "Training Leader"
-      when "operation" then "Operation Leader"
-      else "Leader"
+    if participant.ol
+      return case @event_report.event.typ
+        when "training"  then "Training Leader"
+        when "operation" then "Operation Leader"
+        else "Leader"
+      end
     end
+    if participant.ahc
+      return "At Home Coordinator"
+    end
+    ""
   end
 
   def time_in(participant)
