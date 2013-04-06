@@ -10,12 +10,11 @@ BB.Helpers.ParticipantHelpers =
   memberRoleOP: (memberId) ->
     member = BB.members.get(memberId)
     role   = member?.get('typ') || ""
-    if @ol
-      ttip = "data-ttip='Unset OL'"
-      "<a class='unsetOL' #{ttip} href='#'>OL #{role}</a>"
-    else
-      ttip = "data-ttip='Set OL'"
-      "<a class='setOL' #{ttip} href='#'>#{role}</a>"
+    lbl  = ""
+    lbl  = "OL "  if @ol
+    lbl  = "AHC " if @ahc
+    ttip = "data-ttip='Set Role'"
+    "<a class='setRole' #{ttip} href='#'>#{lbl}#{role}</a>"
 
   memberIcon: (memberId) ->
     member = BB.members.get(memberId)
@@ -33,6 +32,34 @@ BB.Helpers.ParticipantHelpers =
 
   memberCell: (memberId) ->
     "<td style='vertical-align:bottom;' #{@activeClass()}>#{@memberLink(memberId)}</td>"
+
+  currentRole: ->
+    return "OL" if @ol
+    return "AHC" if @ahc
+    "NONE"
+
+  currentRoleLabel: ->
+    cr = @currentRole()
+    return "" if cr == "NONE"
+    "from #{cr} "
+
+  roleLink: (type) ->
+    crole = @currentRole()
+    return "" if type == crole
+    "<a href='#' class='set#{type}'>#{type}</a> | "
+
+  popupForm: (memberId) ->
+    member = BB.members.get(memberId)
+    name   = member.get('last_name')
+    """
+       set <b>#{name}'s</b> role
+       #{ @currentRoleLabel() }
+       to
+       #{ @roleLink "AHC"  }
+       #{ @roleLink "OL"   }
+       #{ @roleLink "NONE" }
+       <a href='#' class='setCANCEL'>Cancel</a>
+    """
 
   activeClass: ->
     return " class='pubSubdEvent'"   if @pubSub?

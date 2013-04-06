@@ -18,7 +18,7 @@ class BB.Views.CnTbodyRosterOpParticipants extends Backbone.Marionette.Composite
     @bindTo(@collection, 'change', @render, this)
     @bindTo(@collection, 'remove', @render, this)
     @bindTo(@collection, 'reset',  @render, this)
-    @bindTo(BB.vent,     'OLParticipantChange',  @collectionSort, this)
+    @bindTo(BB.vent,     'ParticipantChange',  @collectionSort, this)
 
   onRender: ->
     @$el.find('.tablesorter th').css('font-size', '8pt')
