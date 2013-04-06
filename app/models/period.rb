@@ -58,8 +58,8 @@ class Period < ActiveRecord::Base
     if self.event_reports.internal_aars.all.empty?
       title = "Internal AAR - Period #{self.position}"
       opts = {typ: "internal_aar", event_id: self.event.id, title: title}
-      opts[:unit_leader] = "John Chang"
-      opts[:signed_by]   = "TBD"
+      opts[:unit_leader] = Role.member_for("UL").try(:full_name)  || "TBD"
+      opts[:signed_by]   = Role.member_for("SEC").try(:full_name) || "TBD"
       opts[:description] = "TBD"
       self.event_reports << EventReport.create(opts)
     end
