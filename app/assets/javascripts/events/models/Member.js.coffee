@@ -21,7 +21,10 @@ class BB.Models.Member extends Backbone.Model
       when 'R'  then -75
       when 'A'  then -50
       when 'S'  then -25
+      when 'MA' then -20
       when 'G'  then -10
-      when 'GX' then -5
+      when 'GA' then -5
+      when 'MN' then -2
+      when 'GN' then -1
       else 0
 

@@ -2,4 +2,10 @@
    <%- @memberCell(@member_id) %>
    <%- @timeFields() %>
    <td><%= @updatedAt() %></td>
-   <td align="center"><%- @deleteParticipantLink(@id) %></td>
+   <td align="center">
+     <%- @deleteParticipantLink(@id) %>
+     <div class='blanket' style='display: none;'></div>
+     <div class='rolePopup' style='display: none;'>
+       <%- @popupForm(@member_id) %>
+     </div>
+   </td>

@@ -1,7 +1,7 @@
 class Participant < ActiveRecord::Base
 
   # ----- Attributes -----
-  attr_accessible :ol, :member_id, :period_id, :comment, :en_route_at, :return_home_at, :signed_in_at, :signed_out_at
+  attr_accessible :ol, :ahc, :member_id, :period_id, :comment, :en_route_at, :return_home_at, :signed_in_at, :signed_out_at
 
   # ----- Associations -----
   belongs_to   :period
@@ -40,6 +40,7 @@ class Participant < ActiveRecord::Base
     {
         id:             self.id,
         ol:             self.ol,
+        ahc:            self.ahc,
         period_id:      self.period_id,
         member_id:      self.member_id,
         en_route_at:    self.en_route_at.try(:strftime, "%Y-%m-%d %H:%M"),

@@ -164,3 +164,30 @@ table label {
   padding-right: 3px;
 }
 
+.blanket {
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  -moz-opacity:0.75;
+  -khtml-opacity: 0.75;
+  opacity: 0.75;
+  filter:alpha(opacity=75);
+}
+
+.rolePopup {
+  width:   300px;
+  //margin-top:   100px;
+  //margin-left:  70px;
+  padding: 4px;
+  z-index: 500;
+  border:  1px solid #000000;
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+

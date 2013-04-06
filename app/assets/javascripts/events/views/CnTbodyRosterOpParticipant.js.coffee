@@ -12,19 +12,23 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
 
   initialize: (options) ->
     @model      = options.model       # Participant
-    @bindTo(@model, 'change:ol', @reRender, this)
+    @bindTo(@model, 'change:ol',  @reRender, this)
+    @bindTo(@model, 'change:ahc', @reRender, this)
 
   reRender: ->
     @render()
-    BB.vent.trigger("OLParticipantChange")
+    BB.vent.trigger("ParticipantChange")
 
   onRender: ->
     @$el.find('[data-ttip]').tipsy(title: 'data-ttip', gravity: 's')
 
   events:
     'click .deleteParticipant' : 'deleteParticipant'
-    'click .unsetOL'           : 'unsetOL'
+    'click .setRole'           : 'showRolePopup'
     'click .setOL'             : 'setOL'
+    'click .setAHC'            : 'setAHC'
+    'click .setNONE'           : 'setNONE'
+    'click .setCANCEL'         : 'hideRolePopup'
     'click .startNow'          : 'startNow'
     'click .finishNow'         : 'finishNow'
     'click .startAll'          : 'startAll'
@@ -39,16 +43,37 @@ class BB.Views.CnTbodyRosterOpParticipant extends Backbone.Marionette.ItemView
     if answer == true
       @model.destroy()
 
-  unsetOL: (ev) ->
+  showRolePopup: (ev) ->
     $(ev.target).tipsy("hide")
     ev?.preventDefault()
-    @$el.find('[data-ttip]').tipsy("hide")
-    @model.save({"ol" : false})
+    $('.ui-layout-resizer-west').hide()
+    @$el.find(".blanket").show()
+    @$el.find(".rolePopup").show()
+
+  hideRolePopup: ->
+    $('.ui-layout-resizer-west').show()
+    @$el.find(".rolePopup").hide()
+    @$el.find(".blanket").hide()
 
   setOL: (ev) ->
-    $(ev.target).tipsy("hide")
     ev?.preventDefault()
-    @model.save({"ol" : true})
+    @hideRolePopup()
+    @model.save({"ol" : true, "ahc" : false})
+
+  setAHC: (ev) ->
+    ev?.preventDefault()
+    @hideRolePopup()
+    @model.save({"ol" : false, "ahc" : true})
+
+  setNONE: (ev) ->
+    ev?.preventDefault()
+    @hideRolePopup()
+    @model.save({"ol" : false, "ahc" : false})
+
+  setCANCEL: (ev) ->
+    ev?.preventDefault()
+    @hideRolePopup()
+
 
   # ----- start / finish tags -----
 
