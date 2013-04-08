@@ -31,8 +31,10 @@ class ReportsController < ApplicationController
     @start   = params[:start]
     @finish  = params[:finish]
     @user_id = params[:user_id]
+    @title   = params[:title]
+    @rsvc    = eval("Report#{@title}Svc").new(@start, @finish)
     args = {:layout => nil}
-    render "_h_#{params[:title]}.#{params[:format]}", args
+    render "_h_#{@title}.#{params[:format]}", args
   end
 
   #def gdocs_show
