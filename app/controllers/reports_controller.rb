@@ -105,7 +105,6 @@ class ReportsController < ApplicationController
   def historical_report_list
     [
       ["MRA",      "MRA Report",                 false],
-      ["Summary",  "Unit-wide Activity Summary", false],
       ["Detail",   "Unit-wide Activity Detail",  false],
       ["Activity", "Member Activity Detail",     true]
     ]
