@@ -63,11 +63,13 @@ class Participant < ActiveRecord::Base
     ((self.signed_out_at - self.signed_in_at) / 60).round.abs
   end
 
+  def report_minutes
+    [transit_minutes, signin_minutes].max
+  end
+
   def total_minutes
-    tm = transit_minutes
-    sm = signin_minutes
-    return "TBD" if tm == 0 && sm == 0
-    [tm, sm].max
+    rm = report_minutes
+    rm == 0 ? "TBD" : rm
   end
 
   def start_at

@@ -1,2 +1,101 @@
-Summary Report: UNDER CONSTRUCTION<p></p>
-<a href='/files/sample_summary.doc' target='_blank'>sample report</a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+  <TITLE>Summary Report</TITLE>
+  <STYLE TYPE="text/css">
+      @page { margin-right: 1in; margin-top: 0.88in; margin-bottom: 0.75in }
+      @page:first { margin-top: 0.5in; margin-bottom: 0.75in }
+      P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+      P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+      P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+      P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+      H1 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 0; orphans: 0 }
+      H1.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+      H1.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+      H1.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+      H2 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+      H2.western { font-family: "Times New Roman", serif; font-size: 20pt; so-language: en-US }
+      H2.cjk { font-family: "Times New Roman", serif; font-size: 20pt }
+      H2.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+      TD P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+      TD P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+      TD P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+      TD P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+      TH P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+      TH P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+      TH P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+      TH P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+      .labelCell {text-align: right; font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
+      .valueCell {font-family: "Times New Roman, serif"; font-size:10pt;}
+      .checkCell {font-family: "Times New Roman, serif"; font-size: 10pt; width: 12px; text-align: center;}
+      .topTable { width: 700px; border-collapse: collapse;}
+      .stdTable { width: 700px; border-collapse: collapse;}
+      .stdTable tr { width: 700px; }
+      .xtable { border-collapse: collapse; font-size:  10px; border: none;}
+      .xtable td { border: 0px solid white; border-left: none; border-right: none; border-bottom: none; border-left: none;}
+      .stdTable tr, .topTable tr {vertical-align: top;}
+      .topTable td, .stdTable th { border: 1px solid black; padding: 4px;}
+      .stdTable td, .topTable th { border: 1px solid black; padding: 4px; border-top: none; }
+      .headerRow { background: lightgrey; font-size: 6pt; }
+      .cellLabel { font-size: 6pt; margin-bottom: 10px; }
+      @media all {
+          .pageBreak      { margin-top: 10px; margin-bottom: 10px;}
+          .pageBreakLabel { text-align: center; padding: 2px; width: 700px; font-size: 8pt; background: lightgrey;}
+      }
+      @media print {
+          .pageBreak      { page-break-before: always;}
+          .pageBreakLabel { display: none;}
+      }
+  </STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<table width=700px; style='margin-bottom: 5px;'>
+  <tr>
+    <td><IMG SRC="/Logo_bamru.gif" height=95 /></td>
+    <td align="center">
+      <H1 CLASS="western">BAY AREA MOUNTAIN RESCUE UNIT</H1>
+      <div style="font-size: 12pt; margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid black; background: #bfbfbf;">
+        Unit Activity Summary - <%= @rsvc.start_day %> to <%= @rsvc.finish_day %>
+      </div>
+      <i style='font-size: 10pt;'>CONFIDENTIAL - BAMRU Members Only</i>
+    </td>
+  </tr>
+</table>
+
+<table class='topTable'>
+  <tr>
+    <td style='text-align: center;' class='valueCell'>
+      <b>SUMMARY TOTAL: <%=  @rsvc.summary_totals %></b><br/><%= raw @rsvc.summary_html %>
+    </td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td width=350px class='valueCell'>
+      <b><%= @rsvc.training_header %></b><br/>
+      <%= raw @rsvc.event_detail(@rsvc.training_list) %>
+    </td>
+    <td class='valueCell'>
+      <b><%= @rsvc.meeting_header %></b><br/>
+      <%= raw @rsvc.event_detail(@rsvc.meeting_list) %>
+    </td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td width=350px class='valueCell'>
+      <b><%= @rsvc.operation_header %></b><br/>
+      <%= raw @rsvc.event_detail(@rsvc.operation_list) %>
+    </td>
+    <td class='valueCell'>
+      <b><%= @rsvc.community_header %></b><br/>
+      <%= raw @rsvc.event_detail(@rsvc.community_list) %>
+    </td>
+  </tr>
+</table>
+
+</BODY>
+</HTML>
