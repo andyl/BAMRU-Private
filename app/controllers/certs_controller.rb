@@ -25,6 +25,7 @@ class CertsController < ApplicationController
       cert.position = idx + 1
       cert.save
     end
+    ActiveSupport::Notifications.instrument("alert.CreateCert", {:member => current_member, :tgt => @cert})
     expire_fragment(/unit_certs_table/)
     redirect_to member_certs_path(@member)
   end
@@ -35,6 +36,7 @@ class CertsController < ApplicationController
     @cert.cert = nil if params['check_del'] == "on"
     if @cert.update_attributes(params[:cert])
       expire_fragment(/unit_certs_table/)
+      ActiveSupport::Notifications.instrument("alert.UpdateCert", {:member => current_member, :tgt => @cert})
       redirect_to member_certs_path(@member), :notice => "Successful Update"
     else
       render "edit"
@@ -55,6 +57,7 @@ class CertsController < ApplicationController
     @member = Member.where(:id => params['member_id']).first
     @cert = Cert.where(:id => params['id']).first
     typ = @cert.typ
+    ActiveSupport::Notifications.instrument("alert.DeleteCert", {:member => current_member, :tgt => @cert})
     @cert.destroy
     cert_list = @member.certs.where(:typ => @cert.typ).order('position ASC')
     cert_list.each_with_index do |cert, idx|

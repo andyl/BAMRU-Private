@@ -106,7 +106,9 @@ module RegistryHelper
   end
 
   def event_list
-    %w(CreateGuest UpdateGuestRole CreateMember UpdateMemberRole CreateEvent UpdateEvent DeleteEvent)
+    %w(CreateGuest UpdateGuestRole CreateMember UpdateMemberRole) +
+    %w(CreateEvent UpdateEvent DeleteEvent) +
+    %w(CreateCert  UpdateCert  DeleteCert)
   end
 
   def subscription_cell(event, role)
