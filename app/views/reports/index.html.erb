@@ -52,7 +52,6 @@
         </tbody>
       </table>
 
-      <% if current_member.developer? %>
       <div width=100% style='text-align: center;'>Historical Reports</div>
       <table id="myTable2" class="tablesorter zfont">
         <thead>
@@ -72,7 +71,7 @@
           <td><input style='font-size: 8pt;' id="summary-finish" type="text" value="<%= (Time.now).strftime("%Y-%m-%d") %>"/></td>
           <td><a id="summary-link" href="/hreports/Summary.html" target='_blank'>HTML</a></td>
         </tr>
-          <% @historical_report_list.each do |report| %>
+        <% @historical_report_list.each do |report| %>
             <tr>
               <td><%= report[0] %></td>
               <td><%= report[1] %></td>
@@ -80,12 +79,12 @@
               <td>TBD</td>
               <td><a href="/hreports/<%= report[0] %>.html" target='_blank'>HTML</a></td>
             </tr>
-          <% end %>
+        <% end %>
         </tbody>
       </table>
-      <% end %>
 
     </div>
+
     <div id=x_footer> </div>
   </div>
 </div>

@@ -1,6 +1,5 @@
 
 updateSummaryLink = ->
-  console.log "CHANGING!!"
   start  = $('#summary-start').val()
   finish = $('#summary-finish').val()
   link   = "/hreports/Summary.html?start=#{start}&finish=#{finish}"
