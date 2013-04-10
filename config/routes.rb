@@ -203,7 +203,7 @@ Zn::Application.routes.draw do
 
   get '/reports'                    => "reports#index"
   get '/reports/:title'             => "reports#show_current_report"
-  get '/preports/:period_id/:title' => "reports#show_cperiod_report"
+  get '/preports/:period_id/:title' => "reports#show_period_report"
   get '/hreports/:title'            => "reports#show_historical_report"
 
   get '/icon/:label.gif'         => "icon#show"
