@@ -103,9 +103,10 @@ class Participant < ActiveRecord::Base
   end
 
   def sort_key
+    ahs = ahc ? 6000 : 0
     ols = ol ? 5000 : 0
     tys = -1 * self.member.typ_score
-    score = ols + tys
+    score = ahs + ols + tys
     kscore = 10000 - score
     "#{kscore.to_s.rjust(5,'0')} #{self.member.last_name}"
   end

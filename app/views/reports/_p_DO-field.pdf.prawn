@@ -8,7 +8,9 @@
 @participants = @period.participants.sort{|x,y| x.sort_key <=> y.sort_key}
 
 def role_label(participant)
-  ol_label = participant.ol ? "OL " : ""
+  ol_label = [[participant.ol,  "OL "],
+              [participant.ahc, "AHC "],
+              [true, ""]].find {|x| x[0]}[1]
   "#{ol_label}#{participant.member.typ}"
 end
 
