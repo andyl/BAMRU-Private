@@ -1,4 +1,5 @@
 require 'gollum-lib'
+require 'gollum-file-tag'
 
 class WikiController < ApplicationController
 
