@@ -15,9 +15,10 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @page   = options.page
     @params = options.params
     @model  = BB.Collections.events.get(options.modelId)           # Event
-    @bindTo(BB.vent, 'click:CnTabsOverviewShow', @genOverviewShow, this)
-    @bindTo(BB.vent, 'click:CnTabsOverviewEdit', @genOverviewEdit, this)
-    @bindTo(BB.vent, 'click:tMenu',              @genNewPage,      this)
+    @bindTo(BB.vent, 'click:CnTabsOverviewShow',   @genOverviewShow,   this)
+    @bindTo(BB.vent, 'click:CnTabsOverviewEdit',   @genOverviewEdit,   this)
+    @bindTo(BB.vent, 'click:CnTabsOverviewDelete', @genOverviewDelete, this)
+    @bindTo(BB.vent, 'click:tMenu',                @genNewPage,        this)
 
   onShow: ->
     @selectPage(@page, "noNav")
@@ -45,6 +46,11 @@ class BB.Views.CnTabs extends Backbone.Marionette.Layout
     @router.navigate("/events/#{@model.id}") unless navOption == "noNav"
     @tmenu.show(new BB.Views.CnTabsMenu("overview", @model))
     @tbody.show(new BB.Views.CnTbodyOverviewShow({model: @model}))
+
+  genOverviewDelete: (navOption = "NA") ->
+#    @router.navigate("/events/#{@model.id}") unless navOption == "noNav"
+    @tmenu.show(new BB.Views.CnTabsMenu("overview", @model))
+    @tbody.show(new BB.Views.CnTbodyOverviewDelete({model: @model}))
 
   genOverviewEdit: (navOption = "NA") ->
     @router.navigate("/events/#{@model.id}/edit") unless navOption == "noNav"

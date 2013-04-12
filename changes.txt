@@ -1,0 +1,14 @@
+#new file:   app/assets/javascripts/events/templates/CnTbodyOverviewDelete.jst.eco
+#new file:   app/assets/javascripts/events/views/CnTbodyOverviewDeletee.js.coffee
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#modified:   app/assets/javascripts/events/templates/CnTbodyOverviewDelete.jst.eco
+#modified:   app/assetss/javascripts/events/views/CnTabs.js.coffee
+#modified:   app/assets/javascriptsvascripts/events/views/CnTbodyOverviewDelete.js.coffee
+#modified:   appp/assets/javascripts/events/views/CnTbodyOverviewShow.js.coffee
+#modifiedied:   lib/gollum-file-tag.rb
+
+

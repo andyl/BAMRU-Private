@@ -10,6 +10,9 @@ BB.Helpers.CnTbodyOverviewShowHelpers =
   hLatLon: ->
     return "" if _.string.isBlank(@lat)
     "(#{@lat} #{@lon} <a href='http://maps.google.com?q=#{@lat},#{@lon}' target='_blank'>map</a>)"
+  hNumPeriods: ->
+    debugger
+    @periods.length
 
 
 _.extend(BB.Helpers.CnTbodyOverviewShowHelpers, BB.Helpers.ExtDateHelpers)

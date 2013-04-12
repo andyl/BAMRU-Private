@@ -7,7 +7,7 @@ class Gollum::Markup
 
   file_tag_render = instance_method(:render)
   define_method(:render) do |no_follow, encoding|
-    reg = /{{ *#file: *([^ ]+) *\| *([\-\(\)\w ]+) *}}/
+    reg = /{{ *#file: *([^ ]+) *\| *([\,\-\(\)\w ]+) *}}/
     @data = @data.dup.gsub(reg) do
       file = $1
       ext  = file.split('.')[-1]

@@ -1,0 +1,28 @@
+<div style='margin: 10px; padding: 10px; text-align: center; background:  #ff5566;'>
+  <b>Double Check</b><p></p>
+  Do you REALLY REALLY want to delete this event?
+</div>
+
+<table class='displayTable' width=100% border="0" cellspacing="0">
+  <tr>
+    <td><%= @title %></td>
+    <td><%= @location %> <%- @hLatLon() %></td>
+  </tr>
+  <tr class='ul'>
+    <td>Leader(s): <%= @hLeader() %></td>
+    <td><%= @hShowDate() %></td>
+  </tr>
+</table>
+
+<div style='background:  #ff5566; margin: 10px; padding: 10px; '>
+  <b>BEWARE:</b> if you delete this event, all of the roster data, recorded hours,
+  reference material and reports associated with this event will be lost <b>FOREVER</b>.
+  <p></p>
+  Are you <b>SURE</b> you want to delete this event?
+</div>
+
+<div style='text-align: center;'>
+  <a href="#" id='noDelete'>NO - I DO NOT WANT TO DELETE THIS EVENT</a>
+  <p></p>
+  <a href="#" id='yesDelete'>YES - I READ THE WARNINGS AND WANT TO DELETE ANYWAY</a>
+</div>
