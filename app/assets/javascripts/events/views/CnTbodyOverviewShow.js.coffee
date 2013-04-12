@@ -40,6 +40,3 @@ class BB.Views.CnTbodyOverviewShow extends Backbone.Marionette.ItemView
     answer = confirm("Are you sure you want to delete this event?")
     if answer == true
       BB.vent.trigger("click:CnTabsOverviewDelete")
-#      @model.destroy()
-#      BB.Routers.app.navigate('/events', {trigger: true})
-

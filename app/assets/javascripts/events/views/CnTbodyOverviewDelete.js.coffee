@@ -29,4 +29,3 @@ class BB.Views.CnTbodyOverviewDelete extends Backbone.Marionette.ItemView
     @model.destroy()
     BB.vent.trigger("click:CnTabsOverviewDelete")
     BB.Routers.app.navigate('/events', {trigger: true})
-
