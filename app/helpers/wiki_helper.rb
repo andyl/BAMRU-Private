@@ -40,11 +40,12 @@ module WikiHelper
 
   def wiki_show_nav
     path = @dir.nil? ? "" : "#{@dir}/"
-    new    = "<a href='/wiki/#{path}new?cancel=/wiki/#{@page.try(:url_path)}/show'>New</a>"
-    edit   = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
-    rename = "<a href='/wiki/#{@page.try(:url_path)}/rename'>Rename</a>"
-    delete = "<a href='/wiki/#{@page.try(:url_path)}/delete'>Delete</a>"
-    "#{new} | #{edit} | #{rename} | #{delete}"
+    new     = "<a href='/wiki/#{path}new?cancel=/wiki/#{@page.try(:url_path)}/show'>New</a>"
+    edit    = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
+    rename  = "<a href='/wiki/#{@page.try(:url_path)}/rename'>Rename</a>"
+    history = "<a href='/wiki/#{@page.try(:url_path)}/history'>History</a>"
+    delete  = "<a href='/wiki/#{@page.try(:url_path)}/delete'>Delete</a>"
+    "#{new} | #{edit} | #{rename} | #{history} | #{delete}"
   end
 
   def wiki_edit_nav
@@ -94,6 +95,26 @@ module WikiHelper
       New page name: <input name='newpage' value=''/>
       <textarea rows=25 cols=80 name='text_area'>New content here...</textarea>
       </form>
+    EOF
+  end
+
+  def wiki_history_nav
+    show    = "<a href='/wiki/#{@page.try(:url_path)}/show'>Show</a>"
+    edit    = "<a href='/wiki/#{@page.try(:url_path)}/edit'>Edit</a>"
+    "#{show} | #{edit}"
+  end
+
+  def wiki_history_content
+    values = @versions.map do |ver|
+      author  = ver.author.name
+      comment = ver.message
+      date    = ver.authored_date.strftime("%Y-%m-%d %H:%M")
+      "<tr><td>#{author}</td><td>#{comment}</td><td>#{date}</td></tr>"
+    end.join
+
+    <<-EOF
+      <h2>History for #{@page.url_path}</h2>
+      <table border=1>#{values}</table>
     EOF
   end
 

@@ -30,6 +30,11 @@ class WikiController < ApplicationController
     setenv
   end
 
+  def history
+    setenv
+    @versions = @page.versions
+  end
+
   def rename
     setenv
   end
