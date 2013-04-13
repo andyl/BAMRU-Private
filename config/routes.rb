@@ -19,8 +19,8 @@ Zn::Application.routes.draw do
   get "wiki/:dir/:page/delete"  => "wiki#destroy"
   post "wiki"                   => "wiki#create"
 
-  get "home/admin"
   get "home/index"
+  get "home/admin"
   get "home/test"
   get "home/tbd"
   get "home/contact"
@@ -37,6 +37,21 @@ Zn::Application.routes.draw do
   get "home/chrome_frame"
   get "home/changelog"
   get "home/roadmap"
+
+  get "zesb/index"
+  get "zesb/banded"
+  get "zesb/blog"
+  get "zesb/feed"
+  get "zesb/grid"
+  get "zesb/orbit"
+  get "zesb/banner"
+  get "zesb/sidebar"
+  get "zesb/contact"
+  get "zesb/marketing"
+  get "zesb/realty"
+  get "zesb/boxy"
+  get "zesb/store"
+  get "zesb/workspace"
 
   get  'registry' => "registry#index"
   get  'registry/alerts'
