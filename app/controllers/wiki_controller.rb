@@ -1,5 +1,8 @@
 require 'gollum-lib'
 require 'gollum-file-tag'
+require 'gollum-sync'
+
+PLACEHOLDER = "Add a short note to explain this change. (Optional)"
 
 class WikiController < ApplicationController
 
@@ -22,7 +25,9 @@ class WikiController < ApplicationController
   def create
     setenv
     #noinspection RubyArgCount
-    @wiki.write_page(params['newpage'], :markdown, params["text_area"], commit)
+    msg = "Created #{params['newpage']} (markdown)"
+    @wiki.write_page(params['newpage'], :markdown, params["text_area"], commit(msg))
+    QC.enqueue "Gollum::Sync.to_backup"
     redirect_to "/wiki/#{params['newpage']}/show", :notice => "Successful Creation"
   end
 
@@ -41,29 +46,35 @@ class WikiController < ApplicationController
 
   def update
     setenv
+    msg = params['comment'].blank? ? "Updated #{@page.name} (#{@page.format})" : "#{params['comment']} (#{@page.format})"
     #noinspection RubyArgCount
-    @wiki.update_page(@page, @page.name, @page.format, params["text_area"], commit)
+    @wiki.update_page(@page, @page.name, @page.format, params["text_area"], commit(msg))
+    QC.enqueue "Gollum::Sync.to_backup"
     redirect_to "/wiki/#{@page.url_path}/show", :notice => "Successful Update"
   end
 
   def reproc
     setenv
-    @wiki.rename_page(@page, params['newpage'], commit)
+    msg = "Renamed page from #{@page.url_path} to #{params['newpage']}"
+    @wiki.rename_page(@page, params['newpage'], commit(msg))
+    QC.enqueue "Gollum::Sync.to_backup"
     redirect_to "/wiki/#{params['newpage']}/show", :notice => "Successful Update"
   end
 
   def destroy
     setenv
-    @wiki.delete_page(@page, commit)
+    msg = "Deleted #{@page.url_path}"
+    @wiki.delete_page(@page, commit(msg))
     ext = @dir.nil? ? "" : "/#{@dir}"
+    QC.enqueue "Gollum::Sync.to_backup"
     redirect_to "/wiki#{ext}", :notice => "Page was deleted"
   end
 
   private
 
-  def commit
+  def commit(message = "")
     {
-      message: "HELLO THERE",
+      message: message,
       name:    current_member.full_name,
       email:   current_member.emails.first.address
     }

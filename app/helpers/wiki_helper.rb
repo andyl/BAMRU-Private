@@ -53,7 +53,7 @@ module WikiHelper
     <form action="/wiki/#{@page.url_path}" method='post'>
       <input name="_method" type='hidden' value='put'>
       <input name='authenticity_token' type='hidden' value='#{form_authenticity_token}'>
-      Comment: <input />
+      <input size=40 name='comment' placeholder='#{PLACEHOLDER}'/>
       <input type='submit' value='Save'/> | <a href='/wiki/#{@page.url_path}/show'>Cancel</a>
     EOF
   end
