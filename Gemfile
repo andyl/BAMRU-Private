@@ -102,8 +102,9 @@ group :development, :test do
 
   # ----- assets -----
   gem "sass"
-  gem "sass-rails",   "~> 3.2.3"
-  gem "coffee-rails", "~> 3.2.1"
+  gem "sass-rails",      "~> 3.2.3"
+  gem "coffee-rails",    "~> 3.2.1"
+  gem "zurb-foundation", "~> 4.0.0"
 
   # ----- misc -----
   gem "zeus", "0.13.3"    # environment pre-loader
