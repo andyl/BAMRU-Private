@@ -41,6 +41,7 @@ Zn::Application.configure do
   config.assets.precompile += Dir.glob("#{js_prefix}*/all_*.js").map {|x| x.gsub(js_prefix, "")}
   config.assets.precompile += Dir.glob("#{js_prefix}*.js.coffee").map {|x| x.gsub(js_prefix, "").gsub(".coffee", "")}
   config.assets.precompile += %w(mobile.css monitor.css mobile_ui.css tipsy.css mobile_signup.css)
+  config.assets.precompile += %w(zurb.css zurb.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
