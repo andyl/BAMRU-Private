@@ -27,12 +27,19 @@
 
     <div class="row">
       <div class="large-12">
+        <b>Page Layouts</b><p></p>
         Here are some page layout mockups for SMSO-ESB.net.  Click the blue buttons to browse.<p></p>
         All of the layouts work on a desktop browser, tablet or smart phone. Try it out!<p></p>
         <% %w(banded blog feed grid orbit banner sidebar contact marketing realty boxy store workspace).each do |tmpl| %>
-            <a href='/zesb/<%= tmpl %>' class='large button'><%= tmpl.capitalize %></a>
+            <a href='/zesb/<%= tmpl %>' class='medium button'><%= tmpl.capitalize %></a>
         <% end %>
-
+      </div>
+      <div class="large-12">
+        <b>Design Elements</b><p></p>
+        These samples show the design elements that will be employed on the new site.<p></p>
+          <a class='medium button' href='/files/SMSO_stylesheet.pdf' target='_blank'>Style Sheet</a>
+          <a class='medium button' href='/zesb/icons'>Icon Set</a>
+          <a class='medium button' href='/zesb/tables'>Responsive Tables</a>
       </div>
     </div>
 

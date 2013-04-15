@@ -98,6 +98,7 @@ gem "therubyracer", :platforms => :ruby
 gem "debugger", :require => "ruby-debug"
 gem "turbo-sprockets-rails3"
 gem "zurb-foundation", "~> 4.0.0"
+gem "foundation-icons-sass-rails"
 
 group :development, :test do
 

@@ -55,6 +55,9 @@ Zn::Application.routes.draw do
   get "zesb/store"
   get "zesb/workspace"
 
+  get "zesb/icons"
+  get "zesb/tables"
+
   get  'registry' => "registry#index"
   get  'registry/alerts'
   get  'registry/roles'

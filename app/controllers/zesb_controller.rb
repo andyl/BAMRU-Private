@@ -20,4 +20,7 @@ class ZesbController < ApplicationController
   def store;     end
   def workspace; end
 
+  def icons;     end
+  def tables;    end
+
 end

@@ -5,6 +5,7 @@
 //= require underscore-string-min-2_2_0rc
 //= require modernizr-2_6_2
 //= require foundation
+//= require responsive-tables
 
 $(document).foundation()
 
