@@ -5,5 +5,5 @@ Dir.chdir "public/assets"
 Dir.glob( ["*woff*", "*ttf*", "*eot*", "*svg*"] ) do |file|
   base, ext = file.split('.')
   root = base.split('-')[0]
-  system "cp #{file} #{root}.#{ext}"
+  system "cp -f #{file} #{root}.#{ext}"
 end
