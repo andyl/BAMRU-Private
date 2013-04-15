@@ -59,6 +59,7 @@ namespace :deploy do
     desc "Precompile assets on local machine then upload them to the server."
     task :precompile, roles: :web, except: {no_release: true} do
       run_locally "rake assets:precompile:primary RAILS_ENV=production"
+      run_locally "script/cleanup_fonts"
       find_servers_for_task(current_task).each do |server|
         run_locally "rsync -vr public/assets #{user}@#{server.host}:#{shared_path}/"
       end
