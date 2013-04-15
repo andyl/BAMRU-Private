@@ -37,27 +37,13 @@
       <div class="large-12">
         <b>Design Elements</b><p></p>
         These samples show the design elements that will be employed on the new site.<p></p>
-          <a class='medium button' href='/files/SMSO_stylesheet.pdf' target='_blank'>Style Sheet</a>
-          <a class='medium button' href='/zesb/icons'>Icon Set</a>
-          <a class='medium button' href='/zesb/tables'>Responsive Tables</a>
+        <a class='medium button hide-for-touch' href='/files/SMSO_stylesheet.pdf' target='_blank'>Style Sheet</a>
+        <% if current_member.developer? %>
+            <a class='medium button' href='/zesb/icons'>Icon Set</a>
+        <% end %>
+        <a class='medium button' href='/zesb/tables'>Responsive Tables</a>
       </div>
     </div>
-
-    <!-- End Mobile Header -->
-
-
-
-    <!-- End Shows -->
-
-
-    <!-- Image -->
-
-
-    <!-- End Image -->
-
-
-    <!-- Feed -->
-
 
     <!-- End Feed -->
 
