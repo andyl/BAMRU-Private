@@ -5,8 +5,8 @@ class UnauthRsvpsController < ApplicationController
   def show
     @token  = params[:id] || "<none>"
     @dist = Distribution.where(:unauth_rsvp_token => @token).first
-    @member  = @dist.member
-    @message = @dist.message
+    @member  = @dist.try(:member)
+    @message = @dist.try(:message)
     unless @dist.blank?
       response = params[:response].try(:capitalize)
       if valid_token?(@token)
