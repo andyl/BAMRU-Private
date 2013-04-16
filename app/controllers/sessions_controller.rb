@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
   def create
     user_name = params[:user_name].squeeze(' ').strip.gsub('.','_').gsub(' ', '_').downcase if params[:user_name]
     member = Member.find_by_user_name(user_name)
+    debugger if member.blank?
     if member && member.authenticate(params[:password])
       BrowserProfile.create(params["browser"].merge({member_id: member.id}))
       if params["remember_me"] == "1"

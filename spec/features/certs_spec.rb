@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe "Certs", :capybara => true do
   before(:each) do
-    user_name = "asdf_zxcv"
-    member = Member.create!(:user_name => user_name)
-    login(member)
+    login("asdf_qwer")
   end
 
   describe "GET /unit_certs" do

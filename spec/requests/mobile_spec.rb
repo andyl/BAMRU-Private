@@ -7,3 +7,5 @@ describe "Mobile API", :capybara => true do
     response.status.should be(200)
   end
 end
+
+

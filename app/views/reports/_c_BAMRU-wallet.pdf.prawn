@@ -1,6 +1,7 @@
 @members = Member.active.order_by_role_score
 
 def str_truncate(string, length)
+  return "" if string.blank?
   new_str = string[0..length]
   new_str[-3..-1] = "..." if new_str != string
   new_str

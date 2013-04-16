@@ -6,7 +6,7 @@ class Email < ActiveRecord::Base
   has_many   :outbound_mails
   acts_as_list :scope => :member_id
 
-
+j
   # ----- Callbacks -----
 
 

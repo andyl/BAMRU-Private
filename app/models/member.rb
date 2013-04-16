@@ -203,6 +203,7 @@ class Member < ActiveRecord::Base
   end
 
   def ol=(val)
+    debugger
     if val == "1" || val == true
       unless ol
         roles.create(:typ => "OL")
@@ -210,7 +211,7 @@ class Member < ActiveRecord::Base
     end
     if val == "0" || val == false
       return if roles.blank?
-      role = roles.ol.first
+      role = roles.ols.first
       role.destroy unless role.blank?
     end
   end

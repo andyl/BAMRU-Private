@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 
-  before_filter :authenticate_member!
-  #before_filter :authenticate_member_with_basic_auth!
+  #before_filter :authenticate_member!
+  before_filter :authenticate_member_with_basic_auth!
   #before_filter :gdocs_oauth_setup, :except => [:index, :show, :show_current_report, :show_historical_report]
 
   def index
@@ -13,8 +13,8 @@ class ReportsController < ApplicationController
   # invoke using /creports/BAMRU-roster.html
   def show_current_report
     @members   = Member.active.order_by_last_name
-    args = {:layout => nil}
-    render "_c_#{params[:title]}.#{params[:format]}", args
+    args = {:layout => nil, :formats => [params[:format]]}
+    render "_c_#{params[:title]}", args
   end
 
   # router regex /preports/:period_id/:title
