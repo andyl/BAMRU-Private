@@ -54,8 +54,8 @@ initUpdate = ->
 updatePreview = (coords) ->
   window.coords = coords
   if parseInt(coords.w) > 0
-    rx = 120 / coords.w
-    ry = 90  / coords.h
+    rx = 100 / coords.w
+    ry = 100  / coords.h
     d = {}
     d.Width  = Math.round(rx * boundx) + "px"
     d.Height = Math.round(ry * boundy) + "px"
@@ -69,13 +69,13 @@ updatePreview = (coords) ->
 
 setupJcrop = ->
   opts =
-    boxWidth:  370
-    boxHeight: 300
+    boxWidth:  350
+    boxHeight: 350
     onChange: updatePreview
     onSelect: updatePreview
-    aspectRatio: 4/3
+    aspectRatio: 1
     minSize: [50,50]
-    setSelect: [10,10,250,190]
+    setSelect: [10,10,200,200]
   $("#cropImg").Jcrop opts, ->
     bounds = @getBounds()
     boundx = bounds[0]
