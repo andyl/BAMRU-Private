@@ -35,7 +35,7 @@
           <% @guests.each do |guest| %>
             <tr>
               <td style='vertical-align:bottom;'><%= guest.typ %></td>
-              <td style='padding:0;margin:0;height:23px;width:30px;'><%= raw guest_icon(guest) %></td>
+              <td style='padding:0;margin:0;height:23px;width:23px;'><%= raw guest_icon(guest) %></td>
               <td style='vertical-align:bottom;'><%= link_to guest.full_name, guest_path(guest) %></td>
               <td style='vertical-align:bottom;'><%= guest.events.meetings.count %></td>
               <td style='vertical-align:bottom;'><%= guest.events.trainings.count %></td>

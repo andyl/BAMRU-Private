@@ -21,7 +21,7 @@ module GuestsHelper
   def guest_icon(guest)
     photo = guest.photo_icon
     return "" if photo.empty?
-    "<img style='height:23px;width:30px;display:block;margin:0;padding:0;' src='#{photo}'/>"
+    "<img style='height:23px;width:23px;display:block;margin:0;padding:0;' src='#{photo}'/>"
   end
 
 end
