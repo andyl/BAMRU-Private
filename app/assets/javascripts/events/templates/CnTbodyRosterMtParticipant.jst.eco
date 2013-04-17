@@ -1,5 +1,5 @@
    <td style='vertical-align:bottom;'><%= @memberRoleMT(@member_id) %></td>
-   <td style='padding:0;margin:0;height:23px;width:30px;'><%- @memberIcon(@member_id) %></td>
+   <td style='padding:0;margin:0;height:23px;width:23px;'><%- @memberIcon(@member_id) %></td>
    <%- @memberCell(@member_id) %>
    <td style='vertical-align:bottom;text-align:center;'><%- @deleteParticipantLink(@id) %></td>
 

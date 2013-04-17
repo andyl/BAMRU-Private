@@ -20,7 +20,7 @@ BB.Helpers.ParticipantHelpers =
     member = BB.members.get(memberId)
     photoUrl = member?.get('photo_icon')
     return "" unless photoUrl? && photoUrl.length > 5
-    "<img style='height:23px;width:30px;display:block;margin:0;padding:0;' src='#{photoUrl}'/>"
+    "<img style='height:23px;width:23px;display:block;margin:0;padding:0;' src='#{photoUrl}'/>"
 
   memberLink: (memberId) ->
     member = BB.members.get(memberId)
