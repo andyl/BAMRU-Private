@@ -12,7 +12,7 @@
   <% @members.each do |member| %>
       <tr>
         <td align=right style='vertical-align:bottom;'><span style='padding-right: 5px'><%= member.full_roles %></span></td>
-        <td style='padding:0;margin:0;height:23px;width:30px;'><%= raw guest_icon(member) %></td>
+        <td style='padding:0;margin:0;height:23px;width:23px;'><%= raw guest_icon(member) %></td>
         <td style='vertical-align:bottom;'><%= link_to member.full_name, "/registry/show/#{member.id}" %></td>
         <td style='vertical-align:bottom;'><%= member.created_at.strftime("%Y-%m-%d") %></td>
         <td style='vertical-align:bottom;'><%= raw last_event_link(member) %></td>
