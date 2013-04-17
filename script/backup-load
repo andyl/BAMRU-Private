@@ -13,3 +13,7 @@ zrake db:create
 
 echo ----- load the backup
 zrake db:load
+
+echo ----- create the test database
+rake db:create RAILS_ENV=test
+rake db:migrate RAILS_ENV=test
