@@ -366,11 +366,14 @@ class Member < ActiveRecord::Base
   end
 
   def current_medical?
-    ! certs.medical.blank? && certs.medical.first.current?
+    #color = member.certs.where(:typ => self.typ).where("id <> #{self.id}").newest.try(:expire_color)
+    #! certs.medical.blank? && certs.medical.first.current?
+    ! certs.medical.blank? && certs.medical.order("expiration ASC").last.current?
   end
 
   def current_cpr?
-    ! certs.cpr.blank? && certs.cpr.first.current?
+    #! certs.cpr.blank? && certs.cpr.first.current?
+    ! certs.cpr.blank? && certs.cpr.order("expiration ASC").last.current?
   end
 
   def current_medical_and_cpr?
