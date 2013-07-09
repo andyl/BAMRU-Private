@@ -115,5 +115,4 @@ class WikiController < ApplicationController
     end
   end
 
-
 end
