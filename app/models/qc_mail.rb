@@ -48,6 +48,13 @@ class QcMail
     outbound_mail.update_attributes(:sent_at => Time.now)
   end
 
+  def self.sms_text(outbound_mail)
+    mesg = outbound_mail.distribution.message
+    auth = mesg.author.last_name
+    rsvp = mesg.rsvp.nil? ? "" : " RSVP: #{mesg.rsvp.prompt}"
+    "[BAMRU] #{mesg.text} (from #{auth})#{rsvp}"
+  end
+
   def self.render_sms(outbound_mail)
     phone_id    = outbound_mail.phone_id
     recent_obj  = OutboundMail.where(phone_id: phone_id).recent.try(:to_a).try(:first)
@@ -60,7 +67,7 @@ class QcMail
     params = {
         to:   member_num,
         from: service_num,
-        text: outbound_mail.distribution.message.text
+        text: sms_text(outbound_mail)
     }
 
     _response = client.send_message(params)
