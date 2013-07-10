@@ -32,8 +32,6 @@ class NexmoInboundSvc
     valid_no  = %w(N Not Unavail Unavailable)
     opts[:bounced]  = false
 
-    puts "POINT-A"
-
     # ----- get RSVP answer -----
     first_words = (opts[:body] || "").split(' ')[0..30].join(' ')
     match = first_words.match(/\b(yep|yea|yes|y|no|n|not|unavail|unavailable)\b/i)
@@ -41,18 +39,14 @@ class NexmoInboundSvc
     opts[:rsvp_answer] = "Yes" if valid_yes.include? opts[:rsvp_answer]
     opts[:rsvp_answer] = "No"  if valid_no.include?  opts[:rsvp_answer]
 
-    puts "POINT-B"
-
     # ----- find matching outbound_mail
-    select_hash = {sms_service_number: opts[:to], sms_service_number: opts[:to]}
+    select_hash = {sms_service_number: opts[:to], sms_member_number: opts[:from]}
     outbound = OutboundMail.where(select_hash).recent.try(:first)
-
-    puts "POINT-C"
 
     if outbound.nil?
       Notifier.inbound_unmatched_notice(opts).deliver
     else
-      opts[:outbound_match]   = outbound.id
+      opts[:outbound_mail_id] = outbound.id
       outbound.read = true ; outbound.save
       member = outbound.distribution.member
       answer = opts[:rsvp_answer]
@@ -68,13 +62,9 @@ class NexmoInboundSvc
       outbound.distribution.set_rsvp(member, member, answer) unless answer.nil?
     end
 
-    puts "POINT-D"
-
     puts opts.inspect
     #{:to=>"16505643031", :from=>"16508230836", :body=>"Yes", :send_time=>2013-07-10 13:30:23 -0700, :bounced=>false, :rsvp_answer=>"Yes", :outbound_match=>37783, :outbound_mail_id=>37783}
     InboundMail.create!(opts)
-
-    puts "POINT-E"
 
   end
 
