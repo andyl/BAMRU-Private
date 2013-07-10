@@ -11,12 +11,10 @@ class NexmoInboundSvc
 
   def load
     begin
-      create_from_opts(@opts)
+      create_from_opts(@opts) unless @opts[:body].blank?
     rescue Exception
-      puts "Inbound SMS Exception (from #{opts[:from]})"
-      Notifier.inbound_exception_notice(opts).deliver
-      exception_dir = "#{File.dirname(file)}/exception"
-      system "mkdir -p #{exception_dir} ; cp #{file} #{exception_dir}"
+      puts "Inbound SMS Exception (from #{@opts[:from]})"
+      Notifier.inbound_exception_notice(@opts).deliver
     end
   end
 
@@ -27,16 +25,26 @@ class NexmoInboundSvc
     valid_no  = %w(N Not Unavail Unavailable)
     opts[:bounced]  = false
 
+    puts "POINT-A"
+    debugger
+
     # ----- get RSVP answer -----
-    first_words = opts[:body].split(' ')[0..30].join(' ')
+    first_words = (opts[:body] || "").split(' ')[0..30].join(' ')
     match = first_words.match(/\b(yep|yea|yes|y|no|n|not|unavail|unavailable)\b/i)
     opts[:rsvp_answer] = match && match[0].capitalize
     opts[:rsvp_answer] = "Yes" if valid_yes.include? opts[:rsvp_answer]
     opts[:rsvp_answer] = "No"  if valid_no.include?  opts[:rsvp_answer]
 
+    puts "POINT-B"
+    debugger
+
     # ----- find matching outbound_mail
     select_hash = {sms_service_number: opts[:to], sms_service_number: opts[:to]}
     outbound = OutboundMail.where(select_hash).recent.try(:first)
+
+    puts "POINT-C"
+    debugger
+
     if outbound.nil?
       Notifier.inbound_unmatched_notice(opts).deliver
     else
@@ -56,6 +64,10 @@ class NexmoInboundSvc
       outbound.distribution.mark_as_read(member, member, label)
       outbound.distribution.set_rsvp(member, member, answer) unless answer.nil?
     end
+
+    puts "POINT-D"
+    debugger
+
     InboundMail.create!(opts)
   end
 
