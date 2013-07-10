@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'ruby-debug'
+require 'mandrill'
+
+require File.expand_path("../lib/env_settings", File.dirname(__FILE__))
+
+msg = "Usage: #{$0} 'body'"
+
+abort msg unless ARGV.length == 1
+
+body    = ARGV[0]
+
+require 'mandrill'
+m = Mandrill::API.new
+message = {
+  :subject    => "Hello from the Mandrill API",
+  :from_name  => "Alert Bot",
+  :from_email => "bot@bamru.net",
+  :text       => body,
+  :html       => "<html><h1>Hi <strong>message</strong>, how are you?</h1>#{body}</html>",
+  :to         => [ {:email => "andy@r210.com", :name => "Andy Leak"} ]
+}
+
+sending = m.messages.send message
+puts sending
+
+puts "OK"
+

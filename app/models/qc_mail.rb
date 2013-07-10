@@ -1,3 +1,6 @@
+require 'nexmo'
+require 'nexmo_number_pool'
+
 class QcMail
 
   def self.pending_count
@@ -42,6 +45,28 @@ class QcMail
       when "staging"     then mailing.deliver if valid_staging_address?(mail.to)
       when "production"  then mailing.deliver
     end
+    outbound_mail.update_attributes(:sent_at => Time.now)
+  end
+
+  def self.render_sms(outbound_mail)
+    phone_id    = outbound_mail.phone_id
+    recent_obj  = OutboundMail.where(phone_id: phone_id).recent.try(:to_a).try(:first)
+    recent_num  = recent_obj.try(:sms_service_number)
+    service_num = NexmoNumberPool.next(recent_num)
+    member_num  = outbound_mail.phone.sanitized_number
+
+    client = Nexmo::Client.new(NEXMO_SMS_KEY, NEXMO_SMS_SECRET)
+
+    params = {
+        to:   member_num,
+        from: service_num,
+        text: outbound_mail.distribution.message.text
+    }
+
+    _response = client.send_message(params)
+
+    outbound_mail.update_attributes(sms_member_number: member_num, sms_service_number: service_num, sent_at: Time.now)
+
   end
 
   def self.send_pending
@@ -49,8 +74,8 @@ class QcMail
     ActiveSupport::Notifications.instrument("page.send", {:text => "start #{Time.now.strftime("%H:%M:%S")}"})
     count = pending_count
     OutboundMail.pending.each do |outbound_mail|
-      render_mail(outbound_mail)
-      outbound_mail.update_attributes(:sent_at => Time.now)
+      render_mail(outbound_mail) if outbound_mail.email
+      render_sms(outbound_mail)  if outbound_mail.phone
       label = "#{outbound_mail.address}-#{outbound_mail.label}"
       ActiveSupport::Notifications.instrument("page.send", {:text => label})
     end

@@ -121,6 +121,8 @@ Zn::Application.routes.draw do
 
   get '/messages/:id/update_rsvp' => "messages#update_rsvp"
 
+  get '/nexmo' => "nexmo#inbound"
+
   get  '/do_planner'     => "do_planner#index"
   post '/do_planner/:id' => "do_planner#update"
 
