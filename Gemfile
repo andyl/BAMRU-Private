@@ -19,6 +19,8 @@ gem "gollum-lib"
 # ----- 3rd party services -----
 gem "ruby-gmail", :require => "gmail"
 gem "gcal4ruby"
+gem "twilio-ruby"
+gem "nexmo"
 
 # ----- database -----
 gem "yaml_db"   # for backup and restore

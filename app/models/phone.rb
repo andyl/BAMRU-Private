@@ -66,6 +66,12 @@ class Phone < ActiveRecord::Base
     sms_email.split('@').last.try(:downcase)
   end
 
+  def sanitized_number
+    tmp = number.strip.gsub(' ','').gsub('-','')
+    return tmp if tmp.length == 11
+    "1" + tmp
+  end
+
 end
 
 # == Schema Information

@@ -2,7 +2,8 @@ class OutboundMail < ActiveRecord::Base
 
   # ----- Attributes -----
 
-  attr_accessible :distribution_id, :email_id, :phone_id, :address, :label, :read, :bounced, :sent_at
+  attr_accessible :distribution_id, :email_id, :phone_id, :address, :label, :read, :bounced
+  attr_accessible :sent_at, :sms_member_number, :sms_service_number
 
 
   # ----- Associations -----
@@ -24,6 +25,8 @@ class OutboundMail < ActiveRecord::Base
   scope :emails,  -> { where('email_id is not null')   }
   scope :phones,  -> { where('phone_id is not null')   }
   scope :pending, -> { where(:sent_at => nil)          }
+  scope :sent,    -> { where('sent_at IS NOT NULL')    }
+  scope :recent,  -> { sent.order("sent_at DESC")      }
 
   # ----- Local Methods-----
   def has_open_bounce?
@@ -121,4 +124,3 @@ end
 #  updated_at      :datetime
 #  sent_at         :datetime
 #
-
