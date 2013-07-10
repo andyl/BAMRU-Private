@@ -13,7 +13,7 @@ class NexmoInboundSvc
     @opts[:to]   = params["to"]
     @opts[:from] = params["msisdn"]
     @opts[:body] = params["text"]
-    @opts[:send_time] = Time.now
+    @opts[:send_time] = Time.now.to_s
   end
 
   def load
@@ -53,7 +53,6 @@ class NexmoInboundSvc
       Notifier.inbound_unmatched_notice(opts).deliver
     else
       opts[:outbound_match]   = outbound.id
-      opts[:outbound_mail_id] = outbound.id
       outbound.read = true ; outbound.save
       member = outbound.distribution.member
       answer = opts[:rsvp_answer]
@@ -71,6 +70,8 @@ class NexmoInboundSvc
 
     puts "POINT-D"
 
+    puts opts.inspect
+    #{:to=>"16505643031", :from=>"16508230836", :body=>"Yes", :send_time=>2013-07-10 13:30:23 -0700, :bounced=>false, :rsvp_answer=>"Yes", :outbound_match=>37783, :outbound_mail_id=>37783}
     InboundMail.create!(opts)
 
     puts "POINT-E"
