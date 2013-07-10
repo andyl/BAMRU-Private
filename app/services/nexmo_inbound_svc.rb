@@ -1,7 +1,13 @@
 class NexmoInboundSvc
 
+  #"msisdn"=>"16508230836"
+  #"to"=>"16505643031"
+  #"text"=>"Yes"
+
   def initialize(params)
+    puts " START NEXMO PARAMS ".center(80, '*')
     puts params.inspect
+    puts " END NEXMO PARAMS ".center(80, '*')
     @params = params
     @opts   = {}
     @opts[:to]   = params["to"]
@@ -27,7 +33,6 @@ class NexmoInboundSvc
     opts[:bounced]  = false
 
     puts "POINT-A"
-    debugger
 
     # ----- get RSVP answer -----
     first_words = (opts[:body] || "").split(' ')[0..30].join(' ')
@@ -37,14 +42,12 @@ class NexmoInboundSvc
     opts[:rsvp_answer] = "No"  if valid_no.include?  opts[:rsvp_answer]
 
     puts "POINT-B"
-    debugger
 
     # ----- find matching outbound_mail
     select_hash = {sms_service_number: opts[:to], sms_service_number: opts[:to]}
     outbound = OutboundMail.where(select_hash).recent.try(:first)
 
     puts "POINT-C"
-    debugger
 
     if outbound.nil?
       Notifier.inbound_unmatched_notice(opts).deliver
@@ -67,9 +70,11 @@ class NexmoInboundSvc
     end
 
     puts "POINT-D"
-    debugger
 
     InboundMail.create!(opts)
+
+    puts "POINT-E"
+
   end
 
 end
