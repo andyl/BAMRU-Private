@@ -1,6 +1,7 @@
 class NexmoInboundSvc
 
   def initialize(params)
+    puts params.inspect
     @params = params
     @opts   = {}
     @opts[:to]   = params["to"]
