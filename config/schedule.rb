@@ -33,10 +33,14 @@ every 2.hours do
   nq "rake faye:datecast"
 end
 
-# ----- Retrieve incoming email from Google -----
+# ----- Send queued outbound messages -----
 
-every 60.minutes do
-  nq "rake ops:email:import"
+#every 60.minutes do
+#  nq "rake ops:email:import"
+#end
+
+every 15.minutes do
+  nq "rake ops:email:pending:send"
 end
 
 # ----- Reset Page Cache -----
