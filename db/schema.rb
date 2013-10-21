@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405000000) do
+ActiveRecord::Schema.define(:version => 20130710000000) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -337,12 +337,17 @@ ActiveRecord::Schema.define(:version => 20130405000000) do
     t.integer  "phone_id"
     t.string   "address"
     t.string   "label"
-    t.boolean  "read",            :default => false
-    t.boolean  "bounced",         :default => false
+    t.boolean  "read",               :default => false
+    t.boolean  "bounced",            :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "sent_at"
+    t.string   "sms_member_number"
+    t.string   "sms_service_number"
   end
+
+  add_index "outbound_mails", ["sms_member_number"], :name => "index_outbound_mails_on_sms_member_number"
+  add_index "outbound_mails", ["sms_service_number"], :name => "index_outbound_mails_on_sms_service_number"
 
   create_table "participants", :force => true do |t|
     t.boolean  "ol",             :default => false

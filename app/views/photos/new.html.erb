@@ -1,5 +1,24 @@
 <%= javascript_include_tag "photos/all_photos" %>
 
+<style>
+.loading_style {
+  width:200px; 
+  background: yellow; 
+  border: 2px solid black; 
+  padding: 10px; 
+  display: none;
+}
+
+.upload_style {
+  border:     1px solid black;
+  padding:    10px;
+  display:    none;
+  margin-top: 20px;
+  text-align: center;
+  background: #2cee64;
+}
+</style>
+
 <div style="width: 900px; text-align: center; margin: auto;">
   <h2>Create a New Profile Photo for <%= link_to @member.full_name, @path %></h2>
   <div style='border: 1px solid black;'>
@@ -46,7 +65,9 @@
         </td>
         <td width=60% style='padding:0; margin:0;'>
           <b>2: Crop</b><p></p>
-          <div id='loadingMsg' style='width:200px; background: yellow; border: 2px solid black; padding: 10px; display: none;'><b>loading...</b></div>
+          <div id='loadingMsg' class='loading_style' >
+            <b>loading...</b>
+          </div>
           <div id='imgHolder'></div>
         </td>
         <td width=30%>
@@ -62,7 +83,7 @@
           <p></p>
           <div id='coordDisp'></div>
           <p></p>
-          <div id='uploadNotice' style='margin-top: 20px; background: #2cee64; padding: 10px; border: 1px solid black; display: none; text-align: center;'>
+          <div id='uploadNotice' class='upload_style'>
             <b>Upload in progress!!</b>
           </div>
         </td>

@@ -243,6 +243,8 @@ class Event < ActiveRecord::Base
     self.lon = (self.lon * 1000000).round / 1000000.0 unless self.lon.blank?
   end
 
+
+
   # This method changes 'tba, TBD, tbd' to 'TBA'
   # It also changes nil or blank value to 'TBA'
   def convert_tbd_to_tba
