@@ -4,8 +4,9 @@ module Export
   class Events
     def self.all
       ev_arr = Event.all.map do |eve|
+        parts = eve.periods.map do |per|
+        end
         [
-          eve.id,
           eve.typ,
           eve.title,
           eve.leaders,
@@ -16,7 +17,7 @@ module Export
           eve.start,
           eve.finish,
           eve.all_day,
-          eve.published
+          eve.published,
         ]
       end
       CSV.open('/tmp/events.csv', 'w') do |csv|
