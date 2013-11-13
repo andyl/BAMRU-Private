@@ -98,19 +98,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.1)
-    columnize (0.3.6)
     csv-mapper (0.5.1)
       fastercsv
     daemon_controller (1.1.1)
     daemons (1.1.9)
     database_cleaner (0.9.1)
-    debugger (1.4.0)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.2.0)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.2.0)
     diff-lcs (1.2.1)
     draper (0.18.0)
       actionpack (~> 3.2)
@@ -421,7 +413,6 @@ DEPENDENCIES
   coffee-rails-source-maps
   csv-mapper
   database_cleaner
-  debugger
   draper (= 0.18.0)
   dynamic_form
   eco

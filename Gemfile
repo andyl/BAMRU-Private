@@ -97,7 +97,7 @@ gem "uglifier", ">= 1.0.3"
 gem "therubyracer", :platforms => :ruby
 
 # ----- terrible hack -----
-gem "debugger", :require => "ruby-debug"
+# gem "debugger", :require => "ruby-debug"
 gem "turbo-sprockets-rails3"
 gem "zurb-foundation", "~> 4.0.0"
 gem "foundation-icons-sass-rails"
