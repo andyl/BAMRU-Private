@@ -1,14 +1,8 @@
-module FormatNums
-  def prc
-    self.to_s.reverse().split(//).inject() {|x,i| (x.gsub(/ /,"").length % 3 == 0 ) ? x + "," + i : x + i}.reverse()
-  end
-end
-
-class Fixnum
-  include FormatNums
-end
+require File.dirname(__FILE__) + "/report_helpers"
 
 class ReportSummarySvc
+
+  include ReportHelpers
 
   attr_accessor :start, :finish
 
@@ -18,50 +12,18 @@ class ReportSummarySvc
     @ev_hrs = {}
   end
 
-  def start_day;  day_gen(start);  end
-  def finish_day; day_gen(finish); end
-
-  def training_list;  @tl ||= Event.trainings.between(start, finish).all;   end
-  def operation_list; @ol ||= Event.operations.between(start, finish).all;  end
-  def meeting_list;   @ml ||= Event.meetings.between(start, finish).all;    end
-  def community_list; @cl ||= Event.communities.between(start, finish).all; end
-
-  def event_hours(event)
-    return @ev_hrs[event.id] if @ev_hrs[event.id]
-    periods = event.periods
-    mins = periods.sum do |per|
-      per.participants.all.sum {|par| par.report_minutes}
-    end
-    @ev_hrs[event.id] = (mins.to_f / 60).round
-  end
-
-  def cat_hours(list)
-    list.sum {|ev| event_hours(ev)}
-  end
-
-  def summary_totals
-    num_events = training_list.count + operation_list.count + meeting_list.count + community_list.count
-    num_hours  = training_hours + operation_hours + meeting_hours + community_hours
-    "#{num_events} Events (#{num_hours.prc} hours)"
-  end
-
-  def training_hours;  @th ||= cat_hours(training_list);  end
-  def operation_hours; @oh ||= cat_hours(operation_list); end
-  def meeting_hours;   @mh ||= cat_hours(meeting_list);   end
-  def community_hours; @ch ||= cat_hours(community_list); end
-  
   def training_header
     @thd ||= "#{training_list.count} Trainings (#{training_hours.prc} hours)"
   end
-  
+
   def operation_header
     @ohd ||= "#{operation_list.count} Operations (#{operation_hours.prc} hours)"
   end
-  
+
   def meeting_header
     @mhd ||= "#{meeting_list.count} Meetings (#{meeting_hours.prc} hours)"
   end
-  
+
   def community_header
     @chd ||= "#{community_list.count} Community Events (#{community_hours.prc} hours)"
   end
@@ -91,8 +53,9 @@ class ReportSummarySvc
     "<table class='xTable' style='font-size: 10px;'>#{list}</table>"
   end
 
-  private
-
-  def day_gen(date); date.strftime("%Y-%m-%d"); end
+  def summary_totals
+    num_hours  = training_hours + operation_hours + meeting_hours + community_hours
+    "#{num_events} Events (#{num_hours.prc} hours)"
+  end
 
 end

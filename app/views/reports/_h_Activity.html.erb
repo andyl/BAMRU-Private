@@ -1,2 +1,130 @@
-Activity Report: UNDER CONSTRUCTION<p></p>
-<a href='/files/sample_activity.xls' target='_blank'>sample report</a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+  <TITLE>Activity Report</TITLE>
+  <STYLE TYPE="text/css">
+    @page { margin-right: 1in; margin-top: 0.88in; margin-bottom: 0.75in }
+    @page:first { margin-top: 0.5in; margin-bottom: 0.75in }
+    P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    H1 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; text-align: center; widows: 0; orphans: 0 }
+    H1.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: en-US }
+    H1.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    H1.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+    H2 { margin-top: 0in; margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    H2.western { font-family: "Times New Roman", serif; font-size: 20pt; so-language: en-US }
+    H2.cjk { font-family: "Times New Roman", serif; font-size: 20pt }
+    H2.ctl { font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA; font-weight: normal }
+    TD P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    TD P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    TD P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    TD P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    TH P { margin-bottom: 0in; direction: ltr; color: #000000; widows: 0; orphans: 0 }
+    TH P.western { font-family: "Courier", "Courier New", monospace; font-size: 12pt; so-language: en-US }
+    TH P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+    TH P.ctl { font-family: "Courier", "Courier New", monospace; font-size: 10pt; so-language: ar-SA }
+    .labelCell {text-align: right; font-family: "Times New Roman, serif"; font-size:10pt; font-weight: bold;}
+    .valueCell {font-family: "Times New Roman, serif"; font-size:10pt;}
+    .checkCell {font-family: "Times New Roman, serif"; font-size: 10pt; width: 12px; text-align: center;}
+    .topTable { width: 700px; border-collapse: collapse;}
+    .stdTable { width: 700px; border-collapse: collapse;}
+    .stdTable tr { width: 700px; }
+    .xtable { border-collapse: collapse; font-size:  10px; border: none;}
+    .xtable td { border: 0px solid white; border-left: none; border-right: none; border-bottom: none; border-left: none;}
+    .stdTable tr, .topTable tr {vertical-align: top;}
+    .topTable td, .stdTable th { border: 1px solid black; padding: 4px;}
+    .stdTable td, .topTable th { border: 1px solid black; padding: 4px; border-top: none; }
+    .headerRow { background: lightgrey; font-size: 6pt; }
+    .cellLabel { font-size: 6pt; margin-bottom: 10px; }
+    @media all {
+      .pageBreak      { margin-top: 10px; margin-bottom: 10px;}
+      .pageBreakLabel { text-align: center; padding: 2px; width: 700px; font-size: 8pt; background: lightgrey;}
+    }
+    @media print {
+      .pageBreak      { page-break-before: always;}
+      .pageBreakLabel { display: none;}
+    }
+  </STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<table width=700px; style='margin-bottom: 5px;'>
+  <tr>
+    <td><IMG SRC="/Logo_bamru.gif" height=95 /></td>
+    <td align="center">
+      <H1 CLASS="western">BAY AREA MOUNTAIN RESCUE UNIT</H1>
+      <div style="font-size: 12pt; margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid black; background: #bfbfbf;">
+        Member Activity - <%= @rsvc.start_day %> to <%= @rsvc.finish_day %>
+      </div>
+      <i style='font-size: 10pt;'>CONFIDENTIAL - BAMRU Members Only</i>
+    </td>
+  </tr>
+</table>
+
+<table class='stdTable'>
+  <tr>
+    <td style='text-align: center;' colspan="4" class="valueCell"><b>Unit-Wide Summary</b></td>
+  </tr>
+  <tr>
+    <td class="valueCell">Operations</td>
+    <td class="valueCell"><%= @rsvc.operation_list.count %> events</td>
+    <td class="valueCell"><%= @rsvc.unit_opr_count.prc %> participations</td>
+    <td class="valueCell"><%= @rsvc.operation_hours.prc %> hours</td>
+  </tr>
+  <tr>
+    <td class="valueCell">Trainings</td>
+    <td class="valueCell"><%= @rsvc.training_list.count %> events</td>
+    <td class="valueCell"><%= @rsvc.unit_trn_count.prc %> participations</td>
+    <td class="valueCell"><%= @rsvc.training_hours.prc %> hours</td>
+  </tr>
+  <tr>
+    <td class="valueCell">Meetings</td>
+    <td class="valueCell"><%= @rsvc.meeting_list.count %> events</td>
+    <td class="valueCell"><%= @rsvc.unit_mtg_count.prc %> participations</td>
+    <td class="valueCell"><%= @rsvc.meeting_hours.prc %> hours</td>
+  </tr>
+  <tr>
+    <td class="valueCell">Community</td>
+    <td class="valueCell"><%= @rsvc.community_list.count %> events</td>
+    <td class="valueCell"><%= @rsvc.unit_com_count.prc %> participations</td>
+    <td class="valueCell"><%= @rsvc.community_hours.prc %> hours</td>
+  </tr>
+  <tr>
+    <td class="valueCell"><b>total:</b></td>
+    <td class="valueCell"><b><%= @rsvc.num_events %> events</b></td>
+    <td class="valueCell"><b><%= @rsvc.total_count %> participations</b></td>
+    <td class="valueCell"><b><%= @rsvc.total_hours %> hours</b></td>
+  </tr>
+
+</table>
+
+<p></p>
+
+<table class='topTable'>
+  <tr>
+    <td class='valueCell'><b>Member</b></td>
+    <td class='valueCell'><b>Operations</b></td>
+    <td class='valueCell'><b>Trainings</b></td>
+    <td class='valueCell'><b>Meetings</b></td>
+    <td class='valueCell'><b>Community</b></td>
+    <td class='valueCell'><b>Total</b></td>
+  </tr>
+
+  <% @rsvc.members.each do |mem| %>
+  <tr>
+    <td class='valueCell'><a href="/registry/show/<%= mem[:id] %>"target="_blank"><%= mem[:lname] %></a></td>
+    <td class='valueCell'><%= mem[:opr_cnt] %> / <%= mem[:opr_hrs] %> hours</td>
+    <td class='valueCell'><%= mem[:trn_cnt] %> / <%= mem[:trn_hrs] %> hours</td>
+    <td class='valueCell'><%= mem[:mtg_cnt] %> / <%= mem[:mtg_hrs] %> hours</td>
+    <td class='valueCell'><%= mem[:com_cnt] %> / <%= mem[:com_hrs] %> hours</td>
+    <td class='valueCell'><%= mem[:all_cnt] %> / <%= mem[:all_hrs] %> hours</td>
+  </tr>
+  <% end %>
+</table>
+
+
+
+</BODY>
+</HTML>

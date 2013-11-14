@@ -85,6 +85,7 @@ gem "jsgem-jquery-layout", "1.3.0.pre2"
 # ----- console tools -----
 gem "hirb"
 gem "wirble"
+gem "pry-rails"
 gem "interactive_editor"
 gem "awesome_print", :require => "ap"
 
@@ -97,7 +98,6 @@ gem "uglifier", ">= 1.0.3"
 gem "therubyracer", :platforms => :ruby
 
 # ----- terrible hack -----
-# gem "debugger", :require => "ruby-debug"
 gem "turbo-sprockets-rails3"
 gem "zurb-foundation", "~> 4.0.0"
 gem "foundation-icons-sass-rails"

@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   #before_filter :gdocs_oauth_setup, :except => [:index, :show, :show_current_report, :show_historical_report]
 
   def index
-    @current_report_list = current_report_list
+    @current_report_list    = current_report_list
     @historical_report_list = historical_report_list
   end
 
@@ -106,7 +106,7 @@ class ReportsController < ApplicationController
     [
       ["MRA",      "MRA Report",                 false],
       ["Detail",   "Unit-wide Activity Detail",  false],
-      ["Activity", "Member Activity Detail",     true]
+      #["Activity", "Member Activity Detail",     true]
     ]
   end
 
