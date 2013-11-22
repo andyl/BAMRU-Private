@@ -86,6 +86,7 @@ gem "jsgem-jquery-layout", "1.3.0.pre2"
 gem "hirb"
 gem "wirble"
 gem "pry-rails"
+gem "pry-debugger"
 gem "interactive_editor"
 gem "awesome_print", :require => "ap"
 
