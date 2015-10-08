@@ -12,7 +12,7 @@ Zn::Application.configure do
   config.serve_static_assets = false
 
   config.assets.compress = true
-  config.assets.compile  = false
+  config.assets.compile  = true
   config.assets.digest   = true
   config.assets.initialize_on_precompile = false
 
