@@ -92,6 +92,7 @@ class DoAssignment < ActiveRecord::Base
     quarter_start = Time.parse("Jan #{year}") + (quarter-1).quarters
     day = quarter_start + (week-1).weeks + 8.hours
     day = day - 1.week if quarter_start.wday == 3
+    day = day - 1.week if year.to_s == "2015"
     adj_factor = case day.wday
       when 0 then 2
       when 1 then 1
@@ -103,7 +104,7 @@ class DoAssignment < ActiveRecord::Base
     end
     day + adj_factor.days
   end
-  
+
   def end_time
     start_time + 1.week - 1.minute
   end
