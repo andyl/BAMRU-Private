@@ -73,7 +73,7 @@ class QcMail
     _response = client.send_message(params)
 
     outbound_mail.update_attributes(sms_member_number: member_num, sms_service_number: service_num, sent_at: Time.now)
-
+    sleep 2 # for Nexmo rate limiting
   end
 
   def self.send_pending
