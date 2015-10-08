@@ -1,0 +1,87 @@
+# This is for google docs integration
+export GOOGLE_DOCS_CONSUMER_KEY=ekel.r210x.com
+export GOOGLE_DOCS_CONSUMER_SECRET=ULwHJi-cmuWebkezpjUspNEp
+
+# faye settings
+export FAYE_TOKEN=TBD
+export FAYE_SERVER=http://bamru.net:9292/faye
+
+# for REST/API authorization using basic-auth
+export SYSTEM_USER=system_user
+export SYSTEM_PASS=bamrunet
+
+# postgres password
+export POSTGRES_PASS=simple
+
+# administrator email addresses for system warnings and alerts
+# fires on 500 errors(working), MONIT alerts(TBD)
+# multiple addresses are OK - separate addresses by spaces
+export EXCEPTION_ALERT_EMAILS=andy@r210.com
+
+# account info to use for monit/email alerts
+export GMAIL_MONIT_SMTP_SRVR=smtp.gmail.com
+export GMAIL_MONIT_SMTP_USER=bamru.staging
+export GMAIL_MONIT_SMTP_PASS=staging4bmru
+
+# only these email addresses will be delivered in staging
+export STAGING_VALID_EMAILS=andy@r210.com 6508230836@txt.att.net
+
+# for sending emails on staging
+export GMAIL_STAGING_SMTP_SRVR=smtp.gmail.com
+export GMAIL_STAGING_SMTP_USER=bamru.staging
+export GMAIL_STAGING_SMTP_PASS=staging4bmru
+
+# for sending mails in production
+export GMAIL_PRODUCTION_SMTP_SRVR=smtp.gmail.com
+export GMAIL_PRODUCTION_SMTP_USER=bamru.net
+export GMAIL_PRODUCTION_SMTP_PASS=mail5bamru
+
+#google calendar - staging
+export GCAL_STAGING_USER=bamru.staging
+export GCAL_STAGING_PASS=staging4bmru
+
+#google calendar - production
+export GCAL_PRODUCTION_USER=bamru.calendar
+export GCAL_PRODUCTION_PASS=calendar4bamru
+
+# AWS/SES
+export SES_SMTP_SRVR=email-smtp.us-east-1.amazonaws.com
+export SES_SMTP_USER=AKIAJLR2JY3TBUIVQ2QA
+export SES_SMTP_PASS=AsYMjMpcMAhndsX5pkUeMt5YZdlfNVurjwe2gBi2CiYT
+
+# MANDRILL
+export MANDRILL_SMTP_SRVR=smtp.mandrillapp.com
+export MANDRILL_SMTP_USER=andy@r210.com
+export MANDRILL_SMTP_PASS=0c38512d-2491-4cea-95d7-cdc0de88a8f3
+export MANDRILL_APIKEY=0c38512d-2491-4cea-95d7-cdc0de88a8f3
+
+# SENDGRID
+export SENDGRID_SMTP_SRVR=TBD
+export SENDGRID_SMTP_USER=TBD
+export SENDGRID_SMTP_PASS=TBD
+
+# TWILIO
+export TWILIO_SMS_SID=AC88825c1e9035320bdb1831a4f6028d66
+export TWILIO_SMS_TOKEN=bd2b54100647f8a7e5cfb8bed3b03910
+export TWILIO_SMS_NUMBERS=6502413132 6502411177 6504818108
+
+# NEXMO
+export NEXMO_SMS_KEY=07e161e8
+export NEXMO_SMS_SECRET=cfb37477
+export NEXMO_SMS_NUMBERS=16505643031 16505643029 16505643026
+
+# SERVICE SELECTION
+export EMAIL_SERVICE=GMAIL
+export PHONE_SERVICE=GMAIL
+
+export APP_NAME=bnet
+
+# default environment - automatically changed during deployment
+export RAILS_ENV=development
+
+# queue_classic variables
+export QC_DATABASE_URL=postgres://bnet:${POSTGRES_PASS}@localhost/bnet_${RAILS_ENV}
+export QC_LISTENING_WORKER=true
+
+# for testing in development
+export BROWSER=firefox
