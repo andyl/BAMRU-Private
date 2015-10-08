@@ -29,7 +29,7 @@ class DataFile < ActiveRecord::Base
   validates_format_of     :data_file_name,      :with => /^[^ ]+$/
   validates_format_of     :data_file_extension, :with => TYPES
 
-  validates_numericality_of :data_file_size, :greater_than => 0, :less_than => 25.megabytes
+  validates_numericality_of :data_file_size, :greater_than => 0, :less_than => 35.megabytes
 
   # ----- Callbacks -----
   before_validation :set_extension, :cleanup_filename
