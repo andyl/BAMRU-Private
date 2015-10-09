@@ -35,9 +35,7 @@ class BB.Models.RosterState extends Backbone.Model
     false
 
   setPeriod: (period) ->
-    return false unless @attributes[period]?
-    keys = Object.keys(@attributes)
-    return false unless _.contains(keys, "#{period}")
+    return false if period == undefined
     _.each(Object.keys(@attributes), (att) => @attributes[att] = "min" if @attributes[att] == "max" )
     opts = {}
     opts[period] = "max"
