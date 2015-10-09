@@ -3,7 +3,7 @@ source "http://rubygems.org"
 ruby "1.9.3"
 
 # ----- rails -----
-gem "rails",        "3.2.12"
+gem "rails",        "3.2.22"
 gem "rake",         "10.0.3"
 
 # ----- web servers -----
@@ -72,7 +72,7 @@ gem "mail"
 
 # ----- pdf generation -----
 gem "prawn", "~> 0.12.0"   # for PDF reports
-gem "pdfkit"               # PDF screenshots of a URL 
+gem "pdfkit"               # PDF screenshots of a URL
 
 # ----- javascript processing -----
 gem "eco"
