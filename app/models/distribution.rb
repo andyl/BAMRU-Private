@@ -80,14 +80,20 @@ class Distribution < ActiveRecord::Base
 
   # support RSVP actions
   def perform_event_action(member, message, answer)
-    return if answer != "Yes"
+    binding.pry
     return unless message.period_id && message.period_format
     period = Period.find(message.period_id)
     return unless period
-    case message.period_format
+    if answer == "No"
+      case message.period_format
+      when "invite" then period.remove_participant(member)
+      end
+    else
+      case message.period_format
       when "invite" then period.add_participant(member)
       when "leave"  then period.set_departure_time(member)
       when "return" then period.set_return_time(member)
+      end
     end
   end
 
