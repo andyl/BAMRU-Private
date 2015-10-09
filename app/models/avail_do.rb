@@ -32,7 +32,7 @@ class AvailDo < ActiveRecord::Base
       quarter_start = Time.parse("Jan #{year}") + (quarter-1).quarters
       day = quarter_start + (week-1).weeks + 8.hours
       day = day - 1.week if quarter_start.wday == 3
-      day = day - 1.week if year.to_s == "2015"
+      day = day - 1.week if year.to_i >= 2015
       adj_factor = case day.wday
         when 0 then 2
         when 1 then 1
