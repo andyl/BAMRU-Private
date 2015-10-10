@@ -36,7 +36,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
       desc "enable web access"
       task :enable do
-        run "rm #{shared_path}/system/maintenance.html"
+        run "rm -f #{shared_path}/system/maintenance.html"
       end
 
     end
