@@ -2,6 +2,7 @@ module MessageExtension
   module Base
 
     def breakify(input)
+      return input
       text = input.try(:clone) || ""
       text_index = 0
       max_length = 70

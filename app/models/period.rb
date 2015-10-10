@@ -20,9 +20,15 @@ class Period < ActiveRecord::Base
   # ----- Local Methods-----
 
   # ----- support RSVP actions
+  def remove_participant(member)
+    participant = self.participants.by_mem_id(member.id).to_a
+    return unless participant.present?
+    participant.first.destroy
+  end
 
   def add_participant(member)
-    return unless self.participants.by_mem_id(member.id).blank?
+    participant = self.participants.by_mem_id(member.id).to_a
+    return unless participant.blank?
     self.participants.create(member_id: member.id)
   end
 

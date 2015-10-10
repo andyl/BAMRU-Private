@@ -18,17 +18,17 @@ describe MessageExtension::Base do
     specify { @obj.label4c.length.should == 4 }
   end
 
-  describe "breakify" do
-    it "handles short strings" do
-      string = "asdf"
-      @obj.breakify(string).should == string
-    end
+  # describe "breakify" do
+  #   it "handles short strings" do
+  #     string = "asdf"
+  #     @obj.breakify(string).should == string
+  #   end
 
-    it "handles long strings" do
-      string = "x" * 75
-      @obj.breakify(string).should_not == string
-      @obj.breakify(string).length.should == 76
-    end
-  end
+  #   it "handles long strings" do
+  #     string = "x" * 75
+  #     @obj.breakify(string).should_not == string
+  #     @obj.breakify(string).length.should == 76
+  #   end
+  # end
 
 end

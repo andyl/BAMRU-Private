@@ -1,7 +1,11 @@
 namespace :data do
 
+  task :environment do
+    require File.expand_path('../../../config/environment', __FILE__)
+  end
+
   desc "Count Database Objects"
-  task :count do # => :data_environment do
+  task :count => :environment do
     puts "      Members: #{Member.count}"
     puts "    Addresses: #{Address.count}"
     puts "       Emails: #{Email.count}"
