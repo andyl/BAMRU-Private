@@ -30,6 +30,7 @@ module MessagesHelper
       output = ""
       output << cstr["#{dist.member_id}_phone"] if dist.phone?
       output << cstr["#{dist.member_id}_email"] if dist.email?
+      output
     end.join
   end
 
