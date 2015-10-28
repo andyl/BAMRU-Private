@@ -37,7 +37,6 @@ env_settings.each_line do |val|
   constant = val.chomp.strip
   tmp = nil
   eval "tmp = ENV['#{constant}']"
-  #puts "#{constant.ljust(35, '-')} #{tmp}"
   abort "ERROR: Missing Environment Value (#{constant})" if tmp.nil?
   eval "#{constant} = tmp"
 end
@@ -61,7 +60,7 @@ mailservice="gmail"
 mandrill_opts = [MANDRILL_SMTP_SRVR, MANDRILL_SMTP_USER, MANDRILL_SMTP_PASS]
 ses_opts      = [SES_SMTP_SRVR     , SES_SMTP_USER     , SES_SMTP_PASS]
 gmail_opts    = [GMAIL_SRVR        , GMAIL_USER        , GMAIL_PASS]
-  
+
 srvr, user, pass = case mailservice
                    when "mandrill" then mandrill_opts
                    when "ses"      then ses_opts
