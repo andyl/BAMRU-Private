@@ -90,12 +90,14 @@ class QcGcal
   end
 
   def self.update_event(action)
+    return
     return puts("can't update operation") if action.typ == "operation"
     delete_event(action.id)
     create_event(action)
   end
 
   def self.delete_event(id)
+    return
     timestamp = Time.now.strftime("%m-%d %H:%M:%S")
     gcal_service = authenticate_and_return_gcal_service
     gcal_events  = Event.find(gcal_service, "BE#{id}")
