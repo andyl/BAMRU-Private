@@ -23,13 +23,16 @@ namespace :ops do
     opt.dataset       = dataset
     opt.app           = "bnet"
     opt.host          = `hostname`.chomp
-    opt.base_dir      = File.expand_path("~/.backup")
+    opt.base_dir      = File.expand_path("~/d/backup")
     opt.time_stamp    = Time.now.strftime("%y%m%d_%H%M%S")
     opt.lbl_dir       = [opt.base_dir, opt.app, opt.host, dataset].join('/')
     opt.tgt_dir       = [opt.base_dir, opt.app, opt.host, dataset, opt.time_stamp].join('/')
     opt.targets       = backup_params[dataset][:targets]
     opt.copies        = backup_params[dataset][:copies]
-    opt.backup_cp_cmd = Proc.new {|data_path| "cp -rL #{data_path} #{opt.tgt_dir}"}
+    opt.backup_cp_cmd = Proc.new do |data_path|
+      base = data_path.split('/').last
+      "tar -chzf #{opt.tgt_dir}/#{base}.tgz #{data_path}"
+    end
     opt
   end
 
