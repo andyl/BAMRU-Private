@@ -23,13 +23,16 @@ namespace :ops do
     opt.dataset       = dataset
     opt.app           = "bnet"
     opt.host          = `hostname`.chomp
-    opt.base_dir      = File.expand_path("~/.backup")
+    opt.base_dir      = File.expand_path("~/d/backup")
     opt.time_stamp    = Time.now.strftime("%y%m%d_%H%M%S")
     opt.lbl_dir       = [opt.base_dir, opt.app, opt.host, dataset].join('/')
     opt.tgt_dir       = [opt.base_dir, opt.app, opt.host, dataset, opt.time_stamp].join('/')
     opt.targets       = backup_params[dataset][:targets]
     opt.copies        = backup_params[dataset][:copies]
-    opt.backup_cp_cmd = Proc.new {|data_path| "cp -rL #{data_path} #{opt.tgt_dir}"}
+    opt.backup_cp_cmd = Proc.new do |data_path|
+      base = data_path.split('/').last
+      "tar -chzf #{opt.tgt_dir}/#{base}.tgz #{data_path}"
+    end
     opt
   end
 
@@ -84,8 +87,16 @@ namespace :ops do
     opts.restore_cp_cmd = Proc.new do |data_path|
       target = data_path.split('/').last
       target_path = "#{opts.restore_src}/#{target}"
-      abort "Target Path not found (#{target_path}" unless File.exist? target_path
-      "cp -r #{target_path} #{data_path}"
+      case opts.dataset
+      when "sysdir"
+        abort "Target Path not found (#{target_path}.tgz)" unless File.exist? target_path + ".tgz"
+        "cd public ; tar -xf #{target_path}.tgz ; cd .."
+      when "db"
+        abort "Target Path not found (#{target_path})" unless File.exist? target_path
+        "cp -r #{target_path} #{data_path}"
+      else
+        abort "Unrecognized dataset (#{opts.dataset})"
+      end
     end
     opts
   end
@@ -108,6 +119,19 @@ namespace :ops do
 
   end
 
+  namespace :db do
+    desc 'Import Postgres Data'
+    task :import => ['db:drop', 'db:create'] do
+      puts "importing from 'db/data.psql'"
+      verbose(false) do
+        # cmd = "psql -U #{dbenv("username")} -d bnet_#{Rails.env.to_s} -f db/data.psql > /dev/null"
+        cmd = "psql -U bnet -d bnet_#{Rails.env.to_s} -f db/data.psql > /dev/null"
+        puts cmd
+        sh cmd
+      end
+    end
+  end
+
   # restore just copies the data files into place
   # to do a full restore of the database:
   # rake ops:restore:all
@@ -116,7 +140,6 @@ namespace :ops do
   # rake db:load
   #
   namespace :restore do
-
     desc "Restore all Targets"
     task :all => [:sysdir, :db] do
       puts "All targets restored"
@@ -135,7 +158,5 @@ namespace :ops do
       snapshot = ENV['SNAPSHOT'] || 'latest'
       restore('db', server, snapshot)
     end
-
   end
-
 end

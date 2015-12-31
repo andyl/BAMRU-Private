@@ -10,6 +10,7 @@
 .rbenv-vars-*
 .test-env.yaml
 .vagrant
+.env
 log
 log/*
 db/data.yml
