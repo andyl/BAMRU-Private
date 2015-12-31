@@ -31,7 +31,17 @@ namespace :ops do
     opt.copies        = backup_params[dataset][:copies]
     opt.backup_cp_cmd = Proc.new do |data_path|
       base = data_path.split('/').last
-      "tar -chzf #{opt.tgt_dir}/#{base}.tgz #{data_path}"
+      case opt.dataset
+      when "sysdir"
+        "tar -chzf #{opt.tgt_dir}/#{base}.tgz #{data_path}"
+      when "db"
+        target_path = opt.tgt_dir
+        abort "Data Path not found (#{data_path})" unless File.exist? data_path
+        abort "Target Path not found (#{target_path})" unless Dir.exist? target_path
+        "cp  #{data_path} #{target_path}"
+      else
+        abort "Unrecognized dataset (#{opt.dataset})"
+      end
     end
     opt
   end
