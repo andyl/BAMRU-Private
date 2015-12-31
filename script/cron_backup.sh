@@ -3,7 +3,7 @@
 # not the production server
 #
 # to just grab the database:
-# cap ln6 backup:generate:db backup:download:db
+# cap backup:download:db
 #
 echo ------- start backup -------
 date
