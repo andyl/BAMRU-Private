@@ -158,9 +158,23 @@ class Event < ActiveRecord::Base
   def csv_start
     start.strftime("%Y-%m-%d")
   end
+  alias_method :csv_start_date, :csv_start
+
+  def csv_start_time
+    return "" if finish.nil?
+    time = start.strftime("%H%M")
+    time == "0000" ? "" : time
+  end
 
   def csv_finish
     finish.nil? ? "" : finish.strftime("%Y-%m-%d")
+  end
+  alias_method :csv_finish_date, :csv_finish
+
+  def csv_finish_time
+    return "" if finish.nil?
+    time = finish.strftime("%H%M")
+    time == "0000" ? "" : time
   end
 
   # ----- Local Methods - iCal Date Methods -----

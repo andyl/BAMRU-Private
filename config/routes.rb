@@ -71,6 +71,7 @@ Zn::Application.routes.draw do
   post 'registry/update/:id' => "registry#update"
 
   get "public/calendar"
+  get "public/calendar2"
 
   get "preview/sms"
   get "preview/mail_txt"
