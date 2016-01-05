@@ -180,12 +180,12 @@ class Event < ActiveRecord::Base
   # ----- Local Methods - iCal Date Methods -----
   def dt_start
     date = start.strftime("%Y%m%d")
-    typ == "meeting" ? date + "T193000" : date
+    # typ == "meeting" ? date + "T193000" : date
   end
 
   def dt_end
     date = (finish.nil? || finish.blank?) ? start.strftime("%Y%m%d") : finish.strftime("%Y%m%d")
-    typ == "meeting" ? date + "T213000" : date
+    # typ == "meeting" ? date + "T213000" : date
   end
 
   def dt_stamp
@@ -357,9 +357,9 @@ class Event < ActiveRecord::Base
     link = description.gsub("[","").gsub("]", "")
     mesg = "Find more information on the <a href='#{link}'>BAMRU Blog</a>"
     ldr + mesg
-  end  
-  
-  
+  end
+
+
 end
 
 # == Schema Information
