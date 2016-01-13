@@ -10,7 +10,8 @@ prawn_document() do |pdf|
 
   pdf.move_down 15
   pdf.text "BAMRU is a resource of the San Mateo County Sheriff's Office of Emergency Services."
-  pdf.text "Learn more at http://hsd.smcsheriff.com/divisions/homeland-security-division/emergency-services-bureau/search-rescue"
+  pdf.text "Learn more at"
+  pdf.text "http://hsd.smcsheriff.com/divisions/homeland-security-division/emergency-services-bureau/search-rescue", :size => 8
 
   pdf.move_down 15
   pdf.text "Find BAMRU online at http://bamru.org"
