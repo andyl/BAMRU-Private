@@ -51,7 +51,6 @@ There are <b><%= @numEvents("all") %></b> events in our database, from <%= @firs
 <span style='font-size: 8pt;'>
   <a href='https://www.google.com/calendar/embed?src=bamru.calendar%40gmail.com&ctz=America/Los_Angeles' target="_blank">Google Calendar</a>,
   <a href='http://bamru.org/calendar' target="_blank">BAMRU Calendar</a>,
-  <a href="http://bamru.org/operations" target="_blank">BAMRU Operations</a>,
   <a href="/public/calendar.csv" target="_blank">CSV</a> -
 <a href='/home/event_publishing' target="_blank">learn more</a>
 </span>
