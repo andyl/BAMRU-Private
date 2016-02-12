@@ -10,9 +10,9 @@
 # - http://github.com/javan/whenever  | cron processor
 # - http://en.wikipedia.org/wiki/Cron | cron instructions
 
-set :output, '/tmp/bnet_cron_backup.log'
+set :output, '/tmp/cron_bnet.log'
 
-every 1.day, at: '3:30 am' do
-  script  'source .env; cron_backup.sh'
+every 1.day, at: '2:30 am' do
+  script  'cron_backup.sh'
 end
 

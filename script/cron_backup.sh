@@ -5,6 +5,7 @@
 # to just grab the database:
 # cap backup:download:db
 #
+source .env
 echo ------- start backup -------
 date
 echo ----------------------------
