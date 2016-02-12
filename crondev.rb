@@ -3,6 +3,7 @@
 # Not the production machine!
 #
 # to generate cronfile : `whenever -f crondev.rb --update-crontab`
+# to generate cronfile : `whenever -f crondev.rb --clear-crontab`
 # for help on whenever : `whenever -h`
 # to see cron settings : `crontab -l`
 #
@@ -12,7 +13,7 @@
 
 set :output, '/tmp/cron_bnet.log'
 
-every 1.day, at: '2:30 am' do
+every 1.day, at: '2:00 am' do
   script  'cron_backup.sh'
 end
 
