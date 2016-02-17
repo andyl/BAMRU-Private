@@ -7,7 +7,7 @@
 #
 cd /home/aleak/lr/BAMRU-Private
 source .env
-echo ||||||||||||||||||||||||||||
+echo "||||||||||||||||||||||||||||"
 echo ------- start backup -------
 date
 echo PWD is `pwd`
