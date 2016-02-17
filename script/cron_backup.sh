@@ -5,6 +5,7 @@
 # to just grab the database:
 # cap backup:download:db
 #
+cd /home/aleak/lr/BAMRU-Private
 source .env
 echo ------- start backup -------
 date
