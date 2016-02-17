@@ -7,8 +7,11 @@
 #
 cd /home/aleak/lr/BAMRU-Private
 source .env
+echo ||||||||||||||||||||||||||||
 echo ------- start backup -------
 date
+echo PWD is `pwd`
+echo APP is $APP
 echo ----------------------------
 bundle exec cap backup:download:all
 echo ------- finish backup ------
