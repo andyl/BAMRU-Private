@@ -11,7 +11,7 @@ echo "||||||||||||||||||||||||||||"
 echo ------- start backup -------
 date
 echo PWD is `pwd`
-echo APP is $APP
+echo APP_NAME is $APP_NAME
 echo ----------------------------
 bundle exec cap backup:download:all
 echo ------- finish backup ------
