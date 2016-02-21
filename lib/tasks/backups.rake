@@ -23,7 +23,7 @@ namespace :ops do
     opt.dataset       = dataset
     opt.app           = "bnet"
     opt.host          = `hostname`.chomp
-    opt.base_dir      = File.expand_path("~/d/backup")
+    opt.base_dir      = File.expand_path("~/e")
     opt.time_stamp    = Time.now.strftime("%y%m%d_%H%M%S")
     opt.lbl_dir       = [opt.base_dir, opt.app, opt.host, dataset].join('/')
     opt.tgt_dir       = [opt.base_dir, opt.app, opt.host, dataset, opt.time_stamp].join('/')
