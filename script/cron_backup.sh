@@ -11,7 +11,7 @@ date
 cd /home/aleak/lr/BAMRU-Private
 echo PWD is `pwd`
 echo ----------------------------
-source .env ; bundle exec cap backup:download:all
+source ./.env ; bundle exec cap backup:download:all
 echo ------- finish backup ------
 date
 echo ----------------------------
