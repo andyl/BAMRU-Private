@@ -11,8 +11,6 @@ date
 cd /home/aleak/lr/BAMRU-Private
 echo PWD is `pwd`
 echo USER is `whoami`
-echo PATH is $PATH
-env
 echo ----------------------------
 . ./.env ; bundle exec cap backup:download:all
 echo ------- finish backup ------
