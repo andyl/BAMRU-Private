@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# for testing
+
+echo `date +%a-%b-%d_%H:%M:%S` USER:`whoami` DIR:`pwd` SCRIPT:$0 

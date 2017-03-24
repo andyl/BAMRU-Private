@@ -21,6 +21,9 @@ db/schema.*
 db/*.sqlite3
 public/images/icon*
 public/images/icons/*
+public/public
+public/public/
+public/public/*
 /wiki
 /wiki/*
 doc

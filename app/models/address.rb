@@ -81,6 +81,10 @@ class Address < ActiveRecord::Base
     @full_addresses || "#{address1.end_nl}#{address2.end_nl}#{city.end_sp}#{state.end_sp}#{zip}"
   end
 
+  def label_address
+    @label_address || "#{address1.end_sp}#{address2}\n#{city.end_sp}#{state.end_sp}#{zip}"
+  end
+
   def full_address=(input)
     begin
       hash = parse_address(input)

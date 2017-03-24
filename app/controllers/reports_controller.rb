@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
   # invoke using /creports/BAMRU-roster.html
   def show_current_report
     @members   = Member.active.order_by_last_name
+    @memreg    = Member.registered.order_by_last_name
     args = {:layout => nil, :formats => [params[:format]]}
     render "_c_#{params[:title]}", args
   end
@@ -95,6 +96,7 @@ class ReportsController < ApplicationController
       ["Roster",  "BAMRU Field",       'BAMRU-field.pdf',           "One page roster with basic contact info"],
       ["Roster",  "BAMRU Wallet",      'BAMRU-wallet.pdf',          "A credit-card sized roster for your wallet"],
       ["Misc",    "BAMRU Names",       'BAMRU-names.pdf',           "List of names for ProDeal reporting"],
+      ["Misc",    "BAMRU Labels",      'BAMRU-labels.pdf',          "Mailing labels with member home address"],
       ["Paging",  "Response Times",    'Paging-ResponseTimes.pdf',  "Shows response times from recent pages"],
       ["Certs",   "Cert Full Export",  'BAMRU-CertAll.pdf',         "All member certifications [runs slow]"],
       ["Certs",   "Cert Expiration",   'BAMRU-CertExpiration.pdf',  "Expired certifications"]
