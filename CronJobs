@@ -10,8 +10,8 @@
 # - http://github.com/javan/whenever  | cron processor
 # - http://en.wikipedia.org/wiki/Cron | cron instructions
 
-load "/home/aleak/g/pdev_util/bin/SysRole"
-load "/home/aleak/g/pdev_util/bin/SharedCronCfg"
+load File.expand_path("~/g/pdev_util/bin/SysRole")
+load File.expand_path("~/g/pdev_util/bin/SharedCronCfg")
 
 whenever_config
 
