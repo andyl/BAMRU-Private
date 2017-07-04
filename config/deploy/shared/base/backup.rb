@@ -33,7 +33,7 @@ Capistrano::Configuration.instance(:must_exist).load do
         desc "Download system backups"
         task :sysdir do
           puts "Download system directory backups - this might take awhile. (#{Time.now.strftime('%H:%M:%S')})"
-          tgt_dir = "~/e/bnet/bamru1/sysdir"
+          tgt_dir = "~/var/backup/bnet/bamru1/sysdir"
           system "mkdir -p #{tgt_dir}"
           cmd = "rsync -av --delete #{user}@bamru.net:e/bnet/bamru1/sysdir/ #{tgt_dir}"
           puts cmd
@@ -44,7 +44,7 @@ Capistrano::Configuration.instance(:must_exist).load do
         desc "Download db backups"
         task :db do
           puts "Download database backups. (#{Time.now.strftime('%H:%M:%S')})"
-          tgt_dir = "~/e/bnet/bamru1/db"
+          tgt_dir = "~/var/backup/bnet/bamru1/db"
           system "mkdir -p #{tgt_dir}"
           cmd = "rsync -av --delete #{user}@bamru.net:e/bnet/bamru1/db/ #{tgt_dir}"
           puts cmd
