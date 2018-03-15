@@ -1,3 +1,5 @@
+$VERBOSE = nil   # disable constant warnings
+
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
@@ -14,6 +16,10 @@ require "sprockets/railtie"
    # If you want your assets lazily compiled in production, use this line
    # Bundler.require(:default, :assets, Rails.env)
 #end
+
+Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
+
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 require File.dirname(File.expand_path(__FILE__)) + '/../lib/env_settings'
@@ -36,7 +42,7 @@ module Zn
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    
+
     # see https://github.com/ryandotsmith/queue_classic
     config.active_record.schema_format = :sql
 

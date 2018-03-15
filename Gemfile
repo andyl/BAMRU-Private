@@ -6,6 +6,9 @@ ruby "1.9.3"
 gem "rails",        "3.2.22"
 gem "rake",         "10.0.3"
 
+# ----- env -----
+gem "dotenv-rails"
+
 # ----- web servers -----
 gem "thin"                  # required by faye
 gem "passenger", "3.0.12"   # production server
