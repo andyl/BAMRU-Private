@@ -29,6 +29,6 @@ Action:
 - [ ] add dev console
 - [ ] deploy to the new machine from home
 - [ ] deploy to the new machine from shared-dev
-- [ ] add configuration for SSL to production
 - [ ] provision SSL certs for BAMRU.net 
+- [ ] add configuration for SSL to production
 
