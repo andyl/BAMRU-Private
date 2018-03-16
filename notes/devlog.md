@@ -10,6 +10,7 @@ Decision:
 - exactly model the tooling for the current app
 - do not upgrade the current tooling (ruby 1.9.3, postgres 9.1)
 - just get it to the point that it can be maintained indefinately
+- create a shared dev-server in the datacenter
 - if there is a follow-on version, build using new tech
 
 Action:
@@ -23,9 +24,11 @@ Action:
 
 # TBD
 
+- [ ] create linode development server
+- [ ] create linode production server
 - [ ] add dev console
-- [ ] create new machine
-- [ ] provision a new machine
-- [ ] deploy to the new machine
-- [ ] add configuration for SSL
+- [ ] deploy to the new machine from home
+- [ ] deploy to the new machine from shared-dev
+- [ ] add configuration for SSL to production
+- [ ] provision SSL certs for BAMRU.net 
 
