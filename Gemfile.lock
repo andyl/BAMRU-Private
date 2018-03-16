@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/andyl/mail_view.git
-  revision: ca4b3f60a4116c9471d3259b99a9b66be373d5dd
+  revision: 820908aa86bd726a97df526a20d009c4f5fa22d6
   specs:
     mail_view (1.0.0)
 
@@ -494,4 +494,4 @@ RUBY VERSION
    ruby 1.9.3p551
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
