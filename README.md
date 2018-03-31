@@ -137,7 +137,7 @@ Contributions are encouraged!
 
 ## License
 
-Copyright (c) 2011-2013 Andy Leak
+Copyright (c) 2011-2018 Andy Leak
 
 Permitted Use
 
@@ -167,3 +167,8 @@ distribute, or reuse the Software are denied.  For all Uses, rights to
 sublicense and/or sell copies of the Software, to permit persons to whom the
 Software is furnished to do so, or to create derivitave works, whether
 commercial or non-commercial, are denied.
+
+## Test
+
+Added by bmrdev@gmail.com from dev.bamru.info
+
