@@ -37,13 +37,23 @@ Action:
 - [x] provision new production server  (user = deploy)
 - [x] provision new development server (user = bmrdev)
 
-# TBD
+# 2018-03-31
 
-- [ ] add Git keys to dev machine for user `bmrdev`
+- [x] add ruby 1.9 to dev and production machines
+- [x] setup/config PG 9.1 on dev and producton
+- [x] provision database users
+
+- [ ] setup Git keys to dev machine for user `bmrdev`
+- [ ] clone BAMRU-Org to dev.bamru.info
+- [ ] clone BAMRU-Private to dev.bamru.info
 - [ ] push from dev machine to BAMRU-Org
 - [ ] push from dev machine to BAMRU-Private
 
+# TBD
+
 - [ ] add dev console
+- [ ] copy backups to dev machine
+- [ ] get the dev system running
 
 - [ ] deploy to the new machine from home
 - [ ] deploy to the new machine from dev.bamru.info
@@ -59,7 +69,7 @@ Action:
 - [ ] get BAMRU.org cron processes working on dev.bamru.info
 
 - [ ] test paging on BAMRU.info
-- [ ] add redirect from BAMRU.net to BAMRU.info
+- [ ] redirect DNS bamru.net to bamru.info
 
 - [ ] delete old BAMRU.net machine
 - [ ] shutdown local backup scripts
