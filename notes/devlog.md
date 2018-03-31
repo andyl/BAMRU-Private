@@ -34,9 +34,8 @@ Action:
 - [x] create GitHub account (bmrdev@gmail.com/CallOut)
 - [x] configure Github (BAMRU-ORG) to accept pushes from bmrdev
 - [x] configure Github (BAMRU-NET) to accept pushes from bmrdev
-
-- [ ] provision new production server  (user = deploy)
-- [ ] provision new development server (user = bmrdev)
+- [x] provision new production server  (user = deploy)
+- [x] provision new development server (user = bmrdev)
 
 # TBD
 
@@ -52,11 +51,15 @@ Action:
 - [ ] provision SSL certs for BAMRU.info
 
 - [ ] test backups from BAMRU.info to dev machine
+- [ ] test backups from BAMRU.net to BAMRU.info
 
 - [ ] transfer Linode VMs to a new BAMRU account
 - [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU account
 
 - [ ] get BAMRU.org cron processes working on dev.bamru.info
+
+- [ ] test paging on BAMRU.info
+- [ ] add redirect from BAMRU.net to BAMRU.info
 
 - [ ] delete old BAMRU.net machine
 - [ ] shutdown local backup scripts
