@@ -32,12 +32,14 @@ Action:
 
 # TBD
 
+- [ ] create Gmail account (bamdev@gmail.com/CallOut) for GH push
+- [ ] create GitHub account (bamdev@gmail.com)
+
+- [ ] configure Github (BAMRU-ORG) to accept pushes from bamdev
+- [ ] configure Github (BAMRU-NET) to accept pushes from bamdev
+
 - [ ] provision linode production server  (user = deploy)
 - [ ] provision linode development server (user = bamdev)
-
-- [ ] create dev user (bamdev@github.com/CallOut) for GH push
-- [ ] configure Github to accept pushes from bamdev
-
 - [ ] add dev console
 - [ ] deploy to the new machine from home
 - [ ] deploy to the new machine from shared-dev
@@ -46,8 +48,10 @@ Action:
 
 - [ ] test backups from BAMRU.info to dev machine
 
-- [ ] transfer Linode VMs to a BAMRU account
-- [ ] transfer BAMRU.info and BAMRU.net to a BAMRU account
+- [ ] transfer Linode VMs to a new BAMRU account
+- [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU account
+
+- [ ] get BAMRU.org cron processes working on dev.bamru.info
 
 - [ ] delete old BAMRU.net machine
 
