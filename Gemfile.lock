@@ -1,16 +1,16 @@
 GIT
-  remote: git://github.com/andyl/mail_view.git
-  revision: ca4b3f60a4116c9471d3259b99a9b66be373d5dd
-  specs:
-    mail_view (1.0.0)
-
-GIT
-  remote: http://github.com/andyl/aalf.git
+  remote: https://github.com/andyl/aalf.git
   revision: 1a6ac19033199a11d021101af0d4c54a2b632f5f
   specs:
     aalf (0.0.1)
       activerecord
       activesupport
+
+GIT
+  remote: https://github.com/andyl/mail_view.git
+  revision: 820908aa86bd726a97df526a20d009c4f5fa22d6
+  specs:
+    mail_view (1.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -80,9 +80,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
-    capybara-webkit (0.14.2)
-      capybara (~> 2.0, >= 2.0.2)
-      json
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
@@ -408,7 +405,6 @@ DEPENDENCIES
   capistrano
   capistrano_colors
   capybara
-  capybara-webkit
   cocaine
   coffee-rails (~> 3.2.1)
   coffee-rails-source-maps
@@ -468,7 +464,6 @@ DEPENDENCIES
   ruby-gmail
   sass
   sass-rails (~> 3.2.3)
-  selenium-webdriver
   shoulda-matchers
   simple_form
   simplecov
@@ -489,4 +484,4 @@ RUBY VERSION
    ruby 1.9.3p551
 
 BUNDLED WITH
-   1.12.5
+   1.16.1
