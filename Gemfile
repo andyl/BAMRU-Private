@@ -55,7 +55,7 @@ gem "dynamic_form"      # error message helpers
 gem "draper", "0.18.0"  # view decorators
 
 # ----- misc -----
-gem "aalf",      :git => "http://github.com/andyl/aalf.git"
+gem "aalf",      :git => "https://github.com/andyl/aalf.git"
 gem "mime"
 gem "cancan"         # access control
 gem "cocaine"        # ???
@@ -142,12 +142,12 @@ group :development, :test do
   # ----- capybara -----
   gem "launchy"
   gem "capybara"
-  gem "capybara-webkit"
-  gem "selenium-webdriver"
+  # gem "capybara-webkit"
+  # gem "selenium-webdriver"
 
   # ----- mail testing -----
   gem "letter_opener"       # opens email in a local browser
-  gem "mail_view", :git => "git://github.com/andyl/mail_view.git"
+  gem "mail_view", :git => "https://github.com/andyl/mail_view.git"
 
   # ----- misc -----
   gem "bullet"            # generates alert on N+1 queries
