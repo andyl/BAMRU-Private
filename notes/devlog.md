@@ -1,16 +1,17 @@
 # BAMRU.net Development Log
 
+Mission: setup so that BAMRU.net can be maintained indefinately as-is.
+
 Goals:
-- [ ] maintainable/deployable system
-- [ ] upgrade production OS to 16.04
-- [ ] confirm backup operation
+- [x] upgrade production OS to 16.04
+- [ ] shared dev environment in datacenter
+- [ ] working backups to dev server
 - [ ] add SSL
 
 Approch:
 - exactly model the current tooling (ruby 1.9.3, postgres 9.1)
-- setup so that the system can be maintained indefinately as-is
-- create a shared dev-server in the datacenter
-- if there is a follow-on version, build using new tech
+- move BAMRU.org calendar sync to shared dev server
+- move all DNS, VMs, dev accounts to BAMRU-managed userids
 
 # 2018-03-15
 
@@ -29,20 +30,24 @@ Action:
 
 - [x] create linode production server  (bamru.info)
 - [x] create linode development server (dev.bamru.info)
+- [x] create Gmail account  (bmrdev@gmail.com/CallOut) 
+- [x] create GitHub account (bmrdev@gmail.com/CallOut)
+- [x] configure Github (BAMRU-ORG) to accept pushes from bmrdev
+- [x] configure Github (BAMRU-NET) to accept pushes from bmrdev
+
+- [ ] provision new production server  (user = deploy)
+- [ ] provision new development server (user = bmrdev)
 
 # TBD
 
-- [ ] create Gmail account (bamdev@gmail.com/CallOut) for GH push
-- [ ] create GitHub account (bamdev@gmail.com)
+- [ ] add Git keys to dev machine for user `bmrdev`
+- [ ] push from dev machine to BAMRU-Org
+- [ ] push from dev machine to BAMRU-Private
 
-- [ ] configure Github (BAMRU-ORG) to accept pushes from bamdev
-- [ ] configure Github (BAMRU-NET) to accept pushes from bamdev
-
-- [ ] provision linode production server  (user = deploy)
-- [ ] provision linode development server (user = bamdev)
 - [ ] add dev console
+
 - [ ] deploy to the new machine from home
-- [ ] deploy to the new machine from shared-dev
+- [ ] deploy to the new machine from dev.bamru.info
 
 - [ ] provision SSL certs for BAMRU.info
 
@@ -54,4 +59,5 @@ Action:
 - [ ] get BAMRU.org cron processes working on dev.bamru.info
 
 - [ ] delete old BAMRU.net machine
+- [ ] shutdown local backup scripts
 
