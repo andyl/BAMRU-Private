@@ -7,7 +7,7 @@ require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 set :app_name,    APP_NAME         # <- this comes from lib/env_settings
 set :application, "BAMRU-Private"
 set :repository,  "https://github.com/andyl/#{application}.git"
-set :vhost_names, %w(bamru.net bnet www.bamru.net bamru1)
+set :vhost_names, %w(bamru.info bamru.net bnet www.bamru.net bamru1)
 set :web_port,    8500
 
 # ===== Stage-Specific Code =====
@@ -24,10 +24,10 @@ require "#{share_dir}/tasks"
 # ===== Package Definitions =====
 require share_dir + "/packages/cron"        # setup cron using whenever
 require share_dir + "/packages/passenger"   # nginx config
-require share_dir + "/packages/foreman"     # foreman processes managed by upstart
+require share_dir + "/packages/foreman"     # foreman procs managed by upstart
 require share_dir + "/packages/postgresql"  # postgres database
 require share_dir + "/packages/monit"       # setup monit_alert
-require share_dir + "/packages/faye"        # update faye server environment variablejj
+require share_dir + "/packages/faye"        # update faye server env variable
 
 # ===== App-Specific Tasks =====
 
