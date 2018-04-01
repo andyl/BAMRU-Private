@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+#
+# to preview cronfile  : `whenever -f CronJobs`
+# to generate cronfile : `whenever -f CronJobs --update-crontab`
+# to clear cronfile    : `whenever -f CronJobs --clear-crontab`
+# for help on whenever : `whenever -h`
+# to see cron settings : `crontab -l`
+#
+# Learn more:
+# - http://github.com/javan/whenever  | cron processor
+# - http://en.wikipedia.org/wiki/Cron | cron instructions
+
+load File.expand_path("~/util/pdev_util/bin/SysRole")
+
+whenever_config
+
+if sys_role.include? :dev_host
+  every 1.minute do
+    run_scripts 'heartbeat', app: "BNET"
+  end
+
+  every 1.hour do
+    run_scripts 'download_backup', app: "BNET"
+  end
+end
+
