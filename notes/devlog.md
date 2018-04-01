@@ -42,18 +42,19 @@ Action:
 - [x] add ruby 1.9 to dev and production machines
 - [x] setup/config PG 9.1 on dev and producton
 - [x] provision database users
-
-- [ ] setup Git keys to dev machine for user `bmrdev`
-- [ ] clone BAMRU-Org to dev.bamru.info
-- [ ] clone BAMRU-Private to dev.bamru.info
-- [ ] push from dev machine to BAMRU-Org
-- [ ] push from dev machine to BAMRU-Private
+- [x] setup Git keys to dev machine for user `bmrdev`
+- [x] clone BAMRU-Org to dev.bamru.info
+- [x] clone BAMRU-Private to dev.bamru.info
+- [x] push from dev machine to BAMRU-Org
+- [x] push from dev machine to BAMRU-Private
+- [x] get migrations working
+- [x] copy backups to dev machine
+- [x] load backup data
+- [x] get server working
 
 # TBD
 
-- [ ] add dev console
-- [ ] copy backups to dev machine
-- [ ] get the dev system running
+- [ ] all specs pass
 
 - [ ] deploy to the new machine from home
 - [ ] deploy to the new machine from dev.bamru.info
