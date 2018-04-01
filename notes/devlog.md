@@ -51,10 +51,9 @@ Action:
 - [x] copy backups to dev machine
 - [x] load backup data
 - [x] get server working
+- [x] all specs pass
 
 # TBD
-
-- [ ] all specs pass
 
 - [ ] deploy to the new machine from home
 - [ ] deploy to the new machine from dev.bamru.info
