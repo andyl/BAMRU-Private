@@ -48,6 +48,9 @@ Action:
 - [x] push from dev machine to BAMRU-Org
 - [x] push from dev machine to BAMRU-Private
 - [x] get migrations working
+
+# 2018-04-01
+
 - [x] copy backups to dev machine
 - [x] load backup data
 - [x] get server working
@@ -55,7 +58,10 @@ Action:
 
 # TBD
 
-- [ ] deploy to the new machine from home
+- [ ] replace upstart with systemd script for bnet
+- [ ] replace upstart with systemd script for faye
+
+- [ ] deploy to the new machine from ting
 - [ ] deploy to the new machine from dev.bamru.info
 
 - [ ] provision SSL certs for BAMRU.info

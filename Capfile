@@ -1,7 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 load    'deploy/assets'
-require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
+
+require File.expand_path('./config/application', File.dirname(__FILE__))
+
+# Bundler.require(*Rails.groups)
+# Dotenv::Railtie.load
+# Bundler.require(:default, Rails.env) if defined?(Bundler)
+# require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 
 # ===== App Config =====
 set :app_name,    APP_NAME         # <- this comes from lib/env_settings

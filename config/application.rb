@@ -19,9 +19,7 @@ require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
-
 Bundler.require(:default, Rails.env) if defined?(Bundler)
-
 require File.dirname(File.expand_path(__FILE__)) + '/../lib/env_settings'
 
 Time.zone = "Pacific Time (US & Canada)"
