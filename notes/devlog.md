@@ -1,6 +1,6 @@
-#BAMRU.net Development Log
+# BAMRU.net Development Log
 
-Mission: setup so that BAMRU.net can be maintained indefinately as-is.
+Mission: package up the web assets in preparation to transfer the support role.
 
 Goals:
 - [x] upgrade production OS to 14.04
@@ -13,7 +13,7 @@ Approch:
 - move BAMRU.org calendar sync to shared dev server
 - move all DNS, VMs, dev accounts to BAMRU-managed userids
 
-# 2018-03-15
+## 2018-03-15
 
 Action:
 - [x] installed postgres 9.1 on ting (see ansible role for PG config)
@@ -26,7 +26,7 @@ Action:
 - [x] git push works
 - [x] all specs pass
 
-# 2018-03-30
+## 2018-03-30
 
 - [x] create linode production server  (bamru.info)
 - [x] create linode development server (dev.bamru.info)
@@ -37,7 +37,7 @@ Action:
 - [x] provision new production server  (user = deploy)
 - [x] provision new development server (user = bmrdev)
 
-# 2018-03-31
+## 2018-03-31
 
 - [x] add ruby 1.9 to dev and production machines
 - [x] setup/config PG 9.1 on dev and producton
@@ -49,7 +49,7 @@ Action:
 - [x] push from dev machine to BAMRU-Private
 - [x] get migrations working
 
-# 2018-04-01
+## 2018-04-01
 
 NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 - instead use Ubuntu 14.04
@@ -63,7 +63,7 @@ NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 - [x] create namecheap account for bmrdev
 - [x] create linode account for bmrdev
 
-# TBD
+## TBD
 
 - [ ] get BAMRU CC for namecheap
 - [ ] get BAMRU CC for linode
