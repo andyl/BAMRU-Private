@@ -32,8 +32,8 @@ require share_dir + "/packages/cron"        # setup cron using whenever
 require share_dir + "/packages/passenger"   # nginx config
 require share_dir + "/packages/foreman"     # foreman procs managed by upstart
 require share_dir + "/packages/postgresql"  # postgres database
-require share_dir + "/packages/monit"       # setup monit_alert
-require share_dir + "/packages/faye"        # update faye server env variable
+# require share_dir + "/packages/monit"       # setup monit_alert
+# require share_dir + "/packages/faye"        # update faye server env variable
 
 # ===== App-Specific Tasks =====
 
