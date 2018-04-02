@@ -1,15 +1,15 @@
-# BAMRU.net Development Log
+#BAMRU.net Development Log
 
 Mission: setup so that BAMRU.net can be maintained indefinately as-is.
 
 Goals:
-- [x] upgrade production OS to 16.04
+- [x] upgrade production OS to 14.04
 - [ ] shared dev environment in datacenter
 - [ ] working backups to dev server
 - [ ] add SSL
 
 Approch:
-- exactly model the current tooling (ruby 1.9.3, postgres 9.1)
+- exactly model the current tooling (ruby 1.9.3, postgres 9.3)
 - move BAMRU.org calendar sync to shared dev server
 - move all DNS, VMs, dev accounts to BAMRU-managed userids
 
@@ -51,17 +51,26 @@ Action:
 
 # 2018-04-01
 
+NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
+- instead use Ubuntu 14.04
+- which only supports postgres 9.3...
+
 - [x] copy backups to dev machine
 - [x] load backup data
 - [x] get server working
 - [x] all specs pass
+- [x] destroy and reprovision bamru.info and dev.bamru.info
+- [x] create namecheap account for bmrdev
+- [x] create linode account for bmrdev
 
 # TBD
 
-- [ ] fix net-ssh / SSH incompatibility
+- [ ] get BAMRU CC for namecheap
+- [ ] get BAMRU CC for linode
+- [ ] get BAMRU CC for plivo
 
-- [ ] replace upstart with systemd script for bnet
-- [ ] replace upstart with systemd script for faye
+- [ ] transfer Linode VMs to a new BAMRU account
+- [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU registrar account
 
 - [ ] deploy to the new machine from ting
 - [ ] deploy to the new machine from dev.bamru.info
@@ -70,9 +79,6 @@ Action:
 
 - [ ] test backups from BAMRU.info to dev machine
 - [ ] test backups from BAMRU.net to BAMRU.info
-
-- [ ] transfer Linode VMs to a new BAMRU account
-- [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU account
 
 - [ ] get BAMRU.org cron processes working on dev.bamru.info
 
