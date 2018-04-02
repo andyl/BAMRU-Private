@@ -58,6 +58,8 @@ Action:
 
 # TBD
 
+- [ ] fix net-ssh / SSH incompatibility
+
 - [ ] replace upstart with systemd script for bnet
 - [ ] replace upstart with systemd script for faye
 
