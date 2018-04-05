@@ -56,12 +56,20 @@ Action:
 - [x] get server working
 - [x] all specs pass
 
+# 2018-04-04
+
+- [x] add tech@bamru.org email address
+- [x] create nexmo account owned by `techbamru`
+- [x] create linode account owned by `techbamru`
+- [x] create namecheap account owned by `techbamru`
+- [x] refactor utility scripts
+
 # TBD
 
-- [ ] fix net-ssh / SSH incompatibility
+- [ ] test net-ssh / SSH incompatibility
 
-- [ ] replace upstart with systemd script for bnet
-- [ ] replace upstart with systemd script for faye
+- [ ] get upstart working for bnet
+- [ ] get upstart working for faye
 
 - [ ] deploy to the new machine from ting
 - [ ] deploy to the new machine from dev.bamru.info
