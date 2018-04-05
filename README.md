@@ -170,5 +170,5 @@ commercial or non-commercial, are denied.
 
 ## Test
 
-Added by bmrdev@gmail.com from dev.bamru.info
+Added by techbamru from dev.bamru.info
 
