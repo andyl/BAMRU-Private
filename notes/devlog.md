@@ -63,7 +63,18 @@ NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 - [x] create namecheap account for bmrdev
 - [x] create linode account for bmrdev
 
+# 2018-04-04
+
+- [x] refactor utility scripts
+- [x] add tech@bamru.org email address
+- [x] create nexmo account owned by `techbamru`
+- [x] create linode account owned by `techbamru`
+- [x] create github account owned by `techbamru`
+- [x] create namecheap account owned by `techbamru`
+
 ## TBD
+
+- [ ] add a TMUX development console
 
 - [ ] get BAMRU CC for namecheap
 - [ ] get BAMRU CC for linode
@@ -71,6 +82,11 @@ NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 
 - [ ] transfer Linode VMs to a new BAMRU account
 - [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU registrar account
+
+- [ ] test net-ssh / SSH incompatibility
+
+- [ ] get upstart working for bnet
+- [ ] get upstart working for faye
 
 - [ ] deploy to the new machine from ting
 - [ ] deploy to the new machine from dev.bamru.info
