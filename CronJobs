@@ -10,7 +10,7 @@
 # - http://github.com/javan/whenever  | cron processor
 # - http://en.wikipedia.org/wiki/Cron | cron instructions
 
-load File.expand_path("~/util/pdev_util/bin/SysRole")
+load File.expand_path("~/util/code_util/bin/SysRole")
 
 whenever_config
 
