@@ -1,12 +1,13 @@
 # BAMRU.net Development Log
 
-Mission: package up the web assets in preparation to transfer the support role.
+Mission: package up the web assets in preparation for long-term support
 
 Goals:
 - [x] upgrade production OS to 14.04
 - [ ] shared dev environment in datacenter
 - [ ] working backups to dev server
 - [ ] add SSL
+- [ ] operations guide with 1 trained backup
 
 Approch:
 - exactly model the current tooling (ruby 1.9.3, postgres 9.3)
@@ -30,12 +31,12 @@ Action:
 
 - [x] create linode production server  (bamru.info)
 - [x] create linode development server (dev.bamru.info)
-- [x] create Gmail account  (bmrdev@gmail.com/CallOut) 
-- [x] create GitHub account (bmrdev@gmail.com/CallOut)
-- [x] configure Github (BAMRU-ORG) to accept pushes from bmrdev
-- [x] configure Github (BAMRU-NET) to accept pushes from bmrdev
+- [x] create Gmail account  (tech@bamru.org) 
+- [x] create GitHub account (tech@bamru.org)
+- [x] configure Github (BAMRU-ORG) to accept pushes from tech@bamru.org
+- [x] configure Github (BAMRU-NET) to accept pushes from tech@bamru.org
 - [x] provision new production server  (user = deploy)
-- [x] provision new development server (user = bmrdev)
+- [x] provision new development server (user = tech)
 
 ## 2018-03-31
 
@@ -63,25 +64,28 @@ NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 - [x] create namecheap account for bmrdev
 - [x] create linode account for bmrdev
 
-# 2018-04-04
+## 2018-04-04
 
 - [x] refactor utility scripts
-- [x] add tech@bamru.org email address
-- [x] create nexmo account owned by `techbamru`
-- [x] create linode account owned by `techbamru`
+- [x] test tech@bamru.org email address
 - [x] create github account owned by `techbamru`
+- [x] create linode account owned by `techbamru`
 - [x] create namecheap account owned by `techbamru`
+- [x] create nexmo account owned by `techbamru` (`tech@bamru.org`)
+
+## 2018-04-11
+
+- [x] get BAMRU CC for namecheap
+- [x] get BAMRU CC for linode
+- [x] get BAMRU CC for nexmo
 
 ## TBD
 
+- [ ] transfer Linode VMs to the new BAMRU account
+- [ ] transfer BAMRU.info to the new BAMRU registrar account
+- [ ] configure new NEXMO numbers
+
 - [ ] add a TMUX development console
-
-- [ ] get BAMRU CC for namecheap
-- [ ] get BAMRU CC for linode
-- [ ] get BAMRU CC for plivo
-
-- [ ] transfer Linode VMs to a new BAMRU account
-- [ ] transfer BAMRU.info and BAMRU.net to a new BAMRU registrar account
 
 - [ ] test net-ssh / SSH incompatibility
 
@@ -100,6 +104,12 @@ NOTES: 1.9.3_net-ssh incompatible with Ubuntu 16.04
 
 - [ ] test paging on BAMRU.info
 - [ ] redirect DNS bamru.net to bamru.info
+- [ ] provision SSL certs for the new BAMRU.net
+
+- [ ] transfer BAMRU.net to the new BAMRU registrar account
+
+- [ ] create an operations guide (Craig/Kevin)
+- [ ] train Craig and/or Kevin on system operations
 
 - [ ] delete old BAMRU.net machine
 - [ ] shutdown local backup scripts
