@@ -8,7 +8,7 @@
 echo "||||||||||||||||||||||||||||"
 echo ------- start backup -------
 date
-cd /home/aleak/lr/BAMRU-Private
+cd /home/aleak/src/BAMRU-Private
 echo PWD is `pwd`
 echo USER is `whoami`
 echo ----------------------------
