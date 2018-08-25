@@ -1,37 +1,37 @@
 source "http://rubygems.org"
 
-ruby "1.9.3"
+ruby "2.5.0"
 
 # ----- rails -----
-gem "rails",        "3.2.22"
-gem "rake",         "10.0.3"
+gem "rails", "5.2.0"
+gem "rake"
 
 # ----- env -----
 gem "dotenv-rails"
 
 # ----- web servers -----
-gem "thin"                  # required by faye
-gem "passenger", "3.0.12"   # production server
+# gem "thin"                  # required by faye
+# gem "passenger", "3.0.12"   # production server
 
 # ----- wiki -----
-gem "wikicloth"
+# gem "wikicloth"
 gem "github-markdown"   # github markdown
 gem "kramdown"          # rendering markdown
 gem "gollum-lib"
 
 # ----- 3rd party services -----
 gem "ruby-gmail", :require => "gmail"
-gem "gcal4ruby"
-gem "twilio-ruby"
-gem "nexmo"
+# gem "gcal4ruby"
+# gem "twilio-ruby"
+# gem "nexmo"
 
 # ----- database -----
-gem "yaml_db"   # for backup and restore
+# gem "yaml_db"   # for backup and restore
 gem "pg"        # postgresql support
 
 # ----- services and protocols -----
-gem "faye",    "0.6.8"         # messaging-pub/sub infrastructure
-gem "net-ssh", "2.2.2"
+# gem "faye",    "0.6.8"         # messaging-pub/sub infrastructure
+gem "net-ssh"#, "2.2.2"
 
 # ----- process management -----
 gem "foreman"                     # init/upstart - see `Procfile`
@@ -40,25 +40,25 @@ gem "queue_classic", "2.1.1"      # background job queue
 
 # ----- asset management -----
 gem "sprite-factory"
-gem "paperclip",      "3.3.1"
+gem "paperclip"#,      "3.3.1"
 gem "rmagick"
 
 # ----- Model Utilities -----
 gem "active_attr"   # streamlined ActiveModel support
-gem "modest_model"
+# gem "modest_model"
 
 # ----- view utilities -----
-gem "rabl"              # serialization
-gem "pngqr"             # generate QR codes
-gem "simple_form"       # form generation
-gem "dynamic_form"      # error message helpers
-gem "draper", "0.18.0"  # view decorators
+# gem "rabl"              # serialization
+# gem "pngqr"             # generate QR codes
+# gem "simple_form"       # form generation
+# gem "dynamic_form"      # error message helpers
+# gem "draper"#, "0.18.0"  # view decorators
 
 # ----- misc -----
 gem "aalf",      :git => "https://github.com/andyl/aalf.git"
 gem "mime"
 gem "cancan"         # access control
-gem "cocaine"        # ???
+# gem "cocaine"        # ???
 gem "parslet"        # address parsing
 gem "ancestry"       # ???
 gem "nokogiri"
@@ -66,24 +66,25 @@ gem "fastercsv"      # csv parsing
 gem "acts_as_api"
 gem "rb-readline"
 gem "em-http-request"
-gem "json", "~> 1.5.1"
+# gem "json", "~> 1.5.1"
+gem "json"
 gem "exception_notification"  # sends alert emails on 500 errors
-gem "bcrypt-ruby", "~> 3.0.0"
+gem "bcrypt-ruby"#, "~> 3.0.0"
 
 # ----- mail -----
 gem "mail"
 
 # ----- pdf generation -----
-gem "prawn", "~> 0.12.0"   # for PDF reports
+gem "prawn"#, "~> 0.12.0"   # for PDF reports
 gem "pdfkit"               # PDF screenshots of a URL
 
 # ----- javascript processing -----
 gem "eco"
 
 # ----- javascript libraries -----
-gem "jsgem-jquery",        "1.7.2.pre2"
-gem "jsgem-jquery-ui",     "1.9.1.pre2"
-gem "jsgem-jquery-layout", "1.3.0.pre2"
+gem "jsgem-jquery"#,        "1.7.2.pre2"
+gem "jsgem-jquery-ui"#,     "1.9.1.pre2"
+gem "jsgem-jquery-layout"#, "1.3.0.pre2"
 
 # ----- console tools -----
 gem "hirb"
@@ -98,23 +99,23 @@ gem "ghost"             # manages /etc/hosts for testing
 
 # ----- javascript runtime -----
 
-gem "uglifier", ">= 1.0.3"
+gem "uglifier"#, ">= 1.0.3"
 gem "therubyracer", :platforms => :ruby
 
 # ----- terrible hack -----
-gem "turbo-sprockets-rails3"
-gem "zurb-foundation", "~> 4.0.0"
-gem "foundation-icons-sass-rails"
+# gem "turbo-sprockets-rails3"
+# gem "zurb-foundation"#, "~> 4.0.0"
+# gem "foundation-icons-sass-rails"
 
 group :development, :test do
 
   # ----- assets -----
   gem "sass"
-  gem "sass-rails",      "~> 3.2.3"
-  gem "coffee-rails",    "~> 3.2.1"
+  gem "sass-rails"
+  gem "coffee-rails"
 
   # ----- misc -----
-  gem "zeus", "0.13.3"    # environment pre-loader
+  # gem "zeus", "0.13.3"    # environment pre-loader
 
   # ----- capistrano -----
   gem "capistrano"
@@ -154,12 +155,5 @@ group :development, :test do
 
   # ----- add DB fields too models & specs -----
   gem "annotate"
-
-  # ----- RubyMine Support -----
-  # run this to get the debugger working on RubyMine
-  # > curl -OL http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem
-  # > gem install linecache19-0.5.13.gem
-  # > gem install --pre ruby-debug-base19x
-  # gem "ruby-debug-base19x", "~> 0.11.30.pre10"
 
 end
