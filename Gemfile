@@ -82,7 +82,7 @@ gem "pdfkit"               # PDF screenshots of a URL
 gem "eco"
 
 # ----- javascript libraries -----
-gem "jsgem-jquery"#,        "1.7.2.pre2"
+# gem "jsgem-jquery"#,        "1.7.2.pre2"
 gem "jsgem-jquery-ui"#,     "1.9.1.pre2"
 gem "jsgem-jquery-layout"#, "1.3.0.pre2"
 
@@ -118,8 +118,8 @@ group :development, :test do
   # gem "zeus", "0.13.3"    # environment pre-loader
 
   # ----- capistrano -----
-  gem "capistrano"
-  gem "capistrano_colors"
+  # gem "capistrano"
+  # gem "capistrano_colors"
 
   # ----- javascript unit tests -----
   gem "faker"
@@ -137,8 +137,8 @@ group :development, :test do
   gem "rspec-on-rails-matchers"
 
   # ----- test helpers -----
-  gem "database_cleaner"
-  gem "factory_girl_rails"
+  # gem "database_cleaner"
+  # gem "factory_girl_rails"
 
   # ----- capybara -----
   gem "launchy"

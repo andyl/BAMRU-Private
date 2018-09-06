@@ -73,11 +73,15 @@ Action:
 - [ ] upgrade postgres
 - [ ] upgrade rails
 
+- [x] bundler runs end-to-end
 - [ ] get server to start
 - [ ] get UI working
 - [ ] get all tests passing
 
 # TBD
+
+- [ ] get rid of .rbenv-vars
+- [ ] agree on a scheme for managing secrets (sops?)
 
 - [ ] get rid of Procfile
 

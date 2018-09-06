@@ -6,7 +6,7 @@ require File.expand_path('../boot', __FILE__)
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "active_resource/railtie"
+# require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -20,6 +20,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
 require File.dirname(File.expand_path(__FILE__)) + '/../lib/env_settings'
 
 Time.zone = "Pacific Time (US & Canada)"
