@@ -76,12 +76,11 @@ Action:
 - [x] working `rails console`
 - [x] working `rails db:create`
 - [x] working `rails db:drop`
+- [x] working `rails db:migrate`
+- [x] working `rails server`
+- [ ] working `rake -T`
 
-# 2018-09-07
-
-- [ ] working `rails db:migrate`
-- [ ] working `rails server`
-
+- [ ] working data import
 - [ ] get UI working
 - [ ] get tests passing
 

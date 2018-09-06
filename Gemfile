@@ -118,7 +118,7 @@ group :development, :test do
   # gem "zeus", "0.13.3"    # environment pre-loader
 
   # ----- capistrano -----
-  # gem "capistrano"
+  gem "capistrano"
   # gem "capistrano_colors"
 
   # ----- javascript unit tests -----
