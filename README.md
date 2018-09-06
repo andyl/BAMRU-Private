@@ -12,7 +12,7 @@ the [UC Berkeley SAAS online class](https://www.coursera.org/course/saas).
 
 ### Bootstrap & Run in Development Mode
 
-This app has been developed on Ubuntu 12.04.  It will probably work on a Mac.
+This app has been developed on Ubuntu 18.04.  It will probably work on a Mac.
 It won't run on a vanilla PC, but may work with Cygwin. 
 
 To bootstrap the app:

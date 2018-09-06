@@ -3,13 +3,16 @@
 Mission: setup so that BAMRU.net can be maintained indefinately as-is.
 
 Goals:
-- [x] upgrade production OS to 16.04
+- [ ] remove no-longer-needed dependencies
+- [ ] upgrade production OS to 18.04
+- [ ] upgrade database to modern version
+- [ ] add docker containers for server and database
 - [ ] shared dev environment in datacenter
 - [ ] working backups to dev server
 - [ ] add SSL
 
 Approch:
-- exactly model the current tooling (ruby 1.9.3, postgres 9.1)
+- upgrade to modern tooling (ruby 2.5, rails 5.2, postgres 10.5)
 - move BAMRU.org calendar sync to shared dev server
 - move all DNS, VMs, dev accounts to BAMRU-managed userids
 
@@ -64,7 +67,19 @@ Action:
 - [x] create namecheap account owned by `techbamru`
 - [x] refactor utility scripts
 
+# 2018-09-06
+
+- [ ] upgrade ruby
+- [ ] upgrade postgres
+- [ ] upgrade rails
+
+- [ ] get server to start
+- [ ] get UI working
+- [ ] get all tests passing
+
 # TBD
+
+- [ ] get rid of Procfile
 
 - [ ] test net-ssh / SSH incompatibility
 
@@ -74,7 +89,7 @@ Action:
 - [ ] deploy to the new machine from ting
 - [ ] deploy to the new machine from dev.bamru.info
 
-- [ ] provision SSL certs for BAMRU.info
+- [ ] provision new working system on BAMRU.info
 
 - [ ] test backups from BAMRU.info to dev machine
 - [ ] test backups from BAMRU.net to BAMRU.info
