@@ -1,4 +1,4 @@
-class DoAssignmentUpdate < ActiveRecord::Migration
+class DoAssignmentUpdate < ActiveRecord::Migration[5.2]
   def up
     add_column :do_assignments, :primary_id, :integer
     add_column :do_assignments, :backup_id,  :integer

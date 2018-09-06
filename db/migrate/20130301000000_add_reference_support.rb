@@ -1,4 +1,4 @@
-class AddReferenceSupport < ActiveRecord::Migration
+class AddReferenceSupport < ActiveRecord::Migration[5.2]
 
     def change
 
@@ -37,7 +37,7 @@ class AddReferenceSupport < ActiveRecord::Migration
         t.boolean    :published, :default => false
         t.timestamps
       end
-      
+
       # ----- links -----
 
       drop_table :event_links

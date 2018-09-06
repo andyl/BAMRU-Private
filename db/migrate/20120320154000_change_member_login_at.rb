@@ -1,4 +1,4 @@
-class ChangeMemberLoginAt < ActiveRecord::Migration
+class ChangeMemberLoginAt < ActiveRecord::Migration[5.2]
   def self.up
     remove_column :members, :last_sign_in_at
     add_column    :members, :last_sign_in_at, :datetime

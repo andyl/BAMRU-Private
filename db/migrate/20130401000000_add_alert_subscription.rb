@@ -1,4 +1,4 @@
-class AddAlertSubscription < ActiveRecord::Migration
+class AddAlertSubscription < ActiveRecord::Migration[5.2]
 
     def change
 

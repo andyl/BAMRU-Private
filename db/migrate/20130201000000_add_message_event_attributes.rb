@@ -1,4 +1,4 @@
-class AddMessageEventAttributes < ActiveRecord::Migration
+class AddMessageEventAttributes < ActiveRecord::Migration[5.2]
 
     def change
 

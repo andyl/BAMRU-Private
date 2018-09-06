@@ -1,4 +1,4 @@
-class AddEventSupport < ActiveRecord::Migration
+class AddEventSupport < ActiveRecord::Migration[5.2]
 
     def change
       create_table  :events do |t|

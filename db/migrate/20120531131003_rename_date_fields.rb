@@ -1,4 +1,4 @@
-class RenameDateFields < ActiveRecord::Migration
+class RenameDateFields < ActiveRecord::Migration[5.2]
   def up
     rename_column :avail_ops, :start, :start_on
     rename_column :avail_ops, :end,   :end_on

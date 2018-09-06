@@ -1,4 +1,4 @@
-class AddAncestryToMessages < ActiveRecord::Migration
+class AddAncestryToMessages < ActiveRecord::Migration[5.2]
   def self.up
     add_column :messages, :linked_rsvp_id, :integer
     add_column :messages, :ancestry, :string

@@ -1,4 +1,4 @@
-class AddAhcRole < ActiveRecord::Migration
+class AddAhcRole < ActiveRecord::Migration[5.2]
 
     def change
 

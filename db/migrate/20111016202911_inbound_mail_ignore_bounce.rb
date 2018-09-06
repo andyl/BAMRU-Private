@@ -1,4 +1,4 @@
-class InboundMailIgnoreBounce < ActiveRecord::Migration
+class InboundMailIgnoreBounce < ActiveRecord::Migration[5.2]
   def up
     add_column :inbound_mails, :ignore_bounce, :boolean, :default => false
   end

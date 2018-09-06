@@ -1,4 +1,4 @@
-class CertNoticeSentAt < ActiveRecord::Migration
+class CertNoticeSentAt < ActiveRecord::Migration[5.2]
   def up
     add_column :certs, :ninety_day_notice_sent_at, :datetime
     add_column :certs, :thirty_day_notice_sent_at, :datetime

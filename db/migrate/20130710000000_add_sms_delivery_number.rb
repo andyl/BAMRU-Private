@@ -1,4 +1,4 @@
-class AddSmsDeliveryNumber < ActiveRecord::Migration
+class AddSmsDeliveryNumber < ActiveRecord::Migration[5.2]
 
     def change
 

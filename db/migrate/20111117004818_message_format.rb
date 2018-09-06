@@ -1,4 +1,4 @@
-class MessageFormat < ActiveRecord::Migration
+class MessageFormat < ActiveRecord::Migration[5.2]
   def up
     add_column :messages, :format, :string
   end

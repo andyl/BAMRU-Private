@@ -1,4 +1,4 @@
-class AddUnauthRsvpToDistributions < ActiveRecord::Migration
+class AddUnauthRsvpToDistributions < ActiveRecord::Migration[5.2]
   def change
     add_column :distributions, :unauth_rsvp_token,      :string
     add_column :distributions, :unauth_rsvp_expires_at, :datetime

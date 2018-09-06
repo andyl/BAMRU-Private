@@ -1,4 +1,4 @@
-class DoNoticeSentAt < ActiveRecord::Migration
+class DoNoticeSentAt < ActiveRecord::Migration[5.2]
   def up
     add_column :do_assignments, :reminder_notice_sent_at, :datetime
     add_column :do_assignments, :alert_notice_sent_at,    :datetime
