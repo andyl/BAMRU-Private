@@ -10,32 +10,40 @@ development:
  database: bnet_development
  pool: 5
  template: template0
- username: bnet
- password: <%= POSTGRES_PASS %>
+ username: postgres
+ password: postgres
+#  username: bnet
+#  password: <%= POSTGRES_PASS %>
 
 test:
   adapter: postgresql
   encoding: unicode
   database: bnet_test
   pool: 5
-  username: bnet
   template: template0
-  password: <%= POSTGRES_PASS %>
+  username: postgres
+  password: postgres
+  # username: bnet
+  # password: <%= POSTGRES_PASS %>
 
 staging:
   adapter: postgresql
   encoding: unicode
   database: bnet_staging
   pool: 5
-  username: bnet
   template: template0
-  password: <%= POSTGRES_PASS %>
+  username: postgres
+  password: postgres
+  # username: bnet
+  # password: <%= POSTGRES_PASS %>
 
 production:
   adapter: postgresql
   encoding: unicode
   database: bnet_production
   pool: 5
-  username: bnet
   template: template0
-  password: <%= POSTGRES_PASS %>
+  username: postgres
+  password: postgres
+  # username: bnet
+  # password: <%= POSTGRES_PASS %>

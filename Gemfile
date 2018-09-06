@@ -36,7 +36,7 @@ gem "net-ssh"#, "2.2.2"
 # ----- process management -----
 gem "foreman"                     # init/upstart - see `Procfile`
 gem "whenever", :require => false # cron jobs - see `schedule.rb`
-gem "queue_classic", "2.1.1"      # background job queue
+# gem "queue_classic", "2.1.1"      # background job queue
 
 # ----- asset management -----
 gem "sprite-factory"
@@ -48,9 +48,9 @@ gem "active_attr"   # streamlined ActiveModel support
 # gem "modest_model"
 
 # ----- view utilities -----
-# gem "rabl"              # serialization
+gem "rabl"              # serialization
 # gem "pngqr"             # generate QR codes
-# gem "simple_form"       # form generation
+gem "simple_form"       # form generation
 # gem "dynamic_form"      # error message helpers
 # gem "draper"#, "0.18.0"  # view decorators
 
@@ -127,7 +127,7 @@ group :development, :test do
   gem "simplecov"
   gem "csv-mapper"
   gem "rb-inotify"
-  gem "jasminerice"
+  # gem "jasminerice"
   gem "guard-coffeescript"
   gem "coffee-rails-source-maps"
 

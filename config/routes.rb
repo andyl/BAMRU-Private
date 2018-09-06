@@ -1,25 +1,25 @@
 Zn::Application.routes.draw do
 
-  get "wiki/new"                => "wiki#new"
-  get "wiki/:dir/new"           => "wiki#new"
-  get "wiki/:dir/:page/new"     => "wiki#new"
-  get "wiki"                    => "wiki#index"
-  get "wiki/:dir"               => "wiki#index"
-  get "wiki/:dir/:page/edit"    => "wiki#edit"
-  get "wiki/:page/edit"         => "wiki#edit"
-  get "wiki/:dir/:page/rename"  => "wiki#rename"
-  get "wiki/:page/rename"       => "wiki#rename"
-  get "wiki/:dir/:page/show"    => "wiki#show"
-  get "wiki/:page/show"         => "wiki#show"
-  get "wiki/:dir/:page/history" => "wiki#history"
-  get "wiki/:page/history"      => "wiki#history"
-  put "wiki/:dir/:page/rename"  => "wiki#reproc"
-  put "wiki/:page/rename"       => "wiki#reproc"
-  put "wiki/:dir/:page"         => "wiki#update"
-  put "wiki/:page"              => "wiki#update"
-  get "wiki/:page/delete"       => "wiki#destroy"
-  get "wiki/:dir/:page/delete"  => "wiki#destroy"
-  post "wiki"                   => "wiki#create"
+  # get "wiki/new"                => "wiki#new"
+  # get "wiki/:dir/new"           => "wiki#new"
+  # get "wiki/:dir/:page/new"     => "wiki#new"
+  # get "wiki"                    => "wiki#index"
+  # get "wiki/:dir"               => "wiki#index"
+  # get "wiki/:dir/:page/edit"    => "wiki#edit"
+  # get "wiki/:page/edit"         => "wiki#edit"
+  # get "wiki/:dir/:page/rename"  => "wiki#rename"
+  # get "wiki/:page/rename"       => "wiki#rename"
+  # get "wiki/:dir/:page/show"    => "wiki#show"
+  # get "wiki/:page/show"         => "wiki#show"
+  # get "wiki/:dir/:page/history" => "wiki#history"
+  # get "wiki/:page/history"      => "wiki#history"
+  # put "wiki/:dir/:page/rename"  => "wiki#reproc"
+  # put "wiki/:page/rename"       => "wiki#reproc"
+  # put "wiki/:dir/:page"         => "wiki#update"
+  # put "wiki/:page"              => "wiki#update"
+  # get "wiki/:page/delete"       => "wiki#destroy"
+  # get "wiki/:dir/:page/delete"  => "wiki#destroy"
+  # post "wiki"                   => "wiki#create"
 
   get "home/index"
   get "home/admin"
@@ -135,90 +135,90 @@ Zn::Application.routes.draw do
     resources  :inbox, :controller => :inbox
   end
 
-  get  "mobile"             => "mobile#index"
-  get  "mobile/members"     => "mobile#index"
-  get  "mobile/members/:id" => "mobile#index"
-  get  "mobile/status"      => "mobile#index"
-  get  "mobile/profile"     => "mobile#index"
-  post "mobile/send_page"   => "mobile#send_page"
-  get  "mobile/login"       => "mobile/sessions#new"
-  get  "mobile/login"       => "mobile/sessions#new",     :as => "mobile_login"
-  get  "mobile/logout"      => "mobile/sessions#destroy", :as => "mobile_logout"
-  namespace "mobile" do
-    resources :sessions
-  end
+  # get  "mobile"             => "mobile#index"
+  # get  "mobile/members"     => "mobile#index"
+  # get  "mobile/members/:id" => "mobile#index"
+  # get  "mobile/status"      => "mobile#index"
+  # get  "mobile/profile"     => "mobile#index"
+  # post "mobile/send_page"   => "mobile#send_page"
+  # get  "mobile/login"       => "mobile/sessions#new"
+  # get  "mobile/login"       => "mobile/sessions#new",     :as => "mobile_login"
+  # get  "mobile/logout"      => "mobile/sessions#destroy", :as => "mobile_logout"
+  # namespace "mobile" do
+  #   resources :sessions
+  # end
 
-  get "monitor"  => "monitor#index"
-  get "monitor/login"   => "monitor/sessions#new",     :as => "monitor_login"
-  get "monitor/logout"  => "monitor/sessions#destroy", :as => "monitor_logout"
-  namespace "monitor" do
-    resources :sessions
-  end
-  
-  get '/meeting_signin'                      => 'meeting_signin#index'
-  get '/meeting_signin/'                     => 'meeting_signin#index'
-  get '/meeting_signin/autosign'             => 'meeting_signin#index'
-  get '/meeting_signin/autosign/'            => 'meeting_signin#index'
-  get '/meeting_signin/:event_id'            => 'meeting_signin#index'
-  get '/meeting_signin/:event_id/'           => 'meeting_signin#index'
-  get '/meeting_signin/:event_id/:glob'      => 'meeting_signin#index'
-  get '/meeting_signin/:event_id/:g1/:g2'    => 'meeting_signin#index'
+  # get "monitor"  => "monitor#index"
+  # get "monitor/login"   => "monitor/sessions#new",     :as => "monitor_login"
+  # get "monitor/logout"  => "monitor/sessions#destroy", :as => "monitor_logout"
+  # namespace "monitor" do
+  #   resources :sessions
+  # end
 
-  get "/msign"                        => redirect("/meeting_signin")
-  get "/meeting:glob"                 => redirect("/meeting_signin")
-  get "/meeting:glob/:event_id"       => redirect("/meeting_signin/%{event_id}")
-  get "/meeting:glob/:event_id/:path" => redirect("/meeting_signin/%{event_id}/%{path}")
+  # get '/meeting_signin'                      => 'meeting_signin#index'
+  # get '/meeting_signin/'                     => 'meeting_signin#index'
+  # get '/meeting_signin/autosign'             => 'meeting_signin#index'
+  # get '/meeting_signin/autosign/'            => 'meeting_signin#index'
+  # get '/meeting_signin/:event_id'            => 'meeting_signin#index'
+  # get '/meeting_signin/:event_id/'           => 'meeting_signin#index'
+  # get '/meeting_signin/:event_id/:glob'      => 'meeting_signin#index'
+  # get '/meeting_signin/:event_id/:g1/:g2'    => 'meeting_signin#index'
 
-  get '/events'                => 'events#index'
-  get '/events/:id'            => 'events#index'
-  get '/events/:id/edit'       => 'events#index'
-  get '/events/:id/roster'     => 'events#index'
-  get '/events/:id/forum'      => 'events#index'
-  get '/events/:id/reference'  => 'events#index'
-  get '/events/:id/reports'    => 'events#index'
+  # get "/msign"                        => redirect("/meeting_signin")
+  # get "/meeting:glob"                 => redirect("/meeting_signin")
+  # get "/meeting:glob/:event_id"       => redirect("/meeting_signin/%{event_id}")
+  # get "/meeting:glob/:event_id/:path" => redirect("/meeting_signin/%{event_id}/%{path}")
 
-  namespace "eapi" do
+  # get '/events'                => 'events#index'
+  # get '/events/:id'            => 'events#index'
+  # get '/events/:id/edit'       => 'events#index'
+  # get '/events/:id/roster'     => 'events#index'
+  # get '/events/:id/forum'      => 'events#index'
+  # get '/events/:id/reference'  => 'events#index'
+  # get '/events/:id/reports'    => 'events#index'
 
-    resources :events do
-      resources :event_links,   controller: 'events/event_links'
-      resources :event_photos,  controller: 'events/event_photos'
-      resources :event_files,   controller: 'events/event_files'
-      resources :event_reports, controller: 'events/event_reports'
-      resources :periods,       controller: 'events/periods'
-    end
+  # namespace "eapi" do
+  #
+  #   resources :events do
+  #     resources :event_links,   controller: 'events/event_links'
+  #     resources :event_photos,  controller: 'events/event_photos'
+  #     resources :event_files,   controller: 'events/event_files'
+  #     resources :event_reports, controller: 'events/event_reports'
+  #     resources :periods,       controller: 'events/periods'
+  #   end
+  #
+  #   resources :periods do
+  #     resources :participants, controller: 'periods/participants'
+  #   end
+  #
+  #   resources :members
+  #
+  # end
 
-    resources :periods do
-      resources :participants, controller: 'periods/participants'
-    end
-
-    resources :members
-
-  end
-
-  namespace "api" do
-
-    namespace "rake" do
-      get  "messages"                     => "messages#index"
-      get  "messages/count"               => "messages#count"
-      get  "messages/load_inbound"        => "messages#load_inbound"
-      get  "password/reset"               => "password#reset"
-      get  "ops/set_do"                   => "ops#set_do"
-      get  "ops/message_cleanup"          => "ops#message_cleanup"
-      get  "ops/avail_op_cleanup"         => "ops#avail_op_cleanup"
-      get  "reminders/do_shift_pending"   => "reminders#do_shift_pending"
-      get  "reminders/do_shift_starting"  => "reminders#do_shift_starting"
-      get  "reminders/cert_expiration"    => "reminders#cert_expiration"
-    end
-
-    get  "mobile" => "mobile#index"
-    namespace "mobile" do
-      resources :members
-      resources :messages
-      get      "do"
-      get      "rsvp"
-    end
-
-  end
+  # namespace "api" do
+  #
+  #   namespace "rake" do
+  #     get  "messages"                     => "messages#index"
+  #     get  "messages/count"               => "messages#count"
+  #     get  "messages/load_inbound"        => "messages#load_inbound"
+  #     get  "password/reset"               => "password#reset"
+  #     get  "ops/set_do"                   => "ops#set_do"
+  #     get  "ops/message_cleanup"          => "ops#message_cleanup"
+  #     get  "ops/avail_op_cleanup"         => "ops#avail_op_cleanup"
+  #     get  "reminders/do_shift_pending"   => "reminders#do_shift_pending"
+  #     get  "reminders/do_shift_starting"  => "reminders#do_shift_starting"
+  #     get  "reminders/cert_expiration"    => "reminders#cert_expiration"
+  #   end
+  #
+  #   get  "mobile" => "mobile#index"
+  #   namespace "mobile" do
+  #     resources :members
+  #     resources :messages
+  #     get      "do"
+  #     get      "rsvp"
+  #   end
+  #
+  # end
 
   post '/members/:member_id/photos/sort' => "photos#sort",         :as => :sort_member_photos
   post '/members/:member_id/certs/sort'  => "certs#sort",          :as => :sort_member_certs
@@ -233,8 +233,8 @@ Zn::Application.routes.draw do
 
   root :to => 'home#index'
 
-  if %w(development test).include? Rails.env
-    mount Jasminerice::Engine => "/jasmine/:environment"
-  end
+  # if %w(development test).include? Rails.env
+  #   mount Jasminerice::Engine => "/jasmine/:environment"
+  # end
 
 end

@@ -1,4 +1,4 @@
-require 'faye'
+# require 'faye'
 #require File.expand_path('../config/initializers/faye_token.rb', __FILE__)
 #
 #class ServerAuth
@@ -12,6 +12,6 @@ require 'faye'
 #  end
 #end 
 
-faye_server = Faye::RackAdapter.new(:mount => '/faye', :timeout => 15)
+# faye_server = Faye::RackAdapter.new(:mount => '/faye', :timeout => 15)
 #faye_server.add_extension(ServerAuth.new)
-run faye_server
+# run faye_server

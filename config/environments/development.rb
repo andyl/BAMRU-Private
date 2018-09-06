@@ -8,7 +8,7 @@ Zn::Application.configure do
 
   # config.active_record.default_timezone = "Pacific Time (US & Canada)"
   # config.time_zone = "Pacific Time (US & Canada)"
-  
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
@@ -34,10 +34,10 @@ Zn::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
   # Exception Notification
-  config.middleware.use ExceptionNotifier,
-    sender_address: GMAIL_USER,
-    exception_recipients: EXCEPTION_ALERT_EMAILS.split(' ')
-  
+  # config.middleware.use ExceptionNotifier,
+  #   sender_address: GMAIL_USER,
+  #   exception_recipients: EXCEPTION_ALERT_EMAILS.split(' ')
+
 end
 
 ActiveSupport::TimeWithZone

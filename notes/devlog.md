@@ -69,19 +69,27 @@ Action:
 
 # 2018-09-06
 
-- [ ] upgrade ruby
-- [ ] upgrade postgres
-- [ ] upgrade rails
-
+- [x] upgrade ruby
+- [x] upgrade postgres
+- [x] upgrade rails
 - [x] bundler runs end-to-end
-- [ ] get server to start
+- [x] working `rails console`
+- [x] working `rails db:create`
+- [x] working `rails db:drop`
+
+# 2018-09-07
+
+- [ ] working `rails db:migrate`
+- [ ] working `rails server`
+
 - [ ] get UI working
-- [ ] get all tests passing
+- [ ] get tests passing
 
 # TBD
 
 - [ ] get rid of .rbenv-vars
-- [ ] agree on a scheme for managing secrets (sops?)
+- [ ] agree on a scheme for managing secrets (sops? dotenv?)
+- [ ] remove faye
 
 - [ ] get rid of Procfile
 
