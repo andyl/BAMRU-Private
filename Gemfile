@@ -26,7 +26,7 @@ gem "ruby-gmail", :require => "gmail"
 # gem "nexmo"
 
 # ----- database -----
-# gem "yaml_db"   # for backup and restore
+gem "yaml_db"   # for backup and restore
 gem "pg"        # postgresql support
 
 # ----- services and protocols -----
@@ -34,14 +34,15 @@ gem "pg"        # postgresql support
 gem "net-ssh"#, "2.2.2"
 
 # ----- process management -----
-gem "foreman"                     # init/upstart - see `Procfile`
-gem "whenever", :require => false # cron jobs - see `schedule.rb`
+gem 'foreman'                     # init/upstart - see `Procfile`
+gem 'whenever', :require => false # cron jobs - see `schedule.rb`
+gem 'queue_classic', :require => false, :github => 'andyl/queue_classic'
 # gem "queue_classic", "2.1.1"      # background job queue
 
 # ----- asset management -----
-gem "sprite-factory"
-gem "paperclip"#,      "3.3.1"
-gem "rmagick"
+gem 'sprite-factory'
+gem 'paperclip'#,      "3.3.1"
+gem 'rmagick'
 
 # ----- Model Utilities -----
 gem "active_attr"   # streamlined ActiveModel support

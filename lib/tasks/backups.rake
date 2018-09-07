@@ -21,10 +21,10 @@ namespace :ops do
   def gen_backup_opts(dataset)
     opt = OpenStruct.new
     opt.dataset       = dataset
-    opt.app           = "bnet"
-    opt.host          = `hostname`.chomp
-    opt.base_dir      = File.expand_path("~/e")
-    opt.time_stamp    = Time.now.strftime("%y%m%d_%H%M%S")
+    opt.app           = 'bnet'
+    opt.host          = 'bamru1' || `hostname`.chomp
+    opt.base_dir      = File.expand_path('~/var/backup')
+    opt.time_stamp    = Time.now.strftime('%y%m%d_%H%M%S')
     opt.lbl_dir       = [opt.base_dir, opt.app, opt.host, dataset].join('/')
     opt.tgt_dir       = [opt.base_dir, opt.app, opt.host, dataset, opt.time_stamp].join('/')
     opt.targets       = backup_params[dataset][:targets]
@@ -36,7 +36,7 @@ namespace :ops do
         "tar -chzf #{opt.tgt_dir}/#{base}.tgz #{data_path}"
       when "db"
         target_path = opt.tgt_dir
-        abort "Data Path not found (#{data_path})" unless File.exist? data_path
+        abort "Data Path not found (#{data_path})"     unless File.exist? data_path
         abort "Target Path not found (#{target_path})" unless Dir.exist? target_path
         "cp  #{data_path} #{target_path}"
       else
@@ -102,7 +102,7 @@ namespace :ops do
         abort "Target Path not found (#{target_path}.tgz)" unless File.exist? target_path + ".tgz"
         "cd public ; tar -xf #{target_path}.tgz ; cd .."
       when "db"
-        abort "Target Path not found (#{target_path})" unless File.exist? target_path
+        abort "Target Path NOT found (#{target_path})" unless File.exist? target_path
         "cp -r #{target_path} #{data_path}"
       else
         abort "Unrecognized dataset (#{opts.dataset})"
@@ -135,7 +135,7 @@ namespace :ops do
       puts "importing from 'db/data.psql'"
       verbose(false) do
         # cmd = "psql -U #{dbenv("username")} -d bnet_#{Rails.env.to_s} -f db/data.psql > /dev/null"
-        cmd = "psql -U bnet -d bnet_#{Rails.env.to_s} -f db/data.psql > /dev/null"
+        cmd = "psql -U postgres -d bnet_#{Rails.env.to_s} -f db/data.psql > /dev/null"
         puts cmd
         sh cmd
       end

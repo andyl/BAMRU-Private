@@ -78,9 +78,15 @@ Action:
 - [x] working `rails db:drop`
 - [x] working `rails db:migrate`
 - [x] working `rails server`
-- [ ] working `rake -T`
+- [x] working `rails -T`
+- [x] working `script/download`
+
+- [ ] working `rails ops:restore:db`
+- [ ] working `rails ops:restore:sysdir`
+- [ ] working `rails ops:restore:all`   
 
 - [ ] working data import
+
 - [ ] get UI working
 - [ ] get tests passing
 
