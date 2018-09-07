@@ -1,7 +1,7 @@
 require "capistrano/setup"
-require "capistrano/deploy"
+# require "capistrano/deploy"
 require "capistrano/scm/git"
-install_plugin Capistrano::SCM::Git
+# install_plugin Capistrano::SCM::Git
 
 # require "capistrano/rvm"
 # require "capistrano/rbenv"
@@ -26,7 +26,6 @@ Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 # require File.expand_path('./lib/env_settings', File.dirname(__FILE__))
 
 require File.expand_path('./config/application', File.dirname(__FILE__))
-# require File.expand_path('../config/application', __FILE__)
 
 # ===== App Config =====
 set :app_name,    APP_NAME         # <- this comes from lib/env_settings
@@ -37,14 +36,13 @@ set :web_port,    8500
 
 # ===== Stage-Specific Code =====
 set :stages, %w(vagrant devstage pubstage production)
-# set :default_stage, "vagrant"
 set :default_stage, "production"
 # require 'capistrano/ext/multistage'
 
 # ===== Common Code for All Stages =====
 # load 'deploy'
 share_dir = File.expand_path("config/deploy/shared", File.dirname(__FILE__))
-# require "#{share_dir}/tasks"
+require "#{share_dir}/tasks"
 
 # ===== Package Definitions =====
 # require share_dir + "/packages/cron"        # setup cron using whenever

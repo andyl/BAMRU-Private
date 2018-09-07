@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+USER = 'deploy'
+OPTS = %w(db sysdir all)
+
+def quit_msg
+  abort 'Usage: backup < db | sysdir | all >'
+end
+
+def download_db
+  puts "Download database backups. (#{Time.now.strftime('%H:%M:%S')})"
+  tgt_dir = "~/var/backup/bnet/bamru1/db"
+  system "mkdir -p #{tgt_dir}"
+  cmd = "rsync -av --delete #{USER}@bamru.net:e/bnet/bamru1/db/ #{tgt_dir}"
+  puts cmd
+  system cmd
+  puts "Downloading finished. (#{Time.now.strftime('%H:%M:%S')})"
+end
+
+def download_sysdir
+  puts "Download system directory backups - this might take awhile. (#{Time.now.strftime('%H:%M:%S')})"
+  tgt_dir = "~/var/backup/bnet/bamru1/sysdir"
+  system "mkdir -p #{tgt_dir}"
+  cmd = "rsync -av --delete #{USER}@bamru.net:e/bnet/bamru1/sysdir/ #{tgt_dir}"
+  puts cmd
+  system cmd
+  puts "Downloading finished. (#{Time.now.strftime('%H:%M:%S')})"
+end
+
+def download_all
+  download_db
+  download_sysdir
+  puts "All backups downloaded."
+end
+
+arg = ARGV[0]
+quit_msg unless arg
+quit_msg unless OPTS.include?(arg)
+
+case arg
+when 'db'     then download_db
+when 'sysdir' then download_sysdir
+when 'all'    then download_all
+end

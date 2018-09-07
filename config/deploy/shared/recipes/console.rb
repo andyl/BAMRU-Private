@@ -1,4 +1,4 @@
-Capistrano::Configuration.instance(:must_exist).load do
+# Capistrano::Configuration.instance(:must_exist).load do
 
   desc "Run the App Dashboard"
   task :console do
@@ -9,4 +9,4 @@ Capistrano::Configuration.instance(:must_exist).load do
     console
   end
 
-end
+# end

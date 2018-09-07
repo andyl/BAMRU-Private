@@ -1,4 +1,4 @@
-Capistrano::Configuration.instance(:must_exist).load do
+# Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :backup do
 
@@ -53,5 +53,5 @@ Capistrano::Configuration.instance(:must_exist).load do
         end
     end
   end
-end
+# end
 
