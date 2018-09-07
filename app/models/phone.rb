@@ -1,19 +1,19 @@
 class Phone < ActiveRecord::Base
 
   # ----- Attributes -----
-  attr_accessible :typ, :member_id, :number, :pagable, :sms_email, :position
+  # attr_accessible :typ, :member_id, :number, :pagable, :sms_email, :position
 
   # ----- Associations -----
   belongs_to :member
   has_many   :outbound_mails
-  
+
   acts_as_list :scope => :member_id
 
 
   # ----- Callbacks -----
 
   # ----- Validations -----
-  validates_format_of   :number, :with => /^\d\d\d-\d\d\d-\d\d\d\d$/
+  validates_format_of   :number, :with => /\A\d\d\d-\d\d\d-\d\d\d\d\z/
   #validates_presence_of :member_id
 
 

@@ -3,9 +3,9 @@ FactoryGirl.define do
   factory :member do
     first_name "John"
     sequence :last_name  do |n| "Do#{'e' * n}" end
-    
-    ignore do add_count 3 end
-    
+
+    # ignore do add_count 3 end
+
     trait :with_phone do
       after(:create) do |member, evaluator|
         FactoryGirl.create_list(:phone, evaluator.add_count, :member => member)
@@ -14,7 +14,7 @@ FactoryGirl.define do
         FactoryGirl.build_stubbed_list(:phone, evaluator.add_count, :member => member)
       end
     end
-    
+
     trait :with_email do
       after(:create) do |member, evaluator|
         FactoryGirl.create_list(:email, evaluator.add_count, :member => member)

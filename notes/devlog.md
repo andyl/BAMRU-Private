@@ -73,24 +73,22 @@ Action:
 - [x] upgrade postgres
 - [x] upgrade rails
 - [x] bundler runs end-to-end
-- [x] working `rails console`
 - [x] working `rails db:create`
 - [x] working `rails db:drop`
 - [x] working `rails db:migrate`
 - [x] working `rails server`
 - [x] working `rails -T`
 - [x] working `script/download`
-
-- [ ] working `rails ops:restore:db`
-- [ ] working `rails ops:restore:sysdir`
-- [ ] working `rails ops:restore:all`   
-
-- [ ] working data import
-
-- [ ] get UI working
-- [ ] get tests passing
+- [x] working `rails ops:restore:db`
+- [x] working `rails ops:restore:sysdir`
+- [x] working `rails ops:restore:all`   
+- [x] working data import
 
 # TBD
+
+- [ ] working `rails console`
+- [ ] get UI working
+- [ ] get tests passing
 
 - [ ] get rid of .rbenv-vars
 - [ ] agree on a scheme for managing secrets (sops? dotenv?)
