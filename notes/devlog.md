@@ -84,11 +84,18 @@ Action:
 - [x] working `rails ops:restore:all`   
 - [x] working data import
 
+# 2018-09-11
+
+- [x] working `rails console`
+- [x] spec/model/member
+
 # TBD
 
-- [ ] working `rails console`
+- [ ] spec/model/address
+- [ ] spec/model/phone
+- [ ] spec/model/email
+
 - [ ] get UI working
-- [ ] get tests passing
 
 - [ ] get rid of .rbenv-vars
 - [ ] agree on a scheme for managing secrets (sops? dotenv?)
