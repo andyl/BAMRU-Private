@@ -88,11 +88,11 @@ Action:
 
 - [x] working `rails console`
 - [x] spec/model/member
+- [x] spec/model/phone
+- [x] spec/model/address
 
 # TBD
 
-- [ ] spec/model/address
-- [ ] spec/model/phone
 - [ ] spec/model/email
 
 - [ ] get UI working
